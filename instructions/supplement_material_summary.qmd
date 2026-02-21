@@ -1,0 +1,229 @@
+---
+format:
+  html:
+    theme: darkly
+---
+
+# Synthèse du cours de calcul quantique
+
+## Introduction
+*   La mécanique quantique est la base du calcul et de l’information quantiques.
+*   Prérequis : notions élémentaires d’algèbre linéaire.
+*   Le chapitre couvre :
+    *   Rappels d’algèbre linéaire avec notation de Dirac.
+    *   Les postulats de la mécanique quantique.
+    *   Applications : codage superdense, opérateur densité, décomposition de Schmidt, inégalité de Bell.
+
+---
+
+## 2.1 Algèbre linéaire
+
+### 2.1.1 Espaces vectoriels et notation de Dirac
+*   Espace vectoriel de base : $\mathbf{C}^n$ (n‑uplets de nombres complexes).
+*   Vecteur : $|\psi\rangle$ (ket).
+*   Vecteur nul : $0$ (pas de notation ket).
+*   Combinaison linéaire : $a|v\rangle + b|w\rangle$.
+*   **Base et dimension** :
+    *   Un ensemble de vecteurs linéairement indépendants qui engendre l’espace.
+    *   Dimension = nombre d’éléments d’une base.
+*   **Indépendance linéaire** : $\sum_i a_i|v_i\rangle = 0 \Rightarrow$ tous les $a_i=0$.
+
+### 2.1.2 Opérateurs linéaires et matrices
+*   Opérateur linéaire $A: V \to W$ tel que $A(\sum a_i|v_i\rangle)=\sum a_i A|v_i\rangle$.
+*   Représentation matricielle : pour des bases données, $A|v_j\rangle = \sum_i A_{ij}|w_i\rangle$.
+*   Composition : $(BA)|v\rangle = B(A|v\rangle)$.
+
+### 2.1.3 Matrices de Pauli (pour un qubit)
+$$
+I=\begin{bmatrix}1&0\\0&1\end{bmatrix},\quad
+X=\begin{bmatrix}0&1\\1&0\end{bmatrix},\quad
+Y=\begin{bmatrix}0&-i\\i&0\end{bmatrix},\quad
+Z=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
+$$
+
+### 2.1.4 Produit scalaire (inner product)
+*   Notation : $\langle v|w\rangle$ (bra‑ket).
+*   Propriétés :
+    *   Linéaire dans le second argument.
+    *   $\langle v|w\rangle = \langle w|v\rangle^*$.
+    *   $\langle v|v\rangle \ge 0$, nul ssi $|v\rangle=0$.
+*   **Norme** : $\||v\rangle\| = \sqrt{\langle v|v\rangle}$.
+*   **Orthogonalité** : $\langle v|w\rangle = 0$.
+*   **Base orthonormale** : $\langle i|j\rangle = \delta_{ij}$.
+*   **Procédé de Gram‑Schmidt** : construit une base orthonormale à partir d’une base quelconque.
+*   **Relation de fermeture** : $\sum_i |i\rangle\langle i| = I$.
+*   **Inégalité de Cauchy‑Schwarz** : $|\langle v|w\rangle|^2 \le \langle v|v\rangle\langle w|w\rangle$.
+
+### 2.1.5 Vecteurs propres et valeurs propres
+*   $A|v\rangle = \lambda|v\rangle$, $|v\rangle \neq 0$.
+*   Polynôme caractéristique : $\det(A-\lambda I)=0$.
+*   **Représentation diagonale** : $A = \sum_i \lambda_i |i\rangle\langle i|$ (si diagonalisable).
+*   **Dégénérescence** : plusieurs vecteurs propres linéairement indépendants pour une même valeur propre.
+
+### 2.1.6 Adjoints et opérateurs hermitiens
+*   **Adjoint** $A^\dagger$ : $\langle v|A w\rangle = \langle A^\dagger v| w\rangle$.
+*   En matrice : $(A^\dagger)_{ij} = A_{ji}^*$.
+*   **Hermitien** (auto‑adjoint) : $A^\dagger = A$.
+*   **Projecteur** $P$ : $P^2 = P$, $P^\dagger = P$.
+*   **Normal** : $AA^\dagger = A^\dagger A$ (⇔ diagonalisable).
+*   **Unitaire** : $U^\dagger U = I$ (préserve le produit scalaire).
+*   **Positif** : $\langle v|A|v\rangle \ge 0$ pour tout $|v\rangle$ (⇒ hermitien, valeurs propres ≥ 0).
+
+### 2.1.7 Produit tensoriel
+*   Pour deux espaces $V$ (dim $m$) et $W$ (dim $n$), $V\otimes W$ est de dimension $mn$.
+*   Éléments : combinaisons linéaires de $|v\rangle\otimes|w\rangle$.
+*   Propriétés : bilinéaire.
+*   Opérateur tensoriel : $(A\otimes B)(|v\rangle\otimes|w\rangle)=A|v\rangle\otimes B|w\rangle$.
+*   Base : si $\{|i\rangle\}$ base de $V$, $\{|j\rangle\}$ base de $W$, alors $\{|i\rangle\otimes|j\rangle\}$ base de $V\otimes W$.
+*   Produit scalaire : $(\sum a_i|v_i w_i\rangle,\sum b_j|v_j' w_j'\rangle)=\sum a_i^*b_j\langle v_i|v_j'\rangle\langle w_i|w_j'\rangle$.
+
+### 2.1.8 Fonctions d’opérateurs
+*   Pour un opérateur normal $A=\sum_a a|a\rangle\langle a|$, $f(A)=\sum_a f(a)|a\rangle\langle a|$.
+*   Exemple : $\exp(\theta Z)=\begin{bmatrix}e^\theta&0\\0&e^{-\theta}\end{bmatrix}$.
+*   **Trace** : $\operatorname{tr}(A)=\sum_i A_{ii}$, cyclique et linéaire.
+
+### 2.1.9 Commutateur et anticommutateur
+*   $[A,B]=AB-BA$.
+*   $\{A,B\}=AB+BA$.
+*   Si $[A,B]=0$, $A$ et $B$ sont simultanément diagonalisables (pour des hermitiens).
+*   Relations de Pauli : $[X,Y]=2iZ$, $\{X,Y\}=0$, etc.
+
+### 2.1.10 Décompositions polaire et en valeurs singulières
+*   **Polaire** : $A=UJ=KU$ avec $J=\sqrt{A^\dagger A}$, $K=\sqrt{AA^\dagger}$, $U$ unitaire.
+*   **Valeurs singulières** : $A=UDV$, $U,V$ unitaires, $D$ diagonale à entrées ≥ 0.
+
+---
+
+## 2.2 Postulats de la mécanique quantique
+
+### 2.2.1 Postulat 1 – Espace des états
+*   À tout système isolé on associe un espace de Hilbert (espace vectoriel complexe avec produit scalaire).
+*   L’état du système est décrit par un **vecteur d’état unitaire** $|\psi\rangle$ ( $\langle\psi|\psi\rangle=1$ ).
+*   **Qubit** : espace de dimension 2, base orthonormale $\{|0\rangle,|1\rangle\}$. État quelconque : $|\psi\rangle = a|0\rangle+b|1\rangle$, $|a|^2+|b|^2=1$.
+
+### 2.2.2 Postulat 2 – Évolution
+*   Un système quantique **fermé** évolue par **transformation unitaire** :
+    $$|\psi'\rangle = U|\psi\rangle.$$
+*   En temps continu : équation de Schrödinger
+    $$i\hbar\frac{d|\psi\rangle}{dt}=H|\psi\rangle,$$
+    avec $H$ hamiltonien (hermitien).
+*   Solution : $|\psi(t_2)\rangle = \exp[-iH(t_2-t_1)/\hbar]\,|\psi(t_1)\rangle$.
+
+### 2.2.3 Postulat 3 – Mesure
+*   Une mesure est décrite par une collection $\{M_m\}$ d’**opérateurs de mesure**.
+*   Probabilité du résultat $m$ : $p(m)=\langle\psi|M_m^\dagger M_m|\psi\rangle$.
+*   État après la mesure (conditionnel) : $\displaystyle\frac{M_m|\psi\rangle}{\sqrt{p(m)}}$.
+*   Condition de complétude : $\sum_m M_m^\dagger M_m = I$.
+
+### 2.2.4 Distinguer des états quantiques
+*   Des états orthogonaux peuvent être distingués parfaitement (ex. mesure projective avec $M_i=|\psi_i\rangle\langle\psi_i|$).
+*   Des états non orthogonaux ne peuvent pas être distingués avec certitude (preuve par contradiction utilisant la décomposition en composante parallèle).
+
+### 2.2.5 Mesures projectives
+*   Cas particulier où les $M_m$ sont des projecteurs orthogonaux : $M_m = P_m$, $P_mP_{m'}=\delta_{mm'}P_m$, $\sum_m P_m=I$.
+*   On parle d’**observable** $M=\sum_m m P_m$.
+*   Probabilité : $p(m)=\langle\psi|P_m|\psi\rangle$.
+*   État final : $\frac{P_m|\psi\rangle}{\sqrt{p(m)}}$.
+*   Valeur moyenne : $\langle M\rangle = \langle\psi|M|\psi\rangle$.
+*   Écart‑type : $\Delta M = \sqrt{\langle M^2\rangle-\langle M\rangle^2}$.
+*   Principe d’incertitude de Heisenberg : $\Delta C\,\Delta D \ge \frac{|\langle[C,D]\rangle|}{2}$.
+
+### 2.2.6 POVM (Positive Operator‑Valued Measure)
+*   Lorsqu’on s’intéresse seulement aux probabilités, on utilise les éléments $E_m = M_m^\dagger M_m$ (positifs, $\sum E_m=I$).
+*   Probabilité : $p(m)=\langle\psi|E_m|\psi\rangle$.
+*   Permet de décrire des mesures où l’état post‑mesure n’est pas important (ex. distinguer des états non orthogonaux sans erreur parfois).
+
+### 2.2.7 Phase
+*   **Phase globale** : $e^{i\theta}|\psi\rangle$ donne les mêmes statistiques – non observable.
+*   **Phase relative** : différence de phase entre composantes dans une base – observable (ex. $(|0\rangle+|1\rangle)/\sqrt2$ vs $(|0\rangle-|1\rangle)/\sqrt2$).
+
+### 2.2.8 Postulat 4 – Systèmes composites
+*   L’espace des états d’un système composite est le **produit tensoriel** des espaces des composants.
+*   Si le système $i$ est dans l’état $|\psi_i\rangle$, l’état total est $|\psi_1\rangle\otimes|\psi_2\rangle\otimes\cdots$.
+*   **Intrication** : un état qui ne peut pas s’écrire comme un produit tensoriel d’états individuels. Exemple : $|00\rangle+|11\rangle$ (non factorisable).
+
+### 2.2.9 Vue globale
+*   Le vecteur d’état n’est pas directement observable ; la mesure le perturbe.
+*   Malgré son étrangeté, la mécanique quantique est validée expérimentalement et permet des tâches informationnelles impossibles classiquement.
+
+---
+
+## 2.3 Application : codage superdense
+*   Objectif : transmettre 2 bits classiques en n’envoyant qu’**un seul qubit**, grâce à une paire intriquée pré‑partagée.
+*   État initial partagé : $|\psi\rangle = (|00\rangle+|11\rangle)/\sqrt2$ (état de Bell).
+*   Alice applique sur son qubit :
+    *   $00$ : rien → $|\psi\rangle$
+    *   $01$ : $Z$ → $(|00\rangle-|11\rangle)/\sqrt2$
+    *   $10$ : $X$ → $(|10\rangle+|01\rangle)/\sqrt2$
+    *   $11$ : $iY$ → $(|01\rangle-|10\rangle)/\sqrt2$
+*   Elle envoie son qubit à Bob, qui mesure les deux qubits dans la base de Bell (orthonormale) et en déduit les deux bits.
+
+---
+
+## 2.4 L’opérateur densité
+
+### 2.4.1 Ensembles d’états quantiques
+*   Si le système est dans l’état $|\psi_i\rangle$ avec probabilité $p_i$, l’opérateur densité est
+    $$\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|.$$
+*   **État pur** : $\rho=|\psi\rangle\langle\psi|$ ($\operatorname{tr}(\rho^2)=1$).
+*   **État mixte** : $\operatorname{tr}(\rho^2)<1$.
+*   Évolution unitaire : $\rho \to U\rho U^\dagger$.
+*   Mesure : $p(m)=\operatorname{tr}(M_m^\dagger M_m \rho)$ ; état après $m$ : $\frac{M_m\rho M_m^\dagger}{\operatorname{tr}(M_m^\dagger M_m\rho)}$.
+
+### 2.4.2 Propriétés et caractérisation
+*   $\rho$ est positif et $\operatorname{tr}\rho=1$ (et réciproquement, tout opérateur vérifiant ces conditions est un état).
+*   **Mélange** : si on a $\rho_i$ avec probabilité $q_i$, l’état global est $\sum q_i\rho_i$.
+*   **Liberté unitaire dans l’ensemble** : deux ensembles $\{\sqrt{p_i}|\psi_i\rangle\}$ et $\{\sqrt{q_j}|\phi_j\rangle\}$ donnent le même $\rho$ ssi ils sont reliés par une matrice unitaire.
+*   **Sphère de Bloch** pour un qubit :
+    $$\rho = \frac{I+\vec{r}\cdot\vec{\sigma}}{2},\quad \|\vec{r}\|\le1.$$
+    *   $\|\vec{r}\|=1$ pour un état pur.
+
+### 2.4.3 L’opérateur densité réduit
+*   Pour un système composite $AB$ décrit par $\rho^{AB}$, l’état du sous‑système $A$ est obtenu par **trace partielle** :
+    $$\rho^A = \operatorname{tr}_B(\rho^{AB}),$$
+    où $\operatorname{tr}_B(|a_1\rangle\langle a_2|\otimes|b_1\rangle\langle b_2|)=|a_1\rangle\langle a_2|\,\langle b_2|b_1\rangle$.
+*   Pour un état pur intriqué (ex. état de Bell), chaque sous‑système est dans un état mixte ($I/2$ pour un qubit).
+*   Utile pour analyser la téléportation : avant que Bob connaisse le résultat, son état est $I/2$ (aucune information).
+
+---
+
+## 2.5 Décomposition de Schmidt et purifications
+
+### 2.5.1 Décomposition de Schmidt
+*   Pour tout état pur $|\psi\rangle$ d’un système bipartite $AB$, il existe des bases orthonormales $\{|i_A\rangle\}$ de $A$ et $\{|i_B\rangle\}$ de $B$ telles que
+    $$|\psi\rangle = \sum_i \lambda_i |i_A\rangle|i_B\rangle,$$
+    avec $\lambda_i \ge 0$, $\sum\lambda_i^2=1$ (coefficients de Schmidt).
+*   Le nombre de $\lambda_i$ non nuls est le **nombre de Schmidt** (≥1 ; =1 ssi état produit).
+*   Conséquence : $\rho^A$ et $\rho^B$ ont les mêmes valeurs propres $\lambda_i^2$.
+
+### 2.5.2 Purification
+*   Pour tout état mixte $\rho^A$ sur $A$, on peut introduire un système auxiliaire $R$ (même dimension) et construire un état pur $|AR\rangle$ tel que
+    $$\rho^A = \operatorname{tr}_R(|AR\rangle\langle AR|).$$
+*   Construction : si $\rho^A=\sum_i p_i|i^A\rangle\langle i^A|$, prendre $|AR\rangle=\sum_i\sqrt{p_i}|i^A\rangle|i^R\rangle$.
+*   Liberté : deux purifications sont reliées par une transformation unitaire sur $R$.
+
+---
+
+## 2.6 EPR et inégalité de Bell
+
+### 2.6.1 Le paradoxe EPR
+*   Einstein, Podolsky, Rosen (1935) : selon un critère de « réalité », si on peut prédire avec certitude une propriété sans perturber le système, cette propriété existe objectivement.
+*   Pour une paire intriquée (ex. singlet de spin), Alice peut prédire le résultat de Bob sur n’importe quel axe – donc selon EPR, ces propriétés préexistent, mais la mécanique quantique ne les décrit pas ⇒ elle serait incomplète.
+
+### 2.6.2 Inégalité de Bell (CHSH)
+*   Hypothèses de **réalisme local** :
+    1.  Les propriétés mesurées ($Q,R,S,T$) ont des valeurs définies avant mesure (réalisme).
+    2.  La mesure d’Alice n’influence pas celle de Bob (localité).
+*   Expérience : Alice mesure $Q$ ou $R$ (résultats $\pm1$), Bob mesure $S$ ou $T$.
+*   Calcul algébrique :
+    $$QS+RS+RT-QT = (Q+R)S + (R-Q)T = \pm2.$$
+*   En prenant l’espérance sur une distribution de probabilités locale et réaliste, on obtient
+    $$\mathbf{E}(QS)+\mathbf{E}(RS)+\mathbf{E}(RT)-\mathbf{E}(QT) \le 2.$$
+
+### 2.6.3 Violation quantique
+*   Pour l’état singlet $(|01\rangle-|10\rangle)/\sqrt2$, choisissons
+    $$Q=Z_1,\; R=X_1,\; S=\frac{-Z_2-X_2}{\sqrt2},\; T=\frac{Z_2-X_2}{\sqrt2}.$$
+*   Les valeurs moyennes quantiques sont
+    $$\langle QS\rangle=\langle RS\rangle=\langle RT\rangle=\frac1{\sqrt2},\quad \langle QT\rangle=-\frac1{\sqrt2}.$$
+*   Somme : $2\sqrt2 \approx 2.828 > 2$. La prédiction quantique viole l’inégalité de Bell.
+*   Expériences (Aspect, etc.) confirment la prédiction quantique ⇒ le réalisme local est incorrect.

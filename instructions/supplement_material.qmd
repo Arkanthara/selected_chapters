@@ -1,0 +1,1747 @@
+---
+format:
+  html:
+    theme: darkly
+---
+
+# Introduction à la mécanique quantique
+
+Je ne suis pas physicien mais je sais ce qui compte. – Popeye le marin
+
+La mécanique quantique : un vrai calcul de magie noire – Albert Einstein
+
+La mécanique quantique est la description la plus précise et complète du monde connue. Elle est également la base pour comprendre le calcul quantique et l’information quantique. Ce chapitre fournit toutes les connaissances de base nécessaires en mécanique quantique pour une compréhension approfondie du calcul et de l’information quantiques. Aucune connaissance préalable de la mécanique quantique n’est supposée.
+
+La mécanique quantique est facile à apprendre, malgré sa réputation de sujet difficile. Cette réputation vient de la difficulté de certaines applications, comme la compréhension de la structure de molécules complexes, qui ne sont pas fondamentales pour la compréhension du sujet ; nous ne discuterons pas de ces applications. Le seul prérequis est une certaine familiarité avec l’algèbre linéaire élémentaire. Avec ce bagage, vous pouvez commencer à résoudre des problèmes simples en quelques heures, même sans connaissance préalable du sujet.
+
+Les lecteurs déjà familiers avec la mécanique quantique peuvent parcourir rapidement ce chapitre pour se familiariser avec nos conventions de notation (généralement standard) et s’assurer de leur maîtrise de toute la matière. Les lecteurs ayant peu ou pas de connaissances préalables devraient étudier le chapitre en détail, en s’arrêtant pour tenter les exercices. Si vous avez des difficultés avec un exercice, passez à la suite et revenez plus tard pour une nouvelle tentative.
+
+Le chapitre commence par une revue de quelques notions d’algèbre linéaire dans la section 2.1. Cette section suppose une familiarité avec l’algèbre linéaire élémentaire, mais introduit la notation utilisée par les physiciens pour décrire la mécanique quantique, qui diffère de celle employée dans la plupart des introductions à l’algèbre linéaire. La section 2.2 décrit les postulats de base de la mécanique quantique. À la fin de cette section, vous aurez compris tous les principes fondamentaux de la mécanique quantique. Cette section contient de nombreux exercices simples conçus pour consolider votre compréhension. Les sections restantes du chapitre, et de ce livre, approfondissent cette matière sans introduire de nouveaux principes physiques fondamentaux. La section 2.3 explique le codage superdense, un exemple surprenant et éclairant de traitement de l’information quantique qui combine plusieurs postulats de la mécanique quantique dans un cadre simple. Les sections 2.4 et 2.5 développent des outils mathématiques puissants – l’opérateur densité, les purifications et la décomposition de Schmidt – particulièrement utiles dans l’étude du calcul et de l’information quantiques. La compréhension de ces outils vous aidera également à consolider votre compréhension de la mécanique quantique élémentaire. Enfin, la section 2.6 examine la question de savoir comment la mécanique quantique dépasse la compréhension « classique » habituelle du fonctionnement du monde.
+
+---
+
+# Algèbre linéaire
+
+Ce livre est écrit autant pour déranger et agacer que pour instruire. – Première ligne de *About Vectors* de Banesh Hoffmann
+
+La vie est complexe – elle a des parties réelles et imaginaires. – Anonyme
+
+L’algèbre linéaire est l’étude des espaces vectoriels et des opérations linéaires sur ces espaces. Une bonne compréhension de la mécanique quantique repose sur une solide maîtrise de l’algèbre linéaire élémentaire. Dans cette section, nous passons en revue quelques concepts de base de l’algèbre linéaire et décrivons les notations standard utilisées dans l’étude de la mécanique quantique. Ces notations sont résumées dans la figure 2.1 (page 62), avec la notation quantique dans la colonne de gauche et la description algébrique linéaire dans la colonne de droite. Vous pouvez jeter un coup d’œil au tableau et voir combien de concepts de la colonne de droite vous reconnaissez.
+
+À notre avis, le principal obstacle à l’assimilation des postulats de la mécanique quantique n’est pas les postulats eux-mêmes, mais plutôt le grand nombre de notions d’algèbre linéaire nécessaires pour les comprendre. Couplée à l’inhabituelle notation de Dirac adoptée par les physiciens pour la mécanique quantique, cela peut paraître (à tort) assez redoutable. Pour ces raisons, nous conseillons au lecteur non familier avec la mécanique quantique de lire rapidement le matériel qui suit, en s’arrêtant principalement pour comprendre les bases absolues de la notation utilisée. Ensuite, procéder à une étude attentive du sujet principal du chapitre – les postulats de la mécanique quantique – en revenant étudier les notions et notations d’algèbre linéaire nécessaires plus en profondeur, selon les besoins.
+
+Les objets de base de l’algèbre linéaire sont les espaces vectoriels. L’espace vectoriel qui nous intéresse le plus est $\mathbf{C}^n$, l’espace de tous les $n$-uplets de nombres complexes, $(z_1,\ldots,z_n)$. Les éléments d’un espace vectoriel sont appelés vecteurs, et nous utiliserons parfois la notation matricielle en colonne :
+
+$$
+\begin{bmatrix} z_1 \\ \vdots \\ z_n \end{bmatrix} \tag{2.1}
+$$
+
+pour indiquer un vecteur. Une opération d’addition est définie, qui prend des paires de vecteurs pour donner d’autres vecteurs. Dans $\mathbf{C}^n$, l’addition de vecteurs est définie par :
+
+$$
+\begin{bmatrix} z_1 \\ \vdots \\ z_n \end{bmatrix} + \begin{bmatrix} z_1' \\ \vdots \\ z_n' \end{bmatrix} \equiv \begin{bmatrix} z_1 + z_1' \\ \vdots \\ z_n + z_n' \end{bmatrix}, \tag{2.2}
+$$
+
+où les additions à droite sont des additions ordinaires de nombres complexes. De plus, dans un espace vectoriel, il existe une opération de multiplication par un scalaire. Dans $\mathbf{C}^n$, cette opération est définie par :
+
+$$
+z \begin{bmatrix} z_1 \\ \vdots \\ z_n \end{bmatrix} \equiv \begin{bmatrix} z z_1 \\ \vdots \\ z z_n \end{bmatrix}, \tag{2.3}
+$$
+
+où $z$ est un scalaire, c’est-à-dire un nombre complexe, et les multiplications à droite sont des multiplications ordinaires de nombres complexes. Les physiciens appellent parfois les nombres complexes des *c‑numbers*.
+
+La mécanique quantique est notre principale motivation pour étudier l’algèbre linéaire, nous utiliserons donc la notation standard de la mécanique quantique pour les concepts d’algèbre linéaire. La notation quantique standard pour un vecteur dans un espace vectoriel est la suivante :
+
+$$
+|\psi\rangle. \tag{2.4}
+$$
+
+$\psi$ est une étiquette pour le vecteur (toute étiquette est valide, mais nous préférons utiliser des étiquettes simples comme $\psi$ et $\phi$). La notation $|\cdot\rangle$ est utilisée pour indiquer que l’objet est un vecteur. L’objet entier $|\psi\rangle$ est parfois appelé un *ket*, bien que nous n’utilisions pas souvent cette terminologie.
+
+Un espace vectoriel contient également un vecteur nul spécial, que nous notons $0$. Il satisfait la propriété que pour tout autre vecteur $|v\rangle$, $|v\rangle + 0 = |v\rangle$. Notez que nous n’utilisons pas la notation ket pour le vecteur nul – c’est la seule exception que nous ferons. La raison de cette exception est qu’il est conventionnel d’utiliser la notation « évidente » pour le vecteur nul, $|0\rangle$, pour signifier quelque chose de tout à fait différent. L’opération de multiplication scalaire est telle que $z0 = 0$ pour tout nombre complexe $z$. Par commodité, nous utilisons la notation $(z_1,\ldots,z_n)$ pour désigner une matrice colonne avec les entrées $z_1,\ldots,z_n$. Dans $\mathbf{C}^n$, l’élément nul est $(0,0,\ldots,0)$. Un sous‑espace vectoriel d’un espace vectoriel $V$ est un sous‑ensemble $W$ de $V$ tel que $W$ soit également un espace vectoriel, c’est‑à‑dire que $W$ doit être clos sous la multiplication scalaire et l’addition.
+
+| Notation | Description |
+|-----------|-------------|
+| $z^*$ | Conjugué complexe du nombre complexe $z$. Exemple : $(1+i)^* = 1-i$ |
+| $|\psi\rangle$ | Vecteur. Aussi appelé *ket*. |
+| $\langle\psi|$ | Vecteur dual de $|\psi\rangle$. Aussi appelé *bra*. |
+| $\langle\phi|\psi\rangle$ | Produit scalaire entre les vecteurs $|\phi\rangle$ et $|\psi\rangle$. |
+| $|\phi\rangle \otimes |\psi\rangle$ | Produit tensoriel de $|\phi\rangle$ et $|\psi\rangle$. |
+| $|\phi\rangle|\psi\rangle$ | Notation abrégée pour le produit tensoriel de $|\phi\rangle$ et $|\psi\rangle$. |
+| $A^*$ | Conjugué complexe de la matrice $A$. |
+| $A^T$ | Transposée de la matrice $A$. |
+| $A^\dagger$ | Conjuguée hermitienne ou adjointe de $A$, $A^\dagger = (A^T)^*$. |
+| $\langle\phi|A|\psi\rangle$ | Produit scalaire entre $|\phi\rangle$ et $A|\psi\rangle$. Équivalent au produit scalaire entre $A^\dagger|\phi\rangle$ et $|\psi\rangle$. |
+
+Figure 2.1 – Résumé de quelques notations quantiques standard pour des notions d’algèbre linéaire. Ce style de notation est appelé notation de Dirac.
+
+---
+
+### Bases et indépendance linéaire
+
+Un ensemble générateur d’un espace vectoriel est un ensemble de vecteurs $|v_1\rangle,\ldots,|v_n\rangle$ tel que tout vecteur $|v\rangle$ de l’espace vectoriel puisse s’écrire comme une combinaison linéaire $|v\rangle = \sum_i a_i |v_i\rangle$ des vecteurs de cet ensemble. Par exemple, un ensemble générateur pour l’espace vectoriel $\mathbf{C}^2$ est l’ensemble :
+
+$$
+|v_1\rangle \equiv \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad |v_2\rangle \equiv \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \tag{2.5}
+$$
+
+puisque tout vecteur $|v\rangle = \begin{bmatrix} a_1 \\ a_2 \end{bmatrix}$ dans $\mathbf{C}^2$ peut s’écrire comme une combinaison linéaire $|v\rangle = a_1|v_1\rangle + a_2|v_2\rangle$ des vecteurs $|v_1\rangle$ et $|v_2\rangle$. On dit que les vecteurs $|v_1\rangle$ et $|v_2\rangle$ engendrent l’espace vectoriel $\mathbf{C}^2$.
+
+Généralement, un espace vectoriel peut avoir plusieurs ensembles générateurs différents. Un deuxième ensemble générateur pour $\mathbf{C}^2$ est :
+
+$$
+|v_1\rangle \equiv \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad |v_2\rangle \equiv \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ -1 \end{bmatrix}, \tag{2.7}
+$$
+
+car un vecteur arbitraire $|v\rangle = (a_1, a_2)$ peut s’écrire comme combinaison linéaire de $|v_1\rangle$ et $|v_2\rangle$ :
+
+$$
+|v\rangle = \frac{a_1 + a_2}{\sqrt{2}} |v_1\rangle + \frac{a_1 - a_2}{\sqrt{2}} |v_2\rangle. \tag{2.8}
+$$
+
+Un ensemble de vecteurs non nuls $|v_1\rangle,\ldots,|v_n\rangle$ est **linéairement dépendant** s’il existe des nombres complexes $a_1,\ldots,a_n$ avec $a_i \neq 0$ pour au moins un $i$, tels que :
+
+$$
+a_1|v_1\rangle + a_2|v_2\rangle + \cdots + a_n|v_n\rangle = 0. \tag{2.9}
+$$
+
+Un ensemble de vecteurs est **linéairement indépendant** s’il n’est pas linéairement dépendant. On peut montrer que deux ensembles quelconques de vecteurs linéairement indépendants qui engendrent un espace vectoriel $V$ contiennent le même nombre d’éléments. On appelle un tel ensemble une **base** de $V$. De plus, un tel ensemble de base existe toujours. Le nombre d’éléments dans la base est défini comme la **dimension** de $V$. Dans ce livre, nous ne nous intéresserons qu’aux espaces vectoriels de dimension finie. Il existe de nombreuses questions intéressantes et souvent difficiles associées aux espaces vectoriels de dimension infinie. Nous n’aurons pas à nous soucier de ces questions.
+
+> **Exercice 2.1 : (Exemple de dépendance linéaire)**  
+> Montrer que $(1,-1)$, $(1,2)$ et $(2,1)$ sont linéairement dépendants.
+
+---
+
+### Opérateurs linéaires et matrices
+
+Un **opérateur linéaire** entre des espaces vectoriels $V$ et $W$ est défini comme toute fonction $A : V \to W$ qui est linéaire en ses entrées :
+
+$$
+A\left( \sum_i a_i |v_i\rangle \right) = \sum_i a_i A(|v_i\rangle). \tag{2.10}
+$$
+
+Habituellement, nous écrivons simplement $A|v\rangle$ pour désigner $A(|v\rangle)$. Quand nous disons qu’un opérateur linéaire $A$ est défini sur un espace vectoriel $V$, cela signifie que $A$ est un opérateur linéaire de $V$ dans $V$. Un opérateur linéaire important sur tout espace vectoriel $V$ est l’**opérateur identité**, $I_V$, défini par $I_V|v\rangle \equiv |v\rangle$ pour tout vecteur $|v\rangle$. Lorsqu’il n’y a pas de risque de confusion, nous omettons l’indice $V$ et écrivons simplement $I$ pour désigner l’opérateur identité. Un autre opérateur linéaire important est l’**opérateur nul**, que nous notons $0$. L’opérateur nul envoie tous les vecteurs sur le vecteur nul, $0|v\rangle \equiv 0$. Il est clair d’après (2.10) qu’une fois que l’action d’un opérateur linéaire $A$ sur une base est spécifiée, l’action de $A$ est complètement déterminée sur toutes les entrées.
+
+Supposons que $V$, $W$ et $X$ soient des espaces vectoriels, et que $A : V \to W$ et $B : W \to X$ soient des opérateurs linéaires. Nous utilisons alors la notation $BA$ pour désigner la composition de $B$ avec $A$, définie par $(BA)(|v\rangle) \equiv B(A(|v\rangle))$. Une fois de plus, nous écrivons $BA|v\rangle$ comme une abréviation pour $(BA)(|v\rangle)$.
+
+La manière la plus pratique de comprendre les opérateurs linéaires est en termes de leurs représentations matricielles. En fait, les points de vue opérateur linéaire et matrice s’avèrent complètement équivalents. Le point de vue matriciel peut vous être plus familier. Pour voir le lien, il faut d’abord comprendre qu’une matrice complexe $A$ de taille $m \times n$ avec des entrées $A_{ij}$ est en fait un opérateur linéaire envoyant les vecteurs de l’espace vectoriel $\mathbf{C}^n$ vers l’espace vectoriel $\mathbf{C}^m$, par multiplication matricielle de la matrice $A$ par un vecteur de $\mathbf{C}^n$. Plus précisément, l’affirmation selon laquelle la matrice $A$ est un opérateur linéaire signifie simplement que :
+
+$$
+A\left( \sum_i a_i |v_i\rangle \right) = \sum_i a_i A|v_i\rangle \tag{2.11}
+$$
+
+est vraie comme équation où l’opération est la multiplication matricielle de $A$ par des vecteurs colonnes. Clairement, c’est vrai !
+
+Nous avons vu que les matrices peuvent être considérées comme des opérateurs linéaires. Les opérateurs linéaires peuvent-ils recevoir une représentation matricielle ? En fait, oui, comme nous l’expliquons maintenant. Cette équivalence entre les deux points de vue justifie notre interchangeabilité des termes de la théorie des matrices et de la théorie des opérateurs tout au long du livre. Supposons que $A : V \to W$ soit un opérateur linéaire entre des espaces vectoriels $V$ et $W$. Supposons que $|v_1\rangle,\ldots,|v_m\rangle$ soit une base de $V$ et que $|w_1\rangle,\ldots,|w_n\rangle$ soit une base de $W$. Alors pour chaque $j$ dans l’intervalle $1,\ldots,m$, il existe des nombres complexes $A_{1j}$ à $A_{nj}$ tels que :
+
+$$
+A|v_j\rangle = \sum_i A_{ij} |w_i\rangle. \tag{2.12}
+$$
+
+La matrice dont les entrées sont les valeurs $A_{ij}$ est dite former une **représentation matricielle** de l’opérateur $A$. Cette représentation matricielle de $A$ est complètement équivalente à l’opérateur $A$, et nous utiliserons indifféremment la représentation matricielle et le point de vue abstrait des opérateurs. Notez que pour faire le lien entre matrices et opérateurs linéaires, nous devons spécifier un ensemble de bases d’entrée et de sortie pour les espaces vectoriels d’entrée et de sortie de l’opérateur linéaire.
+
+> **Exercice 2.2 : (Exemple de représentations matricielles)**  
+> Supposons que $V$ soit un espace vectoriel avec des vecteurs de base $|0\rangle$ et $|1\rangle$, et que $A$ soit un opérateur linéaire de $V$ dans $V$ tel que $A|0\rangle = |1\rangle$ et $A|1\rangle = |0\rangle$. Donnez une représentation matricielle de $A$, par rapport à la base d’entrée $|0\rangle,|1\rangle$ et à la base de sortie $|0\rangle,|1\rangle$. Trouvez des bases d’entrée et de sortie qui donnent lieu à une représentation matricielle différente de $A$.
+
+> **Exercice 2.3 : (Représentation matricielle pour des produits d’opérateurs)**  
+> Supposons que $A$ soit un opérateur linéaire de l’espace vectoriel $V$ vers l’espace vectoriel $W$, et que $B$ soit un opérateur linéaire de l’espace vectoriel $W$ vers l’espace vectoriel $X$. Soient $|v_i\rangle$, $|w_j\rangle$ et $|x_k\rangle$ des bases pour les espaces vectoriels $V$, $W$ et $X$, respectivement. Montrez que la représentation matricielle de la transformation linéaire $BA$ est le produit matriciel des représentations matricielles de $B$ et $A$, par rapport aux bases appropriées.
+
+---
+
+### Les matrices de Pauli
+
+Quatre matrices extrêmement utiles que nous aurons souvent l’occasion d’utiliser sont les **matrices de Pauli**. Ce sont des matrices $2 \times 2$, qui portent une variété de notations. Les matrices, et leurs notations correspondantes, sont représentées dans la Figure 2.2. Les matrices de Pauli sont si utiles dans l’étude du calcul et de l’information quantiques que nous vous encourageons à les mémoriser en travaillant en détail les nombreux exemples et exercices basés sur elles dans les sections suivantes.
+
+$$
+I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad
+X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}, \quad
+Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}, \quad
+Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}.
+$$
+
+Figure 2.2 – Les matrices de Pauli. Parfois, $I$ est omise de la liste, seuls $X$, $Y$ et $Z$ étant appelés matrices de Pauli.
+
+---
+
+### Produits scalaires
+
+Un **produit scalaire** (ou *inner product*) est une fonction qui prend en entrée deux vecteurs $|v\rangle$ et $|w\rangle$ d’un espace vectoriel et produit un nombre complexe en sortie. Pour le moment, il sera pratique d’écrire le produit scalaire de $|v\rangle$ et $|w\rangle$ comme $(|v\rangle,|w\rangle)$. Ce n’est pas la notation quantique standard ; pour des raisons de clarté pédagogique, la notation $(\cdot,\cdot)$ sera utile occasionnellement dans ce chapitre. La notation quantique standard pour le produit scalaire $(|v\rangle,|w\rangle)$ est $\langle v|w\rangle$, où $|v\rangle$ et $|w\rangle$ sont des vecteurs dans l’espace à produit scalaire, et la notation $\langle v|$ est utilisée pour le **vecteur dual** du vecteur $|v\rangle$ ; le dual est un opérateur linéaire de l’espace à produit scalaire $V$ vers les nombres complexes $\mathbf{C}$, défini par $\langle v|(|w\rangle) \equiv \langle v|w\rangle \equiv (|v\rangle,|w\rangle)$. Nous verrons bientôt que la représentation matricielle des vecteurs duaux est simplement un vecteur ligne.
+
+Une fonction $(\cdot,\cdot)$ de $V \times V$ dans $\mathbf{C}$ est un produit scalaire si elle satisfait les conditions suivantes :
+
+1. $(\cdot,\cdot)$ est linéaire dans le second argument :
+
+   $$
+   \left(|v\rangle, \sum_i \lambda_i |w_i\rangle\right) = \sum_i \lambda_i (|v\rangle, |w_i\rangle). \tag{2.13}
+   $$
+
+2. $(|v\rangle,|w\rangle) = (|w\rangle,|v\rangle)^*$ (symétrie hermitienne).
+
+3. $(|v\rangle,|v\rangle) \ge 0$ avec égalité si et seulement si $|v\rangle = 0$ (positivité).
+
+Par exemple, $\mathbf{C}^n$ a un produit scalaire défini par :
+
+$$
+((y_1,\ldots,y_n), (z_1,\ldots,z_n)) \equiv \sum_i y_i^* z_i = [y_1^* \ldots y_n^*] \begin{bmatrix} z_1 \\ \vdots \\ z_n \end{bmatrix}. \tag{2.14}
+$$
+
+Nous appelons un espace vectoriel muni d’un produit scalaire un **espace à produit scalaire** (ou *inner product space*).
+
+> **Exercice 2.5 :** Vérifiez que $(\cdot,\cdot)$ ainsi défini est un produit scalaire sur $\mathbf{C}^n$.
+
+> **Exercice 2.6 :** Montrez que tout produit scalaire $(\cdot,\cdot)$ est **conjugué‑linéaire** dans le premier argument :
+> $$
+> \left( \sum_i \lambda_i |w_i\rangle, |v\rangle \right) = \sum_i \lambda_i^* (|w_i\rangle, |v\rangle). \tag{2.15}
+> $$
+
+Les discussions sur la mécanique quantique font souvent référence à l’**espace de Hilbert**. Dans les espaces vectoriels complexes de dimension finie qui apparaissent en calcul et information quantiques, un espace de Hilbert est exactement la même chose qu’un espace à produit scalaire. Désormais, nous utilisons les deux termes de manière interchangeable, en préférant le terme *espace de Hilbert*. En dimension infinie, les espaces de Hilbert satisfont des restrictions techniques supplémentaires au‑delà des espaces à produit scalaire, dont nous n’aurons pas à nous soucier.
+
+Les vecteurs $|w\rangle$ et $|v\rangle$ sont **orthogonaux** si leur produit scalaire est nul. Par exemple, $|w\rangle \equiv (1,0)$ et $|v\rangle \equiv (0,1)$ sont orthogonaux par rapport au produit scalaire défini en (2.14). Nous définissons la **norme** d’un vecteur $|v\rangle$ par :
+
+$$
+\| |v\rangle \| \equiv \sqrt{\langle v|v\rangle}. \tag{2.16}
+$$
+
+Un **vecteur unitaire** est un vecteur $|v\rangle$ tel que $\| |v\rangle \| = 1$. Nous disons aussi que $|v\rangle$ est **normalisé** si $\| |v\rangle \| = 1$. Il est pratique de parler de *normalisation* d’un vecteur en le divisant par sa norme ; ainsi $|v\rangle / \| |v\rangle \|$ est la forme normalisée de $|v\rangle$ pour tout vecteur non nul $|v\rangle$. Un ensemble de vecteurs $|i\rangle$ avec un indice $i$ est **orthonormal** si chaque vecteur est unitaire et que des vecteurs distincts de l’ensemble sont orthogonaux, c’est‑à‑dire $\langle i|j\rangle = \delta_{ij}$, où $i$ et $j$ sont tous deux choisis dans l’ensemble d’indices.
+
+> **Exercice 2.7 :** Vérifiez que $|w\rangle \equiv (1,1)$ et $|v\rangle \equiv (1,-1)$ sont orthogonaux. Quelles sont les formes normalisées de ces vecteurs ?
+
+Supposons que $|w_1\rangle,\ldots,|w_d\rangle$ soit une base pour un espace vectoriel $V$ muni d’un produit scalaire. Il existe une méthode utile, la **procédure de Gram‑Schmidt**, qui peut être utilisée pour produire une base orthonormale $|v_1\rangle,\ldots,|v_d\rangle$ pour $V$. Définissez $|v_1\rangle \equiv |w_1\rangle / \| |w_1\rangle \|$ et pour $1 \le k \le d-1$, définissez $|v_{k+1}\rangle$ inductivement par :
+
+$$
+|v_{k+1}\rangle \equiv \frac{|w_{k+1}\rangle - \sum_{i=1}^k \langle v_i|w_{k+1}\rangle |v_i\rangle}{\left\| |w_{k+1}\rangle - \sum_{i=1}^k \langle v_i|w_{k+1}\rangle |v_i\rangle \right\|}. \tag{2.17}
+$$
+
+Il n’est pas difficile de vérifier que les vecteurs $|v_1\rangle,\ldots,|v_d\rangle$ forment un ensemble orthonormal qui est aussi une base de $V$. Ainsi, tout espace vectoriel de dimension finie $d$ possède une base orthonormale $|v_1\rangle,\ldots,|v_d\rangle$.
+
+> **Exercice 2.8 :** Prouvez que la procédure de Gram‑Schmidt produit une base orthonormale pour $V$.
+
+Désormais, lorsque nous parlerons d’une **représentation matricielle** pour un opérateur linéaire, nous entendrons une représentation matricielle par rapport à des bases d’entrée et de sortie orthonormales. Nous utilisons également la convention que si les espaces d’entrée et de sortie d’un opérateur linéaire sont les mêmes, alors les bases d’entrée et de sortie sont les mêmes, sauf indication contraire.
+
+Avec ces conventions, le produit scalaire sur un espace de Hilbert peut recevoir une représentation matricielle commode. Soient $|w\rangle = \sum_i w_i |i\rangle$ et $|v\rangle = \sum_j v_j |j\rangle$ des représentations des vecteurs $|w\rangle$ et $|v\rangle$ par rapport à une base orthonormale $|i\rangle$. Alors, puisque $\langle i|j\rangle = \delta_{ij}$ :
+
+$$
+\langle v|w\rangle = \left( \sum_i v_i |i\rangle, \sum_j w_j |j\rangle \right) = \sum_{ij} v_i^* w_j \delta_{ij} = \sum_i v_i^* w_i = [v_1^* \ldots v_n^*] \begin{bmatrix} w_1 \\ \vdots \\ w_n \end{bmatrix}. \tag{2.18}
+$$
+
+C’est‑à‑dire que le produit scalaire de deux vecteurs est égal au produit scalaire vectoriel entre deux représentations matricielles de ces vecteurs, à condition que les représentations soient écrites par rapport à la même base orthonormale. Nous voyons également que le vecteur dual $\langle v|$ a une interprétation commode comme le vecteur ligne dont les composantes sont les conjugués complexes des composantes correspondantes de la représentation en vecteur colonne de $|v\rangle$.
+
+Il existe une manière utile de représenter les opérateurs linéaires qui utilise le produit scalaire, connue sous le nom de **représentation produit extérieur** (*outer product*). Supposons que $|v\rangle$ soit un vecteur dans un espace à produit scalaire $V$, et que $|w\rangle$ soit un vecteur dans un espace à produit scalaire $W$. Définissons $|w\rangle \langle v|$ comme l’opérateur linéaire de $V$ vers $W$ dont l’action est définie par :
+
+$$
+(|w\rangle \langle v|)(|v'\rangle) \equiv |w\rangle \langle v|v'\rangle = \langle v|v'\rangle |w\rangle. \tag{2.20}
+$$
+
+Cette équation s’intègre parfaitement dans nos conventions de notation, selon lesquelles l’expression $|w\rangle \langle v|v'\rangle$ pourrait potentiellement avoir l’une des deux significations suivantes : nous l’utiliserons pour désigner le résultat lorsque l’opérateur $|w\rangle \langle v|$ agit sur $|v'\rangle$, et elle a une interprétation existante comme le résultat de la multiplication de $|w\rangle$ par le nombre complexe $\langle v|v'\rangle$. Nos définitions sont choisies de sorte que ces deux significations potentielles coïncident. En effet, nous définissons la première en fonction de la seconde !
+
+Nous pouvons prendre des combinaisons linéaires d’opérateurs produit extérieur $|w\rangle \langle v|$ de manière évidente. Par définition, $\sum_i a_i |w_i\rangle \langle v_i|$ est l’opérateur linéaire qui, agissant sur $|v'\rangle$, produit $\sum_i a_i |w_i\rangle \langle v_i|v'\rangle$ en sortie.
+
+L’utilité de la notation produit extérieur peut être discernée à partir d’un résultat important appelé la **relation de fermeture** pour les vecteurs orthonormaux. Soit $|i\rangle$ une base orthonormale pour l’espace vectoriel $V$, de sorte qu’un vecteur arbitraire $|v\rangle$ puisse s’écrire $|v\rangle = \sum_i v_i |i\rangle$ pour un ensemble de nombres complexes $v_i$. Notez que $\langle i|v\rangle = v_i$ et donc :
+
+$$
+\left( \sum_i |i\rangle \langle i| \right) |v\rangle = \sum_i |i\rangle \langle i|v\rangle = \sum_i v_i |i\rangle = |v\rangle. \tag{2.21}
+$$
+
+Puisque la dernière équation est vraie pour tout $|v\rangle$, il s’ensuit que :
+
+$$
+\sum_i |i\rangle \langle i| = I. \tag{2.22}
+$$
+
+Cette équation est connue sous le nom de **relation de fermeture**. Une application de la relation de fermeture est de donner un moyen de représenter tout opérateur dans la notation produit extérieur. Supposons que $A : V \to W$ soit un opérateur linéaire, $|v_i\rangle$ une base orthonormale pour $V$, et $|w_j\rangle$ une base orthonormale pour $W$. En utilisant la relation de fermeture deux fois, nous obtenons :
+
+$$
+A = I_W A I_V = \sum_{ij} |w_j\rangle \langle w_j| A |v_i\rangle \langle v_i| = \sum_{ij} \langle w_j|A|v_i\rangle |w_j\rangle \langle v_i|, \tag{2.25}
+$$
+
+qui est la représentation produit extérieur pour $A$. Nous voyons également à partir de cette équation que $A$ a pour élément de matrice $\langle w_j|A|v_i\rangle$ dans la $i$-ème colonne et la $j$-ème ligne, par rapport à la base d’entrée $|v_i\rangle$ et à la base de sortie $|w_j\rangle$.
+
+Une deuxième application illustrant l’utilité de la relation de fermeture est l’**inégalité de Cauchy‑Schwarz**. Ce résultat important est discuté dans l’encadré 2.1.
+
+> **Exercice 2.9 : (Opérateurs de Pauli et produit extérieur)**  
+> Les matrices de Pauli (Figure 2.2) peuvent être considérées comme des opérateurs par rapport à une base orthonormale $|0\rangle,|1\rangle$ pour un espace de Hilbert à deux dimensions. Exprimez chacun des opérateurs de Pauli dans la notation produit extérieur.
+
+> **Exercice 2.10 :** Supposons que $|v_i\rangle$ soit une base orthonormale pour un espace à produit scalaire $V$. Quelle est la représentation matricielle de l’opérateur $|v_j\rangle \langle v_k|$, par rapport à la base $|v_i\rangle$ ?
+
+---
+
+**Encadré 2.1 : L’inégalité de Cauchy‑Schwarz**
+
+L’inégalité de Cauchy‑Schwarz est un fait géométrique important sur les espaces de Hilbert. Elle stipule que pour deux vecteurs quelconques $|v\rangle$ et $|w\rangle$, $|\langle v|w\rangle|^2 \le \langle v|v\rangle \langle w|w\rangle$. Pour le voir, utilisez la procédure de Gram‑Schmidt pour construire une base orthonormale $|i\rangle$ de l’espace vectoriel telle que le premier élément de la base $|i\rangle$ soit $|w\rangle / \sqrt{\langle w|w\rangle}$. En utilisant la relation de fermeture $\sum_i |i\rangle \langle i| = I$, et en éliminant certains termes non négatifs, on obtient :
+
+$$
+\begin{aligned}
+\langle v|v\rangle \langle w|w\rangle &= \sum_i \langle v|i\rangle \langle i|v\rangle \langle w|w\rangle \\
+&\ge \frac{\langle v|w\rangle \langle w|v\rangle}{\langle w|w\rangle} \langle w|w\rangle \\
+&= \langle v|w\rangle \langle w|v\rangle = |\langle v|w\rangle|^2,
+\end{aligned} \tag{2.27}
+$$
+
+comme demandé. Une petite réflexion montre que l’égalité se produit si et seulement si $|v\rangle$ et $|w\rangle$ sont linéairement dépendants, $|v\rangle = z|w\rangle$ ou $|w\rangle = z|v\rangle$, pour un certain scalaire $z$.
+
+---
+
+### Vecteurs propres et valeurs propres
+
+Un **vecteur propre** d’un opérateur linéaire $A$ sur un espace vectoriel est un vecteur non nul $|v\rangle$ tel que $A|v\rangle = v|v\rangle$, où $v$ est un nombre complexe connu comme la **valeur propre** de $A$ correspondant à $|v\rangle$. Il sera souvent commode d’utiliser la notation $v$ à la fois comme étiquette du vecteur propre et pour représenter la valeur propre. Nous supposons que vous êtes familier avec les propriétés élémentaires des valeurs propres et des vecteurs propres – en particulier, comment les trouver, via l’équation caractéristique. La **fonction caractéristique** est définie par $c(\lambda) \equiv \det |A - \lambda I|$, où $\det$ est la fonction déterminant pour les matrices ; on peut montrer que la fonction caractéristique ne dépend que de l’opérateur $A$, et non de la représentation matricielle spécifique utilisée pour $A$. Les solutions de l’équation caractéristique $c(\lambda) = 0$ sont les valeurs propres de l’opérateur $A$. Par le théorème fondamental de l’algèbre, tout polynôme a au moins une racine complexe, donc tout opérateur $A$ a au moins une valeur propre et un vecteur propre correspondant. Le **sous‑espace propre** correspondant à une valeur propre $v$ est l’ensemble des vecteurs qui ont pour valeur propre $v$. C’est un sous‑espace vectoriel de l’espace vectoriel sur lequel $A$ agit.
+
+Une **représentation diagonale** pour un opérateur $A$ sur un espace vectoriel $V$ est une représentation $A = \sum_i \lambda_i |i\rangle \langle i|$, où les vecteurs $|i\rangle$ forment un ensemble orthonormal de vecteurs propres pour $A$ avec les valeurs propres correspondantes $\lambda_i$. Un opérateur est dit **diagonalisable** s’il possède une représentation diagonale. Dans la section suivante, nous trouverons un ensemble simple de conditions nécessaires et suffisantes pour qu’un opérateur sur un espace de Hilbert soit diagonalisable. À titre d’exemple de représentation diagonale, notons que la matrice de Pauli $Z$ peut s’écrire :
+
+$$
+Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} = |0\rangle \langle 0| - |1\rangle \langle 1|, \tag{2.29}
+$$
+
+où la représentation matricielle est par rapport aux vecteurs orthonormaux $|0\rangle$ et $|1\rangle$, respectivement. Les représentations diagonales sont parfois aussi appelées **décompositions orthonormales**.
+
+Lorsqu’un sous‑espace propre est de dimension supérieure à un, on dit qu’il est **dégénéré**. Par exemple, la matrice $A$ définie par :
+
+$$
+A \equiv \begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 0 \end{bmatrix} \tag{2.30}
+$$
+
+a un sous‑espace propre de dimension deux correspondant à la valeur propre $2$. Les vecteurs propres $(1,0,0)$ et $(0,1,0)$ sont dits dégénérés car ce sont des vecteurs propres linéairement indépendants de $A$ avec la même valeur propre.
+
+> **Exercice 2.11 : (Décomposition en valeurs propres des matrices de Pauli)**  
+> Trouvez les vecteurs propres, les valeurs propres et les représentations diagonales des matrices de Pauli $X$, $Y$ et $Z$.
+
+> **Exercice 2.12 :** Prouvez que la matrice
+> $$ \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix} \tag{2.31} $$
+> n’est pas diagonalisable.
+
+---
+
+### Adjoints et opérateurs hermitiens
+
+Supposons que $A$ soit un opérateur linéaire sur un espace de Hilbert $V$. Il s’avère qu’il existe un opérateur linéaire unique $A^\dagger$ sur $V$ tel que pour tous vecteurs $|v\rangle, |w\rangle \in V$ :
+
+$$
+(|v\rangle, A|w\rangle) = (A^\dagger|v\rangle, |w\rangle). \tag{2.32}
+$$
+
+Cet opérateur linéaire est appelé l’**adjoint** ou la **conjuguée hermitienne** de l’opérateur $A$. De la définition, il est facile de voir que $(AB)^\dagger = B^\dagger A^\dagger$. Par convention, si $|v\rangle$ est un vecteur, alors nous définissons $|v\rangle^\dagger \equiv \langle v|$. Avec cette définition, il n’est pas difficile de voir que $(A|v\rangle)^\dagger = \langle v| A^\dagger$.
+
+> **Exercice 2.13 :** Si $|w\rangle$ et $|v\rangle$ sont deux vecteurs quelconques, montrez que $(|w\rangle \langle v|)^\dagger = |v\rangle \langle w|$.
+
+> **Exercice 2.14 : (Antilinéarité de l’adjoint)** Montrez que l’opération adjointe est antilinéaire :
+> $$ \left( \sum_i a_i A_i \right)^\dagger = \sum_i a_i^* A_i^\dagger. \tag{2.33} $$
+
+> **Exercice 2.15 :** Montrez que $(A^\dagger)^\dagger = A$.
+
+Dans une représentation matricielle d’un opérateur $A$, l’action de l’opération de conjugaison hermitienne est de prendre la matrice de $A$ à la matrice **conjuguée‑transposée**, $A^\dagger \equiv (A^T)^*$, où $*$ indique la conjugaison complexe et $T$ indique l’opération de transposition. Par exemple :
+
+$$
+\begin{bmatrix} 1+3i & 2i & 1-3i & 1-i \\ 1+i & 1-4i & -2i & 1+4i \end{bmatrix}^\dagger = \begin{bmatrix} 1-3i & 1-i \\ -2i & 1+4i \end{bmatrix}. \tag{2.34}
+$$
+
+Un opérateur $A$ dont l’adjoint est $A$ est appelé un opérateur **hermitien** ou **auto‑adjoint**. Une classe importante d’opérateurs hermitiens est celle des **projecteurs**. Supposons que $W$ soit un sous‑espace vectoriel de dimension $k$ de l’espace vectoriel $V$ de dimension $d$. En utilisant la procédure de Gram‑Schmidt, il est possible de construire une base orthonormale $|1\rangle,\ldots,|d\rangle$ pour $V$ telle que $|1\rangle,\ldots,|k\rangle$ soit une base orthonormale pour $W$. Par définition :
+
+$$
+P \equiv \sum_{i=1}^k |i\rangle \langle i| \tag{2.35}
+$$
+
+est le **projecteur** sur le sous‑espace $W$. Il est facile de vérifier que cette définition est indépendante de la base orthonormale $|1\rangle,\ldots,|k\rangle$ utilisée pour $W$. De la définition, on peut montrer que $|v\rangle \langle v|$ est hermitien pour tout vecteur $|v\rangle$, donc $P$ est hermitien, $P^\dagger = P$. Nous ferons souvent référence à « l’espace vectoriel $P$ », comme raccourci pour l’espace vectoriel sur lequel $P$ est un projecteur. Le **complément orthogonal** de $P$ est l’opérateur $Q \equiv I - P$. Il est facile de voir que $Q$ est un projecteur sur l’espace vectoriel engendré par $|k+1\rangle,\ldots,|d\rangle$, que nous appelons aussi le complément orthogonal de $P$, et que nous pouvons noter $Q$.
+
+> **Exercice 2.16 :** Montrez que tout projecteur $P$ satisfait l’équation $P^2 = P$.
+
+Un opérateur $A$ est dit **normal** si $AA^\dagger = A^\dagger A$. Clairement, un opérateur hermitien est aussi normal. Il existe un théorème de représentation remarquable pour les opérateurs normaux, connu sous le nom de **décomposition spectrale**, qui stipule qu’un opérateur est normal si et seulement s’il est diagonalisable. Ce résultat est démontré dans l’encadré 2.2, que vous devriez lire attentivement.
+
+> **Exercice 2.17 :** Montrez qu’une matrice normale est hermitienne si et seulement si elle a des valeurs propres réelles.
+
+Une matrice $U$ est dite **unitaire** si $U^\dagger U = I$. De même, un opérateur $U$ est unitaire si $U^\dagger U = I$. On vérifie facilement qu’un opérateur est unitaire si et seulement si chacune de ses représentations matricielles est unitaire. Un opérateur unitaire satisfait aussi $UU^\dagger = I$, et donc $U$ est normal et possède une décomposition spectrale. Géométriquement, les opérateurs unitaires sont importants car ils préservent les produits scalaires entre vecteurs. Pour le voir, soient $|v\rangle$ et $|w\rangle$ deux vecteurs quelconques. Alors le produit scalaire de $U|v\rangle$ et $U|w\rangle$ est le même que le produit scalaire de $|v\rangle$ et $|w\rangle$ :
+
+$$
+(U|v\rangle, U|w\rangle) = \langle v| U^\dagger U |w\rangle = \langle v| I |w\rangle = \langle v|w\rangle. \tag{2.36}
+$$
+
+Ce résultat suggère l’élégante représentation en produit extérieur suivante de tout unitaire $U$. Soit $|v_i\rangle$ une base orthonormale quelconque. Définissons $|w_i\rangle \equiv U|v_i\rangle$, de sorte que $|w_i\rangle$ soit aussi une base orthonormale, puisque les opérateurs unitaires préservent les produits scalaires. Notons que $U = \sum_i |w_i\rangle \langle v_i|$. Réciproquement, si $|v_i\rangle$ et $|w_i\rangle$ sont deux bases orthonormales quelconques, alors on vérifie facilement que l’opérateur $U$ défini par $U \equiv \sum_i |w_i\rangle \langle v_i|$ est un opérateur unitaire.
+
+> **Exercice 2.18 :** Montrez que toutes les valeurs propres d’une matrice unitaire ont un module égal à $1$, c’est‑à‑dire qu’elles peuvent s’écrire sous la forme $e^{i\theta}$ pour un certain réel $\theta$.
+
+> **Exercice 2.19 : (Matrices de Pauli : hermitiennes et unitaires)** Montrez que les matrices de Pauli sont hermitiennes et unitaires.
+
+> **Exercice 2.20 : (Changements de base)** Supposons que $A'$ et $A''$ soient des représentations matricielles d’un opérateur $A$ sur un espace vectoriel $V$ par rapport à deux bases orthonormales différentes, $|v_i\rangle$ et $|w_i\rangle$. Alors les éléments de $A'$ et $A''$ sont $A'_{ij} = \langle v_i|A|v_j\rangle$ et $A''_{ij} = \langle w_i|A|w_j\rangle$. Caractérisez la relation entre $A'$ et $A''$.
+
+Une sous‑classe spéciale d’opérateurs hermitiens est extrêmement importante : ce sont les **opérateurs positifs**. Un opérateur positif $A$ est défini comme un opérateur tel que pour tout vecteur $|v\rangle$, $(|v\rangle, A|v\rangle)$ soit un nombre réel non négatif. Si $(|v\rangle, A|v\rangle)$ est strictement positif pour tout $|v\rangle \neq 0$, alors nous disons que $A$ est **défini positif**. Dans l’exercice 2.24, vous montrerez que tout opérateur positif est automatiquement hermitien, et donc par la décomposition spectale a une représentation diagonale $\sum_i \lambda_i |i\rangle \langle i|$, avec des valeurs propres $\lambda_i$ non négatives.
+
+> **Exercice 2.21 :** Répétez la preuve de la décomposition spectrale dans l’encadré 2.2 pour le cas où $M$ est hermitien, en simplifiant la preuve chaque fois que possible.
+
+> **Exercice 2.22 :** Prouvez que deux vecteurs propres d’un opérateur hermitien avec des valeurs propres différentes sont nécessairement orthogonaux.
+
+> **Exercice 2.23 :** Montrez que les valeurs propres d’un projecteur $P$ sont toutes $0$ ou $1$.
+
+> **Exercice 2.24 : (Hermiticité des opérateurs positifs)** Montrez qu’un opérateur positif est nécessairement hermitien. (Indice : Montrez qu’un opérateur arbitraire $A$ peut s’écrire $A = B + iC$ où $B$ et $C$ sont hermitiens.)
+
+> **Exercice 2.25 :** Montrez que pour tout opérateur $A$, $A^\dagger A$ est positif.
+
+---
+
+**Encadré 2.2 : La décomposition spectale – important !**
+
+La décomposition spectrale est un théorème de représentation extrêmement utile pour les opérateurs normaux.
+
+**Théorème 2.1 : (Décomposition spectrale)** Tout opérateur normal $M$ sur un espace vectoriel $V$ est diagonal par rapport à une certaine base orthonormale de $V$. Réciproquement, tout opérateur diagonalisable est normal.
+
+**Preuve :** La réciproque est un simple exercice, nous ne prouvons donc que l’implication directe, par récurrence sur la dimension $d$ de $V$. Le cas $d=1$ est trivial. Soit $\lambda$ une valeur propre de $M$, $P$ le projecteur sur le sous‑espace propre de $\lambda$, et $Q$ le projecteur sur le complément orthogonal. Alors $M = (P+Q)M(P+Q) = PMP + QMP + PMQ + QMQ$. Évidemment, $PMP = \lambda P$. De plus, $QMP = 0$, car $M$ envoie le sous‑espace $P$ dans lui‑même. Nous affirmons que $PMQ = 0$ aussi. Pour le voir, soit $|v\rangle$ un élément du sous‑espace $P$. Alors $MM^\dagger|v\rangle = M^\dagger M|v\rangle = \lambda M^\dagger|v\rangle$. Ainsi, $M^\dagger|v\rangle$ a pour valeur propre $\lambda$ et est donc un élément du sous‑espace $P$. Il s’ensuit que $QM^\dagger P = 0$. En prenant l’adjoint de cette équation, on obtient $PMQ = 0$. Ainsi $M = PMP + QMQ$. Ensuite, nous prouvons que $QMQ$ est normal. Pour le voir, notons que $QM = QM(P+Q) = QMQ$, et $QM^\dagger = QM^\dagger(P+Q) = QM^\dagger Q$. Par conséquent, par la normalité de $M$, et l’observation que $Q^2 = Q$ :
+
+$$
+QMQ \, QM^\dagger Q = QM Q M^\dagger Q = Q M M^\dagger Q = Q M^\dagger M Q = Q M^\dagger Q M Q = Q M^\dagger Q \, Q M Q,
+$$
+
+donc $QMQ$ est normal. Par récurrence, $QMQ$ est diagonal par rapport à une certaine base orthonormale pour le sous‑espace $Q$, et $PMP$ est déjà diagonal par rapport à une certaine base orthonormale pour $P$. Il s’ensuit que $M = PMP + QMQ$ est diagonal par rapport à une certaine base orthonormale pour l’espace vectoriel total.
+
+En termes de représentation en produit extérieur, cela signifie que $M$ peut s’écrire $M = \sum_i \lambda_i |i\rangle \langle i|$, où $\lambda_i$ sont les valeurs propres de $M$, $|i\rangle$ est une base orthonormale de $V$, et chaque $|i\rangle$ est un vecteur propre de $M$ avec la valeur propre $\lambda_i$. En termes de projecteurs, $M = \sum_i \lambda_i P_i$, où $\lambda_i$ sont à nouveau les valeurs propres de $M$, et $P_i$ est le projecteur sur le sous‑espace propre de $\lambda_i$ de $M$. Ces projecteurs satisfont la relation de fermeture $\sum_i P_i = I$ et la relation d’orthonormalité $P_i P_j = \delta_{ij} P_i$.
+
+---
+
+### Produits tensoriels
+
+Le **produit tensoriel** est une manière de combiner des espaces vectoriels pour former des espaces vectoriels plus grands. Cette construction est cruciale pour comprendre la mécanique quantique des systèmes à plusieurs particules. La discussion suivante est un peu abstraite, et peut être difficile à suivre si vous n’êtes pas déjà familier avec le produit tensoriel, alors n’hésitez pas à passer maintenant et à y revenir plus tard lorsque vous aborderez la discussion sur les produits tensoriels en mécanique quantique.
+
+Supposons que $V$ et $W$ soient des espaces vectoriels de dimension $m$ et $n$ respectivement. Par commodité, nous supposons également que $V$ et $W$ sont des espaces de Hilbert. Alors $V \otimes W$ (lire « $V$ tensor $W$ ») est un espace vectoriel de dimension $mn$. Les éléments de $V \otimes W$ sont des combinaisons linéaires de « produits tensoriels » $|v\rangle \otimes |w\rangle$ d’éléments $|v\rangle$ de $V$ et $|w\rangle$ de $W$. En particulier, si $|i\rangle$ et $|j\rangle$ sont des bases orthonormales pour les espaces $V$ et $W$, alors $|i\rangle \otimes |j\rangle$ est une base pour $V \otimes W$. Nous utilisons souvent les notations abrégées $|v\rangle|w\rangle$, $|v,w\rangle$ ou même $|vw\rangle$ pour le produit tensoriel $|v\rangle \otimes |w\rangle$. Par exemple, si $V$ est un espace vectoriel à deux dimensions avec des vecteurs de base $|0\rangle$ et $|1\rangle$, alors $|0\rangle \otimes |0\rangle + |1\rangle \otimes |1\rangle$ est un élément de $V \otimes V$.
+
+Par définition, le produit tensoriel satisfait les propriétés de base suivantes :
+
+1. Pour un scalaire arbitraire $z$ et des éléments $|v\rangle$ de $V$ et $|w\rangle$ de $W$ :
+
+   $$
+   z(|v\rangle \otimes |w\rangle) = (z|v\rangle) \otimes |w\rangle = |v\rangle \otimes (z|w\rangle). \tag{2.42}
+   $$
+
+2. Pour des $|v_1\rangle$ et $|v_2\rangle$ arbitraires dans $V$ et $|w\rangle$ dans $W$ :
+
+   $$
+   (|v_1\rangle + |v_2\rangle) \otimes |w\rangle = |v_1\rangle \otimes |w\rangle + |v_2\rangle \otimes |w\rangle. \tag{2.43}
+   $$
+
+3. Pour $|v\rangle$ arbitraire dans $V$ et $|w_1\rangle$, $|w_2\rangle$ dans $W$ :
+
+   $$
+   |v\rangle \otimes (|w_1\rangle + |w_2\rangle) = |v\rangle \otimes |w_1\rangle + |v\rangle \otimes |w_2\rangle. \tag{2.44}
+   $$
+
+Quels types d’opérateurs linéaires agissent sur l’espace $V \otimes W$ ? Supposons que $|v\rangle$ et $|w\rangle$ soient des vecteurs dans $V$ et $W$, et que $A$ et $B$ soient des opérateurs linéaires sur $V$ et $W$, respectivement. Alors nous pouvons définir un opérateur linéaire $A \otimes B$ sur $V \otimes W$ par l’équation :
+
+$$
+(A \otimes B)(|v\rangle \otimes |w\rangle) \equiv A|v\rangle \otimes B|w\rangle. \tag{2.45}
+$$
+
+La définition de $A \otimes B$ est ensuite étendue à tous les éléments de $V \otimes W$ de manière naturelle pour assurer la linéarité de $A \otimes B$, c’est‑à‑dire :
+
+$$
+(A \otimes B)\left( \sum_i a_i |v_i\rangle \otimes |w_i\rangle \right) \equiv \sum_i a_i A|v_i\rangle \otimes B|w_i\rangle. \tag{2.46}
+$$
+
+On peut montrer que $A \otimes B$ ainsi défini est un opérateur linéaire bien défini sur $V \otimes W$. Cette notion de produit tensoriel de deux opérateurs s’étend de manière évidente au cas où $A : V \to V'$ et $B : W \to W'$ sont des applications entre espaces vectoriels différents. En effet, un opérateur linéaire arbitraire $C$ envoyant $V \otimes W$ vers $V' \otimes W'$ peut être représenté comme une combinaison linéaire de produits tensoriels d’opérateurs envoyant $V$ vers $V'$ et $W$ vers $W'$ :
+
+$$
+C = \sum_i c_i A_i \otimes B_i, \tag{2.47}
+$$
+
+où par définition :
+
+$$
+\left( \sum_i c_i A_i \otimes B_i \right) |v\rangle \otimes |w\rangle \equiv \sum_i c_i A_i|v\rangle \otimes B_i|w\rangle. \tag{2.48}
+$$
+
+Les produits scalaires sur les espaces $V$ et $W$ peuvent être utilisés pour définir un produit scalaire naturel sur $V \otimes W$. Définissons :
+
+$$
+\left( \sum_i a_i |v_i\rangle \otimes |w_i\rangle, \sum_j b_j |v_j'\rangle \otimes |w_j'\rangle \right) \equiv \sum_{ij} a_i^* b_j \langle v_i|v_j'\rangle \langle w_i|w_j'\rangle. \tag{2.49}
+$$
+
+On peut montrer que la fonction ainsi définie est un produit scalaire bien défini. À partir de ce produit scalaire, l’espace à produit scalaire $V \otimes W$ hérite des autres structures qui nous sont familières, telles que les notions d’adjoint, d’unitarité, de normalité et d’hermiticité.
+
+Toute cette discussion est plutôt abstraite. Elle peut être rendue beaucoup plus concrète en passant aux représentations matricielles. Si $A$ a pour représentation matricielle $A_{ij}$ par rapport à la base $|i\rangle$, et $B$ a pour représentation matricielle $B_{kl}$ par rapport à la base $|k\rangle$, alors l’opérateur $A \otimes B$ a pour représentation matricielle $A_{ij} B_{kl}$ par rapport à la base $|i\rangle \otimes |k\rangle$. Une autre représentation utile est de considérer l’opérateur $A \otimes B$ comme une matrice en blocs.
+
+> **Exercice 2.32 :** Soient $|v\rangle$ et $|w\rangle$ deux vecteurs. Explicitez $|v\rangle$ et $|w\rangle$ dans des bases orthonormales et exprimez le produit tensoriel $|v\rangle \otimes |w\rangle$ en notation matricielle.
+
+> **Exercice 2.33 :** Montrez explicitement que la transformée de Hadamard sur $n$ qubits, $H^{\otimes n}$, peut s’écrire :
+> $$
+> H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y} (-1)^{x \cdot y} |x\rangle \langle y|. \tag{2.55}
+> $$
+> Écrivez une représentation matricielle explicite pour $H^{\otimes 2}$.
+
+---
+
+### Fonctions d’opérateurs
+
+Il existe de nombreuses fonctions importantes qui peuvent être définies pour les opérateurs et les matrices. De manière générale, étant donné une fonction $f$ des nombres complexes vers les nombres complexes, il est possible de définir une fonction matricielle correspondante sur les matrices normales (ou une sous‑classe, comme les matrices hermitiennes) par la construction suivante. Soit $A = \sum_a a |a\rangle \langle a|$ une décomposition spectrale pour un opérateur normal $A$. Définissons $f(A) \equiv \sum_a f(a) |a\rangle \langle a|$. Une petite réflexion montre que $f(A)$ est uniquement défini. Cette procédure peut être utilisée, par exemple, pour définir la **racine carrée** d’un opérateur positif, le **logarithme** d’un opérateur défini positif, ou l’**exponentielle** d’un opérateur normal. Par exemple :
+
+$$
+\exp(\theta Z) = \begin{bmatrix} e^{\theta} & 0 \\ 0 & e^{-\theta} \end{bmatrix}, \tag{2.56}
+$$
+
+puisque $Z$ a pour vecteurs propres $|0\rangle$ et $|1\rangle$.
+
+> **Exercice 2.34 :** Trouvez la racine carrée et le logarithme de la matrice
+> $$ \begin{bmatrix} 4 & 3 \\ 3 & 4 \end{bmatrix}. \tag{2.57} $$
+
+> **Exercice 2.35 : (Exponentielle des matrices de Pauli)** Soit $\vec{v}$ un vecteur unitaire réel à trois dimensions et $\theta$ un nombre réel. Prouvez que :
+> $$
+> \exp(i\theta \vec{v} \cdot \vec{\sigma}) = \cos(\theta) I + i \sin(\theta) \vec{v} \cdot \vec{\sigma}, \tag{2.58}
+> $$
+> où $\vec{v} \cdot \vec{\sigma} \equiv \sum_{i=1}^3 v_i \sigma_i$.
+
+Une autre fonction matricielle importante est la **trace** d’une matrice. La trace de $A$ est définie comme la somme de ses éléments diagonaux :
+
+$$
+\operatorname{tr}(A) \equiv \sum_i A_{ii}. \tag{2.59}
+$$
+
+La trace est facilement vue comme étant **cyclique**, $\operatorname{tr}(AB) = \operatorname{tr}(BA)$, et **linéaire**, $\operatorname{tr}(A+B) = \operatorname{tr}(A) + \operatorname{tr}(B)$, $\operatorname{tr}(zA) = z \operatorname{tr}(A)$, où $A$ et $B$ sont des matrices arbitraires, et $z$ un nombre complexe. De plus, de la propriété cyclique il découle que la trace d’une matrice est invariante sous la transformation de similarité unitaire $A \to U A U^\dagger$, car $\operatorname{tr}(U A U^\dagger) = \operatorname{tr}(U^\dagger U A) = \operatorname{tr}(A)$. Compte tenu de ce résultat, il est logique de définir la trace d’un opérateur $A$ comme la trace de n’importe quelle représentation matricielle de $A$. L’invariance de la trace sous les transformations de similarité unitaire garantit que la trace d’un opérateur est bien définie.
+
+À titre d’exemple de la trace, supposons que $|\psi\rangle$ soit un vecteur unitaire et $A$ un opérateur arbitraire. Pour évaluer $\operatorname{tr}(A |\psi\rangle \langle \psi|)$, utilisez la procédure de Gram‑Schmidt pour étendre $|\psi\rangle$ à une base orthonormale $|i\rangle$ qui inclut $|\psi\rangle$ comme premier élément. Alors :
+
+$$
+\operatorname{tr}(A |\psi\rangle \langle \psi|) = \sum_i \langle i| A |\psi\rangle \langle \psi| i \rangle = \langle \psi| A |\psi\rangle. \tag{2.60}
+$$
+
+Ce résultat, $\operatorname{tr}(A |\psi\rangle \langle \psi|) = \langle \psi|A|\psi\rangle$, est extrêmement utile pour évaluer la trace d’un opérateur.
+
+> **Exercice 2.36 :** Montrez que les matrices de Pauli, à l’exception de $I$, ont une trace nulle.
+
+> **Exercice 2.37 : (Propriété cyclique de la trace)** Si $A$ et $B$ sont deux opérateurs linéaires, montrez que $\operatorname{tr}(AB) = \operatorname{tr}(BA)$.
+
+> **Exercice 2.38 : (Linéarité de la trace)** Si $A$ et $B$ sont deux opérateurs linéaires, montrez que $\operatorname{tr}(A+B) = \operatorname{tr}(A) + \operatorname{tr}(B)$, et si $z$ est un nombre complexe arbitraire, montrez que $\operatorname{tr}(zA) = z \operatorname{tr}(A)$.
+
+> **Exercice 2.39 : (Le produit scalaire de Hilbert‑Schmidt sur les opérateurs)** L’ensemble $L_V$ des opérateurs linéaires sur un espace de Hilbert $V$ est évidemment un espace vectoriel – la somme de deux opérateurs linéaires est un opérateur linéaire, $zA$ est un opérateur linéaire si $A$ est un opérateur linéaire et $z$ un nombre complexe, et il existe un élément nul $0$. Un résultat important supplémentaire est que l’espace vectoriel $L_V$ peut être muni d’une structure naturelle de produit scalaire, ce qui en fait un espace de Hilbert.
+> 1. Montrez que la fonction $(\cdot,\cdot)$ sur $L_V \times L_V$ définie par $(A,B) \equiv \operatorname{tr}(A^\dagger B)$ est un produit scalaire. Ce produit scalaire est connu sous le nom de **produit scalaire de Hilbert‑Schmidt** ou **trace**.
+> 2. Si $V$ a $d$ dimensions, montrez que $L_V$ a une dimension $d^2$.
+> 3. Trouvez une base orthonormale de matrices hermitiennes pour l’espace de Hilbert $L_V$.
+
+---
+
+### Le commutateur et l’anticommutateur
+
+Le **commutateur** entre deux opérateurs $A$ et $B$ est défini par :
+
+$$
+[A,B] \equiv AB - BA. \tag{2.66}
+$$
+
+Si $[A,B] = 0$, c’est‑à‑dire $AB = BA$, alors nous disons que $A$ **commute** avec $B$. De même, l’**anticommutateur** de deux opérateurs $A$ et $B$ est défini par :
+
+$$
+\{A,B\} \equiv AB + BA. \tag{2.67}
+$$
+
+Nous disons que $A$ **anticommute** avec $B$ si $\{A,B\} = 0$. Il s’avère que de nombreuses propriétés importantes de paires d’opérateurs peuvent être déduites de leur commutateur et de leur anticommutateur. La relation la plus utile est peut‑être le lien suivant entre le commutateur et la propriété de pouvoir diagonaliser simultanément des opérateurs hermitiens $A$ et $B$, c’est‑à‑dire écrire $A = \sum_i a_i |i\rangle \langle i|$, $B = \sum_i b_i |i\rangle \langle i|$, où $|i\rangle$ est un ensemble orthonormal commun de vecteurs propres pour $A$ et $B$.
+
+**Théorème 2.2 : (Théorème de diagonalisation simultanée)** Supposons que $A$ et $B$ soient des opérateurs hermitiens. Alors $[A,B] = 0$ si et seulement s’il existe une base orthonormale telle que $A$ et $B$ soient tous deux diagonaux par rapport à cette base. Dans ce cas, nous disons que $A$ et $B$ sont **simultanément diagonalisables**.
+
+Ce résultat relie le commutateur de deux opérateurs, souvent facile à calculer, à la propriété d’être simultanément diagonalisable, qui est a priori plutôt difficile à déterminer. Par exemple, considérons que :
+
+$$
+[X,Y] = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix} - \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} = 2i \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} = 2i Z, \tag{2.68}
+$$
+
+donc $X$ et $Y$ ne commutent pas. Vous avez déjà montré, dans l’exercice 2.11, que $X$ et $Y$ n’ont pas de vecteurs propres communs, comme nous l’attendons du théorème de diagonalisation simultanée.
+
+**Preuve :** Vous pouvez (et devriez !) vérifier facilement que si $A$ et $B$ sont diagonaux dans la même base orthonormale, alors $[A,B] = 0$. Pour montrer la réciproque, soit $|a,j\rangle$ une base orthonormale pour le sous‑espace propre $V_a$ de $A$ avec valeur propre $a$ ; l’indice $j$ est utilisé pour étiqueter les éventuelles dégénérescences. Notez que :
+
+$$
+A B|a,j\rangle = B A|a,j\rangle = a B|a,j\rangle, \tag{2.71}
+$$
+
+et donc $B|a,j\rangle$ est un élément du sous‑espace propre $V_a$. Soit $P_a$ le projecteur sur l’espace $V_a$ et définissons $B_a \equiv P_a B P_a$. Il est facile de voir que la restriction de $B_a$ à l’espace $V_a$ est hermitienne sur $V_a$, et a donc une décomposition spectrale en termes d’un ensemble orthonormal de vecteurs propres qui engendrent l’espace $V_a$. Appelons ces vecteurs propres $|a,b,k\rangle$, où les indices $a$ et $b$ étiquettent les valeurs propres de $A$ et $B_a$, et $k$ est un indice supplémentaire pour permettre une éventuelle dégénérescence de $B_a$. Notez que $B|a,b,k\rangle$ est un élément de $V_a$, donc $B|a,b,k\rangle = P_a B|a,b,k\rangle$. De plus, nous avons $P_a|a,b,k\rangle = |a,b,k\rangle$, donc :
+
+$$
+B|a,b,k\rangle = P_a B P_a |a,b,k\rangle = b |a,b,k\rangle. \tag{2.72}
+$$
+
+Il s’ensuit que $|a,b,k\rangle$ est un vecteur propre de $B$ avec valeur propre $b$, et donc $|a,b,k\rangle$ est un ensemble orthonormal de vecteurs propres à la fois de $A$ et de $B$, engendrant tout l’espace vectoriel sur lequel $A$ et $B$ sont définis. C’est‑à‑dire que $A$ et $B$ sont simultanément diagonalisables.
+
+> **Exercice 2.40 : (Relations de commutation pour les matrices de Pauli)** Vérifiez les relations de commutation :
+> $$
+> [X,Y] = 2iZ,\quad [Y,Z] = 2iX,\quad [Z,X] = 2iY. \tag{2.73}
+> $$
+> Il existe une manière élégante d’écrire ceci en utilisant $\epsilon_{jkl}$, le tenseur antisymétrique sur trois indices, pour lequel $\epsilon_{jkl}=0$ sauf pour $\epsilon_{123}=\epsilon_{231}=\epsilon_{312}=1$, et $\epsilon_{321}=\epsilon_{213}=\epsilon_{132}=-1$ :
+> $$
+> [\sigma_j,\sigma_k] = 2i \sum_{l=1}^3 \epsilon_{jkl} \sigma_l. \tag{2.74}
+> $$
+
+> **Exercice 2.41 : (Relations d’anticommutation pour les matrices de Pauli)** Vérifiez les relations d’anticommutation :
+> $$
+> \{\sigma_i,\sigma_j\} = 0 \quad (i \neq j), \tag{2.75}
+> $$
+> et vérifiez aussi que $\sigma_i^2 = I$.
+
+> **Exercice 2.42 :** Vérifiez que $AB = \frac{[A,B] + \{A,B\}}{2}$.
+
+> **Exercice 2.43 :** Montrez que pour $j,k=1,2,3$ :
+> $$
+> \sigma_j \sigma_k = \delta_{jk} I + i \sum_{l=1}^3 \epsilon_{jkl} \sigma_l. \tag{2.78}
+> $$
+
+> **Exercice 2.44 :** Supposons que $[A,B] = 0$, $\{A,B\} = 0$, et que $A$ soit inversible. Montrez que $B$ doit être nul.
+
+> **Exercice 2.45 :** Montrez que $[A,B]^\dagger = [B^\dagger, A^\dagger]$.
+
+> **Exercice 2.46 :** Montrez que $[A,B] = -[B,A]$.
+
+> **Exercice 2.47 :** Supposons que $A$ et $B$ soient hermitiens. Montrez que $i[A,B]$ est hermitien.
+
+---
+
+### Les décompositions polaire et en valeurs singulières
+
+Les décompositions polaire et en valeurs singulières sont des manières utiles de décomposer les opérateurs linéaires en parties plus simples. En particulier, ces décompositions nous permettent de décomposer des opérateurs linéaires généraux en produits d’opérateurs unitaires et d’opérateurs positifs. Bien que nous ne comprenions pas terriblement bien la structure des opérateurs linéaires généraux, nous comprenons assez bien les opérateurs unitaires et les opérateurs positifs. Les décompositions polaire et en valeurs singulières nous permettent d’appliquer cette compréhension pour mieux comprendre les opérateurs linéaires généraux.
+
+**Théorème 2.3 : (Décomposition polaire)** Soit $A$ un opérateur linéaire sur un espace vectoriel $V$. Alors il existe un opérateur unitaire $U$ et des opérateurs positifs $J$ et $K$ tels que :
+
+$$
+A = UJ = KU, \tag{2.79}
+$$
+
+où les opérateurs positifs uniques $J$ et $K$ satisfaisant ces équations sont définis par $J \equiv \sqrt{A^\dagger A}$ et $K \equiv \sqrt{A A^\dagger}$. De plus, si $A$ est inversible, alors $U$ est unique.
+
+Nous appelons l’expression $A = UJ$ la **décomposition polaire à gauche** de $A$, et $A = KU$ la **décomposition polaire à droite** de $A$. Le plus souvent, nous omettrons les qualificatifs « droite » ou « gauche », et utiliserons le terme « décomposition polaire » pour les deux expressions, le contexte indiquant laquelle est visée.
+
+**Preuve :** $J \equiv \sqrt{A^\dagger A}$ est un opérateur positif, donc il peut recevoir une décomposition spectrale : $J = \sum_i \lambda_i |i\rangle \langle i|$ ($\lambda_i \ge 0$). Définissons $|\psi_i\rangle \equiv A|i\rangle$. De la définition, nous voyons que $\langle \psi_i|\psi_i\rangle = \lambda_i^2$. Considérons pour l’instant seulement les $i$ pour lesquels $\lambda_i \neq 0$. Pour ces $i$, définissons $|e_i\rangle \equiv |\psi_i\rangle / \lambda_i$, de sorte que les $|e_i\rangle$ soient normalisés. De plus, ils sont orthogonaux, car si $i \neq j$, alors $\langle e_i|e_j\rangle = \langle i|A^\dagger A|j\rangle / (\lambda_i \lambda_j) = \langle i|J^2|j\rangle / (\lambda_i \lambda_j) = 0$.
+
+Nous avons considéré les $i$ tels que $\lambda_i \neq 0$. Utilisons maintenant la procédure de Gram‑Schmidt pour étendre l’ensemble orthonormal $|e_i\rangle$ afin qu’il forme une base orthonormale, que nous étiquetons également $|e_i\rangle$. Définissons un opérateur unitaire $U \equiv \sum_i |e_i\rangle \langle i|$. Lorsque $\lambda_i \neq 0$, nous avons $UJ|i\rangle = \lambda_i |e_i\rangle = |\psi_i\rangle = A|i\rangle$. Lorsque $\lambda_i = 0$, nous avons $UJ|i\rangle = 0 = |\psi_i\rangle$. Nous avons prouvé que l’action de $A$ et $UJ$ coïncide sur la base $|i\rangle$, et donc que $A = UJ$.
+
+$J$ est unique, car en multipliant $A = UJ$ à gauche par l’équation adjointe $A^\dagger = J U^\dagger$, on obtient $J^2 = A^\dagger A$, d’où l’on voit que $J = \sqrt{A^\dagger A}$, de manière unique. Une petite réflexion montre que si $A$ est inversible, alors $J$ l’est aussi, donc $U$ est uniquement déterminé par l’équation $U = A J^{-1}$. La preuve de la décomposition polaire à droite s’ensuit, puisque $A = UJ = UJ U^\dagger U = KU$ où $K \equiv UJ U^\dagger$ est un opérateur positif. Puisque $AA^\dagger = KU U^\dagger K = K^2$, nous devons avoir $K = \sqrt{AA^\dagger}$, comme affirmé.
+
+La **décomposition en valeurs singulières** combine la décomposition polaire et le théorème spectral.
+
+**Corollaire 2.4 : (Décomposition en valeurs singulières)** Soit $A$ une matrice carrée. Alors il existe des matrices unitaires $U$ et $V$, et une matrice diagonale $D$ avec des entrées non négatives telles que :
+
+$$
+A = U D V. \tag{2.80}
+$$
+
+Les éléments diagonaux de $D$ sont appelés les **valeurs singulières** de $A$.
+
+**Preuve :** Par la décomposition polaire, $A = S J$, pour un unitaire $S$ et un $J$ positif. Par le théorème spectral, $J = T D T^\dagger$, pour un unitaire $T$ et un $D$ diagonal avec des entrées non négatives. En posant $U \equiv S T$ et $V \equiv T^\dagger$, on complète la preuve.
+
+> **Exercice 2.48 :** Quelle est la décomposition polaire d’une matrice positive $P$ ? D’une matrice unitaire $U$ ? D’une matrice hermitienne $H$ ?
+
+> **Exercice 2.49 :** Exprimez la décomposition polaire d’une matrice normale dans la représentation produit extérieur.
+
+> **Exercice 2.50 :** Trouvez les décompositions polaires gauche et droite de la matrice
+> $$ \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}. \tag{2.81} $$
+
+---
+
+# Les postulats de la mécanique quantique
+
+Toute compréhension commence par le refus d’accepter le monde tel qu’il apparaît. – Alan Kay
+
+La chose la plus incompréhensible du monde est qu’il soit compréhensible. – Albert Einstein
+
+La mécanique quantique est un cadre mathématique pour le développement de théories physiques. En elle‑même, la mécanique quantique ne vous dit pas quelles lois un système physique doit obéir, mais elle fournit un cadre mathématique et conceptuel pour le développement de ces lois. Dans les prochaines sections, nous donnons une description complète des postulats de base de la mécanique quantique. Ces postulats établissent un lien entre le monde physique et le formalisme mathématique de la mécanique quantique.
+
+Les postulats de la mécanique quantique ont été dérivés après un long processus d’essais et (surtout) d’erreurs, qui a impliqué une quantité considérable de conjectures et de tâtonnements de la part des créateurs de la théorie. Ne soyez pas surpris si la motivation des postulats n’est pas toujours claire ; même pour les experts, les postulats de base de la mécanique quantique paraissent surprenants. Ce que vous devez espérer acquérir dans les prochaines sections est une bonne compréhension pratique des postulats – comment les appliquer, et quand.
+
+---
+
+### Espace des états
+
+Le premier postulat de la mécanique quantique établit l’arène dans laquelle la mécanique quantique se déroule. Cette arène est notre ami familier de l’algèbre linéaire, l’espace de Hilbert.
+
+> **Postulat 1 :** À tout système physique isolé est associé un espace vectoriel complexe avec produit scalaire (c’est‑à‑dire un espace de Hilbert) connu sous le nom d’**espace des états** du système. Le système est complètement décrit par son **vecteur d’état**, qui est un vecteur unitaire dans l’espace des états du système.
+
+La mécanique quantique ne nous dit pas, pour un système physique donné, quel est l’espace des états de ce système, ni quel est le vecteur d’état du système. Trouver cela pour un système spécifique est un problème difficile pour lequel les physiciens ont développé de nombreuses règles complexes et magnifiques. Par exemple, il y a la merveilleuse théorie de l’électrodynamique quantique (souvent appelée QED), qui décrit comment les atomes et la lumière interagissent. Un aspect de la QED est qu’elle nous dit quels espaces d’états utiliser pour donner des descriptions quantiques des atomes et de la lumière. Nous ne nous soucierons pas beaucoup des subtilités de théories comme la QED (sauf dans la mesure où elles s’appliquent aux réalisations physiques, au chapitre 7), car nous sommes surtout intéressés par le cadre général fourni par la mécanique quantique. Pour nos besoins, il suffira de faire quelques hypothèses très simples (et raisonnables) sur les espaces d’états des systèmes qui nous intéressent, et de nous y tenir.
+
+Le système quantique le plus simple, et le système dont nous nous occuperons le plus, est le **qubit**. Un qubit a un espace d’états de dimension deux. Supposons que $|0\rangle$ et $|1\rangle$ forment une base orthonormale pour cet espace d’états. Alors un vecteur d’état arbitraire dans l’espace des états peut s’écrire :
+
+$$
+|\psi\rangle = a|0\rangle + b|1\rangle, \tag{2.82}
+$$
+
+où $a$ et $b$ sont des nombres complexes. La condition que $|\psi\rangle$ soit un vecteur unitaire, $\langle \psi|\psi\rangle = 1$, est donc équivalente à $|a|^2 + |b|^2 = 1$. La condition $\langle \psi|\psi\rangle = 1$ est souvent appelée la **condition de normalisation** pour les vecteurs d’état.
+
+Nous prendrons le qubit comme notre système quantique fondamental. Plus tard, au chapitre 7, nous verrons qu’il existe des systèmes physiques réels qui peuvent être décrits en termes de qubits. Pour l’instant, cependant, il suffit de penser aux qubits en termes abstraits, sans référence à une réalisation spécifique. Nos discussions sur les qubits feront toujours référence à un ensemble orthonormal de vecteurs de base, $|0\rangle$ et $|1\rangle$, que nous devons considérer comme fixés à l’avance. Intuitivement, les états $|0\rangle$ et $|1\rangle$ sont analogues aux deux valeurs $0$ et $1$ qu’un bit peut prendre. La différence entre un qubit et un bit est que des superpositions de ces deux états, de la forme $a|0\rangle + b|1\rangle$, peuvent également exister, dans lesquelles il n’est pas possible de dire que le qubit est définitivement dans l’état $|0\rangle$, ou définitivement dans l’état $|1\rangle$.
+
+Nous concluons par une terminologie utile souvent utilisée en relation avec la description des états quantiques. Nous disons que toute combinaison linéaire $\sum_i \alpha_i |\psi_i\rangle$ est une **superposition** des états $|\psi_i\rangle$ avec une **amplitude** $\alpha_i$ pour l’état $|\psi_i\rangle$. Ainsi, par exemple, l’état
+
+$$
+\frac{|0\rangle - |1\rangle}{\sqrt{2}} \tag{2.83}
+$$
+
+est une superposition des états $|0\rangle$ et $|1\rangle$ avec une amplitude $1/\sqrt{2}$ pour l’état $|0\rangle$, et une amplitude $-1/\sqrt{2}$ pour l’état $|1\rangle$.
+
+---
+
+### Évolution
+
+Comment l’état $|\psi\rangle$ d’un système quantique change-t‑il avec le temps ? Le postulat suivant donne une prescription pour la description de tels changements d’état.
+
+> **Postulat 2 :** L’évolution d’un système quantique **fermé** est décrite par une **transformation unitaire**. C’est‑à‑dire que l’état $|\psi\rangle$ du système au temps $t_1$ est lié à l’état $|\psi'\rangle$ du système au temps $t_2$ par un opérateur unitaire $U$ qui ne dépend que des temps $t_1$ et $t_2$ :
+> $$
+> |\psi'\rangle = U|\psi\rangle. \tag{2.84}
+> $$
+
+Tout comme la mécanique quantique ne nous dit pas l’espace des états ou l’état quantique d’un système quantique particulier, elle ne nous dit pas quels opérateurs unitaires $U$ décrivent la dynamique quantique du monde réel. La mécanique quantique nous assure seulement que l’évolution de tout système quantique fermé peut être décrite de cette manière. Une question évidente à se poser est : quels opérateurs unitaires sont naturels à considérer ? Dans le cas d’un seul qubit, il s’avère que tout opérateur unitaire peut être réalisé dans des systèmes réalistes.
+
+Regardons quelques exemples d’opérateurs unitaires sur un seul qubit importants en calcul et information quantiques. Nous avons déjà vu plusieurs exemples de tels opérateurs unitaires – les matrices de Pauli, définies dans la section 2.1.3, et les portes quantiques décrites au chapitre 1. Comme remarqué dans la section 1.3.1, la matrice $X$ est souvent appelée la **porte NOT quantique**, par analogie avec la porte NOT classique. Les matrices de Pauli $X$ et $Z$ sont aussi parfois appelées respectivement **bit flip** et **phase flip** : la matrice $X$ envoie $|0\rangle$ sur $|1\rangle$, et $|1\rangle$ sur $|0\rangle$, méritant ainsi le nom de bit flip ; et la matrice $Z$ laisse $|0\rangle$ invariant, et envoie $|1\rangle$ sur $-|1\rangle$, le facteur supplémentaire $-1$ ajouté étant appelé un **facteur de phase**, justifiant ainsi le terme phase flip. Nous n’utiliserons pas souvent le terme « phase flip », car il est facilement confondu avec la porte de phase définie au chapitre 4. (La section 2.2.7 contient une discussion plus approfondie sur les nombreuses utilisations du terme « phase ».)
+
+Un autre opérateur unitaire intéressant est la **porte de Hadamard**, que nous notons $H$. Elle a pour action $H|0\rangle \equiv (|0\rangle + |1\rangle)/\sqrt{2}$, $H|1\rangle \equiv (|0\rangle - |1\rangle)/\sqrt{2}$, et la représentation matricielle correspondante :
+
+$$
+H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}. \tag{2.85}
+$$
+
+> **Exercice 2.51 :** Vérifiez que la porte de Hadamard $H$ est unitaire.
+
+> **Exercice 2.52 :** Vérifiez que $H^2 = I$.
+
+> **Exercice 2.53 :** Quelles sont les valeurs propres et les vecteurs propres de $H$ ?
+
+Le postulat 2 exige que le système décrit soit **fermé**, c’est‑à‑dire qu’il n’interagit d’aucune manière avec d’autres systèmes. En réalité, bien sûr, tous les systèmes (sauf l’Univers dans son ensemble) interagissent au moins un peu avec d’autres systèmes. Néanmoins, il existe des systèmes intéressants qui peuvent être décrits avec une bonne approximation comme étant fermés, et qui sont décrits par une évolution unitaire à une certaine approximation. De plus, au moins en principe, tout système ouvert peut être décrit comme faisant partie d’un système fermé plus grand (l’Univers) qui subit une évolution unitaire. Plus tard, nous introduirons d’autres outils qui nous permettront de décrire des systèmes qui ne sont pas fermés, mais pour l’instant nous continuerons avec la description de l’évolution des systèmes fermés.
+
+Le postulat 2 décrit comment les états quantiques d’un système quantique fermé à deux instants différents sont liés. Une version plus raffinée de ce postulat peut être donnée, qui décrit l’évolution d’un système quantique en temps continu. De ce postulat raffiné, nous retrouverons le postulat 2. Avant d’énoncer le postulat révisé, il convient de souligner deux choses. Premièrement, une remarque de notation : l’opérateur $H$ apparaissant dans la discussion suivante n’est pas le même que l’opérateur de Hadamard que nous venons d’introduire. Deuxièmement, le postulat suivant utilise l’appareil des équations différentielles. Les lecteurs ayant peu de connaissances en équations différentielles peuvent être rassurés : elles ne seront pas nécessaires pour une grande partie du livre, à l’exception de certaines parties du chapitre 7, sur les implémentations physiques réelles du traitement de l’information quantique.
+
+> **Postulat 2' :** L’évolution temporelle de l’état d’un système quantique fermé est décrite par l’**équation de Schrödinger** :
+> $$
+> i\hbar \frac{d|\psi\rangle}{dt} = H|\psi\rangle. \tag{2.86}
+> $$
+> Dans cette équation, $\hbar$ est une constante physique connue sous le nom de **constante de Planck** dont la valeur doit être déterminée expérimentalement. La valeur exacte n’est pas importante pour nous. En pratique, il est courant d’absorber le facteur $\hbar$ dans $H$, en fixant effectivement $\hbar = 1$. $H$ est un opérateur hermitien fixé appelé le **hamiltonien** du système fermé.
+
+Si nous connaissons le hamiltonien d’un système, alors (avec une connaissance de $\hbar$) nous comprenons complètement sa dynamique, du moins en principe. En général, trouver le hamiltonien nécessaire pour décrire un système physique particulier est un problème très difficile – une grande partie de la physique du XXe siècle a été consacrée à ce problème – qui nécessite des apports substantiels de l’expérience pour être résolu. De notre point de vue, c’est un problème de détail à traiter par les théories physiques construites dans le cadre de la mécanique quantique – quel hamiltonien faut‑il pour décrire des atomes dans telle ou telle configuration – et ce n’est pas une question à laquelle la théorie de la mécanique quantique elle‑même doit répondre. La plupart du temps, dans notre discussion sur le calcul et l’information quantiques, nous n’aurons pas besoin de discuter des hamiltoniens, et quand nous le ferons, nous nous contenterons généralement de poser qu’une certaine matrice est le hamiltonien comme point de départ, et nous procéderons à partir de là, sans tenter de justifier l’utilisation de ce hamiltonien.
+
+Parce que le hamiltonien est un opérateur hermitien, il a une décomposition spectrale :
+
+$$
+H = \sum_E E |E\rangle \langle E|, \tag{2.87}
+$$
+
+avec des valeurs propres $E$ et des vecteurs propres normalisés correspondants $|E\rangle$. Les états $|E\rangle$ sont classiquement appelés **états propres d’énergie**, ou parfois **états stationnaires**, et $E$ est l’énergie de l’état $|E\rangle$. La plus basse énergie est connue comme l’**énergie de l’état fondamental** pour le système, et l’état propre (ou le sous‑espace propre) correspondant est appelé l’**état fondamental**. La raison pour laquelle les états $|E\rangle$ sont parfois appelés états stationnaires est que leur seul changement dans le temps est d’acquérir un facteur numérique global :
+
+$$
+|E\rangle \rightarrow \exp(-iEt/\hbar)|E\rangle. \tag{2.88}
+$$
+
+Par exemple, supposons qu’un seul qubit ait pour hamiltonien :
+
+$$
+H = \hbar \omega X. \tag{2.89}
+$$
+
+Dans cette équation, $\omega$ est un paramètre qui, en pratique, doit être déterminé expérimentalement. Nous ne nous soucierons pas trop du paramètre ici – le but est de vous donner une idée du genre d’hamiltoniens que l’on écrit parfois dans l’étude du calcul et de l’information quantiques. Les états propres d’énergie de cet hamiltonien sont évidemment les mêmes que les états propres de $X$, à savoir $(|0\rangle + |1\rangle)/\sqrt{2}$ et $(|0\rangle - |1\rangle)/\sqrt{2}$, avec les énergies correspondantes $\hbar\omega$ et $-\hbar\omega$. L’état fondamental est donc $(|0\rangle - |1\rangle)/\sqrt{2}$, et l’énergie de l’état fondamental est $-\hbar\omega$.
+
+Quel est le lien entre la vision hamiltonienne de la dynamique, le postulat $2'$, et la vision par opérateur unitaire, le postulat $2$ ? La réponse est fournie en écrivant la solution de l’équation de Schrödinger, qui se vérifie facilement :
+
+$$
+|\psi(t_2)\rangle = \exp\left[ \frac{-iH(t_2 - t_1)}{\hbar} \right] |\psi(t_1)\rangle = U(t_1,t_2)|\psi(t_1)\rangle, \tag{2.90}
+$$
+
+où nous définissons :
+
+$$
+U(t_1,t_2) \equiv \exp\left[ \frac{-iH(t_2 - t_1)}{\hbar} \right]. \tag{2.91}
+$$
+
+Vous montrerez dans les exercices que cet opérateur est unitaire, et de plus que tout opérateur unitaire $U$ peut être réalisé sous la forme $U = \exp(iK)$ pour un certain opérateur hermitien $K$. Il y a donc une correspondance biunivoque entre la description en temps discret de la dynamique à l’aide d’opérateurs unitaires et la description en temps continu à l’aide d’hamiltoniens. Pour la majeure partie du livre, nous utiliserons la formulation unitaire de la dynamique quantique.
+
+> **Exercice 2.54 :** Supposons que $A$ et $B$ soient des opérateurs hermitiens qui commutent. Prouvez que $\exp(A) \exp(B) = \exp(A+B)$. (Indice : Utilisez les résultats de la section 2.1.9.)
+
+> **Exercice 2.55 :** Prouvez que $U(t_1,t_2)$ défini dans l’équation (2.91) est unitaire.
+
+> **Exercice 2.56 :** Utilisez la décomposition spectrale pour montrer que $K \equiv -i \log(U)$ est hermitien pour tout unitaire $U$, et ainsi $U = \exp(iK)$ pour un certain $K$ hermitien.
+
+En calcul et information quantiques, on parle souvent d’**appliquer** un opérateur unitaire à un système quantique particulier. Par exemple, dans le contexte des circuits quantiques, on peut parler d’appliquer la porte unitaire $X$ à un seul qubit. Cela ne contredit‑il pas ce que nous avons dit plus tôt, à savoir que les opérateurs unitaires décrivent l’évolution d’un système quantique fermé ? Après tout, si nous « appliquons » un opérateur unitaire, cela implique qu’il y a un « nous » externe qui interagit avec le système quantique, et le système n’est pas fermé.
+
+Un exemple de cela se produit lorsqu’un laser est focalisé sur un atome. Après beaucoup de réflexion et de travail acharné, il est possible d’écrire un hamiltonien décrivant le système total atome‑laser. La chose intéressante est que lorsque nous écrivons le hamiltonien pour le système atome‑laser et que nous considérons les effets sur l’atome seul, le comportement du vecteur d’état de l’atome s’avère être décrit presque, mais pas tout à fait parfaitement, par un autre hamiltonien, le hamiltonien atomique. Le hamiltonien atomique contient des termes liés à l’intensité du laser, et d’autres paramètres du laser, que nous pouvons faire varier à volonté. C’est comme si l’évolution de l’atome était décrite par un hamiltonien que nous pouvons faire varier à volonté, bien que l’atome ne soit pas un système fermé.
+
+Plus généralement, pour de nombreux systèmes de ce type, il s’avère possible d’écrire un hamiltonien variant dans le temps pour un système quantique, dans lequel le hamiltonien du système n’est pas constant, mais varie selon certains paramètres qui sont sous le contrôle d’un expérimentateur, et qui peuvent être modifiés au cours d’une expérience. Le système n’est donc pas fermé, mais il évolue selon l’équation de Schrödinger avec un hamiltonien variant dans le temps, à une bonne approximation.
+
+En fin de compte, pour commencer, nous décrirons souvent l’évolution de systèmes quantiques – même ceux qui ne sont pas fermés – en utilisant des opérateurs unitaires. La principale exception à cela, la **mesure quantique**, sera décrite dans la section suivante. Plus tard, nous étudierons plus en détail les écarts possibles par rapport à l’évolution unitaire dus à l’interaction avec d’autres systèmes, et nous comprendrons plus précisément la dynamique des systèmes quantiques réalistes.
+
+---
+
+### Mesure quantique
+
+Nous avons postulé que les systèmes quantiques fermés évoluent selon une évolution unitaire. L’évolution des systèmes qui n’interagissent pas avec le reste du monde est très bien, mais il doit aussi y avoir des moments où l’expérimentateur et son équipement expérimental – un système physique externe, en d’autres termes – observent le système pour savoir ce qui se passe à l’intérieur du système, une interaction qui rend le système non fermé, et donc pas nécessairement soumis à une évolution unitaire. Pour expliquer ce qui se passe quand cela est fait, nous introduisons le postulat 3, qui fournit un moyen de décrire les effets des mesures sur les systèmes quantiques.
+
+> **Postulat 3 :** Les mesures quantiques sont décrites par une collection $\{M_m\}$ d’**opérateurs de mesure**. Ce sont des opérateurs agissant sur l’espace des états du système mesuré. L’indice $m$ se réfère aux résultats de mesure qui peuvent se produire dans l’expérience. Si l’état du système quantique est $|\psi\rangle$ immédiatement avant la mesure, alors la probabilité que le résultat $m$ se produise est donnée par :
+> $$
+> p(m) = \langle \psi | M_m^\dagger M_m | \psi \rangle, \tag{2.92}
+> $$
+> et l’état du système après la mesure est :
+> $$
+> \frac{M_m |\psi\rangle}{\sqrt{\langle \psi | M_m^\dagger M_m | \psi \rangle}}. \tag{2.93}
+> $$
+> Les opérateurs de mesure satisfont l’**équation de complétude** :
+> $$
+> \sum_m M_m^\dagger M_m = I. \tag{2.94}
+> $$
+
+L’équation de complétude exprime le fait que les probabilités s’additionnent à un :
+
+$$
+1 = \sum_m p(m) = \sum_m \langle \psi | M_m^\dagger M_m | \psi \rangle. \tag{2.95}
+$$
+
+Cette équation étant satisfaite pour tout $|\psi\rangle$ est équivalente à l’équation de complétude. Cependant, l’équation de complétude est beaucoup plus facile à vérifier directement, c’est pourquoi elle apparaît dans l’énoncé du postulat.
+
+Un exemple simple mais important de mesure est la **mesure d’un qubit dans la base computationnelle**. C’est une mesure sur un seul qubit avec deux résultats définis par les deux opérateurs de mesure $M_0 = |0\rangle \langle 0|$, $M_1 = |1\rangle \langle 1|$. Observez que chaque opérateur de mesure est hermitien, et que $M_0^2 = M_0$, $M_1^2 = M_1$. Ainsi, la relation de complétude est obéie : $I = M_0^\dagger M_0 + M_1^\dagger M_1 = M_0 + M_1$. Supposons que l’état mesuré soit $|\psi\rangle = a|0\rangle + b|1\rangle$. Alors la probabilité d’obtenir le résultat de mesure $0$ est :
+
+$$
+p(0) = \langle \psi | M_0^\dagger M_0 | \psi \rangle = \langle \psi | M_0 | \psi \rangle = |a|^2. \tag{2.96}
+$$
+
+De même, la probabilité d’obtenir le résultat $1$ est $p(1) = |b|^2$. L’état après la mesure dans les deux cas est donc :
+
+$$
+\frac{M_0 |\psi\rangle}{|a|} = \frac{a}{|a|} |0\rangle, \qquad \frac{M_1 |\psi\rangle}{|b|} = \frac{b}{|b|} |1\rangle. \tag{2.98}
+$$
+
+Nous verrons dans la section 2.2.7 que des multiplicateurs comme $a/|a|$, qui ont un module égal à un, peuvent être effectivement ignorés, donc les deux états post‑mesure sont effectivement $|0\rangle$ et $|1\rangle$, comme décrit au chapitre 1.
+
+Le statut du postulat 3 en tant que postulat fondamental intrigue beaucoup de gens. Les appareils de mesure sont des systèmes quantiques, donc le système quantique mesuré et l’appareil de mesure ensemble font partie d’un système quantique plus grand, isolé. (Il peut être nécessaire d’inclure d’autres systèmes quantiques que le système mesuré et l’appareil de mesure pour obtenir un système complètement isolé, mais le point est que cela peut être fait.) Selon le postulat 2, l’évolution de ce plus grand système isolé peut être décrite par une évolution unitaire. Serait‑il possible de dériver le postulat 3 comme une conséquence de cette image ? Malgré des recherches considérables dans cette direction, il y a encore un désaccord entre physiciens sur la question de savoir si cela est possible. Nous allons cependant adopter une approche très pragmatique : en pratique, il est clair quand appliquer le postulat 2 et quand appliquer le postulat 3, et nous ne nous soucierons pas de dériver un postulat de l’autre.
+
+Dans les prochaines sections, nous appliquons le postulat 3 à plusieurs scénarios de mesure élémentaires mais importants. La section 2.2.4 examine le problème de la distinction d’ensembles d’états quantiques. La section 2.2.5 explique un cas particulier du postulat 3, les **mesures projectives** ou **de von Neumann**. La section 2.2.6 explique un autre cas particulier du postulat 3, connu sous le nom de **mesures POVM**. De nombreuses introductions à la mécanique quantique ne discutent que des mesures projectives, omettant une discussion complète du postulat 3 ou des éléments POVM. Pour cette raison, nous avons inclus l’encadré 2.5 (page 91) qui commente la relation entre les différentes classes de mesures que nous décrivons.
+
+> **Exercice 2.57 : (Les mesures en cascade sont une seule mesure)** Supposons que $\{L_l\}$ et $\{M_m\}$ soient deux ensembles d’opérateurs de mesure. Montrez qu’une mesure définie par les opérateurs de mesure $\{L_l\}$ suivie d’une mesure définie par les opérateurs de mesure $\{M_m\}$ est physiquement équivalente à une seule mesure définie par des opérateurs de mesure $\{N_{lm}\}$ avec la représentation $N_{lm} \equiv M_m L_l$.
+
+---
+
+### Distinguer des états quantiques
+
+Une application importante du postulat 3 est le problème de la **distinction d’états quantiques**. Dans le monde classique, des états distincts d’un objet sont généralement distinguables, au moins en principe. Par exemple, nous pouvons toujours identifier si une pièce est tombée sur pile ou face, du moins dans la limite idéale. Quantiquement, la situation est plus compliquée. Dans la section 1.6, nous avons donné un argument plausible selon lequel des états quantiques non orthogonaux ne peuvent pas être distingués. Avec le postulat 3 comme base solide, nous pouvons maintenant donner une démonstration beaucoup plus convaincante de ce fait.
+
+La **distinguabilité**, comme beaucoup d’idées en calcul et information quantiques, se comprend le plus facilement en utilisant la métaphore d’un jeu impliquant deux parties, Alice et Bob. Alice choisit un état $|\psi_i\rangle$ ($1 \le i \le n$) parmi un ensemble fixe d’états connu des deux parties. Elle donne l’état $|\psi_i\rangle$ à Bob, dont la tâche est d’identifier l’indice $i$ de l’état qu’Alice lui a donné.
+
+Supposons que les états $|\psi_i\rangle$ soient orthonormaux. Alors Bob peut effectuer une mesure quantique pour distinguer ces états, en utilisant la procédure suivante. Définissons des opérateurs de mesure $M_i \equiv |\psi_i\rangle \langle \psi_i|$, un pour chaque indice possible $i$, et un opérateur de mesure supplémentaire $M_0$ défini comme la racine carrée positive de l’opérateur positif $I - \sum_{i \neq 0} |\psi_i\rangle \langle \psi_i|$. Ces opérateurs satisfont la relation de complétude, et si l’état $|\psi_i\rangle$ est préparé, alors $p(i) = \langle \psi_i| M_i |\psi_i\rangle = 1$, donc le résultat $i$ se produit avec certitude. Ainsi, il est possible de distinguer de manière fiable les états orthonormaux $|\psi_i\rangle$.
+
+En revanche, si les états $|\psi_i\rangle$ ne sont pas orthonormaux, nous pouvons prouver qu’il n’existe aucune mesure quantique capable de distinguer les états. L’idée est que Bob effectuera une mesure décrite par des opérateurs de mesure $M_j$, avec un résultat $j$. En fonction du résultat de la mesure, Bob essaie de deviner quel était l’indice $i$ en utilisant une certaine règle, $i = f(j)$, où $f(\cdot)$ représente la règle qu’il utilise pour faire la supposition. La clé pour comprendre pourquoi Bob ne peut pas distinguer des états non orthogonaux $|\psi_1\rangle$ et $|\psi_2\rangle$ est l’observation que $|\psi_2\rangle$ peut être décomposé en une composante (non nulle) parallèle à $|\psi_1\rangle$, et une composante orthogonale à $|\psi_1\rangle$. Supposons que $j$ soit un résultat de mesure tel que $f(j) = 1$, c’est‑à‑dire que Bob devine que l’état était $|\psi_1\rangle$ lorsqu’il observe $j$. Mais à cause de la composante de $|\psi_2\rangle$ parallèle à $|\psi_1\rangle$, il y a une probabilité non nulle d’obtenir le résultat $j$ lorsque $|\psi_2\rangle$ est préparé, donc parfois Bob fera une erreur en identifiant quel état a été préparé. Un argument plus rigoureux montrant que des états non orthogonaux ne peuvent pas être distingués est donné dans l’encadré 2.3, mais cela capture l’idée essentielle.
+
+---
+
+**Encadré 2.3 : Preuve que des états non orthogonaux ne peuvent pas être distingués de manière fiable**
+
+Une preuve par contradiction montre qu’aucune mesure ne peut distinguer les états non orthogonaux $|\psi_1\rangle$ et $|\psi_2\rangle$. Supposons qu’une telle mesure soit possible. Si l’état $|\psi_1\rangle$ ($|\psi_2\rangle$) est préparé, alors la probabilité de mesurer $j$ tel que $f(j)=1$ ($f(j)=2$) doit être 1. En définissant $E_i \equiv \sum_{j : f(j)=i} M_j^\dagger M_j$, ces observations peuvent s’écrire :
+
+$$
+\langle \psi_1| E_1 |\psi_1\rangle = 1, \quad \langle \psi_2| E_2 |\psi_2\rangle = 1. \tag{2.99}
+$$
+
+Puisque $\sum_i E_i = I$, il s’ensuit que $\sum_i \langle \psi_1|E_i|\psi_1\rangle = 1$, et comme $\langle \psi_1|E_1|\psi_1\rangle = 1$, nous devons avoir $\langle \psi_1|E_2|\psi_1\rangle = 0$, et donc $\sqrt{E_2}|\psi_1\rangle = 0$. Supposons que nous décomposions $|\psi_2\rangle = \alpha |\psi_1\rangle + \beta |\phi\rangle$, où $|\phi\rangle$ est orthogonal à $|\psi_1\rangle$, $|\alpha|^2 + |\beta|^2 = 1$, et $|\beta| < 1$ car $|\psi_1\rangle$ et $|\psi_2\rangle$ ne sont pas orthogonaux. Alors $\sqrt{E_2}|\psi_2\rangle = \beta \sqrt{E_2}|\phi\rangle$, ce qui implique une contradiction avec (2.99), car :
+
+$$
+\langle \psi_2|E_2|\psi_2\rangle = |\beta|^2 \langle \phi|E_2|\phi\rangle \le |\beta|^2 < 1, \tag{2.100}
+$$
+
+où la dernière inégalité découle de l’observation que $\langle \phi|E_2|\phi\rangle \le \sum_i \langle \phi|E_i|\phi\rangle = \langle \phi|\phi\rangle = 1$.
+
+---
+
+### Mesures projectives
+
+Dans cette section, nous expliquons un cas particulier important du postulat général de mesure, le postulat 3. Cette classe spéciale de mesures est connue sous le nom de **mesures projectives**. Pour de nombreuses applications du calcul et de l’information quantiques, nous nous intéresserons principalement aux mesures projectives. En effet, les mesures projectives s’avèrent en fait équivalentes au postulat général de mesure, lorsqu’elles sont augmentées de la capacité d’effectuer des transformations unitaires, comme décrit dans le postulat 2. Nous expliquerons cette équivalence en détail dans la section 2.2.8, car l’énoncé du postulat de mesure pour les mesures projectives est superficiellement assez différent du postulat général, le postulat 3.
+
+> **Mesures projectives :** Une mesure projective est décrite par une **observable**, $M$, un opérateur hermitien sur l’espace des états du système observé. L’observable a une décomposition spectrale :
+> $$
+> M = \sum_m m P_m, \tag{2.102}
+> $$
+> où $P_m$ est le projecteur sur le sous‑espace propre de $M$ avec la valeur propre $m$. Les résultats possibles de la mesure correspondent aux valeurs propres $m$ de l’observable. Lors de la mesure de l’état $|\psi\rangle$, la probabilité d’obtenir le résultat $m$ est donnée par :
+> $$
+> p(m) = \langle \psi | P_m | \psi \rangle. \tag{2.103}
+> $$
+> Étant donné que le résultat $m$ s’est produit, l’état du système quantique immédiatement après la mesure est :
+> $$
+> \frac{P_m |\psi\rangle}{\sqrt{p(m)}}. \tag{2.104}
+> $$
+
+Les mesures projectives peuvent être comprises comme un cas particulier du postulat 3. Supposons que les opérateurs de mesure dans le postulat 3, en plus de satisfaire la relation de complétude $\sum_m M_m^\dagger M_m = I$, satisfassent également les conditions que $M_m$ soient des **projecteurs orthogonaux**, c’est‑à‑dire que les $M_m$ soient hermitiens, et $M_m M_{m'} = \delta_{m,m'} M_m$. Avec ces restrictions supplémentaires, le postulat 3 se réduit à une mesure projective telle que définie ci‑dessus.
+
+Les mesures projectives ont de nombreuses propriétés intéressantes. En particulier, il est très facile de calculer les valeurs moyennes pour les mesures projectives. Par définition, la **valeur moyenne** de la mesure est :
+
+$$
+\begin{aligned}
+\mathbf{E}(M) &= \sum_m m p(m) \\
+&= \sum_m m \langle \psi | P_m | \psi \rangle \\
+&= \langle \psi | \left( \sum_m m P_m \right) | \psi \rangle \\
+&= \langle \psi | M | \psi \rangle.
+\end{aligned} \tag{2.110}
+$$
+
+C’est une formule utile, qui simplifie de nombreux calculs. La valeur moyenne de l’observable $M$ est souvent notée $\langle M \rangle \equiv \langle \psi | M | \psi \rangle$. De cette formule pour la moyenne découle une formule pour l’**écart‑type** associé aux observations de $M$ :
+
+$$
+[\Delta(M)]^2 = \langle (M - \langle M \rangle)^2 \rangle = \langle M^2 \rangle - \langle M \rangle^2. \tag{2.114}
+$$
+
+L’écart‑type est une mesure de la dispersion typique des valeurs observées lors de la mesure de $M$. En particulier, si nous effectuons un grand nombre d’expériences dans lesquelles l’état $|\psi\rangle$ est préparé et l’observable $M$ est mesurée, alors l’écart‑type $\Delta(M)$ des valeurs observées est déterminé par la formule $\Delta(M) = \sqrt{\langle M^2 \rangle - \langle M \rangle^2}$. Cette formulation de la mesure et des écarts‑types en termes d’observables donne lieu de manière élégante à des résultats tels que le **principe d’incertitude de Heisenberg** (voir encadré 2.4).
+
+> **Exercice 2.58 :** Supposons que nous préparions un système quantique dans un état propre $|\psi\rangle$ d’une certaine observable $M$, avec la valeur propre correspondante $m$. Quelle est la valeur moyenne observée de $M$, et l’écart‑type ?
+
+Deux nomenclatures largement utilisées pour les mesures méritent d’être soulignées. Plutôt que de donner une observable pour décrire une mesure projective, les gens énumèrent souvent un ensemble complet de projecteurs orthogonaux $P_m$ satisfaisant les relations $\sum_m P_m = I$ et $P_m P_{m'} = \delta_{mm'} P_m$. L’observable implicite dans cet usage est $M = \sum_m m P_m$. Une autre phrase largement utilisée, « mesurer dans une base $|m\rangle$ », où $|m\rangle$ forme une base orthonormale, signifie simplement effectuer la mesure projective avec les projecteurs $P_m = |m\rangle \langle m|$.
+
+Regardons un exemple de mesures projectives sur un seul qubit. D’abord, la mesure de l’observable $Z$. Celle‑ci a pour valeurs propres $+1$ et $-1$ avec pour vecteurs propres correspondants $|0\rangle$ et $|1\rangle$. Ainsi, par exemple, la mesure de $Z$ sur l’état $|\psi\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ donne le résultat $+1$ avec probabilité $\langle \psi|0\rangle \langle 0|\psi\rangle = 1/2$, et de même le résultat $-1$ avec probabilité $1/2$. Plus généralement, supposons que $\vec{v}$ soit un vecteur unitaire réel à trois dimensions. Alors nous pouvons définir une observable :
+
+$$
+\vec{v} \cdot \vec{\sigma} \equiv v_1 \sigma_1 + v_2 \sigma_2 + v_3 \sigma_3. \tag{2.116}
+$$
+
+La mesure de cette observable est parfois appelée « mesure du spin le long de l’axe $\vec{v}$ », pour des raisons historiques. Les deux exercices suivants vous encouragent à calculer certaines propriétés élémentaires mais importantes d’une telle mesure.
+
+> **Exercice 2.59 :** Supposons que nous ayons un qubit dans l’état $|0\rangle$, et que nous mesurions l’observable $X$. Quelle est la valeur moyenne de $X$ ? Quel est l’écart‑type de $X$ ?
+
+> **Exercice 2.60 :** Montrez que $\vec{v} \cdot \vec{\sigma}$ a pour valeurs propres $\pm 1$, et que les projecteurs sur les sous‑espaces propres correspondants sont donnés par $P_{\pm} = (I \pm \vec{v} \cdot \vec{\sigma})/2$.
+
+> **Exercice 2.61 :** Calculez la probabilité d’obtenir le résultat $+1$ pour une mesure de $\vec{v} \cdot \vec{\sigma}$, sachant que l’état avant la mesure est $|0\rangle$. Quel est l’état du système après la mesure si $+1$ est obtenu ?
+
+---
+
+**Encadré 2.4 : Le principe d’incertitude de Heisenberg**
+
+Le résultat le plus connu de la mécanique quantique est peut‑être le principe d’incertitude de Heisenberg. Supposons que $A$ et $B$ soient deux opérateurs hermitiens, et $|\psi\rangle$ un état quantique. Supposons que $\langle \psi|AB|\psi\rangle = x + iy$, où $x$ et $y$ sont réels. Notons que $\langle \psi|[A,B]|\psi\rangle = 2iy$ et $\langle \psi|\{A,B\}|\psi\rangle = 2x$. Cela implique que :
+
+$$
+|\langle \psi|[A,B]|\psi\rangle|^2 + |\langle \psi|\{A,B\}|\psi\rangle|^2 = 4|\langle \psi|AB|\psi\rangle|^2. \tag{2.105}
+$$
+
+Par l’inégalité de Cauchy‑Schwarz :
+
+$$
+|\langle \psi|AB|\psi\rangle|^2 \le \langle \psi|A^2|\psi\rangle \langle \psi|B^2|\psi\rangle, \tag{2.106}
+$$
+
+ce qui, combiné avec l’équation (2.105) et en éliminant un terme non négatif, donne :
+
+$$
+|\langle \psi|[A,B]|\psi\rangle|^2 \le 4 \langle \psi|A^2|\psi\rangle \langle \psi|B^2|\psi\rangle. \tag{2.107}
+$$
+
+Supposons que $C$ et $D$ soient deux observables. En substituant $A = C - \langle C \rangle$ et $B = D - \langle D \rangle$ dans la dernière équation, nous obtenons le principe d’incertitude de Heisenberg tel qu’il est habituellement énoncé :
+
+$$
+\Delta(C) \Delta(D) \ge \frac{|\langle \psi|[C,D]|\psi\rangle|}{2}. \tag{2.108}
+$$
+
+Vous devez vous méfier d’une idée fausse courante concernant le principe d’incertitude : mesurer une observable $C$ avec une certaine « précision » $\Delta(C)$ perturberait la valeur de $D$ d’une quantité $\Delta(D)$ de telle sorte qu’une inégalité similaire à (2.108) soit satisfaite. S’il est vrai que les mesures en mécanique quantique provoquent une perturbation du système mesuré, ce n’est absolument pas le contenu du principe d’incertitude.
+
+L’interprétation correcte du principe d’incertitude est que si nous préparons un grand nombre de systèmes quantiques dans des états identiques, $|\psi\rangle$, et que nous effectuons ensuite des mesures de $C$ sur certains de ces systèmes, et de $D$ sur d’autres, alors l’écart‑type $\Delta(C)$ des résultats pour $C$ multiplié par l’écart‑type $\Delta(D)$ des résultats pour $D$ satisfera l’inégalité (2.108).
+
+À titre d’exemple du principe d’incertitude, considérons les observables $X$ et $Y$ lorsqu’elles sont mesurées pour l’état quantique $|0\rangle$. Dans l’équation (2.70), nous avons montré que $[X,Y] = 2iZ$, donc le principe d’incertitude nous dit que :
+
+$$
+\Delta(X) \Delta(Y) \ge |\langle 0|Z|0\rangle| = 1. \tag{2.109}
+$$
+
+Une conséquence élémentaire en est que $\Delta(X)$ et $\Delta(Y)$ doivent être strictement supérieurs à $0$, comme on peut le vérifier par un calcul direct.
+
+---
+
+### Mesures POVM
+
+Le postulat de mesure quantique, postulat 3, comporte deux éléments. Premièrement, il donne une règle décrivant les **statistiques de mesure**, c’est‑à‑dire les probabilités respectives des différents résultats de mesure possibles. Deuxièmement, il donne une règle décrivant l’**état post‑mesure** du système. Cependant, pour certaines applications, l’état post‑mesure du système présente peu d’intérêt, le principal élément d’intérêt étant les probabilités des différents résultats de mesure. C’est le cas, par exemple, dans une expérience où le système n’est mesuré qu’une seule fois, à la conclusion de l’expérience. Dans de tels cas, il existe un outil mathématique connu sous le nom de **formalisme POVM** qui est particulièrement bien adapté à l’analyse des mesures. (L’acronyme POVM signifie « Positive Operator‑Valued Measure », un terme technique dont l’origine historique ne nous préoccupe pas.) Ce formalisme est une simple conséquence de la description générale des mesures introduite dans le postulat 3, mais la théorie des POVM est si élégante et largement utilisée qu’elle mérite une discussion séparée ici.
+
+Supposons qu’une mesure décrite par des opérateurs de mesure $M_m$ soit effectuée sur un système quantique dans l’état $|\psi\rangle$. Alors la probabilité du résultat $m$ est donnée par $p(m) = \langle \psi | M_m^\dagger M_m | \psi \rangle$. Supposons que nous définissions :
+
+$$
+E_m \equiv M_m^\dagger M_m. \tag{2.117}
+$$
+
+Alors, d’après le postulat 3 et l’algèbre linéaire élémentaire, $E_m$ est un **opérateur positif** tel que $\sum_m E_m = I$ et $p(m) = \langle \psi | E_m | \psi \rangle$. Ainsi, l’ensemble des opérateurs $E_m$ est suffisant pour déterminer les probabilités des différents résultats de mesure. Les opérateurs $E_m$ sont appelés les **éléments POVM** associés à la mesure. L’ensemble complet $\{E_m\}$ est appelé un **POVM**.
+
+À titre d’exemple de POVM, considérons une mesure projective décrite par des opérateurs de mesure $P_m$, où les $P_m$ sont des projecteurs tels que $P_m P_{m'} = \delta_{mm'} P_m$ et $\sum_m P_m = I$. Dans ce cas (et seulement dans ce cas), tous les éléments POVM sont identiques aux opérateurs de mesure eux‑mêmes, puisque $E_m \equiv P_m^\dagger P_m = P_m$.
+
+> **Exercice 2.62 :** Montrez que toute mesure où les opérateurs de mesure et les éléments POVM coïncident est une mesure projective.
+
+Ci‑dessus, nous avons remarqué que les opérateurs POVM sont positifs et satisfont $\sum_m E_m = I$. Supposons maintenant que $\{E_m\}$ soit un ensemble arbitraire d’opérateurs positifs tel que $\sum_m E_m = I$. Nous allons montrer qu’il existe un ensemble d’opérateurs de mesure $M_m$ définissant une mesure décrite par le POVM $\{E_m\}$. En définissant $M_m \equiv \sqrt{E_m}$, nous voyons que $\sum_m M_m^\dagger M_m = \sum_m E_m = I$, et donc l’ensemble $\{M_m\}$ décrit une mesure avec le POVM $\{E_m\}$. Pour cette raison, il est commode de définir un **POVM** comme tout ensemble d’opérateurs $\{E_m\}$ tel que : (a) chaque opérateur $E_m$ est positif ; et (b) la relation de complétude $\sum_m E_m = I$ est obéie, exprimant le fait que les probabilités s’additionnent à un. Pour compléter la description des POVM, nous notons à nouveau que pour un POVM $\{E_m\}$, la probabilité du résultat $m$ est donnée par $p(m) = \langle \psi | E_m | \psi \rangle$.
+
+Nous avons examiné les mesures projectives comme un exemple d’utilisation des POVM, mais ce n’était pas très excitant car nous n’avons pas appris grand‑chose de nouveau. L’exemple plus sophistiqué suivant illustre l’utilisation du formalisme POVM comme guide pour notre intuition en calcul et information quantiques. Supposons qu’Alice donne à Bob un qubit préparé dans l’un des deux états, $|\psi_1\rangle = |0\rangle$ ou $|\psi_2\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$. Comme expliqué dans la section 2.2.4, il est impossible pour Bob de déterminer avec une fiabilité parfaite s’il a reçu $|\psi_1\rangle$ ou $|\psi_2\rangle$. Cependant, il est possible pour lui d’effectuer une mesure qui distingue les états une partie du temps, mais ne fait jamais d’erreur d’identification. Considérons un POVM contenant trois éléments :
+
+$$
+\begin{aligned}
+E_1 &\equiv \frac{\sqrt{2}}{1+\sqrt{2}} |1\rangle \langle 1|, \\
+E_2 &\equiv \frac{\sqrt{2}}{1+\sqrt{2}} \frac{(|0\rangle - |1\rangle)}{2} \frac{(\langle 0| - \langle 1|)}{2}, \\
+E_3 &\equiv I - E_1 - E_2.
+\end{aligned} \tag{2.118}
+$$
+
+Il est simple de vérifier que ce sont des opérateurs positifs qui satisfont la relation de complétude $\sum_m E_m = I$, et forment donc un POVM légitime.
+
+Supposons que Bob reçoive l’état $|\psi_1\rangle = |0\rangle$. Il effectue la mesure décrite par le POVM $\{E_1,E_2,E_3\}$. Il y a une probabilité nulle qu’il observe le résultat $E_1$, puisque $E_1$ a été astucieusement choisi pour que $\langle \psi_1|E_1|\psi_1\rangle = 0$. Par conséquent, si le résultat de sa mesure est $E_1$, Bob peut conclure en toute sécurité que l’état qu’il a reçu devait être $|\psi_2\rangle$. Un raisonnement similaire montre que si le résultat de mesure $E_2$ se produit, alors c’est forcément l’état $|\psi_1\rangle$ que Bob a reçu. Parfois, cependant, Bob obtiendra le résultat de mesure $E_3$, et il ne pourra rien déduire sur l’identité de l’état qui lui a été donné. Le point clé, cependant, est que Bob ne fait jamais d’erreur en identifiant l’état qu’il a reçu. Cette infaillibilité a un prix : parfois Bob n’obtient aucune information sur l’identité de l’état.
+
+Cet exemple simple démontre l’utilité du formalisme POVM comme moyen simple et intuitif d’obtenir un aperçu des mesures quantiques dans les cas où seules les statistiques de mesure importent. Dans de nombreux cas ultérieurs dans le livre, nous ne nous intéresserons qu’aux statistiques de mesure, et nous utiliserons donc le formalisme POVM plutôt que le formalisme plus général des mesures décrit dans le postulat 3.
+
+> **Exercice 2.63 :** Supposons qu’une mesure soit décrite par des opérateurs de mesure $M_m$. Montrez qu’il existe des opérateurs unitaires $U_m$ tels que $M_m = U_m \sqrt{E_m}$, où $E_m$ est le POVM associé à la mesure.
+
+> **Exercice 2.64 :** Supposons que Bob reçoive un état quantique choisi parmi un ensemble $|\psi_1\rangle,\ldots,|\psi_m\rangle$ d’états linéairement indépendants. Construisez un POVM $\{E_1,E_2,\ldots,E_{m+1}\}$ tel que si le résultat $E_i$ se produit, $1 \le i \le m$, alors Bob sache avec certitude qu’il a reçu l’état $|\psi_i\rangle$. (Le POVM doit être tel que $\langle \psi_i|E_i|\psi_i\rangle > 0$ pour chaque $i$.)
+
+---
+
+**Encadré 2.5 : Mesures générales, mesures projectives et POVM**
+
+La plupart des introductions à la mécanique quantique ne décrivent que les mesures projectives, et par conséquent la description générale des mesures donnée dans le postulat 3 peut être peu familière à de nombreux physiciens, de même que le formalisme POVM décrit dans la section 2.2.6. La raison pour laquelle la plupart des physiciens n’apprennent pas le formalisme de mesure générale est que la plupart des systèmes physiques ne peuvent être mesurés que d’une manière très grossière. En calcul et information quantiques, nous visons un niveau de contrôle exquis sur les mesures qui peuvent être effectuées, et par conséquent il est utile d’utiliser un formalisme plus complet pour la description des mesures.
+
+Bien sûr, lorsque les autres axiomes de la mécanique quantique sont pris en compte, les mesures projectives augmentées d’opérations unitaires s’avèrent complètement équivalentes aux mesures générales, comme montré dans la section 2.2.8. Ainsi, un physicien formé à l’utilisation des mesures projectives pourrait demander pourquoi nous commençons par le formalisme général, le postulat 3. Il y a plusieurs raisons à cela. Premièrement, mathématiquement, les mesures générales sont en un sens plus simples que les mesures projectives, car elles impliquent moins de restrictions sur les opérateurs de mesure ; il n’y a, par exemple, aucune exigence pour les mesures générales analogue à la condition $P_i P_j = \delta_{ij} P_i$ pour les mesures projectives. Cette structure plus simple donne également lieu à de nombreuses propriétés utiles pour les mesures générales que ne possèdent pas les mesures projectives. Deuxièmement, il s’avère qu’il y a des problèmes importants en calcul et information quantiques – comme la manière optimale de distinguer un ensemble d’états quantiques – dont la réponse implique une mesure générale, plutôt qu’une mesure projective.
+
+Une troisième raison de préférer le postulat 3 comme point de départ est liée à une propriété des mesures projectives connue sous le nom de **répétabilité**. Les mesures projectives sont répétables dans le sens où si nous effectuons une mesure projective une fois, et obtenons le résultat $m$, répéter la mesure donne à nouveau le résultat $m$ et ne change pas l’état. Pour le voir, supposons que $|\psi\rangle$ était l’état initial. Après la première mesure, l’état est $|\psi_m\rangle = (P_m|\psi\rangle)/\sqrt{\langle \psi|P_m|\psi\rangle}$. Appliquer $P_m$ à $|\psi_m\rangle$ ne le change pas, donc $\langle \psi_m|P_m|\psi_m\rangle = 1$, et par conséquent une mesure répétée donne le résultat $m$ à chaque fois, sans changer l’état.
+
+Cette répétabilité des mesures projectives nous indique que de nombreuses mesures importantes en mécanique quantique ne sont pas des mesures projectives. Par exemple, si nous utilisons un écran argenté pour mesurer la position d’un photon, nous détruisons le photon dans le processus. Cela rend certainement impossible de répéter la mesure de la position du photon ! Beaucoup d’autres mesures quantiques ne sont pas non plus répétables au même sens qu’une mesure projective. Pour de telles mesures, le postulat général de mesure, postulat 3, doit être employé. Où les POVM se situent‑ils dans cette image ? Les POVM sont mieux vus comme un cas particulier du formalisme de mesure générale, fournissant le moyen le plus simple d’étudier les statistiques de mesure générales, sans nécessité de connaître l’état post‑mesure. Ils sont une commodité mathématique qui donne parfois un aperçu supplémentaire des mesures quantiques.
+
+---
+
+### Phase
+
+« Phase » est un terme couramment utilisé en mécanique quantique, avec plusieurs significations différentes selon le contexte. À ce stade, il est commode de passer en revue deux de ces significations. Considérons, par exemple, l’état $e^{i\theta}|\psi\rangle$, où $|\psi\rangle$ est un vecteur d’état, et $\theta$ un nombre réel. Nous disons que l’état $e^{i\theta}|\psi\rangle$ est égal à $|\psi\rangle$, à un **facteur de phase global** $e^{i\theta}$ près. Il est intéressant de noter que les statistiques de mesure prédites pour ces deux états sont les mêmes. Pour le voir, supposons que $M_m$ soit un opérateur de mesure associé à une certaine mesure quantique, et notons que les probabilités respectives pour que le résultat $m$ se produise sont $\langle \psi| M_m^\dagger M_m |\psi\rangle$ et $\langle \psi| e^{-i\theta} M_m^\dagger M_m e^{i\theta} |\psi\rangle = \langle \psi| M_m^\dagger M_m |\psi\rangle$. Par conséquent, d’un point de vue observationnel, ces deux états sont identiques. Pour cette raison, nous pouvons ignorer les facteurs de phase globaux comme étant sans importance pour les propriétés observées du système physique.
+
+Il existe un autre type de phase, connu sous le nom de **phase relative**, qui a une signification tout à fait différente. Considérons les états :
+
+$$
+\frac{|0\rangle + |1\rangle}{\sqrt{2}} \quad \text{et} \quad \frac{|0\rangle - |1\rangle}{\sqrt{2}}. \tag{2.121}
+$$
+
+Dans le premier état, l’amplitude de $|1\rangle$ est $1/\sqrt{2}$. Pour le second état, l’amplitude est $-1/\sqrt{2}$. Dans chaque cas, la magnitude des amplitudes est la même, mais elles diffèrent par le signe. Plus généralement, on dit que deux amplitudes $a$ et $b$ diffèrent d’une **phase relative** s’il existe un réel $\theta$ tel que $a = e^{i\theta} b$. Plus généralement encore, deux états sont dits différer d’une phase relative dans une certaine base si chacune des amplitudes dans cette base est reliée par un tel facteur de phase. Par exemple, les deux états présentés ci‑dessus sont identiques à un décalage de phase relative près, car les amplitudes de $|0\rangle$ sont identiques (un facteur de phase relative de 1), et les amplitudes de $|1\rangle$ ne diffèrent que par un facteur de phase relative de $-1$. La différence entre les facteurs de phase relative et les facteurs de phase globale est que pour la phase relative, les facteurs de phase peuvent varier d’une amplitude à l’autre. Cela rend la phase relative un concept dépendant de la base, contrairement à la phase globale. En conséquence, des états qui ne diffèrent que par des phases relatives dans certaines bases donnent lieu à des différences physiquement observables dans les statistiques de mesure, et il n’est pas possible de considérer ces états comme physiquement équivalents, comme nous le faisons pour les états différant par un facteur de phase globale.
+
+> **Exercice 2.65 :** Exprimez les états $(|0\rangle + |1\rangle)/\sqrt{2}$ et $(|0\rangle - |1\rangle)/\sqrt{2}$ dans une base dans laquelle ils ne sont pas identiques à un décalage de phase relative près.
+
+---
+
+### Systèmes composites
+
+Supposons que nous nous intéressions à un système quantique composite constitué de deux (ou plus) systèmes physiques distincts. Comment devons‑nous décrire les états du système composite ? Le postulat suivant décrit comment l’espace des états d’un système composite est construit à partir des espaces des états des systèmes composants.
+
+> **Postulat 4 :** L’espace des états d’un système physique composite est le **produit tensoriel** des espaces des états des systèmes physiques composants. De plus, si nous avons des systèmes numérotés de $1$ à $n$, et que le système numéro $i$ est préparé dans l’état $|\psi_i\rangle$, alors l’état conjoint du système total est $|\psi_1\rangle \otimes |\psi_2\rangle \otimes \cdots \otimes |\psi_n\rangle$.
+
+Pourquoi le produit tensoriel est‑il la structure mathématique utilisée pour décrire l’espace des états d’un système physique composite ? À un niveau, nous pouvons simplement l’accepter comme un postulat de base, non réductible à quelque chose de plus élémentaire, et passer à autre chose. Après tout, nous nous attendons certainement à ce qu’il existe une manière canonique de décrire les systèmes composites en mécanique quantique. Existe‑t‑il une autre manière d’arriver à ce postulat ? Voici une heuristique parfois utilisée. Les physiciens aiment parfois parler du **principe de superposition** de la mécanique quantique, qui stipule que si $|x\rangle$ et $|y\rangle$ sont deux états d’un système quantique, alors toute superposition $\alpha|x\rangle + \beta|y\rangle$ devrait également être un état autorisé d’un système quantique, où $|\alpha|^2 + |\beta|^2 = 1$. Pour les systèmes composites, il semble naturel que si $|A\rangle$ est un état du système $A$, et $|B\rangle$ un état du système $B$, alors il devrait y avoir un état correspondant, que nous pourrions noter $|A\rangle|B\rangle$, du système conjoint $AB$. En appliquant le principe de superposition aux états produits de cette forme, nous arrivons au postulat du produit tensoriel donné ci‑dessus. Ce n’est pas une dérivation, car nous ne prenons pas le principe de superposition comme une partie fondamentale de notre description de la mécanique quantique, mais cela donne une idée des différentes manières dont ces idées sont parfois reformulées.
+
+Une variété de notations différentes pour les systèmes composites apparaissent dans la littérature. Une partie de la raison de cette prolifération est que différentes notations sont mieux adaptées à différentes applications, et nous trouverons également utile d’introduire quelques notations spécialisées à l’occasion. À ce stade, il suffit de mentionner une notation en indice utile pour désigner les états et les opérateurs sur différents systèmes, lorsque ce n’est pas clair d’après le contexte. Par exemple, dans un système contenant trois qubits, $X_2$ est l’opérateur de Pauli $\sigma_x$ agissant sur le deuxième qubit.
+
+> **Exercice 2.66 :** Montrez que la valeur moyenne de l’observable $X_1 Z_2$ pour un système à deux qubits mesuré dans l’état $(|00\rangle + |11\rangle)/\sqrt{2}$ est nulle.
+
+Dans la section 2.2.5, nous avons affirmé que les mesures projectives, accompagnées de la dynamique unitaire, sont suffisantes pour implémenter une mesure générale. La preuve de cette affirmation utilise les systèmes quantiques composites, et constitue une belle illustration du postulat 4 en action. Supposons que nous ayons un système quantique avec un espace d’états $Q$, et que nous voulions effectuer une mesure décrite par des opérateurs de mesure $M_m$ sur le système $Q$. Pour ce faire, nous introduisons un système **ancilla**, avec un espace d’états $M$, ayant une base orthonormale $|m\rangle$ en correspondance biunivoque avec les résultats possibles de la mesure que nous voulons implémenter. Ce système ancilla peut être considéré comme un simple outil mathématique apparaissant dans la construction, ou il peut être interprété physiquement comme un système quantique supplémentaire introduit dans le problème, dont nous supposons qu’il a un espace d’états avec les propriétés requises.
+
+Soit $|0\rangle$ un état fixé quelconque de $M$, et définissons un opérateur $U$ sur les produits $|\psi\rangle |0\rangle$ d’états $|\psi\rangle$ de $Q$ avec l’état $|0\rangle$ par :
+
+$$
+U|\psi\rangle|0\rangle \equiv \sum_m M_m |\psi\rangle |m\rangle. \tag{2.122}
+$$
+
+En utilisant l’orthonormalité des états $|m\rangle$ et la relation de complétude $\sum_m M_m^\dagger M_m = I$, nous pouvons voir que $U$ préserve les produits scalaires entre les états de la forme $|\psi\rangle|0\rangle$ :
+
+$$
+\langle \phi|\langle 0| U^\dagger U |\psi\rangle|0\rangle = \sum_{m,m'} \langle \phi| M_m^\dagger M_{m'} |\psi\rangle \langle m|m'\rangle = \sum_m \langle \phi| M_m^\dagger M_m |\psi\rangle = \langle \phi|\psi\rangle. \tag{2.125}
+$$
+
+D’après les résultats de l’exercice 2.67, il s’ensuit que $U$ peut être étendu à un opérateur unitaire sur l’espace $Q \otimes M$, que nous notons également $U$.
+
+> **Exercice 2.67 :** Supposons que $V$ soit un espace de Hilbert avec un sous‑espace $W$. Supposons que $U : W \to V$ soit un opérateur linéaire qui préserve les produits scalaires, c’est‑à‑dire que pour tous $|w_1\rangle$ et $|w_2\rangle$ dans $W$, $\langle w_1| U^\dagger U |w_2\rangle = \langle w_1|w_2\rangle$. Prouvez qu’il existe un opérateur unitaire $U' : V \to V$ qui étend $U$. C’est‑à‑dire que $U'|w\rangle = U|w\rangle$ pour tout $|w\rangle$ dans $W$, mais $U'$ est défini sur tout l’espace $V$. Habituellement, nous omettons le symbole prime et écrivons simplement $U$ pour désigner l’extension.
+
+Ensuite, supposons que nous effectuions une mesure projective sur les deux systèmes décrite par des projecteurs $P_m \equiv I_Q \otimes |m\rangle \langle m|$. Le résultat $m$ se produit avec la probabilité :
+
+$$
+\begin{aligned}
+p(m) &= \langle \psi|\langle 0| U^\dagger P_m U |\psi\rangle|0\rangle \\
+&= \sum_{m',m''} \langle \psi| M_{m'}^\dagger \langle m'| (I_Q \otimes |m\rangle \langle m|) M_{m''} |\psi\rangle |m''\rangle \\
+&= \langle \psi| M_m^\dagger M_m |\psi\rangle,
+\end{aligned} \tag{2.128}
+$$
+
+exactement comme donné dans le postulat 3. L’état conjoint du système $QM$ après la mesure, conditionnellement au résultat $m$ survenant, est donné par :
+
+$$
+\frac{P_m U|\psi\rangle|0\rangle}{\sqrt{\langle \psi| U^\dagger P_m U|\psi\rangle}} = \frac{M_m|\psi\rangle|m\rangle}{\sqrt{\langle \psi| M_m^\dagger M_m|\psi\rangle}}. \tag{2.130}
+$$
+
+Il s’ensuit que l’état du système $M$ après la mesure est $|m\rangle$, et que l’état du système $Q$ est :
+
+$$
+\frac{M_m|\psi\rangle}{\sqrt{\langle \psi| M_m^\dagger M_m|\psi\rangle}}, \tag{2.131}
+$$
+
+exactement comme prescrit par le postulat 3. Ainsi, la dynamique unitaire, les mesures projectives et la capacité d’introduire des systèmes ancillaires permettent ensemble de réaliser toute mesure de la forme décrite dans le postulat 3.
+
+Le postulat 4 permet également de définir l’une des idées les plus intéressantes et les plus déroutantes associées aux systèmes quantiques composites – l’**intrication** (ou *entanglement*). Considérons l’état à deux qubits :
+
+$$
+|\psi\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}. \tag{2.132}
+$$
+
+Cet état a la propriété remarquable qu’il n’existe pas d’états à un seul qubit $|a\rangle$ et $|b\rangle$ tels que $|\psi\rangle = |a\rangle|b\rangle$, un fait dont vous devez maintenant vous convaincre :
+
+> **Exercice 2.68 :** Prouvez que $|\psi\rangle \neq |a\rangle|b\rangle$ pour tous les états à un seul qubit $|a\rangle$ et $|b\rangle$.
+
+Nous disons qu’un état d’un système composite ayant cette propriété (ne pas pouvoir s’écrire comme un produit d’états de ses systèmes composants) est un **état intriqué**. Pour des raisons que personne ne comprend pleinement, les états intriqués jouent un rôle crucial dans le calcul et l’information quantiques, et apparaissent à maintes reprises dans le reste de ce livre. Nous avons déjà vu l’intrication jouer un rôle crucial dans la **téléportation quantique**, comme décrit dans la section 1.3.7. Dans ce chapitre, nous donnons deux exemples des effets étranges rendus possibles par les états quantiques intriqués : le **codage superdense** (section 2.3) et la **violation de l’inégalité de Bell** (section 2.6).
+
+---
+
+### Mécanique quantique : une vue globale
+
+Nous avons maintenant expliqué tous les postulats fondamentaux de la mécanique quantique. La majeure partie du reste du livre est consacrée à tirer les conséquences de ces postulats. Passons rapidement en revue les postulats et essayons de les replacer dans une perspective globale.
+
+- Le **postulat 1** établit l’arène de la mécanique quantique, en spécifiant comment l’état d’un système quantique isolé doit être décrit.
+- Le **postulat 2** nous dit que la dynamique des systèmes quantiques fermés est décrite par l’équation de Schrödinger, et donc par une évolution unitaire.
+- Le **postulat 3** nous dit comment extraire des informations de nos systèmes quantiques en donnant une prescription pour la description de la mesure.
+- Le **postulat 4** nous dit comment les espaces d’états de différents systèmes quantiques peuvent être combinés pour donner une description du système composite.
+
+Ce qui est étrange dans la mécanique quantique, du moins à la lumière de notre vision classique, c’est que nous ne pouvons pas observer directement le vecteur d’état. C’est un peu comme un jeu d’échecs où vous ne pouvez jamais savoir exactement où se trouve chaque pièce, mais seulement le rang de l’échiquier sur lequel elles se trouvent. La physique classique – et notre intuition – nous dit que les propriétés fondamentales d’un objet, comme l’énergie, la position et la vitesse, sont directement accessibles à l’observation. En mécanique quantique, ces quantités ne sont plus fondamentales, remplacées par le vecteur d’état, qui ne peut pas être directement observé. C’est comme s’il y avait un monde caché en mécanique quantique, auquel nous n’avons accès qu’indirectement et imparfaitement. De plus, le simple fait d’observer un système classique ne change pas nécessairement l’état du système. Imaginez comme il serait difficile de jouer au tennis si chaque fois que vous regardiez la balle, sa position changeait ! Mais selon le postulat 3, l’observation en mécanique quantique est une procédure invasive qui change généralement l’état du système.
+
+Quelles conclusions devons‑nous tirer de ces caractéristiques étranges de la mécanique quantique ? Serait‑il possible de reformuler la mécanique quantique d’une manière mathématiquement équivalente pour qu’elle ait une structure plus proche de la physique classique ? Dans la section 2.6, nous prouverons l’**inégalité de Bell**, un résultat surprenant qui montre que toute tentative d’une telle reformulation est vouée à l’échec. Nous sommes coincés avec la nature contre‑intuitive de la mécanique quantique. Bien sûr, la réaction appropriée est la joie, pas la tristesse ! Cela nous donne l’occasion de développer des outils de pensée qui rendent la mécanique quantique intuitive. De plus, nous pouvons exploiter la nature cachée du vecteur d’état pour effectuer des tâches de traitement de l’information au‑delà de ce qui est possible dans le monde classique. Sans ce comportement contre‑intuitif, le calcul et l’information quantiques seraient beaucoup moins intéressants.
+
+Nous pouvons aussi retourner cette discussion et nous demander : si la mécanique quantique est si différente de la physique classique, alors comment se fait‑il que le monde quotidien semble si classique ? Pourquoi ne voyons‑nous aucune preuve d’un vecteur d’état caché dans notre vie de tous les jours ? Il s’avère que le monde classique que nous voyons peut être dérivé de la mécanique quantique comme une description approximative du monde qui sera valable pour les échelles de temps, de longueur et de masse que nous rencontrons couramment dans notre vie quotidienne. Expliquer les détails de la façon dont la mécanique quantique donne naissance à la physique classique dépasse le cadre de ce livre, mais le lecteur intéressé peut consulter la discussion sur ce sujet dans « Histoire et lectures complémentaires » à la fin du chapitre 8.
+
+---
+
+# Application : le codage superdense
+
+Le codage superdense est une application simple mais surprenante de la mécanique quantique élémentaire. Il combine de manière concrète et non triviale toutes les idées de base de la mécanique quantique élémentaire, telles qu’elles ont été abordées dans les sections précédentes, et constitue donc un exemple idéal des tâches de traitement de l’information qui peuvent être accomplies en utilisant la mécanique quantique.
+
+Le codage superdense implique deux parties, conventionnellement appelées Alice et Bob, qui sont très éloignées l’une de l’autre. Leur objectif est de transmettre des informations classiques d’Alice à Bob. Supposons qu’Alice possède deux bits d’information classique qu’elle souhaite envoyer à Bob, mais qu’elle n’est autorisée à envoyer qu’un seul qubit à Bob. Peut‑elle atteindre son objectif ?
+
+Le codage superdense nous dit que la réponse à cette question est oui. Supposons qu’Alice et Bob partagent initialement une paire de qubits dans l’état intriqué :
+
+$$
+|\psi\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}. \tag{2.133}
+$$
+
+Alice est initialement en possession du premier qubit, tandis que Bob a possession du second qubit, comme illustré dans la Figure 2.3. Notez que $|\psi\rangle$ est un état fixe ; il n’est pas nécessaire qu’Alice ait envoyé des qubits à Bob pour préparer cet état. Au lieu de cela, une tierce partie peut préparer l’état intriqué à l’avance, en envoyant un des qubits à Alice et l’autre à Bob.
+
+> {.cetz}
+> // Diagramme simplifié : deux boîtes représentant Alice et Bob, avec une ligne ondulée entre elles symbolisant l'intrication.
+> // On peut le représenter textuellement :
+> Alice (qubit 1) ~~~~ Bob (qubit 2)
+> L'état intriqué partagé est $|\psi\rangle = (|00\rangle+|11\rangle)/\sqrt{2}$.
+
+Figure 2.3 – Configuration initiale pour le codage superdense : Alice et Bob possèdent chacun une moitié d’une paire de qubits intriqués. Alice peut utiliser le codage superdense pour transmettre deux bits d’information classique à Bob, en n’utilisant qu’un seul qubit de communication et cette intrication pré‑partagée.
+
+En envoyant le seul qubit en sa possession à Bob, il s’avère qu’Alice peut communiquer deux bits d’information classique à Bob. Voici la procédure qu’elle utilise :
+
+- Si elle souhaite envoyer la chaîne de bits « 00 » à Bob, elle ne fait rien du tout à son qubit.
+- Si elle souhaite envoyer « 01 », elle applique la porte $Z$ (phase flip) à son qubit.
+- Si elle souhaite envoyer « 10 », elle applique la porte $X$ (NOT quantique) à son qubit.
+- Si elle souhaite envoyer « 11 », elle applique la porte $iY$ à son qubit.
+
+Les quatre états résultants sont facilement vus comme :
+
+$$
+\begin{aligned}
+00 &: |\psi\rangle \rightarrow \frac{|00\rangle + |11\rangle}{\sqrt{2}} \\
+01 &: |\psi\rangle \rightarrow \frac{|00\rangle - |11\rangle}{\sqrt{2}} \\
+10 &: |\psi\rangle \rightarrow \frac{|10\rangle + |01\rangle}{\sqrt{2}} \\
+11 &: |\psi\rangle \rightarrow \frac{|01\rangle - |10\rangle}{\sqrt{2}}.
+\end{aligned} \tag{2.136}
+$$
+
+Comme nous l’avons noté dans la section 1.3.6, ces quatre états sont connus sous le nom de **base de Bell**, **états de Bell** ou **paires EPR**, en l’honneur de plusieurs pionniers qui ont les premiers apprécié la nouveauté de l’intrication. Remarquez que les états de Bell forment une base orthonormale, et peuvent donc être distingués par une mesure quantique appropriée. Si Alice envoie son qubit à Bob, donnant à Bob la possession des deux qubits, alors en effectuant une mesure dans la base de Bell, Bob peut déterminer laquelle des quatre chaînes de bits possibles Alice a envoyée.
+
+En résumé, Alice, n’interagissant qu’avec un seul qubit, est capable de transmettre deux bits d’information à Bob. Bien sûr, deux qubits sont impliqués dans le protocole, mais Alice n’a jamais besoin d’interagir avec le second qubit. Classiquement, la tâche accomplie par Alice aurait été impossible si elle n’avait transmis qu’un seul bit classique, comme nous le montrerons au chapitre 12. De plus, ce remarquable protocole de codage superdense a reçu une vérification partielle en laboratoire. (Voir « Histoire et lectures complémentaires » pour les références de la vérification expérimentale.) Dans les chapitres suivants, nous verrons de nombreux autres exemples, certains beaucoup plus spectaculaires que le codage superdense, de la mécanique quantique exploitée pour effectuer des tâches de traitement de l’information. Cependant, un point clé peut déjà être vu dans ce bel exemple : l’information est physique, et des théories physiques surprenantes comme la mécanique quantique peuvent prédire des capacités de traitement de l’information surprenantes.
+
+> **Exercice 2.69 :** Vérifiez que la base de Bell forme une base orthonormale pour l’espace des états à deux qubits.
+
+> **Exercice 2.70 :** Supposons que $E$ soit un opérateur positif agissant sur le qubit d’Alice. Montrez que $\langle \psi | E \otimes I | \psi \rangle$ prend la même valeur lorsque $|\psi\rangle$ est l’un des quatre états de Bell. Supposons qu’une tierce partie malveillante (« Ève ») intercepte le qubit d’Alice sur le chemin de Bob dans le protocole de codage superdense. Ève peut‑elle déduire quelque chose sur laquelle des quatre chaînes de bits possibles 00, 01, 10, 11 Alice essaie d’envoyer ? Si oui, comment, ou si non, pourquoi pas ?
+
+---
+
+# L’opérateur densité
+
+Nous avons formulé la mécanique quantique en utilisant le langage des vecteurs d’état. Une formulation alternative est possible en utilisant un outil connu sous le nom d’**opérateur densité** ou **matrice densité**. Cette formulation alternative est mathématiquement équivalente à l’approche par vecteur d’état, mais elle fournit un langage beaucoup plus pratique pour penser à certains scénarios couramment rencontrés en mécanique quantique. Les trois prochaines sections décrivent la formulation de la mécanique quantique en termes d’opérateur densité. La section 2.4.1 introduit l’opérateur densité en utilisant le concept d’**ensemble d’états quantiques**. La section 2.4.2 développe quelques propriétés générales de l’opérateur densité. Enfin, la section 2.4.3 décrit une application où l’opérateur densité brille vraiment – comme outil pour la description de sous‑systèmes individuels d’un système quantique composite.
+
+---
+
+### Ensembles d’états quantiques
+
+Le langage de l’opérateur densité fournit un moyen commode de décrire des systèmes quantiques dont l’état n’est pas complètement connu. Plus précisément, supposons qu’un système quantique se trouve dans l’un d’un certain nombre d’états $|\psi_i\rangle$, où $i$ est un indice, avec des probabilités respectives $p_i$. Nous appellerons $\{p_i, |\psi_i\rangle\}$ un **ensemble d’états purs**. L’**opérateur densité** pour le système est défini par l’équation :
+
+$$
+\rho \equiv \sum_i p_i |\psi_i\rangle \langle \psi_i|. \tag{2.138}
+$$
+
+L’opérateur densité est souvent appelé la **matrice densité** ; nous utiliserons les deux termes indifféremment. Il s’avère que tous les postulats de la mécanique quantique peuvent être reformulés dans le langage de l’opérateur densité. Le but de cette section et de la suivante est d’expliquer comment effectuer cette reformulation, et d’expliquer quand elle est utile. Que l’on utilise le langage de l’opérateur densité ou celui du vecteur d’état est une question de goût, car les deux donnent les mêmes résultats ; cependant, il est parfois beaucoup plus facile d’aborder les problèmes d’un point de vue plutôt que de l’autre.
+
+Supposons, par exemple, que l’évolution d’un système quantique fermé soit décrite par l’opérateur unitaire $U$. Si le système était initialement dans l’état $|\psi_i\rangle$ avec probabilité $p_i$, alors après que l’évolution a eu lieu, le système sera dans l’état $U|\psi_i\rangle$ avec probabilité $p_i$. Ainsi, l’évolution de l’opérateur densité est décrite par l’équation :
+
+$$
+\rho = \sum_i p_i |\psi_i\rangle \langle \psi_i| \xrightarrow{U} \sum_i p_i U|\psi_i\rangle \langle \psi_i| U^\dagger = U \rho U^\dagger. \tag{2.139}
+$$
+
+Les mesures sont également facilement décrites dans le langage de l’opérateur densité. Supposons que nous effectuions une mesure décrite par des opérateurs de mesure $M_m$. Si l’état initial était $|\psi_i\rangle$, alors la probabilité d’obtenir le résultat $m$ est :
+
+$$
+p(m|i) = \langle \psi_i| M_m^\dagger M_m |\psi_i\rangle = \operatorname{tr}(M_m^\dagger M_m |\psi_i\rangle \langle \psi_i|), \tag{2.140}
+$$
+
+où nous avons utilisé l’équation (2.61) pour obtenir la dernière égalité. Par la loi de probabilité totale (voir l’annexe 1 pour une explication de ceci et d’autres notions élémentaires de la théorie des probabilités), la probabilité d’obtenir le résultat $m$ est :
+
+$$
+p(m) = \sum_i p(m|i) p_i = \sum_i p_i \operatorname{tr}(M_m^\dagger M_m |\psi_i\rangle \langle \psi_i|) = \operatorname{tr}(M_m^\dagger M_m \rho). \tag{2.142}
+$$
+
+Quel est l’opérateur densité du système après avoir obtenu le résultat de mesure $m$ ? Si l’état initial était $|\psi_i\rangle$, alors l’état après avoir obtenu le résultat $m$ est :
+
+$$
+|\psi_i^m\rangle = \frac{M_m |\psi_i\rangle}{\sqrt{\langle \psi_i| M_m^\dagger M_m |\psi_i\rangle}}. \tag{2.144}
+$$
+
+Ainsi, après une mesure qui donne le résultat $m$, nous avons un ensemble d’états $|\psi_i^m\rangle$ avec des probabilités respectives $p(i|m)$. L’opérateur densité correspondant $\rho_m$ est donc :
+
+$$
+\rho_m = \sum_i p(i|m) |\psi_i^m\rangle \langle \psi_i^m| = \sum_i p(i|m) \frac{M_m |\psi_i\rangle \langle \psi_i| M_m^\dagger}{\langle \psi_i| M_m^\dagger M_m |\psi_i\rangle}. \tag{2.145}
+$$
+
+Mais par la théorie élémentaire des probabilités, $p(i|m) = p(m,i)/p(m) = p(m|i)p_i/p(m)$. En substituant à partir de (2.143) et (2.140), nous obtenons :
+
+$$
+\rho_m = \sum_i p_i \frac{M_m |\psi_i\rangle \langle \psi_i| M_m^\dagger}{\operatorname{tr}(M_m^\dagger M_m \rho)} = \frac{M_m \rho M_m^\dagger}{\operatorname{tr}(M_m^\dagger M_m \rho)}. \tag{2.146}
+$$
+
+Ce que nous avons montré, c’est que les postulats de base de la mécanique quantique liés à l’évolution unitaire et à la mesure peuvent être reformulés dans le langage des opérateurs densité. Dans la section suivante, nous complétons cette reformulation en donnant une caractérisation intrinsèque de l’opérateur densité qui ne repose pas sur l’idée d’un vecteur d’état.
+
+Avant de le faire, cependant, il est utile d’introduire un peu plus de langage, et un fait supplémentaire sur l’opérateur densité. D’abord, le langage. Un système quantique dont l’état $|\psi\rangle$ est connu exactement est dit dans un **état pur**. Dans ce cas, l’opérateur densité est simplement $\rho = |\psi\rangle \langle \psi|$. Sinon, $\rho$ est dans un **état mixte** ; on dit qu’il est un **mélange** des différents états purs de l’ensemble pour $\rho$. Dans les exercices, vous serez invité à démontrer un critère simple pour déterminer si un état est pur ou mixte : un état pur satisfait $\operatorname{tr}(\rho^2) = 1$, tandis qu’un état mixte satisfait $\operatorname{tr}(\rho^2) < 1$. Quelques mots d’avertissement sur la nomenclature : parfois, les gens utilisent le terme « état mixte » comme un fourre‑tout pour inclure à la fois les états purs et mixtes. L’origine de cet usage semble être qu’il implique que l’auteur ne suppose pas nécessairement qu’un état est pur. Deuxièmement, le terme « état pur » est souvent utilisé en référence à un vecteur d’état $|\psi\rangle$, pour le distinguer d’un opérateur densité $\rho$.
+
+Enfin, imaginez qu’un système quantique soit préparé dans l’état $\rho_i$ avec probabilité $p_i$. Il n’est pas difficile de se convaincre que le système peut être décrit par la matrice densité $\sum_i p_i \rho_i$. Une preuve consiste à supposer que $\rho_i$ provient d’un ensemble $\{p_{ij}, |\psi_{ij}\rangle\}$ (notez que $i$ est fixe) d’états purs, de sorte que la probabilité d’être dans l’état $|\psi_{ij}\rangle$ est $p_i p_{ij}$. La matrice densité pour le système est donc :
+
+$$
+\rho = \sum_{ij} p_i p_{ij} |\psi_{ij}\rangle \langle \psi_{ij}| = \sum_i p_i \rho_i, \tag{2.148}
+$$
+
+où nous avons utilisé la définition $\rho_i = \sum_j p_{ij} |\psi_{ij}\rangle \langle \psi_{ij}|$. Nous disons que $\rho$ est un **mélange** des états $\rho_i$ avec probabilités $p_i$. Ce concept de mélange apparaît à maintes reprises dans l’analyse de problèmes comme le **bruit quantique**, où l’effet du bruit est d’introduire de l’ignorance dans notre connaissance de l’état quantique. Un exemple simple est fourni par le scénario de mesure décrit ci‑dessus. Imaginez que, pour une raison quelconque, notre enregistrement du résultat $m$ de la mesure ait été perdu. Nous aurions un système quantique dans l’état $\rho_m$ avec probabilité $p(m)$, mais nous ne connaîtrions plus la valeur réelle de $m$. L’état du système serait alors décrit par le mélange $\sum_m p(m) \rho_m$.
+
+---
+
+### Propriétés de l’opérateur densité
+
+Nous avons défini un opérateur densité comme un opérateur de la forme $\sum_i p_i |\psi_i\rangle \langle \psi_i|$. De cette définition, nous pouvons déduire deux propriétés fondamentales :
+
+1. $\rho$ est un opérateur positif : pour tout $|\phi\rangle$, $\langle \phi| \rho |\phi\rangle = \sum_i p_i |\langle \phi|\psi_i\rangle|^2 \ge 0$.
+2. $\operatorname{tr}(\rho) = \sum_i p_i \operatorname{tr}(|\psi_i\rangle \langle \psi_i|) = \sum_i p_i = 1$.
+
+Ces deux propriétés sont caractéristiques des opérateurs densité, comme le montre le théorème suivant.
+
+**Théorème 2.5 : (Caractérisation des opérateurs densité)** Un opérateur $\rho$ est un opérateur densité si et seulement s’il satisfait aux deux conditions : (i) $\rho$ est positif, et (ii) $\operatorname{tr}(\rho) = 1$.
+
+**Preuve :** Nous avons déjà montré que tout opérateur densité satisfait ces conditions. Réciproquement, supposons que $\rho$ soit un opérateur positif avec $\operatorname{tr}(\rho)=1$. Puisque $\rho$ est positif, il a une décomposition spectrale $\rho = \sum_j \lambda_j |j\rangle \langle j|$, où les vecteurs $|j\rangle$ sont orthonormaux et les valeurs propres $\lambda_j$ sont réelles et non négatives. De la condition de trace, nous voyons que $\sum_j \lambda_j = 1$. Par conséquent, un système dans l’état $|j\rangle$ avec probabilité $\lambda_j$ aura pour opérateur densité $\rho$. C’est‑à‑dire que l’ensemble $\{\lambda_j, |j\rangle\}$ est un ensemble d’états donnant naissance à l’opérateur densité $\rho$. $\square$
+
+Ce théorème fournit une caractérisation des opérateurs densité qui est intrinsèque à l’opérateur lui‑même : nous pouvons définir un opérateur densité comme un opérateur positif $\rho$ de trace égale à un. Cette définition nous permet de reformuler les postulats de la mécanique quantique dans le langage de l’opérateur densité. Pour faciliter la référence, nous énonçons ici tous les postulats reformulés :
+
+> **Postulat 1 :** À tout système physique isolé est associé un espace vectoriel complexe avec produit scalaire (c’est‑à‑dire un espace de Hilbert) connu sous le nom d’espace des états du système. Le système est complètement décrit par son **opérateur densité**, qui est un opérateur positif $\rho$ de trace un, agissant sur l’espace des états du système. Si un système quantique est dans l’état $\rho_i$ avec probabilité $p_i$, alors l’opérateur densité pour le système est $\sum_i p_i \rho_i$.
+
+> **Postulat 2 :** L’évolution d’un système quantique fermé est décrite par une transformation unitaire. C’est‑à‑dire que l’état $\rho$ du système au temps $t_1$ est lié à l’état $\rho'$ du système au temps $t_2$ par un opérateur unitaire $U$ qui ne dépend que des temps $t_1$ et $t_2$ :
+> $$
+> \rho' = U \rho U^\dagger. \tag{2.158}
+> $$
+
+> **Postulat 3 :** Les mesures quantiques sont décrites par une collection $\{M_m\}$ d’opérateurs de mesure. Ce sont des opérateurs agissant sur l’espace des états du système mesuré. L’indice $m$ se réfère aux résultats de mesure qui peuvent se produire dans l’expérience. Si l’état du système quantique est $\rho$ immédiatement avant la mesure, alors la probabilité que le résultat $m$ se produise est donnée par :
+> $$
+> p(m) = \operatorname{tr}(M_m^\dagger M_m \rho), \tag{2.159}
+> $$
+> et l’état du système après la mesure est :
+> $$
+> \frac{M_m \rho M_m^\dagger}{\operatorname{tr}(M_m^\dagger M_m \rho)}. \tag{2.160}
+> $$
+> Les opérateurs de mesure satisfont l’équation de complétude :
+> $$
+> \sum_m M_m^\dagger M_m = I. \tag{2.161}
+> $$
+
+> **Postulat 4 :** L’espace des états d’un système physique composite est le produit tensoriel des espaces des états des systèmes physiques composants. De plus, si nous avons des systèmes numérotés de $1$ à $n$, et que le système numéro $i$ est préparé dans l’état $\rho_i$, alors l’état conjoint du système total est $\rho_1 \otimes \rho_2 \otimes \cdots \otimes \rho_n$.
+
+Ces reformulations des postulats fondamentaux de la mécanique quantique en termes d’opérateur densité sont, bien sûr, mathématiquement équivalentes à la description en termes de vecteur d’état. Néanmoins, en tant que façon de penser la mécanique quantique, l’approche par opérateur densité brille vraiment pour deux applications : la description de systèmes quantiques dont l’état n’est pas connu, et la description de sous‑systèmes d’un système quantique composite, comme cela sera décrit dans la section suivante. Pour le reste de cette section, nous développons les propriétés de la matrice densité plus en détail.
+
+> **Exercice 2.71 : (Critère pour décider si un état est mixte ou pur)** Soit $\rho$ un opérateur densité. Montrez que $\operatorname{tr}(\rho^2) \le 1$, avec égalité si et seulement si $\rho$ est un état pur.
+
+Il est tentant (et étonnamment courant) de supposer à tort que les valeurs propres et les vecteurs propres d’une matrice densité ont une signification particulière en ce qui concerne l’ensemble des états quantiques représentés par cette matrice densité. Par exemple, on pourrait supposer qu’un système quantique avec la matrice densité
+
+$$
+\rho = \frac{3}{4} |0\rangle \langle 0| + \frac{1}{4} |1\rangle \langle 1| \tag{2.162}
+$$
+
+doit être dans l’état $|0\rangle$ avec probabilité $3/4$ et dans l’état $|1\rangle$ avec probabilité $1/4$. Cependant, ce n’est pas nécessairement le cas. Supposons que nous définissions :
+
+$$
+|a\rangle \equiv \sqrt{\frac{3}{4}} |0\rangle + \sqrt{\frac{1}{4}} |1\rangle, \quad |b\rangle \equiv \sqrt{\frac{3}{4}} |0\rangle - \sqrt{\frac{1}{4}} |1\rangle, \tag{2.164}
+$$
+
+et que le système quantique soit préparé dans l’état $|a\rangle$ avec probabilité $1/2$ et dans l’état $|b\rangle$ avec probabilité $1/2$. Alors on vérifie facilement que la matrice densité correspondante est :
+
+$$
+\rho = \frac{1}{2} |a\rangle \langle a| + \frac{1}{2} |b\rangle \langle b| = \frac{3}{4} |0\rangle \langle 0| + \frac{1}{4} |1\rangle \langle 1|. \tag{2.165}
+$$
+
+C’est‑à‑dire que ces deux ensembles différents d’états quantiques donnent lieu à la même matrice densité. En général, les vecteurs propres et les valeurs propres d’une matrice densité indiquent seulement l’un des nombreux ensembles possibles qui peuvent donner naissance à une matrice densité spécifique, et il n’y a aucune raison de supposer que c’est un ensemble particulièrement privilégié.
+
+Une question naturelle à se poser à la lumière de cette discussion est : quelle classe d’ensembles donne naissance à une matrice densité particulière ? La solution à ce problème, que nous donnons maintenant, a étonnamment de nombreuses applications en calcul et information quantiques, notamment dans la compréhension du bruit quantique et de la correction d’erreurs quantiques (chapitres 8 et 10). Pour la solution, il est commode d’utiliser des vecteurs $|\tilde{\psi}_i\rangle$ qui peuvent ne pas être normalisés à la longueur unité. On dit que l’ensemble $|\tilde{\psi}_i\rangle$ **génère** l’opérateur $\rho \equiv \sum_i |\tilde{\psi}_i\rangle \langle \tilde{\psi}_i|$, et ainsi le lien avec l’image habituelle de l’ensemble des opérateurs densité est exprimé par l’équation $|\tilde{\psi}_i\rangle = \sqrt{p_i} |\psi_i\rangle$. Quand deux ensembles de vecteurs, $|\tilde{\psi}_i\rangle$ et $|\tilde{\phi}_j\rangle$, génèrent‑ils le même opérateur $\rho$ ? La solution à ce problème nous permettra de répondre à la question de savoir quels ensembles donnent naissance à une matrice densité donnée.
+
+**Théorème 2.6 : (Liberté unitaire dans l’ensemble pour les matrices densité)** Les ensembles $|\tilde{\psi}_i\rangle$ et $|\tilde{\phi}_j\rangle$ génèrent la même matrice densité si et seulement si :
+
+$$
+|\tilde{\psi}_i\rangle = \sum_j u_{ij} |\tilde{\phi}_j\rangle, \tag{2.166}
+$$
+
+où $u_{ij}$ est une matrice unitaire de nombres complexes, avec des indices $i$ et $j$, et nous ajoutons des vecteurs nuls à l’ensemble de vecteurs le plus petit, de sorte que les deux ensembles aient le même nombre d’éléments.
+
+En conséquence du théorème, notons que $\rho = \sum_i p_i |\psi_i\rangle \langle \psi_i| = \sum_j q_j |\phi_j\rangle \langle \phi_j|$ pour des états normalisés $|\psi_i\rangle, |\phi_j\rangle$ et des distributions de probabilité $p_i$ et $q_j$ si et seulement si :
+
+$$
+\sqrt{p_i} |\psi_i\rangle = \sum_j u_{ij} \sqrt{q_j} |\phi_j\rangle, \tag{2.167}
+$$
+
+pour une certaine matrice unitaire $u_{ij}$, et nous pouvons compléter l’ensemble le plus petit avec des entrées ayant une probabilité nulle pour que les deux ensembles aient la même taille. Ainsi, le théorème 2.6 caractérise la liberté dans les ensembles $\{p_i, |\psi_i\rangle\}$ donnant naissance à une matrice densité $\rho$ donnée. En effet, on vérifie facilement que notre exemple précédent d’une matrice densité avec deux décompositions différentes, (2.162), se présente comme un cas particulier de ce résultat général. Passons maintenant à la preuve du théorème.
+
+**Preuve :** Supposons que $|\tilde{\psi}_i\rangle = \sum_j u_{ij} |\tilde{\phi}_j\rangle$ pour un certain $u_{ij}$ unitaire. Alors :
+
+$$
+\sum_i |\tilde{\psi}_i\rangle \langle \tilde{\psi}_i| = \sum_{ijk} u_{ij} u_{ik}^* |\tilde{\phi}_j\rangle \langle \tilde{\phi}_k| = \sum_{jk} \left( \sum_i u_{ik}^* u_{ij} \right) |\tilde{\phi}_j\rangle \langle \tilde{\phi}_k| = \sum_{jk} \delta_{kj} |\tilde{\phi}_j\rangle \langle \tilde{\phi}_k| = \sum_j |\tilde{\phi}_j\rangle \langle \tilde{\phi}_j|, \tag{2.169}
+$$
+
+ce qui montre que $|\tilde{\psi}_i\rangle$ et $|\tilde{\phi}_j\rangle$ génèrent le même opérateur.
+
+Réciproquement, supposons que $A = \sum_i |\tilde{\psi}_i\rangle \langle \tilde{\psi}_i| = \sum_j |\tilde{\phi}_j\rangle \langle \tilde{\phi}_j|$. Soit $A = \sum_k \lambda_k |k\rangle \langle k|$ une décomposition de $A$ telle que les états $|k\rangle$ soient orthonormaux et les $\lambda_k$ strictement positifs. Notre stratégie est de relier les états $|\tilde{\psi}_i\rangle$ aux états $|\tilde{k}\rangle \equiv \sqrt{\lambda_k} |k\rangle$, et de même relier les états $|\tilde{\phi}_j\rangle$ aux états $|\tilde{k}\rangle$. La combinaison des deux relations donnera le résultat. Soit $|\psi\rangle$ un vecteur orthogonal à l’espace engendré par les $|\tilde{k}\rangle$, donc $\langle \psi|\tilde{k}\rangle \langle \tilde{k}|\psi\rangle = 0$ pour tout $k$, et ainsi nous voyons que :
+
+$$
+0 = \langle \psi|A|\psi\rangle = \sum_i \langle \psi|\tilde{\psi}_i\rangle \langle \tilde{\psi}_i|\psi\rangle = \sum_i |\langle \psi|\tilde{\psi}_i\rangle|^2. \tag{2.173}
+$$
+
+Ainsi $\langle \psi|\tilde{\psi}_i\rangle = 0$ pour tout $i$ et tout $|\psi\rangle$ orthogonal à l’espace engendré par les $|\tilde{k}\rangle$. Il s’ensuit que chaque $|\tilde{\psi}_i\rangle$ peut être exprimé comme une combinaison linéaire des $|\tilde{k}\rangle$, $|\tilde{\psi}_i\rangle = \sum_k c_{ik} |\tilde{k}\rangle$. Puisque $A = \sum_k |\tilde{k}\rangle \langle \tilde{k}| = \sum_i |\tilde{\psi}_i\rangle \langle \tilde{\psi}_i|$, nous voyons que :
+
+$$
+\sum_k |\tilde{k}\rangle \langle \tilde{k}| = \sum_{kl} \left( \sum_i c_{ik} c_{il}^* \right) |\tilde{k}\rangle \langle \tilde{l}|. \tag{2.174}
+$$
+
+Les opérateurs $|\tilde{k}\rangle \langle \tilde{l}|$ sont facilement vus comme linéairement indépendants, et ainsi il doit être que $\sum_i c_{ik} c_{il}^* = \delta_{kl}$. Cela assure que nous pouvons ajouter des colonnes supplémentaires à $c$ pour obtenir une matrice unitaire $v$ telle que $|\tilde{\psi}_i\rangle = \sum_k v_{ik} |\tilde{k}\rangle$, où nous avons ajouté des vecteurs nuls à la liste des $|\tilde{k}\rangle$. De même, nous pouvons trouver une matrice unitaire $w$ telle que $|\tilde{\phi}_j\rangle = \sum_k w_{jk} |\tilde{k}\rangle$. Ainsi $|\tilde{\psi}_i\rangle = \sum_j u_{ij} |\tilde{\phi}_j\rangle$, où $u = v w^\dagger$ est unitaire.
+
+> **Exercice 2.72 : (Sphère de Bloch pour les états mixtes)** La représentation de la sphère de Bloch pour les états purs d’un seul qubit a été introduite dans la section 1.2. Cette description a une généralisation importante aux états mixtes comme suit.
+> 1. Montrez qu’une matrice densité arbitraire pour un état mixte d’un qubit peut s’écrire :
+>    $$
+>    \rho = \frac{I + \vec{r} \cdot \vec{\sigma}}{2}, \tag{2.175}
+>    $$
+>    où $\vec{r}$ est un vecteur réel à trois dimensions tel que $\|\vec{r}\| \le 1$. Ce vecteur est appelé le **vecteur de Bloch** pour l’état $\rho$.
+> 2. Quelle est la représentation par vecteur de Bloch pour l’état $\rho = I/2$ ?
+> 3. Montrez qu’un état $\rho$ est pur si et seulement si $\|\vec{r}\| = 1$.
+> 4. Montrez que pour les états purs, la description du vecteur de Bloch que nous avons donnée coïncide avec celle de la section 1.2.
+
+> **Exercice 2.73 :** Soit $\rho$ un opérateur densité. Un **ensemble minimal** pour $\rho$ est un ensemble $\{p_i, |\psi_i\rangle\}$ contenant un nombre d’éléments égal au rang de $\rho$. Soit $|\psi\rangle$ un état quelconque dans le **support** de $\rho$. (Le support d’un opérateur hermitien $A$ est l’espace vectoriel engendré par les vecteurs propres de $A$ avec des valeurs propres non nulles.) Montrez qu’il existe un ensemble minimal pour $\rho$ qui contient $|\psi\rangle$, et de plus que dans un tel ensemble, $|\psi\rangle$ doit apparaître avec la probabilité :
+>    $$
+>    p_i = \frac{1}{\langle \psi_i| \rho^{-1} |\psi_i\rangle}, \tag{2.176}
+>    $$
+>    où $\rho^{-1}$ est défini comme l’inverse de $\rho$, lorsque $\rho$ est considéré comme un opérateur agissant uniquement sur le support de $\rho$. (Cette définition élimine le problème que $\rho$ pourrait ne pas avoir d’inverse.)
+
+---
+
+### L’opérateur densité réduit
+
+L’application la plus profonde de l’opérateur densité est peut‑être comme outil descriptif pour les sous‑systèmes d’un système quantique composite. Une telle description est fournie par l’**opérateur densité réduit**, qui fait l’objet de cette section. L’opérateur densité réduit est si utile qu’il est pratiquement indispensable dans l’analyse des systèmes quantiques composites.
+
+Supposons que nous ayons des systèmes physiques $A$ et $B$, dont l’état est décrit par un opérateur densité $\rho^{AB}$. L’**opérateur densité réduit** pour le système $A$ est défini par :
+
+$$
+\rho^{A} \equiv \operatorname{tr}_B(\rho^{AB}), \tag{2.177}
+$$
+
+où $\operatorname{tr}_B$ est une application d’opérateurs connue sous le nom de **trace partielle** sur le système $B$. La trace partielle est définie par :
+
+$$
+\operatorname{tr}_B\left( |a_1\rangle \langle a_2| \otimes |b_1\rangle \langle b_2| \right) \equiv |a_1\rangle \langle a_2| \operatorname{tr}(|b_1\rangle \langle b_2|), \tag{2.178}
+$$
+
+où $|a_1\rangle$ et $|a_2\rangle$ sont deux vecteurs quelconques dans l’espace des états de $A$, et $|b_1\rangle$ et $|b_2\rangle$ sont deux vecteurs quelconques dans l’espace des états de $B$. L’opération de trace apparaissant dans le membre de droite est l’opération de trace habituelle pour le système $B$, donc $\operatorname{tr}(|b_1\rangle \langle b_2|) = \langle b_2|b_1\rangle$. Nous n’avons défini l’opération de trace partielle que sur une sous‑classe spéciale d’opérateurs sur $AB$ ; la spécification est complétée en exigeant en plus de l’équation (2.178) que la trace partielle soit linéaire en son entrée.
+
+Il n’est pas évident que l’opérateur densité réduit pour le système $A$ soit en un sens une description de l’état du système $A$. La justification physique de cette identification est que l’opérateur densité réduit fournit les statistiques de mesure correctes pour les mesures effectuées sur le système $A$. Ceci est expliqué plus en détail dans l’encadré 2.6 (page 107). Les exemples de calculs simples suivants peuvent également aider à comprendre l’opérateur densité réduit.
+
+Premièrement, supposons qu’un système quantique soit dans l’état produit $\rho^{AB} = \rho \otimes \sigma$, où $\rho$ est un opérateur densité pour le système $A$, et $\sigma$ est un opérateur densité pour le système $B$. Alors :
+
+$$
+\rho^{A} = \operatorname{tr}_B(\rho \otimes \sigma) = \rho \operatorname{tr}(\sigma) = \rho, \tag{2.184}
+$$
+
+ce qui est le résultat que nous attendons intuitivement. De même, $\rho^{B} = \sigma$ pour cet état.
+
+Un exemple moins trivial est l’état de Bell $(|00\rangle + |11\rangle)/\sqrt{2}$. Cet état a pour opérateur densité :
+
+$$
+\rho = \left( \frac{|00\rangle + |11\rangle}{\sqrt{2}} \right) \left( \frac{\langle 00| + \langle 11|}{\sqrt{2}} \right) = \frac{|00\rangle \langle 00| + |11\rangle \langle 00| + |00\rangle \langle 11| + |11\rangle \langle 11|}{2}. \tag{2.185}
+$$
+
+En traçant sur le second qubit, nous trouvons l’opérateur densité réduit du premier qubit :
+
+$$
+\begin{aligned}
+\rho^{1} &= \operatorname{tr}_2(\rho) \\
+&= \frac{\operatorname{tr}_2(|00\rangle \langle 00|) + \operatorname{tr}_2(|11\rangle \langle 00|) + \operatorname{tr}_2(|00\rangle \langle 11|) + \operatorname{tr}_2(|11\rangle \langle 11|)}{2} \\
+&= \frac{|0\rangle \langle 0| \langle 0|0\rangle + |1\rangle \langle 0| \langle 0|1\rangle + |0\rangle \langle 1| \langle 1|0\rangle + |1\rangle \langle 1| \langle 1|1\rangle}{2} \\
+&= \frac{|0\rangle \langle 0| + |1\rangle \langle 1|}{2} \\
+&= \frac{I}{2}.
+\end{aligned} \tag{2.191}
+$$
+
+Remarquez que cet état est un état mixte, puisque $\operatorname{tr}((I/2)^2) = 1/2 < 1$. C’est un résultat assez remarquable. L’état du système conjoint de deux qubits est un état pur, c’est‑à‑dire qu’il est connu exactement ; cependant, le premier qubit est dans un état mixte, c’est‑à‑dire un état sur lequel nous n’avons apparemment pas une connaissance maximale. Cette étrange propriété, que l’état conjoint d’un système peut être complètement connu, et pourtant un sous‑système être dans un état mixte, est une autre caractéristique de l’intrication quantique.
+
+> **Exercice 2.74 :** Supposons qu’un composite des systèmes $A$ et $B$ soit dans l’état $|a\rangle|b\rangle$, où $|a\rangle$ est un état pur du système $A$, et $|b\rangle$ un état pur du système $B$. Montrez que l’opérateur densité réduit du système $A$ seul est un état pur.
+
+> **Exercice 2.75 :** Pour chacun des quatre états de Bell, trouvez l’opérateur densité réduit pour chaque qubit.
+
+---
+
+**Encadré 2.6 : Pourquoi la trace partielle ?**
+
+Pourquoi la trace partielle est‑elle utilisée pour décrire une partie d’un système quantique plus grand ? La raison en est que l’opération de trace partielle est l’unique opération qui donne lieu à la description correcte des quantités observables pour les sous‑systèmes d’un système composite, dans le sens suivant.
+
+Supposons que $M$ soit une observable quelconque sur le système $A$ et que nous ayons un appareil de mesure capable de réaliser des mesures de $M$. Soit $\tilde{M}$ l’observable correspondante pour la même mesure, effectuée sur le système composite $AB$. Notre objectif immédiat est de montrer que $\tilde{M}$ est nécessairement égal à $M \otimes I_B$. Notons que si le système $AB$ est préparé dans l’état $|m\rangle |\psi\rangle$, où $|m\rangle$ est un état propre de $M$ avec valeur propre $m$, et $|\psi\rangle$ est un état quelconque de $B$, alors l’appareil de mesure doit donner le résultat $m$ pour la mesure, avec probabilité un. Ainsi, si $P_m$ est le projecteur sur le sous‑espace propre de valeur propre $m$ de l’observable $M$, alors le projecteur correspondant pour $\tilde{M}$ est $P_m \otimes I_B$. Nous avons donc :
+
+$$
+\tilde{M} = \sum_m m P_m \otimes I_B = M \otimes I_B. \tag{2.179}
+$$
+
+L’étape suivante consiste à montrer que la procédure de trace partielle donne les statistiques de mesure correctes pour les observations sur une partie du système. Supposons que nous effectuions une mesure sur le système $A$ décrite par l’observable $M$. La cohérence physique exige que toute prescription pour associer un « état », $\rho^A$, au système $A$, doit avoir la propriété que les moyennes de mesure soient les mêmes, qu’elles soient calculées via $\rho^A$ ou $\rho^{AB}$ :
+
+$$
+\operatorname{tr}(M \rho^A) = \operatorname{tr}(\tilde{M} \rho^{AB}) = \operatorname{tr}((M \otimes I_B) \rho^{AB}). \tag{2.180}
+$$
+
+Cette équation est certainement satisfaite si nous choisissons $\rho^A \equiv \operatorname{tr}_B(\rho^{AB})$. En fait, la trace partielle s’avère être l’unique fonction ayant cette propriété. Pour voir cette propriété d’unicité, soit $f(\cdot)$ une application quelconque d’opérateurs densité sur $AB$ vers des opérateurs densité sur $A$ telle que :
+
+$$
+\operatorname{tr}(M f(\rho^{AB})) = \operatorname{tr}((M \otimes I_B) \rho^{AB}), \tag{2.181}
+$$
+
+pour toutes les observables $M$. Soit $M_i$ une base orthonormale d’opérateurs pour l’espace des opérateurs hermitiens par rapport au produit scalaire de Hilbert‑Schmidt $(X,Y) \equiv \operatorname{tr}(XY)$ (comparez avec l’exercice 2.39). Alors en développant $f(\rho^{AB})$ dans cette base, on obtient :
+
+$$
+f(\rho^{AB}) = \sum_i M_i \operatorname{tr}(M_i f(\rho^{AB})) = \sum_i M_i \operatorname{tr}((M_i \otimes I_B) \rho^{AB}). \tag{2.183}
+$$
+
+Il s’ensuit que $f$ est uniquement déterminée par l’équation (2.180). De plus, la trace partielle satisfait (2.180), donc c’est l’unique fonction ayant cette propriété.
+
+---
+
+**Téléportation quantique et opérateur densité réduit**
+
+Une application utile de l’opérateur densité réduit est l’analyse de la **téléportation quantique**. Rappelons de la section 1.3.7 que la téléportation quantique est une procédure pour envoyer de l’information quantique d’Alice à Bob, étant donné qu’Alice et Bob partagent une paire EPR et disposent d’un canal de communication classique.
+
+À première vue, il semble que la téléportation puisse être utilisée pour faire de la communication plus rapide que la lumière, un grand non‑non selon la théorie de la relativité. Nous avons supposé dans la section 1.3.7 que ce qui empêche la communication plus rapide que la lumière est la nécessité pour Alice de communiquer son résultat de mesure à Bob. L’opérateur densité réduit nous permet de rendre cela rigoureux.
+
+Rappelons qu’immédiatement avant qu’Alice n’effectue sa mesure, l’état quantique des trois qubits est (équation (1.32)) :
+
+$$
+\begin{aligned}
+|\psi_2\rangle = \frac{1}{2} \Big[ &|00\rangle (\alpha |0\rangle + \beta |1\rangle) + |01\rangle (\alpha |1\rangle + \beta |0\rangle) \\
++ &|10\rangle (\alpha |0\rangle - \beta |1\rangle) + |11\rangle (\alpha |1\rangle - \beta |0\rangle) \Big].
+\end{aligned} \tag{2.192}
+$$
+
+En mesurant dans la base computationnelle d’Alice, l’état du système après la mesure est :
+
+$$
+\begin{aligned}
+&|00\rangle \left[ \alpha |0\rangle + \beta |1\rangle \right] \quad \text{avec probabilité } \frac{1}{4} \\
+&|01\rangle \left[ \alpha |1\rangle + \beta |0\rangle \right] \quad \text{avec probabilité } \frac{1}{4} \\
+&|10\rangle \left[ \alpha |0\rangle - \beta |1\rangle \right] \quad \text{avec probabilité } \frac{1}{4} \\
+&|11\rangle \left[ \alpha |1\rangle - \beta |0\rangle \right] \quad \text{avec probabilité } \frac{1}{4}.
+\end{aligned} \tag{2.196}
+$$
+
+L’opérateur densité du système est donc :
+
+$$
+\begin{aligned}
+\rho = \frac{1}{4} \Big[ &|00\rangle \langle 00| (\alpha |0\rangle + \beta |1\rangle)(\alpha^* \langle 0| + \beta^* \langle 1|) \\
++ &|01\rangle \langle 01| (\alpha |1\rangle + \beta |0\rangle)(\alpha^* \langle 1| + \beta^* \langle 0|) \\
++ &|10\rangle \langle 10| (\alpha |0\rangle - \beta |1\rangle)(\alpha^* \langle 0| - \beta^* \langle 1|) \\
++ &|11\rangle \langle 11| (\alpha |1\rangle - \beta |0\rangle)(\alpha^* \langle 1| - \beta^* \langle 0|) \Big].
+\end{aligned} \tag{2.197}
+$$
+
+En traçant sur le système d’Alice, nous voyons que l’opérateur densité réduit du système de Bob est :
+
+$$
+\begin{aligned}
+\rho^{B} &= \frac{1}{4} \Big[ (\alpha |0\rangle + \beta |1\rangle)(\alpha^* \langle 0| + \beta^* \langle 1|) + (\alpha |1\rangle + \beta |0\rangle)(\alpha^* \langle 1| + \beta^* \langle 0|) \\
+&\quad + (\alpha |0\rangle - \beta |1\rangle)(\alpha^* \langle 0| - \beta^* \langle 1|) + (\alpha |1\rangle - \beta |0\rangle)(\alpha^* \langle 1| - \beta^* \langle 0|) \Big] \\
+&= \frac{2(|\alpha|^2 + |\beta|^2) |0\rangle \langle 0| + 2(|\alpha|^2 + |\beta|^2) |1\rangle \langle 1|}{4} \\
+&= \frac{|0\rangle \langle 0| + |1\rangle \langle 1|}{2} \\
+&= \frac{I}{2},
+\end{aligned} \tag{2.200}
+$$
+
+où nous avons utilisé la relation de fermeture dans la dernière ligne. Ainsi, l’état du système de Bob après qu’Alice a effectué la mesure mais avant que Bob n’ait appris le résultat de la mesure est $I/2$. Cet état ne dépend pas de l’état $|\psi\rangle$ en cours de téléportation, et donc toute mesure effectuée par Bob ne contiendra aucune information sur $|\psi\rangle$, empêchant ainsi Alice d’utiliser la téléportation pour transmettre de l’information à Bob plus vite que la lumière.
+
+---
+
+# La décomposition de Schmidt et les purifications
+
+Les opérateurs densité et la trace partielle ne sont que le début d’un large éventail d’outils utiles pour l’étude des systèmes quantiques composites, qui sont au cœur du calcul et de l’information quantiques. Deux outils supplémentaires de grande valeur sont la **décomposition de Schmidt** et les **purifications**. Dans cette section, nous présentons ces deux outils, et essayons de donner un aperçu de leur puissance.
+
+**Théorème 2.7 : (Décomposition de Schmidt)** Supposons que $|\psi\rangle$ soit un état pur d’un système composite $AB$. Alors il existe des états orthonormaux $|i_A\rangle$ pour le système $A$, et des états orthonormaux $|i_B\rangle$ pour le système $B$ tels que :
+
+$$
+|\psi\rangle = \sum_i \lambda_i |i_A\rangle |i_B\rangle, \tag{2.202}
+$$
+
+où $\lambda_i$ sont des nombres réels non négatifs satisfaisant $\sum_i \lambda_i^2 = 1$, appelés **coefficients de Schmidt**.
+
+Ce résultat est très utile. Pour en donner un avant‑goût, considérons la conséquence suivante : soit $|\psi\rangle$ un état pur d’un système composite $AB$. Alors par la décomposition de Schmidt, $\rho^{A} = \sum_i \lambda_i^2 |i_A\rangle \langle i_A|$ et $\rho^{B} = \sum_i \lambda_i^2 |i_B\rangle \langle i_B|$, donc les valeurs propres de $\rho^{A}$ et $\rho^{B}$ sont identiques, à savoir $\lambda_i^2$ pour les deux opérateurs densité. De nombreuses propriétés importantes des systèmes quantiques sont complètement déterminées par les valeurs propres de l’opérateur densité réduit du système, donc pour un état pur d’un système composite, de telles propriétés seront les mêmes pour les deux systèmes. À titre d’exemple, considérons l’état de deux qubits, $(|00\rangle + |01\rangle + |11\rangle)/\sqrt{3}$. Il n’a pas de propriété de symétrie évidente, pourtant si vous calculez $\operatorname{tr}((\rho^{A})^2)$ et $\operatorname{tr}((\rho^{B})^2)$, vous découvrirez qu’ils ont la même valeur, $7/9$ dans chaque cas. Ce n’est qu’une petite conséquence de la décomposition de Schmidt.
+
+**Preuve :** Nous donnons la preuve pour le cas où les systèmes $A$ et $B$ ont des espaces d’états de même dimension, et laissons le cas général à l’exercice 2.76. Soient $|j\rangle$ et $|k\rangle$ des bases orthonormales fixées pour les systèmes $A$ et $B$, respectivement. Alors $|\psi\rangle$ peut s’écrire :
+
+$$
+|\psi\rangle = \sum_{jk} a_{jk} |j\rangle |k\rangle, \tag{2.203}
+$$
+
+pour une certaine matrice $a$ de nombres complexes $a_{jk}$. Par la décomposition en valeurs singulières, $a = u d v$ où $d$ est une matrice diagonale avec des éléments non négatifs, et $u$ et $v$ sont des matrices unitaires. Ainsi :
+
+$$
+|\psi\rangle = \sum_{ijk} u_{ji} d_{ii} v_{ik} |j\rangle |k\rangle. \tag{2.204}
+$$
+
+En définissant $|i_A\rangle \equiv \sum_j u_{ji} |j\rangle$, $|i_B\rangle \equiv \sum_k v_{ik} |k\rangle$, et $\lambda_i \equiv d_{ii}$, nous voyons que cela donne :
+
+$$
+|\psi\rangle = \sum_i \lambda_i |i_A\rangle |i_B\rangle. \tag{2.205}
+$$
+
+Il est facile de vérifier que $|i_A\rangle$ forme un ensemble orthonormal, grâce à l’unitarité de $u$ et à l’orthonormalité de $|j\rangle$, et de même que $|i_B\rangle$ forme un ensemble orthonormal.
+
+> **Exercice 2.76 :** Étendez la preuve de la décomposition de Schmidt au cas où $A$ et $B$ peuvent avoir des espaces d’états de dimensions différentes.
+
+> **Exercice 2.77 :** Supposons que $ABC$ soit un système quantique à trois composantes. Montrez par un exemple qu’il existe des états quantiques $|\psi\rangle$ de tels systèmes qui ne peuvent pas s’écrire sous la forme :
+>    $$
+>    |\psi\rangle = \sum_i \lambda_i |i_A\rangle |i_B\rangle |i_C\rangle, \tag{2.206}
+>    $$
+>    où $\lambda_i$ sont des nombres réels, et $|i_A\rangle, |i_B\rangle, |i_C\rangle$ sont des bases orthonormales des systèmes respectifs.
+
+Les bases $|i_A\rangle$ et $|i_B\rangle$ sont appelées les **bases de Schmidt** pour $A$ et $B$, respectivement, et le nombre de valeurs $\lambda_i$ non nulles est appelé le **nombre de Schmidt** pour l’état $|\psi\rangle$. Le nombre de Schmidt est une propriété importante d’un système quantique composite, qui quantifie en quelque sorte la « quantité » d’intrication entre les systèmes $A$ et $B$. Pour avoir une idée de pourquoi il en est ainsi, considérons la propriété évidente mais importante suivante : le nombre de Schmidt est préservé sous les transformations unitaires sur le seul système $A$ ou le seul système $B$. Pour le voir, remarquez que si $\sum_i \lambda_i |i_A\rangle |i_B\rangle$ est la décomposition de Schmidt pour $|\psi\rangle$, alors $\sum_i \lambda_i (U|i_A\rangle) |i_B\rangle$ est la décomposition de Schmidt pour $U|\psi\rangle$, où $U$ est un opérateur unitaire agissant sur le seul système $A$. Les propriétés d’invariance algébrique de ce type font du nombre de Schmidt un outil très utile.
+
+> **Exercice 2.78 :** Prouvez qu’un état $|\psi\rangle$ d’un système composite $AB$ est un état produit si et seulement s’il a un nombre de Schmidt égal à 1. Prouvez que $|\psi\rangle$ est un état produit si et seulement si $\rho^{A}$ (et donc $\rho^{B}$) sont des états purs.
+
+Une deuxième technique, liée, pour le calcul et l’information quantiques est la **purification**. Supposons que l’on nous donne un état $\rho^{A}$ d’un système quantique $A$. Il est possible d’introduire un autre système, que nous notons $R$, et de définir un état pur $|AR\rangle$ pour le système conjoint $AR$ tel que $\rho^{A} = \operatorname{tr}_R(|AR\rangle \langle AR|)$. C’est‑à‑dire que l’état pur $|AR\rangle$ se réduit à $\rho^{A}$ lorsque l’on regarde le seul système $A$. C’est une procédure purement mathématique, connue sous le nom de **purification**, qui nous permet d’associer des états purs à des états mixtes. Pour cette raison, nous appelons le système $R$ un **système de référence** : c’est un système fictif, sans signification physique directe.
+
+Pour prouver que la purification peut être effectuée pour tout état, nous expliquons comment construire un système $R$ et une purification $|AR\rangle$ pour $\rho^{A}$. Supposons que $\rho^{A}$ ait une décomposition orthonormale $\rho^{A} = \sum_i p_i |i^{A}\rangle \langle i^{A}|$. Pour purifier $\rho^{A}$, nous introduisons un système $R$ qui a le même espace d’états que le système $A$, avec des états de base orthonormaux $|i^{R}\rangle$, et définissons un état pur pour le système combiné :
+
+$$
+|AR\rangle \equiv \sum_i \sqrt{p_i} |i^{A}\rangle |i^{R}\rangle. \tag{2.207}
+$$
+
+Nous calculons maintenant l’opérateur densité réduit pour le système $A$ correspondant à l’état $|AR\rangle$ :
+
+$$
+\begin{aligned}
+\operatorname{tr}_R(|AR\rangle \langle AR|) &= \sum_{ij} \sqrt{p_i p_j} |i^{A}\rangle \langle j^{A}| \operatorname{tr}(|i^{R}\rangle \langle j^{R}|) \\
+&= \sum_{ij} \sqrt{p_i p_j} |i^{A}\rangle \langle j^{A}| \delta_{ij} \\
+&= \sum_i p_i |i^{A}\rangle \langle i^{A}| = \rho^{A}.
+\end{aligned} \tag{2.211}
+$$
+
+Ainsi $|AR\rangle$ est une purification de $\rho^{A}$.
+
+Remarquez la relation étroite entre la décomposition de Schmidt et la purification : la procédure utilisée pour purifier un état mixte du système $A$ consiste à définir un état pur dont la base de Schmidt pour le système $A$ est simplement la base dans laquelle l’état mixte est diagonal, les coefficients de Schmidt étant la racine carrée des valeurs propres de l’opérateur densité en cours de purification.
+
+Dans cette section, nous avons expliqué deux outils pour l’étude des systèmes quantiques composites, la décomposition de Schmidt et les purifications. Ces outils seront indispensables à l’étude du calcul et de l’information quantiques, en particulier de l’information quantique, qui fait l’objet de la troisième partie de ce livre.
+
+> **Exercice 2.79 :** Considérons un système composite constitué de deux qubits. Trouvez les décompositions de Schmidt des états :
+>    $$
+>    \frac{|00\rangle + |11\rangle}{\sqrt{2}}, \quad \frac{|00\rangle + |01\rangle + |10\rangle + |11\rangle}{2}, \quad \text{et} \quad \frac{|00\rangle + |01\rangle + |10\rangle}{\sqrt{3}}. \tag{2.212}
+>    $$
+
+> **Exercice 2.80 :** Supposons que $|\psi\rangle$ et $|\phi\rangle$ soient deux états purs d’un système quantique composite avec des composants $A$ et $B$, ayant des coefficients de Schmidt identiques. Montrez qu’il existe des transformations unitaires $U$ sur le système $A$ et $V$ sur le système $B$ telles que $|\psi\rangle = (U \otimes V)|\phi\rangle$.
+
+> **Exercice 2.81 : (Liberté dans les purifications)** Soient $|AR_1\rangle$ et $|AR_2\rangle$ deux purifications d’un état $\rho^{A}$ vers un système composite $AR$. Prouvez qu’il existe une transformation unitaire $U_R$ agissant sur le système $R$ telle que $|AR_1\rangle = (I_A \otimes U_R)|AR_2\rangle$.
+
+> **Exercice 2.82 :** Supposons que $\{p_i, |\psi_i\rangle\}$ soit un ensemble d’états générant une matrice densité $\rho = \sum_i p_i |\psi_i\rangle \langle \psi_i|$ pour un système quantique $A$. Introduisez un système $R$ avec une base orthonormale $|i\rangle$.
+> 1. Montrez que $\sum_i \sqrt{p_i} |\psi_i\rangle |i\rangle$ est une purification de $\rho$.
+> 2. Supposons que nous mesurions $R$ dans la base $|i\rangle$, obtenant le résultat $i$. Avec quelle probabilité obtenons‑nous le résultat $i$, et quel est l’état correspondant du système $A$ ?
+> 3. Soit $|AR\rangle$ une purification quelconque de $\rho$ vers le système $AR$. Montrez qu’il existe une base orthonormale $|i\rangle$ dans laquelle $R$ peut être mesuré, telle que l’état post‑mesure correspondant pour le système $A$ soit $|\psi_i\rangle$ avec probabilité $p_i$.
+
+---
+
+# EPR et l’inégalité de Bell
+
+Quiconque n’est pas choqué par la théorie quantique ne l’a pas comprise. – Niels Bohr
+
+Je me souviens que lors d’une promenade, Einstein s’est soudainement arrêté, s’est tourné vers moi et m’a demandé si je croyais vraiment que la lune n’existe que quand je la regarde. Le reste de cette promenade a été consacré à une discussion sur ce qu’un physicien devrait entendre par le terme « exister ». – Abraham Pais
+
+…les phénomènes quantiques ne se produisent pas dans un espace de Hilbert, ils se produisent dans un laboratoire. – Asher Peres
+
+…ce qui est prouvé par les preuves d’impossibilité, c’est un manque d’imagination. – John Bell
+
+Ce chapitre s’est concentré sur l’introduction des outils et des mathématiques de la mécanique quantique. Au fur et à mesure que ces techniques seront appliquées dans les chapitres suivants de ce livre, un thème récurrent important sera les propriétés inhabituelles et non classiques de la mécanique quantique. Mais quelle est exactement la différence entre la mécanique quantique et le monde classique ? Comprendre cette différence est vital pour apprendre à effectuer des tâches de traitement de l’information difficiles ou impossibles avec la physique classique. Cette section conclut le chapitre par une discussion sur **l’inégalité de Bell**, un exemple convaincant d’une différence essentielle entre la physique quantique et la physique classique.
+
+Lorsque nous parlons d’un objet tel qu’une personne ou un livre, nous supposons que les propriétés physiques de cet objet ont une existence indépendante de l’observation. C’est‑à‑dire que les mesures ne font que révéler ces propriétés physiques. Par exemple, une balle de tennis a pour propriété physique sa position, que nous mesurons généralement à l’aide de la lumière diffusée par la surface de la balle. Alors que la mécanique quantique se développait dans les années 1920 et 1930, un point de vue étrange a émergé, qui diffère nettement de la vision classique. Comme décrit plus tôt dans le chapitre, selon la mécanique quantique, une particule non observée ne possède pas de propriétés physiques qui existent indépendamment de l’observation. Ces propriétés physiques naissent plutôt comme une conséquence des mesures effectuées sur le système. Par exemple, selon la mécanique quantique, un qubit ne possède pas de propriétés définies de « spin dans la direction $z$, $\sigma_z$ », et de « spin dans la direction $x$, $\sigma_x$ », chacune pouvant être révélée en effectuant la mesure appropriée. La mécanique quantique donne plutôt un ensemble de règles qui spécifient, étant donné le vecteur d’état, les probabilités des résultats de mesure possibles lorsque l’observable $\sigma_z$ est mesurée, ou lorsque l’observable $\sigma_x$ est mesurée.
+
+De nombreux physiciens ont rejeté cette nouvelle vision de la Nature. L’objecteur le plus éminent était Albert Einstein. Dans le célèbre « article EPR », co‑écrit avec Nathan Rosen et Boris Podolsky, Einstein a proposé une expérience de pensée qui, selon lui, démontrait que la mécanique quantique n’est pas une théorie complète de la Nature.
+
+L’essence de l’argument EPR est la suivante. EPR s’intéressaient à ce qu’ils appelaient des **« éléments de réalité »**. Leur conviction était que tout élément de réalité de ce type doit être représenté dans toute théorie physique complète. Le but de l’argument était de montrer que la mécanique quantique n’est pas une théorie physique complète, en identifiant des éléments de réalité qui n’étaient pas inclus dans la mécanique quantique. La manière dont ils ont tenté de le faire était d’introduire ce qu’ils affirmaient être une condition suffisante pour qu’une propriété physique soit un élément de réalité, à savoir qu’il soit possible de prédire avec certitude la valeur que cette propriété aura, immédiatement avant la mesure.
+
+---
+
+**Encadré 2.7 : Anti‑corrélations dans l’expérience EPR**
+
+Supposons que nous préparions l’état à deux qubits :
+
+$$
+|\psi\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}, \tag{2.213}
+$$
+
+un état parfois appelé **singlet de spin** pour des raisons historiques. Il n’est pas difficile de montrer que cet état est un état intriqué du système à deux qubits. Supposons que nous effectuions une mesure de spin le long de l’axe $\vec{v}$ sur les deux qubits, c’est‑à‑dire que nous mesurions l’observable $\vec{v} \cdot \vec{\sigma}$ (définie dans l’équation (2.116) à la page 90) sur chaque qubit, obtenant un résultat $+1$ ou $-1$ pour chaque qubit. Il s’avère que, quel que soit le choix de $\vec{v}$, les résultats des deux mesures sont toujours opposés l’un à l’autre. C’est‑à‑dire que si la mesure sur le premier qubit donne $+1$, alors la mesure sur le second qubit donnera $-1$, et vice versa. C’est comme si le second qubit connaissait le résultat de la mesure sur le premier, quelle que soit la manière dont le premier qubit est mesuré. Pour voir pourquoi cela est vrai, supposons que $|a\rangle$ et $|b\rangle$ soient les états propres de $\vec{v} \cdot \vec{\sigma}$. Alors il existe des nombres complexes $\alpha, \beta, \gamma, \delta$ tels que :
+
+$$
+|0\rangle = \alpha |a\rangle + \beta |b\rangle, \quad |1\rangle = \gamma |a\rangle + \delta |b\rangle. \tag{2.214-215}
+$$
+
+En substituant, nous obtenons :
+
+$$
+\frac{|01\rangle - |10\rangle}{\sqrt{2}} = (\alpha \delta - \beta \gamma) \frac{|ab\rangle - |ba\rangle}{\sqrt{2}}. \tag{2.216}
+$$
+
+Mais $\alpha \delta - \beta \gamma$ est le déterminant de la matrice unitaire $\begin{bmatrix} \alpha & \beta \\ \gamma & \delta \end{bmatrix}$, et est donc égal à un facteur de phase $e^{i\theta}$ pour un certain réel $\theta$. Ainsi :
+
+$$
+\frac{|01\rangle - |10\rangle}{\sqrt{2}} = \frac{|ab\rangle - |ba\rangle}{\sqrt{2}}, \tag{2.217}
+$$
+
+à un facteur de phase global inobservable près. En conséquence, si une mesure de $\vec{v} \cdot \vec{\sigma}$ est effectuée sur les deux qubits, nous pouvons voir qu’un résultat $+1$ ($-1$) sur le premier qubit implique un résultat $-1$ ($+1$) sur le second qubit.
+
+---
+
+Considérons, par exemple, une paire de qubits intriqués appartenant à Alice et Bob, respectivement :
+
+$$
+\frac{|01\rangle - |10\rangle}{\sqrt{2}}. \tag{2.218}
+$$
+
+Supposons qu’Alice et Bob soient très éloignés l’un de l’autre. Alice effectue une mesure de spin le long de l’axe $\vec{v}$, c’est‑à‑dire qu’elle mesure l’observable $\vec{v} \cdot \vec{\sigma}$. Supposons qu’Alice reçoive le résultat $+1$. Alors un simple calcul de mécanique quantique, donné dans l’encadré 2.7, montre qu’elle peut prédire avec certitude que Bob mesurera $-1$ sur son qubit s’il mesure également le spin le long de l’axe $\vec{v}$. De même, si Alice avait mesuré $-1$, elle pourrait prédire avec certitude que Bob mesurerait $+1$ sur son qubit. Parce qu’il est toujours possible pour Alice de prédire la valeur du résultat de mesure enregistré lorsque le qubit de Bob est mesuré dans la direction $\vec{v}$, cette propriété physique doit correspondre à un élément de réalité, selon le critère EPR, et devrait être représentée dans toute théorie physique complète. Cependant, la mécanique quantique standard, telle que nous l’avons présentée, ne fait que dire comment calculer les probabilités des différents résultats de mesure si $\vec{v} \cdot \vec{\sigma}$ est mesuré. La mécanique quantique standard n’inclut certainement aucun élément fondamental destiné à représenter la valeur de $\vec{v} \cdot \vec{\sigma}$, pour tous les vecteurs unitaires $\vec{v}$.
+
+Le but d’EPR était de montrer que la mécanique quantique est incomplète, en démontrant qu’il manquait à la mécanique quantique un « élément de réalité » essentiel, selon leur critère. Ils espéraient forcer un retour à une vision plus classique du monde, une vision dans laquelle les systèmes pouvaient se voir attribuer des propriétés qui existaient indépendamment des mesures effectuées sur ces systèmes. Malheureusement pour EPR, la plupart des physiciens n’ont pas accepté ce raisonnement comme convaincant. Tenter d’imposer à la Nature par décret des propriétés qu’elle doit obéir semble une manière très particulière d’étudier ses lois.
+
+En effet, la Nature a eu le dernier mot sur EPR. Près de trente ans après la publication de l’article EPR, un test expérimental a été proposé qui pourrait être utilisé pour vérifier si la vision du monde qu’EPR espéraient imposer est valide ou non. Il s’avère que la Nature invalide expérimentalement ce point de vue, tout en étant d’accord avec la mécanique quantique.
+
+La clé de cette invalidation expérimentale est un résultat connu sous le nom d’**inégalité de Bell**. L’inégalité de Bell n’est pas un résultat sur la mécanique quantique, donc la première chose à faire est d’oublier momentanément toutes nos connaissances de la mécanique quantique. Pour obtenir l’inégalité de Bell, nous allons faire une expérience de pensée, que nous analyserons en utilisant nos notions de sens commun sur la façon dont le monde fonctionne – le genre de notions qu’Einstein et ses collaborateurs pensaient que la Nature devait obéir. Après avoir effectué l’analyse de sens commun, nous effectuerons une analyse quantique que nous pourrons montrer comme non cohérente avec l’analyse de sens commun. La Nature peut alors être interrogée, au moyen d’une expérience réelle, pour décider entre nos notions de sens commun sur le fonctionnement du monde et la mécanique quantique.
+
+Imaginons que nous effectuions l’expérience suivante, illustrée dans la Figure 2.4. Charlie prépare deux particules. Peu importe comment il prépare les particules, seulement qu’il est capable de répéter la procédure expérimentale qu’il utilise. Une fois qu’il a effectué la préparation, il envoie une particule à Alice, et la seconde particule à Bob.
+
+Une fois qu’Alice reçoit sa particule, elle effectue une mesure sur celle‑ci. Imaginez qu’elle dispose de deux appareils de mesure différents, elle pourrait donc choisir d’effectuer l’une de deux mesures différentes. Ces mesures sont celles de propriétés physiques que nous appellerons $P_Q$ et $P_R$, respectivement. Alice ne sait pas à l’avance quelle mesure elle choisira d’effectuer. Plutôt, lorsqu’elle reçoit la particule, elle lance une pièce ou utilise une autre méthode aléatoire pour décider quelle mesure effectuer. Nous supposons pour simplifier que les mesures peuvent chacune avoir deux résultats, $+1$ ou $-1$. Supposons que la particule d’Alice ait une valeur $Q$ pour la propriété $P_Q$. $Q$ est supposée être une propriété objective de la particule d’Alice, qui est simplement révélée par la mesure, un peu comme nous imaginons que la position d’une balle de tennis est révélée par les particules de lumière diffusées par sa surface. De même, soit $R$ la valeur révélée par une mesure de la propriété $P_R$.
+
+De même, supposons que Bob soit capable de mesurer l’une des deux propriétés, $P_S$ ou $P_T$, révélant là encore une valeur objectivement existante $S$ ou $T$ pour la propriété, chacune prenant la valeur $+1$ ou $-1$. Bob ne décide pas à l’avance quelle propriété il mesurera, mais attend d’avoir reçu la particule et choisit ensuite aléatoirement. Le timing de l’expérience est arrangé de sorte qu’Alice et Bob effectuent leurs mesures en même temps (ou, pour utiliser le langage plus précis de la relativité, d’une manière causalement déconnectée). Par conséquent, la mesure qu’Alice effectue ne peut pas perturber le résultat de la mesure de Bob (ou vice versa), car les influences physiques ne peuvent pas se propager plus vite que la lumière.
+
+> {.cetz}
+> // Diagramme : Alice (à gauche) avec deux choix de mesure Q ou R, Bob (à droite) avec deux choix S ou T, et une ligne pointillée entre eux indiquant qu'ils sont éloignés.
+> Représentation textuelle :
+> Alice (choix Q ou R) --- (distance) --- Bob (choix S ou T)
+
+Figure 2.4 – Configuration expérimentale schématique pour les inégalités de Bell. Alice peut choisir de mesurer soit $Q$, soit $R$, et Bob choisit de mesurer soit $S$, soit $T$. Ils effectuent leurs mesures simultanément. On suppose qu’Alice et Bob sont suffisamment éloignés pour que le fait d’effectuer une mesure sur un système ne puisse avoir aucun effet sur le résultat des mesures sur l’autre.
+
+Nous allons faire un peu d’algèbre simple avec la quantité $QS + RS + RT - QT$. Remarquons que :
+
+$$
+QS + RS + RT - QT = (Q + R)S + (R - Q)T. \tag{2.219}
+$$
+
+Parce que $R,Q = \pm 1$, il s’ensuit que soit $(Q + R)S = 0$, soit $(R - Q)T = 0$. Dans les deux cas, il est facile de voir d’après (2.219) que $QS + RS + RT - QT = \pm 2$. Supposons ensuite que $p(q,r,s,t)$ soit la probabilité qu’avant que les mesures soient effectuées, le système soit dans un état où $Q = q$, $R = r$, $S = s$, et $T = t$. Ces probabilités peuvent dépendre de la façon dont Charlie effectue sa préparation, et du bruit expérimental. Soit $\mathbf{E}(\cdot)$ la valeur moyenne d’une quantité. Nous avons :
+
+$$
+\begin{aligned}
+\mathbf{E}(QS + RS + RT - QT) &= \sum_{qrst} p(q,r,s,t) (qs + rs + rt - qt) \\
+&\le \sum_{qrst} p(q,r,s,t) \times 2 = 2.
+\end{aligned} \tag{2.221}
+$$
+
+Aussi :
+
+$$
+\begin{aligned}
+\mathbf{E}(QS + RS + RT - QT) &= \sum_{qrst} p(q,r,s,t) qs + \sum_{qrst} p(q,r,s,t) rs \\
+&\quad + \sum_{qrst} p(q,r,s,t) rt - \sum_{qrst} p(q,r,s,t) qt \\
+&= \mathbf{E}(QS) + \mathbf{E}(RS) + \mathbf{E}(RT) - \mathbf{E}(QT).
+\end{aligned} \tag{2.224}
+$$
+
+En comparant (2.222) et (2.224), nous obtenons l’**inégalité de Bell** :
+
+$$
+\mathbf{E}(QS) + \mathbf{E}(RS) + \mathbf{E}(RT) - \mathbf{E}(QT) \le 2. \tag{2.225}
+$$
+
+Ce résultat est aussi souvent appelé **inégalité CHSH** d’après les initiales de ses quatre découvreurs. Il fait partie d’un ensemble plus large d’inégalités connues génériquement sous le nom d’inégalités de Bell, depuis que la première a été trouvée par John Bell.
+
+En répétant l’expérience de nombreuses fois, Alice et Bob peuvent déterminer chaque quantité du membre de gauche de l’inégalité de Bell. Par exemple, après avoir terminé une série d’expériences, Alice et Bob se réunissent pour analyser leurs données. Ils examinent toutes les expériences où Alice a mesuré $P_Q$ et Bob a mesuré $P_S$. En multipliant les résultats de leurs expériences, ils obtiennent un échantillon de valeurs pour $QS$. En faisant la moyenne sur cet échantillon, ils peuvent estimer $\mathbf{E}(QS)$ avec une précision seulement limitée par le nombre d’expériences qu’ils effectuent. De même, ils peuvent estimer toutes les autres quantités du membre de gauche de l’inégalité de Bell, et ainsi vérifier si elle est obéie dans une expérience réelle.
+
+Il est temps de remettre un peu de mécanique quantique dans l’image. Imaginons que nous effectuions l’expérience quantique suivante. Charlie prépare un système quantique de deux qubits dans l’état :
+
+$$
+|\psi\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}. \tag{2.226}
+$$
+
+Il passe le premier qubit à Alice, et le second qubit à Bob. Ils effectuent des mesures des observables suivantes :
+
+$$
+\begin{aligned}
+Q &= Z_1, \quad S = \frac{-Z_2 - X_2}{\sqrt{2}}, \\
+R &= X_1, \quad T = \frac{Z_2 - X_2}{\sqrt{2}}.
+\end{aligned} \tag{2.227}
+$$
+
+Des calculs simples montrent que les valeurs moyennes pour ces observables, écrites dans la notation quantique $\langle \cdot \rangle$, sont :
+
+$$
+\langle Q S \rangle = \frac{1}{\sqrt{2}}, \quad \langle R S \rangle = \frac{1}{\sqrt{2}}, \quad \langle R T \rangle = \frac{1}{\sqrt{2}}, \quad \langle Q T \rangle = -\frac{1}{\sqrt{2}}. \tag{2.229}
+$$
+
+Ainsi,
+
+$$
+\langle Q S \rangle + \langle R S \rangle + \langle R T \rangle - \langle Q T \rangle = 2\sqrt{2}. \tag{2.230}
+$$
+
+Attendez ! Nous avons appris plus tôt (2.225) que la valeur moyenne de $QS$ plus la valeur moyenne de $RS$ plus la valeur moyenne de $RT$ moins la valeur moyenne de $QT$ ne peut jamais dépasser deux. Pourtant, ici, la mécanique quantique prédit que cette somme de moyennes donne $2\sqrt{2}$ !
+
+Heureusement, nous pouvons demander à la Nature de résoudre l’apparent paradoxe pour nous. Des expériences astucieuses utilisant des photons – des particules de lumière – ont été réalisées pour vérifier la prédiction (2.230) de la mécanique quantique par rapport à l’inégalité de Bell (2.225) à laquelle nous avait conduits notre raisonnement de sens commun. Les détails des expériences sont hors de portée de ce livre, mais les résultats ont été résolument en faveur de la prédiction quantique. L’inégalité de Bell (2.225) n’est pas obéie par la Nature.
+
+Qu’est‑ce que cela signifie ? Cela signifie qu’une ou plusieurs des hypothèses qui ont servi à la dérivation de l’inégalité de Bell doivent être incorrectes. Des tonnes d’ouvrages ont été écrits analysant les diverses formes que ce type d’argument peut prendre, et analysant les hypothèses subtilement différentes qui doivent être faites pour aboutir à des inégalités de type Bell. Ici, nous nous contentons de résumer les points principaux.
+
+Il y a deux hypothèses faites dans la preuve de (2.225) qui sont discutables :
+
+1. L’hypothèse que les propriétés physiques $P_Q, P_R, P_S, P_T$ ont des valeurs définies $Q, R, S, T$ qui existent indépendamment de l’observation. C’est parfois appelé l’**hypothèse de réalisme**.
+2. L’hypothèse que le fait qu’Alice effectue sa mesure n’influence pas le résultat de la mesure de Bob. C’est parfois appelé l’**hypothèse de localité**.
+
+Ces deux hypothèses ensemble sont connues sous le nom d’**hypothèses de réalisme local**. Elles sont certainement des hypothèses intuitivement plausibles sur le fonctionnement du monde, et elles correspondent à notre expérience quotidienne. Pourtant, les inégalités de Bell montrent qu’au moins une de ces hypothèses n’est pas correcte.
+
+Que pouvons‑nous apprendre de l’inégalité de Bell ? Pour les physiciens, la leçon la plus importante est que leurs intuitions de sens commun profondément ancrées sur le fonctionnement du monde sont fausses. Le monde n’est pas localement réaliste. La plupart des physiciens adoptent le point de vue que c’est l’hypothèse de réalisme qui doit être abandonnée dans notre vision du monde quantique, bien que d’autres aient soutenu que c’est l’hypothèse de localité qui devrait être abandonnée à la place. Quoi qu’il en soit, l’inégalité de Bell, associée à des preuves expérimentales substantielles, pointe maintenant vers la conclusion que soit la localité, soit le réalisme, soit les deux, doivent être abandonnés de notre vision du monde si nous voulons développer une bonne intuition de la mécanique quantique.
+
+Quelles leçons les domaines du calcul et de l’information quantiques peuvent‑ils tirer de l’inégalité de Bell ? Historiquement, la leçon la plus utile a peut‑être aussi été la plus vague : il y a quelque chose de profondément « anormal » dans les états intriqués comme l’état EPR. Une grande partie du chemin parcouru en calcul quantique et, surtout, en information quantique, est venue de la simple question : « que m’apporterait un peu d’intrication dans ce problème ? » Comme nous l’avons vu dans la téléportation et le codage superdense, et comme nous le verrons à maintes reprises plus tard dans le livre, en jetant un peu d’intrication dans un problème, nous ouvrons un nouveau monde de possibilités inimaginables avec l’information classique. Le tableau plus large est que l’inégalité de Bell nous apprend que l’intrication est une ressource fondamentalement nouvelle dans le monde, qui va essentiellement au‑delà des ressources classiques ; le fer à l’âge du bronze du monde classique. Une tâche majeure du calcul et de l’information quantiques est d’exploiter cette nouvelle ressource pour effectuer des tâches de traitement de l’information impossibles ou beaucoup plus difficiles avec des ressources classiques.
+
+---
+
+# Problèmes
+
+**Problème 2.1 : (Fonctions des matrices de Pauli)** Soit $f(\cdot)$ une fonction quelconque des nombres complexes vers les nombres complexes. Soit $\vec{n}$ un vecteur normalisé en trois dimensions, et soit $\theta$ réel. Montrez que :
+
+$$
+f(\theta \vec{n} \cdot \vec{\sigma}) = \frac{f(\theta) + f(-\theta)}{2} I + \frac{f(\theta) - f(-\theta)}{2} \vec{n} \cdot \vec{\sigma}. \tag{2.231}
+$$
+
+**Problème 2.2 : (Propriétés du nombre de Schmidt)** Soit $|\psi\rangle$ un état pur d’un système composite avec des composants $A$ et $B$.
+
+1. Prouvez que le nombre de Schmidt de $|\psi\rangle$ est égal au rang de la matrice densité réduite $\rho_A \equiv \operatorname{tr}_B(|\psi\rangle \langle \psi|)$. (Notez que le rang d’un opérateur hermitien est égal à la dimension de son support.)
+2. Supposons que $|\psi\rangle = \sum_j |\alpha_j\rangle |\beta_j\rangle$ soit une représentation pour $|\psi\rangle$, où $|\alpha_j\rangle$ et $|\beta_j\rangle$ sont des états (non normalisés) pour les systèmes $A$ et $B$, respectivement. Prouvez que le nombre de termes dans une telle décomposition est supérieur ou égal au nombre de Schmidt de $|\psi\rangle$, $\mathrm{Sch}(\psi)$.
+3. Supposons que $|\psi\rangle = \alpha |\phi\rangle + \beta |\gamma\rangle$. Prouvez que :
+   $$
+   \mathrm{Sch}(\psi) \ge |\mathrm{Sch}(\phi) - \mathrm{Sch}(\gamma)|. \tag{2.232}
+   $$
+
+**Problème 2.3 : (Inégalité de Tsirelson)** Supposons que $Q = \vec{q} \cdot \vec{\sigma}$, $R = \vec{r} \cdot \vec{\sigma}$, $S = \vec{s} \cdot \vec{\sigma}$, $T = \vec{t} \cdot \vec{\sigma}$, où $\vec{q}, \vec{r}, \vec{s}$ et $\vec{t}$ sont des vecteurs unitaires réels en trois dimensions. Montrez que :
+
+$$
+(Q \otimes S + R \otimes S + R \otimes T - Q \otimes T)^2 = 4I + [Q,R] \otimes [S,T]. \tag{2.233}
+$$
+
+Utilisez ce résultat pour prouver que :
+
+$$
+\langle Q \otimes S \rangle + \langle R \otimes S \rangle + \langle R \otimes T \rangle - \langle Q \otimes T \rangle \le 2\sqrt{2}, \tag{2.234}
+$$
+
+de sorte que la violation de l’inégalité de Bell trouvée dans l’équation (2.230) est la violation maximale possible en mécanique quantique.
+
+---
+
+# Histoire et lectures complémentaires
+
+Il existe un nombre énorme de livres sur l’algèbre linéaire, à des niveaux allant du lycée aux études supérieures. Nos préférés sont peut‑être les deux volumes de Horn et Johnson [HB85, HJ91], qui couvrent un large éventail de sujets de manière accessible. D’autres références utiles incluent Marcus et Minc [MM92], et Bhatia [BH97]. De bonnes introductions à l’algèbre linéaire incluent Halmos [Ha158], Perlis [Per52], et Strang [Str76].
+
+Il existe de nombreux excellents livres sur la mécanique quantique. Malheureusement, la plupart de ces livres se concentrent sur des sujets d’intérêt tangentiel pour l’information et le calcul quantiques. Le plus pertinent dans la littérature existante est peut‑être le superbe livre de Peres [Per93]. Outre une exposition extrêmement claire de la mécanique quantique élémentaire, Peres donne une discussion approfondie des inégalités de Bell et des résultats connexes. De bonnes introductions au niveau débutant incluent le livre de Sakurai [Sak95], le volume III de la superbe série de Feynman, Leighton et Sands [FLS65a], et l’ouvrage en deux volumes de Cohen‑Tannoudji, Diu et Laloë [CTDL77a, CTDL77b]. Ces trois ouvrages sont un peu plus proches de l’esprit du calcul et de l’information quantiques que la plupart des autres textes de mécanique quantique, bien que la grande majorité de chacun soit encore occupée par des applications très éloignées du calcul et de l’information quantiques. En conséquence, aucun de ces textes n’a besoin d’être lu en détail par quelqu’un qui souhaite apprendre le calcul et l’information quantiques. Cependant, n’importe lequel de ces textes peut s’avérer utile comme référence, en particulier lors de la lecture d’articles de physiciens. Des références sur l’histoire de la mécanique quantique se trouvent à la fin du chapitre 1.
+
+De nombreux textes sur la mécanique quantique ne traitent que des mesures projectives. Pour les applications au calcul et à l’information quantiques, il est plus commode – et, croyons‑nous, plus facile pour les novices – de commencer par la description générale des mesures, dont les mesures projectives peuvent être considérées comme un cas particulier. Bien sûr, en fin de compte, comme nous l’avons montré, les deux approches sont équivalentes. La théorie des mesures généralisées que nous avons employée a été développée entre les années 1940 et 1970. Une grande partie de l’histoire peut être distillée à partir du livre de Kraus [Kra83]. Une discussion intéressante sur les mesures quantiques peut être trouvée dans la section 2.2 de Gardiner [Gar91], et dans le livre de Braginsky et Khalili [BK92]. La mesure POVM pour distinguer des états non orthogonaux décrite dans la section 2.2.6 est due à Peres [Per88]. L’extension décrite dans l’exercice 2.64 est apparue dans Duan et Guo [DG98].
+
+Le codage superdense a été inventé par Bennett et Wiesner [BW92]. Une expérience implémentant une variante du codage superdense utilisant des paires de photons intriqués a été réalisée par Mattle, Weinfurter, Kwiat et Zeilinger [MWKZ96].
+
+Le formalisme de l’opérateur densité a été introduit indépendamment par Landau [Lan27] et von Neumann [von27]. La liberté unitaire dans l’ensemble pour les matrices densité, théorème 2.6, a été soulignée pour la première fois par Schrödinger [Sch36], puis redécouverte et étendue par Jaynes [Jay57] et par Hughston, Jozsa et Wootters [HJW93]. Le résultat de l’exercice 2.73 provient de l’article de Jaynes, et les résultats des exercices 2.81 et 2.82 apparaissent dans l’article de Hughston, Jozsa et Wootters. La classe des distributions de probabilité qui peuvent apparaître dans une décomposition d’une matrice densité donnée a été étudiée par Uhlmann [Uhl70] et par Nielsen [Nie99b]. La décomposition éponyme de Schmidt est apparue dans [Sch06]. Le résultat de l’exercice 2.77 a été noté par Peres [Per95].
+
+L’expérience de pensée EPR est due à Einstein, Podolsky et Rosen [EPR35], et a été reformulée essentiellement sous la forme que nous avons donnée ici par Bohm [Boh51]. Elle est parfois appelée à tort « paradoxe EPR ». L’inégalité de Bell est nommée en l’honneur de Bell [Bel64], qui a le premier dérivé des inégalités de ce type. La forme que nous avons présentée est due à Clauser, Horne, Shimony et Holt [CHSH69], et est souvent connue sous le nom d’inégalité CHSH. Cette inégalité a été dérivée indépendamment par Bell, qui n’a pas publié le résultat.
+
+La partie 3 du problème 2.2 est due à Thapliyal (communication privée). L’inégalité de Tsirelson est due à Tsirelson [Tsi80].
