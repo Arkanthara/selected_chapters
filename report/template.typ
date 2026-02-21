@@ -270,12 +270,7 @@
   )
   show heading: set block(above: 1.2em, below: 1.2em)
   // Apply numbering setting
-  if template.numbering {
-    set heading(numbering: "1.")
-  } else {
-    set heading(numbering: none)
-  }
-  set heading(numbering: "1.1")
+  set heading(numbering: if template.numbering { "1." } else { none })
 
   show heading.where(level: 1): it => {
     set text(size: 24pt)

@@ -36,7 +36,7 @@
 
   // Document options
   toc: true,
-  numbering: true,
+  numbering: false,
   bibliography: none,
   appendix: false,
 )
