@@ -69,13 +69,13 @@ Let $|psi chevron.r = (|0 chevron.r + |1 chevron.r ) / sqrt(2)$. Write out $|psi
 The Hadamard operator on one qubit may be written as
 
 $
-  H = 1/sqrt(2) [(|0 chevron.r + |1 chevron.r )〈0| + (|0 chevron.r - |1 chevron.r )〈1|].
+  H = 1/sqrt(2) [(|0 chevron.r + |1 chevron.r )chevron 0| + (|0 chevron.r - |1 chevron.r )chevron 1| ].
 $
 
 Show explicitly that the Hadamard transform on $n$ qubits, $H^(times.o n)$, may be written as
 
 $
-  H^(times.o n) = 1/sqrt(2^n) sum_(x,y) (-1)^(x dot y) |x chevron.r 〈y|.
+  H^(times.o n) = 1/sqrt(2^n) sum_(x,y) (-1)^(x dot y) |x chevron.r chevron y|.
 $
 
 Write out an explicit matrix representation for $H^(times.o 2)$.
@@ -136,7 +136,7 @@ Verify that the Bell basis forms an orthonormal basis for the two qubit state sp
 
 = Exercise 1
 #h(1em)
-Suppose $E$ is any positive operator acting on Alice's qubit. Show that $〈psi|E times.o I|psi chevron.r$ _takes the same value_ when $|psi chevron.r$ is any of the four Bell states. Suppose some malevolent third party ('Eve') intercepts Alice's qubit on the way to Bob in the superdense coding protocol. Can Eve infer anything about which of the four possible bit strings $00, 01, 10, 11$ Alice is trying to send? If so, how, or if not, why not?
+Suppose $E$ is any positive operator acting on Alice's qubit. Show that $chevron psi|E times.o I|psi chevron.r$ _takes the same value_ when $|psi chevron.r$ is any of the four Bell states. Suppose some malevolent third party ('Eve') intercepts Alice's qubit on the way to Bob in the superdense coding protocol. Can Eve infer anything about which of the four possible bit strings $00, 01, 10, 11$ Alice is trying to send? If so, how, or if not, why not?
 
 #v(2em)
 
