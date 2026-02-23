@@ -80,6 +80,75 @@ $
 
 Write out an explicit matrix representation for $H^(times.o 2)$.
 
+- The notation $chevron phi|$ is used to represent the vector dual to $|phi chevron.r$, so the vector $phi$ conjugate and transposed.
+- The notation $|phi chevron.r chevron psi|$ denote the matrix product between the vectors $phi$ and $psi$.
+
+So we have:
+
+#align(
+  left,
+  $
+    H & = 1/sqrt(2) [(|0 chevron.r + |1 chevron.r )chevron 0| + (|0 chevron.r - |1 chevron.r )chevron 1| ] \
+      & = 1/sqrt(2) [vec(1, 1) mat(1, 0) + vec(1, -1) mat(0, 1)] \
+      & = 1/sqrt(2) [mat(1, 0; 1, 0) + mat(0, 1; 0, -1)] \
+      & = 1/sqrt(2) mat(1, 1; 1, -1) \
+  $,
+)
+
+For $H^(times.o 2)$, we have:
+
+#align(
+  left,
+  $
+    H^(times.o 2) & = H times.o H \
+                  & = 1/sqrt(2) mat(1, 1; 1, -1) times.o 1/sqrt(2) mat(1, 1; 1, -1) \
+                  & = 1/2 mat(1 mat(1, 1; 1, -1), 1 mat(1, 1; 1, -1); 1 mat(1, 1; 1, -1), -1 mat(1, 1; 1, -1)) \
+                  & = 1/2 mat(1, 1, 1, 1; 1, -1, 1, -1; 1, 1, -1, -1; 1, -1, -1, 1) \
+  $,
+)
+We want to prove that $H^(times.o n) = 1/sqrt(2^n) sum_(x,y) (-1)^(x dot y) |x chevron.r chevron y|$ with $x$ and $y$ that represent $n$ qubits, so with $|x chevron.r = |x_1x_2...x_n chevron.r$ and $|y chevron.r = |y_1y_2...y_n chevron.r$.
+So $x$ and $y$ are two sequences of bits.
+
+We can define $(x dot y)$ as the bitwise inner product modulo 2:
+
+$ x dot y = sum_(i=1)^n x_i y_i mod 2 $
+
+where $x_i, y_i in { 0, 1 }$.
+
+For the initialization, we have:
+
+#align(
+  left,
+  $H^(times.o 1) = H &= 1/sqrt(2) [(|0 chevron.r + |1 chevron.r )chevron 0| + (|0 chevron.r - |1 chevron.r )chevron 1| ] \
+  &= 1/sqrt(2) (|0 chevron.r chevron 0| + |1 chevron.r chevron 0| + |0 chevron.r chevron 1| - |1 chevron.r chevron 1| ) \
+  &= 1/sqrt(2) [ (-1)^(0 dot 0) |0 chevron.r chevron 0| + (-1)^(1 dot 0)|1 chevron.r chevron 0| + (-1)^(0 dot 1)|0 chevron.r chevron 1| + (-1)^(1 dot 1) |1 chevron.r chevron 1| ] \
+  &= 1/sqrt(2) sum_(a, b in {0, 1})(-1)^(a dot b) |a chevron.r chevron b|$,
+)
+
+Suppose we have
+$
+  H^(times.o (n - 1)) = 1/sqrt(2^(n - 1)) sum_(x',y' in {0, 1}^(n - 1)) (-1)^(x' dot y') |x' chevron.r chevron y'|
+$
+By induction,
+#align(
+  left,
+  $
+    H^(times.o n) &= H^(times.o (n - 1)) times.o H \
+    &= 1/sqrt(2^(n - 1)) sum_(x',y' in {0, 1}^(n - 1)) (-1)^(x' dot y') |x' chevron.r chevron y'| times.o 1/sqrt(2) sum_(a, b in {0, 1})(-1)^(a dot b) |a chevron.r chevron b| \
+    &= 1/sqrt(2^(n - 1) times 2) (sum_(x',y' in {0, 1}^(n - 1)) (-1)^(x' dot y') |x' chevron.r chevron y'| times.o sum_(a, b in {0, 1})(-1)^(a dot b) |a chevron.r chevron b|) \
+    &= 1/sqrt(2^n) (sum_(x',y' in {0, 1}^(n - 1)) sum_(a, b in {0, 1}) (-1)^(x' dot y') (-1)^(a dot b) |x' chevron.r chevron y'| times.o |a chevron.r chevron b|)^#report-footnote([We can write this thanks to the bilinearity of the tensor product: $(X_1 + X_2) times.o (Y_1 + Y_2) = sum_(i, j)X_i times.o Y_j$]) \
+    &= 1/sqrt(2^n) (sum_(x',y' in {0, 1}^(n - 1)) sum_(a, b in {0, 1}) (-1)^(x' dot y') (-1)^(a dot b) |x' chevron.r times.o |a chevron.r chevron y'| times.o chevron b|) \
+    &= 1/sqrt(2^n) (sum_(x',y' in {0, 1}^(n - 1)) sum_(a, b in {0, 1}) (-1)^(x' dot y') (-1)^(a dot b) |x' a chevron.r chevron y' b|) \
+    &= 1/sqrt(2^n) (sum_(x,y in {0, 1}^n) (-1)^(x dot y) |x chevron.r chevron y|) \
+  $,
+)
+
+So we have proved by induction that
+$
+  H^(times.o n) = 1/sqrt(2^n) sum_(x,y) (-1)^(x dot y) |x chevron.r chevron y|.
+$
+
+
 #v(1em)
 
 = Exercise 3
