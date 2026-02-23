@@ -227,13 +227,57 @@ So we have:
 #h(1em)
 Suppose $[A, B] = 0$, ${A, B} = 0$, and $A$ is invertible. Show that $B$ must be $0$.
 
+The anticommutation relation is defined as follow:
+$
+  {A, B} = A B + B A
+$
+
+So if we have $[A, B] = 0$, ${A, B} = 0$, and $A$ invertible, it means that
+
+#align(
+  left,
+  $
+        & [A, B] = {A, B} \
+    <=> & A B - B A = A B + B A \
+    <=> & 2 B A = 0 \
+    <=> & B A A^(-1) = 0 A^(-1) \
+    <=> & B = 0
+  $,
+)
+
+So $B$ must be $0$.
+
 #v(1em)
 
 = Exercise 5
 #h(1em)
+
 Suppose $A$ and $B$ are commuting Hermitian operators. Prove that $exp(A) exp(B) = exp(A + B)$.
 
-#pagebreak()
+An operator is Hermitian if its transpose conjugate is equal to the operator itself.
+
+As $A$ and $B$ are commuting, we have $[A, B] = 0 <=> A B - B A = 0 <=> A B = B A$.
+
+The Taylor expansion of the exponential function for an operator $X$ is:
+
+$ exp(X) = sum_(k=0)^infinity X^k/k! $
+
+So we have:
+
+#align(
+  left,
+  $
+    exp(A) exp(B) &= sum_(k=0)^infinity A^k/k! sum_(j=0)^infinity B^j/j! \
+    &= sum_(k=0)^infinity sum_(j=0)^infinity (A^k B^j)/(k!j!) \
+    &= sum_(n=0)^infinity sum_(k=0)^n (A^k B^(n - k))/(k!(n - k)!) & text("let " n = j + k) \
+    &= sum_(n=0)^infinity sum_(k=0)^n n!/(n!k!(n - k)!)(A^k B^(n - k)) \
+    &= sum_(n=0)^infinity 1/n! sum_(k=0)^n n!/(k!(n - k)!) (A^k B^(n - k)) \
+    &= sum_(n=0)^infinity 1/n! sum_(k=0)^n vec(n, k) (A^k B^(n - k)) & text("by definition of "vec(n, k) = n!/(k!(n - k)!)) \
+    &= sum_(n=0)^infinity 1/n! (A + B)^n & text("according to binomial theorem"^#report-footnote([Binomial theorem: $(A + B)^n = sum_(k=0)^n vec(n, k) A^k B^(n - k)$])) \
+    &= exp(A + B) & text("according to taylor expansion")
+  $,
+)
+
 
 = Exercise 6
 #h(1em)
@@ -259,7 +303,7 @@ Verify that the Bell basis forms an orthonormal basis for the two qubit state sp
 
 #v(1em)
 
-= Exercise 1
+= Exercise 10
 #h(1em)
 Suppose $E$ is any positive operator acting on Alice's qubit. Show that $chevron psi|E times.o I|psi chevron.r$ _takes the same value_ when $|psi chevron.r$ is any of the four Bell states. Suppose some malevolent third party ('Eve') intercepts Alice's qubit on the way to Bob in the superdense coding protocol. Can Eve infer anything about which of the four possible bit strings $00, 01, 10, 11$ Alice is trying to send? If so, how, or if not, why not?
 
