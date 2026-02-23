@@ -165,6 +165,62 @@ $
   [sigma_j, sigma_k] = 2i sum_(l=1)^(3) epsilon_(j k l) sigma_l.
 $
 
+The commutation relation is defined as follow:
+$
+  [A, B] = A B - B A
+$
+
+The Pauli matrix are defined as follow:
+
+#align(
+  left,
+  $
+    sigma_0 & ≡ I ≡ mat(1, 0; 0, 1) \
+    sigma_1 & ≡ sigma_x ≡ X ≡ mat(0, 1; 1, 0) \
+    sigma_2 & ≡ sigma_y ≡ Y ≡ mat(0, -i; i, 0) \
+    sigma_3 & ≡ sigma_z ≡ Z ≡ mat(1, 0; 0, -1) \
+  $,
+)
+
+So we have:
+
+- #align(
+    left,
+    $
+      [X, Y] & = X Y - Y X \
+             & = mat(0, 1; 1, 0) mat(0, -i; i, 0) - mat(0, -i; i, 0) mat(0, 1; 1, 0) \
+             & = mat(i, 0; 0, -i) - mat(-i, 0; 0, i) \
+             & = mat(2i, 0; 0, -2i) \
+             & = 2 i times mat(1, 0; 0, -1) \
+             & = 2 i Z
+    $,
+  )
+
+- #align(
+    left,
+    $
+      [Y, Z] & = Y Z - Z Y \
+             & = mat(0, -i; i, 0) mat(1, 0; 0, -1) - mat(1, 0; 0, -1) mat(0, -i; i, 0) \
+             & = mat(0, i; i, 0) - mat(0, -i; -i, 0) \
+             & = mat(0, 2i; 2i, 0) \
+             & = 2 i times mat(0, 1; 1, 0) \
+             & = 2 i X
+    $,
+  )
+
+- #align(
+    left,
+    $
+      [Z, X] & = Z X - X Z \
+             & = mat(1, 0; 0, -1) mat(0, 1; 1, 0) - mat(0, 1; 1, 0) mat(1, 0; 0, -1) \
+             & = mat(0, 1; -1, 0) - mat(0, -1; 1, 0) \
+             & = mat(0, 2; -2, 0) \
+             & = 2 times mat(0, 1; -1, 0) \
+             & = 2 times mat(0, (-i)^2; i^2, 0) \
+             & = 2 i Y
+    $,
+  )
+
 #v(1em)
 
 = Exercise 4
