@@ -227,7 +227,7 @@ Il existe plusieurs façons physiques d'implémenter un qubit :
 
 ## Diagramme de la trajectoire NISQ → Fault-Tolerant
 
-```{.mermaid}
+```{mermaid}
 graph LR
     A["NISQ\n~100 qubits\nerreur ~10⁻²"] --> B["Seuil de\ncorrection d'erreurs\n~10⁻³"]
     B --> C["Fault-Tolerant QC\n10k–1M qubits\nerreur < 10⁻³"]
@@ -281,7 +281,7 @@ En automne 2019, Google annonce avoir atteint la **suprématie quantique** avec 
 
 *Eddie Farhi : "Try it and see if it works!"*
 
-```{.mermaid}
+```{mermaid}
 graph LR
     QP["Processeur\nQuantique"] -- "mesure de la\nfonction de coût" --> CO["Optimiseur\nClassique"]
     CO -- "ajuste le\ncircuit quantique" --> QP
@@ -313,7 +313,7 @@ Supposons $n$ produits et un historique d'achats de $m$ utilisateurs :
 
 ## Chronologie des révolutions quantiques
 
-```{.mermaid}
+```{mermaid}
 timeline
     title Histoire de l'informatique quantique
     1930 : Première révolution quantique
@@ -333,7 +333,7 @@ timeline
 
 L'informatique quantique est au carrefour de nombreuses disciplines :
 
-```{.mermaid}
+```{mermaid}
 graph TD
     QC(("<b>Informatique<br>Quantique</b>"))
 
