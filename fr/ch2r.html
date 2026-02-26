@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ch1 – Selected Chapters</title>
+<title>ch2r – Selected Chapters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4181,7 +4181,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch1c.html">Quantum computing</a></li><li class="breadcrumb-item"><a href="./ch1.html">Informatique Quantique — Synthèse pour révisions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch2c.html">Quantum computing chapter 2</a></li><li class="breadcrumb-item"><a href="./ch2r.html">Synthese</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -4212,13 +4212,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Quantum computing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch1c.html" class="sidebar-item-text sidebar-link">
@@ -4227,7 +4227,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ch1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Informatique Quantique — Synthèse pour révisions</span></a>
   </div>
 </li>
@@ -4241,13 +4241,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Quantum computing chapter 2</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch2c.html" class="sidebar-item-text sidebar-link">
@@ -4262,7 +4262,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch2r.html" class="sidebar-item-text sidebar-link">
+  <a href="./ch2r.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Synthese</span></a>
   </div>
 </li>
@@ -4280,292 +4280,315 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#informatique-quantique-synthèse-pour-révisions" id="toc-informatique-quantique-synthèse-pour-révisions" class="nav-link active" data-scroll-target="#informatique-quantique-synthèse-pour-révisions">Informatique Quantique — Synthèse pour révisions</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#résumé-quantum-computing" id="toc-résumé-quantum-computing" class="nav-link active" data-scroll-target="#résumé-quantum-computing">Résumé — Quantum Computing</a></li>
+  <li><a href="#fondamentaux" id="toc-fondamentaux" class="nav-link" data-scroll-target="#fondamentaux">1. Fondamentaux</a>
   <ul class="collapse">
-  <li><a href="#définition" id="toc-définition" class="nav-link" data-scroll-target="#définition">Définition</a></li>
-  <li><a href="#pourquoi-étudier-linformatique-quantique" id="toc-pourquoi-étudier-linformatique-quantique" class="nav-link" data-scroll-target="#pourquoi-étudier-linformatique-quantique">Pourquoi étudier l’informatique quantique ?</a></li>
+  <li><a href="#qubit" id="toc-qubit" class="nav-link" data-scroll-target="#qubit">Qubit</a></li>
+  <li><a href="#notation-dirac-bra-ket" id="toc-notation-dirac-bra-ket" class="nav-link" data-scroll-target="#notation-dirac-bra-ket">Notation Dirac (bra-ket)</a></li>
   </ul></li>
-  <li><a href="#lexponentialité-de-la-mécanique-quantique" id="toc-lexponentialité-de-la-mécanique-quantique" class="nav-link" data-scroll-target="#lexponentialité-de-la-mécanique-quantique">L’exponentialité de la mécanique quantique</a>
+  <li><a href="#bit-classique-vs-qubit" id="toc-bit-classique-vs-qubit" class="nav-link" data-scroll-target="#bit-classique-vs-qubit">2. Bit classique vs Qubit</a></li>
+  <li><a href="#mesure-règle-de-born" id="toc-mesure-règle-de-born" class="nav-link" data-scroll-target="#mesure-règle-de-born">3. Mesure — Règle de Born</a></li>
+  <li><a href="#systèmes-composites" id="toc-systèmes-composites" class="nav-link" data-scroll-target="#systèmes-composites">4. Systèmes composites</a>
   <ul class="collapse">
-  <li><a href="#problème-de-la-simulation-classique" id="toc-problème-de-la-simulation-classique" class="nav-link" data-scroll-target="#problème-de-la-simulation-classique">Problème de la simulation classique</a></li>
-  <li><a href="#comment-les-physiciens-contournent-ils" id="toc-comment-les-physiciens-contournent-ils" class="nav-link" data-scroll-target="#comment-les-physiciens-contournent-ils">Comment les physiciens contournent-ils ?</a></li>
-  <li><a href="#question-de-feynman-1981" id="toc-question-de-feynman-1981" class="nav-link" data-scroll-target="#question-de-feynman-1981">Question de Feynman (1981)</a></li>
+  <li><a href="#produit-tensoriel" id="toc-produit-tensoriel" class="nav-link" data-scroll-target="#produit-tensoriel">Produit tensoriel</a></li>
+  <li><a href="#intrication-entanglement" id="toc-intrication-entanglement" class="nav-link" data-scroll-target="#intrication-entanglement">Intrication (Entanglement)</a></li>
   </ul></li>
-  <li><a href="#histoire-et-avancées-théoriques" id="toc-histoire-et-avancées-théoriques" class="nav-link" data-scroll-target="#histoire-et-avancées-théoriques">Histoire et avancées théoriques</a>
+  <li><a href="#décohérence" id="toc-décohérence" class="nav-link" data-scroll-target="#décohérence">5. Décohérence</a></li>
+  <li><a href="#portes-quantiques" id="toc-portes-quantiques" class="nav-link" data-scroll-target="#portes-quantiques">6. Portes quantiques</a>
   <ul class="collapse">
-  <li><a href="#trois-options-postshor" id="toc-trois-options-postshor" class="nav-link" data-scroll-target="#trois-options-postshor">Trois options post‑Shor</a></li>
+  <li><a href="#propriétés-générales" id="toc-propriétés-générales" class="nav-link" data-scroll-target="#propriétés-générales">Propriétés générales</a></li>
+  <li><a href="#portes-à-un-qubit" id="toc-portes-à-un-qubit" class="nav-link" data-scroll-target="#portes-à-un-qubit">Portes à un qubit</a></li>
+  <li><a href="#porte-cnot-2-qubits" id="toc-porte-cnot-2-qubits" class="nav-link" data-scroll-target="#porte-cnot-2-qubits">Porte CNOT (2 qubits)</a></li>
   </ul></li>
-  <li><a href="#mythes-et-réalités" id="toc-mythes-et-réalités" class="nav-link" data-scroll-target="#mythes-et-réalités">Mythes et réalités</a></li>
-  <li><a href="#technologies-et-défis" id="toc-technologies-et-défis" class="nav-link" data-scroll-target="#technologies-et-défis">Technologies et défis</a>
+  <li><a href="#les-états-rangle-et--rangle" id="toc-les-états-rangle-et--rangle" class="nav-link" data-scroll-target="#les-états-rangle-et--rangle">7. Les états <span class="math inline">\(|+\rangle\)</span> et <span class="math inline">\(|-\rangle\)</span></a></li>
+  <li><a href="#interférence-quantique" id="toc-interférence-quantique" class="nav-link" data-scroll-target="#interférence-quantique">8. Interférence quantique</a></li>
+  <li><a href="#circuits-quantiques" id="toc-circuits-quantiques" class="nav-link" data-scroll-target="#circuits-quantiques">9. Circuits quantiques</a></li>
+  <li><a href="#avantage-quantique" id="toc-avantage-quantique" class="nav-link" data-scroll-target="#avantage-quantique">10. Avantage quantique</a>
   <ul class="collapse">
-  <li><a href="#ère-nisq-noisy-intermediatescale-quantum" id="toc-ère-nisq-noisy-intermediatescale-quantum" class="nav-link" data-scroll-target="#ère-nisq-noisy-intermediatescale-quantum">Ère NISQ (Noisy Intermediate‑Scale Quantum)</a></li>
-  <li><a href="#défis-pour-le-passage-à-léchelle" id="toc-défis-pour-le-passage-à-léchelle" class="nav-link" data-scroll-target="#défis-pour-le-passage-à-léchelle">Défis pour le passage à l’échelle</a></li>
-  <li><a href="#technologies-de-qubits" id="toc-technologies-de-qubits" class="nav-link" data-scroll-target="#technologies-de-qubits">Technologies de qubits</a></li>
-  <li><a href="#suprématie-quantique" id="toc-suprématie-quantique" class="nav-link" data-scroll-target="#suprématie-quantique">Suprématie quantique</a></li>
+  <li><a href="#complexités-comparées" id="toc-complexités-comparées" class="nav-link" data-scroll-target="#complexités-comparées">Complexités comparées</a></li>
   </ul></li>
-  <li><a href="#algorithmes-quantiques" id="toc-algorithmes-quantiques" class="nav-link" data-scroll-target="#algorithmes-quantiques">Algorithmes quantiques</a>
+  <li><a href="#architecture-quantique" id="toc-architecture-quantique" class="nav-link" data-scroll-target="#architecture-quantique">11. Architecture quantique</a>
   <ul class="collapse">
-  <li><a href="#catégories" id="toc-catégories" class="nav-link" data-scroll-target="#catégories">Catégories</a></li>
-  <li><a href="#algorithmes-pour-lère-nisq" id="toc-algorithmes-pour-lère-nisq" class="nav-link" data-scroll-target="#algorithmes-pour-lère-nisq">Algorithmes pour l’ère NISQ</a></li>
-  <li><a href="#quantum-machine-learning" id="toc-quantum-machine-learning" class="nav-link" data-scroll-target="#quantum-machine-learning">Quantum Machine Learning</a>
-  <ul class="collapse">
-  <li><a href="#exemple-systèmes-de-recommandation" id="toc-exemple-systèmes-de-recommandation" class="nav-link" data-scroll-target="#exemple-systèmes-de-recommandation">Exemple : systèmes de recommandation</a></li>
+  <li><a href="#volume-quantique-v_q" id="toc-volume-quantique-v_q" class="nav-link" data-scroll-target="#volume-quantique-v_q">Volume quantique <span class="math inline">\(V_Q\)</span></a></li>
   </ul></li>
-  <li><a href="#optimiseurs-hybrides-quantiquesclassiques" id="toc-optimiseurs-hybrides-quantiquesclassiques" class="nav-link" data-scroll-target="#optimiseurs-hybrides-quantiquesclassiques">Optimiseurs hybrides quantiques/classiques</a></li>
-  </ul></li>
-  <li><a href="#connexions-interdisciplinaires" id="toc-connexions-interdisciplinaires" class="nav-link" data-scroll-target="#connexions-interdisciplinaires">Connexions interdisciplinaires</a>
-  <ul class="collapse">
-  <li><a href="#exemple-paradoxe-du-mur-de-feu-des-trous-noirs" id="toc-exemple-paradoxe-du-mur-de-feu-des-trous-noirs" class="nav-link" data-scroll-target="#exemple-paradoxe-du-mur-de-feu-des-trous-noirs">Exemple : paradoxe du mur de feu des trous noirs</a></li>
-  </ul></li>
-  <li><a href="#chronologie-des-révolutions-quantiques" id="toc-chronologie-des-révolutions-quantiques" class="nav-link" data-scroll-target="#chronologie-des-révolutions-quantiques">Chronologie des révolutions quantiques</a></li>
-  <li><a href="#pour-approfondir" id="toc-pour-approfondir" class="nav-link" data-scroll-target="#pour-approfondir">Pour approfondir</a></li>
+  <li><a href="#à-retenir-absolument" id="toc-à-retenir-absolument" class="nav-link" data-scroll-target="#à-retenir-absolument">🔑 À retenir absolument</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch1c.html">Quantum computing</a></li><li class="breadcrumb-item"><a href="./ch1.html">Informatique Quantique — Synthèse pour révisions</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch2c.html">Quantum computing chapter 2</a></li><li class="breadcrumb-item"><a href="./ch2r.html">Synthese</a></li></ol></nav></header>
 
 
 
 
 
-<section id="informatique-quantique-synthèse-pour-révisions" class="level1">
-<h1>Informatique Quantique — Synthèse pour révisions</h1>
+<section id="résumé-quantum-computing" class="level1">
+<h1>Résumé — Quantum Computing</h1>
 <hr>
 </section>
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<section id="définition" class="level2">
-<h2 class="anchored" data-anchor-id="définition">Définition</h2>
-<p>L’informatique quantique est le traitement de l’information basé sur les principes de la <strong>mécanique quantique</strong>, plutôt que sur la physique classique.</p>
+<section id="fondamentaux" class="level1">
+<h1>1. Fondamentaux</h1>
+<section id="qubit" class="level2">
+<h2 class="anchored" data-anchor-id="qubit">Qubit</h2>
 <ul>
-<li>Formulée au début du XX<sup>e</sup> siècle pour expliquer le comportement des particules subatomiques</li>
-<li>Succès spectaculaire dans l’explication des phénomènes microscopiques</li>
+<li><strong>Bit classique</strong> : exactement <span class="math inline">\(|0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span></li>
+<li><strong>Qubit</strong> : superposition <span class="math inline">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>, avec <span class="math inline">\(\alpha, \beta \in \mathbb{C}\)</span></li>
+</ul>
+<p>Condition de normalisation (obligatoire) :</p>
+<p><span class="math display">\[|\alpha|^2 + |\beta|^2 = 1\]</span></p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> = <strong>amplitudes</strong> (comme des probabilités, mais peuvent être négatives ou complexes)</li>
+<li><span class="math inline">\(|\psi\rangle\)</span> est un vecteur unitaire dans <span class="math inline">\(\mathbb{C}^2\)</span></li>
 </ul>
 </section>
-<section id="pourquoi-étudier-linformatique-quantique" class="level2">
-<h2 class="anchored" data-anchor-id="pourquoi-étudier-linformatique-quantique">Pourquoi étudier l’informatique quantique ?</h2>
+<section id="notation-dirac-bra-ket" class="level2">
+<h2 class="anchored" data-anchor-id="notation-dirac-bra-ket">Notation Dirac (bra-ket)</h2>
 <ul>
-<li>Développement de <strong>logiciels quantiques</strong></li>
-<li>Conception d’<strong>algorithmes quantiques</strong></li>
-<li><strong>Machine learning</strong> quantique</li>
-<li>Architecture quantique et compilateurs</li>
-<li>Recherche en <strong>théorie de l’information quantique</strong></li>
-<li>Systèmes de <strong>communication quantique</strong></li>
-<li>Systèmes de <strong>sécurité quantique</strong></li>
+<li><strong>Ket</strong> (vecteur colonne) : <span class="math inline">\(|\psi\rangle = \begin{pmatrix}\alpha \\ \beta\end{pmatrix}\)</span></li>
+<li><strong>Bra</strong> (vecteur ligne, conjugué Hermitien) : <span class="math inline">\(\langle\psi| = \begin{pmatrix}\bar{\alpha} &amp; \bar{\beta}\end{pmatrix}\)</span></li>
+<li><strong>Produit intérieur</strong> :</li>
+</ul>
+<p><span class="math display">\[\langle\psi|\theta\rangle = \bar{\alpha}\gamma + \bar{\beta}\delta\]</span></p>
+<ul>
+<li>⚠️ L’ordre compte : <span class="math inline">\(\langle\theta|\psi\rangle = \overline{\langle\psi|\theta\rangle}\)</span></li>
 </ul>
 <hr>
 </section>
 </section>
-<section id="lexponentialité-de-la-mécanique-quantique" class="level1">
-<h1>L’exponentialité de la mécanique quantique</h1>
-<section id="problème-de-la-simulation-classique" class="level2">
-<h2 class="anchored" data-anchor-id="problème-de-la-simulation-classique">Problème de la simulation classique</h2>
-<p>L’état de <span class="math inline">\(N\)</span> particules nécessite au moins <span class="math inline">\(2^N\)</span> nombres pour être décrit :</p>
-<p><span class="math display">\[
-|\psi\rangle = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_{2^N} \end{pmatrix} \in \mathbb{C}^{2^N}
-\]</span></p>
-<p>Pour <span class="math inline">\(N \sim 300\)</span> (un atome d’uranium) :</p>
-<p><span class="math display">\[
-2^N \gg \text{nombre d’atomes dans l’univers observable} \approx 10^{82}
-\]</span></p>
+<section id="bit-classique-vs-qubit" class="level1">
+<h1>2. Bit classique vs Qubit</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Propriété</th>
+<th>Bit classique</th>
+<th>Qubit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>États</td>
+<td><span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(|0\rangle\)</span>, <span class="math inline">\(|1\rangle\)</span>, ou superposition</td>
+</tr>
+<tr class="even">
+<td>Mesure</td>
+<td>Complète, non destructive</td>
+<td>Partielle, <strong>destructive</strong></td>
+</tr>
+<tr class="odd">
+<td>Copie</td>
+<td>✅</td>
+<td>❌ (no-cloning)</td>
+</tr>
+<tr class="even">
+<td>Effacement</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>Puissance (ajout d’1 unité)</td>
+<td>double les bits</td>
+<td><strong>double la puissance</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="mesure-règle-de-born" class="level1">
+<h1>3. Mesure — Règle de Born</h1>
+<p><span class="math display">\[\Pr[\text{obtenir } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{obtenir } |1\rangle] = |\beta|^2\]</span></p>
+<p>Points clés :</p>
+<ul>
+<li>Après mesure → état <strong>s’effondre</strong> vers <span class="math inline">\(|0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span>, l’état précédent est <strong>perdu</strong></li>
+<li>Mesurer deux fois = mesurer <strong>une fois</strong></li>
+<li>La mesure <strong>perturbe</strong> le système</li>
+</ul>
+<hr>
+</section>
+<section id="systèmes-composites" class="level1">
+<h1>4. Systèmes composites</h1>
+<section id="produit-tensoriel" class="level2">
+<h2 class="anchored" data-anchor-id="produit-tensoriel">Produit tensoriel</h2>
+<p>Pour deux qubits <span class="math inline">\(|\psi_1\rangle\)</span> et <span class="math inline">\(|\psi_2\rangle\)</span> :</p>
+<p><span class="math display">\[|\psi_1\rangle \otimes |\psi_2\rangle \in \mathbb{C}^2 \otimes \mathbb{C}^2 \quad \text{(vecteur de dimension 4)}\]</span></p>
+<p>Base de deux qubits :</p>
+<p><span class="math display">\[|00\rangle, \quad |01\rangle, \quad |10\rangle, \quad |11\rangle\]</span></p>
+</section>
+<section id="intrication-entanglement" class="level2">
+<h2 class="anchored" data-anchor-id="intrication-entanglement">Intrication (Entanglement)</h2>
+<ul>
+<li>Tous les états à 2 qubits <strong>ne sont pas</strong> des états produits</li>
+<li>État <strong>intriqué</strong> (paire de Bell / EPR) :</li>
+</ul>
+<p><span class="math display">\[|\Phi\rangle = \frac{1}{\sqrt{2}}\Big(|00\rangle + |11\rangle\Big)\]</span></p>
+<p>Propriétés clés :</p>
+<ul>
+<li>Les qubits intriqués sont <strong>corrélés instantanément</strong>, quelle que soit la distance</li>
+<li>Mesurer l’un <strong>fait s’effondrer l’autre</strong> automatiquement</li>
+<li><strong>Phénomène uniquement quantique</strong> — absent de la physique classique</li>
+<li>Einstein : <em>“spooky actions at a distance”</em></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="décohérence" class="level1">
+<h1>5. Décohérence</h1>
+<ul>
+<li>= perte de superposition due à l’interaction avec l’<strong>environnement</strong></li>
+<li>= perte d’information vers l’environnement</li>
+<li>Les états de superposition et d’intrication sont <strong>extrêmement fragiles</strong></li>
+<li><strong>Principal obstacle</strong> à la construction d’ordinateurs quantiques</li>
+</ul>
+<hr>
+</section>
+<section id="portes-quantiques" class="level1">
+<h1>6. Portes quantiques</h1>
+<section id="propriétés-générales" class="level2">
+<h2 class="anchored" data-anchor-id="propriétés-générales">Propriétés générales</h2>
+<ul>
+<li>Représentées par des <strong>matrices unitaires</strong> : <span class="math inline">\(UU^\dagger = I\)</span></li>
+<li>Une porte sur <span class="math inline">\(n\)</span> qubits = matrice <span class="math inline">\(2^n \times 2^n\)</span></li>
+<li>Toujours <strong>réversibles</strong> (contrairement à certaines portes classiques)</li>
+</ul>
+</section>
+<section id="portes-à-un-qubit" class="level2">
+<h2 class="anchored" data-anchor-id="portes-à-un-qubit">Portes à un qubit</h2>
+<p><strong>Pauli-X</strong> (NOT quantique) :</p>
+<p><span class="math display">\[X = \begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0\end{bmatrix} \qquad |0\rangle \leftrightarrow |1\rangle\]</span></p>
+<p><strong>Pauli-Y</strong> :</p>
+<p><span class="math display">\[Y = \begin{bmatrix}0 &amp; -i \\ i &amp; 0\end{bmatrix} \qquad |0\rangle \to i|1\rangle, \quad |1\rangle \to -i|0\rangle\]</span></p>
+<p><strong>Pauli-Z</strong> :</p>
+<p><span class="math display">\[Z = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; -1\end{bmatrix} \qquad |0\rangle \to |0\rangle, \quad |1\rangle \to -|1\rangle\]</span></p>
+<p><strong>Hadamard (H)</strong> ⭐ :</p>
+<p><span class="math display">\[H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\ 1 &amp; -1\end{bmatrix} \qquad |0\rangle \to \frac{|0\rangle+|1\rangle}{\sqrt{2}}, \quad |1\rangle \to \frac{|0\rangle-|1\rangle}{\sqrt{2}}\]</span></p>
+<p><strong>Phase (S)</strong> et <strong>T (<span class="math inline">\(\pi/8\)</span>)</strong> :</p>
+<p><span class="math display">\[S = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; i\end{pmatrix} \qquad T = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; e^{i\pi/4}\end{pmatrix} \qquad S^2 = Z\]</span></p>
+</section>
+<section id="porte-cnot-2-qubits" class="level2">
+<h2 class="anchored" data-anchor-id="porte-cnot-2-qubits">Porte CNOT (2 qubits)</h2>
+<p><span class="math display">\[CNOT = \begin{bmatrix}1&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\end{bmatrix}\]</span></p>
+<ul>
+<li>Qubit <strong>contrôle = 0</strong> → cible inchangée</li>
+<li>Qubit <strong>contrôle = 1</strong> → cible <strong>inversée</strong></li>
+<li>Équivalent classique : <strong>XOR</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="les-états-rangle-et--rangle" class="level1">
+<h1>7. Les états <span class="math inline">\(|+\rangle\)</span> et <span class="math inline">\(|-\rangle\)</span></h1>
+<p><span class="math display">\[|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} = H|0\rangle \qquad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix} = H|1\rangle\]</span></p>
+<ul>
+<li>Forment une <strong>base orthonormale</strong> de <span class="math inline">\(\mathbb{C}^2\)</span></li>
+<li>Mesurer <span class="math inline">\(|+\rangle\)</span> ou <span class="math inline">\(|-\rangle\)</span> directement → <span class="math inline">\(|0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span> avec prob. <strong>égale</strong> (indiscernables !)</li>
+<li><strong>Astuce</strong> : appliquer <span class="math inline">\(H\)</span> avant de mesurer → distinguables parfaitement</li>
+</ul>
+<hr>
+</section>
+<section id="interférence-quantique" class="level1">
+<h1>8. Interférence quantique</h1>
+<p>Points essentiels :</p>
+<ul>
+<li>Appliquer plusieurs portes crée un <strong>arbre de chemins</strong> entre états</li>
+<li>Chaque chemin a une amplitude de transition = <strong>produit des amplitudes</strong> le long du chemin</li>
+<li>L’amplitude finale d’un état = <strong>somme</strong> des amplitudes de tous les chemins y menant</li>
+<li>Les amplitudes peuvent s’<strong>additionner</strong> (interférence constructive) ou s’<strong>annuler</strong> (interférence destructive)</li>
+<li>Une <strong>mesure intermédiaire</strong> détruit la superposition → empêche l’interférence</li>
+</ul>
+<p><strong>Expérience A</strong> : <span class="math inline">\(|0\rangle \xrightarrow{H} \xrightarrow{\text{mesure}} \xrightarrow{H} \xrightarrow{\text{mesure}}\)</span> → <span class="math inline">\(|0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span> avec prob. égale</p>
+<p><strong>Expérience B</strong> : <span class="math inline">\(|0\rangle \xrightarrow{H} \xrightarrow{H} \xrightarrow{\text{mesure}}\)</span> → <strong>toujours</strong> <span class="math inline">\(|0\rangle\)</span></p>
 <blockquote class="blockquote">
-<p><strong>La nature effectue un calcul exponentiel “en coulisse”.</strong></p>
-</blockquote>
-</section>
-<section id="comment-les-physiciens-contournent-ils" class="level2">
-<h2 class="anchored" data-anchor-id="comment-les-physiciens-contournent-ils">Comment les physiciens contournent-ils ?</h2>
-<ol type="1">
-<li><strong>Approximations ingénieuses</strong> (ansatz de Bethe, diagrammes de Feynman, théorie des perturbations…)</li>
-<li><strong>Simulations numériques</strong> (DFT, Quantum Monte Carlo…)(simulent comportement général)</li>
-<li><strong>Étude de systèmes quasi‑classiques ou faiblement interagissants</strong></li>
-</ol>
-</section>
-<section id="question-de-feynman-1981" class="level2">
-<h2 class="anchored" data-anchor-id="question-de-feynman-1981">Question de Feynman (1981)</h2>
-<blockquote class="blockquote">
-<p><em>“Can probabilistic computers simulate quantum mechanics?”</em> → <strong>NON.</strong></p>
-<p><em>“…if you want to make a simulation of nature, you’d better make it quantum mechanical.”</em></p>
+<p>⚠️ En classique : on additionne des <strong>probabilités</strong> (positives). En quantique : on additionne des <strong>amplitudes</strong> (peuvent être négatives/complexes).</p>
 </blockquote>
 <hr>
 </section>
-</section>
-<section id="histoire-et-avancées-théoriques" class="level1">
-<h1>Histoire et avancées théoriques</h1>
+<section id="circuits-quantiques" class="level1">
+<h1>9. Circuits quantiques</h1>
 <ul>
-<li><p><strong>Années 1980</strong> : Deutsch trouve un problème soluble plus rapidement sur ordinateur quantique (facteur constant)</p></li>
-<li><p><strong>1992</strong> : Bernstein &amp; Vazirani, Simons → accélération super‑polynomiale</p></li>
-<li><p><strong>1994</strong> : <strong>Shor</strong> — algorithme de factorisation efficace</p>
-<p><span class="math display">\[
-\text{Étant donné } N = P \times Q \text{, trouver } P \text{ et } Q
-\]</span></p></li>
-<li><p><strong>Impact</strong> : casse la sécurité du cryptosystème <strong>RSA</strong> et <strong>Diffie-Hellman</strong> (reposant sur la difficulté de la factorisation)</p></li>
+<li>Séquence de <strong>portes quantiques</strong> sur un registre de <span class="math inline">\(n\)</span> qubits reliés par des fils</li>
+<li>Largeur fixe = nombre de qubits</li>
+<li><strong>Même nombre de fils</strong> tout au long (≠ circuits classiques)</li>
 </ul>
-<section id="trois-options-postshor" class="level2">
-<h2 class="anchored" data-anchor-id="trois-options-postshor">Trois options post‑Shor</h2>
-<ol type="1">
-<li>La mécanique quantique est fausse</li>
-<li>Il existe un algorithme classique rapide pour la factorisation</li>
-<li><strong>Les ordinateurs quantiques sont fondamentalement plus puissants</strong></li>
-</ol>
+<p><strong>Génération d’un état de Bell</strong> (<span class="math inline">\(H\)</span> + CNOT) :</p>
+<p><span class="math display">\[|0\rangle, |0\rangle \xrightarrow{H \text{ sur qubit 1}} \frac{|0\rangle+|1\rangle}{\sqrt{2}} \otimes |0\rangle \xrightarrow{CNOT} \frac{|00\rangle+|11\rangle}{\sqrt{2}}\]</span></p>
+<hr>
+</section>
+<section id="avantage-quantique" class="level1">
+<h1>10. Avantage quantique</h1>
+<p>Les trois sources de puissance quantique :</p>
+<ul>
+<li><strong>Parallélisme quantique</strong> — exécution sur toutes les entrées simultanément via superposition</li>
+<li><strong>Espace de Hilbert</strong> — espace d’états exponentiellement plus grand (<span class="math inline">\(n\)</span> qubits → <span class="math inline">\(2^n\)</span> dimensions)</li>
+<li><strong>Intrication</strong> — corrélations non-classiques entre sous-systèmes</li>
+</ul>
+<section id="complexités-comparées" class="level2">
+<h2 class="anchored" data-anchor-id="complexités-comparées">Complexités comparées</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Algorithme</th>
+<th>Classique</th>
+<th>Quantique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Transformée de Fourier (Shor, etc.)</td>
+<td><span class="math inline">\(O(n \cdot 2^n)\)</span></td>
+<td><span class="math inline">\(O(n^2)\)</span></td>
+</tr>
+<tr class="even">
+<td>Recherche (Grover)</td>
+<td><span class="math inline">\(O(N)\)</span></td>
+<td><span class="math inline">\(O(\sqrt{N})\)</span></td>
+</tr>
+<tr class="odd">
+<td>Simulation quantique</td>
+<td><span class="math inline">\(O(c^N)\)</span> bits</td>
+<td><span class="math inline">\(O(kn)\)</span> qubits</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
 </section>
-<section id="mythes-et-réalités" class="level1">
-<h1>Mythes et réalités</h1>
+<section id="architecture-quantique" class="level1">
+<h1>11. Architecture quantique</h1>
+<p>Prérequis pour un ordinateur quantique :</p>
 <ul>
-<li><p><em><strong>Mythe :</strong> Les ordinateurs quantiques essayent toutes les possibilités simultanément.</em><br>
-<strong>Réalité :</strong> Ils exploitent l’<strong>enchevêtrement</strong>, l’<strong>interférence</strong> et la <strong>superposition</strong> pour certains types de problèmes seulement.</p></li>
-<li><p><em><strong>Mythe :</strong> Ils peuvent résoudre le problème du voyageur de commerce (TSP) rapidement.</em><br>
-<strong>Réalité :</strong> <strong>Non</strong>, probablement pas.</p></li>
-<li><p><em><strong>Affirmation :</strong> Ils vont résoudre le changement climatique.</em><br>
-<strong>Réalité :</strong> <em>Peut-être</em> en aidant à concevoir des matériaux plus durables, mais rien de garanti.</p></li>
-<li><p><em><strong>Affirmation :</strong> Des ordinateurs à millions de qubits sont imminents.</em><br>
-<strong>Réalité :</strong> Progrès réels, mais défis d’ingénierie énormes (correction d’erreurs).</p></li>
+<li>Implémentation physique des <strong>qubits</strong></li>
+<li>Contrôle de l’<strong>évolution unitaire</strong></li>
+<li>Préparation de l’<strong>état initial</strong></li>
+<li><strong>Mesure</strong> de l’état final</li>
+<li>Isolation presque totale de l’environnement</li>
+<li>Temps de décohérence <strong>très longs</strong></li>
+<li>Ensemble universel de <strong>portes quantiques</strong></li>
+<li>Capacité d’<strong>intrication</strong></li>
 </ul>
-<hr>
-</section>
-<section id="technologies-et-défis" class="level1">
-<h1>Technologies et défis</h1>
-<section id="ère-nisq-noisy-intermediatescale-quantum" class="level2">
-<h2 class="anchored" data-anchor-id="ère-nisq-noisy-intermediatescale-quantum">Ère NISQ (Noisy Intermediate‑Scale Quantum)</h2>
-<ul>
-<li>Dispositifs avec ~100 qubits, <strong>très bruités</strong></li>
-<li>Incapables d’exécuter Shor, mais potentiellement utiles pour certains problèmes</li>
-</ul>
-</section>
-<section id="défis-pour-le-passage-à-léchelle" class="level2">
-<h2 class="anchored" data-anchor-id="défis-pour-le-passage-à-léchelle">Défis pour le passage à l’échelle</h2>
-<ul>
-<li>Rendre les <strong>qubits</strong> plus fiables</li>
-<li><strong>Correction d’erreurs quantique</strong> (<em>quantum error correction</em>) indispensable</li>
-<li>Objectif : <strong>ordinateur tolérant aux pannes</strong> (<em>fault‑tolerant</em>)</li>
-<li>Progrès récents : codes correcteurs efficaces, démonstrations avec 101 qubits physiques</li>
-</ul>
-</section>
-<section id="technologies-de-qubits" class="level2">
-<h2 class="anchored" data-anchor-id="technologies-de-qubits">Technologies de qubits</h2>
-<ul>
-<li>Courant persistant dans un circuit supraconducteur</li>
-<li>Polarisation du photon</li>
-<li>Champ magnétique de l’électron</li>
-<li>État interne de l’atome</li>
-</ul>
-</section>
-<section id="suprématie-quantique" class="level2">
-<h2 class="anchored" data-anchor-id="suprématie-quantique">Suprématie quantique</h2>
-<ul>
-<li><strong>2019</strong> : Google <strong>Sycamore</strong> (53 qubits) accomplit une tâche hors de portée des supercalculateurs classiques en un temps raisonnable</li>
-<li>Mais les algorithmes classiques progressent : en 2021, reproduction des résultats de Google avec 512 GPU en 15h (réseaux de tenseurs)</li>
-</ul>
+<section id="volume-quantique-v_q" class="level2">
+<h2 class="anchored" data-anchor-id="volume-quantique-v_q">Volume quantique <span class="math inline">\(V_Q\)</span></h2>
+<p>Métrique mesurant capacité + taux d’erreur d’un ordinateur quantique :</p>
+<p><span class="math display">\[\tilde{V}_Q = \min[N,\, d(N)]^2\]</span></p>
+<p>où <span class="math inline">\(N\)</span> = nombre de qubits, <span class="math inline">\(d\)</span> = profondeur du circuit.</p>
 <hr>
 </section>
 </section>
-<section id="algorithmes-quantiques" class="level1">
-<h1>Algorithmes quantiques</h1>
-<section id="catégories" class="level2">
-<h2 class="anchored" data-anchor-id="catégories">Catégories</h2>
+<section id="à-retenir-absolument" class="level1">
+<h1>🔑 À retenir absolument</h1>
 <ul>
-<li><strong>Accélérations exponentielles</strong> pour problèmes structurés
-<ul>
-<li>Factorisation (Shor)</li>
-<li>Problème du sous‑groupe caché (<em>Hidden Subgroup Problem</em>)</li>
-<li>Simulation de systèmes quantiques (chimie, physique)</li>
-</ul></li>
-<li><strong>Accélérations polynomiales</strong> pour recherche non structurée
-<ul>
-<li>Algorithme de Grover</li>
-</ul></li>
-</ul>
-</section>
-<section id="algorithmes-pour-lère-nisq" class="level2">
-<h2 class="anchored" data-anchor-id="algorithmes-pour-lère-nisq">Algorithmes pour l’ère NISQ</h2>
-<ul>
-<li><strong>Eigensolvers variationnels</strong> (VQE)</li>
-<li><strong>Algorithmes hybrides classique‑quantique</strong></li>
-</ul>
-</section>
-<section id="quantum-machine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="quantum-machine-learning">Quantum Machine Learning</h2>
-<ul>
-<li>Solveurs de systèmes linéaires, SDP, optimisation convexe</li>
-<li>Réseaux de neurones quantiques</li>
-<li>Systèmes de recommandation</li>
-</ul>
-<section id="exemple-systèmes-de-recommandation" class="level3">
-<h3 class="anchored" data-anchor-id="exemple-systèmes-de-recommandation">Exemple : systèmes de recommandation</h3>
-<ul>
-<li>Jusqu’en 2016 : temps <span class="math inline">\(\mathcal{O}(\text{poly}(mn))\)</span></li>
-<li>2016 (Kerenidis &amp; Prakash) : algorithme <strong>quantique</strong> en <span class="math inline">\(\mathcal{O}(\text{poly}\log(mn))\)</span></li>
-<li>2018 (Ewin Tang) : algorithme <strong>classique</strong> inspiré du quantique, même complexité</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>Même en classique, penser quantique apporte des idées nouvelles.</strong></p>
-</blockquote>
-</section>
-</section>
-<section id="optimiseurs-hybrides-quantiquesclassiques" class="level2">
-<h2 class="anchored" data-anchor-id="optimiseurs-hybrides-quantiquesclassiques">Optimiseurs hybrides quantiques/classiques</h2>
-<pre class="cetz"><code>import cetz.draw: *
-
-canvas({
-  let qpu = rect((0,0), (3,1.5), fill: rgb(&quot;#3a7bd5&quot;))
-  let opt = rect((5,0), (8,1.5), fill: rgb(&quot;#e55&quot;))
-  content(qpu.center, text(size: 10pt, &quot;Processeur Quantique&quot;))
-  content(opt.center, text(size: 10pt, &quot;Optimiseur Classique&quot;))
-  line((qpu.right, qpu.center.y), (opt.left, opt.center.y), arrow: (end: &quot;&gt;&quot;), label: &quot;mesure&quot;)
-  line((opt.left, opt.center.y-0.2), (qpu.right, qpu.center.y-0.2), arrow: (end: &quot;&gt;&quot;), label: &quot;ajustement&quot;)
-})</code></pre>
-<hr>
-</section>
-</section>
-<section id="connexions-interdisciplinaires" class="level1">
-<h1>Connexions interdisciplinaires</h1>
-<p>L’informatique quantique relie :</p>
-<ul>
-<li><strong>Mathématiques</strong> : algèbres d’opérateurs, théorie des représentations, géométrie algébrique, théorie des nombres, statistiques</li>
-<li><strong>Physique</strong> : matière condensée, gravité quantique, théorie des champs, théorie des cordes</li>
-<li><strong>Chimie</strong> : simulations de chimie quantique, encodage fermionique, dynamique chimique</li>
-<li><strong>Ingénierie</strong> : distribution de clés, réseaux quantiques, capteurs quantiques, théorie de l’information</li>
-<li><strong>Informatique</strong> : théorie de la complexité, cryptographie, algorithmes, optimisation, machine learning</li>
-</ul>
-<section id="exemple-paradoxe-du-mur-de-feu-des-trous-noirs" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-paradoxe-du-mur-de-feu-des-trous-noirs">Exemple : paradoxe du mur de feu des trous noirs</h2>
-<ul>
-<li>Problème d’information quantique</li>
-<li>Résolutions possibles impliquent la cryptographie quantique</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="chronologie-des-révolutions-quantiques" class="level1">
-<h1>Chronologie des révolutions quantiques</h1>
-<pre class="cetz"><code>import cetz.draw: *
-
-canvas({
-  line((0,0), (12,0))
-  let events = (
-    (1,  &quot;1930: Première révolution quantique&quot;),
-    (4,  &quot;1980: Naissance de la science\nde l&#39;information quantique&quot;),
-    (7,  &quot;2007: Premier qubit \&quot;pas si mauvais\&quot; à Yale&quot;),
-    (9,  &quot;2020: Ère NISQ&quot;),
-    (11, &quot;2030: Informatique quantique\ntolérante aux pannes&quot;)
-  )
-  for (x, label) in events {
-    line((x,-0.1), (x,0.1))
-    content((x,-0.3), text(size: 7pt, label), anchor: &quot;north&quot;)
-  }
-})</code></pre>
-<hr>
-</section>
-<section id="pour-approfondir" class="level1">
-<h1>Pour approfondir</h1>
-<ul>
-<li><strong>Nielsen &amp; Chuang</strong> — <em>Quantum Computation and Quantum Information</em></li>
-<li><strong>Renes</strong> — <em>Quantum Information Theory</em></li>
-<li><strong>Yanofsky &amp; Mannucci</strong> — <em>Quantum Computing for Computer Scientists</em></li>
-<li><strong>Scherer</strong> — <em>Mathematics of Quantum Computing</em></li>
+<li><span class="math inline">\(|\alpha|^2 + |\beta|^2 = 1\)</span> — toujours !</li>
+<li>La mesure <strong>détruit</strong> la superposition (Born Rule)</li>
+<li><span class="math inline">\(H^2 = I\)</span> — Hadamard est sa propre inverse</li>
+<li><strong>Intrication</strong> ≠ corrélation classique</li>
+<li><strong>Décohérence</strong> = ennemi numéro 1 du quantum computing</li>
+<li>Mesures intermédiaires <strong>tuent</strong> l’interférence</li>
+<li><span class="math inline">\(n\)</span> qubits → espace de <span class="math inline">\(2^n\)</span> dimensions</li>
 </ul>
 
 

@@ -4,182 +4,576 @@
     "href": "ch1c.html",
     "title": "Informatique Quantique",
     "section": "",
-    "text": "Taras Holotyak — 14X060"
+    "text": "Taras Holotyak — 14X060",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#quest-ce-que-linformatique-quantique",
     "href": "ch1c.html#quest-ce-que-linformatique-quantique",
     "title": "Informatique Quantique",
     "section": "Qu’est-ce que l’informatique quantique ?",
-    "text": "Qu’est-ce que l’informatique quantique ?\n\n“…trying to find a computer simulation of physics seems to me to be an excellent program to follow out. … the real use of it would be with quantum mechanics. … Nature isn’t classical … and if you want to make a simulation of Nature, you’d better make it quantum mechanical, and by golly it’s a wonderful problem, because it doesn’t look so easy.”\n— Richard Feynman\n\n\n“The theory of computation has traditionally been studied almost entirely in the abstract, as a topic in pure mathematics. This is to miss the point of it. Computers are physical objects, and computations are physical processes. What computers can or cannot compute is determined by the laws of physics alone, and not by pure mathematics.”\n— David Deutsch\n\nDéfinition : L’informatique quantique est le traitement de l’information (et plus généralement le traitement de données) basé sur les principes de la mécanique quantique, plutôt que sur la physique classique.\nLa mécanique quantique est une description de la nature à son niveau le plus fondamental :\n\nFormulée au début du XX\\(^e\\) siècle pour expliquer le comportement des particules subatomiques\nLa mécanique quantique et ses spécialisations (théorie quantique des champs, chromodynamique quantique, etc.) ont connu un succès spectaculaire dans l’explication des phénomènes physiques microscopiques"
+    "text": "Qu’est-ce que l’informatique quantique ?\n\n“…trying to find a computer simulation of physics seems to me to be an excellent program to follow out. … the real use of it would be with quantum mechanics. … Nature isn’t classical … and if you want to make a simulation of Nature, you’d better make it quantum mechanical, and by golly it’s a wonderful problem, because it doesn’t look so easy.”\n— Richard Feynman\n\n\n“The theory of computation has traditionally been studied almost entirely in the abstract, as a topic in pure mathematics. This is to miss the point of it. Computers are physical objects, and computations are physical processes. What computers can or cannot compute is determined by the laws of physics alone, and not by pure mathematics.”\n— David Deutsch\n\nDéfinition : L’informatique quantique est le traitement de l’information (et plus généralement le traitement de données) basé sur les principes de la mécanique quantique, plutôt que sur la physique classique.\nLa mécanique quantique est une description de la nature à son niveau le plus fondamental :\n\nFormulée au début du XX\\(^e\\) siècle pour expliquer le comportement des particules subatomiques\nLa mécanique quantique et ses spécialisations (théorie quantique des champs, chromodynamique quantique, etc.) ont connu un succès spectaculaire dans l’explication des phénomènes physiques microscopiques",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#pourquoi-étudier-linformatique-quantique",
     "href": "ch1c.html#pourquoi-étudier-linformatique-quantique",
     "title": "Informatique Quantique",
     "section": "Pourquoi étudier l’informatique quantique ?",
-    "text": "Pourquoi étudier l’informatique quantique ?\n\nEn informatique en particulier\n\nDéveloppement de logiciels quantiques\nConception d’algorithmes quantiques\nMachine learning quantique\nArchitecture quantique et conception de compilateurs\nRecherche en théorie de l’information quantique\nDéveloppement de systèmes de communication quantique\nDéveloppement de systèmes de sécurité quantique"
+    "text": "Pourquoi étudier l’informatique quantique ?\n\nEn informatique en particulier\n\nDéveloppement de logiciels quantiques\nConception d’algorithmes quantiques\nMachine learning quantique\nArchitecture quantique et conception de compilateurs\nRecherche en théorie de l’information quantique\nDéveloppement de systèmes de communication quantique\nDéveloppement de systèmes de sécurité quantique",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#le-problème-de-la-simulation-classique",
     "href": "ch1c.html#le-problème-de-la-simulation-classique",
     "title": "Informatique Quantique",
     "section": "Le problème de la simulation classique",
-    "text": "Le problème de la simulation classique\nAprès près d’un siècle d’étude, les meilleures méthodes classiques pour prédire le comportement de systèmes quantiques généraux nécessitent des ressources exponentielles :\n\nL’état de \\(N\\) particules nécessite au moins \\(2^N\\) nombres pour être décrit\n\n\\[|\\psi\\rangle = \\begin{pmatrix} \\alpha_1 \\\\ \\vdots \\\\ \\alpha_{2^N} \\end{pmatrix} \\in \\mathbb{C}^{2^N}\\]\n\nPour \\(N \\sim 300\\) (le nombre de particules dans un seul atome d’uranium) :\n\n\\[2^N \\gg \\text{nombre d'atomes dans l'univers observable} \\approx 10^{82}\\]\n\nLa nature semble effectuer des quantités extravagantes de calcul “en coulisse” !"
+    "text": "Le problème de la simulation classique\nAprès près d’un siècle d’étude, les meilleures méthodes classiques pour prédire le comportement de systèmes quantiques généraux nécessitent des ressources exponentielles :\n\nL’état de \\(N\\) particules nécessite au moins \\(2^N\\) nombres pour être décrit\n\n\\[|\\psi\\rangle = \\begin{pmatrix} \\alpha_1 \\\\ \\vdots \\\\ \\alpha_{2^N} \\end{pmatrix} \\in \\mathbb{C}^{2^N}\\]\n\nPour \\(N \\sim 300\\) (le nombre de particules dans un seul atome d’uranium) :\n\n\\[2^N \\gg \\text{nombre d'atomes dans l'univers observable} \\approx 10^{82}\\]\n\nLa nature semble effectuer des quantités extravagantes de calcul “en coulisse” !",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#comment-les-physiciens-font-ils-face-à-ce-problème",
     "href": "ch1c.html#comment-les-physiciens-font-ils-face-à-ce-problème",
     "title": "Informatique Quantique",
     "section": "Comment les physiciens font-ils face à ce problème ?",
-    "text": "Comment les physiciens font-ils face à ce problème ?\n\nPlus de 100 ans d’approximations ingénieuses — ansatz de Bethe, diagrammes de Feynman, théorie des perturbations, approximations de champ moyen…\nSimulations numériques — théorie de la fonctionnelle de la densité (DFT), Quantum Markov Chain Monte Carlo…\nÉtude de systèmes qui se prêtent aux approches 1 et 2 — systèmes quasi-classiques, systèmes à particules faiblement interagissantes\n\n\nHeureusement, la plupart des systèmes étudiés jusqu’ici tombent dans ces catégories !\nMais simuler la physique quantique générale reste une tâche difficile…"
+    "text": "Comment les physiciens font-ils face à ce problème ?\n\nPlus de 100 ans d’approximations ingénieuses — ansatz de Bethe, diagrammes de Feynman, théorie des perturbations, approximations de champ moyen…\nSimulations numériques — théorie de la fonctionnelle de la densité (DFT), Quantum Markov Chain Monte Carlo…\nÉtude de systèmes qui se prêtent aux approches 1 et 2 — systèmes quasi-classiques, systèmes à particules faiblement interagissantes\n\n\nHeureusement, la plupart des systèmes étudiés jusqu’ici tombent dans ces catégories !\nMais simuler la physique quantique générale reste une tâche difficile…",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#la-question-de-feynman-1981",
     "href": "ch1c.html#la-question-de-feynman-1981",
     "title": "Informatique Quantique",
     "section": "La question de Feynman (1981)",
-    "text": "La question de Feynman (1981)\nEn 1981, Richard Feynman pose la question :\n\n“Can probabilistic computers simulate quantum mechanics?”\n\nSa conclusion : NON.\n\n“…Nature isn’t classical, damnit, and if you want to make a simulation of nature, you’d better make it quantum mechanical. By golly, it’s a wonderful problem, because it doesn’t look so easy.”\n\nFeynman (avec David Deutsch, Paul Benioff et Youri Manin) développe alors l’idée d’un modèle de calcul fondamentalement basé sur la mécanique quantique."
+    "text": "La question de Feynman (1981)\nEn 1981, Richard Feynman pose la question :\n\n“Can probabilistic computers simulate quantum mechanics?”\n\nSa conclusion : NON.\n\n“…Nature isn’t classical, damnit, and if you want to make a simulation of nature, you’d better make it quantum mechanical. By golly, it’s a wonderful problem, because it doesn’t look so easy.”\n\nFeynman (avec David Deutsch, Paul Benioff et Youri Manin) développe alors l’idée d’un modèle de calcul fondamentalement basé sur la mécanique quantique.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#motivation-originelle",
     "href": "ch1c.html#motivation-originelle",
     "title": "Informatique Quantique",
     "section": "Motivation originelle",
-    "text": "Motivation originelle\nLa motivation première de Feynman est la plus évidente : simuler des systèmes quantiques (presque tautologique !). Cette idée était radicale et n’a pas été appréciée pendant de nombreuses années."
+    "text": "Motivation originelle\nLa motivation première de Feynman est la plus évidente : simuler des systèmes quantiques (presque tautologique !). Cette idée était radicale et n’a pas été appréciée pendant de nombreuses années.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#chronologie-des-avancées-théoriques",
     "href": "ch1c.html#chronologie-des-avancées-théoriques",
     "title": "Informatique Quantique",
     "section": "Chronologie des avancées théoriques",
-    "text": "Chronologie des avancées théoriques\n\nAnnées 1980 — David Deutsch trouve un exemple de problème (non physique) soluble plus rapidement sur un ordinateur quantique que sur tout ordinateur classique (d’un facteur constant)\n1992 — Bernstein & Vazirani, puis Dan Simons, trouvent des exemples de problèmes solubles sur ordinateur quantique de manière super-polynomialement plus rapide que classiquement\n1994 — Peter Shor généralise l’idée de Simons pour résoudre efficacement le problème suivant :\n\n\nFactorisation entière : Étant donné un entier \\(N &gt; 0\\), calculer sa décomposition en facteurs premiers.\nExemple : \\(P = 17449\\), \\(Q = 34253\\), \\(P \\times Q = 597680597\\)\n\n\nImpact sur la cryptographie\nLa sécurité du cryptosystème RSA (le chiffrement à clé publique le plus déployé sur internet) repose sur l’hypothèse que la factorisation des entiers est difficile — ce que l’algorithme de Shor remet fondamentalement en cause."
+    "text": "Chronologie des avancées théoriques\n\nAnnées 1980 — David Deutsch trouve un exemple de problème (non physique) soluble plus rapidement sur un ordinateur quantique que sur tout ordinateur classique (d’un facteur constant)\n1992 — Bernstein & Vazirani, puis Dan Simons, trouvent des exemples de problèmes solubles sur ordinateur quantique de manière super-polynomialement plus rapide que classiquement\n1994 — Peter Shor généralise l’idée de Simons pour résoudre efficacement le problème suivant :\n\n\nFactorisation entière : Étant donné un entier \\(N &gt; 0\\), calculer sa décomposition en facteurs premiers.\nExemple : \\(P = 17449\\), \\(Q = 34253\\), \\(P \\times Q = 597680597\\)\n\n\nImpact sur la cryptographie\nLa sécurité du cryptosystème RSA (le chiffrement à clé publique le plus déployé sur internet) repose sur l’hypothèse que la factorisation des entiers est difficile — ce que l’algorithme de Shor remet fondamentalement en cause.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#le-carrefour-post-shor",
     "href": "ch1c.html#le-carrefour-post-shor",
     "title": "Informatique Quantique",
     "section": "Le carrefour post-Shor",
-    "text": "Le carrefour post-Shor\nDepuis l’algorithme de Shor, physiciens et informaticiens font face à trois options :\n\nLa mécanique quantique est fausse\nIl existe un algorithme classique rapide pour la factorisation\nIl doit exister un modèle de calcul fondamentalement plus puissant que les ordinateurs classiques"
+    "text": "Le carrefour post-Shor\nDepuis l’algorithme de Shor, physiciens et informaticiens font face à trois options :\n\nLa mécanique quantique est fausse\nIl existe un algorithme classique rapide pour la factorisation\nIl doit exister un modèle de calcul fondamentalement plus puissant que les ordinateurs classiques",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#mythe-n1",
     "href": "ch1c.html#mythe-n1",
     "title": "Informatique Quantique",
     "section": "Mythe n°1",
-    "text": "Mythe n°1\n\nMythe : Les ordinateurs quantiques résolvent les problèmes en essayant toutes les possibilités simultanément.\n\nFAUX.\n\nRéalité : Les ordinateurs quantiques peuvent résoudre certains types de problèmes plus rapidement en exploitant soigneusement des effets quantiques tels que l’enchevêtrement (entanglement), l’interférence et la superposition."
+    "text": "Mythe n°1\n\nMythe : Les ordinateurs quantiques résolvent les problèmes en essayant toutes les possibilités simultanément.\n\nFAUX.\n\nRéalité : Les ordinateurs quantiques peuvent résoudre certains types de problèmes plus rapidement en exploitant soigneusement des effets quantiques tels que l’enchevêtrement (entanglement), l’interférence et la superposition.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#mythe-n2",
     "href": "ch1c.html#mythe-n2",
     "title": "Informatique Quantique",
     "section": "Mythe n°2",
-    "text": "Mythe n°2\n\nMythe : Les ordinateurs quantiques peuvent résoudre le problème du voyageur de commerce (Traveling Salesman Problem, TSP) rapidement.\n\nFAUX.\n\nRéalité : Les ordinateurs quantiques ne peuvent probablement pas résoudre le TSP rapidement."
+    "text": "Mythe n°2\n\nMythe : Les ordinateurs quantiques peuvent résoudre le problème du voyageur de commerce (Traveling Salesman Problem, TSP) rapidement.\n\nFAUX.\n\nRéalité : Les ordinateurs quantiques ne peuvent probablement pas résoudre le TSP rapidement.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#mythe-n3",
     "href": "ch1c.html#mythe-n3",
     "title": "Informatique Quantique",
     "section": "Mythe n°3",
-    "text": "Mythe n°3\n\nAffirmation : Les ordinateurs quantiques vont résoudre le changement climatique.\n\nINCERTAIN.\n\nRéalité : Les ordinateurs quantiques pourraient résoudre des problèmes difficiles de chimie/physique qui pourraient être liés à la conception de matériaux plus durables, de batteries, de nouvelles technologies — mais rien n’est garanti."
+    "text": "Mythe n°3\n\nAffirmation : Les ordinateurs quantiques vont résoudre le changement climatique.\n\nINCERTAIN.\n\nRéalité : Les ordinateurs quantiques pourraient résoudre des problèmes difficiles de chimie/physique qui pourraient être liés à la conception de matériaux plus durables, de batteries, de nouvelles technologies — mais rien n’est garanti.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#mythe-n4",
     "href": "ch1c.html#mythe-n4",
     "title": "Informatique Quantique",
     "section": "Mythe n°4",
-    "text": "Mythe n°4\n\nAffirmation : Des ordinateurs quantiques à grande échelle avec des millions de qubits sont juste au coin de la rue.\n\nÀ NUANCER.\n\nCe qui est réellement en cours (période actuelle)\n\nIngénierie — des ordinateurs quantiques de plus en plus sophistiqués sont construits, avec plusieurs centaines de qubits contrôlables\nDéveloppements théoriques — nouveaux algorithmes, nouveaux protocoles cryptographiques, nouvelles compréhensions de la comparaison quantique/classique\nConnexions profondes avec d’autres sciences — physique de la matière condensée, gravité quantique, science des matériaux, chimie, informatique, mathématiques pures"
+    "text": "Mythe n°4\n\nAffirmation : Des ordinateurs quantiques à grande échelle avec des millions de qubits sont juste au coin de la rue.\n\nÀ NUANCER.\n\nCe qui est réellement en cours (période actuelle)\n\nIngénierie — des ordinateurs quantiques de plus en plus sophistiqués sont construits, avec plusieurs centaines de qubits contrôlables\nDéveloppements théoriques — nouveaux algorithmes, nouveaux protocoles cryptographiques, nouvelles compréhensions de la comparaison quantique/classique\nConnexions profondes avec d’autres sciences — physique de la matière condensée, gravité quantique, science des matériaux, chimie, informatique, mathématiques pures",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#lère-nisq",
     "href": "ch1c.html#lère-nisq",
     "title": "Informatique Quantique",
     "section": "L’ère NISQ",
-    "text": "L’ère NISQ\nJusqu’en 2017 environ, la plupart des dispositifs d’informatique quantique avaient ~10 qubits. Depuis, une avalanche de ressources a été investie dans les efforts d’ingénierie.\nNISQ = Noisy Intermediate-Scale Quantum\n\nDispositifs bruités avec ~100 qubits\nProblème majeur : les dispositifs sont extrêmement bruités !\nNon capables d’exécuter l’algorithme de Shor\nMais potentiellement capables de résoudre des problèmes intéressants et difficiles"
+    "text": "L’ère NISQ\nJusqu’en 2017 environ, la plupart des dispositifs d’informatique quantique avaient ~10 qubits. Depuis, une avalanche de ressources a été investie dans les efforts d’ingénierie.\nNISQ = Noisy Intermediate-Scale Quantum\n\nDispositifs bruités avec ~100 qubits\nProblème majeur : les dispositifs sont extrêmement bruités !\nNon capables d’exécuter l’algorithme de Shor\nMais potentiellement capables de résoudre des problèmes intéressants et difficiles",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#les-défis-techniques",
     "href": "ch1c.html#les-défis-techniques",
     "title": "Informatique Quantique",
     "section": "Les défis techniques",
-    "text": "Les défis techniques\nPour continuer à faire croître les ordinateurs quantiques, il faut rendre les qubits plus fiables :\n\nLes améliorations matérielles seules ne suffisent pas\nIl faut la correction d’erreurs quantique (quantum error correction) — une méthode pour gérer le bruit et les erreurs dans les systèmes quantiques\nPour obtenir un ordinateur quantique tolérant aux pannes (fault-tolerant QC), il faut corriger les erreurs plus vite qu’elles ne se produisent\nCes dernières années : percées incroyables dans la technologie de correction d’erreurs"
+    "text": "Les défis techniques\nPour continuer à faire croître les ordinateurs quantiques, il faut rendre les qubits plus fiables :\n\nLes améliorations matérielles seules ne suffisent pas\nIl faut la correction d’erreurs quantique (quantum error correction) — une méthode pour gérer le bruit et les erreurs dans les systèmes quantiques\nPour obtenir un ordinateur quantique tolérant aux pannes (fault-tolerant QC), il faut corriger les erreurs plus vite qu’elles ne se produisent\nCes dernières années : percées incroyables dans la technologie de correction d’erreurs",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#les-technologies-de-qubits",
     "href": "ch1c.html#les-technologies-de-qubits",
     "title": "Informatique Quantique",
     "section": "Les technologies de qubits",
-    "text": "Les technologies de qubits\nIl existe plusieurs façons physiques d’implémenter un qubit :\n\nCourant persistant dans un circuit supraconducteur\nPolarisation du photon\nChamp magnétique de l’électron\nÉtat interne de l’atome"
+    "text": "Les technologies de qubits\nIl existe plusieurs façons physiques d’implémenter un qubit :\n\nCourant persistant dans un circuit supraconducteur\nPolarisation du photon\nChamp magnétique de l’électron\nÉtat interne de l’atome",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#informatique-quantique-supraconductrice",
     "href": "ch1c.html#informatique-quantique-supraconductrice",
     "title": "Informatique Quantique",
     "section": "Informatique quantique supraconductrice",
-    "text": "Informatique quantique supraconductrice\n\nLes qubits sont des boucles supraconductrices de fils sur une puce en silicium\nPlateforme de choix pour Google, IBM et de nombreux autres\nExpérience de correction d’erreurs impressionnante démontrée avec 101 qubits physiques\nLe taux d’erreur effectif diminue à chaque fois que la taille du code augmente ✓"
+    "text": "Informatique quantique supraconductrice\n\nLes qubits sont des boucles supraconductrices de fils sur une puce en silicium\nPlateforme de choix pour Google, IBM et de nombreux autres\nExpérience de correction d’erreurs impressionnante démontrée avec 101 qubits physiques\nLe taux d’erreur effectif diminue à chaque fois que la taille du code augmente ✓",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#résumé-des-efforts-matériels",
     "href": "ch1c.html#résumé-des-efforts-matériels",
     "title": "Informatique Quantique",
     "section": "Résumé des efforts matériels",
-    "text": "Résumé des efforts matériels\n\nNous étions dans l’ère NISQ, mais nous semblons être à un point d’inflexion\nIl y a une “course aux qubits” en cours, mais le nombre de qubits n’est pas tout !\nLa montée en échelle (plus de qubits, de meilleurs qubits) est un défi d’ingénierie difficile, mais sans obstacles fondamentaux pour construire un QC avec \\(10^6\\) qubits sans bruit\nDes signes que la correction d’erreurs quantiques est faisable\n\n\nQuestion centrale : Comment les QC peuvent-ils être mis à l’échelle de manière tolérante aux pannes ?"
+    "text": "Résumé des efforts matériels\n\nNous étions dans l’ère NISQ, mais nous semblons être à un point d’inflexion\nIl y a une “course aux qubits” en cours, mais le nombre de qubits n’est pas tout !\nLa montée en échelle (plus de qubits, de meilleurs qubits) est un défi d’ingénierie difficile, mais sans obstacles fondamentaux pour construire un QC avec \\(10^6\\) qubits sans bruit\nDes signes que la correction d’erreurs quantiques est faisable\n\n\nQuestion centrale : Comment les QC peuvent-ils être mis à l’échelle de manière tolérante aux pannes ?",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#diagramme-de-la-trajectoire-nisq-fault-tolerant",
     "href": "ch1c.html#diagramme-de-la-trajectoire-nisq-fault-tolerant",
     "title": "Informatique Quantique",
     "section": "Diagramme de la trajectoire NISQ → Fault-Tolerant",
-    "text": "Diagramme de la trajectoire NISQ → Fault-Tolerant\ngraph LR\n    A[\"NISQ\\n~100 qubits\\nerreur ~10⁻²\"] --&gt; B[\"Seuil de\\ncorrection d'erreurs\\n~10⁻³\"]\n    B --&gt; C[\"Fault-Tolerant QC\\n10k–1M qubits\\nerreur &lt; 10⁻³\"]\n    style A fill:#3a7bd5,color:#fff\n    style B fill:#e55,color:#fff\n    style C fill:#2a9d2a,color:#fff"
+    "text": "Diagramme de la trajectoire NISQ → Fault-Tolerant\n\n\n\n\n\ngraph LR\n    A[\"NISQ\\n~100 qubits\\nerreur ~10⁻²\"] --&gt; B[\"Seuil de\\ncorrection d'erreurs\\n~10⁻³\"]\n    B --&gt; C[\"Fault-Tolerant QC\\n10k–1M qubits\\nerreur &lt; 10⁻³\"]\n    style A fill:#3a7bd5,color:#fff\n    style B fill:#e55,color:#fff\n    style C fill:#2a9d2a,color:#fff",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#la-suprématie-quantique",
     "href": "ch1c.html#la-suprématie-quantique",
     "title": "Informatique Quantique",
     "section": "La suprématie quantique",
-    "text": "La suprématie quantique\nEn automne 2019, Google annonce avoir atteint la suprématie quantique avec son processeur quantique Sycamore à 53 qubits.\nSuprématie quantique : démonstration convaincante dans le monde réel qu’un ordinateur quantique accomplit une tâche qu’il n’est pas faisable d’effectuer avec un ordinateur classique.\n\nSweet spot : 53 qubits juste au-delà de la capacité de simulation des clusters de calcul de Google en temps raisonnable (~\\(2^{53}\\) opérations)\n\n\nQuantique vs. classique\n\nD’autres groupes de recherche ont également annoncé des résultats de suprématie quantique\nPlus grand compétiteur des ordinateurs quantiques : les algorithmes classiques ingénieux\n\nEn novembre 2021, un groupe de l’Académie des sciences chinoise a utilisé des algorithmes de réseaux de tenseurs pour reproduire les statistiques de l’expérience de suprématie de Google avec 512 GPU en 15 heures"
+    "text": "La suprématie quantique\nEn automne 2019, Google annonce avoir atteint la suprématie quantique avec son processeur quantique Sycamore à 53 qubits.\nSuprématie quantique : démonstration convaincante dans le monde réel qu’un ordinateur quantique accomplit une tâche qu’il n’est pas faisable d’effectuer avec un ordinateur classique.\n\nSweet spot : 53 qubits juste au-delà de la capacité de simulation des clusters de calcul de Google en temps raisonnable (~\\(2^{53}\\) opérations)\n\n\nQuantique vs. classique\n\nD’autres groupes de recherche ont également annoncé des résultats de suprématie quantique\nPlus grand compétiteur des ordinateurs quantiques : les algorithmes classiques ingénieux\n\nEn novembre 2021, un groupe de l’Académie des sciences chinoise a utilisé des algorithmes de réseaux de tenseurs pour reproduire les statistiques de l’expérience de suprématie de Google avec 512 GPU en 15 heures",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#algorithmes-quantiques",
     "href": "ch1c.html#algorithmes-quantiques",
     "title": "Informatique Quantique",
     "section": "Algorithmes quantiques",
-    "text": "Algorithmes quantiques\n\nCatégories d’algorithmes quantiques\n\nAccélérations exponentielles pour les problèmes structurés et algébriques\n\nFactorisation (algorithme de Shor)\nProblème du sous-groupe caché (Hidden Subgroup Problem)\n\nAccélérations polynomiales pour les problèmes de recherche non structurés\n\nRecherche de Grover\n\nAccélérations exponentielles pour la simulation quantique\n\nSimulation de physique et chimie quantiques (le rêve de Feynman)\nProbablement l’application la plus importante des ordinateurs quantiques à ce jour !\n\n\n\n\nAlgorithmes pour les QC à court terme (NISQ)\n\nEigensolvers variationnels (Variational Eigensolvers)\nAlgorithmes hybrides classique-quantique\n\n\n\nQuantum Machine Learning\n\nSolveurs de systèmes linéaires / SDPs / optimisation convexe\nRéseaux de neurones quantiques\nSystèmes de recommandation\n…et plus encore"
+    "text": "Algorithmes quantiques\n\nCatégories d’algorithmes quantiques\n\nAccélérations exponentielles pour les problèmes structurés et algébriques\n\nFactorisation (algorithme de Shor)\nProblème du sous-groupe caché (Hidden Subgroup Problem)\n\nAccélérations polynomiales pour les problèmes de recherche non structurés\n\nRecherche de Grover\n\nAccélérations exponentielles pour la simulation quantique\n\nSimulation de physique et chimie quantiques (le rêve de Feynman)\nProbablement l’application la plus importante des ordinateurs quantiques à ce jour !\n\n\n\n\nAlgorithmes pour les QC à court terme (NISQ)\n\nEigensolvers variationnels (Variational Eigensolvers)\nAlgorithmes hybrides classique-quantique\n\n\n\nQuantum Machine Learning\n\nSolveurs de systèmes linéaires / SDPs / optimisation convexe\nRéseaux de neurones quantiques\nSystèmes de recommandation\n…et plus encore",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#optimiseurs-hybrides-quantiquesclassiques",
     "href": "ch1c.html#optimiseurs-hybrides-quantiquesclassiques",
     "title": "Informatique Quantique",
     "section": "Optimiseurs hybrides quantiques/classiques",
-    "text": "Optimiseurs hybrides quantiques/classiques\nEddie Farhi : “Try it and see if it works!”\ngraph LR\n    QP[\"Processeur\\nQuantique\"] -- \"mesure de la\\nfonction de coût\" --&gt; CO[\"Optimiseur\\nClassique\"]\n    CO -- \"ajuste le\\ncircuit quantique\" --&gt; QP\n    style QP fill:#3a7bd5,color:#fff\n    style CO fill:#e55,color:#fff\n\nOn ne s’attend pas à ce qu’un ordinateur quantique résolve les instances les pires (worst case) de problèmes NP-difficiles\nMais il pourrait trouver de meilleures solutions approchées, ou les trouver plus rapidement\nLes algorithmes d’optimisation classiques sont sophistiqués et affinés après des décennies de travail\nOn ne sait pas si les dispositifs NISQ peuvent faire mieux, mais on peut essayer et voir comment cela fonctionne"
+    "text": "Optimiseurs hybrides quantiques/classiques\nEddie Farhi : “Try it and see if it works!”\n\n\n\n\n\ngraph LR\n    QP[\"Processeur\\nQuantique\"] -- \"mesure de la\\nfonction de coût\" --&gt; CO[\"Optimiseur\\nClassique\"]\n    CO -- \"ajuste le\\ncircuit quantique\" --&gt; QP\n    style QP fill:#3a7bd5,color:#fff\n    style CO fill:#e55,color:#fff\n\n\n\n\n\n\n\nOn ne s’attend pas à ce qu’un ordinateur quantique résolve les instances les pires (worst case) de problèmes NP-difficiles\nMais il pourrait trouver de meilleures solutions approchées, ou les trouver plus rapidement\nLes algorithmes d’optimisation classiques sont sophistiqués et affinés après des décennies de travail\nOn ne sait pas si les dispositifs NISQ peuvent faire mieux, mais on peut essayer et voir comment cela fonctionne",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#algorithmes-classiques-inspirés-du-quantique",
     "href": "ch1c.html#algorithmes-classiques-inspirés-du-quantique",
     "title": "Informatique Quantique",
     "section": "Algorithmes classiques inspirés du quantique",
-    "text": "Algorithmes classiques inspirés du quantique\nUn exemple marquant dans la science des données : les systèmes de recommandation.\nSupposons \\(n\\) produits et un historique d’achats de \\(m\\) utilisateurs :\n\nJusqu’en 2016, seules des techniques en temps \\(\\mathcal{O}(\\text{poly}(mn))\\) étaient connues\nEn 2016, Iordanis Kerenidis et Anupam Prakash publient un algorithme quantique accomplissant cette tâche en temps \\(\\mathcal{O}(\\text{poly}\\log(mn))\\) — une accélération exponentielle\nEn 2018, Ewin Tang publie un algorithme classique inspiré de cet algorithme quantique, atteignant également le temps \\(\\mathcal{O}(\\text{poly}\\log(mn))\\)\n\n\nDonc, même dans un monde classique, il y a un intérêt à penser de manière quantique."
+    "text": "Algorithmes classiques inspirés du quantique\nUn exemple marquant dans la science des données : les systèmes de recommandation.\nSupposons \\(n\\) produits et un historique d’achats de \\(m\\) utilisateurs :\n\nJusqu’en 2016, seules des techniques en temps \\(\\mathcal{O}(\\text{poly}(mn))\\) étaient connues\nEn 2016, Iordanis Kerenidis et Anupam Prakash publient un algorithme quantique accomplissant cette tâche en temps \\(\\mathcal{O}(\\text{poly}\\log(mn))\\) — une accélération exponentielle\nEn 2018, Ewin Tang publie un algorithme classique inspiré de cet algorithme quantique, atteignant également le temps \\(\\mathcal{O}(\\text{poly}\\log(mn))\\)\n\n\nDonc, même dans un monde classique, il y a un intérêt à penser de manière quantique.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#connexions-avec-la-physique-fondamentale",
     "href": "ch1c.html#connexions-avec-la-physique-fondamentale",
     "title": "Informatique Quantique",
     "section": "Connexions avec la physique fondamentale",
-    "text": "Connexions avec la physique fondamentale\n\nLa clé d’une théorie de la gravité quantique pourrait être l’enchevêtrement quantique et les codes correcteurs d’erreurs quantiques\nLe “Paradoxe du Mur de Feu des Trous Noirs” (Blackhole Firewall Paradox) est un problème d’information quantique, et les résolutions possibles impliquent la cryptographie quantique"
+    "text": "Connexions avec la physique fondamentale\n\nLa clé d’une théorie de la gravité quantique pourrait être l’enchevêtrement quantique et les codes correcteurs d’erreurs quantiques\nLe “Paradoxe du Mur de Feu des Trous Noirs” (Blackhole Firewall Paradox) est un problème d’information quantique, et les résolutions possibles impliquent la cryptographie quantique",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#chronologie-des-révolutions-quantiques",
     "href": "ch1c.html#chronologie-des-révolutions-quantiques",
     "title": "Informatique Quantique",
     "section": "Chronologie des révolutions quantiques",
-    "text": "Chronologie des révolutions quantiques\ntimeline\n    title Histoire de l'informatique quantique\n    1930 : Première révolution quantique\n          : Compréhension de la mécanique quantique\n    1980 : Naissance de la science de l'information quantique\n          : Cadre théorique et expériences fondatrices\n          : Algorithmes, communication, métrologie\n    2007 : Premier qubit \"pas si mauvais\" à Yale\n    2020 : Ère NISQ\n          : Premières validations de la suprématie quantique\n          : Premières tentatives d'avantage quantique\n    2030 : Informatique quantique tolérante aux pannes\n          : Déploiement réel à grande échelle"
+    "text": "Chronologie des révolutions quantiques\n\n\n\n\n\ntimeline\n    title Histoire de l'informatique quantique\n    1930 : Première révolution quantique\n          : Compréhension de la mécanique quantique\n    1980 : Naissance de la science de l'information quantique\n          : Cadre théorique et expériences fondatrices\n          : Algorithmes, communication, métrologie\n    2007 : Premier qubit \"pas si mauvais\" à Yale\n    2020 : Ère NISQ\n          : Premières validations de la suprématie quantique\n          : Premières tentatives d'avantage quantique\n    2030 : Informatique quantique tolérante aux pannes\n          : Déploiement réel à grande échelle",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
   },
   {
     "objectID": "ch1c.html#le-paysage-interdisciplinaire",
     "href": "ch1c.html#le-paysage-interdisciplinaire",
     "title": "Informatique Quantique",
     "section": "Le paysage interdisciplinaire",
-    "text": "Le paysage interdisciplinaire\nL’informatique quantique est au carrefour de nombreuses disciplines :\ngraph TD\n    QC((\"&lt;b&gt;Informatique&lt;br&gt;Quantique&lt;/b&gt;\"))\n\n    QC --- Math[\"&lt;b&gt;Mathématiques&lt;/b&gt;&lt;br&gt;Algèbres d'opérateurs&lt;br&gt;Théorie des représentations&lt;br&gt;Géométrie algébrique&lt;br&gt;Théorie des nombres&lt;br&gt;Statistiques\"]\n    QC --- Phys[\"&lt;b&gt;Physique&lt;/b&gt;&lt;br&gt;Matière condensée&lt;br&gt;Gravité quantique&lt;br&gt;Théorie des champs&lt;br&gt;Théorie des cordes\"]\n    QC --- Chim[\"&lt;b&gt;Chimie&lt;/b&gt;&lt;br&gt;Simulations de chimie quantique&lt;br&gt;Encodage fermionique&lt;br&gt;Dynamique chimique\"]\n    QC --- Ing[\"&lt;b&gt;Ingénierie&lt;/b&gt;&lt;br&gt;Distribution de clés&lt;br&gt;Réseaux quantiques&lt;br&gt;Capteurs quantiques&lt;br&gt;Théorie de l'information\"]\n    QC --- CS[\"&lt;b&gt;Informatique&lt;/b&gt;&lt;br&gt;Théorie de la complexité&lt;br&gt;Cryptographie&lt;br&gt;Algorithmes&lt;br&gt;Optimisation&lt;br&gt;Machine learning\"]\n\n    style QC fill:#3a7bd5,color:#fff,font-size:16px\n    style Math fill:#f0f0f0\n    style Phys fill:#f0f0f0\n    style Chim fill:#f0f0f0\n    style Ing fill:#f0f0f0\n    style CS fill:#f0f0f0"
+    "text": "Le paysage interdisciplinaire\nL’informatique quantique est au carrefour de nombreuses disciplines :\n\n\n\n\n\ngraph TD\n    QC((\"&lt;b&gt;Informatique&lt;br&gt;Quantique&lt;/b&gt;\"))\n\n    QC --- Math[\"&lt;b&gt;Mathématiques&lt;/b&gt;&lt;br&gt;Algèbres d'opérateurs&lt;br&gt;Théorie des représentations&lt;br&gt;Géométrie algébrique&lt;br&gt;Théorie des nombres&lt;br&gt;Statistiques\"]\n    QC --- Phys[\"&lt;b&gt;Physique&lt;/b&gt;&lt;br&gt;Matière condensée&lt;br&gt;Gravité quantique&lt;br&gt;Théorie des champs&lt;br&gt;Théorie des cordes\"]\n    QC --- Chim[\"&lt;b&gt;Chimie&lt;/b&gt;&lt;br&gt;Simulations de chimie quantique&lt;br&gt;Encodage fermionique&lt;br&gt;Dynamique chimique\"]\n    QC --- Ing[\"&lt;b&gt;Ingénierie&lt;/b&gt;&lt;br&gt;Distribution de clés&lt;br&gt;Réseaux quantiques&lt;br&gt;Capteurs quantiques&lt;br&gt;Théorie de l'information\"]\n    QC --- CS[\"&lt;b&gt;Informatique&lt;/b&gt;&lt;br&gt;Théorie de la complexité&lt;br&gt;Cryptographie&lt;br&gt;Algorithmes&lt;br&gt;Optimisation&lt;br&gt;Machine learning\"]\n\n    style QC fill:#3a7bd5,color:#fff,font-size:16px\n    style Math fill:#f0f0f0\n    style Phys fill:#f0f0f0\n    style Chim fill:#f0f0f0\n    style Ing fill:#f0f0f0\n    style CS fill:#f0f0f0",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2.html",
+    "href": "ch2.html",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "L’informatique quantique est une généralisation de la théorie des probabilités classique où les probabilités peuvent être négatives, voire complexes.\n\n\n\nUn bit classique est un système avec deux états distincts \\(|0\\rangle\\) et \\(|1\\rangle\\), appelés états classiques ou états de base standard.\nUn qubit (bit quantique) peut se trouver dans une superposition des états classiques \\(|0\\rangle\\) et \\(|1\\rangle\\).\nMathématiquement, les états d’un qubit sont des combinaisons linéaires complexes de \\(|0\\rangle\\) et \\(|1\\rangle\\) :\n\\[\n|\\psi \\rangle = \\alpha |0\\rangle + \\beta |1\\rangle\n= \\alpha \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} + \\beta \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}\n= \\begin{pmatrix} \\alpha \\\\ \\beta \\end{pmatrix}\n\\]\noù \\(\\alpha, \\beta \\in \\mathbb{C}\\) sont des nombres complexes satisfaisant \\(|\\alpha|^2 + |\\beta|^2 = 1\\).\nAutrement dit, \\(|\\psi\\rangle\\) est un vecteur unitaire de dimension deux dans \\(\\mathbb{C}^2\\).\n\n\n\n\\(\\frac{1}{\\sqrt{2}} |0\\rangle + \\frac{1}{\\sqrt{2}} |1\\rangle\\)\n\\(\\frac{1}{\\sqrt{2}} |0\\rangle - \\frac{i}{\\sqrt{2}} |1\\rangle = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 \\\\ -i \\end{pmatrix}\\)\n\n\n\n\n\\(i|0\\rangle - \\frac{1}{2}|1\\rangle\\) ne satisfait pas la condition de normalisation.\n\n\n\nUn qubit dans l’état \\(\\alpha |0\\rangle + \\beta |1\\rangle\\) est souvent dit être à la fois \\(|0\\rangle\\) et \\(|1\\rangle\\). En réalité, \\(\\alpha\\) et \\(\\beta\\) sont comme des probabilités, mais elles peuvent être négatives ou complexes. On les appelle amplitudes des états \\(|0\\rangle\\) et \\(|1\\rangle\\).\n\n\n\n\n\n\n\n\npeuvent être dans deux états distincts, 0 et 1\npeuvent être mesurés complètement\nne sont pas modifiés par la mesure\npeuvent être copiés\npeuvent être effacés\n\n\n\n\n\npeuvent être dans l’état \\(|0\\rangle\\), \\(|1\\rangle\\) ou toute combinaison linéaire de ces deux états\nne peuvent être mesurés que partiellement, avec une probabilité donnée\nsont modifiés par la mesure\nne peuvent pas être copiés (théorème de non-clonage)\nne peuvent pas être effacés\n\n\n\n\n\n\nL’ajout de qubits augmente de façon exponentielle l’espace des états.\n\nPour doubler la puissance d’un ordinateur classique, on passe de 32 bits à 64 bits.\nPour doubler la puissance d’un ordinateur quantique, on passe de 32 qubits à 33 qubits.\n\nOn peut effectuer des opérations sur toutes les superpositions simultanément, comme un calcul massivement parallèle.\nUne opération mathématique sur \\(2^n\\) nombres encodés dans un ordinateur classique avec \\(n\\) bits nécessite \\(2^n\\) étapes ou processeurs parallèles.\nLa même opération sur \\(2^n\\) nombres encodés par \\(n\\) qubits ne prend qu’une seule étape.\nUn ordinateur 64 bits peut manipuler un nombre binaire de 64 bits à la fois.\nUn ordinateur de 64 qubits opère dans un espace de \\(2^{64}\\) dimensions, soit environ \\(16 \\times 10^{18}\\) nombres pour spécifier l’état du système quantique.\nCela rend les problèmes complexes beaucoup plus faciles à résoudre pour un ordinateur quantique.\n\n\n\n\nLe dual (conjugué hermitien) d’un vecteur colonne est un vecteur ligne appelé « bra » :\n\\[\n\\langle 0 | = \\begin{pmatrix} 1 & 0 \\end{pmatrix} \\qquad\n\\langle 1 | = \\begin{pmatrix} 0 & 1 \\end{pmatrix}\n\\]\n\\[\n|\\psi\\rangle = \\begin{pmatrix} \\alpha \\\\ \\beta \\end{pmatrix} = \\alpha |0\\rangle + \\beta |1\\rangle \\qquad\n\\langle \\psi | = \\begin{pmatrix} \\overline{\\alpha} & \\overline{\\beta} \\end{pmatrix} = \\overline{\\alpha} \\langle 0 | + \\overline{\\beta} \\langle 1 |\n\\]\noù \\(\\overline{\\alpha}, \\overline{\\beta}\\) sont les conjugués complexes de \\(\\alpha, \\beta\\).\n\n\nSoit \\(|\\psi \\rangle = \\alpha |0\\rangle +\\beta |1\\rangle\\) et \\(|\\theta \\rangle = \\gamma |0\\rangle +\\delta |1\\rangle\\). Leur produit scalaire est :\n\\[\n\\langle \\psi | \\theta \\rangle = \\begin{pmatrix} \\overline{\\alpha} & \\overline{\\beta} \\end{pmatrix} \\begin{pmatrix} \\gamma \\\\ \\delta \\end{pmatrix} = \\overline{\\alpha}\\gamma + \\overline{\\beta}\\delta\n\\]\nL’ordre est important : \\(\\langle \\theta | \\psi \\rangle = \\overline{\\gamma}\\alpha + \\overline{\\delta}\\beta = \\overline{\\langle \\psi | \\theta \\rangle}\\).\nPlus généralement, pour des vecteurs de dimension \\(d\\) :\n\\[\n\\begin{aligned}\n|\\psi \\rangle &= \\alpha_0|0\\rangle + \\alpha_1|1\\rangle + \\dots + \\alpha_{d-1}|d-1\\rangle \\\\\n|\\theta \\rangle &= \\beta_0|0\\rangle + \\beta_1|1\\rangle + \\dots + \\beta_{d-1}|d-1\\rangle\n\\end{aligned}\n\\]\nle produit scalaire est :\n\\[\n\\langle \\psi | \\theta \\rangle = \\overline{\\alpha}_0\\beta_0 + \\dots + \\overline{\\alpha}_{d-1}\\beta_{d-1}\n\\]\nLa notation de Dirac est très utile pour identifier rapidement scalaires, vecteurs lignes/colonnes et matrices dans des expressions complexes.\n\n\n\n\n\nSi le qubit 1 est dans l’état \\(|\\psi_1\\rangle\\) et le qubit 2 dans l’état \\(|\\psi_2\\rangle\\), alors l’état conjoint des deux qubits est :\n\\[\n|\\psi_1\\rangle \\otimes |\\psi_2\\rangle\n\\]\nC’est un vecteur unitaire de dimension quatre dans l’espace produit tensoriel \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\).\nLes états quantiques vivent dans un espace de Hilbert \\(\\mathcal{H}\\). Pour nous, les aspects importants sont :\n\nLes espaces de Hilbert de dimension finie sont isomorphes à \\(\\mathbb{C}^d\\) pour une certaine dimension \\(d\\).\nIl existe un produit scalaire entre deux vecteurs.\nOn peut former des produits tensoriels d’espaces de Hilbert.\n\nLa base pour deux qubits est :\n\\[\n|0\\rangle \\otimes |0\\rangle,\\; |0\\rangle \\otimes |1\\rangle,\\; |1\\rangle \\otimes |0\\rangle,\\; |1\\rangle \\otimes |1\\rangle\n\\]\nque l’on note simplement :\n\\[\n|0,0\\rangle,\\; |0,1\\rangle,\\; |1,0\\rangle,\\; |1,1\\rangle\n\\]\n\n\nSoient \\(A\\) et \\(B\\) des matrices de dimensions quelconques. Leur produit tensoriel \\(A \\otimes B\\) est défini par :\n\\[\nA \\otimes B = \\begin{pmatrix}\na_{11}B & a_{12}B & \\cdots \\\\\na_{21}B & a_{22}B & \\cdots \\\\\n\\vdots & \\vdots & \\ddots\n\\end{pmatrix}\n\\]\nExemple :\n\\[\n\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\otimes \\begin{pmatrix} e & f \\\\ g & h \\end{pmatrix}\n= \\begin{pmatrix}\na e & a f & b e & b f \\\\\na g & a h & b g & b h \\\\\nc e & c f & d e & d f \\\\\nc g & c h & d g & d h\n\\end{pmatrix}\n\\]\nEn général, si \\(A\\) est \\(n \\times m\\) et \\(B\\) est \\(n' \\times m'\\), alors \\(A \\otimes B\\) est \\(nn' \\times mm'\\).\nLe produit tensoriel est associatif : \\(A \\otimes (B \\otimes C) = (A \\otimes B) \\otimes C\\).\n\n\n\n\n\nTous les états de \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\) ne peuvent pas s’écrire comme \\(|\\psi_1\\rangle \\otimes |\\psi_2\\rangle\\) (états produits).\nUn exemple d’état intriqué est la paire EPR (Einstein-Podolsky-Rosen) ou paire de Bell :\n\\[\n|\\Phi \\rangle = \\frac{1}{\\sqrt{2}} \\left( |0,0\\rangle + |1,1\\rangle \\right)\n\\]\nL’intrication est un phénomène purement quantique : un qubit est intimement lié à un autre d’une manière que la physique classique ne peut expliquer.\n\n\n\nLorsqu’une paire (ou un groupe) de particules est générée, interagit ou partage une proximité spatiale, l’état quantique de chaque particule ne peut être décrit indépendamment de l’état des autres, même lorsque les particules sont séparées par une grande distance.\nUne paire intriquée est un système quantique unique dans une superposition d’états également possibles. L’état intriqué ne contient aucune information sur les particules individuelles, seulement qu’elles sont dans des états opposés.\nSi l’état de l’une est modifié, l’état de l’autre est instantanément ajusté pour être cohérent avec les règles de la mécanique quantique.\nSi une mesure est effectuée sur l’une, l’autre s’effondre automatiquement.\nL’intrication est une caractéristique essentielle de la mécanique quantique, absente de la mécanique classique.\nEinstein l’appelait « action fantomatique à distance ».\n\n\n\n\n\n\nLa décohérence quantique est la perte de la superposition due à l’interaction spontanée entre un système quantique et son environnement.\nElle peut être vue comme la perte d’information du système vers l’environnement.\n\nLa superposition et l’intrication sont des états extrêmement fragiles.\nPrévenir la décohérence reste le plus grand défi dans la construction d’ordinateurs quantiques.\n\n\n\n\n\nL’état d’un qubit ne peut pas être observé directement. Il doit être mesuré, ce qui donne un état classique \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec les probabilités :\n\\[\n\\Pr[\\text{observer } |0\\rangle] = |\\alpha|^2 \\qquad\n\\Pr[\\text{observer } |1\\rangle] = |\\beta|^2\n\\]\nComme les états sont de longueur unité, ces probabilités s’additionnent à 1. Cette formule est appelée règle de Born.\nAprès la mesure, le système devient classique. L’état du qubit s’effondre en \\(|0\\rangle\\) ou \\(|1\\rangle\\), et l’état précédent est perdu. En mécanique quantique, la mesure perturbe généralement le système.\nSi l’état s’effondre sur \\(|0\\rangle\\) et qu’on le mesure à nouveau, il reste dans l’état \\(|0\\rangle\\) avec probabilité 1. Idem pour \\(|1\\rangle\\).\nMesurer un système deux fois équivaut à le mesurer une seule fois.\n\n\n\n\nUne boîte avec deux états classiques :\n\nchat endormi : \\(|0\\rangle\\)\nchat réveillé : \\(|1\\rangle\\)\n\nEn mécanique quantique, la boîte peut être dans une superposition de chat endormi et réveillé tant qu’on ne l’ouvre pas (c’est-à-dire tant qu’on ne mesure pas).\nSupposons que la boîte démarre dans l’état \\(\\frac{1}{\\sqrt{3}} |0\\rangle - i \\frac{\\sqrt{2}}{\\sqrt{3}} |1\\rangle\\) et qu’on la mesure.\n\nAvec probabilité \\(\\left|\\frac{1}{\\sqrt{3}}\\right|^2 = \\frac{1}{3}\\), l’état s’effondre en \\(|0\\rangle\\) (chat endormi).\nAvec probabilité \\(\\left| - i \\frac{\\sqrt{2}}{\\sqrt{3}}\\right|^2 = \\frac{2}{3}\\), l’état s’effondre en \\(|1\\rangle\\) (chat réveillé).\n\n\n\n\n\nUne porte quantique (ou porte logique quantique) est un circuit quantique de base opérant sur des qubits.\nCe sont les briques élémentaires des circuits quantiques, comme les portes logiques classiques pour les circuits numériques conventionnels.\nEn raison de la condition de normalisation, toute opération \\(U\\) doit être unitaire : \\(UU^\\dagger = I\\).\nLe nombre de qubits en entrée et en sortie d’une porte doit être égal ; une porte agissant sur \\(n\\) qubits est représentée par une matrice unitaire \\(2^n \\times 2^n\\).\nContrairement à de nombreuses portes logiques classiques, les portes quantiques sont réversibles.\n\n\n\nL’inverse de \\(U\\) est son conjugué hermitien \\(U^\\dagger\\), dont l’élément \\((i,j)\\) est le conjugué complexe de l’élément \\((j,i)\\) de \\(U\\) : \\(U^\\dagger_{i,j} = \\overline{U}_{j,i}\\).\n\\(U\\) applique des vecteurs unitaires sur des vecteurs unitaires (états quantiques sur états quantiques).\nLes lignes de \\(U\\) forment une base orthonormée de \\(\\mathbb{C}^d\\), de même pour les colonnes.\n\\(U\\) préserve le produit scalaire : \\(\\langle \\psi | \\theta \\rangle = \\langle U\\psi | U\\theta \\rangle\\).\n\n\n\n\n\n\n\n\n\\[\nX = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}\n\\]\nAgissant sur un état pur, elle se comporte comme une porte NON classique :\n\n\\(X|0\\rangle = |1\\rangle\\)\n\\(X|1\\rangle = |0\\rangle\\)\n\n\n\n\nLa porte de Hadamard agit sur un seul qubit et correspond à la transformée de Hadamard, menant à la superposition.\n\\[\nH = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}\n\\]\nActions :\n\\[\n\\begin{aligned}\n|0\\rangle &\\rightarrow \\frac{1}{\\sqrt{2}} (|0\\rangle + |1\\rangle) = |+\\rangle \\\\\n|1\\rangle &\\rightarrow \\frac{1}{\\sqrt{2}} (|0\\rangle - |1\\rangle) = |-\\rangle \\\\\n|+\\rangle &\\rightarrow |0\\rangle \\\\\n|-\\rangle &\\rightarrow |1\\rangle\n\\end{aligned}\n\\]\nPropriétés remarquables :\n\nAprès application de \\(H\\) sur \\(|0\\rangle\\) ou \\(|1\\rangle\\), l’état du qubit est une superposition égale de \\(|0\\rangle\\) et \\(|1\\rangle\\). Si on mesure ensuite, on obtient \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec probabilité 1/2.\n\\(H\\) est sa propre inverse : \\(H^{-1} = H\\), donc \\(H^2 = I\\). Appliquer deux fois \\(H\\) ne change rien : c’est étonnant, car une opération randomisante appliquée à un état aléatoire produit un résultat déterministe.\nC’est l’une des portes les plus importantes en informatique quantique.\n\n\n\n\n\n\nPorte agissant sur deux qubits : qubit de contrôle et qubit cible.\n\\[\nCNOT = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0\n\\end{pmatrix}\n\\]\nAction sur les états de base :\n\n\\(|00\\rangle \\rightarrow |00\\rangle\\)\n\\(|01\\rangle \\rightarrow |01\\rangle\\)\n\\(|10\\rangle \\rightarrow |11\\rangle\\)\n\\(|11\\rangle \\rightarrow |10\\rangle\\)\nSi le qubit de contrôle est à 0, le qubit cible reste inchangé.\nSi le qubit de contrôle est à 1, le qubit cible est inversé (NOT).\n\nCette porte est équivalente à l’opération classique XOR : la sortie cible est le XOR des deux entrées.\n\n\n\n\n(Un tableau comparatif serait inséré ici.)\n\n\n\n\nL’application de plusieurs opérations unitaires à un qubit donne lieu à un arbre de « chemins » entre les états. Chaque chemin a une amplitude de transition associée (produit des amplitudes le long du chemin).\nAvant la mesure, l’amplitude de se retrouver dans l’état \\(|b\\rangle\\) est la somme des amplitudes de tous les chemins qui aboutissent à \\(|b\\rangle\\).\nComme les amplitudes peuvent être négatives ou complexes, les chemins peuvent interférer de manière constructive ou destructive.\nLes mesures intermédiaires empêchent l’interférence. En présence d’une mesure intermédiaire, seuls les chemins compatibles avec le résultat de mesure sont additionnés.\nConclusion : Les mesures intermédiaires détruisent les superpositions et empêchent l’interférence.\nEn physique classique, on additionne des probabilités (positives) ; en quantique, on additionne des amplitudes (pouvant être négatives). L’interférence est un exemple de « comportement quantique étrange ».\n\n\n\n\nUn circuit quantique est un modèle de calcul quantique dans lequel une computation est une séquence de portes quantiques agissant sur un registre de \\(n\\) qubits reliés par des « fils ». Le circuit a une largeur fixe correspondant au nombre de qubits traités.\n\n\nUn circuit simple utilisant deux qubits, une porte Hadamard et une porte CNOT, permet de générer un état de Bell (état intriqué) :\ngraph LR\n    q0[|0&gt;] --&gt; H[H] --&gt; cnot1((•))\n    q1[|0&gt;] -.- cnot2((⊕)) --&gt; res[|Φ⁺&gt;]\n    cnot1 --&gt; cnot2\n    style H fill:#f9f,stroke:#333,stroke-width:2px\n    style cnot1 fill:#f96,stroke:#333,stroke-width:2px\n    style cnot2 fill:#f96,stroke:#333,stroke-width:2px\n(Note : le schéma ci-dessus représente un circuit : qubit 0 passe par H puis contrôle le CNOT sur qubit 1. L’état de sortie est \\((|00\\rangle+|11\\rangle)/\\sqrt{2}\\).)\n\n\n\n\n\n\n\n\nComportement régi implicitement par la physique classique.\nSignaux : simples vecteurs de bits, ex. \\(X = 01010111\\).\nOpérations définies par l’algèbre de Boole.\nPas de restrictions sur la copie ou la mesure des signaux.\nPetits ensembles de portes universelles bien définis, ex. {NAND}, {AND, OR, NOT}, {AND, NOT}, etc.\nMéthodologies de CAO bien développées.\nCircuits facilement implémentés dans des technologies macroscopiques rapides et évolutives (CMOS).\n\n\n\n\n\nComportement régi explicitement par la mécanique quantique.\nSignaux : vecteurs interprétés comme une superposition de vecteurs binaires (qubits) avec coefficients complexes : \\[\n|\\Psi\\rangle = \\sum_{i=0}^{2^n-1} c_i |i_{n-1} i_{n-2} \\dots i_0\\rangle\n\\]\nOpérations définies par l’algèbre linéaire sur l’espace de Hilbert, représentées par des matrices unitaires à éléments complexes.\nRestrictions sévères sur la copie et la mesure des signaux.\nPlusieurs ensembles de portes universelles existent, mais les meilleurs types ne sont pas évidents.\nCircuits nécessitant des technologies microscopiques, lentes, fragiles et pas encore évolutives (ex. RMN).\n\n\n\n\n\n\nIl est possible de résoudre un problème sur un système quantique beaucoup plus rapidement (en moins d’étapes) que sur un ordinateur classique.\n\nLa factorisation et la recherche sont des exemples de problèmes pour lesquels des algorithmes quantiques sont connus et plus rapides que les classiques.\nImplications pour la cryptographie et la sécurité de l’information.\n\nQu’est-ce qui rend un algorithme quantique potentiellement plus rapide ?\n\nParallélisme quantique : en utilisant des superpositions d’états, l’ordinateur exécute l’algorithme sur toutes les entrées possibles à la fois.\nDimension de l’espace de Hilbert : la « taille » de l’espace des états pour un système quantique est exponentiellement plus grande que pour le système classique correspondant.\nCapacité d’intrication : différents sous-systèmes (qubits) s’intriquent, présentant des corrélations non classiques.\n\n\n\n\n\n\n\n\n\n\n\nAlgorithme\nÉtapes classiques\nÉtapes quantiques\n\n\n\n\nTransformée de Fourier (ex. Shor, Deutsch-Jozsa)\n\\(N \\log N = n 2^n\\) (avec \\(N=2^n\\), \\(n\\) qubits)\n\\(\\log_2(N) = n^2\\)\n\n\nAlgorithmes de recherche\n\\(N\\)\n\\(\\sqrt{N}\\)\n\n\nSimulation quantique\n\\(c N\\) bits\n\\(k n\\) qubits\n\n\n\n\n\n\n\n\n\n\nQCL est un langage de programmation quantique de haut niveau, de syntaxe proche du C.\nExemple : tirage à pile ou face quantique\n/* Remove \"//\" if starting interpreter with -n option */\n// extern operator H(qureg q);\n\nprocedure FlipCoin() {\n  qureg q[1];\n  int x;\n  reset;\n  H(q);\n  measure q, x;\n  if x == 1 { print \"Heads\"; }\n  if x == 0 { print \"Tails\"; }\n  reset;\n}\nPlus d’informations : http://tph.tuwien.ac.at/~oemer/qcl.html\n\n\n\nQiskit est un framework open-source pour l’informatique quantique. Il fournit des outils pour créer et manipuler des programmes quantiques et les exécuter sur des prototypes de dispositifs quantiques via IBM Quantum Experience (accès dans le cloud).\n(Image illustrative de l’architecture Qiskit serait ici.)\n\n\n\n\n\n\n\n\nImplémentation du qubit lui-même.\nContrôle de l’évolution unitaire.\nPréparation de l’état initial (qubits).\nMesure de l’état final.\n\n\n\n\n\nLes systèmes doivent être presque totalement isolés de leur environnement.\nL’état cohérent quantique doit être préservé.\nLes temps de décohérence doivent être très longs.\nPossibilité d’effectuer des opérations sur plusieurs qubits en parallèle.\nSystème physique avec deux états adressables de manière unique.\nEnsemble universel de portes quantiques.\nCapacité à intriguer deux qubits.\n\n\n\n\n\n\nLe volume quantique \\(V_Q\\) est une métrique qui mesure les capacités et les taux d’erreur d’un ordinateur quantique.\nDéfini par Nikolaj Moll et al. (Quantum Sci. Technol. 3, 030503, 2018).\nIl dépend du nombre de qubits \\(N\\) et du nombre d’étapes exécutables, la profondeur de circuit \\(d\\) :\n\\[\n\\tilde{V}_Q = \\min[N, d(N)]^2\n\\]\nIBM a modifié la définition :\n\\[\n\\log_2 V_Q = \\arg\\max_{n \\le N} \\{ \\min[n, d(n)] \\}\n\\]\nExemples de volumes quantiques atteints :\n\n\n\nDate\nVolume quantique (taille de circuit)\nFabricant\nNotes\n\n\n\n\nJanvier 2020\n32 (5×5)\nIBM\n« Raleigh » (28 qubits)\n\n\nJuin 2020\n64 (6×6)\nHoneywell\n6 qubits\n\n\nAoût 2020\n64 (6×6)\nIBM\n27 qubits\n\n\nNovembre 2020\n128 (7×7)\nHoneywell\n« H1 » (10 qubits)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#introduction",
+    "href": "ch2.html#introduction",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "L’informatique quantique est une généralisation de la théorie des probabilités classique où les probabilités peuvent être négatives, voire complexes.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#définition-du-qubit",
+    "href": "ch2.html#définition-du-qubit",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Un bit classique est un système avec deux états distincts \\(|0\\rangle\\) et \\(|1\\rangle\\), appelés états classiques ou états de base standard.\nUn qubit (bit quantique) peut se trouver dans une superposition des états classiques \\(|0\\rangle\\) et \\(|1\\rangle\\).\nMathématiquement, les états d’un qubit sont des combinaisons linéaires complexes de \\(|0\\rangle\\) et \\(|1\\rangle\\) :\n\\[\n|\\psi \\rangle = \\alpha |0\\rangle + \\beta |1\\rangle\n= \\alpha \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} + \\beta \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}\n= \\begin{pmatrix} \\alpha \\\\ \\beta \\end{pmatrix}\n\\]\noù \\(\\alpha, \\beta \\in \\mathbb{C}\\) sont des nombres complexes satisfaisant \\(|\\alpha|^2 + |\\beta|^2 = 1\\).\nAutrement dit, \\(|\\psi\\rangle\\) est un vecteur unitaire de dimension deux dans \\(\\mathbb{C}^2\\).\n\n\n\n\\(\\frac{1}{\\sqrt{2}} |0\\rangle + \\frac{1}{\\sqrt{2}} |1\\rangle\\)\n\\(\\frac{1}{\\sqrt{2}} |0\\rangle - \\frac{i}{\\sqrt{2}} |1\\rangle = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 \\\\ -i \\end{pmatrix}\\)\n\n\n\n\n\\(i|0\\rangle - \\frac{1}{2}|1\\rangle\\) ne satisfait pas la condition de normalisation.\n\n\n\nUn qubit dans l’état \\(\\alpha |0\\rangle + \\beta |1\\rangle\\) est souvent dit être à la fois \\(|0\\rangle\\) et \\(|1\\rangle\\). En réalité, \\(\\alpha\\) et \\(\\beta\\) sont comme des probabilités, mais elles peuvent être négatives ou complexes. On les appelle amplitudes des états \\(|0\\rangle\\) et \\(|1\\rangle\\).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#bit-classique-vs-bit-quantique",
+    "href": "ch2.html#bit-classique-vs-bit-quantique",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "peuvent être dans deux états distincts, 0 et 1\npeuvent être mesurés complètement\nne sont pas modifiés par la mesure\npeuvent être copiés\npeuvent être effacés\n\n\n\n\n\npeuvent être dans l’état \\(|0\\rangle\\), \\(|1\\rangle\\) ou toute combinaison linéaire de ces deux états\nne peuvent être mesurés que partiellement, avec une probabilité donnée\nsont modifiés par la mesure\nne peuvent pas être copiés (théorème de non-clonage)\nne peuvent pas être effacés",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#avantages-des-qubits-et-puissance-quantique",
+    "href": "ch2.html#avantages-des-qubits-et-puissance-quantique",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "L’ajout de qubits augmente de façon exponentielle l’espace des états.\n\nPour doubler la puissance d’un ordinateur classique, on passe de 32 bits à 64 bits.\nPour doubler la puissance d’un ordinateur quantique, on passe de 32 qubits à 33 qubits.\n\nOn peut effectuer des opérations sur toutes les superpositions simultanément, comme un calcul massivement parallèle.\nUne opération mathématique sur \\(2^n\\) nombres encodés dans un ordinateur classique avec \\(n\\) bits nécessite \\(2^n\\) étapes ou processeurs parallèles.\nLa même opération sur \\(2^n\\) nombres encodés par \\(n\\) qubits ne prend qu’une seule étape.\nUn ordinateur 64 bits peut manipuler un nombre binaire de 64 bits à la fois.\nUn ordinateur de 64 qubits opère dans un espace de \\(2^{64}\\) dimensions, soit environ \\(16 \\times 10^{18}\\) nombres pour spécifier l’état du système quantique.\nCela rend les problèmes complexes beaucoup plus faciles à résoudre pour un ordinateur quantique.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#notation-bra-ket-dirac",
+    "href": "ch2.html#notation-bra-ket-dirac",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Le dual (conjugué hermitien) d’un vecteur colonne est un vecteur ligne appelé « bra » :\n\\[\n\\langle 0 | = \\begin{pmatrix} 1 & 0 \\end{pmatrix} \\qquad\n\\langle 1 | = \\begin{pmatrix} 0 & 1 \\end{pmatrix}\n\\]\n\\[\n|\\psi\\rangle = \\begin{pmatrix} \\alpha \\\\ \\beta \\end{pmatrix} = \\alpha |0\\rangle + \\beta |1\\rangle \\qquad\n\\langle \\psi | = \\begin{pmatrix} \\overline{\\alpha} & \\overline{\\beta} \\end{pmatrix} = \\overline{\\alpha} \\langle 0 | + \\overline{\\beta} \\langle 1 |\n\\]\noù \\(\\overline{\\alpha}, \\overline{\\beta}\\) sont les conjugués complexes de \\(\\alpha, \\beta\\).\n\n\nSoit \\(|\\psi \\rangle = \\alpha |0\\rangle +\\beta |1\\rangle\\) et \\(|\\theta \\rangle = \\gamma |0\\rangle +\\delta |1\\rangle\\). Leur produit scalaire est :\n\\[\n\\langle \\psi | \\theta \\rangle = \\begin{pmatrix} \\overline{\\alpha} & \\overline{\\beta} \\end{pmatrix} \\begin{pmatrix} \\gamma \\\\ \\delta \\end{pmatrix} = \\overline{\\alpha}\\gamma + \\overline{\\beta}\\delta\n\\]\nL’ordre est important : \\(\\langle \\theta | \\psi \\rangle = \\overline{\\gamma}\\alpha + \\overline{\\delta}\\beta = \\overline{\\langle \\psi | \\theta \\rangle}\\).\nPlus généralement, pour des vecteurs de dimension \\(d\\) :\n\\[\n\\begin{aligned}\n|\\psi \\rangle &= \\alpha_0|0\\rangle + \\alpha_1|1\\rangle + \\dots + \\alpha_{d-1}|d-1\\rangle \\\\\n|\\theta \\rangle &= \\beta_0|0\\rangle + \\beta_1|1\\rangle + \\dots + \\beta_{d-1}|d-1\\rangle\n\\end{aligned}\n\\]\nle produit scalaire est :\n\\[\n\\langle \\psi | \\theta \\rangle = \\overline{\\alpha}_0\\beta_0 + \\dots + \\overline{\\alpha}_{d-1}\\beta_{d-1}\n\\]\nLa notation de Dirac est très utile pour identifier rapidement scalaires, vecteurs lignes/colonnes et matrices dans des expressions complexes.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#systèmes-quantiques-composites",
+    "href": "ch2.html#systèmes-quantiques-composites",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Si le qubit 1 est dans l’état \\(|\\psi_1\\rangle\\) et le qubit 2 dans l’état \\(|\\psi_2\\rangle\\), alors l’état conjoint des deux qubits est :\n\\[\n|\\psi_1\\rangle \\otimes |\\psi_2\\rangle\n\\]\nC’est un vecteur unitaire de dimension quatre dans l’espace produit tensoriel \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\).\nLes états quantiques vivent dans un espace de Hilbert \\(\\mathcal{H}\\). Pour nous, les aspects importants sont :\n\nLes espaces de Hilbert de dimension finie sont isomorphes à \\(\\mathbb{C}^d\\) pour une certaine dimension \\(d\\).\nIl existe un produit scalaire entre deux vecteurs.\nOn peut former des produits tensoriels d’espaces de Hilbert.\n\nLa base pour deux qubits est :\n\\[\n|0\\rangle \\otimes |0\\rangle,\\; |0\\rangle \\otimes |1\\rangle,\\; |1\\rangle \\otimes |0\\rangle,\\; |1\\rangle \\otimes |1\\rangle\n\\]\nque l’on note simplement :\n\\[\n|0,0\\rangle,\\; |0,1\\rangle,\\; |1,0\\rangle,\\; |1,1\\rangle\n\\]\n\n\nSoient \\(A\\) et \\(B\\) des matrices de dimensions quelconques. Leur produit tensoriel \\(A \\otimes B\\) est défini par :\n\\[\nA \\otimes B = \\begin{pmatrix}\na_{11}B & a_{12}B & \\cdots \\\\\na_{21}B & a_{22}B & \\cdots \\\\\n\\vdots & \\vdots & \\ddots\n\\end{pmatrix}\n\\]\nExemple :\n\\[\n\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\otimes \\begin{pmatrix} e & f \\\\ g & h \\end{pmatrix}\n= \\begin{pmatrix}\na e & a f & b e & b f \\\\\na g & a h & b g & b h \\\\\nc e & c f & d e & d f \\\\\nc g & c h & d g & d h\n\\end{pmatrix}\n\\]\nEn général, si \\(A\\) est \\(n \\times m\\) et \\(B\\) est \\(n' \\times m'\\), alors \\(A \\otimes B\\) est \\(nn' \\times mm'\\).\nLe produit tensoriel est associatif : \\(A \\otimes (B \\otimes C) = (A \\otimes B) \\otimes C\\).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#intrication-entanglement",
+    "href": "ch2.html#intrication-entanglement",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Tous les états de \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\) ne peuvent pas s’écrire comme \\(|\\psi_1\\rangle \\otimes |\\psi_2\\rangle\\) (états produits).\nUn exemple d’état intriqué est la paire EPR (Einstein-Podolsky-Rosen) ou paire de Bell :\n\\[\n|\\Phi \\rangle = \\frac{1}{\\sqrt{2}} \\left( |0,0\\rangle + |1,1\\rangle \\right)\n\\]\nL’intrication est un phénomène purement quantique : un qubit est intimement lié à un autre d’une manière que la physique classique ne peut expliquer.\n\n\n\nLorsqu’une paire (ou un groupe) de particules est générée, interagit ou partage une proximité spatiale, l’état quantique de chaque particule ne peut être décrit indépendamment de l’état des autres, même lorsque les particules sont séparées par une grande distance.\nUne paire intriquée est un système quantique unique dans une superposition d’états également possibles. L’état intriqué ne contient aucune information sur les particules individuelles, seulement qu’elles sont dans des états opposés.\nSi l’état de l’une est modifié, l’état de l’autre est instantanément ajusté pour être cohérent avec les règles de la mécanique quantique.\nSi une mesure est effectuée sur l’une, l’autre s’effondre automatiquement.\nL’intrication est une caractéristique essentielle de la mécanique quantique, absente de la mécanique classique.\nEinstein l’appelait « action fantomatique à distance ».",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#observation-des-qubits-décohérence",
+    "href": "ch2.html#observation-des-qubits-décohérence",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "La décohérence quantique est la perte de la superposition due à l’interaction spontanée entre un système quantique et son environnement.\nElle peut être vue comme la perte d’information du système vers l’environnement.\n\nLa superposition et l’intrication sont des états extrêmement fragiles.\nPrévenir la décohérence reste le plus grand défi dans la construction d’ordinateurs quantiques.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#mesure-dun-qubit",
+    "href": "ch2.html#mesure-dun-qubit",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "L’état d’un qubit ne peut pas être observé directement. Il doit être mesuré, ce qui donne un état classique \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec les probabilités :\n\\[\n\\Pr[\\text{observer } |0\\rangle] = |\\alpha|^2 \\qquad\n\\Pr[\\text{observer } |1\\rangle] = |\\beta|^2\n\\]\nComme les états sont de longueur unité, ces probabilités s’additionnent à 1. Cette formule est appelée règle de Born.\nAprès la mesure, le système devient classique. L’état du qubit s’effondre en \\(|0\\rangle\\) ou \\(|1\\rangle\\), et l’état précédent est perdu. En mécanique quantique, la mesure perturbe généralement le système.\nSi l’état s’effondre sur \\(|0\\rangle\\) et qu’on le mesure à nouveau, il reste dans l’état \\(|0\\rangle\\) avec probabilité 1. Idem pour \\(|1\\rangle\\).\nMesurer un système deux fois équivaut à le mesurer une seule fois.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#le-chat-de-schrödinger",
+    "href": "ch2.html#le-chat-de-schrödinger",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Une boîte avec deux états classiques :\n\nchat endormi : \\(|0\\rangle\\)\nchat réveillé : \\(|1\\rangle\\)\n\nEn mécanique quantique, la boîte peut être dans une superposition de chat endormi et réveillé tant qu’on ne l’ouvre pas (c’est-à-dire tant qu’on ne mesure pas).\nSupposons que la boîte démarre dans l’état \\(\\frac{1}{\\sqrt{3}} |0\\rangle - i \\frac{\\sqrt{2}}{\\sqrt{3}} |1\\rangle\\) et qu’on la mesure.\n\nAvec probabilité \\(\\left|\\frac{1}{\\sqrt{3}}\\right|^2 = \\frac{1}{3}\\), l’état s’effondre en \\(|0\\rangle\\) (chat endormi).\nAvec probabilité \\(\\left| - i \\frac{\\sqrt{2}}{\\sqrt{3}}\\right|^2 = \\frac{2}{3}\\), l’état s’effondre en \\(|1\\rangle\\) (chat réveillé).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#transformations-sur-les-qubits-portes-quantiques",
+    "href": "ch2.html#transformations-sur-les-qubits-portes-quantiques",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Une porte quantique (ou porte logique quantique) est un circuit quantique de base opérant sur des qubits.\nCe sont les briques élémentaires des circuits quantiques, comme les portes logiques classiques pour les circuits numériques conventionnels.\nEn raison de la condition de normalisation, toute opération \\(U\\) doit être unitaire : \\(UU^\\dagger = I\\).\nLe nombre de qubits en entrée et en sortie d’une porte doit être égal ; une porte agissant sur \\(n\\) qubits est représentée par une matrice unitaire \\(2^n \\times 2^n\\).\nContrairement à de nombreuses portes logiques classiques, les portes quantiques sont réversibles.\n\n\n\nL’inverse de \\(U\\) est son conjugué hermitien \\(U^\\dagger\\), dont l’élément \\((i,j)\\) est le conjugué complexe de l’élément \\((j,i)\\) de \\(U\\) : \\(U^\\dagger_{i,j} = \\overline{U}_{j,i}\\).\n\\(U\\) applique des vecteurs unitaires sur des vecteurs unitaires (états quantiques sur états quantiques).\nLes lignes de \\(U\\) forment une base orthonormée de \\(\\mathbb{C}^d\\), de même pour les colonnes.\n\\(U\\) préserve le produit scalaire : \\(\\langle \\psi | \\theta \\rangle = \\langle U\\psi | U\\theta \\rangle\\).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#exemples-de-matrices-unitaires-pour-un-qubit",
+    "href": "ch2.html#exemples-de-matrices-unitaires-pour-un-qubit",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "\\[\nX = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}\n\\]\nAgissant sur un état pur, elle se comporte comme une porte NON classique :\n\n\\(X|0\\rangle = |1\\rangle\\)\n\\(X|1\\rangle = |0\\rangle\\)\n\n\n\n\nLa porte de Hadamard agit sur un seul qubit et correspond à la transformée de Hadamard, menant à la superposition.\n\\[\nH = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}\n\\]\nActions :\n\\[\n\\begin{aligned}\n|0\\rangle &\\rightarrow \\frac{1}{\\sqrt{2}} (|0\\rangle + |1\\rangle) = |+\\rangle \\\\\n|1\\rangle &\\rightarrow \\frac{1}{\\sqrt{2}} (|0\\rangle - |1\\rangle) = |-\\rangle \\\\\n|+\\rangle &\\rightarrow |0\\rangle \\\\\n|-\\rangle &\\rightarrow |1\\rangle\n\\end{aligned}\n\\]\nPropriétés remarquables :\n\nAprès application de \\(H\\) sur \\(|0\\rangle\\) ou \\(|1\\rangle\\), l’état du qubit est une superposition égale de \\(|0\\rangle\\) et \\(|1\\rangle\\). Si on mesure ensuite, on obtient \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec probabilité 1/2.\n\\(H\\) est sa propre inverse : \\(H^{-1} = H\\), donc \\(H^2 = I\\). Appliquer deux fois \\(H\\) ne change rien : c’est étonnant, car une opération randomisante appliquée à un état aléatoire produit un résultat déterministe.\nC’est l’une des portes les plus importantes en informatique quantique.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#porte-cnot-controlled-not",
+    "href": "ch2.html#porte-cnot-controlled-not",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Porte agissant sur deux qubits : qubit de contrôle et qubit cible.\n\\[\nCNOT = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0\n\\end{pmatrix}\n\\]\nAction sur les états de base :\n\n\\(|00\\rangle \\rightarrow |00\\rangle\\)\n\\(|01\\rangle \\rightarrow |01\\rangle\\)\n\\(|10\\rangle \\rightarrow |11\\rangle\\)\n\\(|11\\rangle \\rightarrow |10\\rangle\\)\nSi le qubit de contrôle est à 0, le qubit cible reste inchangé.\nSi le qubit de contrôle est à 1, le qubit cible est inversé (NOT).\n\nCette porte est équivalente à l’opération classique XOR : la sortie cible est le XOR des deux entrées.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#portes-quantiques-vs-portes-classiques",
+    "href": "ch2.html#portes-quantiques-vs-portes-classiques",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "(Un tableau comparatif serait inséré ici.)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#traitement-des-qubits-interférence-quantique",
+    "href": "ch2.html#traitement-des-qubits-interférence-quantique",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "L’application de plusieurs opérations unitaires à un qubit donne lieu à un arbre de « chemins » entre les états. Chaque chemin a une amplitude de transition associée (produit des amplitudes le long du chemin).\nAvant la mesure, l’amplitude de se retrouver dans l’état \\(|b\\rangle\\) est la somme des amplitudes de tous les chemins qui aboutissent à \\(|b\\rangle\\).\nComme les amplitudes peuvent être négatives ou complexes, les chemins peuvent interférer de manière constructive ou destructive.\nLes mesures intermédiaires empêchent l’interférence. En présence d’une mesure intermédiaire, seuls les chemins compatibles avec le résultat de mesure sont additionnés.\nConclusion : Les mesures intermédiaires détruisent les superpositions et empêchent l’interférence.\nEn physique classique, on additionne des probabilités (positives) ; en quantique, on additionne des amplitudes (pouvant être négatives). L’interférence est un exemple de « comportement quantique étrange ».",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#circuits-quantiques",
+    "href": "ch2.html#circuits-quantiques",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Un circuit quantique est un modèle de calcul quantique dans lequel une computation est une séquence de portes quantiques agissant sur un registre de \\(n\\) qubits reliés par des « fils ». Le circuit a une largeur fixe correspondant au nombre de qubits traités.\n\n\nUn circuit simple utilisant deux qubits, une porte Hadamard et une porte CNOT, permet de générer un état de Bell (état intriqué) :\ngraph LR\n    q0[|0&gt;] --&gt; H[H] --&gt; cnot1((•))\n    q1[|0&gt;] -.- cnot2((⊕)) --&gt; res[|Φ⁺&gt;]\n    cnot1 --&gt; cnot2\n    style H fill:#f9f,stroke:#333,stroke-width:2px\n    style cnot1 fill:#f96,stroke:#333,stroke-width:2px\n    style cnot2 fill:#f96,stroke:#333,stroke-width:2px\n(Note : le schéma ci-dessus représente un circuit : qubit 0 passe par H puis contrôle le CNOT sur qubit 1. L’état de sortie est \\((|00\\rangle+|11\\rangle)/\\sqrt{2}\\).)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#circuits-classiques-vs-circuits-quantiques",
+    "href": "ch2.html#circuits-classiques-vs-circuits-quantiques",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Comportement régi implicitement par la physique classique.\nSignaux : simples vecteurs de bits, ex. \\(X = 01010111\\).\nOpérations définies par l’algèbre de Boole.\nPas de restrictions sur la copie ou la mesure des signaux.\nPetits ensembles de portes universelles bien définis, ex. {NAND}, {AND, OR, NOT}, {AND, NOT}, etc.\nMéthodologies de CAO bien développées.\nCircuits facilement implémentés dans des technologies macroscopiques rapides et évolutives (CMOS).\n\n\n\n\n\nComportement régi explicitement par la mécanique quantique.\nSignaux : vecteurs interprétés comme une superposition de vecteurs binaires (qubits) avec coefficients complexes : \\[\n|\\Psi\\rangle = \\sum_{i=0}^{2^n-1} c_i |i_{n-1} i_{n-2} \\dots i_0\\rangle\n\\]\nOpérations définies par l’algèbre linéaire sur l’espace de Hilbert, représentées par des matrices unitaires à éléments complexes.\nRestrictions sévères sur la copie et la mesure des signaux.\nPlusieurs ensembles de portes universelles existent, mais les meilleurs types ne sont pas évidents.\nCircuits nécessitant des technologies microscopiques, lentes, fragiles et pas encore évolutives (ex. RMN).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#algorithmes-quantiques",
+    "href": "ch2.html#algorithmes-quantiques",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Il est possible de résoudre un problème sur un système quantique beaucoup plus rapidement (en moins d’étapes) que sur un ordinateur classique.\n\nLa factorisation et la recherche sont des exemples de problèmes pour lesquels des algorithmes quantiques sont connus et plus rapides que les classiques.\nImplications pour la cryptographie et la sécurité de l’information.\n\nQu’est-ce qui rend un algorithme quantique potentiellement plus rapide ?\n\nParallélisme quantique : en utilisant des superpositions d’états, l’ordinateur exécute l’algorithme sur toutes les entrées possibles à la fois.\nDimension de l’espace de Hilbert : la « taille » de l’espace des états pour un système quantique est exponentiellement plus grande que pour le système classique correspondant.\nCapacité d’intrication : différents sous-systèmes (qubits) s’intriquent, présentant des corrélations non classiques.\n\n\n\n\n\n\n\n\n\n\n\nAlgorithme\nÉtapes classiques\nÉtapes quantiques\n\n\n\n\nTransformée de Fourier (ex. Shor, Deutsch-Jozsa)\n\\(N \\log N = n 2^n\\) (avec \\(N=2^n\\), \\(n\\) qubits)\n\\(\\log_2(N) = n^2\\)\n\n\nAlgorithmes de recherche\n\\(N\\)\n\\(\\sqrt{N}\\)\n\n\nSimulation quantique\n\\(c N\\) bits\n\\(k n\\) qubits",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#programmation-quantique",
+    "href": "ch2.html#programmation-quantique",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "QCL est un langage de programmation quantique de haut niveau, de syntaxe proche du C.\nExemple : tirage à pile ou face quantique\n/* Remove \"//\" if starting interpreter with -n option */\n// extern operator H(qureg q);\n\nprocedure FlipCoin() {\n  qureg q[1];\n  int x;\n  reset;\n  H(q);\n  measure q, x;\n  if x == 1 { print \"Heads\"; }\n  if x == 0 { print \"Tails\"; }\n  reset;\n}\nPlus d’informations : http://tph.tuwien.ac.at/~oemer/qcl.html\n\n\n\nQiskit est un framework open-source pour l’informatique quantique. Il fournit des outils pour créer et manipuler des programmes quantiques et les exécuter sur des prototypes de dispositifs quantiques via IBM Quantum Experience (accès dans le cloud).\n(Image illustrative de l’architecture Qiskit serait ici.)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#architecture-dun-ordinateur-quantique",
+    "href": "ch2.html#architecture-dun-ordinateur-quantique",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Implémentation du qubit lui-même.\nContrôle de l’évolution unitaire.\nPréparation de l’état initial (qubits).\nMesure de l’état final.\n\n\n\n\n\nLes systèmes doivent être presque totalement isolés de leur environnement.\nL’état cohérent quantique doit être préservé.\nLes temps de décohérence doivent être très longs.\nPossibilité d’effectuer des opérations sur plusieurs qubits en parallèle.\nSystème physique avec deux états adressables de manière unique.\nEnsemble universel de portes quantiques.\nCapacité à intriguer deux qubits.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
+  },
+  {
+    "objectID": "ch2.html#volume-quantique-quantum-volume",
+    "href": "ch2.html#volume-quantique-quantum-volume",
+    "title": "Fondements de l’informatique quantique",
+    "section": "",
+    "text": "Le volume quantique \\(V_Q\\) est une métrique qui mesure les capacités et les taux d’erreur d’un ordinateur quantique.\nDéfini par Nikolaj Moll et al. (Quantum Sci. Technol. 3, 030503, 2018).\nIl dépend du nombre de qubits \\(N\\) et du nombre d’étapes exécutables, la profondeur de circuit \\(d\\) :\n\\[\n\\tilde{V}_Q = \\min[N, d(N)]^2\n\\]\nIBM a modifié la définition :\n\\[\n\\log_2 V_Q = \\arg\\max_{n \\le N} \\{ \\min[n, d(n)] \\}\n\\]\nExemples de volumes quantiques atteints :\n\n\n\nDate\nVolume quantique (taille de circuit)\nFabricant\nNotes\n\n\n\n\nJanvier 2020\n32 (5×5)\nIBM\n« Raleigh » (28 qubits)\n\n\nJuin 2020\n64 (6×6)\nHoneywell\n6 qubits\n\n\nAoût 2020\n64 (6×6)\nIBM\n27 qubits\n\n\nNovembre 2020\n128 (7×7)\nHoneywell\n« H1 » (10 qubits)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Fondements de l'informatique quantique"
+    ]
   },
   {
     "objectID": "ch1.html#définition",
@@ -362,45 +756,447 @@
     ]
   },
   {
+    "objectID": "ch2r.html#qubit",
+    "href": "ch2r.html#qubit",
+    "title": "Résumé — Quantum Computing",
+    "section": "Qubit",
+    "text": "Qubit\n\nBit classique : exactement \\(|0\\rangle\\) ou \\(|1\\rangle\\)\nQubit : superposition \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\), avec \\(\\alpha, \\beta \\in \\mathbb{C}\\)\n\nCondition de normalisation (obligatoire) :\n\\[|\\alpha|^2 + |\\beta|^2 = 1\\]\n\n\\(\\alpha\\), \\(\\beta\\) = amplitudes (comme des probabilités, mais peuvent être négatives ou complexes)\n\\(|\\psi\\rangle\\) est un vecteur unitaire dans \\(\\mathbb{C}^2\\)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#notation-dirac-bra-ket",
+    "href": "ch2r.html#notation-dirac-bra-ket",
+    "title": "Résumé — Quantum Computing",
+    "section": "Notation Dirac (bra-ket)",
+    "text": "Notation Dirac (bra-ket)\n\nKet (vecteur colonne) : \\(|\\psi\\rangle = \\begin{pmatrix}\\alpha \\\\ \\beta\\end{pmatrix}\\)\nBra (vecteur ligne, conjugué Hermitien) : \\(\\langle\\psi| = \\begin{pmatrix}\\bar{\\alpha} & \\bar{\\beta}\\end{pmatrix}\\)\nProduit intérieur :\n\n\\[\\langle\\psi|\\theta\\rangle = \\bar{\\alpha}\\gamma + \\bar{\\beta}\\delta\\]\n\n⚠️ L’ordre compte : \\(\\langle\\theta|\\psi\\rangle = \\overline{\\langle\\psi|\\theta\\rangle}\\)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#produit-tensoriel",
+    "href": "ch2r.html#produit-tensoriel",
+    "title": "Résumé — Quantum Computing",
+    "section": "Produit tensoriel",
+    "text": "Produit tensoriel\nPour deux qubits \\(|\\psi_1\\rangle\\) et \\(|\\psi_2\\rangle\\) :\n\\[|\\psi_1\\rangle \\otimes |\\psi_2\\rangle \\in \\mathbb{C}^2 \\otimes \\mathbb{C}^2 \\quad \\text{(vecteur de dimension 4)}\\]\nBase de deux qubits :\n\\[|00\\rangle, \\quad |01\\rangle, \\quad |10\\rangle, \\quad |11\\rangle\\]",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#intrication-entanglement",
+    "href": "ch2r.html#intrication-entanglement",
+    "title": "Résumé — Quantum Computing",
+    "section": "Intrication (Entanglement)",
+    "text": "Intrication (Entanglement)\n\nTous les états à 2 qubits ne sont pas des états produits\nÉtat intriqué (paire de Bell / EPR) :\n\n\\[|\\Phi\\rangle = \\frac{1}{\\sqrt{2}}\\Big(|00\\rangle + |11\\rangle\\Big)\\]\nPropriétés clés :\n\nLes qubits intriqués sont corrélés instantanément, quelle que soit la distance\nMesurer l’un fait s’effondrer l’autre automatiquement\nPhénomène uniquement quantique — absent de la physique classique\nEinstein : “spooky actions at a distance”",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#propriétés-générales",
+    "href": "ch2r.html#propriétés-générales",
+    "title": "Résumé — Quantum Computing",
+    "section": "Propriétés générales",
+    "text": "Propriétés générales\n\nReprésentées par des matrices unitaires : \\(UU^\\dagger = I\\)\nUne porte sur \\(n\\) qubits = matrice \\(2^n \\times 2^n\\)\nToujours réversibles (contrairement à certaines portes classiques)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#portes-à-un-qubit",
+    "href": "ch2r.html#portes-à-un-qubit",
+    "title": "Résumé — Quantum Computing",
+    "section": "Portes à un qubit",
+    "text": "Portes à un qubit\nPauli-X (NOT quantique) :\n\\[X = \\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix} \\qquad |0\\rangle \\leftrightarrow |1\\rangle\\]\nPauli-Y :\n\\[Y = \\begin{bmatrix}0 & -i \\\\ i & 0\\end{bmatrix} \\qquad |0\\rangle \\to i|1\\rangle, \\quad |1\\rangle \\to -i|0\\rangle\\]\nPauli-Z :\n\\[Z = \\begin{bmatrix}1 & 0 \\\\ 0 & -1\\end{bmatrix} \\qquad |0\\rangle \\to |0\\rangle, \\quad |1\\rangle \\to -|1\\rangle\\]\nHadamard (H) ⭐ :\n\\[H = \\frac{1}{\\sqrt{2}}\\begin{bmatrix}1 & 1 \\\\ 1 & -1\\end{bmatrix} \\qquad |0\\rangle \\to \\frac{|0\\rangle+|1\\rangle}{\\sqrt{2}}, \\quad |1\\rangle \\to \\frac{|0\\rangle-|1\\rangle}{\\sqrt{2}}\\]\nPhase (S) et T (\\(\\pi/8\\)) :\n\\[S = \\begin{pmatrix}1 & 0 \\\\ 0 & i\\end{pmatrix} \\qquad T = \\begin{pmatrix}1 & 0 \\\\ 0 & e^{i\\pi/4}\\end{pmatrix} \\qquad S^2 = Z\\]",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#porte-cnot-2-qubits",
+    "href": "ch2r.html#porte-cnot-2-qubits",
+    "title": "Résumé — Quantum Computing",
+    "section": "Porte CNOT (2 qubits)",
+    "text": "Porte CNOT (2 qubits)\n\\[CNOT = \\begin{bmatrix}1&0&0&0\\\\0&1&0&0\\\\0&0&0&1\\\\0&0&1&0\\end{bmatrix}\\]\n\nQubit contrôle = 0 → cible inchangée\nQubit contrôle = 1 → cible inversée\nÉquivalent classique : XOR",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#complexités-comparées",
+    "href": "ch2r.html#complexités-comparées",
+    "title": "Résumé — Quantum Computing",
+    "section": "Complexités comparées",
+    "text": "Complexités comparées\n\n\n\nAlgorithme\nClassique\nQuantique\n\n\n\n\nTransformée de Fourier (Shor, etc.)\n\\(O(n \\cdot 2^n)\\)\n\\(O(n^2)\\)\n\n\nRecherche (Grover)\n\\(O(N)\\)\n\\(O(\\sqrt{N})\\)\n\n\nSimulation quantique\n\\(O(c^N)\\) bits\n\\(O(kn)\\) qubits",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2r.html#volume-quantique-v_q",
+    "href": "ch2r.html#volume-quantique-v_q",
+    "title": "Résumé — Quantum Computing",
+    "section": "Volume quantique \\(V_Q\\)",
+    "text": "Volume quantique \\(V_Q\\)\nMétrique mesurant capacité + taux d’erreur d’un ordinateur quantique :\n\\[\\tilde{V}_Q = \\min[N,\\, d(N)]^2\\]\noù \\(N\\) = nombre de qubits, \\(d\\) = profondeur du circuit.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch2c.html",
+    "href": "ch2c.html",
+    "title": "Quantum Computing",
+    "section": "",
+    "text": "Taras Holotyak — Université de Genève, Faculté des Sciences, Département d’Informatique",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#point-de-départ",
+    "href": "ch2c.html#point-de-départ",
+    "title": "Quantum Computing",
+    "section": "Point de départ",
+    "text": "Point de départ\n\nLa théorie de l’information quantique est une généralisation de la théorie des probabilités classiques où les probabilités peuvent être négatives, voire des nombres complexes.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#définition-du-qubit",
+    "href": "ch2c.html#définition-du-qubit",
+    "title": "Quantum Computing",
+    "section": "Définition du qubit",
+    "text": "Définition du qubit\n\nBit classique\nUn bit est un système classique avec deux états distinguables \\(|0\\rangle\\) et \\(|1\\rangle\\), aussi appelés états classiques ou états de base standard.\n\n\nQubit (quantum bit)\nUn qubit peut être dans une superposition des états classiques \\(|0\\rangle\\) et \\(|1\\rangle\\).\nMathématiquement, les états d’un qubit sont des combinaisons linéaires complexes de \\(|0\\rangle\\) et \\(|1\\rangle\\) :\n\\[\n|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle\n= \\alpha \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} + \\beta \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}\n= \\begin{pmatrix} \\alpha \\\\ \\beta \\end{pmatrix}\n\\]\noù \\(\\alpha, \\beta \\in \\mathbb{C}\\) satisfont la condition de normalisation :\n\\[|\\alpha|^2 + |\\beta|^2 = 1\\]\nAutrement dit, \\(|\\psi\\rangle\\) est un vecteur unitaire à deux dimensions dans \\(\\mathbb{C}^2\\).\n\n\nExemples d’états de qubits\nÉtats valides :\n\\[\\frac{1}{\\sqrt{2}} |0\\rangle + \\frac{1}{\\sqrt{2}} |1\\rangle\\]\n\\[\\frac{1}{\\sqrt{2}} |0\\rangle - \\frac{i}{\\sqrt{2}} |1\\rangle = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 \\\\ -i \\end{pmatrix}\\]\nÉtat non valide (la norme n’est pas 1) :\n\\[i |0\\rangle - \\frac{1}{2} |1\\rangle\\]\n\nVérification : \\(|i|^2 + \\left|-\\frac{1}{2}\\right|^2 = 1 + \\frac{1}{4} = \\frac{5}{4} \\neq 1\\)\n\n\n\nInterprétation des amplitudes\nUn qubit dans l’état \\(\\alpha |0\\rangle + \\beta |1\\rangle\\) est communément dit être dans \\(|0\\rangle\\) et \\(|1\\rangle\\) “en même temps”.\n\n\\(\\alpha\\) et \\(\\beta\\) sont appelées les amplitudes des états \\(|0\\rangle\\) et \\(|1\\rangle\\) respectivement\nElles se comportent comme des probabilités, sauf qu’elles peuvent être négatives ou complexes",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#bit-classique-vs-qubit-comparaison",
+    "href": "ch2c.html#bit-classique-vs-qubit-comparaison",
+    "title": "Quantum Computing",
+    "section": "Bit classique vs Qubit : comparaison",
+    "text": "Bit classique vs Qubit : comparaison\n\n\n\n\n\n\n\n\nPropriété\nBit classique\nQubit\n\n\n\n\nÉtats possibles\nExactement 0 ou 1\n\\(|0\\rangle\\), \\(|1\\rangle\\), ou toute combinaison linéaire\n\n\nMesure\nComplète\nPartielle, avec probabilité donnée\n\n\nEffet de la mesure\nInchangé\nL’état est modifié\n\n\nCopie\nPossible\nImpossible (no-cloning theorem)\n\n\nEffacement\nPossible\nImpossible",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#avantages-des-qubits",
+    "href": "ch2c.html#avantages-des-qubits",
+    "title": "Quantum Computing",
+    "section": "Avantages des qubits",
+    "text": "Avantages des qubits\n\nPuissance exponentielle\n\nAjouter un qubit double la puissance de stockage :\n\nPour doubler la puissance d’un ordinateur classique : 32 bits → 64 bits\nPour doubler la puissance d’un ordinateur quantique : 32 qubits → 33 qubits\n\n\n\n\nParallélisme massif\n\nUne opération mathématique sur \\(2^n\\) nombres encodés classiquement avec \\(n\\) bits nécessite \\(2^n\\) étapes\nLa même opération sur \\(2^n\\) nombres encodés dans \\(n\\) qubits prend 1 seule étape\n\nExemple :\n\nUn ordinateur 64 bits manipule des nombres binaires de 64 bits à la fois\nUn ordinateur quantique de 64 qubits opère dans un espace de \\(2^{64}\\) dimensions, soit environ \\(16 \\times 10^{18}\\) états",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#notation-de-dirac-bra-ket",
+    "href": "ch2c.html#notation-de-dirac-bra-ket",
+    "title": "Quantum Computing",
+    "section": "Notation de Dirac (bra-ket)",
+    "text": "Notation de Dirac (bra-ket)\n\nVecteurs ket et bra\nLes vecteurs colonnes sont appelés vecteurs ket : \\(|\\psi\\rangle\\)\nLe dual/conjugué Hermitien (vecteurs lignes) est appelé vecteur bra :\n\\[\\langle 0| = \\begin{pmatrix} 1, & 0 \\end{pmatrix} \\qquad \\langle 1| = \\begin{pmatrix} 0, & 1 \\end{pmatrix}\\]\nPour un qubit général :\n\\[|\\psi\\rangle = \\begin{pmatrix} \\alpha \\\\ \\beta \\end{pmatrix} = \\alpha |0\\rangle + \\beta |1\\rangle \\qquad \\langle \\psi| = \\begin{pmatrix} \\bar{\\alpha} & \\bar{\\beta} \\end{pmatrix} = \\bar{\\alpha} \\langle 0| + \\bar{\\beta} \\langle 1|\\]\noù \\(\\bar{\\alpha}, \\bar{\\beta}\\) sont les conjugués complexes de \\(\\alpha, \\beta\\).\n\n\nProduit intérieur (braket)\nSoient \\(|\\psi\\rangle = \\alpha |0\\rangle + \\beta |1\\rangle\\) et \\(|\\theta\\rangle = \\gamma |0\\rangle + \\delta |1\\rangle\\). Leur produit intérieur est :\n\\[\\langle \\psi | \\theta \\rangle = \\begin{pmatrix} \\bar{\\alpha} & \\bar{\\beta} \\end{pmatrix} \\begin{pmatrix} \\gamma \\\\ \\delta \\end{pmatrix} = \\bar{\\alpha}\\gamma + \\bar{\\beta}\\delta\\]\n\n⚠️ L’ordre de \\(|\\psi\\rangle\\) et \\(|\\theta\\rangle\\) est important !\n\n\\[\\langle \\theta | \\psi \\rangle = \\bar{\\gamma}\\alpha + \\bar{\\delta}\\beta = \\overline{\\langle \\psi | \\theta \\rangle}\\]\n\n\nGénéralisation en dimension \\(d\\)\nPour des vecteurs \\(d\\)-dimensionnels :\n\\[|\\psi\\rangle = \\alpha_0 |0\\rangle + \\alpha_1 |1\\rangle + \\cdots + \\alpha_{d-1} |d-1\\rangle\\]\n\\[|\\theta\\rangle = \\beta_0 |0\\rangle + \\beta_1 |1\\rangle + \\cdots + \\beta_{d-1} |d-1\\rangle\\]\nLe produit intérieur est :\n\\[\\langle \\psi | \\theta \\rangle = \\bar{\\alpha}_0 \\beta_0 + \\bar{\\alpha}_1 \\beta_1 + \\cdots + \\bar{\\alpha}_{d-1} \\beta_{d-1}\\]\n\nLa notation de Dirac est très utile pour identifier rapidement les scalaires, vecteurs lignes/colonnes et matrices dans des expressions complexes.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#systèmes-quantiques-composites",
+    "href": "ch2c.html#systèmes-quantiques-composites",
+    "title": "Quantum Computing",
+    "section": "Systèmes quantiques composites",
+    "text": "Systèmes quantiques composites\n\nProduit tensoriel de deux qubits\nSi le qubit 1 est dans l’état \\(|\\psi_1\\rangle\\) et le qubit 2 dans l’état \\(|\\psi_2\\rangle\\), l’état joint des deux qubits est :\n\\[|\\psi_1\\rangle \\otimes |\\psi_2\\rangle\\]\nC’est un vecteur unitaire à quatre dimensions dans l’espace produit tensoriel \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\).\n\n\nEspace de Hilbert\nLes états quantiques vivent dans un espace de Hilbert \\(H\\). Les aspects importants pour nous :\n\nLes espaces de Hilbert finis sont isomorphes à \\(\\mathbb{C}^d\\) pour une certaine dimension \\(d\\)\nIl existe une opération de produit intérieur entre deux vecteurs\nOn peut prendre des produits tensoriels d’espaces de Hilbert\n\nL’espace de Hilbert pour deux qubits est \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\), avec la base :\n\\[|0\\rangle \\otimes |0\\rangle, \\quad |0\\rangle \\otimes |1\\rangle, \\quad |1\\rangle \\otimes |0\\rangle, \\quad |1\\rangle \\otimes |1\\rangle\\]\nAbrégé en : \\(|0,0\\rangle \\quad |0,1\\rangle \\quad |1,0\\rangle \\quad |1,1\\rangle\\)\n\n\nMultiplication tensorielle de matrices\nPour décrire le calcul quantique, on a besoin d’une troisième forme de multiplication sur les matrices : le produit tensoriel (ou produit de Kronecker).\nSoient \\(A\\) et \\(B\\) des matrices de dimensions quelconques :\n\\[A \\otimes B = \\begin{bmatrix} a_{11}B & \\cdots & a_{1m}B \\\\ \\vdots & \\ddots & \\vdots \\\\ a_{n1}B & & a_{nm}B \\end{bmatrix}\\]\nExemple :\n\\[\\begin{bmatrix} 1 & 0 \\\\ 0 & 2 \\end{bmatrix} \\otimes \\begin{bmatrix} 1 & 2 & 3 \\end{bmatrix} = \\begin{bmatrix} 1 & 2 & 3 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 2 & 4 & 6 \\end{bmatrix}\\]\nPropriétés :\n\nSi \\(A\\) est \\(n \\times m\\) et \\(B\\) est \\(n' \\times m'\\), alors \\(A \\otimes B\\) est \\(nn' \\times mm'\\)\nLe produit tensoriel est associatif : \\(A \\otimes (B \\otimes C) = (A \\otimes B) \\otimes C\\)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#intrication-quantique-entanglement",
+    "href": "ch2c.html#intrication-quantique-entanglement",
+    "title": "Quantum Computing",
+    "section": "Intrication quantique (Entanglement)",
+    "text": "Intrication quantique (Entanglement)\n\nÉtats produits vs états intriqués\nTous les états dans \\(\\mathbb{C}^2 \\otimes \\mathbb{C}^2\\) ne peuvent pas s’écrire comme \\(|\\psi_1\\rangle \\otimes |\\psi_2\\rangle\\) (appelés états produits).\nUn exemple d’état intriqué — la paire Einstein-Podolsky-Rosen (EPR) ou paire de Bell :\n\\[|\\Phi\\rangle = \\frac{1}{\\sqrt{2}} \\Big( |0,0\\rangle + |1,1\\rangle \\Big)\\]\n\nL’intrication est un phénomène uniquement quantique : un qubit est intimement lié à un autre d’une façon que la physique classique ne peut pas expliquer. Einstein l’appelait “spooky actions at a distance”.\n\n\n\nPropriétés de l’intrication\n\nQuand une paire de particules est générée ou interagit, l’état quantique de chaque particule ne peut pas être décrit indépendamment des autres, même séparées par une grande distance\nL’état intriqué ne contient aucune information sur les particules individuelles, seulement qu’elles sont dans des états corrélés\nSi l’état d’une particule change, celui de l’autre est instantanément ajusté\nSi une mesure est faite sur l’une, l’autre s’effondre automatiquement\nL’intrication est absente de la mécanique classique\n\n\n\nExemple : produit tensoriel de deux qubits\nSupposons que deux qubits soient dans les états \\(\\alpha|0\\rangle + \\beta|1\\rangle\\) et \\(\\alpha'|0\\rangle + \\beta'|1\\rangle\\).\nL’état du système combiné est leur produit tensoriel :\n\\[(\\alpha|0\\rangle + \\beta|1\\rangle)(\\alpha'|0\\rangle + \\beta'|1\\rangle) = \\alpha\\alpha'|00\\rangle + \\alpha\\beta'|01\\rangle + \\beta\\alpha'|10\\rangle + \\beta\\beta'|11\\rangle\\]\nQuestion : quels sont les états des qubits individuels pour :\n\n\\(\\frac{1}{2}|00\\rangle + \\frac{1}{2}|01\\rangle - \\frac{1}{2}|10\\rangle - \\frac{1}{2}|11\\rangle\\) → état indépendant\n\\(\\frac{1}{\\sqrt{2}}|00\\rangle + \\frac{1}{\\sqrt{2}}|11\\rangle\\) → état intriqué",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#décohérence-decoherence",
+    "href": "ch2c.html#décohérence-decoherence",
+    "title": "Quantum Computing",
+    "section": "Décohérence (Decoherence)",
+    "text": "Décohérence (Decoherence)\ngraph LR\n    A[\"Qubit en superposition\\n(Heads + Tails)\"] --&gt;|Décohérence| B[\"Qubit classique\\n(Heads OU Tails)\"]\nLa décohérence quantique est la perte de superposition due à l’interaction spontanée entre un système quantique et son environnement.\n\nLa décohérence peut être vue comme la perte d’information d’un système vers son environnement\nC’est pourquoi les ordinateurs quantiques ont encore un long chemin à parcourir : la superposition et l’intrication sont des états extrêmement fragiles\nPrévenir la décohérence reste le plus grand défi dans la construction d’ordinateurs quantiques",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#observation-des-qubits-mesure",
+    "href": "ch2c.html#observation-des-qubits-mesure",
+    "title": "Quantum Computing",
+    "section": "Observation des qubits : mesure",
+    "text": "Observation des qubits : mesure\n\nLa règle de Born (Born Rule)\nL’état d’un qubit ne peut pas être directement observé. Il doit être mesuré, ce qui donne un état classique \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec les probabilités :\n\\[\\Pr[\\text{observer } |0\\rangle] = |\\alpha|^2 \\qquad \\Pr[\\text{observer } |1\\rangle] = |\\beta|^2\\]\nPuisque les états de qubits ont une longueur unitaire, ces probabilités s’additionnent à 1.\n\n\nEffondrement de la fonction d’onde\nAprès la mesure :\n\nLe système devient classique\nL’état du qubit s’effondre vers \\(|0\\rangle\\) ou \\(|1\\rangle\\) et l’état précédent est perdu\n\n\nEn mécanique quantique, la mesure perturbe généralement le système.\n\nDiagramme de mesure d’un qubit :\ngraph LR\n    psi[\"$$|\\psi\\rangle$$\"] --&gt; M[\"⧠\"]\n\n\nPropriété fondamentale\nSi l’état s’effondre vers \\(|0\\rangle\\) et qu’on le mesure à nouveau, il reste dans \\(|0\\rangle\\) avec probabilité 1.\n\\[\\text{Mesurer un système deux fois} = \\text{le mesurer une seule fois}\\]\n\n\nLe chat de Schrödinger\nUne boîte avec deux états classiques :\n\nChat endormi : \\(|0\\rangle\\)\nChat éveillé : \\(|1\\rangle\\)\n\nEn mécanique quantique, la boîte peut être dans une superposition de chat endormi et éveillé, tant qu’on n’ouvre pas la boîte (c’est-à-dire, tant qu’on ne la mesure pas).\nExemple : supposons que la boîte démarre dans l’état \\(\\frac{1}{\\sqrt{3}}|0\\rangle - i\\frac{\\sqrt{2}}{\\sqrt{3}}|1\\rangle\\) et soit mesurée :\n\nAvec probabilité \\(\\left|\\frac{1}{\\sqrt{3}}\\right|^2 = \\frac{1}{3}\\), l’état s’effondre vers \\(|0\\rangle\\) (chat endormi)\nAvec probabilité \\(\\left|-i\\frac{\\sqrt{2}}{\\sqrt{3}}\\right|^2 = \\frac{2}{3}\\), l’état s’effondre vers \\(|1\\rangle\\) (chat éveillé)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#transformations-sur-les-qubits",
+    "href": "ch2c.html#transformations-sur-les-qubits",
+    "title": "Quantum Computing",
+    "section": "Transformations sur les qubits",
+    "text": "Transformations sur les qubits\n\nPortes quantiques (Quantum Gates)\nUne porte quantique (ou quantum logic gate) est un circuit quantique de base opérant sur des qubits.\n\nCe sont les blocs de construction des circuits quantiques, comme les portes logiques classiques pour les circuits numériques\nEn raison de la condition de normalisation, chaque opération \\(U\\) doit être unitaire : \\(UU^* = I\\)\nLe nombre de qubits en entrée et en sortie doit être égal : une porte agissant sur \\(n\\) qubits est représentée par une matrice unitaire \\(2^n \\times 2^n\\)\nContrairement à de nombreuses portes classiques, les portes quantiques sont réversibles\n\nUne transformation unitaire \\(U\\) agissant sur l’état \\(|\\psi\\rangle\\) est représentée par :\ngraph LR\n    psi[\"$$|\\psi\\rangle$$\"] --&gt; U[\"$$U$$\"] --&gt; out[\" \"]\n\n\nDéfinitions équivalentes des matrices unitaires\nDéfinition 1. L’inverse de \\(U\\) est son conjugué Hermitien \\(U^\\dagger\\) (“U dagger”), dont l’entrée \\((i,j)\\) est le conjugué complexe de l’entrée \\((j,i)\\) de \\(U\\) :\n\\[U^\\dagger_{i,j} = \\bar{U}_{j,i}\\]\nDéfinition 2. \\(U\\) transforme les vecteurs unitaires en vecteurs unitaires (les états quantiques en états quantiques).\nDéfinition 3. Les lignes de \\(U\\) forment une base orthonormale de \\(\\mathbb{C}^d\\), et les colonnes forment également une base orthonormale de \\(\\mathbb{C}^d\\).\nDéfinition 4. \\(U\\) préserve les produits intérieurs entre vecteurs : le produit intérieur entre \\(|\\psi\\rangle\\) et \\(|\\theta\\rangle\\) est le même que celui entre \\(U|\\psi\\rangle\\) et \\(U|\\theta\\rangle\\).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#exemples-de-portes-quantiques-à-un-qubit",
+    "href": "ch2c.html#exemples-de-portes-quantiques-à-un-qubit",
+    "title": "Quantum Computing",
+    "section": "Exemples de portes quantiques à un qubit",
+    "text": "Exemples de portes quantiques à un qubit\n\nPorte Pauli-X (NOT quantique)\nLa porte Pauli-X est l’analogue quantique de la porte NOT classique.\n\n\n\n\n\n\n\n\nNotation Dirac\nMatrice\nCircuit\n\n\n\n\n\\(|0\\rangle \\to |1\\rangle\\), \\(\\quad |1\\rangle \\to |0\\rangle\\)\n\\(X = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}\\)\n\\(-\\boxed{X}-\\)\n\n\n\nVérification :\n\\[X \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix} \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix} = |1\\rangle\\]\n\\[X \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix} = \\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix} \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} = |0\\rangle\\]\nSur des états purs, agit comme une porte NOT classique : \\(|0\\rangle \\xrightarrow{X} |1\\rangle\\)\n\n\nPorte Pauli-Y\n\n\n\n\n\n\n\n\nNotation Dirac\nMatrice\nCircuit\n\n\n\n\n\\(|0\\rangle \\to i|1\\rangle\\), \\(\\quad |1\\rangle \\to -i|0\\rangle\\)\n\\(Y = \\begin{bmatrix} 0 & -i \\\\ i & 0 \\end{bmatrix}\\)\n\\(-\\boxed{Y}-\\)\n\n\n\n\nAucun équivalent classique.\n\n\n\nPorte Pauli-Z\n\n\n\nMatrice\nCircuit\n\n\n\n\n\\(Z = \\begin{bmatrix} 1 & 0 \\\\ 0 & -1 \\end{bmatrix}\\)\n\\(-\\boxed{Z}-\\)\n\n\n\n\n\nPorte Phase (S) et porte \\(\\pi/8\\) (T)\n\\[S = \\begin{pmatrix} 1 & 0 \\\\ 0 & i \\end{pmatrix} \\qquad T = \\begin{pmatrix} 1 & 0 \\\\ 0 & e^{i\\pi/4} \\end{pmatrix}\\]\nRelation : \\(S^2 = Z\\) et \\(S = -\\boxed{S}-\\boxed{S}-\\)\nLa sphère de Bloch représente visuellement tous les états possibles d’un qubit :\ngraph TD\n    top[\"$$|0\\rangle$$ (pôle nord)\"] --- mid[\"États en superposition\\n(surface de la sphère)\"] --- bot[\"$$|1\\rangle$$ (pôle sud)\"]",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#la-porte-de-hadamard-h",
+    "href": "ch2c.html#la-porte-de-hadamard-h",
+    "title": "Quantum Computing",
+    "section": "La porte de Hadamard (H)",
+    "text": "La porte de Hadamard (H)\n\nDéfinition\n\n\n\n\n\n\n\n\nNotation Dirac\nMatrice unitaire\nCircuit\n\n\n\n\n\\(|0\\rangle \\to \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle)\\) et \\(|1\\rangle \\to \\frac{1}{\\sqrt{2}}(|0\\rangle - |1\\rangle)\\)\n\\(H = \\frac{1}{\\sqrt{2}}\\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}\\)\n\\(-\\boxed{H}-\\)\n\n\n\nAussi : \\((|0\\rangle + |1\\rangle)/\\sqrt{2} \\to |0\\rangle\\) et \\((|0\\rangle - |1\\rangle)/\\sqrt{2} \\to |1\\rangle\\)\n\nAucun équivalent classique !\n\n\n\nPropriétés remarquables de la porte H\n\nAprès qu’un qubit dans \\(|0\\rangle\\) ou \\(|1\\rangle\\) est passé par une porte \\(H\\), son état est une superposition égale de \\(|0\\rangle\\) et \\(|1\\rangle\\) → le qubit passe d’un état déterministe à un état vraiment aléatoire\n\\(H\\) est sa propre inverse : \\(H^{-1} = H\\), donc \\(H^2 = I\\) → appliquer \\(H\\) deux fois ne change rien\nPropriété étonnante : appliquer une opération aléatoire à un état aléatoire produit un résultat déterministe !\nC’est l’une des portes les plus importantes du quantum computing",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#porte-cnot-controlled-not",
+    "href": "ch2c.html#porte-cnot-controlled-not",
+    "title": "Quantum Computing",
+    "section": "Porte CNOT (Controlled NOT)",
+    "text": "Porte CNOT (Controlled NOT)\nLa porte CNOT agit sur deux qubits :\n\nSi le qubit de contrôle est 0 → le qubit cible reste inchangé\nSi le qubit de contrôle est 1 → le qubit cible est inversé\n\n\\[CNOT = \\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\end{bmatrix}\\]\nComportement :\n\\[|00\\rangle \\to |00\\rangle, \\quad |01\\rangle \\to |01\\rangle, \\quad |10\\rangle \\to |11\\rangle, \\quad |11\\rangle \\to |10\\rangle\\]\nÉquivalente à la porte classique XOR (la sortie est “vraie” si et seulement si exactement l’un des opérandes est “vrai”).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#comparaison-portes-quantiques-vs-classiques",
+    "href": "ch2c.html#comparaison-portes-quantiques-vs-classiques",
+    "title": "Quantum Computing",
+    "section": "Comparaison : portes quantiques vs classiques",
+    "text": "Comparaison : portes quantiques vs classiques\n\n\n\n\n\n\n\n\n\nOpérateur quantique\nCircuit(s)\nMatrice\nÉquivalent classique\n\n\n\n\nPauli-X (X)\n\\(-\\boxed{X}-\\)\n\\(\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}\\)\nNOT\n\n\nPauli-Y (Y)\n\\(-\\boxed{Y}-\\)\n\\(\\begin{bmatrix} 0 & -i \\\\ i & 0 \\end{bmatrix}\\)\n—\n\n\nPauli-Z (Z)\n\\(-\\boxed{Z}-\\)\n\\(\\begin{bmatrix} 1 & 0 \\\\ 0 & -1 \\end{bmatrix}\\)\n—\n\n\nHadamard (H)\n\\(-\\boxed{H}-\\)\n\\(\\frac{1}{\\sqrt{2}}\\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}\\)\n—\n\n\nPhase (S, P)\n\\(-\\boxed{S}-\\)\n\\(\\begin{bmatrix} 1 & 0 \\\\ 0 & i \\end{bmatrix}\\)\n—\n\n\n\\(\\pi/8\\) (T)\n\\(-\\boxed{T}-\\)\n\\(\\begin{bmatrix} 1 & 0 \\\\ 0 & e^{i\\pi/4} \\end{bmatrix}\\)\n—\n\n\nCNOT (CX)\n\\(\\cdot \\oplus\\)\nmatrice \\(4\\times4\\)\nXOR\n\n\nControlled Z (CZ)\n\\(\\cdot -\\boxed{Z}-\\)\nmatrice \\(4\\times4\\)\n—\n\n\nSWAP\n\\(\\times\\)\nmatrice \\(4\\times4\\)\n—\n\n\nToffoli (CCNOT)\n\\(\\cdot\\cdot\\oplus\\)\nmatrice \\(8\\times8\\)\nNAND",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#traitement-des-qubits-interférence-quantique",
+    "href": "ch2c.html#traitement-des-qubits-interférence-quantique",
+    "title": "Quantum Computing",
+    "section": "Traitement des qubits : interférence quantique",
+    "text": "Traitement des qubits : interférence quantique\n\nDistinguer les états \\(|+\\rangle\\) et \\(|-\\rangle\\)\nDéfinissons les états :\n\\[|+\\rangle = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} \\qquad |-\\rangle = \\frac{1}{\\sqrt{2}} \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}\\]\nCes états forment une base orthonormale pour \\(\\mathbb{C}^2\\).\nRemarques :\n\\[|+\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle) = H|0\\rangle\\]\n\\[|-\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle - |1\\rangle) = H|1\\rangle\\]\nProblème : si on reçoit un qubit dans l’état \\(|+\\rangle\\) ou \\(|-\\rangle\\), peut-on distinguer lequel ? Mesurer directement donne \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec probabilité égale dans les deux cas.\nSolution : appliquer \\(H\\) avant de mesurer !\n\nCas 1 : \\(|\\psi\\rangle = |+\\rangle\\) → \\(H|+\\rangle = |0\\rangle\\) → la mesure donne toujours \\(|0\\rangle\\)\nCas 2 : \\(|\\psi\\rangle = |-\\rangle\\) → \\(H|-\\rangle = |1\\rangle\\) → la mesure donne toujours \\(|1\\rangle\\)\n\n\nEn mécanique quantique, les états orthogonaux peuvent être parfaitement distingués en appliquant une matrice unitaire appropriée, puis en mesurant dans la base standard.\n\n\nLa matrice de Hadamard transforme la base \\(\\{|+\\rangle, |-\\rangle\\}\\) vers la base standard \\(\\{|0\\rangle, |1\\rangle\\}\\) (et vice versa).\n\n\n\nExpérience A vs Expérience B\nExpérience A — H, mesure, H, mesure :\ngraph LR\n    in[\"$$|0\\rangle$$\"] --&gt; H1[\"$$H$$\"] --&gt; M1[\"⧠\"] --&gt; H2[\"$$H$$\"] --&gt; M2[\"⧠\"]\nRésultat : \\(|0\\rangle\\) ou \\(|1\\rangle\\) avec probabilité égale\nExpérience B — H, H, mesure :\ngraph LR\n    in[\"$$|0\\rangle$$\"] --&gt; H1[\"$$H$$\"] --&gt; H2[\"$$H$$\"] --&gt; M[\"⧠\"]\nRésultat : toujours \\(|0\\rangle\\)\n\n⚠️ Insérer ou supprimer une mesure intermédiaire peut drastiquement changer le comportement d’un système quantique !\n\n\n\nInterférence quantique\nL’application de plusieurs opérations unitaires sur un qubit donne naissance à un arbre de “chemins” entre les états.\nPour l’expérience B, les amplitudes de transition pour aboutir à \\(|1\\rangle\\) :\ngraph TD\n    s[\"$$|0\\rangle$$\"] --&gt;|\"$$1/\\sqrt{2}$$\"| z1[\"$$|0\\rangle$$\"]\n    s --&gt;|\"$$1/\\sqrt{2}$$\"| o1[\"$$|1\\rangle$$\"]\n    z1 --&gt;|\"$$1/\\sqrt{2}$$\"| z2[\"$$|0\\rangle$$\"]\n    z1 --&gt;|\"$$1/\\sqrt{2}$$\"| o2[\"$$|1\\rangle$$\"]\n    o1 --&gt;|\"$$1/\\sqrt{2}$$\"| z3[\"$$|0\\rangle$$\"]\n    o1 --&gt;|\"$$-1/\\sqrt{2}$$\"| o3[\"$$|1\\rangle$$\"]\nAmplitudes de transition finales pour \\(|1\\rangle\\) :\n\\[\\frac{1}{\\sqrt{2}} \\cdot \\frac{1}{\\sqrt{2}} + \\frac{1}{\\sqrt{2}} \\cdot \\left(-\\frac{1}{\\sqrt{2}}\\right) = \\frac{1}{2} - \\frac{1}{2} = 0\\]\nLes chemins menant à \\(|1\\rangle\\) s’annulent mutuellement (interférence destructive).\n\nPuisque les amplitudes peuvent être négatives ou complexes, les chemins peuvent s’additionner constructivement ou s’annuler destructivement\nLes mesures intermédiaires détruisent les superpositions et empêchent l’interférence\nEn physique classique, on ajoute des probabilités (positives). En physique quantique, on ajoute des amplitudes qui peuvent être négatives → l’interférence est un exemple de “quantum weirdness”",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#circuits-quantiques",
+    "href": "ch2c.html#circuits-quantiques",
+    "title": "Quantum Computing",
+    "section": "Circuits quantiques",
+    "text": "Circuits quantiques\n\nDéfinition\nUn circuit quantique est un modèle de calcul quantique dans lequel un calcul est une séquence de portes quantiques avec un registre de \\(n\\) qubits reliés par des “fils”.\n\nLe circuit a une “largeur” fixe correspondant au nombre de qubits traités\nContrairement aux circuits classiques, le même nombre de fils parcourt tout le circuit\n\nExemple de génération d’intrication :\nPour générer un état de Bell \\(\\frac{|00\\rangle + |11\\rangle}{\\sqrt{2}}\\) :\ngraph LR\n    q1[\"$$|0\\rangle$$\"] --&gt; H[\"$$H$$\"] --&gt; CNOT_ctrl[\" ● \"]\n    q2[\"$$|0\\rangle$$\"] --&gt; CNOT_tgt[\"$$\\oplus$$\"]\n    CNOT_ctrl --- CNOT_tgt\n    CNOT_tgt --&gt; out[\"$$\\frac{|00\\rangle + |11\\rangle}{\\sqrt{2}}$$\"]\n\nUtilisation de deux qubits pour générer un état d’intrication (état de Bell) avec une porte Hadamard et une porte CNOT.\n\n\n\nCircuits classiques vs circuits quantiques\nCircuits logiques classiques :\n\nComportement régi implicitement par la physique classique\nLes états signaux sont de simples vecteurs de bits (ex : \\(X = 01010111\\))\nOpérations définies par l’algèbre de Boole\nAucune restriction sur la copie ou la mesure des signaux\nPetits ensembles universels bien définis : \\(\\{NAND\\}\\), \\(\\{AND, OR, NOT\\}\\), etc.\nFacilement implémentés en technologies CMOS rapides et scalables\n\nCircuits logiques quantiques :\n\nComportement régi explicitement par la mécanique quantique\nLes états signaux sont des vecteurs interprétés comme une superposition de vecteurs “qubit” :\n\n\\[|\\Psi\\rangle = \\sum_{i=0}^{2^n-1} c_i |i_{n-1} i_{n-2} \\ldots i_0\\rangle\\]\n\nOpérations définies par l’algèbre linéaire sur l’espace de Hilbert (matrices unitaires complexes)\nRestrictions sévères sur la copie et la mesure des signaux\nCircuits implémentés dans des technologies microscopiques lentes, fragiles et non encore scalables (ex : NMR)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#qcl-quantum-computation-language",
+    "href": "ch2c.html#qcl-quantum-computation-language",
+    "title": "Quantum Computing",
+    "section": "QCL (Quantum Computation Language)",
+    "text": "QCL (Quantum Computation Language)\n\nSyntaxe C-like\nPermet de combiner code quantique et code classique\n\n/* Remove \"//\" if starting interpreter with -n option */\n// extern operator H(qureg q);\n\nprocedure FlipCoin() {\n    qureg q[1]; int x;\n    reset;\n    H(q);         // porte de Hadamard\n    measure q, x; // mesure\n    if x == 1 { print \"Heads\"; }\n    if x == 0 { print \"Tails\"; }\n    reset;\n}",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#qiskit-quantum-information-science-kit",
+    "href": "ch2c.html#qiskit-quantum-information-science-kit",
+    "title": "Quantum Computing",
+    "section": "Qiskit (Quantum Information Science Kit)",
+    "text": "Qiskit (Quantum Information Science Kit)\n\nFramework open-source pour le quantum computing\nDéveloppé par IBM\nPermet de créer et manipuler des programmes quantiques et de les exécuter sur des appareils quantiques prototypes via IBM Quantum Experience (accès cloud)\n\nfrom qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit\nfrom qiskit.tools.visualization import circuit_drawer\nimport numpy as np\n\nqr = QuantumRegister(2)\ncr = ClassicalRegister(2)\nqp = QuantumCircuit(qr, cr)\n\nqp.rx(np.pi/2, qr[0])\nqp.cx(qr[0], qr[1])\nqp.measure(qr, cr)\n\ncircuit_drawer(qp)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#vue-densemble",
+    "href": "ch2c.html#vue-densemble",
+    "title": "Quantum Computing",
+    "section": "Vue d’ensemble",
+    "text": "Vue d’ensemble\nLe flux de soumission d’un job depuis un ordinateur classique vers un ordinateur quantique :\ngraph LR\n    A[\"Soumettre un job\"] --&gt; B[\"File d'attente\\n(Job Queue)\"] --&gt; C[\"Traduire le circuit\\nquantique en\\nimpulsions micro-ondes\"] --&gt; D[\"Exécuter sur\\nl'ordinateur quantique\"] --&gt; E[\"Résultats de mesure\"] --&gt; A\nL’architecture complète implique :\n\nUn ordinateur classique qui envoie un programme au contrôleur de l’ordinateur quantique\nLe contrôleur qui envoie des commandes (portes) au registre quantique et reçoit les résultats de mesure\nLe registre quantique composé de qubits physiques",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#exigences-techniques",
+    "href": "ch2c.html#exigences-techniques",
+    "title": "Quantum Computing",
+    "section": "Exigences techniques",
+    "text": "Exigences techniques\nPrérequis fondamentaux :\n\nImplémentation physique des qubits\nContrôle de l’évolution unitaire\nPréparation de l’état initial des qubits\nMesure de l’état final\n\nConsidérations supplémentaires :\n\nLes systèmes doivent être presque complètement isolés de leur environnement\nL’état quantique cohérent doit être préservé\nLes temps de décohérence doivent être très longs\nEffectuer des opérations sur plusieurs qubits en parallèle\nSystème physique avec deux états uniquement adressables\nUn ensemble universel de portes quantiques\nCapacité d’intrication de deux qubits",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch2c.html#volume-quantique-quantum-volume",
+    "href": "ch2c.html#volume-quantique-quantum-volume",
+    "title": "Quantum Computing",
+    "section": "Volume quantique (Quantum Volume)",
+    "text": "Volume quantique (Quantum Volume)\nLe volume quantique \\(V_Q\\) est une métrique qui mesure les capacités et les taux d’erreur d’un ordinateur quantique.\n\nDéfini par Nikolaj Moll et al. (Quantum Sci. Technol. 3, 030503, 2018)\nDépend du nombre de qubits \\(N\\) ainsi que du nombre d’étapes pouvant être exécutées (profondeur du circuit \\(d\\)) :\n\n\\[\\tilde{V}_Q = \\min[N, d(N)]^2\\]\n\nIBM a modifié la définition :\n\n\\[\\log_2 V_Q = \\underset{n \\leq N}{\\arg\\max} \\{\\min[n, d(n)]\\}\\]\n\nÉvolution du volume quantique\n\n\n\nDate\nVolume quantique (taille circuit)\nFabricant\nNotes\n\n\n\n\nJanvier 2020\n32 (5×5)\nIBM\n“Raleigh” (28 qubits)\n\n\nJuin 2020\n64 (6×6)\nHoneywell\n6 qubits\n\n\nAoût 2020\n64 (6×6)\nIBM\n27 qubits\n\n\nNovembre 2020\n128 (7×7)\nHoneywell\n“H1” (10 qubits)",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 2",
+      "Details"
+    ]
+  },
+  {
     "objectID": "ch1r.html",
     "href": "ch1r.html",
     "title": "Computational Imaging",
     "section": "",
-    "text": "L’imagerie computationnelle forme indirectement des images à partir de mesures en utilisant des algorithmes sophistiqués. Elle intègre étroitement le système de capture et le calcul, contrairement à l’imagerie traditionnelle.\n\nImagerie traditionnelle : l’optique forme une image proche de l’image finale ; le calcul intervient a posteriori pour améliorer (débrutage, déconvolution).\nImagerie computationnelle : l’optique encode la scène en représentation intermédiaire ; le calcul décode pour reconstruire une ou plusieurs images.\n\ngraph LR\n    A[Monde physique] --&gt; B[Encodage optique]\n    B --&gt; C[Représentation intermédiaire]\n    C --&gt; D[Décodage algorithmique]\n    D --&gt; E[Image(s) reconstruite(s)]\n\n\n\n\n\n\nPartie\nPondération\nDétails\n\n\n\n\nThéorique\n40%\n2 CCs ou examen oral\n\n\nTPs\n25%\nMoyenne des TPs\n\n\nMini‑projet\n35%\nRapport + présentation\n\n\n\nCondition : chaque partie ≥ 4.0/6.\n\n\n\n\n\n\n\nSP‑STM / nc‑AFM : détection de spin à l’échelle atomique.\nMRFM : résonance magnétique sur spin unique.\nImagerie X cohérente : magnétisme sans lentille, résolution 5‑10 nm.\n\n\n\n\n\nSynthèse d’ouverture, déconvolution.\nVolumes de données massifs (SKA : exaoctets).\nReconstruction de cartes du ciel, étude matière noire.\n\n\n\n\n\n\n\n\n\n\n\n\nMéthode\nPorteur d’info\nPrincipe\n\n\n\n\nÉchographie\nOndes pression\nRétrodiffusion\n\n\nRadiographie/CT\nRayonnements ionisants\nTransmission / reconstruction 3D\n\n\nSPECT/PET\nÉmission traceurs\nImagerie fonctionnelle\n\n\nIRM\nPrécession spin\nContraste multidimensionnel\n\n\n\nÉtapes : acquisition signaux 1D/2D → reconstruction 3D.\n\n\n\n\nHDR, mode nuit, fusion d’images, bokeh.\n\n\n\n\n\nVoitures autonomes : caméras, lidar, fusion, imagerie 3D temps réel.\n\n\n\n\n\nOptimisation conjointe optique‑traitement (simulation bout en bout).\nRéseau hybride opto‑électronique : optique codeur + réseau décodeur.\n\n\n\n\n\nMA‑XRF : cube (x, y, énergie) → cartes élémentaires des pigments.\nApprentissage pour séparation des couches picturales (ex. Goya).\n\n\n\n\n\nReconstruction scène cachée par analyse lumière diffusée.\nApplications : sécurité, robotique, secours.\n\n\n\n\n\n\n\n\n\nAnatomie œil, acuité, vision couleurs/3D.\nSensibilité contraste, conflits d’affichage, défauts réfraction.\n\n\n\n\n\nOptique, ouverture, profondeur champ, exposition, bruit.\nFiltres Bayer, pipeline traitement.\n\n\n\n\n\nHDR, tone mapping, burst mode, coded apertures.\n\n\n\n\n\nCNN, DnCNN (débruitage), U‑Net (segmentation/reconstruction).\n\n\n\n\n\nMéthodes gradient proximal, priors profonds.\nRésolution problèmes inverses.\n\n\n\n\n\nCaméra pixel unique, hyperspectral, light field compressif.\n\n\n\n\n\nDiffraction, interférences, limite diffraction.\nOptimisation conjointe, reconstruction phase, holographie.\n\n\n\n\n\nLight field displays (VR/AR), holographie dynamique.\n\n\n\n\n\n\n\nProblème inverse : reconstruction à partir de mesures indirectes.\nEncodage‑décodage : l’optique code l’information, le calcul la décode.\nOptimisation conjointe : conception simultanée optique et algorithmes.\nPriors : connaissances a priori (ex. régularisation, réseaux profonds)."
+    "text": "L’imagerie computationnelle forme indirectement des images à partir de mesures en utilisant des algorithmes sophistiqués. Elle intègre étroitement le système de capture et le calcul, contrairement à l’imagerie traditionnelle.\n\nImagerie traditionnelle : l’optique forme une image proche de l’image finale ; le calcul intervient a posteriori pour améliorer (débrutage, déconvolution).\nImagerie computationnelle : l’optique encode la scène en représentation intermédiaire ; le calcul décode pour reconstruire une ou plusieurs images.\n\ngraph LR\n    A[Monde physique] --&gt; B[Encodage optique]\n    B --&gt; C[Représentation intermédiaire]\n    C --&gt; D[Décodage algorithmique]\n    D --&gt; E[Image(s) reconstruite(s)]\n\n\n\n\n\n\nPartie\nPondération\nDétails\n\n\n\n\nThéorique\n40%\n2 CCs ou examen oral\n\n\nTPs\n25%\nMoyenne des TPs\n\n\nMini‑projet\n35%\nRapport + présentation\n\n\n\nCondition : chaque partie ≥ 4.0/6.\n\n\n\n\n\n\n\nSP‑STM / nc‑AFM : détection de spin à l’échelle atomique.\nMRFM : résonance magnétique sur spin unique.\nImagerie X cohérente : magnétisme sans lentille, résolution 5‑10 nm.\n\n\n\n\n\nSynthèse d’ouverture, déconvolution.\nVolumes de données massifs (SKA : exaoctets).\nReconstruction de cartes du ciel, étude matière noire.\n\n\n\n\n\n\n\n\n\n\n\n\nMéthode\nPorteur d’info\nPrincipe\n\n\n\n\nÉchographie\nOndes pression\nRétrodiffusion\n\n\nRadiographie/CT\nRayonnements ionisants\nTransmission / reconstruction 3D\n\n\nSPECT/PET\nÉmission traceurs\nImagerie fonctionnelle\n\n\nIRM\nPrécession spin\nContraste multidimensionnel\n\n\n\nÉtapes : acquisition signaux 1D/2D → reconstruction 3D.\n\n\n\n\nHDR, mode nuit, fusion d’images, bokeh.\n\n\n\n\n\nVoitures autonomes : caméras, lidar, fusion, imagerie 3D temps réel.\n\n\n\n\n\nOptimisation conjointe optique‑traitement (simulation bout en bout).\nRéseau hybride opto‑électronique : optique codeur + réseau décodeur.\n\n\n\n\n\nMA‑XRF : cube (x, y, énergie) → cartes élémentaires des pigments.\nApprentissage pour séparation des couches picturales (ex. Goya).\n\n\n\n\n\nReconstruction scène cachée par analyse lumière diffusée.\nApplications : sécurité, robotique, secours.\n\n\n\n\n\n\n\n\n\nAnatomie œil, acuité, vision couleurs/3D.\nSensibilité contraste, conflits d’affichage, défauts réfraction.\n\n\n\n\n\nOptique, ouverture, profondeur champ, exposition, bruit.\nFiltres Bayer, pipeline traitement.\n\n\n\n\n\nHDR, tone mapping, burst mode, coded apertures.\n\n\n\n\n\nCNN, DnCNN (débruitage), U‑Net (segmentation/reconstruction).\n\n\n\n\n\nMéthodes gradient proximal, priors profonds.\nRésolution problèmes inverses.\n\n\n\n\n\nCaméra pixel unique, hyperspectral, light field compressif.\n\n\n\n\n\nDiffraction, interférences, limite diffraction.\nOptimisation conjointe, reconstruction phase, holographie.\n\n\n\n\n\nLight field displays (VR/AR), holographie dynamique.\n\n\n\n\n\n\n\nProblème inverse : reconstruction à partir de mesures indirectes.\nEncodage‑décodage : l’optique code l’information, le calcul la décode.\nOptimisation conjointe : conception simultanée optique et algorithmes.\nPriors : connaissances a priori (ex. régularisation, réseaux profonds).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Synthese"
+    ]
   },
   {
     "objectID": "ch1r.html#introduction",
     "href": "ch1r.html#introduction",
     "title": "Computational Imaging",
     "section": "",
-    "text": "L’imagerie computationnelle forme indirectement des images à partir de mesures en utilisant des algorithmes sophistiqués. Elle intègre étroitement le système de capture et le calcul, contrairement à l’imagerie traditionnelle.\n\nImagerie traditionnelle : l’optique forme une image proche de l’image finale ; le calcul intervient a posteriori pour améliorer (débrutage, déconvolution).\nImagerie computationnelle : l’optique encode la scène en représentation intermédiaire ; le calcul décode pour reconstruire une ou plusieurs images.\n\ngraph LR\n    A[Monde physique] --&gt; B[Encodage optique]\n    B --&gt; C[Représentation intermédiaire]\n    C --&gt; D[Décodage algorithmique]\n    D --&gt; E[Image(s) reconstruite(s)]"
+    "text": "L’imagerie computationnelle forme indirectement des images à partir de mesures en utilisant des algorithmes sophistiqués. Elle intègre étroitement le système de capture et le calcul, contrairement à l’imagerie traditionnelle.\n\nImagerie traditionnelle : l’optique forme une image proche de l’image finale ; le calcul intervient a posteriori pour améliorer (débrutage, déconvolution).\nImagerie computationnelle : l’optique encode la scène en représentation intermédiaire ; le calcul décode pour reconstruire une ou plusieurs images.\n\ngraph LR\n    A[Monde physique] --&gt; B[Encodage optique]\n    B --&gt; C[Représentation intermédiaire]\n    C --&gt; D[Décodage algorithmique]\n    D --&gt; E[Image(s) reconstruite(s)]",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Synthese"
+    ]
   },
   {
     "objectID": "ch1r.html#objectifs-et-évaluation",
     "href": "ch1r.html#objectifs-et-évaluation",
     "title": "Computational Imaging",
     "section": "",
-    "text": "Partie\nPondération\nDétails\n\n\n\n\nThéorique\n40%\n2 CCs ou examen oral\n\n\nTPs\n25%\nMoyenne des TPs\n\n\nMini‑projet\n35%\nRapport + présentation\n\n\n\nCondition : chaque partie ≥ 4.0/6."
+    "text": "Partie\nPondération\nDétails\n\n\n\n\nThéorique\n40%\n2 CCs ou examen oral\n\n\nTPs\n25%\nMoyenne des TPs\n\n\nMini‑projet\n35%\nRapport + présentation\n\n\n\nCondition : chaque partie ≥ 4.0/6.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Synthese"
+    ]
   },
   {
     "objectID": "ch1r.html#exemples-clés-par-domaine",
     "href": "ch1r.html#exemples-clés-par-domaine",
     "title": "Computational Imaging",
     "section": "",
-    "text": "SP‑STM / nc‑AFM : détection de spin à l’échelle atomique.\nMRFM : résonance magnétique sur spin unique.\nImagerie X cohérente : magnétisme sans lentille, résolution 5‑10 nm.\n\n\n\n\n\nSynthèse d’ouverture, déconvolution.\nVolumes de données massifs (SKA : exaoctets).\nReconstruction de cartes du ciel, étude matière noire.\n\n\n\n\n\n\n\n\n\n\n\n\nMéthode\nPorteur d’info\nPrincipe\n\n\n\n\nÉchographie\nOndes pression\nRétrodiffusion\n\n\nRadiographie/CT\nRayonnements ionisants\nTransmission / reconstruction 3D\n\n\nSPECT/PET\nÉmission traceurs\nImagerie fonctionnelle\n\n\nIRM\nPrécession spin\nContraste multidimensionnel\n\n\n\nÉtapes : acquisition signaux 1D/2D → reconstruction 3D.\n\n\n\n\nHDR, mode nuit, fusion d’images, bokeh.\n\n\n\n\n\nVoitures autonomes : caméras, lidar, fusion, imagerie 3D temps réel.\n\n\n\n\n\nOptimisation conjointe optique‑traitement (simulation bout en bout).\nRéseau hybride opto‑électronique : optique codeur + réseau décodeur.\n\n\n\n\n\nMA‑XRF : cube (x, y, énergie) → cartes élémentaires des pigments.\nApprentissage pour séparation des couches picturales (ex. Goya).\n\n\n\n\n\nReconstruction scène cachée par analyse lumière diffusée.\nApplications : sécurité, robotique, secours."
+    "text": "SP‑STM / nc‑AFM : détection de spin à l’échelle atomique.\nMRFM : résonance magnétique sur spin unique.\nImagerie X cohérente : magnétisme sans lentille, résolution 5‑10 nm.\n\n\n\n\n\nSynthèse d’ouverture, déconvolution.\nVolumes de données massifs (SKA : exaoctets).\nReconstruction de cartes du ciel, étude matière noire.\n\n\n\n\n\n\n\n\n\n\n\n\nMéthode\nPorteur d’info\nPrincipe\n\n\n\n\nÉchographie\nOndes pression\nRétrodiffusion\n\n\nRadiographie/CT\nRayonnements ionisants\nTransmission / reconstruction 3D\n\n\nSPECT/PET\nÉmission traceurs\nImagerie fonctionnelle\n\n\nIRM\nPrécession spin\nContraste multidimensionnel\n\n\n\nÉtapes : acquisition signaux 1D/2D → reconstruction 3D.\n\n\n\n\nHDR, mode nuit, fusion d’images, bokeh.\n\n\n\n\n\nVoitures autonomes : caméras, lidar, fusion, imagerie 3D temps réel.\n\n\n\n\n\nOptimisation conjointe optique‑traitement (simulation bout en bout).\nRéseau hybride opto‑électronique : optique codeur + réseau décodeur.\n\n\n\n\n\nMA‑XRF : cube (x, y, énergie) → cartes élémentaires des pigments.\nApprentissage pour séparation des couches picturales (ex. Goya).\n\n\n\n\n\nReconstruction scène cachée par analyse lumière diffusée.\nApplications : sécurité, robotique, secours.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Synthese"
+    ]
   },
   {
     "objectID": "ch1r.html#principaux-sujets",
     "href": "ch1r.html#principaux-sujets",
     "title": "Computational Imaging",
     "section": "",
-    "text": "Anatomie œil, acuité, vision couleurs/3D.\nSensibilité contraste, conflits d’affichage, défauts réfraction.\n\n\n\n\n\nOptique, ouverture, profondeur champ, exposition, bruit.\nFiltres Bayer, pipeline traitement.\n\n\n\n\n\nHDR, tone mapping, burst mode, coded apertures.\n\n\n\n\n\nCNN, DnCNN (débruitage), U‑Net (segmentation/reconstruction).\n\n\n\n\n\nMéthodes gradient proximal, priors profonds.\nRésolution problèmes inverses.\n\n\n\n\n\nCaméra pixel unique, hyperspectral, light field compressif.\n\n\n\n\n\nDiffraction, interférences, limite diffraction.\nOptimisation conjointe, reconstruction phase, holographie.\n\n\n\n\n\nLight field displays (VR/AR), holographie dynamique."
+    "text": "Anatomie œil, acuité, vision couleurs/3D.\nSensibilité contraste, conflits d’affichage, défauts réfraction.\n\n\n\n\n\nOptique, ouverture, profondeur champ, exposition, bruit.\nFiltres Bayer, pipeline traitement.\n\n\n\n\n\nHDR, tone mapping, burst mode, coded apertures.\n\n\n\n\n\nCNN, DnCNN (débruitage), U‑Net (segmentation/reconstruction).\n\n\n\n\n\nMéthodes gradient proximal, priors profonds.\nRésolution problèmes inverses.\n\n\n\n\n\nCaméra pixel unique, hyperspectral, light field compressif.\n\n\n\n\n\nDiffraction, interférences, limite diffraction.\nOptimisation conjointe, reconstruction phase, holographie.\n\n\n\n\n\nLight field displays (VR/AR), holographie dynamique.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Synthese"
+    ]
   },
   {
     "objectID": "ch1r.html#concepts-fondamentaux",
     "href": "ch1r.html#concepts-fondamentaux",
     "title": "Computational Imaging",
     "section": "",
-    "text": "Problème inverse : reconstruction à partir de mesures indirectes.\nEncodage‑décodage : l’optique code l’information, le calcul la décode.\nOptimisation conjointe : conception simultanée optique et algorithmes.\nPriors : connaissances a priori (ex. régularisation, réseaux profonds)."
+    "text": "Problème inverse : reconstruction à partir de mesures indirectes.\nEncodage‑décodage : l’optique code l’information, le calcul la décode.\nOptimisation conjointe : conception simultanée optique et algorithmes.\nPriors : connaissances a priori (ex. régularisation, réseaux profonds).",
+    "crumbs": [
+      "Cours",
+      "Quantum computing",
+      "Synthese"
+    ]
   }
 ]
