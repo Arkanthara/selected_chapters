@@ -5,6 +5,7 @@
 
 // Main content
 #show: make-report.with(my-report)
+#let Var = math.op("Var")
 
 #v(1em)
 
@@ -282,6 +283,32 @@ So we have:
 = Exercise 6
 #h(1em)
 Suppose we have a qubit in the state $|0 chevron.r$, and we measure the observable $X$. What is the average value of $X$? What is the standard deviation of $X$?
+
+  The state of a qubit can be described as the combination of two states: $|0 chevron.r$ and $|1 chevron.r$.
+  So the state of a qubit $|phi chevron.r$ can be written as $ |phi chevron.r = alpha |0 chevron.r + beta |1 chevron.r $ with $alpha, beta in CC$.
+
+  As the qubit state is a combination of two states, the qubit state cannot be observed.
+  However, the qubit state can be measured to fix the state of the qubit to state $|0 chevron.r$ or state $|1 chevron.r$.
+
+  According to the Born Rule, for a qubit $|phi chevron.r = alpha |0 chevron.r + beta |1 chevron.r$, the probability that the qubit is in the state $|0 chevron.r$ is given by $|alpha|^2$ and the probability that the qubit is in the state $|1 chevron.r$ is given by $|beta|^2$.
+As $|alpha|^2$ and $|beta|^2$ are probabilities, we have that $|alpha|^2 + |beta|^2 = 1$.
+
+  If we consider that we have a qubit in the state $|0 chevron.r$, it means that $|alpha|^2 = 1$ and $|beta|^2 = 0$ since $|alpha|^2 + |beta|^2 = 1 <=> 1 + |beta|^2 = 1 <=> |beta|^2 = 0 <=> beta = 0$.
+  As $alpha$ is a complex number, we cannot determine the value of $alpha$.
+
+  So the average value of the observable $X$ is given by:
+  $ EE[X] = alpha |0 chevron.r + beta |1 chevron.r = alpha |0 chevron.r $
+
+  The standard deviation of $X$ is given by:
+  #align(left,
+    $
+      Var[X] &= EE[X^2] - EE[X]^2 \
+      &= EE[(alpha |0 chevron.r + beta |1 chevron.r)^2] - (alpha |0 chevron.r)^2 \
+      &= EE[alpha^2 vec(1, 0) vec(1, 0)^T] - alpha^2 vec(1, 0) vec(1, 0)^T \
+      &= alpha^2 vec(1, 0) vec(1, 0)^T - alpha^2 vec(1, 0) vec(1, 0)^T \
+      &= 0
+    $
+  )
 
 #v(1em)
 
