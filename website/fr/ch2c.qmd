@@ -222,12 +222,14 @@ $$(\alpha|0\rangle + \beta|1\rangle)(\alpha'|0\rangle + \beta'|1\rangle) = \alph
 
 ## Décohérence (Decoherence)
 
-```{.mermaid}
+```{mermaid}
 graph LR
     A["Qubit en superposition\n(Heads + Tails)"] -->|Décohérence| B["Qubit classique\n(Heads OU Tails)"]
 ```
 
 La **décohérence quantique** est la perte de superposition due à l'interaction spontanée entre un système quantique et son environnement.
+
+(En fait, c'est comme si l'état du qubit était fixe avant d'être mesuré...)
 
 - La décohérence peut être vue comme la **perte d'information** d'un système vers son environnement
 - C'est pourquoi les ordinateurs quantiques ont encore un long chemin à parcourir : la superposition et l'intrication sont des états **extrêmement fragiles**
@@ -256,7 +258,7 @@ Après la mesure :
 
 Diagramme de mesure d'un qubit :
 
-```{.mermaid}
+```{mermaid}
 graph LR
     psi["$$|\psi\rangle$$"] --> M["⧠"]
 ```
@@ -296,7 +298,7 @@ Une **porte quantique** (ou *quantum logic gate*) est un circuit quantique de ba
 
 Une transformation unitaire $U$ agissant sur l'état $|\psi\rangle$ est représentée par :
 
-```{.mermaid}
+```{mermaid}
 graph LR
     psi["$$|\psi\rangle$$"] --> U["$$U$$"] --> out[" "]
 ```
@@ -355,7 +357,7 @@ Relation : $S^2 = Z$ et $S = -\boxed{S}-\boxed{S}-$
 
 La **sphère de Bloch** représente visuellement tous les états possibles d'un qubit :
 
-```{.mermaid}
+```{mermaid}
 graph TD
     top["$$|0\rangle$$ (pôle nord)"] --- mid["États en superposition\n(surface de la sphère)"] --- bot["$$|1\rangle$$ (pôle sud)"]
 ```
@@ -373,6 +375,8 @@ graph TD
 Aussi : $(|0\rangle + |1\rangle)/\sqrt{2} \to |0\rangle$ et $(|0\rangle - |1\rangle)/\sqrt{2} \to |1\rangle$
 
 > **Aucun équivalent classique !**
+
+(Chaque nouvel état est une combinaison des deux états !)
 
 ### Propriétés remarquables de la porte H
 
@@ -398,6 +402,8 @@ $$CNOT = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 
 Comportement :
 
 $$|00\rangle \to |00\rangle, \quad |01\rangle \to |01\rangle, \quad |10\rangle \to |11\rangle, \quad |11\rangle \to |10\rangle$$
+
+(note que ce genre de matrice peux facilement etre comprise par une décomposition en block $2 \times 2$ de la matrice...)
 
 Équivalente à la porte classique **XOR** (la sortie est "vraie" si et seulement si exactement l'un des opérandes est "vrai").
 
@@ -451,7 +457,7 @@ $$|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = H|1\rangle$$
 
 **Expérience A** — H, mesure, H, mesure :
 
-```{.mermaid}
+```{mermaid}
 graph LR
     in["$$|0\rangle$$"] --> H1["$$H$$"] --> M1["⧠"] --> H2["$$H$$"] --> M2["⧠"]
 ```
@@ -460,7 +466,7 @@ Résultat : $|0\rangle$ ou $|1\rangle$ avec **probabilité égale**
 
 **Expérience B** — H, H, mesure :
 
-```{.mermaid}
+```{mermaid}
 graph LR
     in["$$|0\rangle$$"] --> H1["$$H$$"] --> H2["$$H$$"] --> M["⧠"]
 ```
@@ -475,7 +481,7 @@ L'application de plusieurs opérations unitaires sur un qubit donne naissance à
 
 Pour l'expérience B, les amplitudes de transition pour aboutir à $|1\rangle$ :
 
-```{.mermaid}
+```{mermaid}
 graph TD
     s["$$|0\rangle$$"] -->|"$$1/\sqrt{2}$$"| z1["$$|0\rangle$$"]
     s -->|"$$1/\sqrt{2}$$"| o1["$$|1\rangle$$"]
@@ -510,7 +516,7 @@ Un **circuit quantique** est un modèle de calcul quantique dans lequel un calcu
 
 Pour générer un état de Bell $\frac{|00\rangle + |11\rangle}{\sqrt{2}}$ :
 
-```{.mermaid}
+```{mermaid}
 graph LR
     q1["$$|0\rangle$$"] --> H["$$H$$"] --> CNOT_ctrl[" ● "]
     q2["$$|0\rangle$$"] --> CNOT_tgt["$$\oplus$$"]
@@ -618,7 +624,7 @@ circuit_drawer(qp)
 
 Le flux de soumission d'un job depuis un ordinateur classique vers un ordinateur quantique :
 
-```{.mermaid}
+```{mermaid}
 graph LR
     A["Soumettre un job"] --> B["File d'attente\n(Job Queue)"] --> C["Traduire le circuit\nquantique en\nimpulsions micro-ondes"] --> D["Exécuter sur\nl'ordinateur quantique"] --> E["Résultats de mesure"] --> A
 ```

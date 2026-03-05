@@ -1,0 +1,342 @@
+# Informatique Quantique
+
+**Cours 14X060** — Taras Holotyak, Université de Genève
+
+---
+
+# Contenu du cours
+
+- Bases théoriques de l'informatique quantique
+- Bases pratiques de l'informatique quantique
+- Potentiel à court terme de l'informatique quantique
+- Autres applications de l'information quantique
+
+---
+
+# Applications des ordinateurs quantiques
+
+Les ordinateurs quantiques ouvrent des perspectives révolutionnaires dans de nombreux domaines :
+
+- **Travel & Logistics** — optimisation de trajets et de chaînes logistiques
+- **Chemistry** — simulation moléculaire et réactions chimiques
+- **Pharmacology** — découverte et conception de médicaments
+- **Climate Modeling** — modélisation de systèmes complexes
+- **Financial Analysis** — analyse de risques et d'optimisation de portefeuilles
+- **Cryptography** — sécurisation et attaque de systèmes cryptographiques
+
+---
+
+## Application 1 : Factorisation Quantique
+
+> Référence : P. Shor (1994)
+
+Un ordinateur quantique peut factoriser des entiers de manière **exponentiellement plus rapide** que les ordinateurs classiques.
+
+**Exemple :**
+
+- $15 = 3 \times 5$ — facile
+- $38647884621009387621432325631 = \, ? \times ?$ — très difficile classiquement
+
+**Comparaison des performances :**
+
+| Méthode | Étapes | Temps (ordinateur THz) |
+|---|---|---|
+| Meilleur algorithme classique | $10^{24}$ étapes | 150 000 ans |
+| Algorithme quantique de Shor | $10^{10}$ étapes | < 1 seconde |
+
+**Importance — Cryptanalyse :**
+
+La cryptographie à clé publique repose sur l'**impossibilité pratique** de factoriser de grands nombres. Un ordinateur quantique suffisamment puissant remettrait en cause toute cette infrastructure.
+
+---
+
+## Application 2 : Recherche Quantique
+
+> Référence : L. Grover (1997)
+
+Un ordinateur quantique peut retrouver une entrée marquée dans une base de données non triée de manière **quadratiquement plus rapide** que les ordinateurs classiques.
+
+**Exemple :** retrouver le nom d'une personne à partir de son numéro de téléphone dans un annuaire non indexé.
+
+**Importance — Problèmes de satisfiabilité :**
+
+- Recherche rapide dans des grandes données
+- Inversion de fonctions complexes
+- Calcul de la médiane ou de propriétés globales
+- Reconnaissance de formes ; vision machine
+
+---
+
+## Application 3 : Simulation Quantique
+
+**Problème fondamental :**
+
+La modélisation quantique est intrinsèquement difficile : $N$ systèmes quantiques nécessitent la résolution de $2^N$ équations couplées, selon l'équation de Schrödinger :
+
+$$i\hbar \frac{\partial \Psi}{\partial t} = H\Psi$$
+
+**Approche alternative :**
+
+Implémenter le modèle d'un système en interaction sur un **simulateur quantique** — un ensemble standardisé de qubits avec des interactions programmables.
+
+**Plateformes physiques possibles :**
+
+- Ions atomiques
+- Atomes piégés
+- Supraconducteurs
+- Centres NV dans le diamant
+
+**Domaines d'application :**
+
+- **Quantum Material Design** — comprendre les propriétés de matériaux exotiques ou en concevoir de nouveaux depuis les principes fondamentaux
+- **Energy and Light Harvesting** — programmer des théories de jauge de type QCD sur réseau, tester des idées reliant la cosmologie à la théorie de l'information (AdS-CFT, etc.)
+- **Quantum Field Theories** — programmer des théories de jauge de type QCD sur réseau
+
+---
+
+## Application 4 : Optimisation Quantique
+
+L'optimisation quantique permet de **minimiser des fonctions complexes non linéaires** en « échantillonnant simultanément » tout l'espace de solutions via la superposition quantique.
+
+**Domaines pertinents :**
+
+- Logistique
+- Recherche opérationnelle
+- Conception VLSI
+- Finance
+
+**Exemple — optimisation quadratique :**
+
+Minimiser :
+
+$$f(x_1, x_2, \ldots) = \sum_{i < j} q_{ij} x_i x_j + \sum_i c_i x_i$$
+
+Cette fonction correspond à l'énergie d'un **réseau magnétique quantique** (*quantum magnetic network*).
+
+**Application potentielle majeure (« Killer Application ») :**
+
+- Pourrait résoudre une large classe de problèmes intractables : factorisation, problème du voyageur de commerce, etc.
+- **Mais** : on ne sait pas encore s'il existe toujours un avantage quantique (*quantum speedup*)
+
+---
+
+## Application 5 : Réseaux Quantiques
+
+Un réseau quantique relie plusieurs nœuds (localisations A, B, C, D) séparés par des distances allant de $0{,}1\,\text{m}$ à $10\,000\,\text{km}$.
+
+**Usages d'un réseau quantique :**
+
+- Génération de clés secrètes : cryptographie
+- Génération de nombres aléatoires certifiables
+- Répéteurs quantiques (« amplificateurs »)
+- Intrication quantique distribuée pour la prise de décision optimale
+- *Large-scale quantum computing*
+
+---
+
+# Études de cas
+
+## Étude de cas 1 : Cryptographie Quantique
+
+**Protocole BB84 — Établissement d'une clé secrète :**
+
+1. **Alice** envoie des q-bits aléatoires à **Bob**. Pour chacun, elle choisit une base parmi $\{|0\rangle, |1\rangle\}$ ou $\{|0\rangle \pm |1\rangle\}$
+
+2. **Bob** choisit aléatoirement une base pour mesurer le bit. S'il se trompe de base, il obtient un bit aléatoire
+
+3. **Eve** (l'espionne) tente d'intercepter les q-bits, mais elle ne connaît pas la base utilisée. Si elle se trompe, le bit transmis à Bob est **perturbé**
+
+4. Après $N$ bits envoyés, Alice et Bob **comparent publiquement** leurs bases utilisées. Les bits où les bases ne correspondent pas sont **rejetés**. Les bits restants doivent être **parfaitement corrélés**
+
+**Principe physique clé :** toute mesure d'un état quantique le perturbe — l'eavesdropping est donc détectable en principe.
+
+**Implémentation optique :**
+
+Le protocole utilise la **polarisation de photons** :
+
+- Alice dispose de polariseurs diagonaux et horizontaux-verticaux
+- Bob utilise des séparateurs de faisceaux diagonaux ($\times$) et horizontaux-verticaux ($+$) et des détecteurs de photons
+
+**Exemple de séquence :**
+
+```
+Bits d'Alice :     1  0  1  1  0  0  1  1  0  0  1  1  1  0
+Détection Bob :    + ✗ + ✗ ✗ ✗ + + ✗ + ✗ ✗ + +
+Mesures Bob :      1  0  0  1  0  0  1  1  0  0  0  1  0  0
+Clé siftée :       1  —  —  1  0  0  —  1  0  0  —  —  —  0
+```
+
+---
+
+## Étude de cas 1 (suite) : Téléportation Quantique
+
+**Protocole de téléportation :**
+
+1. Générer une paire d'électrons intriqués avec états de spin A et B, dans un état de Bell particulier
+2. Séparer les électrons intriqués, envoyer A à Alice et B à Bob
+3. Alice mesure l'« état de Bell » de A et C, intriquant A et C
+4. Alice envoie le résultat de sa mesure à Bob via un canal classique
+5. Bob mesure le spin de l'état B selon un axe déterminé par la mesure d'Alice
+
+**Circuit quantique associé :**
+
+```{.mermaid}
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Note over Alice: Prépare |Ψ⟩_C
+    Alice->>Alice: H-Gate sur |0⟩
+    Alice->>Alice: CNOT (crée paire intriquée |Ψ⟩_AB)
+    Alice->>Bob: Envoie qubit B
+    Alice->>Alice: CNOT entre C et A
+    Alice->>Alice: H-Gate sur C
+    Alice->>Alice: Mesure (2 bits classiques)
+    Alice->>Bob: Envoie résultat classique i
+    Bob->>Bob: Applique σ_i sur B → |Ψ⟩_B
+```
+
+**Points importants :**
+
+- La mesure d'Alice **désintrique** A et B, et **intrique** A et C
+- L'état C est « téléporté » vers Bob, qui obtient un état identique à C d'origine
+- L'état C **n'est pas préservé** chez Alice (les théorèmes de **no-cloning** et **no-deletion** l'interdisent)
+- Aucune information ne voyage plus vite que la lumière — le canal classique est indispensable
+
+---
+
+## Étude de cas 2 : Algorithme de Shor pour la Factorisation
+
+**Fondement mathématique :**
+
+> **Théorème de théorie des nombres :** Si $a \not\equiv \pm b \pmod{N}$ mais $a^2 \equiv b^2 \pmod{N}$, alors $\gcd(a+b, N)$ est un facteur de $N$.
+
+**Algorithme de factorisation de $N$ sur un ordinateur quantique :**
+
+1. Choisir $x$ premier avec $N$
+2. Utiliser la **QFT** (*Quantum Fourier Transform*) pour trouver la période de :
+$$f(s) = x^s \bmod N$$
+3. Utiliser l'ordre de $x$ pour calculer les facteurs candidats de $N$
+4. Vérifier s'ils sont valides ; sinon, recommencer
+
+**Complexité algorithmique :**
+
+| Algorithme | Complexité |
+|---|---|
+| Meilleur algorithme classique | $O\!\left(\exp(n^{1/3})\right)$ |
+| Algorithme quantique de Shor | $O(n^3 \log n)$ |
+
+---
+
+### Transformée de Fourier Quantique (QFT)
+
+L'opérateur QFT est défini par :
+
+$$U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{xy} |y\rangle\langle x|$$
+
+Son adjoint (inverse) :
+
+$$U^\dagger_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{-xy} |x\rangle\langle y|$$
+
+**Application à la recherche de période :**
+
+L'état de superposition périodique de période $l$ s'écrit :
+
+$$|\psi(x_0)\rangle = \frac{1}{\sqrt{2^n/l}} \sum_{j=0}^{2^n/l - 1} |x_0 + jl\rangle$$
+
+Après application de $U_{QFT}$, la sortie est :
+
+$$\frac{1}{\sqrt{2^{2n}/l}} \sum_{p=0}^{2^n-1} \sum_{j=0}^{2^n/l-1} \exp\!\left(\frac{2\pi i p (x_0 + jl)}{2^n}\right)|p\rangle = \frac{1}{\sqrt{l}} \sum_{\substack{p=0 \\ pl \equiv 0 \bmod 2^n}}^{2^n-1} e^{\frac{2\pi i p x_0}{2^n}} |p\rangle$$
+
+**Circuit de Shor :**
+
+```{.mermaid}
+flowchart LR
+    q1["|0⟩"] --> H1[H] --> dots1[...] --> ctrl1(( )) --> QFTinv["QFT⁻¹₂ₙ"] --> M1[/M/]
+    q2["|0⟩"] --> H2[H] --> dots2[...] --> ctrl2(( )) --> QFTinv --> M2[/M/]
+    q3["|0⟩"] --> H3[H] --> ctrl3(( )) --> QFTinv --> M3[/M/]
+    qn["|1⟩"] --> n["/n"] --> Ua0["Ua²⁰"] --> Ua1["Ua²¹"] --> Uak["... Ua^(2^(2n-1))"]
+```
+
+---
+
+## Étude de cas 3 : Solveur Variationnel Quantique (VQE)
+
+Le **VQE** (*Variational Quantum Eigensolver*) est un algorithme hybride quantique/classique permettant de trouver les valeurs propres d'une matrice $H$.
+
+**Contexte d'utilisation :**
+
+- Dans les simulations quantiques, $H$ est typiquement le Hamiltonien d'un système électronique
+- Il s'exécute à l'intérieur d'une **boucle d'optimisation classique**
+
+**Étapes quantiques (2 étapes fondamentales) :**
+
+1. Préparer les états quantiques $|\psi\rangle$ — souvent appelé l'*ansatz*
+2. Mesurer la valeur d'expectation $\langle \psi | H | \psi \rangle$
+
+**Rôle de la boucle classique (2 tâches) :**
+
+1. Utiliser un optimiseur classique non linéaire pour **minimiser** la valeur d'expectation en faisant varier les paramètres de l'ansatz
+2. **Itérer** jusqu'à convergence
+
+---
+
+# Post-Quantum World
+
+**Menace imminente :**
+
+Il est très probable que les ordinateurs quantiques pourront **casser RSA-2048 dans 5 à 10 ans** (il faudrait environ 8 000 qubits dans un ordinateur universel).
+
+**Problèmes urgents :**
+
+- Certaines données chiffrées ont une durée de vie de plus de 10 ans
+- La transition vers un nouveau schéma de chiffrement peut prendre 10 ans
+- Des sessions HTTPS enregistrées aujourd'hui pourraient être déchiffrées dans quelques années
+
+**La plupart des chiffrements utilisés aujourd'hui ne sont pas sûrs dans un monde quantique.**
+
+**Solutions vers lesquelles se tourner :**
+
+- Chiffrement symétrique ou algorithmes de hachage
+- **Algorithmes sur les réseaux euclidiens** (*lattice algorithms*)
+- **QKD** (*Quantum Key Distribution*) — déjà adopté par certains gouvernements et banques sous forme d'algorithmes « *Quantum Safe* »
+
+---
+
+# Avenir des Ordinateurs Quantiques
+
+**Croissance du marché :**
+
+Gartner projette un marché de **5 milliards USD en 2020**, pouvant dépasser **100 milliards USD en dix ans**.
+
+**Loi de Neven (*Neven's Law*) :**
+
+> Le nombre de qubits des ordinateurs quantiques à usage général **double environ tous les 12 à 18 mois** en moyenne — soit une croissance **doublement exponentielle** (analogue à la loi de Moore mais appliquée aux qubits).
+
+*Nommée d'après Hartmut Neven, directeur du Google Quantum AI Lab.*
+
+**Seuil critique — Zone de danger :**
+
+Selon les projections, le chiffrement **RSA-2048 bits pourra être cassé** lorsque le nombre de qubits atteindra les niveaux projetés (autour de 7 000–17 000 qubits selon le taux de croissance).
+
+**Cycle de Hype Gartner :**
+
+L'informatique quantique se situe actuellement au niveau du *Peak of Inflated Expectations* sur la courbe Gartner, avec une adoption grand public estimée à **plus de 10 ans**.
+
+---
+
+# Problèmes Actuels des Ordinateurs Quantiques
+
+- **Décohérence**
+
+  - Le système quantique est extrêmement sensible à l'environnement extérieur — il doit être parfaitement isolé
+  - Il est difficile de maintenir le temps de décohérence au-delà du temps d'exécution de l'algorithme
+
+- **Correction d'erreurs** — nécessite davantage de qubits !
+
+- **Implémentation physique** des opérations/calculs
+
+- **Nouveaux algorithmes quantiques** pour résoudre davantage de problèmes
+
+- **États intriqués** pour le transfert de données
+
+- Le **temps d'exécution croît exponentiellement** avec la taille de la matrice
