@@ -485,6 +485,53 @@ So the average value of the observable $X_1Z_2$ is:
 #h(1em)
 Verify that the Bell basis forms an orthonormal basis for the two qubit state space.
 
+The Bell basis is given by:
+
+#align(
+  left,
+  $
+    00 & :( |00 chevron.r + |11 chevron.r) / sqrt(2) = |e_0 chevron.r \
+    01 & :( |00 chevron.r - |11 chevron.r) / sqrt(2) = |e_1 chevron.r \
+    10 & :( |10 chevron.r + |01 chevron.r) / sqrt(2) = |e_2 chevron.r \
+    11 & :( |01 chevron.r - |10 chevron.r) / sqrt(2) = |e_3 chevron.r \
+  $,
+)
+
+To verify that the Bell basis forms an orthonormal basis for the two qubit state space, we need to check if each element is orthogonal with the others and if each element has a norm of 1.
+
+=== Orthogonality
+
+We will use the result of the previous exercise:
+
+$
+  chevron a b|c d chevron.r =
+  cases(
+    1 "if" a = c "and" b = d,
+    0 "else"
+  )
+$
+
+So we have:
+
+$
+  chevron e_0 | e_1 chevron.r &= ( chevron 00| + chevron 11|) / sqrt(2) ( |00 chevron.r - |11 chevron.r) / sqrt(2) = 1/2(chevron 00|00 chevron.r - chevron 00|11 chevron.r + chevron 11|00 chevron.r - chevron 11|11 chevron.r) = 1/2 (1 - 1) = 0 \
+  chevron e_0 | e_2 chevron.r &= ( chevron 00| + chevron 11|) / sqrt(2) ( |10 chevron.r + |01 chevron.r) / sqrt(2) = 1/2(chevron 00|10 chevron.r + chevron 00|01 chevron.r + chevron 11|10 chevron.r + chevron 11|01 chevron.r) = 0 \
+  chevron e_0 | e_3 chevron.r &= ( chevron 00| + chevron 11|) / sqrt(2) ( |01 chevron.r - |10 chevron.r) / sqrt(2) = 1/2(chevron 00|01 chevron.r - chevron 00|10 chevron.r + chevron 11|01 chevron.r - chevron 11|10 chevron.r) = 0 \
+  chevron e_1 | e_2 chevron.r &= ( |00 chevron.r - |11 chevron.r) / sqrt(2) ( |10 chevron.r + |01 chevron.r) / sqrt(2) = 1/2(chevron 00|10 chevron.r + chevron 00|01 chevron.r - chevron 11|10 chevron.r - chevron 11|01 chevron.r) = 0 \
+  chevron e_1 | e_3 chevron.r &= ( |00 chevron.r - |11 chevron.r) / sqrt(2) ( |01 chevron.r - |10 chevron.r) / sqrt(2) = 1/2(chevron 00|01 chevron.r - chevron 00|10 chevron.r - chevron 11|01 chevron.r + chevron 11|10 chevron.r) = 0 \
+  chevron e_2 | e_3 chevron.r &= ( |10 chevron.r + |01 chevron.r) / sqrt(2) ( |01 chevron.r - |10 chevron.r) / sqrt(2) = 1/2(chevron 10|01 chevron.r - chevron 10|10 chevron.r + chevron 01|01 chevron.r + chevron 01|10 chevron.r) = 1/2 (-1 + 1) = 0 \
+$
+
+So the Bell basis form an orthogonal basis for the two qubit state space.
+
+=== Unitary norm
+
+The norm of a vector is defined as the square root of its inner product with itself.
+So we have:
+
+$ |||psi chevron.r|| = sqrt(chevron psi|psi chevron.r) $
+
+
 #v(1em)
 
 = Exercise 10
