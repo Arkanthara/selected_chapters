@@ -2,6 +2,8 @@
 #import "template.typ": make-report, report-footnote
 #import "metadata.typ": my-report
 #import "@preview/theofig:0.1.0": definition
+#import "@preview/physica:0.9.8"
+
 
 // Main content
 #show: make-report.with(my-report)
@@ -413,6 +415,69 @@ So the state of the quantum system after measurement is:
 = Exercise 8
 #h(1em)
 Show that the average value of the observable $X_1 Z_2$ for a two qubit system measured in the state $(|00 chevron.r + |11 chevron.r ) \/ sqrt(2)$ is zero.
+
+First, $X_1 Z_2$ means that the Pauli matrix $X$ is applied to qubit 1 and Pauli matrix $Z$ is applied to qubit 2. So it means that $X_1 Z_2 = X times.o Z$.
+Indeed, $(X times.o Z)|a b chevron.r = (X|a chevron.r) times.o (Z|b chevron.r)$.
+
+First of all, we need to study impact of Pauli matrices on single qubit. We have:
+
+#align(
+  left,
+  $
+    X|0 chevron.r & = mat(0, 1; 1, 0) vec(1, 0) = vec(0, 1) = |1 chevron.r \
+    X|1 chevron.r & = mat(0, 1; 1, 0) vec(0, 1) = vec(1, 0) = |0 chevron.r \
+    Z|0 chevron.r & = mat(1, 0; 0, -1) vec(1, 0) = vec(1, 0) = |0 chevron.r \
+    Z|1 chevron.r & = mat(1, 0; 0, -1) vec(0, 1) = vec(0, -1) = -|1 chevron.r \
+  $,
+)
+
+So the $X$ Pauli matrix transform state $|1 chevron.r$ to state $|0 chevron.r$ and state $|0 chevron.r$ to state $|1 chevron.r$, and the $Z$ Pauli matrix transform state $|1 chevron.r$ to state $-|1 chevron.r$ and leaves the state $|0 chevron.r$ unchanged.
+
+We have:
+$
+  chevron a b|c d chevron.r = (chevron a|times.o chevron b|)(|c chevron.r times.o |d chevron.r) = chevron a|c chevron.r times.o chevron b|d chevron.r
+$
+
+and:
+
+#align(
+  left,
+  $
+    chevron 0|0 chevron.r & = mat(1, 0)vec(1, 0) = 1 \
+    chevron 0|1 chevron.r & = mat(1, 0)vec(0, 1) = 0 \
+    chevron 1|0 chevron.r & = mat(0, 1)vec(1, 0) = 0 \
+    chevron 1|1 chevron.r & = mat(0, 1)vec(0, 1) = 1 \
+  $,
+)
+
+So as the tensor product between two scalar is a simple multiplication, we have:
+$
+  chevron a b|c d chevron.r =
+  cases(
+    1 "if" a = c "and" b = d,
+    0 "else"
+  )
+$
+
+
+The average value of an observable $M$ for a state $|psi chevron.r$ is given by: $chevron psi | M | psi chevron.r$.
+
+We have $|psi chevron.r = (|00 chevron.r + |11 chevron.r ) \/ sqrt(2)$
+and $M = X_1 Z_2 = X times.o Z$.
+
+So the average value of the observable $X_1Z_2$ is:
+
+#align(
+  left,
+  $
+    chevron psi | M | psi chevron.r & = (chevron 00| + chevron 11|) / sqrt(2) X_1Z_2 (|00 chevron.r + |11 chevron.r ) / sqrt(2) \
+    & = 1/2 (chevron 00| + chevron 11|) (X_1Z_2|00 chevron.r + X_1Z_2|11 chevron.r ) \
+    & = 1/2 (chevron 00| + chevron 11|) (|10 chevron.r - |01 chevron.r ) \
+    & = 1/2 (chevron 00|10 chevron.r + chevron 11|10 chevron.r - chevron 00|01 chevron.r - chevron 11|01 chevron.r ) \
+    & = 1/2 (0 + 0 - 0 - 0 ) \
+    &= 0
+  $,
+)
 
 #v(1em)
 
