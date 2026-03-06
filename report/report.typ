@@ -531,6 +531,19 @@ So we have:
 
 $ |||psi chevron.r|| = sqrt(chevron psi|psi chevron.r) $
 
+So:
+
+#align(
+  left,
+  $
+    chevron e_0|e_0 chevron.r &= ( chevron 00|+ chevron 11|) / sqrt(2)( |00 chevron.r + |11 chevron.r) / sqrt(2) = 1/2(chevron 00|00 chevron.r + chevron 00|11 chevron.r + chevron 11|00 chevron.r + chevron 11|11 chevron.r) = 1/2 (1 + 1) = 1 \
+    chevron e_1|e_1 chevron.r &= ( chevron 00|- chevron 11|) / sqrt(2)( |00 chevron.r - |11 chevron.r) / sqrt(2) = 1/2(chevron 00|00 chevron.r - chevron 00|11 chevron.r - chevron 11|00 chevron.r + chevron 11|11 chevron.r) = 1/2 (1 + 1) = 1 \
+    chevron e_2|e_2 chevron.r &= ( chevron 10|+ chevron 01|) / sqrt(2)( |10 chevron.r + |01 chevron.r) / sqrt(2) = 1/2(chevron 10|10 chevron.r + chevron 10|01 chevron.r + chevron 01|10 chevron.r + chevron 01|01 chevron.r) = 1/2 (1 + 1) = 1 \
+    chevron e_3|e_3 chevron.r &= ( chevron 01|- chevron 10|) / sqrt(2)( |01 chevron.r - |10 chevron.r) / sqrt(2) = 1/2(chevron 01|01 chevron.r - chevron 01|10 chevron.r - chevron 10|01 chevron.r + chevron 10|10 chevron.r) = 1/2 (1 + 1) = 1 \
+  $,
+)
+
+So as each element of the Bell basis is orthogonal with the others and have a norm of 1, the Bell basis is an orthonormal basis.
 
 #v(1em)
 
