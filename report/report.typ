@@ -551,9 +551,44 @@ So as each element of the Bell basis is orthogonal with the others and have a no
 #h(1em)
 Suppose $E$ is any positive operator acting on Alice's qubit. Show that $chevron psi|E times.o I|psi chevron.r$ _takes the same value_ when $|psi chevron.r$ is any of the four Bell states. Suppose some malevolent third party ('Eve') intercepts Alice's qubit on the way to Bob in the superdense coding protocol. Can Eve infer anything about which of the four possible bit strings $00, 01, 10, 11$ Alice is trying to send? If so, how, or if not, why not?
 
+The Bell basis is given by:
+
+#align(
+  left,
+  $
+    00 & :( |00 chevron.r + |11 chevron.r) / sqrt(2) = |e_0 chevron.r \
+    01 & :( |00 chevron.r - |11 chevron.r) / sqrt(2) = |e_1 chevron.r \
+    10 & :( |10 chevron.r + |01 chevron.r) / sqrt(2) = |e_2 chevron.r \
+    11 & :( |01 chevron.r - |10 chevron.r) / sqrt(2) = |e_3 chevron.r \
+  $,
+)
+
+As proved in exercise 9, the Bell basis is an orthonormal basis.
+
+So $tr(|e_i chevron.r chevron e_i|) = chevron e_i|e_i chevron.r = 0$
+
+On top of that, we have (from page 76 of supplement material):
+$
+  tr(A|psi chevron.r chevron psi|) = sum_i chevron i|A|psi chevron.r chevron psi|i chevron.r = chevron psi|A|psi chevron.r
+$
+
+So:
+
+#align(
+  left,
+  $
+    chevron psi|(E times.o I)|psi chevron.r & = tr((E times.o I)|psi chevron.r chevron psi|) \
+  $,
+)
+
+As we consider that $|psi chevron.r$ takes
+
 #v(2em)
 
 #text(
   weight: "bold",
 )[To archive all results (solutions, report together with your code, etc.) and submit them using Quantum computing course moodle.]
+
+
+The Bell basis is given by:
 
