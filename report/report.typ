@@ -284,37 +284,129 @@ So we have:
 #h(1em)
 Suppose we have a qubit in the state $|0 chevron.r$, and we measure the observable $X$. What is the average value of $X$? What is the standard deviation of $X$?
 
-  The state of a qubit can be described as the combination of two states: $|0 chevron.r$ and $|1 chevron.r$.
-  So the state of a qubit $|phi chevron.r$ can be written as $ |phi chevron.r = alpha |0 chevron.r + beta |1 chevron.r $ with $alpha, beta in CC$.
+The state of a qubit can be described as the combination of two states: $|0 chevron.r$ and $|1 chevron.r$.
+So the state of a qubit $|phi chevron.r$ can be written as $ |phi chevron.r = alpha |0 chevron.r + beta |1 chevron.r $ with $alpha, beta in CC$.
 
-  As the qubit state is a combination of two states, the qubit state cannot be observed.
-  However, the qubit state can be measured to fix the state of the qubit to state $|0 chevron.r$ or state $|1 chevron.r$.
+As the qubit state is a combination of two states, the qubit state cannot be observed.
+However, the qubit state can be measured to fix the state of the qubit to state $|0 chevron.r$ or state $|1 chevron.r$.
 
-  According to the Born Rule, for a qubit $|phi chevron.r = alpha |0 chevron.r + beta |1 chevron.r$, the probability that the qubit is in the state $|0 chevron.r$ is given by $|alpha|^2$ and the probability that the qubit is in the state $|1 chevron.r$ is given by $|beta|^2$.
+According to the Born Rule, for a qubit $|phi chevron.r = alpha |0 chevron.r + beta |1 chevron.r$, the probability that the qubit is in the state $|0 chevron.r$ is given by $|alpha|^2$ and the probability that the qubit is in the state $|1 chevron.r$ is given by $|beta|^2$.
 As $|alpha|^2$ and $|beta|^2$ are probabilities, we have that $|alpha|^2 + |beta|^2 = 1$.
 
-  If we consider that we have a qubit in the state $|0 chevron.r$, it means that $|alpha|^2 = 1$ and $|beta|^2 = 0$ since $|alpha|^2 + |beta|^2 = 1 <=> 1 + |beta|^2 = 1 <=> |beta|^2 = 0 <=> beta = 0$.
-  As $alpha$ is a complex number, we cannot determine the value of $alpha$.
+If we consider that we have a qubit in the state $|0 chevron.r$, it means that $|alpha|^2 = 1$ and $|beta|^2 = 0$ since $|alpha|^2 + |beta|^2 = 1 <=> 1 + |beta|^2 = 1 <=> |beta|^2 = 0 <=> beta = 0$.
+As $alpha$ is a complex number, we cannot determine the value of $alpha$.
 
-  So the average value of the observable $X$ is given by:
-  $ EE[X] = alpha |0 chevron.r + beta |1 chevron.r = alpha |0 chevron.r $
+So the average value of the observable $X$ is given by:
+$ EE[X] = alpha |0 chevron.r + beta |1 chevron.r = alpha |0 chevron.r $
 
-  The standard deviation of $X$ is given by:
-  #align(left,
-    $
-      Var[X] &= EE[X^2] - EE[X]^2 \
-      &= EE[(alpha |0 chevron.r + beta |1 chevron.r)^2] - (alpha |0 chevron.r)^2 \
-      &= EE[alpha^2 vec(1, 0) vec(1, 0)^T] - alpha^2 vec(1, 0) vec(1, 0)^T \
-      &= alpha^2 vec(1, 0) vec(1, 0)^T - alpha^2 vec(1, 0) vec(1, 0)^T \
-      &= 0
-    $
-  )
+The standard deviation of $X$ is given by:
+#align(
+  left,
+  $
+    Var[X] & = EE[X^2] - EE[X]^2 \
+           & = EE[(alpha |0 chevron.r + beta |1 chevron.r)^2] - (alpha |0 chevron.r)^2 \
+           & = EE[alpha^2 vec(1, 0) vec(1, 0)^T] - alpha^2 vec(1, 0) vec(1, 0)^T \
+           & = alpha^2 vec(1, 0) vec(1, 0)^T - alpha^2 vec(1, 0) vec(1, 0)^T \
+           & = 0
+  $,
+)
 
 #v(1em)
 
 = Exercise 7
 #h(1em)
 Calculate the probability of obtaining the result $+1$ for a measurement of $arrow(v) dot arrow(sigma)$, given that the state prior to measurement is $|0 chevron.r$. What is the state of the system after the measurement if $+1$ is obtained?
+
+By definition, we have our measurement $M = arrow(v) dot arrow(sigma) = v_1 sigma_X + v_2 sigma_Y + v_3 sigma_Z$ with $||arrow(v)||^2 = 1$.
+
+So:
+
+#align(
+  left,
+  $
+    M & = v_1 sigma_X + v_2 sigma_Y + v_3 sigma_Z \
+      & = v_1 mat(0, 1; 1, 0) + v_2 mat(0, -i; i, 0) + v_3 mat(1, 0; 0, -1) \
+      & = mat(0, v_1; v_1, 0) + mat(0, -i v_2; i v_2, 0) + mat(v_3, 0; 0, -v_3) \
+      & = mat(v_3, v_1 -i v_2; v_1 + i v_2, -v_3) \
+  $,
+)
+
+The observable $M$ has a spectral decomposition given by
+
+$ M = sum_m m P_m $
+
+where $P_m$ is the projector onto the eigenspace of $M$ with eigenvalue $m$.
+
+The projector $P_m$ satisfy the relation $sum_m P_m = I$.
+
+The state of the quantum system after measurement is given by the formula
+
+$ (P_m|phi chevron.r)/sqrt(p(m)) $
+
+with $p(m) = chevron phi | P_m | phi chevron.r$ the probability to obtain result $m$.
+
+We want to find eigenvalues of $M$, so we want to find $lambda$ such that $det(M - lambda I) = 0$. We have:
+
+#align(
+  left,
+  $
+    det(M - lambda I) & = det(mat(v_3 - lambda, v_1 -i v_2; v_1 + i v_2, -v_3 - lambda)) \
+                      & = (v_3 - lambda)(-v_3 - lambda) - (v_1 -i v_2)(v_1 + i v_2) \
+                      & = (- lambda + v_3)(- lambda - v_3) - (v_1 -i v_2)(v_1 + i v_2) \
+                      & = lambda^2 - (v_3^2 + v_1^2 + v_2^2) \
+                      & = lambda^2 - ||arrow(v)||^2 \
+                      & = lambda^2 - 1 \
+  $,
+)
+
+So $det(M - lambda I) = 0 <==> lambda^2 - 1 = 0 <==> lambda = plus.minus 1$
+
+So we have: $M = P_1 - P_(-1)$.
+
+We know that the result $m = +1$ is obtained.
+
+So we want to find value of projector $P_1$ that correspond to eigenvalue $+1$.
+
+As $M = P_1 - P_(-1)$ and $sum_m P_m = I$, we have:
+
+$ I + M = P_1 + P_(-1) + P_1 - P_(-1) = 2P_1 <==> P_1 = (I + M)/2 $
+
+So
+
+#align(
+  left,
+  $
+    P_1 & = 1/2(I + M) \
+        & = 1/2(mat(1, 0; 0, 1) + mat(v_3, v_1 -i v_2; v_1 + i v_2, -v_3)) \
+        & = 1/2mat(v_3 + 1, v_1 -i v_2; v_1 + i v_2, -v_3 + 1) \
+  $,
+)
+
+Now, we can compute the probability $p(+1)$.
+We know that the state prior to measurement is $phi = |0 chevron.r$.
+
+
+#align(
+  left,
+  $
+    p(+1) & = chevron 0 | P_1 | 0 chevron.r \
+          & = 1/2 mat(1, 0)mat(v_3 + 1, v_1 -i v_2; v_1 + i v_2, -v_3 + 1) vec(1, 0) \
+          & = 1/2 mat(v_3 + 1, v_1 - i v_2) vec(1, 0) \
+          & = (v_3 + 1)/2 \
+  $,
+)
+
+So the state of the quantum system after measurement is:
+
+#align(
+  left,
+  $
+    (P_m|phi chevron.r)/sqrt(p(m)) & = (P_1|0 chevron.r)/sqrt(p(+1)) \
+                                   & = 1/2 1/sqrt((v_3 + 1)\/2)mat(v_3 + 1, v_1 -i v_2; v_1 + i v_2, -v_3 + 1)vec(1, 0) \
+                                   & = 1/sqrt(2(v_3 + 1))vec(v_3 + 1, v_1 + i v_2) \
+  $,
+)
+
 
 #v(1em)
 
