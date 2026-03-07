@@ -499,7 +499,7 @@ The Bell basis is given by:
 
 To verify that the Bell basis forms an orthonormal basis for the two qubit state space, we need to check if each element is orthogonal with the others and if each element has a norm of 1.
 
-=== Orthogonality
+*Orthogonality*
 
 We will use the result of the previous exercise:
 
@@ -524,7 +524,7 @@ $
 
 So the Bell basis form an orthogonal basis for the two qubit state space.
 
-=== Unitary norm
+*Unitary norm*
 
 The norm of a vector is defined as the square root of its inner product with itself.
 So we have:
@@ -636,13 +636,42 @@ So we have:
 So $chevron psi|E times.o I|psi chevron.r$ takes the same value $1/2 tr(E)$ when $|psi chevron.r$ is any of the four Bell states.
 
 
-For superdense coding protocol, Alice want to send some qubit to Bob.
-Alice and Bob share a pair of qubits in the entangled state $|psi chevron.r$.
+For superdense coding protocol,
+Alice and Bob share a pair of qubits in the entangled state $|psi chevron.r = (|00 chevron.r + |11 chevron.r) / sqrt(2)$.
+So $|psi chevron.r$ cannot be written as a product of two single qubit states.
 
+Alice want to send two classical bits of information to Bob.
 
-#v(2em)
+As describen in page 97-98 of the supplement material, Alice can apply a unitary operation on her qubit to modify the global state of the two qubits. To apply any unitary operation on her qubit and leave Bob's qubit unchanged, she applies $E times.o I$ with $E$ the unitary operation she wants to apply.
 
-#text(
-  weight: "bold",
-)[To archive all results (solutions, report together with your code, etc.) and submit them using Quantum computing course moodle.]
+Indeed, thanks to the property of the tensor product, we have:
+$|a b chevron.r (E times.o I) = (E|a chevron.r) times.o (I|b chevron.r) $
+which modifies only the state of Alice's qubit.
 
+So if she wishes to send the bit string $00$, she does nothing to her qubit.
+If she wishes to send the bit string $01$, she applies the Pauli matrix $Z$ to her qubit.
+If she wishes to send the bit string $10$, she applies the Pauli matrix $X$ to her qubit.
+If she wishes to send the bit string $11$, she applies the Pauli matrix $i Y$ to her qubit.
+
+The four resulting states obtained are the four Bell states:
+
+#align(
+  left,
+  $
+    00 & :( |00 chevron.r + |11 chevron.r) / sqrt(2) = |e_0 chevron.r \
+    01 & :( |00 chevron.r - |11 chevron.r) / sqrt(2) = |e_1 chevron.r \
+    10 & :( |10 chevron.r + |01 chevron.r) / sqrt(2) = |e_2 chevron.r \
+    11 & :( |01 chevron.r - |10 chevron.r) / sqrt(2) = |e_3 chevron.r \
+  $,
+)
+
+So $|psi chevron.r$ is any of the four Bell states.
+
+Bob doesn't know which of the four Bell states $|psi chevron.r$ is.
+But as the Bell basis is orthonormal, he can check which state $|psi chevron.r$ it is by performing the inner product of $|psi chevron.r$ with each of the four Bell states. The result will be $1$ for the Bell state that is equivalent to the Bell state $|psi chevron.r$.
+
+If Eve intercepts the qubit sent by Alice, she must measure: $chevron psi | (E times.o I) | psi chevron.r$.
+
+As $chevron psi|E times.o I|psi chevron.r$ takes the same value $1/2 tr(E)$ for any of the four Bell states, no informations are send about the bit string Alice is trying to send. Indeed, Eve doesn't know which of the four Bell states Alice has created.
+
+So Eve cannot infer anything about which of the four possible bit strings $00, 01, 10, 11$ Alice is trying to send.
