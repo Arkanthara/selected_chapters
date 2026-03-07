@@ -565,30 +565,84 @@ The Bell basis is given by:
 
 As proved in exercise 9, the Bell basis is an orthonormal basis.
 
-So $tr(|e_i chevron.r chevron e_i|) = chevron e_i|e_i chevron.r = 0$
+So $tr(|e_i chevron.r chevron e_i|) = chevron e_i|e_i chevron.r = 1$
 
-On top of that, we have (from page 76 of supplement material):
+On top of that, we have from page 76 of supplement material:
 $
   tr(A|psi chevron.r chevron psi|) = sum_i chevron i|A|psi chevron.r chevron psi|i chevron.r = chevron psi|A|psi chevron.r
 $
 
-So:
+and from page 107: 
+$
+  tr(M tr_B (rho_(A B))) = tr((M times.o I )rho_(A B)) 
+$
+
+with $tr_B$ the partial trace over system $B$, defined as follow:
+
+$ tr_B (|a_1 chevron.r chevron a_2| times.o |b_1 chevron.r chevron b_2|) = tr_B (|a_1 b_1 chevron.r chevron a_2 b_2|) = |a_1 chevron.r chevron a_2| tr(|b_1 chevron.r chevron b_2|) $
+
+As we consider that $|psi chevron.r$ takes any of the four Bell states, we have:
+
+#align(left, $
+               tr_B (|e_0 chevron.r chevron e_0|)
+               &= tr_B ((|00 chevron.r + |11 chevron.r) / sqrt(2) (chevron 00| + chevron 11|) / sqrt(2)) \
+                &= tr_B (1/2(|00 chevron.r chevron 00| + |00 chevron.r chevron 11| + |11 chevron.r chevron 00| + |11 chevron.r chevron 11|)) \
+                &= 1/2 (tr_B (|00 chevron.r chevron 00|) + tr_B (|00 chevron.r chevron 11|) + tr_B (|11 chevron.r chevron 00|) + tr_B (|11 chevron.r chevron 11|)) \
+                &= 1/2 (|0 chevron.r chevron 0| tr(|0 chevron.r chevron 0|) + |0 chevron.r chevron 1| tr(|0 chevron.r chevron 1|) + |1 chevron.r chevron 0| tr(|1 chevron.r chevron 0|) + |1 chevron.r chevron 1| tr(|1 chevron.r chevron 1|)) \
+                &= 1/2 (mat(1, 0; 0, 0) tr(mat(1, 0; 0, 0)) + mat(0, 0; 0, 0) tr(mat(0, 0; 0, 0)) \ & text("  ") + mat(0, 0; 0, 0) tr(mat(0, 0; 0, 0)) + mat(0, 0; 0, 1) tr(mat(0, 0; 0, 1))) \
+                &= 1/2 (mat(1, 0; 0, 0) + mat(0, 0; 0, 1)) \
+                &= 1/2 mat(1, 0; 0, 1) \
+                &= 1/2 I
+             $)
+#align(left, $
+               tr_B (|e_1 chevron.r chevron e_1|)
+               &= tr_B ((|00 chevron.r - |11 chevron.r) / sqrt(2) (chevron 00| - chevron 11|) / sqrt(2)) \
+                &= tr_B (1/2(|00 chevron.r chevron 00| - |00 chevron.r chevron 11| - |11 chevron.r chevron 00| + |11 chevron.r chevron 11|)) \
+                &= 1/2 (tr_B (|00 chevron.r chevron 00|) - tr_B (|00 chevron.r chevron 11|) - tr_B (|11 chevron.r chevron 00|) + tr_B (|11 chevron.r chevron 11|)) \
+                &= 1/2 (mat(1, 0; 0, 0) + mat(0, 0; 0, 1)) \
+                &= 1/2 I
+             $)
+#align(left, $
+               tr_B (|e_2 chevron.r chevron e_2|)
+               &= tr_B ((|10 chevron.r + |01 chevron.r) / sqrt(2) (chevron 10| + chevron 01|) / sqrt(2)) \
+                &= tr_B (1/2(|10 chevron.r chevron 10| + |10 chevron.r chevron 01| + |01 chevron.r chevron 10| + |01 chevron.r chevron 01|)) \
+                &= 1/2 (tr_B (|10 chevron.r chevron 10|) + tr_B (|10 chevron.r chevron 01|) + tr_B (|01 chevron.r chevron 10|) + tr_B (|01 chevron.r chevron 01|)) \
+                &= 1/2 (mat(0, 1; 1, 0) + mat(0, 0; 0, 0)) \
+                &= 1/2 I
+             $)
+#align(left, $
+               tr_B (|e_3 chevron.r chevron e_3|)
+               &= tr_B ((|01 chevron.r - |10 chevron.r) / sqrt(2) (chevron 01| - chevron 10|) / sqrt(2)) \
+                &= tr_B (1/2(|01 chevron.r chevron 01| - |01 chevron.r chevron 10| - |10 chevron.r chevron 01| + |10 chevron.r chevron 10|)) \
+                &= 1/2 (tr_B (|01 chevron.r chevron 01|) - tr_B (|01 chevron.r chevron 10|) - tr_B (|10 chevron.r chevron 01|) + tr_B (|10 chevron.r chevron 10|)) \
+                &= 1/2 (mat(0, 0; 0, 1) + mat(0, 0; 0, 0)) \
+                &= 1/2 I
+              $)
+
+So we have $tr_B (|psi chevron.r chevron psi|) = 1/2 I$ for any of the four Bell states $|psi chevron.r$.
+
+So we have:
 
 #align(
   left,
   $
     chevron psi|(E times.o I)|psi chevron.r & = tr((E times.o I)|psi chevron.r chevron psi|) \
+    &= tr(E tr_B (|psi chevron.r chevron psi|)) \
+    &= tr((E I)/2)  \
+    &= 1/2 tr(E)
   $,
 )
 
-As we consider that $|psi chevron.r$ takes
+So $chevron psi|E times.o I|psi chevron.r$ takes the same value $1/2 tr(E)$ when $|psi chevron.r$ is any of the four Bell states.
+
+
+For superdense coding protocol, Alice want to send some qubit to Bob.
+Alice and Bob share a pair of qubits in the entangled state $|psi chevron.r$.
+
 
 #v(2em)
 
 #text(
   weight: "bold",
 )[To archive all results (solutions, report together with your code, etc.) and submit them using Quantum computing course moodle.]
-
-
-The Bell basis is given by:
 
