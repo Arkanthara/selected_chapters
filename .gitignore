@@ -1,0 +1,6 @@
+*.venv
+*python*
+*_files
+*.html
+*template.pdf
+*website
