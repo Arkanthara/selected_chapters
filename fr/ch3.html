@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="14X060 — Université de Genève">
+<meta name="author" content="D’après le cours de Taras Holotyak — Université de Genève (14X060)">
 
-<title>⚡ Fiche de révision — Quantum Computing · Lecture 3 – Selected Chapters</title>
+<title>Informatique Quantique — Lecture 3 – Selected Chapters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4178,7 +4178,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch3.html">Quantum computing chapter 3</a></li><li class="breadcrumb-item"><a href="./ch3r.html">Synthese</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch3.html">Quantum computing chapter 3</a></li><li class="breadcrumb-item"><a href="./ch3.html">Details</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
@@ -4264,13 +4264,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch3.html" class="sidebar-item-text sidebar-link">
+  <a href="./ch3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Details</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch3r.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ch3r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Synthese</span></a>
   </div>
 </li>
@@ -4311,51 +4311,55 @@ window.Quarto = {
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#vue-densemble" id="toc-vue-densemble" class="nav-link active" data-scroll-target="#vue-densemble">🗺️ Vue d’ensemble</a></li>
-  <li><a href="#rappels-indispensables" id="toc-rappels-indispensables" class="nav-link" data-scroll-target="#rappels-indispensables">📐 Rappels indispensables</a>
+  <li><a href="#propriétés-fondamentales-de-linformatique-quantique" id="toc-propriétés-fondamentales-de-linformatique-quantique" class="nav-link active" data-scroll-target="#propriétés-fondamentales-de-linformatique-quantique">Propriétés fondamentales de l’informatique quantique</a>
   <ul class="collapse">
-  <li><a href="#état-dun-qubit" id="toc-état-dun-qubit" class="nav-link" data-scroll-target="#état-dun-qubit">État d’un qubit</a></li>
-  <li><a href="#opérateurs-de-mesure" id="toc-opérateurs-de-mesure" class="nav-link" data-scroll-target="#opérateurs-de-mesure">Opérateurs de mesure</a></li>
-  <li><a href="#orthogonalité" id="toc-orthogonalité" class="nav-link" data-scroll-target="#orthogonalité">Orthogonalité</a></li>
-  </ul></li>
-  <li><a href="#distinguer-des-états-quantiques" id="toc-distinguer-des-états-quantiques" class="nav-link" data-scroll-target="#distinguer-des-états-quantiques">🔬 Distinguer des états quantiques</a>
+  <li><a href="#états-dun-qubit-et-sphère-de-bloch" id="toc-états-dun-qubit-et-sphère-de-bloch" class="nav-link" data-scroll-target="#états-dun-qubit-et-sphère-de-bloch">États d’un qubit et sphère de Bloch</a>
   <ul class="collapse">
-  <li><a href="#états-orthogonaux-distinction-parfaite" id="toc-états-orthogonaux-distinction-parfaite" class="nav-link" data-scroll-target="#états-orthogonaux-distinction-parfaite">États orthogonaux — distinction parfaite ✅</a></li>
-  <li><a href="#états-non-orthogonaux-distinction-impossible-à-100" id="toc-états-non-orthogonaux-distinction-impossible-à-100" class="nav-link" data-scroll-target="#états-non-orthogonaux-distinction-impossible-à-100">États non orthogonaux — distinction impossible à 100% ❌</a></li>
+  <li><a href="#rappel-représentation-dun-qubit" id="toc-rappel-représentation-dun-qubit" class="nav-link" data-scroll-target="#rappel-représentation-dun-qubit">Rappel : représentation d’un qubit</a></li>
   </ul></li>
-  <li><a href="#borne-de-helstrom-holevo" id="toc-borne-de-helstrom-holevo" class="nav-link" data-scroll-target="#borne-de-helstrom-holevo">📊 Borne de Helstrom-Holevo</a>
+  <li><a href="#mesure-dans-la-base-computationnelle" id="toc-mesure-dans-la-base-computationnelle" class="nav-link" data-scroll-target="#mesure-dans-la-base-computationnelle">Mesure dans la base computationnelle</a>
   <ul class="collapse">
-  <li><a href="#formule-à-retenir" id="toc-formule-à-retenir" class="nav-link" data-scroll-target="#formule-à-retenir">Formule à retenir 🔑</a></li>
-  <li><a href="#borne-atteinte-par" id="toc-borne-atteinte-par" class="nav-link" data-scroll-target="#borne-atteinte-par">Borne atteinte par</a></li>
-  <li><a href="#cas-limites" id="toc-cas-limites" class="nav-link" data-scroll-target="#cas-limites">Cas limites</a></li>
-  <li><a href="#exemple-0rangle-vs-rangle" id="toc-exemple-0rangle-vs-rangle" class="nav-link" data-scroll-target="#exemple-0rangle-vs-rangle">Exemple : <span class="math inline">\(|0\rangle\)</span> vs <span class="math inline">\(|+\rangle\)</span></a></li>
-  <li><a href="#deux-stratégies-visuelles" id="toc-deux-stratégies-visuelles" class="nav-link" data-scroll-target="#deux-stratégies-visuelles">Deux stratégies visuelles</a></li>
+  <li><a href="#le-cas-simple-états-0rangle-et-1rangle" id="toc-le-cas-simple-états-0rangle-et-1rangle" class="nav-link" data-scroll-target="#le-cas-simple-états-0rangle-et-1rangle">Le cas simple : états <span class="math inline">\(|0\rangle\)</span> et <span class="math inline">\(|1\rangle\)</span></a></li>
   </ul></li>
-  <li><a href="#principe-de-non-signalisation-no-signalling" id="toc-principe-de-non-signalisation-no-signalling" class="nav-link" data-scroll-target="#principe-de-non-signalisation-no-signalling">📡 Principe de Non-Signalisation (<em>No-Signalling</em>)</a>
+  <li><a href="#distinguer-des-états-orthogonaux-quelconques" id="toc-distinguer-des-états-orthogonaux-quelconques" class="nav-link" data-scroll-target="#distinguer-des-états-orthogonaux-quelconques">Distinguer des états orthogonaux quelconques</a>
+  <ul class="collapse">
+  <li><a href="#le-problème-général" id="toc-le-problème-général" class="nav-link" data-scroll-target="#le-problème-général">Le problème général</a></li>
+  <li><a href="#stratégie-changer-de-base-de-mesure" id="toc-stratégie-changer-de-base-de-mesure" class="nav-link" data-scroll-target="#stratégie-changer-de-base-de-mesure">Stratégie : changer de base de mesure</a></li>
+  <li><a href="#vérification-équation-de-complétude" id="toc-vérification-équation-de-complétude" class="nav-link" data-scroll-target="#vérification-équation-de-complétude">Vérification : équation de complétude</a></li>
+  <li><a href="#vérification-distinction-parfaite" id="toc-vérification-distinction-parfaite" class="nav-link" data-scroll-target="#vérification-distinction-parfaite">Vérification : distinction parfaite</a></li>
+  </ul></li>
+  <li><a href="#impossibilité-de-distinguer-des-états-non-orthogonaux" id="toc-impossibilité-de-distinguer-des-états-non-orthogonaux" class="nav-link" data-scroll-target="#impossibilité-de-distinguer-des-états-non-orthogonaux">Impossibilité de distinguer des états non orthogonaux</a></li>
+  <li><a href="#la-borne-de-helstrom-holevo" id="toc-la-borne-de-helstrom-holevo" class="nav-link" data-scroll-target="#la-borne-de-helstrom-holevo">La borne de Helstrom-Holevo</a>
+  <ul class="collapse">
+  <li><a href="#visualisation-géométrique" id="toc-visualisation-géométrique" class="nav-link" data-scroll-target="#visualisation-géométrique">Visualisation géométrique</a></li>
+  <li><a href="#analyse-des-cas-limites" id="toc-analyse-des-cas-limites" class="nav-link" data-scroll-target="#analyse-des-cas-limites">Analyse des cas limites</a></li>
+  </ul></li>
+  <li><a href="#exemple-distinguer-0rangle-et-rangle" id="toc-exemple-distinguer-0rangle-et-rangle" class="nav-link" data-scroll-target="#exemple-distinguer-0rangle-et-rangle">Exemple : distinguer <span class="math inline">\(|0\rangle\)</span> et <span class="math inline">\(|+\rangle\)</span></a>
+  <ul class="collapse">
+  <li><a href="#vérification-de-la-non-orthogonalité" id="toc-vérification-de-la-non-orthogonalité" class="nav-link" data-scroll-target="#vérification-de-la-non-orthogonalité">Vérification de la non-orthogonalité</a></li>
+  <li><a href="#deux-stratégies-de-discrimination" id="toc-deux-stratégies-de-discrimination" class="nav-link" data-scroll-target="#deux-stratégies-de-discrimination">Deux stratégies de discrimination</a></li>
+  <li><a href="#résultats-numériques" id="toc-résultats-numériques" class="nav-link" data-scroll-target="#résultats-numériques">Résultats numériques</a></li>
+  </ul></li>
+  <li><a href="#le-principe-de-non-signalisation-no-signalling" id="toc-le-principe-de-non-signalisation-no-signalling" class="nav-link" data-scroll-target="#le-principe-de-non-signalisation-no-signalling">Le principe de non-signalisation (<em>No-Signalling</em>)</a>
+  <ul class="collapse">
+  <li><a href="#contexte-et-enjeu" id="toc-contexte-et-enjeu" class="nav-link" data-scroll-target="#contexte-et-enjeu">Contexte et enjeu</a></li>
+  <li><a href="#scénario-alice-et-bob-avec-une-paire-de-bell" id="toc-scénario-alice-et-bob-avec-une-paire-de-bell" class="nav-link" data-scroll-target="#scénario-alice-et-bob-avec-une-paire-de-bell">Scénario : Alice et Bob avec une paire de Bell</a></li>
+  <li><a href="#preuve-du-principe-de-non-signalisation" id="toc-preuve-du-principe-de-non-signalisation" class="nav-link" data-scroll-target="#preuve-du-principe-de-non-signalisation">Preuve du principe de non-signalisation</a></li>
+  </ul></li>
+  <li><a href="#le-principe-de-non-clonage-no-cloning" id="toc-le-principe-de-non-clonage-no-cloning" class="nav-link" data-scroll-target="#le-principe-de-non-clonage-no-cloning">Le principe de non-clonage (<em>No-Cloning</em>)</a>
+  <ul class="collapse">
+  <li><a href="#motivation-pourquoi-vouloir-cloner" id="toc-motivation-pourquoi-vouloir-cloner" class="nav-link" data-scroll-target="#motivation-pourquoi-vouloir-cloner">Motivation : pourquoi vouloir cloner ?</a></li>
+  <li><a href="#schéma-du-circuit-de-clonage-tentative" id="toc-schéma-du-circuit-de-clonage-tentative" class="nav-link" data-scroll-target="#schéma-du-circuit-de-clonage-tentative">Schéma du circuit de clonage (tentative)</a></li>
+  <li><a href="#démonstration-preuve-par-labsurde" id="toc-démonstration-preuve-par-labsurde" class="nav-link" data-scroll-target="#démonstration-preuve-par-labsurde">Démonstration (preuve par l’absurde)</a></li>
+  </ul></li>
+  <li><a href="#le-principe-de-non-suppression-no-deleting" id="toc-le-principe-de-non-suppression-no-deleting" class="nav-link" data-scroll-target="#le-principe-de-non-suppression-no-deleting">Le principe de non-suppression (<em>No-Deleting</em>)</a>
   <ul class="collapse">
   <li><a href="#énoncé" id="toc-énoncé" class="nav-link" data-scroll-target="#énoncé">Énoncé</a></li>
-  <li><a href="#scénario-alice-bob-paire-de-bell" id="toc-scénario-alice-bob-paire-de-bell" class="nav-link" data-scroll-target="#scénario-alice-bob-paire-de-bell">Scénario Alice-Bob (paire de Bell)</a></li>
-  <li><a href="#preuve-en-3-lignes" id="toc-preuve-en-3-lignes" class="nav-link" data-scroll-target="#preuve-en-3-lignes">Preuve (en 3 lignes)</a></li>
-  <li><a href="#à-retenir" id="toc-à-retenir" class="nav-link" data-scroll-target="#à-retenir">À retenir</a></li>
+  <li><a href="#lien-avec-la-réversibilité-quantique" id="toc-lien-avec-la-réversibilité-quantique" class="nav-link" data-scroll-target="#lien-avec-la-réversibilité-quantique">Lien avec la réversibilité quantique</a></li>
   </ul></li>
-  <li><a href="#principe-de-non-clonage-no-cloning" id="toc-principe-de-non-clonage-no-cloning" class="nav-link" data-scroll-target="#principe-de-non-clonage-no-cloning">🚫 Principe de Non-Clonage (<em>No-Cloning</em>)</a>
-  <ul class="collapse">
-  <li><a href="#énoncé-1" id="toc-énoncé-1" class="nav-link" data-scroll-target="#énoncé-1">Énoncé</a></li>
-  <li><a href="#pourquoi-cest-important" id="toc-pourquoi-cest-important" class="nav-link" data-scroll-target="#pourquoi-cest-important">Pourquoi c’est important ?</a></li>
-  <li><a href="#preuve-idée-centrale" id="toc-preuve-idée-centrale" class="nav-link" data-scroll-target="#preuve-idée-centrale">Preuve (idée centrale)</a></li>
-  <li><a href="#résumé-visuel" id="toc-résumé-visuel" class="nav-link" data-scroll-target="#résumé-visuel">Résumé visuel</a></li>
+  <li><a href="#résumé-des-principes-fondamentaux" id="toc-résumé-des-principes-fondamentaux" class="nav-link" data-scroll-target="#résumé-des-principes-fondamentaux">Résumé des principes fondamentaux</a></li>
+  <li><a href="#points-clés-à-retenir" id="toc-points-clés-à-retenir" class="nav-link" data-scroll-target="#points-clés-à-retenir">Points clés à retenir</a></li>
   </ul></li>
-  <li><a href="#principe-de-non-suppression-no-deleting" id="toc-principe-de-non-suppression-no-deleting" class="nav-link" data-scroll-target="#principe-de-non-suppression-no-deleting">🗑️ Principe de Non-Suppression (<em>No-Deleting</em>)</a>
-  <ul class="collapse">
-  <li><a href="#énoncé-2" id="toc-énoncé-2" class="nav-link" data-scroll-target="#énoncé-2">Énoncé</a></li>
-  <li><a href="#lien-avec-le-non-clonage" id="toc-lien-avec-le-non-clonage" class="nav-link" data-scroll-target="#lien-avec-le-non-clonage">Lien avec le non-clonage</a></li>
-  </ul></li>
-  <li><a href="#relations-entre-les-principes" id="toc-relations-entre-les-principes" class="nav-link" data-scroll-target="#relations-entre-les-principes">🔗 Relations entre les principes</a></li>
-  <li><a href="#tableau-récapitulatif-complet" id="toc-tableau-récapitulatif-complet" class="nav-link" data-scroll-target="#tableau-récapitulatif-complet">📋 Tableau récapitulatif complet</a></li>
-  <li><a href="#pièges-classiques-à-lexamen" id="toc-pièges-classiques-à-lexamen" class="nav-link" data-scroll-target="#pièges-classiques-à-lexamen">⚠️ Pièges classiques à l’examen</a></li>
-  <li><a href="#checklist-de-révision" id="toc-checklist-de-révision" class="nav-link" data-scroll-target="#checklist-de-révision">✅ Checklist de révision</a></li>
-  <li><a href="#questions-type-examen" id="toc-questions-type-examen" class="nav-link" data-scroll-target="#questions-type-examen">❓ Questions type examen</a></li>
-  <li><a href="#mini-résumé-final-60-secondes" id="toc-mini-résumé-final-60-secondes" class="nav-link" data-scroll-target="#mini-résumé-final-60-secondes">🏁 Mini-résumé final (60 secondes)</a></li>
   </ul>
 </nav>
     </div>
@@ -4363,9 +4367,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch3.html">Quantum computing chapter 3</a></li><li class="breadcrumb-item"><a href="./ch3r.html">Synthese</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch3.html">Quantum computing chapter 3</a></li><li class="breadcrumb-item"><a href="./ch3.html">Details</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">⚡ Fiche de révision — Quantum Computing · Lecture 3</h1>
+<h1 class="title">Informatique Quantique — Lecture 3</h1>
 <p class="subtitle lead">Propriétés fondamentales de l’informatique quantique</p>
 </div>
 
@@ -4376,7 +4380,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Auteur·rice</div>
     <div class="quarto-title-meta-contents">
-             <p>14X060 — Université de Genève </p>
+             <p>D’après le cours de Taras Holotyak — Université de Genève (14X060) </p>
           </div>
   </div>
     
@@ -4389,577 +4393,263 @@ window.Quarto = {
 </header>
 
 
+<section id="propriétés-fondamentales-de-linformatique-quantique" class="level1">
+<h1>Propriétés fondamentales de l’informatique quantique</h1>
+<p>Ce chapitre explore plusieurs propriétés essentielles des systèmes quantiques qui distinguent fondamentalement l’information quantique de l’information classique.</p>
+<p>Nous allons étudier :</p>
+<ul>
+<li>La <strong>mesure dans la base computationnelle</strong> et dans d’autres bases orthogonales</li>
+<li>L’<strong>impossibilité de distinguer parfaitement des états non orthogonaux</strong> (borne de Helstrom-Holevo)</li>
+<li>Le <strong>principe de non-signalisation</strong> (<em>no-signalling</em>)</li>
+<li>Le <strong>principe de non-clonage</strong> (<em>no-cloning</em>)</li>
+<li>Le <strong>principe de non-suppression</strong> (<em>no-deleting</em>)</li>
+</ul>
 <hr>
-<section id="vue-densemble" class="level1">
-<h1>🗺️ Vue d’ensemble</h1>
-<blockquote class="blockquote">
-<p><strong>5 propriétés fondamentales à maîtriser absolument</strong></p>
-</blockquote>
+<section id="états-dun-qubit-et-sphère-de-bloch" class="level2">
+<h2 class="anchored" data-anchor-id="états-dun-qubit-et-sphère-de-bloch">États d’un qubit et sphère de Bloch</h2>
+<section id="rappel-représentation-dun-qubit" class="level3">
+<h3 class="anchored" data-anchor-id="rappel-représentation-dun-qubit">Rappel : représentation d’un qubit</h3>
+<p>Un qubit est le système d’information fondamental en informatique quantique. Son état général s’écrit :</p>
+<p><span class="math display">\[|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \qquad \text{avec } |\alpha|^2 + |\beta|^2 = 1\]</span></p>
+<p>On peut toujours paramétrer cet état sous la forme :</p>
+<p><span class="math display">\[|\psi\rangle = \cos\!\left(\frac{\theta}{2}\right)|0\rangle
+  + e^{i\varphi}\sin\!\left(\frac{\theta}{2}\right)|1\rangle\]</span></p>
+<p>ce qui permet de représenter <strong>tout état pur d’un qubit</strong> comme un point sur une sphère unitaire : la <strong>sphère de Bloch</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="mesure-dans-la-base-computationnelle" class="level2">
+<h2 class="anchored" data-anchor-id="mesure-dans-la-base-computationnelle">Mesure dans la base computationnelle</h2>
+<section id="le-cas-simple-états-0rangle-et-1rangle" class="level3">
+<h3 class="anchored" data-anchor-id="le-cas-simple-états-0rangle-et-1rangle">Le cas simple : états <span class="math inline">\(|0\rangle\)</span> et <span class="math inline">\(|1\rangle\)</span></h3>
+<p>Si l’état <span class="math inline">\(|\psi\rangle\)</span> est <strong>soit</strong> <span class="math inline">\(|0\rangle\)</span> <strong>soit</strong> <span class="math inline">\(|1\rangle\)</span>, on peut les distinguer parfaitement en mesurant dans la base computationnelle <span class="math inline">\(\{|0\rangle, |1\rangle\}\)</span>.</p>
+<p><strong>Exemple :</strong> L’état <span class="math inline">\(|1\rangle\)</span> s’écrit dans la base computationnelle :</p>
+<p><span class="math display">\[|1\rangle = 0 \cdot |0\rangle + 1 \cdot |1\rangle\]</span></p>
+<p>On mesure <span class="math inline">\(1\)</span> avec probabilité <span class="math inline">\(|1|^2 = 1\)</span> (et <span class="math inline">\(0\)</span> avec probabilité <span class="math inline">\(|0|^2 = 0\)</span>).</p>
+<hr>
+</section>
+</section>
+<section id="distinguer-des-états-orthogonaux-quelconques" class="level2">
+<h2 class="anchored" data-anchor-id="distinguer-des-états-orthogonaux-quelconques">Distinguer des états orthogonaux quelconques</h2>
+<section id="le-problème-général" class="level3">
+<h3 class="anchored" data-anchor-id="le-problème-général">Le problème général</h3>
+<p>Supposons que <span class="math inline">\(|\psi\rangle\)</span> est soit <span class="math inline">\(|\psi_0\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>, soit <span class="math inline">\(|\psi_1\rangle = \gamma|0\rangle + \delta|1\rangle\)</span>, avec <span class="math inline">\(\langle\psi_0|\psi_1\rangle = 0\)</span> (orthogonaux).</p>
+</section>
+<section id="stratégie-changer-de-base-de-mesure" class="level3">
+<h3 class="anchored" data-anchor-id="stratégie-changer-de-base-de-mesure">Stratégie : changer de base de mesure</h3>
+<p>On construit la matrice unitaire :</p>
+<p><span class="math display">\[U = \begin{bmatrix} \alpha &amp; \gamma \\ \beta &amp; \delta \end{bmatrix}\]</span></p>
+<p>Cette matrice est <strong>unitaire</strong> car ses colonnes forment une base orthonormée. L’opérateur <span class="math inline">\(U^\dagger\)</span> réalise la rotation de base :</p>
+<p><span class="math display">\[U^\dagger |\psi_0\rangle \to |0\rangle \qquad U^\dagger |\psi_1\rangle \to |1\rangle\]</span></p>
+<p>Après cette transformation, une mesure dans la base computationnelle identifie l’état.</p>
+</section>
+<section id="vérification-équation-de-complétude" class="level3">
+<h3 class="anchored" data-anchor-id="vérification-équation-de-complétude">Vérification : équation de complétude</h3>
+<p>Les projecteurs satisfont l’<strong>équation de complétude</strong> (condition nécessaire) :</p>
+<p><span class="math display">\[\sum_m M_m^\dagger M_m
+  = (|\psi_0\rangle\langle\psi_0|)^2 + (|\psi_1\rangle\langle\psi_1|)^2
+  = |\psi_0\rangle\langle\psi_0| + |\psi_1\rangle\langle\psi_1|
+  = U|0\rangle\langle 0|U^\dagger + U|1\rangle\langle 1|U^\dagger
+  = UIU^\dagger = I \checkmark\]</span></p>
+</section>
+<section id="vérification-distinction-parfaite" class="level3">
+<h3 class="anchored" data-anchor-id="vérification-distinction-parfaite">Vérification : distinction parfaite</h3>
+<p>Pour <span class="math inline">\(|\psi\rangle = |\psi_0\rangle\)</span> :</p>
+<p><span class="math display">\[p(M_{|\psi_0\rangle} \mid |\psi\rangle = |\psi_0\rangle) = (\langle\psi_0|\psi_0\rangle)^3 = 1\]</span></p>
+<p><span class="math display">\[p(M_{|\psi_0\rangle} \mid |\psi\rangle = |\psi_1\rangle) = \langle\psi_1|\psi_0\rangle
+  \cdot\langle\psi_0|\psi_0\rangle\cdot\langle\psi_0|\psi_1\rangle = 0\]</span></p>
+<p>(car <span class="math inline">\(\langle\psi_0|\psi_1\rangle = 0\)</span> par orthogonalité)</p>
+<hr>
+</section>
+</section>
+<section id="impossibilité-de-distinguer-des-états-non-orthogonaux" class="level2">
+<h2 class="anchored" data-anchor-id="impossibilité-de-distinguer-des-états-non-orthogonaux">Impossibilité de distinguer des états non orthogonaux</h2>
+<p><strong>Intuition géométrique :</strong></p>
+<ul>
+<li>Plus <span class="math inline">\(|\psi_a\rangle\)</span> et <span class="math inline">\(|\psi_b\rangle\)</span> sont <strong>proches</strong> (petit angle <span class="math inline">\(\theta\)</span> entre eux), plus ils sont difficiles à distinguer.</li>
+<li>Plus ils sont <strong>éloignés</strong> (proche de l’orthogonalité), plus la distinction est facile.</li>
+</ul>
+<hr>
+</section>
+<section id="la-borne-de-helstrom-holevo" class="level2">
+<h2 class="anchored" data-anchor-id="la-borne-de-helstrom-holevo">La borne de Helstrom-Holevo</h2>
+<section id="visualisation-géométrique" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation-géométrique">Visualisation géométrique</h3>
+
+</section>
+<section id="analyse-des-cas-limites" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-des-cas-limites">Analyse des cas limites</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 30%">
-<col style="width: 61%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>#</th>
-<th>Propriété</th>
-<th>Résumé en une phrase</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td><strong>Distinguishabilité</strong></td>
-<td>États orthogonaux → toujours distinguables ; non orthogonaux → jamais parfaitement</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td><strong>Borne Helstrom-Holevo</strong></td>
-<td>Limite max de discrimination entre deux états quelconques</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td><strong>No-Signalling</strong></td>
-<td>L’intrication ≠ communication d’information</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td><strong>No-Cloning</strong></td>
-<td>Impossible de copier un état quantique arbitraire</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td><strong>No-Deleting</strong></td>
-<td>Impossible de supprimer une copie d’un état quantique</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="rappels-indispensables" class="level1">
-<h1>📐 Rappels indispensables</h1>
-<section id="état-dun-qubit" class="level2">
-<h2 class="anchored" data-anchor-id="état-dun-qubit">État d’un qubit</h2>
-<p><span class="math display">\[|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \qquad |\alpha|^2 + |\beta|^2 = 1\]</span></p>
-<ul>
-<li><span class="math inline">\(\alpha, \beta \in \mathbb{C}\)</span> — <strong>amplitudes de probabilité</strong></li>
-<li>Probabilité de mesurer <span class="math inline">\(|0\rangle\)</span> : <span class="math inline">\(|\alpha|^2\)</span> ; de mesurer <span class="math inline">\(|1\rangle\)</span> : <span class="math inline">\(|\beta|^2\)</span></li>
-<li><span class="math inline">\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</span> — état en superposition équilibrée</li>
-</ul>
-</section>
-<section id="opérateurs-de-mesure" class="level2">
-<h2 class="anchored" data-anchor-id="opérateurs-de-mesure">Opérateurs de mesure</h2>
-<ul>
-<li><strong>Projecteur</strong> : <span class="math inline">\(M_m = |\psi_m\rangle\langle\psi_m|\)</span></li>
-<li><strong>Équation de complétude</strong> (toujours vérifiée) : <span class="math inline">\(\displaystyle\sum_m M_m^\dagger M_m = I\)</span></li>
-<li><strong>Probabilité</strong> d’obtenir <span class="math inline">\(m\)</span> : <span class="math inline">\(p(m) = \langle\psi|M_m^\dagger M_m|\psi\rangle\)</span></li>
-</ul>
-</section>
-<section id="orthogonalité" class="level2">
-<h2 class="anchored" data-anchor-id="orthogonalité">Orthogonalité</h2>
-<p>Deux états <span class="math inline">\(|\psi_0\rangle\)</span> et <span class="math inline">\(|\psi_1\rangle\)</span> sont <strong>orthogonaux</strong> ssi :</p>
-<p><span class="math display">\[\langle\psi_0|\psi_1\rangle = 0\]</span></p>
-<hr>
-</section>
-</section>
-<section id="distinguer-des-états-quantiques" class="level1">
-<h1>🔬 Distinguer des états quantiques</h1>
-<section id="états-orthogonaux-distinction-parfaite" class="level2">
-<h2 class="anchored" data-anchor-id="états-orthogonaux-distinction-parfaite">États orthogonaux — distinction parfaite ✅</h2>
-<p><strong>Stratégie :</strong></p>
-<ol type="1">
-<li>Construire <span class="math inline">\(U = \begin{bmatrix}\alpha &amp; \gamma \\ \beta &amp; \delta\end{bmatrix}\)</span> (colonnes = états à distinguer)</li>
-<li>Appliquer <span class="math inline">\(U^\dagger\)</span> → envoie <span class="math inline">\(|\psi_0\rangle \to |0\rangle\)</span> et <span class="math inline">\(|\psi_1\rangle \to |1\rangle\)</span></li>
-<li>Mesurer dans la base computationnelle</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Équivalent :</strong> mesurer directement dans la base <span class="math inline">\((|\psi_0\rangle, |\psi_1\rangle)\)</span></p>
-</blockquote>
-<p><strong>Vérification :</strong> <span class="math inline">\(p(M_{|\psi_0\rangle}\,|\,|\psi\rangle = |\psi_0\rangle) = 1\)</span> et <span class="math inline">\(p(M_{|\psi_0\rangle}\,|\,|\psi\rangle = |\psi_1\rangle) = 0\)</span> ✓</p>
-</section>
-<section id="états-non-orthogonaux-distinction-impossible-à-100" class="level2">
-<h2 class="anchored" data-anchor-id="états-non-orthogonaux-distinction-impossible-à-100">États non orthogonaux — distinction impossible à 100% ❌</h2>
-<ul>
-<li>Si <span class="math inline">\(\langle\psi_a|\psi_b\rangle \neq 0\)</span> → <strong>aucune mesure</strong> ne distingue parfaitement</li>
-<li>On peut seulement <strong>améliorer</strong> la probabilité au-delà de 50 %</li>
-<li>Plus les états sont <strong>proches</strong> → plus la discrimination est difficile</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="borne-de-helstrom-holevo" class="level1">
-<h1>📊 Borne de Helstrom-Holevo</h1>
-<section id="formule-à-retenir" class="level2">
-<h2 class="anchored" data-anchor-id="formule-à-retenir">Formule à retenir 🔑</h2>
-<p><span class="math display">\[\boxed{p_{\text{succès}} \leq \frac{1}{2}(1 + \sin\theta)}\]</span></p>
-<p>avec <span class="math inline">\(|\langle\psi_a|\psi_b\rangle| = \cos\theta\)</span></p>
-</section>
-<section id="borne-atteinte-par" class="level2">
-<h2 class="anchored" data-anchor-id="borne-atteinte-par">Borne atteinte par</h2>
-<p>La base des vecteurs propres de :</p>
-<p><span class="math display">\[|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|\]</span></p>
-</section>
-<section id="cas-limites" class="level2">
-<h2 class="anchored" data-anchor-id="cas-limites">Cas limites</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-<col style="width: 16%">
-<col style="width: 22%">
-<col style="width: 27%">
+<col style="width: 17%">
 <col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Cas</th>
-<th><span class="math inline">\(\theta\)</span></th>
-<th><span class="math inline">\(\sin\theta\)</span></th>
-<th><span class="math inline">\(p_{\text{max}}\)</span></th>
-<th>Interprétation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Orthogonaux</td>
-<td><span class="math inline">\(\pi/2\)</span></td>
-<td><span class="math inline">\(1\)</span></td>
-<td><strong><span class="math inline">\(1\)</span></strong></td>
-<td>Distinction parfaite</td>
-</tr>
-<tr class="even">
-<td>Quasi-alignés</td>
-<td><span class="math inline">\(\approx 0\)</span></td>
-<td><span class="math inline">\(\approx 0\)</span></td>
-<td><strong><span class="math inline">\(\approx 1/2\)</span></strong></td>
-<td>Pas mieux que hasard</td>
-</tr>
-<tr class="odd">
-<td>Général</td>
-<td><span class="math inline">\((0, \pi/2)\)</span></td>
-<td><span class="math inline">\((0,1)\)</span></td>
-<td><span class="math inline">\((1/2, 1)\)</span></td>
-<td>Distinction partielle</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="exemple-0rangle-vs-rangle" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-0rangle-vs-rangle">Exemple : <span class="math inline">\(|0\rangle\)</span> vs <span class="math inline">\(|+\rangle\)</span></h2>
-<p><span class="math display">\[\langle 0|+\rangle = \frac{1}{\sqrt{2}} \Rightarrow \cos\theta = \frac{1}{\sqrt{2}} \Rightarrow \theta = \frac{\pi}{4}\]</span></p>
-<p><span class="math display">\[p_{\text{opt}} = \frac{1}{2}\!\left(1 + \frac{1}{\sqrt{2}}\right) \approx \mathbf{0.85}\]</span></p>
-<p><strong>Base computationnelle (sous-optimale) :</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>État</th>
-<th><span class="math inline">\(P(0)\)</span></th>
-<th><span class="math inline">\(P(1)\)</span></th>
-<th>Décision si 0</th>
-<th>Décision si 1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(|0\rangle\)</span></td>
-<td><span class="math inline">\(1\)</span></td>
-<td><span class="math inline">\(0\)</span></td>
-<td><span class="math inline">\(|0\rangle\)</span> ✓</td>
-<td>—</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(|+\rangle\)</span></td>
-<td><span class="math inline">\(1/2\)</span></td>
-<td><span class="math inline">\(1/2\)</span></td>
-<td><span class="math inline">\(|0\rangle\)</span> ✗</td>
-<td><span class="math inline">\(|+\rangle\)</span> ✓</td>
-</tr>
-</tbody>
-</table>
-<p><span class="math display">\[p_{\text{base comp.}} = 1 - \frac{3}{4}\times\frac{1}{3} = \frac{3}{4} = \mathbf{0.75}\]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Astuce
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Astuce :</strong> Mesurer 1 → <strong>certitude à 100%</strong> que l’état est <span class="math inline">\(|+\rangle\)</span>. Mesurer 0 → incertitude (75% <span class="math inline">\(|0\rangle\)</span>, 25% <span class="math inline">\(|+\rangle\)</span>).</p>
-</div>
-</div>
-</section>
-<section id="deux-stratégies-visuelles" class="level2">
-<h2 class="anchored" data-anchor-id="deux-stratégies-visuelles">Deux stratégies visuelles</h2>
-<table class="caption-top table">
-<colgroup>
 <col style="width: 22%">
-<col style="width: 12%">
-<col style="width: 43%">
-<col style="width: 20%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Stratégie</th>
-<th>Base</th>
-<th><span class="math inline">\(p_{\text{succès}}\)</span></th>
-<th>Avantage</th>
+<th style="text-align: left;">Situation</th>
+<th style="text-align: center;">Angle <span class="math inline">\(\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\sin\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(p_{\text{succès}}\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Optimale</strong></td>
-<td>Bissectrice des deux états</td>
-<td><strong>85%</strong></td>
-<td>Meilleure probabilité globale</td>
+<td style="text-align: left;">États <strong>orthogonaux</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\theta = \pi/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span> (parfait)</td>
 </tr>
 <tr class="even">
-<td><strong>Asymétrique</strong></td>
-<td>Un vecteur aligné avec un état</td>
-<td><strong>75%</strong></td>
-<td>Certitude 100% pour un résultat</td>
+<td style="text-align: left;">États <strong>presque alignés</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\theta \approx 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\approx 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\approx 1/2\)</span> (hasard)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cas intermédiaire</td>
+<td style="text-align: center;"><span class="math inline">\(0 &lt; \theta &lt; \pi/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,1)\)</span></td>
+<td style="text-align: center;">Entre <span class="math inline">\(1/2\)</span> et <span class="math inline">\(1\)</span></td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
 </section>
-<section id="principe-de-non-signalisation-no-signalling" class="level1">
-<h1>📡 Principe de Non-Signalisation (<em>No-Signalling</em>)</h1>
-<section id="énoncé" class="level2">
-<h2 class="anchored" data-anchor-id="énoncé">Énoncé</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>L’intrication quantique ne peut PAS être utilisée pour transmettre de l’information, quelle que soit la distance.</strong></p>
-</div>
-</div>
+<section id="exemple-distinguer-0rangle-et-rangle" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-distinguer-0rangle-et-rangle">Exemple : distinguer <span class="math inline">\(|0\rangle\)</span> et <span class="math inline">\(|+\rangle\)</span></h2>
+<section id="vérification-de-la-non-orthogonalité" class="level3">
+<h3 class="anchored" data-anchor-id="vérification-de-la-non-orthogonalité">Vérification de la non-orthogonalité</h3>
+<p><span class="math display">\[\langle 0|+\rangle = \begin{bmatrix}1 &amp; 0\end{bmatrix}
+  \begin{bmatrix}1/\sqrt{2} \\ 1/\sqrt{2}\end{bmatrix} = \frac{1}{\sqrt{2}} \neq 0\]</span></p>
 </section>
-<section id="scénario-alice-bob-paire-de-bell" class="level2">
-<h2 class="anchored" data-anchor-id="scénario-alice-bob-paire-de-bell">Scénario Alice-Bob (paire de Bell)</h2>
-<p><span class="math display">\[|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\]</span></p>
-<ul>
-<li>Alice mesure son qubit → effondrement instantané du qubit de Bob</li>
-<li><strong>Mais</strong> Bob ne peut pas détecter si Alice a mesuré ou non</li>
-</ul>
+<section id="deux-stratégies-de-discrimination" class="level3">
+<h3 class="anchored" data-anchor-id="deux-stratégies-de-discrimination">Deux stratégies de discrimination</h3>
+
 </section>
-<section id="preuve-en-3-lignes" class="level2">
-<h2 class="anchored" data-anchor-id="preuve-en-3-lignes">Preuve (en 3 lignes)</h2>
+<section id="résultats-numériques" class="level3">
+<h3 class="anchored" data-anchor-id="résultats-numériques">Résultats numériques</h3>
+<p><strong>Stratégie optimale :</strong> Avec <span class="math inline">\(|\langle 0|+\rangle| = 1/\sqrt{2}\)</span>, donc <span class="math inline">\(\theta = \pi/4\)</span> :</p>
+<p><span class="math display">\[p_{\text{succès}} = \frac{1}{2}\!\left(1 + \sin\!\left(\arccos\frac{1}{\sqrt{2}}\right)\right)
+  = \frac{1}{2}\!\left(1 + \frac{1}{\sqrt{2}}\right) \approx 0.85\]</span></p>
+<p><strong>Stratégie simple (base computationnelle) :</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 26%">
-<col style="width: 52%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Situation</th>
-<th>État de Bob</th>
-<th><span class="math inline">\(p(\text{Bob mesure }0)\)</span></th>
+<th style="text-align: center;">État</th>
+<th style="text-align: center;"><span class="math inline">\(P(\text{mesure}=0)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(P(\text{mesure}=1)\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Alice <strong>n’a pas</strong> mesuré</td>
-<td><span class="math inline">\(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span></td>
-<td><span class="math inline">\(\left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|0\rangle\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
 </tr>
 <tr class="even">
-<td>Alice <strong>a</strong> mesuré</td>
-<td><span class="math inline">\(|0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span> (prob. <span class="math inline">\(\frac{1}{2}\)</span> chacun)</td>
-<td><span class="math inline">\(\frac{1}{2}\cdot 1 + \frac{1}{2}\cdot 0 = \frac{1}{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|+\rangle\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/2\)</span></td>
 </tr>
 </tbody>
 </table>
-<blockquote class="blockquote">
-<p><strong>Les statistiques sont identiques</strong> → Bob ne voit aucune différence. ✓</p>
-</blockquote>
-</section>
-<section id="à-retenir" class="level2">
-<h2 class="anchored" data-anchor-id="à-retenir">À retenir</h2>
 <ul>
-<li>Valide pour <strong>tout type d’intrication</strong></li>
-<li>Valide pour <strong>tout schéma de mesure</strong> (bases arbitraires, transformations…)</li>
-<li>Compatible avec la <strong>théorie de la relativité</strong></li>
+<li>Si on mesure <span class="math inline">\(1\)</span> → on est <strong>certain</strong> que l’état était <span class="math inline">\(|+\rangle\)</span>.</li>
+<li>Si on mesure <span class="math inline">\(0\)</span> → on devine <span class="math inline">\(|0\rangle\)</span>, avec <span class="math inline">\(1/3\)</span> de chance d’erreur.</li>
 </ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Avertissement
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Piège classique :</strong> L’état du qubit de Bob <em>a</em> bien changé instantanément, mais Bob ne peut pas le <strong>savoir</strong> sans communication classique avec Alice. Effondrement ≠ transmission d’information.</p>
-</div>
-</div>
+<p><span class="math display">\[p_{\text{succès}} = 1 - \frac{3}{4} \times \frac{1}{3} = \frac{3}{4} = 0.75\]</span></p>
 <hr>
 </section>
 </section>
-<section id="principe-de-non-clonage-no-cloning" class="level1">
-<h1>🚫 Principe de Non-Clonage (<em>No-Cloning</em>)</h1>
-<section id="énoncé-1" class="level2">
-<h2 class="anchored" data-anchor-id="énoncé-1">Énoncé</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Il n’existe aucun opérateur unitaire <span class="math inline">\(U\)</span> tel que <span class="math inline">\(U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle\)</span> pour tout état <span class="math inline">\(|\psi\rangle\)</span>.</strong></p>
-</div>
-</div>
+<section id="le-principe-de-non-signalisation-no-signalling" class="level2">
+<h2 class="anchored" data-anchor-id="le-principe-de-non-signalisation-no-signalling">Le principe de non-signalisation (<em>No-Signalling</em>)</h2>
+<section id="contexte-et-enjeu" class="level3">
+<h3 class="anchored" data-anchor-id="contexte-et-enjeu">Contexte et enjeu</h3>
+<p>L’intrication quantique produit un phénomène spectaculaire : mesurer un qubit <strong>influence instantanément</strong> l’état de son partenaire intriqué, même si les deux sont à des distances cosmiques. Einstein appelait cela l’<em>“action fantôme à distance”</em>.</p>
+<p><strong>Question cruciale :</strong> peut-on utiliser ce phénomène pour transmettre de l’information plus vite que la lumière ?</p>
 </section>
-<section id="pourquoi-cest-important" class="level2">
-<h2 class="anchored" data-anchor-id="pourquoi-cest-important">Pourquoi c’est important ?</h2>
-<ul>
-<li>Sans no-cloning → on pourrait violer le <strong>no-signalling</strong></li>
-<li>Sans no-cloning → correction d’erreurs triviale (mais pas meilleure !)</li>
-<li>Sans no-cloning → comprimer <span class="math inline">\(\infty\)</span> bits classiques dans 1 qubit</li>
-</ul>
-</section>
-<section id="preuve-idée-centrale" class="level2">
-<h2 class="anchored" data-anchor-id="preuve-idée-centrale">Preuve (idée centrale)</h2>
-<p>Supposer que <span class="math inline">\(U\)</span> existe, appliquer à <span class="math inline">\(|\psi\rangle\)</span> et <span class="math inline">\(|\phi\rangle\)</span>, prendre le produit scalaire :</p>
-<p><span class="math display">\[\underbrace{\langle\psi|\phi\rangle}_{\text{avant clonage}} = \underbrace{(\langle\psi|\phi\rangle)^2}_{\text{après clonage}}\]</span></p>
-<p>Cette équation n’est vraie que si :</p>
-<ul>
-<li><span class="math inline">\(\langle\psi|\phi\rangle = 0\)</span> → états <strong>orthogonaux</strong></li>
-<li><span class="math inline">\(\langle\psi|\phi\rangle = 1\)</span> → états <strong>identiques</strong></li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>Contradiction</strong> : un unitaire <em>préserve</em> les produits scalaires, mais le clonage les <em>élève au carré</em>.</p>
-</blockquote>
-</section>
-<section id="résumé-visuel" class="level2">
-<h2 class="anchored" data-anchor-id="résumé-visuel">Résumé visuel</h2>
-<pre><code>|ψ⟩ ──┐              |ψ⟩ ──
-      │  U   →               ← IMPOSSIBLE
-|0⟩ ──┘              |ψ⟩ ──   (sauf si ψ classique)</code></pre>
-<hr>
-</section>
-</section>
-<section id="principe-de-non-suppression-no-deleting" class="level1">
-<h1>🗑️ Principe de Non-Suppression (<em>No-Deleting</em>)</h1>
-<section id="énoncé-2" class="level2">
-<h2 class="anchored" data-anchor-id="énoncé-2">Énoncé</h2>
-<p><span class="math display">\[\nexists\, \tilde{U} \text{ tel que } \tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle \quad \forall|\psi\rangle\]</span></p>
-</section>
-<section id="lien-avec-le-non-clonage" class="level2">
-<h2 class="anchored" data-anchor-id="lien-avec-le-non-clonage">Lien avec le non-clonage</h2>
-<ul>
-<li>No-Deleting = <strong>dual temporel</strong> du No-Cloning</li>
-<li>Le calcul quantique est <strong>réversible</strong> (sauf mesure)</li>
-<li>Si supprimer était possible → cloner serait possible → contradiction</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Règle générale :</strong> (im)possibilité d’une opération quantique ⟺ (im)possibilité de son inverse.</p>
-</div>
-</div>
-<hr>
-</section>
-</section>
-<section id="relations-entre-les-principes" class="level1">
-<h1>🔗 Relations entre les principes</h1>
-<pre><code>No-Cloning
-    │
-    │ dual temporel
-    ▼
-No-Deleting
+<section id="scénario-alice-et-bob-avec-une-paire-de-bell" class="level3">
+<h3 class="anchored" data-anchor-id="scénario-alice-et-bob-avec-une-paire-de-bell">Scénario : Alice et Bob avec une paire de Bell</h3>
 
-No-Cloning ──────────────────► No-Signalling
-    (si clonage possible, on peut signaler)
-
-Orthogonalité ──────────────► Distinguishabilité parfaite
-Non-orthogonalité ──────────► Borne Helstrom-Holevo</code></pre>
+</section>
+<section id="preuve-du-principe-de-non-signalisation" class="level3">
+<h3 class="anchored" data-anchor-id="preuve-du-principe-de-non-signalisation">Preuve du principe de non-signalisation</h3>
+<p><strong>Cas 1 : Alice n’a PAS mesuré.</strong></p>
+<p>L’état global reste <span class="math inline">\(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span>. Pour Bob, la probabilité de mesurer <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> est :</p>
+<p><span class="math display">\[p(\text{Bob mesure }0) = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}\]</span></p>
+<p><strong>Cas 2 : Alice A mesuré.</strong></p>
+<p>Le qubit de Bob s’est effondré vers <span class="math inline">\(|0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span> (chacun avec probabilité <span class="math inline">\(1/2\)</span>). Bob <em>ne sait pas</em> lequel. Pour lui :</p>
+<p><span class="math display">\[p(\text{Bob mesure }0) = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{1}{2}\]</span></p>
 <hr>
 </section>
-<section id="tableau-récapitulatif-complet" class="level1">
-<h1>📋 Tableau récapitulatif complet</h1>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 38%">
-<col style="width: 18%">
-<col style="width: 24%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Principe</th>
-<th style="text-align: right;">Formule / Condition</th>
-<th>Résultat</th>
-<th>Implication</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Distinguishabilité</strong></td>
-<td style="text-align: right;"><span class="math inline">\(\langle\psi_0\|\psi_1\rangle = 0\)</span></td>
-<td>Distinction parfaite</td>
-<td>Mesurer dans la bonne base</td>
-</tr>
-<tr class="even">
-<td><strong>Helstrom-Holevo</strong></td>
-<td style="text-align: right;"><span class="math inline">\(\|\langle\psi_a\|\psi_b\rangle\| = \cos\theta\)</span></td>
-<td><span class="math inline">\(p \leq \frac{1}{2}(1+\sin\theta)\)</span></td>
-<td>Fondement de QKD</td>
-</tr>
-<tr class="odd">
-<td><strong>No-Signalling</strong></td>
-<td style="text-align: right;">Intrication Bell</td>
-<td>Stat. identiques ± mesure d’Alice</td>
-<td>Compatibilité relativité</td>
-</tr>
-<tr class="even">
-<td><strong>No-Cloning</strong></td>
-<td style="text-align: right;"><span class="math inline">\(\langle\psi\|\phi\rangle = (\langle\psi\|\phi\rangle)^2\)</span></td>
-<td>Seulement pour <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span></td>
-<td>Sécurité protocole BB84</td>
-</tr>
-<tr class="odd">
-<td><strong>No-Deleting</strong></td>
-<td style="text-align: right;">Dual de No-Cloning</td>
-<td>Aucun <span class="math inline">\(\tilde{U}\)</span></td>
-<td>Réversibilité quantique</td>
-</tr>
-</tbody>
-</table>
-<hr>
 </section>
-<section id="pièges-classiques-à-lexamen" class="level1">
-<h1>⚠️ Pièges classiques à l’examen</h1>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Avertissement</span>Pièges à éviter
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><p><strong>Confondre orthogonalité et distinguishabilité</strong> → L’orthogonalité est <em>nécessaire et suffisante</em> pour la distinction parfaite</p></li>
-<li><p><strong>Croire que la borne Helstrom-Holevo est toujours atteinte par la base computationnelle</strong> → La base optimale est celle des vecteurs propres de <span class="math inline">\(|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|\)</span></p></li>
-<li><p><strong>Croire que l’effondrement de la paire de Bell transmet de l’info</strong> → Les statistiques de Bob sont <em>identiques</em> avec ou sans mesure d’Alice</p></li>
-<li><p><strong>Croire que No-Cloning interdit de copier <em>des</em> états</strong> → On peut copier des états orthogonaux (= classiques) ; l’interdiction vise les états <em>arbitraires</em></p></li>
-<li><p><strong>Oublier que <span class="math inline">\(U^\dagger U = I\)</span> dans la preuve du No-Cloning</strong> → C’est ce qui force le produit scalaire à être préservé → contradiction</p></li>
-<li><p><strong>Confondre No-Cloning et No-Deleting</strong> → No-Deleting = inverse temporel de No-Cloning ; même preuve, sens opposé</p></li>
-</ol>
-</div>
-</div>
-<hr>
-</section>
-<section id="checklist-de-révision" class="level1">
-<h1>✅ Checklist de révision</h1>
-<p>Avant l’examen, je dois savoir :</p>
-<ul class="task-list">
-<li><label><input type="checkbox">Écrire les opérateurs de mesure <span class="math inline">\(M_m\)</span> pour une base orthogonale quelconque</label></li>
-<li><label><input type="checkbox">Vérifier l’équation de complétude <span class="math inline">\(\sum_m M_m^\dagger M_m = I\)</span></label></li>
-<li><label><input type="checkbox">Appliquer la borne Helstrom-Holevo à un exemple concret (ex : <span class="math inline">\(|0\rangle\)</span> vs <span class="math inline">\(|+\rangle\)</span>)</label></li>
-<li><label><input type="checkbox">Calculer <span class="math inline">\(\theta\)</span> à partir de <span class="math inline">\(|\langle\psi_a|\psi_b\rangle|\)</span></label></li>
-<li><label><input type="checkbox">Expliquer en 3 phrases pourquoi No-Signalling est vrai (scénario Alice-Bob)</label></li>
-<li><label><input type="checkbox">Reproduire la preuve du No-Cloning par le produit scalaire</label></li>
-<li><label><input type="checkbox">Expliquer le lien No-Cloning ↔︎ No-Deleting (réversibilité)</label></li>
-<li><label><input type="checkbox">Connaître les implications pratiques de chaque principe</label></li>
-</ul>
-<hr>
-</section>
-<section id="questions-type-examen" class="level1">
-<h1>❓ Questions type examen</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Q1 — Distinguishabilité
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Soient <span class="math inline">\(|\psi_0\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle\)</span> et <span class="math inline">\(|\psi_1\rangle = \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle\)</span>. Peut-on les distinguer parfaitement ? Si oui, comment ?</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Q2 — Helstrom-Holevo
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Calculer la probabilité maximale de distinguer <span class="math inline">\(|0\rangle\)</span> et <span class="math inline">\(|\psi\rangle = \cos(30°)|0\rangle + \sin(30°)|1\rangle\)</span>.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Q3 — No-Signalling
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Alice et Bob partagent <span class="math inline">\(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span>. Alice mesure dans la base <span class="math inline">\(\{|+\rangle, |-\rangle\}\)</span>. Montrer que les statistiques de Bob sont inchangées.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Q4 — No-Cloning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Supposer qu’un clonage est possible. Montrer que cela violerait le No-Signalling. <em>(Indication : Alice clone son qubit, l’envoie partiellement à Bob…)</em></p>
-</div>
-</div>
-<hr>
-</section>
-<section id="mini-résumé-final-60-secondes" class="level1">
-<h1>🏁 Mini-résumé final (60 secondes)</h1>
-<blockquote class="blockquote">
+<section id="le-principe-de-non-clonage-no-cloning" class="level2">
+<h2 class="anchored" data-anchor-id="le-principe-de-non-clonage-no-cloning">Le principe de non-clonage (<em>No-Cloning</em>)</h2>
+<section id="motivation-pourquoi-vouloir-cloner" class="level3">
+<h3 class="anchored" data-anchor-id="motivation-pourquoi-vouloir-cloner">Motivation : pourquoi vouloir cloner ?</h3>
+<p>Si le clonage d’états quantiques était possible, on pourrait :</p>
 <ul>
-<li><strong>Orthogonaux</strong> → distinguables à 100% avec la bonne base</li>
-<li><strong>Non orthogonaux</strong> → au mieux <span class="math inline">\(\frac{1}{2}(1+\sin\theta)\)</span> de succès <em>(Helstrom-Holevo)</em></li>
-<li><strong>Intrication</strong> → corrélations instantanées, mais <strong>zéro</strong> info transmise <em>(No-Signalling)</em></li>
-<li><strong>Clonage</strong> → impossible car <span class="math inline">\(\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2\)</span> implique ortho ou identique <em>(No-Cloning)</em></li>
-<li><strong>Suppression</strong> → impossible car dual temporel du No-Cloning <em>(No-Deleting)</em></li>
-<li>Tout découle de la <strong>linéarité</strong> et de l’<strong>unitarité</strong> de la mécanique quantique.</li>
+<li>Faciliter la <strong>correction d’erreurs quantiques</strong></li>
+<li>Comprimer une infinité d’information classique dans un seul qubit</li>
+<li><strong>Violer le principe de non-signalisation</strong> (voir exercices)</li>
 </ul>
-</blockquote>
+</section>
+<section id="schéma-du-circuit-de-clonage-tentative" class="level3">
+<h3 class="anchored" data-anchor-id="schéma-du-circuit-de-clonage-tentative">Schéma du circuit de clonage (tentative)</h3>
+
+</section>
+<section id="démonstration-preuve-par-labsurde" class="level3">
+<h3 class="anchored" data-anchor-id="démonstration-preuve-par-labsurde">Démonstration (preuve par l’absurde)</h3>
+<p>Supposons qu’un tel <span class="math inline">\(U\)</span> existe. Il doit fonctionner pour <strong>tout</strong> état, donc en particulier pour deux états arbitraires <span class="math inline">\(|\psi\rangle\)</span> et <span class="math inline">\(|\phi\rangle\)</span> :</p>
+<p><span class="math display">\[U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle \qquad
+  U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle\]</span></p>
+<p>Prenons le <strong>produit scalaire</strong> des deux membres :</p>
+<p><span class="math display">\[\langle\psi|\langle 0|U^\dagger U|\phi\rangle|0\rangle
+  = (\langle\psi|\langle\psi|)(|\phi\rangle|\phi\rangle)\]</span></p>
+<p><strong>Membre gauche</strong> (<span class="math inline">\(U^\dagger U = I\)</span>) :</p>
+<p><span class="math display">\[\langle\psi|\phi\rangle \cdot \langle 0|0\rangle = \langle\psi|\phi\rangle\]</span></p>
+<p><strong>Membre droit</strong> (produit tensoriel) :</p>
+<p><span class="math display">\[\langle\psi|\phi\rangle \cdot \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2\]</span></p>
+<p>On obtient donc <span class="math inline">\(\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2\)</span>. Cette équation n’a que deux solutions :</p>
+<ul>
+<li><span class="math inline">\(\langle\psi|\phi\rangle = 0\)</span> : états <strong>orthogonaux</strong></li>
+<li><span class="math inline">\(\langle\psi|\phi\rangle = 1\)</span> : états <strong>identiques</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="le-principe-de-non-suppression-no-deleting" class="level2">
+<h2 class="anchored" data-anchor-id="le-principe-de-non-suppression-no-deleting">Le principe de non-suppression (<em>No-Deleting</em>)</h2>
+<section id="énoncé" class="level3">
+<h3 class="anchored" data-anchor-id="énoncé">Énoncé</h3>
+<p>Le principe de non-suppression est le <strong>dual temporel</strong> du non-clonage. Il n’existe <strong>aucun</strong> opérateur unitaire <span class="math inline">\(\tilde{U}\)</span> tel que :</p>
+<p><span class="math display">\[\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle \quad \text{pour tout } |\psi\rangle\]</span></p>
+</section>
+<section id="lien-avec-la-réversibilité-quantique" class="level3">
+<h3 class="anchored" data-anchor-id="lien-avec-la-réversibilité-quantique">Lien avec la réversibilité quantique</h3>
+<hr>
+</section>
+</section>
+<section id="résumé-des-principes-fondamentaux" class="level2">
+<h2 class="anchored" data-anchor-id="résumé-des-principes-fondamentaux">Résumé des principes fondamentaux</h2>
+<hr>
+</section>
+<section id="points-clés-à-retenir" class="level2">
+<h2 class="anchored" data-anchor-id="points-clés-à-retenir">Points clés à retenir</h2>
+<ul>
+<li><p>La mesure quantique est caractérisée par des <strong>opérateurs de mesure</strong> satisfaisant l’équation de complétude <span class="math inline">\(\sum_m M_m^\dagger M_m = I\)</span>.</p></li>
+<li><p>Deux états <strong>orthogonaux</strong> sont toujours <strong>parfaitement distinguables</strong> ; deux états <strong>non orthogonaux</strong> ne le sont <strong>jamais</strong>.</p></li>
+<li><p>La <strong>borne de Helstrom-Holevo</strong> donne la probabilité maximale de distinguer deux états : <span class="math inline">\(\frac{1}{2}(1 + \sin\theta)\)</span>, atteinte par une base de mesure optimale.</p></li>
+<li><p>Le <strong>principe de non-signalisation</strong> garantit que l’intrication ne peut pas servir à communiquer plus vite que la lumière.</p></li>
+<li><p>Le <strong>théorème de non-clonage</strong> interdit la copie d’états quantiques arbitraires — résultat fondateur de la cryptographie quantique (protocole BB84).</p></li>
+<li><p>Le <strong>principe de non-suppression</strong> est le dual du non-clonage, et reflète la réversibilité fondamentale de la mécanique quantique.</p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
