@@ -30,30 +30,33 @@ website:
             contents:
               - text: "Details"
                 href: ch1c.qmd
-              - ch1.qmd
               - text: "Synthese"
                 href: ch1r.qmd
           - section: "Quantum computing chapter 2"
             contents:
               - text: "Details"
                 href: ch2c.qmd
-              - ch2.qmd
               - text: "Synthese"
                 href: ch2r.qmd
           - section: "Quantum computing chapter 3"
             contents:
               - text: "Details"
                 href: ch3c.qmd
-              - ch3.qmd
               - text: "Synthese"
                 href: ch3r.qmd
+          - section: "Applications des ordinateurs quantiques"
+            contents:
+              - text: "Details"
+                href: ch4c.qmd
+              - text: "Synthese"
+                href: ch4r.qmd
 
 
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
+      dark: ../macchiato.scss
+      light: ../latte.scss
     toc: true
     embed-resources: true
   # pdf:

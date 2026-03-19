@@ -1,0 +1,864 @@
+---
+title: "Informatique Quantique — Lecture 3"
+subtitle: "Propriétés fondamentales de l'informatique quantique"
+author: "D'après le cours de Taras Holotyak — Université de Genève (14X060)"
+lang: fr
+format:
+  typst:
+    toc: true
+    number-sections: false
+    papersize: a4
+    margin:
+      x: 2.5cm
+      y: 2.5cm
+    fontsize: 11pt
+---
+
+```{=typst}
+#set text(font: "New Computer Modern", lang: "fr")
+#set par(justify: true, leading: 0.65em)
+
+#show heading.where(level: 1): it => {
+  v(1.2em)
+  text(size: 16pt, weight: "bold", fill: rgb("#1a1a6e"), it)
+  v(0.4em)
+}
+#show heading.where(level: 2): it => {
+  v(0.9em)
+  text(size: 13pt, weight: "bold", fill: rgb("#2c2c8e"), it)
+  v(0.3em)
+}
+#show heading.where(level: 3): it => {
+  v(0.7em)
+  text(size: 11pt, weight: "bold", fill: rgb("#444488"), it)
+  v(0.2em)
+}
+
+#let defbox(titre, corps) = block(
+  fill: rgb("#eef2ff"),
+  stroke: (left: 3pt + rgb("#3333aa")),
+  radius: 3pt, inset: 10pt, width: 100%,
+  [ #text(weight: "bold", fill: rgb("#3333aa"))[#titre] \ #corps ]
+)
+
+#let thmbox(titre, corps) = block(
+  fill: rgb("#fff3e0"),
+  stroke: (left: 3pt + rgb("#e65100")),
+  radius: 3pt, inset: 10pt, width: 100%,
+  [ #text(weight: "bold", fill: rgb("#e65100"))[#titre] \ #corps ]
+)
+
+#let resultbox(corps) = block(
+  fill: rgb("#f3fff3"),
+  stroke: (left: 3pt + rgb("#2e7d32")),
+  radius: 3pt, inset: 10pt, width: 100%,
+  [ #text(weight: "bold", fill: rgb("#2e7d32"))[Conclusion] \ #corps ]
+)
+```
+
+# Propriétés fondamentales de l'informatique quantique
+
+Ce chapitre explore plusieurs propriétés essentielles des systèmes quantiques qui
+distinguent fondamentalement l'information quantique de l'information classique.
+
+Nous allons étudier :
+
+- La **mesure dans la base computationnelle** et dans d'autres bases orthogonales
+- L'**impossibilité de distinguer parfaitement des états non orthogonaux** (borne de Helstrom-Holevo)
+- Le **principe de non-signalisation** (*no-signalling*)
+- Le **principe de non-clonage** (*no-cloning*)
+- Le **principe de non-suppression** (*no-deleting*)
+
+---
+
+## États d'un qubit et sphère de Bloch
+
+### Rappel : représentation d'un qubit
+
+Un qubit est le système d'information fondamental en informatique quantique. Son état
+général s'écrit :
+
+$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \qquad \text{avec } |\alpha|^2 + |\beta|^2 = 1$$
+
+On peut toujours paramétrer cet état sous la forme :
+
+$$|\psi\rangle = \cos\!\left(\frac{\theta}{2}\right)|0\rangle
+  + e^{i\varphi}\sin\!\left(\frac{\theta}{2}\right)|1\rangle$$
+
+ce qui permet de représenter **tout état pur d'un qubit** comme un point sur une
+sphère unitaire : la **sphère de Bloch**.
+
+```{=typst}
+#import "@preview/cetz:0.3.1": canvas, draw
+
+#figure(
+  canvas(length: 1cm, {
+    import draw: *
+
+    // Sphère (cercle principal)
+    circle((0, 0), radius: 2.8,
+      stroke: (paint: luma(165), thickness: 0.9pt))
+
+    // Axes en pointillés
+    line((-3.2, 0), (3.2, 0),
+      stroke: (paint: luma(185), thickness: 0.6pt, dash: "dashed"))
+    line((0, -3.2), (0, 3.2),
+      stroke: (paint: luma(185), thickness: 0.6pt, dash: "dashed"))
+
+    // |0> pole nord
+    line((0, 0.12), (0, 2.62),
+      stroke: (paint: rgb("#1a237e"), thickness: 2pt),
+      mark: (end: ">"))
+    content((0, 3.05),
+      text(fill: rgb("#1a237e"), size: 10pt)[$|0 angle.r$])
+
+    // |1> pole sud
+    line((0, -0.12), (0, -2.62),
+      stroke: (paint: rgb("#1a237e"), thickness: 2pt),
+      mark: (end: ">"))
+    content((0, -3.08),
+      text(fill: rgb("#1a237e"), size: 10pt)[$|1 angle.r$])
+
+    // |+> equateur est
+    line((0.12, 0), (2.62, 0),
+      stroke: (paint: rgb("#b71c1c"), thickness: 2pt),
+      mark: (end: ">"))
+    content((3.17, 0.02),
+      text(fill: rgb("#b71c1c"), size: 10pt)[$|+ angle.r$])
+
+    // |-> equateur ouest
+    line((-0.12, 0), (-2.62, 0),
+      stroke: (paint: rgb("#b71c1c"), thickness: 2pt),
+      mark: (end: ">"))
+    content((-3.22, 0.02),
+      text(fill: rgb("#b71c1c"), size: 10pt)[$|- angle.r$])
+
+    // Etat general |psi> a theta = 35 deg de l'axe z
+    let tz = 35deg
+    let px = 2.62 * calc.sin(tz)
+    let py = 2.62 * calc.cos(tz)
+    line((0, 0), (px, py),
+      stroke: (paint: rgb("#2e7d32"), thickness: 2pt),
+      mark: (end: ">"))
+    content((px + 0.35, py + 0.25),
+      text(fill: rgb("#2e7d32"), size: 10pt)[$|psi angle.r$])
+
+    // Arc montrant l'angle theta entre |psi> et l'axe z
+    // |psi> est a (90 - 35) = 55 deg de l'axe x
+    arc((0, 0), start: 55deg, stop: 90deg, radius: 1.08,
+      stroke: (paint: rgb("#2e7d32"), thickness: 0.8pt))
+    content((0.22, 1.2),
+      text(fill: rgb("#2e7d32"), size: 8pt)[$theta$])
+
+    // Point origine
+    circle((0, 0), radius: 0.07, fill: black, stroke: none)
+  }),
+  caption: [
+    *Sphère de Bloch* (projection 2D).
+    Les états $|0 angle.r$ et $|1 angle.r$ (bleu) occupent les pôles nord et sud.
+    Les états $|+ angle.r = frac(|0 angle.r + |1 angle.r, sqrt(2))$ et
+    $|- angle.r$ (rouge) se trouvent sur l'équateur.
+    Un état général $|psi angle.r$ (vert) est à angle $theta$ du pôle nord.
+  ]
+)
+```
+
+---
+
+## Mesure dans la base computationnelle
+
+### Le cas simple : états $|0\rangle$ et $|1\rangle$
+
+Si l'état $|\psi\rangle$ est **soit** $|0\rangle$ **soit** $|1\rangle$, on peut les
+distinguer parfaitement en mesurant dans la base computationnelle $\{|0\rangle, |1\rangle\}$.
+
+**Exemple :** L'état $|1\rangle$ s'écrit dans la base computationnelle :
+
+$$|1\rangle = 0 \cdot |0\rangle + 1 \cdot |1\rangle$$
+
+On mesure $1$ avec probabilité $|1|^2 = 1$ (et $0$ avec probabilité $|0|^2 = 0$).
+
+```{=typst}
+#resultbox[
+  Dans ce cas, l'information quantique se réduit à de l'information
+  *classique binaire*. Mesurer l'un ou l'autre état est parfaitement
+  déterministe — aucune spécificité quantique.
+]
+```
+
+---
+
+## Distinguer des états orthogonaux quelconques
+
+### Le problème général
+
+Supposons que $|\psi\rangle$ est soit $|\psi_0\rangle = \alpha|0\rangle + \beta|1\rangle$,
+soit $|\psi_1\rangle = \gamma|0\rangle + \delta|1\rangle$, avec
+$\langle\psi_0|\psi_1\rangle = 0$ (orthogonaux).
+
+### Stratégie : changer de base de mesure
+
+On construit la matrice unitaire :
+
+$$U = \begin{bmatrix} \alpha & \gamma \\ \beta & \delta \end{bmatrix}$$
+
+Cette matrice est **unitaire** car ses colonnes forment une base orthonormée.
+L'opérateur $U^\dagger$ réalise la rotation de base :
+
+$$U^\dagger |\psi_0\rangle \to |0\rangle \qquad U^\dagger |\psi_1\rangle \to |1\rangle$$
+
+Après cette transformation, une mesure dans la base computationnelle identifie l'état.
+
+```{=typst}
+#defbox[Mesure dans la base $(|psi_0 angle.r, |psi_1 angle.r)$][
+  Plutôt que de transformer les états avant de mesurer, on peut directement
+  *mesurer dans la base* $(|psi_0 angle.r, |psi_1 angle.r)$,
+  avec les opérateurs projecteurs :
+  $ M_(|psi_0 angle.r) = |psi_0 angle.r angle.l psi_0|
+    quad quad
+    M_(|psi_1 angle.r) = |psi_1 angle.r angle.l psi_1| $
+  Cela revient exactement au même que d'appliquer $U^dagger$ puis de mesurer.
+]
+```
+
+### Vérification : équation de complétude
+
+Les projecteurs satisfont l'**équation de complétude** (condition nécessaire) :
+
+$$\sum_m M_m^\dagger M_m
+  = (|\psi_0\rangle\langle\psi_0|)^2 + (|\psi_1\rangle\langle\psi_1|)^2
+  = |\psi_0\rangle\langle\psi_0| + |\psi_1\rangle\langle\psi_1|
+  = U|0\rangle\langle 0|U^\dagger + U|1\rangle\langle 1|U^\dagger
+  = UIU^\dagger = I \checkmark$$
+
+### Vérification : distinction parfaite
+
+Pour $|\psi\rangle = |\psi_0\rangle$ :
+
+$$p(M_{|\psi_0\rangle} \mid |\psi\rangle = |\psi_0\rangle) = (\langle\psi_0|\psi_0\rangle)^3 = 1$$
+
+$$p(M_{|\psi_0\rangle} \mid |\psi\rangle = |\psi_1\rangle) = \langle\psi_1|\psi_0\rangle
+  \cdot\langle\psi_0|\psi_0\rangle\cdot\langle\psi_0|\psi_1\rangle = 0$$
+
+(car $\langle\psi_0|\psi_1\rangle = 0$ par orthogonalité)
+
+```{=typst}
+#resultbox[
+  La mesure dans la base $(|psi_0 angle.r, |psi_1 angle.r)$ identifie
+  l'état avec une probabilité de succès de *100 %* si les états sont
+  orthogonaux.
+]
+```
+
+---
+
+## Impossibilité de distinguer des états non orthogonaux
+
+```{=typst}
+#thmbox[Théorème fondamental][
+  Si $|psi angle.r$ est soit $|psi_a angle.r$ soit $|psi_b angle.r$,
+  et que ces deux états *ne sont pas orthogonaux*
+  ($angle.l psi_a | psi_b angle.r eq.not 0$),
+  alors *aucune mesure* ne peut les distinguer parfaitement.
+  Il est cependant possible d'améliorer la probabilité de succès au-delà
+  de 50 %.
+]
+```
+
+**Intuition géométrique :**
+
+- Plus $|\psi_a\rangle$ et $|\psi_b\rangle$ sont **proches** (petit angle $\theta$
+  entre eux), plus ils sont difficiles à distinguer.
+- Plus ils sont **éloignés** (proche de l'orthogonalité), plus la distinction est facile.
+
+---
+
+## La borne de Helstrom-Holevo
+
+```{=typst}
+#thmbox[Borne de Helstrom-Holevo][
+  Si $|psi angle.r$ est soit $|psi_a angle.r$ soit $|psi_b angle.r$,
+  avec $|angle.l psi_a | psi_b angle.r| = cos theta$, alors :
+  $ p_"succès" leq frac(1, 2)(1 + sin theta) $
+  Cette borne est *atteinte* en choisissant la base de mesure comme
+  les vecteurs propres de
+  $|psi_a angle.r angle.l psi_a| - |psi_b angle.r angle.l psi_b|$.
+]
+```
+
+### Visualisation géométrique
+
+```{=typst}
+#import "@preview/cetz:0.3.1": canvas, draw
+
+#figure(
+  canvas(length: 1cm, {
+    import draw: *
+
+    let alpha = 28deg
+
+    // Ligne de base
+    line((-5.5, 0), (5.5, 0),
+      stroke: (paint: luma(190), thickness: 0.7pt))
+
+    let ax = -3.0 * calc.sin(alpha)
+    let ay =  3.0 * calc.cos(alpha)
+    let bx =  3.0 * calc.sin(alpha)
+    let by =  3.0 * calc.cos(alpha)
+
+    // Etat |psi_a>
+    line((0, 0), (ax, ay),
+      stroke: (paint: rgb("#1565c0"), thickness: 2pt),
+      mark: (end: ">"))
+    content((ax - 0.55, ay + 0.15),
+      text(fill: rgb("#1565c0"), size: 10pt)[$|psi_a angle.r$])
+
+    // Etat |psi_b>
+    line((0, 0), (bx, by),
+      stroke: (paint: rgb("#1565c0"), thickness: 2pt),
+      mark: (end: ">"))
+    content((bx + 0.2, by + 0.15),
+      text(fill: rgb("#1565c0"), size: 10pt)[$|psi_b angle.r$])
+
+    // Arc angle 2*theta entre les deux etats
+    // |psi_b> est a (90-alpha) deg de l'axe x
+    // |psi_a> est a (90+alpha) deg de l'axe x
+    arc((0, 0), start: 90deg - alpha, stop: 90deg + alpha, radius: 1.05,
+      stroke: (paint: rgb("#1565c0"), thickness: 0.9pt))
+    content((0, 1.25),
+      text(fill: rgb("#1565c0"), size: 9pt)[$2theta$])
+
+    // Base de mesure optimale : bissectrice verticale
+    line((0, 0), (0, 3.5),
+      stroke: (paint: rgb("#1b1b1b"), thickness: 2.2pt),
+      mark: (end: ">"))
+    line((0, 0), (0, -2.7),
+      stroke: (paint: rgb("#1b1b1b"), thickness: 2.2pt),
+      mark: (end: ">"))
+    content((0.62, 3.7),
+      text(fill: rgb("#1b1b1b"), size: 9pt)[base opt.])
+
+    // Arc theta entre |psi_b> et la bissectrice
+    arc((0, 0), start: 90deg - alpha, stop: 90deg, radius: 1.9,
+      stroke: (paint: rgb("#c62828"), thickness: 0.9pt, dash: "dashed"))
+    content((0.72, 2.08),
+      text(fill: rgb("#c62828"), size: 9pt)[$theta$])
+
+    // Point origine
+    circle((0, 0), radius: 0.07, fill: black, stroke: none)
+  }),
+  caption: [
+    *Géométrie de la borne Helstrom-Holevo.*
+    Les deux états (flèches bleues) forment un angle $2theta$ entre eux.
+    La base de mesure optimale (flèches noires) est la bissectrice.
+    L'angle $theta$ (arc rouge pointillé) détermine la probabilité maximale
+    de succès : $p = frac(1,2)(1 + sin theta)$.
+  ]
+)
+```
+
+### Analyse des cas limites
+
+| Situation | Angle $\theta$ | $\sin\theta$ | $p_{\text{succès}}$ |
+|:----------|:--------------:|:------------:|:-------------------:|
+| États **orthogonaux** | $\theta = \pi/2$ | $1$ | $1$ (parfait) |
+| États **presque alignés** | $\theta \approx 0$ | $\approx 0$ | $\approx 1/2$ (hasard) |
+| Cas intermédiaire | $0 < \theta < \pi/2$ | $(0,1)$ | Entre $1/2$ et $1$ |
+
+---
+
+## Exemple : distinguer $|0\rangle$ et $|+\rangle$
+
+### Vérification de la non-orthogonalité
+
+$$\langle 0|+\rangle = \begin{bmatrix}1 & 0\end{bmatrix}
+  \begin{bmatrix}1/\sqrt{2} \\ 1/\sqrt{2}\end{bmatrix} = \frac{1}{\sqrt{2}} \neq 0$$
+
+### Deux stratégies de discrimination
+
+```{=typst}
+#import "@preview/cetz:0.3.1": canvas, draw
+
+#figure(
+  grid(
+    columns: (1fr, 1fr),
+    gutter: 1.8em,
+
+    // Gauche : strategie OPTIMALE
+    canvas(length: 1cm, {
+      import draw: *
+
+      line((-3.6, 0), (3.6, 0),
+        stroke: (paint: luma(190), thickness: 0.7pt))
+
+      let alpha = 22.5deg
+
+      let ax = -2.8 * calc.sin(alpha)
+      let ay =  2.8 * calc.cos(alpha)
+      let bx =  2.8 * calc.sin(alpha)
+      let by =  2.8 * calc.cos(alpha)
+
+      // Etats
+      line((0, 0), (ax, ay),
+        stroke: (paint: rgb("#1565c0"), thickness: 1.8pt),
+        mark: (end: ">"))
+      content((ax - 0.55, ay + 0.1),
+        text(fill: rgb("#1565c0"), size: 9pt)[$|0 angle.r$])
+
+      line((0, 0), (bx, by),
+        stroke: (paint: rgb("#1565c0"), thickness: 1.8pt),
+        mark: (end: ">"))
+      content((bx + 0.15, by + 0.1),
+        text(fill: rgb("#1565c0"), size: 9pt)[$|+ angle.r$])
+
+      // Arc theta
+      arc((0, 0), start: 90deg - alpha, stop: 90deg + alpha, radius: 0.95,
+        stroke: (paint: rgb("#1565c0"), thickness: 0.8pt))
+      content((0, 1.12),
+        text(fill: rgb("#1565c0"), size: 8pt)[$theta$])
+
+      // Base optimale : bissectrice verticale
+      line((0, 0), (0, 3.1),
+        stroke: (paint: black, thickness: 2.5pt), mark: (end: ">"))
+      line((0, 0), (0, -2.3),
+        stroke: (paint: black, thickness: 2.5pt), mark: (end: ">"))
+
+      circle((0, 0), radius: 0.07, fill: black, stroke: none)
+
+      content((0, -1.5),
+        text(size: 8.5pt, style: "italic")[Stratégie *optimale*])
+      content((0, -2.05),
+        text(size: 8pt, fill: luma(80))[$p = 85%$])
+    }),
+
+    // Droite : strategie ASYMETRIQUE (base computationnelle)
+    canvas(length: 1cm, {
+      import draw: *
+
+      line((-3.6, 0), (3.6, 0),
+        stroke: (paint: luma(190), thickness: 0.7pt))
+
+      let alpha = 22.5deg
+
+      let ax = -2.8 * calc.sin(alpha)
+      let ay =  2.8 * calc.cos(alpha)
+      let bx =  2.8 * calc.sin(alpha)
+      let by =  2.8 * calc.cos(alpha)
+
+      // Etats
+      line((0, 0), (ax, ay),
+        stroke: (paint: rgb("#1565c0"), thickness: 1.8pt),
+        mark: (end: ">"))
+      content((ax - 0.55, ay + 0.1),
+        text(fill: rgb("#1565c0"), size: 9pt)[$|0 angle.r$])
+
+      line((0, 0), (bx, by),
+        stroke: (paint: rgb("#1565c0"), thickness: 1.8pt),
+        mark: (end: ">"))
+      content((bx + 0.15, by + 0.1),
+        text(fill: rgb("#1565c0"), size: 9pt)[$|+ angle.r$])
+
+      // Arc theta
+      arc((0, 0), start: 90deg - alpha, stop: 90deg + alpha, radius: 0.95,
+        stroke: (paint: rgb("#1565c0"), thickness: 0.8pt))
+      content((0, 1.12),
+        text(fill: rgb("#1565c0"), size: 8pt)[$theta$])
+
+      // Base asymetrique : vecteur m aligne avec |+>
+      let mx = 3.1 * calc.sin(alpha)
+      let my = 3.1 * calc.cos(alpha)
+      line((0, 0), (mx, my),
+        stroke: (paint: black, thickness: 2.5pt), mark: (end: ">"))
+      content((mx + 0.28, my + 0.05),
+        text(size: 9pt)[$m$])
+
+      // Vecteur orthogonal a m
+      let ox = -3.1 * calc.cos(alpha)
+      let oy =  3.1 * calc.sin(alpha)
+      line((0, 0), (ox, oy),
+        stroke: (paint: black, thickness: 2.5pt), mark: (end: ">"))
+
+      circle((0, 0), radius: 0.07, fill: black, stroke: none)
+
+      content((0, -1.5),
+        text(size: 8.5pt, style: "italic")[Stratégie *asymétrique*])
+      content((0, -2.05),
+        text(size: 8pt, fill: luma(80))[$p = 75%$ (certitude si $m$)])
+    }),
+  ),
+  caption: [
+    *Deux stratégies de discrimination* pour $|0 angle.r$ vs $|+ angle.r$.
+    _Gauche_ : base symétrique (optimale), $p = 85%$.
+    _Droite_ : base asymétrique — si on mesure $m$, on identifie
+    $|+ angle.r$ à 100 %, au prix d'une probabilité globale de 75 %.
+  ]
+)
+```
+
+### Résultats numériques
+
+**Stratégie optimale :** Avec $|\langle 0|+\rangle| = 1/\sqrt{2}$, donc $\theta = \pi/4$ :
+
+$$p_{\text{succès}} = \frac{1}{2}\!\left(1 + \sin\!\left(\arccos\frac{1}{\sqrt{2}}\right)\right)
+  = \frac{1}{2}\!\left(1 + \frac{1}{\sqrt{2}}\right) \approx 0.85$$
+
+**Stratégie simple (base computationnelle) :**
+
+| État | $P(\text{mesure}=0)$ | $P(\text{mesure}=1)$ |
+|:----:|:--------------------:|:--------------------:|
+| $|0\rangle$ | $1$ | $0$ |
+| $|+\rangle$ | $1/2$ | $1/2$ |
+
+- Si on mesure $1$ → on est **certain** que l'état était $|+\rangle$.
+- Si on mesure $0$ → on devine $|0\rangle$, avec $1/3$ de chance d'erreur.
+
+$$p_{\text{succès}} = 1 - \frac{3}{4} \times \frac{1}{3} = \frac{3}{4} = 0.75$$
+
+```{=typst}
+#resultbox[
+  La stratégie optimale (85 %) est supérieure à la base computationnelle (75 %).
+  Cette dernière offre cependant une identification *certaine à 100 %*
+  si le résultat est 1, ce qui peut être utile dans certains protocoles.
+]
+```
+
+---
+
+## Le principe de non-signalisation (*No-Signalling*)
+
+### Contexte et enjeu
+
+L'intrication quantique produit un phénomène spectaculaire : mesurer un qubit
+**influence instantanément** l'état de son partenaire intriqué, même si les deux
+sont à des distances cosmiques. Einstein appelait cela l'*"action fantôme à distance"*.
+
+**Question cruciale :** peut-on utiliser ce phénomène pour transmettre de
+l'information plus vite que la lumière ?
+
+```{=typst}
+#thmbox[Principe de non-signalisation][
+  *Non.* Collapsing l'intrication quantique ne peut *pas* être utilisé pour
+  transmettre de l'information. Ce résultat est compatible avec la théorie
+  de la relativité restreinte.
+]
+```
+
+### Scénario : Alice et Bob avec une paire de Bell
+
+```{=typst}
+#import "@preview/cetz:0.3.1": canvas, draw
+
+#figure(
+  canvas(length: 1cm, {
+    import draw: *
+
+    // Boite Alice
+    rect((-7.0, -1.1), (-3.8, 1.1),
+      fill: rgb("#e3f2fd"),
+      stroke: (paint: rgb("#1565c0"), thickness: 1.2pt),
+      radius: 4pt)
+    content((-5.4, 0.6),
+      text(weight: "bold", size: 10pt)[Alice])
+
+    // Symbole de mesure dans la boite Alice
+    arc((-5.4, -0.3), start: 0deg, stop: 180deg, radius: 0.45,
+      stroke: (paint: rgb("#1565c0"), thickness: 0.9pt))
+    line((-5.4, -0.3), (-5.05, 0.1),
+      stroke: (paint: rgb("#c62828"), thickness: 1.2pt))
+    line((-5.85, -0.3), (-4.95, -0.3),
+      stroke: (paint: luma(165), thickness: 0.6pt))
+    line((-5.4, -0.3), (-5.4, 0.15),
+      stroke: (paint: luma(165), thickness: 0.6pt))
+
+    // Boite Bob
+    rect((3.8, -1.1), (7.0, 1.1),
+      fill: rgb("#fce4ec"),
+      stroke: (paint: rgb("#880e4f"), thickness: 1.2pt),
+      radius: 4pt)
+    content((5.4, 0.3),
+      text(weight: "bold", size: 10pt)[Bob])
+    content((5.4, -0.45),
+      text(size: 15pt, fill: rgb("#880e4f"))[?])
+
+    // Fil Alice -> centre
+    line((-3.8, 0), (-1.35, 0),
+      stroke: (paint: rgb("#1565c0"), thickness: 1.5pt))
+
+    // Fil Bob <- centre
+    line((1.35, 0), (3.8, 0),
+      stroke: (paint: rgb("#880e4f"), thickness: 1.5pt))
+
+    // Noeud d'intrication (paire de Bell)
+    circle((0, 0), radius: 1.3,
+      fill: rgb("#fff8e1"),
+      stroke: (paint: rgb("#f57f17"), thickness: 1.2pt))
+    content((0, 0.35),
+      text(size: 8pt, fill: rgb("#e65100"))[
+        $frac(1, sqrt(2))(|00 angle.r + |11 angle.r)$
+      ])
+    content((0, -0.4),
+      text(size: 7.5pt, fill: luma(100))[Paire de Bell])
+
+    // Points de connexion aux fils
+    circle((-1.35, 0), radius: 0.09, fill: rgb("#1565c0"), stroke: none)
+    circle(( 1.35, 0), radius: 0.09, fill: rgb("#880e4f"), stroke: none)
+
+    // Labels des fils
+    content((-2.6, 0.38),
+      text(size: 8pt, fill: rgb("#1565c0"))[qubit Alice])
+    content(( 2.6, 0.38),
+      text(size: 8pt, fill: rgb("#880e4f"))[qubit Bob])
+
+    // Distance
+    line((-7.0, -1.65), (7.0, -1.65),
+      stroke: (paint: luma(170), thickness: 0.6pt, dash: "dashed"))
+    content((0, -2.05),
+      text(size: 8pt, fill: luma(110))[Distance $Delta t$ secondes-lumière entre Alice et Bob])
+  }),
+  caption: [
+    *Scénario de non-signalisation.*
+    Alice et Bob partagent une paire de Bell.
+    Alice peut mesurer son qubit à tout moment, collapsant instantanément
+    celui de Bob. La question : Bob peut-il *détecter* cette mesure sans
+    communication classique ?
+  ]
+)
+```
+
+### Preuve du principe de non-signalisation
+
+**Cas 1 : Alice n'a PAS mesuré.**
+
+L'état global reste $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$.
+Pour Bob, la probabilité de mesurer $0$ ou $1$ est :
+
+$$p(\text{Bob mesure }0) = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}$$
+
+**Cas 2 : Alice A mesuré.**
+
+Le qubit de Bob s'est effondré vers $|0\rangle$ ou $|1\rangle$ (chacun avec probabilité $1/2$).
+Bob *ne sait pas* lequel. Pour lui :
+
+$$p(\text{Bob mesure }0) = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{1}{2}$$
+
+```{=typst}
+#resultbox[
+  Les statistiques de mesure de Bob sont *identiques* dans les deux cas.
+  Il est impossible pour Bob de savoir si Alice a mesuré son qubit.
+  L'intrication ne permet *pas* de transmettre de l'information.
+]
+
+#v(0.5em)
+
+#defbox[Point crucial][
+  La cohérence de l'état quantique non effondré et le mélange statistique
+  de l'état effondré par Alice donnent exactement les *mêmes statistiques
+  de mesure* pour Bob. Ces deux situations sont indiscernables.
+]
+```
+
+---
+
+## Le principe de non-clonage (*No-Cloning*)
+
+### Motivation : pourquoi vouloir cloner ?
+
+Si le clonage d'états quantiques était possible, on pourrait :
+
+- Faciliter la **correction d'erreurs quantiques**
+- Comprimer une infinité d'information classique dans un seul qubit
+- **Violer le principe de non-signalisation** (voir exercices)
+
+```{=typst}
+#thmbox[Théorème de non-clonage][
+  Il est *impossible* de construire un opérateur unitaire $U$ tel que
+  $U(|psi angle.r |0 angle.r) = |psi angle.r |psi angle.r$
+  pour *tout* état $|psi angle.r$.
+]
+```
+
+### Schéma du circuit de clonage (tentative)
+
+```{=typst}
+#import "@preview/cetz:0.3.1": canvas, draw
+
+#figure(
+  canvas(length: 1cm, {
+    import draw: *
+
+    // Fil 1 : |psi> (entree)
+    line((-5.5, 0.75), (-1.4, 0.75),
+      stroke: (paint: black, thickness: 1.5pt))
+    content((-6.35, 0.75),
+      text(size: 11pt)[$|psi angle.r$])
+
+    // Fil 1 sortie
+    line((1.4, 0.75), (5.5, 0.75),
+      stroke: (paint: black, thickness: 1.5pt))
+    content((6.2, 0.75),
+      text(size: 11pt)[$|psi angle.r$])
+
+    // Fil 2 : |0> (entree)
+    line((-5.5, -0.75), (-1.4, -0.75),
+      stroke: (paint: black, thickness: 1.5pt))
+    content((-6.35, -0.75),
+      text(size: 11pt)[$|0 angle.r$])
+
+    // Fil 2 sortie
+    line((1.4, -0.75), (5.5, -0.75),
+      stroke: (paint: black, thickness: 1.5pt))
+
+    // Boite U
+    rect((-1.4, -1.25), (1.4, 1.25),
+      fill: rgb("#e8eaf6"),
+      stroke: (paint: rgb("#283593"), thickness: 1.5pt),
+      radius: 3pt)
+    content((0, 0),
+      text(weight: "bold", size: 15pt, fill: rgb("#283593"))[$U$])
+
+    // Sortie attendue fil 2 (avec ?)
+    content((6.2, -0.75),
+      text(size: 11pt)[$|psi angle.r$])
+
+    // Grand X rouge barrant la sortie du fil 2
+    circle((6.2, 0), radius: 1.0,
+      stroke: (paint: rgb("#c62828"), thickness: 0.8pt, dash: "dashed"),
+      fill: rgb("#fff5f5"))
+
+    line((5.5, 0.6), (6.9, -0.6),
+      stroke: (paint: rgb("#c62828"), thickness: 3pt))
+    line((5.5, -0.6), (6.9, 0.6),
+      stroke: (paint: rgb("#c62828"), thickness: 3pt))
+
+    content((6.2, 0),
+      text(size: 12pt, fill: rgb("#c62828"), weight: "bold")[?])
+    content((6.2, -1.4),
+      text(fill: rgb("#c62828"), weight: "bold", size: 8.5pt)[IMPOSSIBLE])
+  }),
+  caption: [
+    *Circuit de clonage quantique — impossible.*
+    On cherche une porte unitaire $U$ copiant $|psi angle.r$ sur le second fil.
+    Le théorème de non-clonage prouve qu'un tel $U$ *n'existe pas*.
+  ]
+)
+```
+
+### Démonstration (preuve par l'absurde)
+
+Supposons qu'un tel $U$ existe. Il doit fonctionner pour **tout** état, donc en
+particulier pour deux états arbitraires $|\psi\rangle$ et $|\phi\rangle$ :
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle \qquad
+  U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle$$
+
+Prenons le **produit scalaire** des deux membres :
+
+$$\langle\psi|\langle 0|U^\dagger U|\phi\rangle|0\rangle
+  = (\langle\psi|\langle\psi|)(|\phi\rangle|\phi\rangle)$$
+
+**Membre gauche** ($U^\dagger U = I$) :
+
+$$\langle\psi|\phi\rangle \cdot \langle 0|0\rangle = \langle\psi|\phi\rangle$$
+
+**Membre droit** (produit tensoriel) :
+
+$$\langle\psi|\phi\rangle \cdot \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+On obtient donc $\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$.
+Cette équation n'a que deux solutions :
+
+- $\langle\psi|\phi\rangle = 0$ : états **orthogonaux**
+- $\langle\psi|\phi\rangle = 1$ : états **identiques**
+
+```{=typst}
+#resultbox[
+  Aucun unitaire $U$ ne peut cloner des états quantiques *arbitraires*.
+  On ne peut cloner que des états identiques ou orthogonaux — c'est-à-dire
+  des états *classiques* !
+
+  *Intuition clé :* le clonage multiplie les produits scalaires
+  ($angle.l psi|phi angle.r arrow.r angle.l psi|phi angle.r^2$), mais un
+  unitaire les *préserve*. Contradiction sauf pour $0$ et $1$.
+]
+```
+
+---
+
+## Le principe de non-suppression (*No-Deleting*)
+
+### Énoncé
+
+Le principe de non-suppression est le **dual temporel** du non-clonage.
+Il n'existe **aucun** opérateur unitaire $\tilde{U}$ tel que :
+
+$$\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle \quad \text{pour tout } |\psi\rangle$$
+
+### Lien avec la réversibilité quantique
+
+```{=typst}
+#defbox[Réversibilité du calcul quantique][
+  L'informatique quantique est *réversible* (à l'exception de la mesure).
+  La (im)possibilité d'une opération implique la (im)possibilité de son
+  inverse temporel :
+  - *Non-clonage* $arrow.r$ *Non-suppression* par inversion temporelle.
+  - Si supprimer était possible, cloner le serait aussi — contradiction.
+]
+```
+
+---
+
+## Résumé des principes fondamentaux
+
+```{=typst}
+#figure(
+  table(
+    columns: (auto, 1fr, 1fr),
+    align: (left, left, left),
+    inset: 7pt,
+    stroke: (paint: luma(180), thickness: 0.7pt),
+    fill: (x, y) =>
+      if y == 0 { rgb("#e8eaf6") }
+      else if calc.odd(y) { rgb("#f8f9ff") }
+      else { white },
+    [*Principe*], [*Énoncé*], [*Conséquence*],
+    [Distinguishabilité orthogonale],
+      [États orth. → distinction *parfaite*],
+      [Choisir la bonne base de mesure],
+    [Borne Helstrom-Holevo],
+      [$p_"succès" leq frac(1,2)(1 + sin theta)$],
+      [Fondement de la cryptographie QKD],
+    [Non-signalisation],
+      [Intrication $eq.not$ transfert d'info],
+      [Compatible avec la relativité],
+    [Non-clonage],
+      [Impossible de copier un état quelconque],
+      [Sécurité prouvable de BB84],
+    [Non-suppression],
+      [Impossible de supprimer une copie],
+      [Réversibilité du calcul quantique],
+  ),
+  caption: [Récapitulatif des cinq propriétés fondamentales.]
+)
+```
+
+---
+
+## Points clés à retenir
+
+- La mesure quantique est caractérisée par des **opérateurs de mesure** satisfaisant
+  l'équation de complétude $\sum_m M_m^\dagger M_m = I$.
+
+- Deux états **orthogonaux** sont toujours **parfaitement distinguables** ;
+  deux états **non orthogonaux** ne le sont **jamais**.
+
+- La **borne de Helstrom-Holevo** donne la probabilité maximale de distinguer
+  deux états : $\frac{1}{2}(1 + \sin\theta)$, atteinte par une base de mesure optimale.
+
+- Le **principe de non-signalisation** garantit que l'intrication ne peut pas servir
+  à communiquer plus vite que la lumière.
+
+- Le **théorème de non-clonage** interdit la copie d'états quantiques arbitraires —
+  résultat fondateur de la cryptographie quantique (protocole BB84).
+
+- Le **principe de non-suppression** est le dual du non-clonage, et reflète la
+  réversibilité fondamentale de la mécanique quantique.
