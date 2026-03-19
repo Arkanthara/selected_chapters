@@ -1,109 +1,255 @@
-# Computational Imaging
+---
+title: "⚡ Fiche de Révision — Informatique Quantique"
+subtitle: "Lecture 1 : Introduction"
+author: "14X060 — Université de Genève"
+date: today
+lang: fr
+---
 
-## Introduction
+---
 
-L’**imagerie computationnelle** forme indirectement des images à partir de mesures en utilisant des algorithmes sophistiqués. Elle intègre étroitement le système de capture et le calcul, contrairement à l’imagerie traditionnelle.
+# 🧠 Concepts Fondamentaux
 
-- **Imagerie traditionnelle** : l’optique forme une image proche de l’image finale ; le calcul intervient *a posteriori* pour améliorer (débrutage, déconvolution).
-- **Imagerie computationnelle** : l’optique *encode* la scène en représentation intermédiaire ; le calcul *décode* pour reconstruire une ou plusieurs images.
+## Définition
 
-```{.mermaid}
-graph LR
-    A[Monde physique] --> B[Encodage optique]
-    B --> C[Représentation intermédiaire]
-    C --> D[Décodage algorithmique]
-    D --> E[Image(s) reconstruite(s)]
+::: {.callout-note title="À retenir"}
+**Informatique quantique** = traitement de l'information basé sur la **mécanique quantique** (≠ physique classique)
+:::
+
+**Mécanique quantique (QM)** :
+
+- Description de la nature à son niveau **le plus fondamental**
+- Formulée au début du XX^e^ siècle (particules subatomiques)
+- Succès spectaculaire pour les phénomènes **microscopiques**
+
+---
+
+# 📐 L'Exponentialité de la QM
+
+## Formule clé
+
+$$
+|\psi\rangle = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_{2^N} \end{pmatrix} \in \mathbb{C}^{2^N}
+$$
+
+::: {.callout-important}
+**$N$ particules** → au moins $2^N$ nombres complexes pour décrire l'état
+:::
+
+## Illustration
+
+| $N$ | $2^N$ |
+|---|---|
+| 10 | ~1 000 |
+| 50 | ~$10^{15}$ |
+| 300 | $\gg 10^{82}$ (> atomes de l'univers !) |
+
+## Comment les physiciens contournent le problème ?
+
+1. **Approximations classiques** — perturbation, champ moyen, diagrammes Feynman…
+2. **Simulations numériques** — DFT, Monte Carlo quantique…
+3. **Systèmes favorables** — faiblement interactifs, quasi-classiques
+
+::: {.callout-warning}
+Simuler la QM *générale* reste **intractable** classiquement.
+:::
+
+---
+
+# 🗓️ Chronologie Clé
+
+| Année | Événement |
+|---|---|
+| **1981** | Feynman : "Les ordinateurs probabilistes ne peuvent pas simuler la QM" |
+| **1980s** | Deutsch : premier avantage quantique (facteur constant) |
+| **1992** | Bernstein-Vazirani + Simon : avantage **super-polynomial** |
+| **1994** | **Shor** : algorithme de factorisation → menace RSA |
+| **2007** | Premier qubit de qualité (Yale) |
+| **2017+** | Explosion : ~200 qubits programmables |
+| **2019** | Google **suprématie quantique** (Sycamore, 53 qubits) |
+| **2030** | Objectif : *Fault-Tolerant QC* |
+
+---
+
+# 🔑 Algorithme de Shor
+
+::: {.callout-note title="Problème résolu"}
+**Factorisation** : donné $N > 0$, trouver $p, q$ tels que $N = p \times q$
+:::
+
+**Exemple :** $P = 17449$, $Q = 34253$ → $P \times Q = 597\,680\,597$
+
+**Impact cryptographique** :
+
+- RSA repose sur la **difficulté de factoriser** → Shor le brise exponentiellement
+- Protocoles menacés : **RSA**, **Diffie-Hellman**
+
+**Après Shor — 3 options :**
+
+1. La QM est **fausse** *(très improbable)*
+2. Il existe un algo classique **rapide** pour factoriser *(non prouvé)*
+3. Il faut un modèle de calcul **fondamentalement plus puissant** ✅
+
+---
+
+# ⚠️ Mythes vs Réalités
+
+| Affirmation | Verdict | Explication courte |
+|---|---|---|
+| "Les QC essaient tout en parallèle" | ❌ **FAUX** | Pas de force brute — exploitation d'effets quantiques précis |
+| "Les QC résolvent TSP rapidement" | ❌ **FAUX** | Probablement **impossible** même quantiquement |
+| "Les QC résoudront le changement climatique" | ❓ **INCERTAIN** | Peut-être via chimie/physique, aucune garantie |
+| "Des millions de qubits sont imminents" | ❓ **INCERTAIN** | Progrès réels, mais délais souvent surestimés |
+
+::: {.callout-tip}
+**Ce que les QC font vraiment** : exploiter **intrication**, **superposition**, **interférence** pour certains problèmes structurés.
+:::
+
+---
+
+# 🖥️ Ère NISQ
+
+::: {.callout-note title="NISQ"}
+**N**oisy **I**ntermediate-**S**cale **Q**uantum — ~100 qubits, très bruités
+:::
+
+**Caractéristiques** :
+
+- Dispositifs avec ~100–200 qubits
+- **Très bruités** (*noisy*)
+- Incapables d'exécuter Shor
+- Potentiellement utiles pour : chimie quantique, optimisation, ML
+
+**Technologies de qubits** :
+
+- Superconducting circuits *(Google, IBM)*
+- Photon polarization
+- Electron spin
+- Atom internal state
+
+---
+
+# 🔧 Correction d'Erreurs & Tolérance aux Fautes
+
+**Pour monter en échelle :**
+
+- Améliorations matérielles **ne suffisent pas**
+- Besoin de **quantum error correction**
+- Objectif : corriger les erreurs **plus vite qu'elles n'apparaissent**
+- → ordinateur **fault-tolerant**
+
+**Progrès récent :** Google — 101 qubits physiques, taux d'erreur logique **décroissant** avec la taille du code ✅
+
+---
+
+# 🏆 Catégories d'Algorithmes Quantiques
+
+| Type | Accélération | Exemples |
+|---|---|---|
+| Problèmes algébriques structurés | **Exponentielle** | Shor (factorisation), Hidden Subgroup |
+| Recherche non structurée | **Polynomiale** | Grover search |
+| Simulation quantique | **Exponentielle** | Chimie quantique, physique quantique |
+| Algorithmes NISQ | Variable | VQE, QAOA, QML |
+
+---
+
+# 🔄 Hybride Quantique/Classique
+
+```{mermaid}
+flowchart LR
+    QP["⚛️ Quantum Processor"] -->|"mesure coût"| CO["💻 Classical Optimizer"]
+    CO -->|"ajuste circuit"| QP
 ```
 
-## Objectifs et évaluation
+**Principe :** exploiter les QC pour évaluer des fonctions de coût, l'optimisation reste classique.
 
-| Partie | Pondération | Détails |
-|--------|-------------|---------|
-| Théorique | 40% | 2 CCs ou examen oral |
-| TPs | 25% | Moyenne des TPs |
-| Mini‑projet | 35% | Rapport + présentation |
-
-**Condition** : chaque partie ≥ 4.0/6.
+::: {.callout-caution}
+On **ne sait pas encore** si les dispositifs NISQ font mieux que les méthodes classiques optimisées.
+:::
 
 ---
 
-## Exemples clés par domaine
+# 💡 Algorithmes Quantiques-Inspirés
 
-### Nanoscopie
-- **SP‑STM / nc‑AFM** : détection de spin à l’échelle atomique.
-- **MRFM** : résonance magnétique sur spin unique.
-- **Imagerie X cohérente** : magnétisme sans lentille, résolution 5‑10 nm.
+**Cas emblématique : Systèmes de recommandation**
 
-### Astrophysique
-- Synthèse d’ouverture, déconvolution.
-- Volumes de données massifs (SKA : exaoctets).
-- Reconstruction de cartes du ciel, étude matière noire.
+$$
+\text{Classique (avant 2016)} : \mathcal{O}(\text{poly}(mn))
+$$
+$$
+\text{Quantique (Kerenidis-Prakash, 2016)} : \mathcal{O}(\text{poly}\log(mn))
+$$
+$$
+\text{Classique inspiré (Tang, 2018)} : \mathcal{O}(\text{poly}\log(mn)) \leftarrow \textbf{même vitesse !}
+$$
 
-### Médical
-| Méthode | Porteur d’info | Principe |
-|---------|----------------|----------|
-| Échographie | Ondes pression | Rétrodiffusion |
-| Radiographie/CT | Rayonnements ionisants | Transmission / reconstruction 3D |
-| SPECT/PET | Émission traceurs | Imagerie fonctionnelle |
-| IRM | Précession spin | Contraste multidimensionnel |
-
-**Étapes** : acquisition signaux 1D/2D → reconstruction 3D.
-
-### Photographie computationnelle
-- HDR, mode nuit, fusion d’images, bokeh.
-
-### Automobile
-- Voitures autonomes : caméras, lidar, fusion, imagerie 3D temps réel.
-
-### IA / Deep optics
-- Optimisation conjointe optique‑traitement (simulation bout en bout).
-- Réseau hybride opto‑électronique : optique codeur + réseau décodeur.
-
-### Analyse d’art
-- **MA‑XRF** : cube (x, y, énergie) → cartes élémentaires des pigments.
-- Apprentissage pour séparation des couches picturales (ex. Goya).
-
-### Imagerie non ligne de vue (NLOS)
-- Reconstruction scène cachée par analyse lumière diffusée.
-- Applications : sécurité, robotique, secours.
+::: {.callout-tip}
+**Leçon** : Penser quantiquement améliore aussi les algorithmes classiques.
+:::
 
 ---
 
-## Principaux sujets
+# ✅ Checklist de Révision
 
-### Système visuel humain
-- Anatomie œil, acuité, vision couleurs/3D.
-- Sensibilité contraste, conflits d’affichage, défauts réfraction.
-
-### Photographie numérique
-- Optique, ouverture, profondeur champ, exposition, bruit.
-- Filtres Bayer, pipeline traitement.
-
-### Photographie computationnelle
-- HDR, tone mapping, burst mode, coded apertures.
-
-### Deep learning pour l’imagerie
-- CNN, DnCNN (débruitage), U‑Net (segmentation/reconstruction).
-
-### Optimisation et deep learning
-- Méthodes gradient proximal, priors profonds.
-- Résolution problèmes inverses.
-
-### Imagerie compressive
-- Caméra pixel unique, hyperspectral, light field compressif.
-
-### Optique ondulatoire et deep optics
-- Diffraction, interférences, limite diffraction.
-- Optimisation conjointe, reconstruction phase, holographie.
-
-### Affichages computationnels
-- Light field displays (VR/AR), holographie dynamique.
+- [ ] Je sais définir l'informatique quantique et la MQ
+- [ ] Je connais la formule $|\psi\rangle \in \mathbb{C}^{2^N}$ et son implication
+- [ ] Je connais les 3 étapes historiques : Feynman → Simon → Shor
+- [ ] Je comprends pourquoi Shor menace RSA
+- [ ] Je sais ce qu'est le **NISQ** et ses limites
+- [ ] Je distingue **suprématie quantique** vs **avantage quantique**
+- [ ] Je connais les 3 catégories d'accélération quantique
+- [ ] Je comprends l'approche hybride quantique/classique
+- [ ] Je connais l'exemple Tang (algorithmes quantiques-inspirés)
+- [ ] Je sais quels mythes sont faux (TSP, force brute…)
 
 ---
 
-## Concepts fondamentaux
+# ❓ Questions Type Examen
 
-- **Problème inverse** : reconstruction à partir de mesures indirectes.
-- **Encodage‑décodage** : l’optique code l’information, le calcul la décode.
-- **Optimisation conjointe** : conception simultanée optique et algorithmes.
-- **Priors** : connaissances a priori (ex. régularisation, réseaux profonds).
+**Q1.** Pourquoi simuler $N$ particules nécessite-t-il $2^N$ ressources classiques ?
+
+**Q2.** Quel est l'impact de l'algorithme de Shor sur la cryptographie moderne ?
+
+**Q3.** Quelle est la différence entre *suprématie quantique* et *avantage quantique* ?
+
+**Q4.** Qu'est-ce que l'ère NISQ ? Quelles sont ses limites principales ?
+
+**Q5.** Pourquoi les QC ne peuvent-ils pas résoudre TSP efficacement ?
+
+**Q6.** Expliquer l'approche hybride quantique/classique et son intérêt.
+
+**Q7.** Qu'est-ce qu'un algorithme *quantum-inspired* ? Donner un exemple.
+
+---
+
+# 🚨 Pièges Classiques
+
+::: {.callout-warning title="Ne pas confondre"}
+
+- **Suprématie quantique** ≠ utilité pratique (la tâche peut être artificielle)
+- **Superposition** ≠ "essayer toutes les solutions en même temps"
+- **Plus de qubits** ≠ meilleur ordinateur (le bruit compte énormément)
+- **Avantage exponentiel** existe **uniquement** pour des problèmes structurés (pas NP-difficile en général)
+- **Fault-tolerant QC** ≠ NISQ (niveaux de performance très différents)
+
+:::
+
+---
+
+# 📌 Mini-Résumé Final
+
+::: {.callout-note title="L'essentiel en 6 points"}
+
+1. **QM** → $2^N$ complexité pour $N$ particules → intractable classiquement
+
+2. **Feynman (1981)** → idée d'un ordinateur fondé sur la QM
+
+3. **Shor (1994)** → factorisation en temps polynomial → RSA menacé
+
+4. **QC ≠ force brute** → exploite intrication, superposition, interférence
+
+5. **NISQ** → ère actuelle, bruité, limité mais prometteur
+
+6. **Penser quantiquement** → utile même pour améliorer l'algorithmique classique
+
+:::

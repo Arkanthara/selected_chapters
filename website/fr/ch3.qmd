@@ -3,15 +3,6 @@ title: "Informatique Quantique — Lecture 3"
 subtitle: "Propriétés fondamentales de l'informatique quantique"
 author: "D'après le cours de Taras Holotyak — Université de Genève (14X060)"
 lang: fr
-format:
-  typst:
-    toc: true
-    number-sections: false
-    papersize: a4
-    margin:
-      x: 2.5cm
-      y: 2.5cm
-    fontsize: 11pt
 ---
 
 ```{=typst}

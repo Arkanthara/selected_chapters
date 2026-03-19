@@ -29,25 +29,25 @@ website:
           - section: "Quantum computing"
             contents:
               - text: "Details"
-                href: ch1c.qmd
+                href: ch1.qmd
               - text: "Synthese"
                 href: ch1r.qmd
           - section: "Quantum computing chapter 2"
             contents:
               - text: "Details"
-                href: ch2c.qmd
+                href: ch2.qmd
               - text: "Synthese"
                 href: ch2r.qmd
           - section: "Quantum computing chapter 3"
             contents:
               - text: "Details"
-                href: ch3c.qmd
+                href: ch3.qmd
               - text: "Synthese"
                 href: ch3r.qmd
           - section: "Applications des ordinateurs quantiques"
             contents:
               - text: "Details"
-                href: ch4c.qmd
+                href: ch4.qmd
               - text: "Synthese"
                 href: ch4r.qmd
 

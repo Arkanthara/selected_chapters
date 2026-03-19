@@ -1,215 +1,456 @@
-# Informatique Quantique — Synthèse pour révisions
+---
+title: "Informatique Quantique"
+subtitle: "Introduction et fondements"
+author: "Taras Holotyak — Université de Genève (14X060)"
+date: today
+lang: fr
+---
+
+# Présentation du cours
+
+## Contenu du cours
+
+Ce cours couvre les grandes thématiques suivantes :
+
+- **Bases théoriques** de l'informatique quantique
+- **Bases pratiques** de l'informatique quantique
+- **Potentiel à court terme** de l'informatique quantique
+- **Autres applications** de l'information quantique
+
+## Évaluation
+
+| Composante | Poids |
+|---|---|
+| Examen oral (cours) | 50 % |
+| Travaux pratiques (TP) | 50 % |
+
+## Livres recommandés
+
+- **Nielsen & Chuang** — *Quantum Computation and Quantum Information* (Cambridge)
+- **Joseph M. Renes** — *Quantum Information Theory: Concepts and Methods* (De Gruyter)
+- **Yanofsky & Mannucci** — *Quantum Computing for Computer Scientists*
+- **Wolfgang Scherer** — *Mathematics of Quantum Computing: An Introduction* (Springer)
 
 ---
 
-# Introduction
+# Introduction à l'informatique quantique
 
-## Définition
+## Qu'est-ce que l'informatique quantique ?
 
-L’informatique quantique est le traitement de l’information basé sur les principes de la **mécanique quantique**, plutôt que sur la physique classique.
+> *"… trying to find a computer simulation of physics seems to me to be an excellent program to follow out. … the real use of it would be with quantum mechanics. … Nature isn't classical … and if you want to make a simulation of Nature, you'd better make it quantum mechanical, and by golly it's a wonderful problem, because it doesn't look so easy."*
+>
+> — **Richard Feynman**
 
-- Formulée au début du XX<sup>e</sup> siècle pour expliquer le comportement des particules subatomiques
-- Succès spectaculaire dans l’explication des phénomènes microscopiques
+> *"The theory of computation has traditionally been studied almost entirely in the abstract, as a topic in pure mathematics. This is to miss the point of it. Computers are physical objects, and computations are physical processes. What computers can or cannot compute is determined by the laws of physics alone, and not by pure mathematics."*
+>
+> — **David Deutsch**
 
-## Pourquoi étudier l’informatique quantique ?
+### Définition
 
-- Développement de **logiciels quantiques**
-- Conception d’**algorithmes quantiques**
-- **Machine learning** quantique
-- Architecture quantique et compilateurs
-- Recherche en **théorie de l’information quantique**
-- Systèmes de **communication quantique**
-- Systèmes de **sécurité quantique**
+::: {.callout-note title="Définition"}
+L'**informatique quantique** est le traitement de l'information (et plus généralement, le traitement du signal) fondé sur les **principes de la mécanique quantique**, plutôt que sur la physique classique.
+:::
+
+La **mécanique quantique** est une description de la nature à son niveau le plus fondamental :
+
+- Formulée au début du XX^e^ siècle pour expliquer le comportement des particules subatomiques.
+- La mécanique quantique et ses spécialisations (théorie quantique des champs, chromodynamique quantique, etc.) ont été **spectaculairement efficaces** pour expliquer les phénomènes physiques microscopiques (atome d'hydrogène, supraconductivité…).
+
+## Pourquoi étudier l'informatique quantique ?
+
+### En informatique en particulier
+
+L'informatique quantique ouvre des perspectives dans de nombreux domaines :
+
+- **Quantum** software development — développement de logiciels quantiques
+- **Quantum** algorithm design — conception d'algorithmes quantiques
+- **Quantum** machine learning — apprentissage automatique quantique
+- **Quantum** computer architecture and compiler design — architecture et compilation
+- **Quantum** information theory research — recherche en théorie de l'information
+- **Quantum** communication system development — systèmes de communication
+- **Quantum** security system development — sécurité et cryptographie
 
 ---
 
-# L’exponentialité de la mécanique quantique
+## L'exponentialité de la mécanique quantique
 
-## Problème de la simulation classique
+### Le problème fondamental
 
-L’état de $N$ particules nécessite au moins $2^N$ nombres pour être décrit :
+Après près d'un siècle de recherche, les meilleures méthodes **classiques** pour prédire le comportement de systèmes quantiques généraux nécessitent des **ressources exponentielles**.
+
+::: {.callout-important title="Fait clé"}
+L'état de $N$ particules nécessite au moins $2^N$ nombres complexes pour être décrit.
+:::
+
+Mathématiquement, l'état d'un système de $N$ particules s'écrit comme un vecteur dans un espace de dimension $2^N$ :
 
 $$
 |\psi\rangle = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_{2^N} \end{pmatrix} \in \mathbb{C}^{2^N}
 $$
 
-Pour $N \sim 300$ (un atome d’uranium) :
+### Illustration de l'explosion combinatoire
+
+Pour $N \approx 300$ (soit le nombre de particules dans un seul atome d'uranium) :
 
 $$
-2^N \gg \text{nombre d’atomes dans l’univers observable} \approx 10^{82}
+2^{300} \gg \underbrace{10^{82}}_{\text{nombre d'atomes dans l'univers observable}}
 $$
 
-> **La nature effectue un calcul exponentiel “en coulisse”.**
+> **Conclusion :** La Nature semble effectuer des quantités extravagantes de calcul « dans les coulisses » !
 
-## Comment les physiciens contournent-ils ?
+### Comment les physiciens contournent-ils ce problème ?
 
-1. **Approximations ingénieuses** (ansatz de Bethe, diagrammes de Feynman, théorie des perturbations…)
-2. **Simulations numériques** (DFT, Quantum Monte Carlo…)(simulent comportement général)
-3. **Étude de systèmes quasi‑classiques ou faiblement interagissants**
+Face à cette complexité, plusieurs approches ont été développées :
 
-## Question de Feynman (1981)
+1. **Approximations et raccourcis** (depuis 100+ ans)
+   - Ansatz de Bethe, diagrammes de Feynman, théorie des perturbations, approximations de champ moyen…
 
-> *“Can probabilistic computers simulate quantum mechanics?”* → **NON.**
->
-> *“…if you want to make a simulation of nature, you’d better make it quantum mechanical.”*
+2. **Simulations informatiques** (classiques)
+   - Théorie de la fonctionnelle de la densité (DFT), Quantum Markov Chain Monte Carlo…
 
----
+3. **Choix de systèmes favorables** permettant les approches 1 et 2 :
+   - Systèmes essentiellement classiques
+   - Systèmes à particules faiblement en interaction
+   - Heureusement, la plupart des systèmes étudiés jusqu'ici appartiennent à cette catégorie !
 
-# Histoire et avancées théoriques
+> **Mais** simuler la physique quantique *générale* reste une tâche difficile…
 
-- **Années 1980** : Deutsch trouve un problème soluble plus rapidement sur ordinateur quantique (facteur constant)
-- **1992** : Bernstein & Vazirani, Simons → accélération super‑polynomiale
-- **1994** : **Shor** — algorithme de factorisation efficace
+### L'idée révolutionnaire de Feynman (1981)
 
-  $$
-  \text{Étant donné } N = P \times Q \text{, trouver } P \text{ et } Q
-  $$
+En 1981, **Richard Feynman** posa la question suivante :
 
-- **Impact** : casse la sécurité du cryptosystème **RSA** et **Diffie-Hellman** (reposant sur la difficulté de la factorisation)
+> *"Can probabilistic computers simulate quantum mechanics?"*
 
-## Trois options post‑Shor
+Sa conclusion fut catégorique : **NON !**
 
-1. La mécanique quantique est fausse
-2. Il existe un algorithme classique rapide pour la factorisation
-3. **Les ordinateurs quantiques sont fondamentalement plus puissants**
+> *"…Nature isn't classical, damnit, and if you want to make a simulation of nature, you'd better make it quantum mechanical. By golly, it's a wonderful problem, because it doesn't look so easy."*
+
+Feynman (ainsi que **David Deutsch**, **Paul Benioff** et **Yuri Manin**) eu l'idée d'un modèle de calcul fondamentalement basé sur la mécanique quantique.
 
 ---
 
-# Mythes et réalités
+## Les débuts de l'informatique quantique
 
-- ***Mythe :** Les ordinateurs quantiques essayent toutes les possibilités simultanément.*  
-  **Réalité :** Ils exploitent l’**enchevêtrement**, l’**interférence** et la **superposition** pour certains types de problèmes seulement.
+### Chronologie des premières avancées
 
-- ***Mythe :** Ils peuvent résoudre le problème du voyageur de commerce (TSP) rapidement.*  
-  **Réalité :** **Non**, probablement pas.
+La motivation initiale de Feynman était la plus évidente : **simuler des systèmes quantiques**. Cette idée, bien que radicale à l'époque, a ouvert la voie à une série de découvertes :
 
-- ***Affirmation :** Ils vont résoudre le changement climatique.*  
-  **Réalité :** *Peut-être* en aidant à concevoir des matériaux plus durables, mais rien de garanti.
+| Année | Avancée |
+|---|---|
+| **Années 1980** | David Deutsch trouve un problème (non physique) résolu plus rapidement sur un ordinateur quantique que sur tout ordinateur classique (facteur constant) |
+| **1992** | Bernstein–Vazirani, puis Dan Simons : problèmes résolus **super-polynomialement plus vite** par un ordinateur quantique |
+| **1994** | Peter Shor publie son algorithme révolutionnaire… |
 
-- ***Affirmation :** Des ordinateurs à millions de qubits sont imminents.*  
-  **Réalité :** Progrès réels, mais défis d’ingénierie énormes (correction d’erreurs).
+### L'algorithme de Shor (1994)
+
+**Peter Shor** réalisa que l'idée de Simon pouvait être étendue pour résoudre efficacement le problème suivant :
+
+::: {.callout-note title="Problème : Factorisation d'entiers"}
+**Donnée :** un entier $N > 0$
+
+**Objectif :** trouver sa factorisation en nombres premiers
+:::
+
+**Exemple :**
+
+$$
+P = 17449, \quad Q = 34253, \quad P \times Q = 597\,680\,597
+$$
+
+### Impact sur la cryptographie
+
+La sécurité du **cryptosystème RSA** (le chiffrement à clé publique le plus déployé sur Internet) repose entièrement sur l'hypothèse que **factoriser de grands entiers est difficile**.
+
+L'algorithme de Shor remet donc fondamentalement en question :
+
+- Le protocole **Diffie-Hellman** (1977–1994)
+- Le cryptosystème **RSA** (1977–1994)
+
+### Le carrefour (après Shor)
+
+Depuis l'algorithme de Shor, physiciens et informaticiens sont confrontés à trois options :
+
+1. La mécanique quantique est **fausse**.
+2. Il existe un algorithme classique **rapide** pour factoriser.
+3. Il doit exister un modèle de calcul **fondamentalement plus puissant** que les ordinateurs classiques.
+
+L'option 3 est aujourd'hui la plus sérieusement considérée.
 
 ---
 
-# Technologies et défis
+## Idées reçues sur l'informatique quantique
 
-## Ère NISQ (Noisy Intermediate‑Scale Quantum)
+### Mythe 1 : "Les ordinateurs quantiques essaient toutes les solutions en même temps"
 
-- Dispositifs avec ~100 qubits, **très bruités**
-- Incapables d’exécuter Shor, mais potentiellement utiles pour certains problèmes
+::: {.callout-warning title="FAUX"}
+Les ordinateurs quantiques ne fonctionnent **pas** par essai exhaustif de toutes les possibilités simultanément.
+:::
 
-## Défis pour le passage à l’échelle
+::: {.callout-tip title="VRAI"}
+Les ordinateurs quantiques peuvent résoudre **certains types de problèmes** plus rapidement en exploitant soigneusement des effets quantiques tels que :
 
-- Rendre les **qubits** plus fiables
-- **Correction d’erreurs quantique** (*quantum error correction*) indispensable
-- Objectif : **ordinateur tolérant aux pannes** (*fault‑tolerant*)
-- Progrès récents : codes correcteurs efficaces, démonstrations avec 101 qubits physiques
+- **L'intrication** (*entanglement*)
+- **L'interférence** (*interference*)
+- **La superposition** (*superposition*)
+:::
 
-## Technologies de qubits
+### Mythe 2 : "Les ordinateurs quantiques peuvent résoudre le problème du voyageur de commerce rapidement"
 
-- Courant persistant dans un circuit supraconducteur
-- Polarisation du photon
-- Champ magnétique de l’électron
-- État interne de l’atome
+::: {.callout-warning title="FAUX"}
+Les ordinateurs quantiques ne peuvent **pas** résoudre le *Travelling Salesman Problem* (TSP) efficacement.
+:::
 
-## Suprématie quantique
+::: {.callout-tip title="VRAI"}
+Les ordinateurs quantiques **ne peuvent probablement pas** résoudre le TSP rapidement. Ce problème NP-difficile reste hors de portée, même pour un ordinateur quantique.
+:::
 
-- **2019** : Google **Sycamore** (53 qubits) accomplit une tâche hors de portée des supercalculateurs classiques en un temps raisonnable
-- Mais les algorithmes classiques progressent : en 2021, reproduction des résultats de Google avec 512 GPU en 15h (réseaux de tenseurs)
+### Affirmation : "Les ordinateurs quantiques résoudront le changement climatique"
+
+::: {.callout-caution title="INCERTAIN"}
+Les ordinateurs quantiques **pourraient** résoudre des problèmes difficiles de chimie et de physique, qui **pourraient** être liés à la conception de matériaux plus durables, de batteries ou de nouvelles technologies — mais rien n'est garanti.
+:::
+
+### Affirmation : "Des ordinateurs quantiques avec des millions de qubits sont imminents"
+
+::: {.callout-caution title="INCERTAIN"}
+Cette affirmation est prématurée. La construction d'ordinateurs quantiques à grande échelle reste un défi d'ingénierie considérable. Des progrès réguliers sont observés, mais les délais sont souvent sous-estimés.
+:::
+
+### Réalité : des temps passionnants
+
+Trois raisons de s'enthousiasmer :
+
+1. **Ingénierie** : des ordinateurs quantiques de plus en plus sophistiqués sont construits, avec plusieurs centaines de qubits contrôlables.
+2. **Développements théoriques** : nouveaux algorithmes, nouveaux protocoles cryptographiques, nouvelles comparaisons quantique/classique.
+3. **Connexions profondes avec d'autres sciences** : physique de la matière condensée, gravité quantique, science des matériaux, chimie, mathématiques pures.
 
 ---
 
-# Algorithmes quantiques
+## Les ordinateurs quantiques émergents
 
-## Catégories
+### L'ère NISQ
 
-- **Accélérations exponentielles** pour problèmes structurés
-  - Factorisation (Shor)
-  - Problème du sous‑groupe caché (*Hidden Subgroup Problem*)
-  - Simulation de systèmes quantiques (chimie, physique)
+Jusqu'en 2017 environ, la plupart des dispositifs quantiques possédaient une dizaine de qubits. Depuis, une explosion de ressources a conduit à des ordinateurs quantiques programmables d'environ 200 qubits.
 
-- **Accélérations polynomiales** pour recherche non structurée
-  - Algorithme de Grover
+::: {.callout-important title="Problème majeur"}
+Ces dispositifs sont **extrêmement bruités** (*noisy*).
+:::
 
-## Algorithmes pour l’ère NISQ
+Nous sommes dans l'**ère NISQ** (*Noisy Intermediate-Scale Quantum*) :
 
-- **Eigensolvers variationnels** (VQE)
-- **Algorithmes hybrides classique‑quantique**
+- Dispositifs bruités avec ~100 qubits
+- Incapables d'exécuter l'algorithme de Shor
+- Mais potentiellement capables de résoudre des problèmes intéressants et difficiles
 
-## Quantum Machine Learning
+### Les technologies de qubits
 
-- Solveurs de systèmes linéaires, SDP, optimisation convexe
-- Réseaux de neurones quantiques
-- Systèmes de recommandation
+Plusieurs technologies physiques sont utilisées pour réaliser des qubits :
 
-### Exemple : systèmes de recommandation
+| Technologie | Description |
+|---|---|
+| **Superconducting circuits** | Boucles supraconductrices sur puce silicium (Google, IBM) |
+| **Photon polarization** | Polarisation de photons |
+| **Electron spin** | Champ magnétique de l'électron |
+| **Atom internal state** | État interne d'atomes neutres |
 
-- Jusqu’en 2016 : temps $\mathcal{O}(\text{poly}(mn))$
-- 2016 (Kerenidis & Prakash) : algorithme **quantique** en $\mathcal{O}(\text{poly}\log(mn))$
-- 2018 (Ewin Tang) : algorithme **classique** inspiré du quantique, même complexité
+### La correction d'erreurs quantiques
 
-> **Même en classique, penser quantique apporte des idées nouvelles.**
+Pour continuer à augmenter l'échelle des ordinateurs quantiques, il faut rendre les qubits plus fiables.
 
-## Optimiseurs hybrides quantiques/classiques
+Les améliorations matérielles seules ne suffisent pas : il faut recourir à la **correction d'erreurs quantiques** (*quantum error correction*), c'est-à-dire une méthode pour gérer le bruit et les erreurs dans les systèmes quantiques.
 
-```{.cetz}
-import cetz.draw: *
+Pour obtenir un ordinateur quantique **tolérant aux fautes** (*fault-tolerant QC*), il faut corriger les erreurs **plus vite qu'elles ne se produisent**.
 
-canvas({
-  let qpu = rect((0,0), (3,1.5), fill: rgb("#3a7bd5"))
-  let opt = rect((5,0), (8,1.5), fill: rgb("#e55"))
-  content(qpu.center, text(size: 10pt, "Processeur Quantique"))
-  content(opt.center, text(size: 10pt, "Optimiseur Classique"))
-  line((qpu.right, qpu.center.y), (opt.left, opt.center.y), arrow: (end: ">"), label: "mesure")
-  line((opt.left, opt.center.y-0.2), (qpu.right, qpu.center.y-0.2), arrow: (end: ">"), label: "ajustement")
-})
+Les dernières années ont vu des **percées remarquables** dans les technologies de correction d'erreurs, notamment avec Google (expérience de correction d'erreurs sur 101 qubits physiques où le taux d'erreur logique *diminuait* à mesure que la taille du code augmentait).
+
+---
+
+## La voie vers la montée en échelle
+
+### Résumé des efforts matériels
+
+- Nous sommes en train de quitter l'ère NISQ pour atteindre un **point d'inflexion**.
+- Une **"course aux qubits"** est en cours, mais le nombre de qubits n'est pas tout !
+- La montée en échelle (plus de qubits, de meilleure qualité) est un défi d'ingénierie difficile, mais sans obstacle fondamental pour construire des ordinateurs avec $10^6$ qubits sans bruit.
+- Les signes que la correction d'erreurs quantiques est **faisable** se multiplient.
+
+> **Question centrale :** Comment les ordinateurs quantiques peuvent-ils être montés en échelle de manière **tolérante aux fautes** ?
+
+### La suprématie quantique
+
+En automne 2019, Google annonça avoir atteint la **suprématie quantique** avec son processeur quantique **Sycamore** à 53 qubits.
+
+::: {.callout-note title="Définition : Suprématie quantique"}
+La **suprématie quantique** (*quantum supremacy*) est une démonstration convaincante dans le monde réel qu'un ordinateur quantique accomplit une tâche qui ne peut raisonnablement pas être réalisée par un ordinateur classique.
+:::
+
+Le sweet spot : 53 qubits, juste au-delà de la capacité des clusters de calcul de Google à simuler en un temps raisonnable (~$2^{53}$ opérations).
+
+### Quantique vs classique : une compétition permanente
+
+D'autres groupes ont également annoncé des résultats de suprématie quantique. Mais le plus grand concurrent des ordinateurs quantiques reste les **algorithmes classiques ingénieux** :
+
+- En novembre 2021, un groupe de l'Académie des Sciences de Chine a reproduit les statistiques de l'expérience de suprématie de Google en utilisant des algorithmes de réseaux de tenseurs sur 512 GPU en 15 heures.
+
+**Leçon :** La frontière entre quantique et classique est mouvante. Les algorithmes classiques s'améliorent eux aussi.
+
+### Les optimiseurs hybrides quantique/classique
+
+Une approche pragmatique de l'ère NISQ est d'utiliser des **optimiseurs hybrides** :
+
+```{mermaid}
+flowchart LR
+    QP["Quantum Processor\n(Processeur quantique)"] -->|"mesure la fonction de coût"| CO["Classical Optimizer\n(Optimiseur classique)"]
+    CO -->|"ajuste le circuit quantique"| QP
+```
+
+Le principe (résumé par Eddie Farhi) : *"Try it and see if it works!"*
+
+On ne s'attend pas à ce qu'un ordinateur quantique résolve des instances dans le pire cas de problèmes NP-difficiles, mais il *pourrait* trouver de meilleures solutions approchées, ou les trouver plus vite.
+
+::: {.callout-caution}
+Les algorithmes d'optimisation classiques sont sophistiqués et perfectionnés après des décennies de travail. **Nous ne savons pas encore si les dispositifs NISQ peuvent faire mieux**, mais nous pouvons essayer et voir.
+:::
+
+### Les algorithmes quantiques-inspirés classiques
+
+L'exemple le plus frappant vient de la **recommandation de produits** (*recommendation systems*), l'un des problèmes les plus importants en science des données.
+
+Supposons $n$ produits et un historique d'achat de $m$ utilisateurs :
+
+| Année | Algorithme | Complexité |
+|---|---|---|
+| Avant 2016 | Méthodes classiques | $\mathcal{O}(\text{poly}(mn))$ |
+| 2016 | Kerenidis & Prakash (quantique) | $\mathcal{O}(\text{poly}\log(mn))$ — accélération exponentielle |
+| 2018 | **Ewin Tang** (classique, inspiré du quantique) | $\mathcal{O}(\text{poly}\log(mn))$ — **même complexité !** |
+
+> **Conclusion :** Même dans un monde classique, **penser de manière quantique a de la valeur**. Les idées quantiques inspirent de meilleures méthodes classiques.
+
+---
+
+## Les algorithmes quantiques
+
+### Catégories d'accélération
+
+Les algorithmes quantiques offrent trois grandes catégories d'accélération :
+
+1. **Accélérations exponentielles** pour les problèmes algébriques structurés
+   - Factorisation (algorithme de Shor) → $N = p \cdot q$
+   - Problème du sous-groupe caché (*Hidden Subgroup Problem*)
+
+2. **Accélérations polynomiales** pour les problèmes de recherche non structurés
+   - Recherche de Grover
+
+3. **Accélérations exponentielles** pour la simulation quantique
+   - Simuler la physique et la chimie quantiques (le rêve de Feynman)
+   - Probablement l'application la plus importante des ordinateurs quantiques à ce jour !
+
+### Algorithmes pour les ordinateurs quantiques à court terme (NISQ)
+
+Pour les dispositifs NISQ, plusieurs types d'algorithmes sont à l'étude :
+
+- **Variational Quantum Eigensolvers (VQE)** — résolution variationnelle de valeurs propres
+- **Algorithmes hybrides classique-quantique**
+- **Quantum Machine Learning** :
+  - Solveurs de systèmes linéaires / SDP / optimisation convexe
+  - Réseaux de neurones quantiques (*quantum neural nets*)
+  - Systèmes de recommandation
+  - Et bien d'autres…
+
+---
+
+## Perspectives et connexions interdisciplinaires
+
+### Connexions avec la physique fondamentale
+
+L'informatique quantique entretient des liens profonds avec la physique fondamentale :
+
+- La clé d'une théorie de la **gravité quantique** pourrait résider dans l'**intrication quantique** et les **codes correcteurs d'erreurs quantiques**.
+- Le **"Paradoxe du mur de feu des trous noirs"** (*Blackhole Firewall Paradox*) est une question d'information quantique, et ses résolutions potentielles impliquent la cryptographie quantique.
+
+### Vue d'ensemble interdisciplinaire
+
+L'informatique quantique est au carrefour de nombreuses disciplines :
+
+```{mermaid}
+mindmap
+  root((Informatique Quantique))
+    Mathématiques
+      Algèbres d'opérateurs
+      Théorie des représentations
+      Théorie des nombres
+      Géométrie algébrique
+      Statistiques
+    Physique
+      Physique de la matière condensée
+      Gravité quantique
+      Théorie des cordes
+      Théorie quantique des champs
+    Chimie
+      Simulations de chimie quantique
+      Dynamique chimique
+      Méthodes d'encodage fermionique
+    Ingénierie
+      Distribution de clés
+      Réseaux quantiques
+      Capteurs quantiques
+    Informatique
+      Théorie de la complexité
+      Cryptographie
+      Algorithmes
+      Optimisation
+      Machine learning
+```
+
+### Chronologie historique
+
+```{mermaid}
+timeline
+    title Histoire de l'informatique quantique
+    section Première révolution quantique
+        1930 : Fondements de la mécanique quantique
+             : Bohr, Heisenberg, Schrödinger…
+    section Naissance de l'information quantique
+        1980 : Conférence Physics of Computation (MIT)
+             : Feynman, Deutsch, Benioff, Manin
+        1994 : Algorithme de Shor
+    section Ère NISQ
+        2007 : Premier qubit de bonne qualité (Yale)
+        2019 : Suprématie quantique (Google Sycamore)
+        2020-2024 : ERA NISQ — Premières validations
+    section Vers le calcul tolérant aux fautes
+        2030 : Objectif Fault-Tolerant QC
 ```
 
 ---
 
-# Connexions interdisciplinaires
+## Synthèse
 
-L’informatique quantique relie :
+### Ce que vous allez apprendre dans ce cours
 
-- **Mathématiques** : algèbres d’opérateurs, théorie des représentations, géométrie algébrique, théorie des nombres, statistiques
-- **Physique** : matière condensée, gravité quantique, théorie des champs, théorie des cordes
-- **Chimie** : simulations de chimie quantique, encodage fermionique, dynamique chimique
-- **Ingénierie** : distribution de clés, réseaux quantiques, capteurs quantiques, théorie de l’information
-- **Informatique** : théorie de la complexité, cryptographie, algorithmes, optimisation, machine learning
+Au fil des chapitres, vous découvrirez :
 
-## Exemple : paradoxe du mur de feu des trous noirs
+- Les **fondements mathématiques** et physiques de la mécanique quantique appliquée au calcul
+- La notion de **qubit**, de **portes quantiques** et de **circuits quantiques**
+- Les grands **algorithmes quantiques** (Shor, Grover, VQE…)
+- Les **technologies matérielles** actuelles et leurs limites
+- Les **applications concrètes** et le potentiel à court terme
+- La **correction d'erreurs quantiques** et la tolérance aux fautes
 
-- Problème d’information quantique
-- Résolutions possibles impliquent la cryptographie quantique
+### Points clés à retenir
 
----
+::: {.callout-tip title="Résumé du chapitre"}
 
-# Chronologie des révolutions quantiques
+1. L'informatique quantique exploite les lois de la **mécanique quantique** pour traiter l'information.
 
-```{.cetz}
-import cetz.draw: *
+2. La difficulté de simuler des systèmes quantiques sur des ordinateurs classiques est **fondamentale** : elle nécessite des ressources exponentielles ($2^N$ pour $N$ particules).
 
-canvas({
-  line((0,0), (12,0))
-  let events = (
-    (1,  "1930: Première révolution quantique"),
-    (4,  "1980: Naissance de la science\nde l'information quantique"),
-    (7,  "2007: Premier qubit \"pas si mauvais\" à Yale"),
-    (9,  "2020: Ère NISQ"),
-    (11, "2030: Informatique quantique\ntolérante aux pannes")
-  )
-  for (x, label) in events {
-    line((x,-0.1), (x,0.1))
-    content((x,-0.3), text(size: 7pt, label), anchor: "north")
-  }
-})
-```
+3. L'algorithme de **Shor** (1994) a démontré que certains problèmes cryptographiques peuvent être résolus exponentiellement plus vite sur un ordinateur quantique.
 
----
+4. Les ordinateurs quantiques ne résolvent **pas** tous les problèmes plus vite — ils excellentdans des domaines spécifiques grâce à l'**intrication**, la **superposition** et l'**interférence**.
 
-# Pour approfondir
+5. Nous sommes actuellement dans l'**ère NISQ** : des dispositifs bruités à ~100–1000 qubits, avec des perspectives prometteuses vers des ordinateurs **tolérants aux fautes**.
 
-- **Nielsen & Chuang** — *Quantum Computation and Quantum Information*
-- **Renes** — *Quantum Information Theory*
-- **Yanofsky & Mannucci** — *Quantum Computing for Computer Scientists*
-- **Scherer** — *Mathematics of Quantum Computing*
+6. Même dans un contexte classique, **penser quantiquement** inspire de nouveaux algorithmes plus performants.
+
+:::

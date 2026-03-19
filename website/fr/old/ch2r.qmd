@@ -1,0 +1,221 @@
+# Résumé — Quantum Computing
+
+---
+
+# 1. Fondamentaux
+
+## Qubit
+
+- **Bit classique** : exactement $|0\rangle$ ou $|1\rangle$
+- **Qubit** : superposition $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, avec $\alpha, \beta \in \mathbb{C}$
+
+Condition de normalisation (obligatoire) :
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+- $\alpha$, $\beta$ = **amplitudes** (comme des probabilités, mais peuvent être négatives ou complexes)
+- $|\psi\rangle$ est un vecteur unitaire dans $\mathbb{C}^2$
+
+## Notation Dirac (bra-ket)
+
+- **Ket** (vecteur colonne) : $|\psi\rangle = \begin{pmatrix}\alpha \\ \beta\end{pmatrix}$
+- **Bra** (vecteur ligne, conjugué Hermitien) : $\langle\psi| = \begin{pmatrix}\bar{\alpha} & \bar{\beta}\end{pmatrix}$
+- **Produit intérieur** :
+
+$$\langle\psi|\theta\rangle = \bar{\alpha}\gamma + \bar{\beta}\delta$$
+
+- ⚠️ L'ordre compte : $\langle\theta|\psi\rangle = \overline{\langle\psi|\theta\rangle}$
+
+---
+
+# 2. Bit classique vs Qubit
+
+| Propriété | Bit classique | Qubit |
+|---|---|---|
+| États | $0$ ou $1$ | $|0\rangle$, $|1\rangle$, ou superposition |
+| Mesure | Complète, non destructive | Partielle, **destructive** |
+| Copie | ✅ | ❌ (no-cloning) |
+| Effacement | ✅ | ❌ |
+| Puissance (ajout d'1 unité) | double les bits | **double la puissance** |
+
+---
+
+# 3. Mesure — Règle de Born
+
+$$\Pr[\text{obtenir } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{obtenir } |1\rangle] = |\beta|^2$$
+
+Points clés :
+
+- Après mesure → état **s'effondre** vers $|0\rangle$ ou $|1\rangle$, l'état précédent est **perdu**
+- Mesurer deux fois = mesurer **une fois**
+- La mesure **perturbe** le système
+
+---
+
+# 4. Systèmes composites
+
+## Produit tensoriel
+
+Pour deux qubits $|\psi_1\rangle$ et $|\psi_2\rangle$ :
+
+$$|\psi_1\rangle \otimes |\psi_2\rangle \in \mathbb{C}^2 \otimes \mathbb{C}^2 \quad \text{(vecteur de dimension 4)}$$
+
+Base de deux qubits :
+
+$$|00\rangle, \quad |01\rangle, \quad |10\rangle, \quad |11\rangle$$
+
+## Intrication (Entanglement)
+
+- Tous les états à 2 qubits **ne sont pas** des états produits
+- État **intriqué** (paire de Bell / EPR) :
+
+$$|\Phi\rangle = \frac{1}{\sqrt{2}}\Big(|00\rangle + |11\rangle\Big)$$
+
+Propriétés clés :
+
+- Les qubits intriqués sont **corrélés instantanément**, quelle que soit la distance
+- Mesurer l'un **fait s'effondrer l'autre** automatiquement
+- **Phénomène uniquement quantique** — absent de la physique classique
+- Einstein : *"spooky actions at a distance"*
+
+---
+
+# 5. Décohérence
+
+- = perte de superposition due à l'interaction avec l'**environnement**
+- = perte d'information vers l'environnement
+- Les états de superposition et d'intrication sont **extrêmement fragiles**
+- **Principal obstacle** à la construction d'ordinateurs quantiques
+
+---
+
+# 6. Portes quantiques
+
+## Propriétés générales
+
+- Représentées par des **matrices unitaires** : $UU^\dagger = I$
+- Une porte sur $n$ qubits = matrice $2^n \times 2^n$
+- Toujours **réversibles** (contrairement à certaines portes classiques)
+
+## Portes à un qubit
+
+**Pauli-X** (NOT quantique) :
+
+$$X = \begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix} \qquad |0\rangle \leftrightarrow |1\rangle$$
+
+**Pauli-Y** :
+
+$$Y = \begin{bmatrix}0 & -i \\ i & 0\end{bmatrix} \qquad |0\rangle \to i|1\rangle, \quad |1\rangle \to -i|0\rangle$$
+
+**Pauli-Z** :
+
+$$Z = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix} \qquad |0\rangle \to |0\rangle, \quad |1\rangle \to -|1\rangle$$
+
+**Hadamard (H)** ⭐ :
+
+$$H = \frac{1}{\sqrt{2}}\begin{bmatrix}1 & 1 \\ 1 & -1\end{bmatrix} \qquad |0\rangle \to \frac{|0\rangle+|1\rangle}{\sqrt{2}}, \quad |1\rangle \to \frac{|0\rangle-|1\rangle}{\sqrt{2}}$$
+
+**Phase (S)** et **T ($\pi/8$)** :
+
+$$S = \begin{pmatrix}1 & 0 \\ 0 & i\end{pmatrix} \qquad T = \begin{pmatrix}1 & 0 \\ 0 & e^{i\pi/4}\end{pmatrix} \qquad S^2 = Z$$
+
+## Porte CNOT (2 qubits)
+
+$$CNOT = \begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{bmatrix}$$
+
+- Qubit **contrôle = 0** → cible inchangée
+- Qubit **contrôle = 1** → cible **inversée**
+- Équivalent classique : **XOR**
+
+---
+
+# 7. Les états $|+\rangle$ et $|-\rangle$
+
+$$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} = H|0\rangle \qquad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix} = H|1\rangle$$
+
+- Forment une **base orthonormale** de $\mathbb{C}^2$
+- Mesurer $|+\rangle$ ou $|-\rangle$ directement → $|0\rangle$ ou $|1\rangle$ avec prob. **égale** (indiscernables !)
+- **Astuce** : appliquer $H$ avant de mesurer → distinguables parfaitement
+
+---
+
+# 8. Interférence quantique
+
+Points essentiels :
+
+- Appliquer plusieurs portes crée un **arbre de chemins** entre états
+- Chaque chemin a une amplitude de transition = **produit des amplitudes** le long du chemin
+- L'amplitude finale d'un état = **somme** des amplitudes de tous les chemins y menant
+- Les amplitudes peuvent s'**additionner** (interférence constructive) ou s'**annuler** (interférence destructive)
+- Une **mesure intermédiaire** détruit la superposition → empêche l'interférence
+
+**Expérience A** : $|0\rangle \xrightarrow{H} \xrightarrow{\text{mesure}} \xrightarrow{H} \xrightarrow{\text{mesure}}$ → $|0\rangle$ ou $|1\rangle$ avec prob. égale
+
+**Expérience B** : $|0\rangle \xrightarrow{H} \xrightarrow{H} \xrightarrow{\text{mesure}}$ → **toujours** $|0\rangle$
+
+> ⚠️ En classique : on additionne des **probabilités** (positives). En quantique : on additionne des **amplitudes** (peuvent être négatives/complexes).
+
+---
+
+# 9. Circuits quantiques
+
+- Séquence de **portes quantiques** sur un registre de $n$ qubits reliés par des fils
+- Largeur fixe = nombre de qubits
+- **Même nombre de fils** tout au long (≠ circuits classiques)
+
+**Génération d'un état de Bell** ($H$ + CNOT) :
+
+$$|0\rangle, |0\rangle \xrightarrow{H \text{ sur qubit 1}} \frac{|0\rangle+|1\rangle}{\sqrt{2}} \otimes |0\rangle \xrightarrow{CNOT} \frac{|00\rangle+|11\rangle}{\sqrt{2}}$$
+
+---
+
+# 10. Avantage quantique
+
+Les trois sources de puissance quantique :
+
+- **Parallélisme quantique** — exécution sur toutes les entrées simultanément via superposition
+- **Espace de Hilbert** — espace d'états exponentiellement plus grand ($n$ qubits → $2^n$ dimensions)
+- **Intrication** — corrélations non-classiques entre sous-systèmes
+
+## Complexités comparées
+
+| Algorithme | Classique | Quantique |
+|---|---|---|
+| Transformée de Fourier (Shor, etc.) | $O(n \cdot 2^n)$ | $O(n^2)$ |
+| Recherche (Grover) | $O(N)$ | $O(\sqrt{N})$ |
+| Simulation quantique | $O(c^N)$ bits | $O(kn)$ qubits |
+
+---
+
+# 11. Architecture quantique
+
+Prérequis pour un ordinateur quantique :
+
+- Implémentation physique des **qubits**
+- Contrôle de l'**évolution unitaire**
+- Préparation de l'**état initial**
+- **Mesure** de l'état final
+- Isolation presque totale de l'environnement
+- Temps de décohérence **très longs**
+- Ensemble universel de **portes quantiques**
+- Capacité d'**intrication**
+
+## Volume quantique $V_Q$
+
+Métrique mesurant capacité + taux d'erreur d'un ordinateur quantique :
+
+$$\tilde{V}_Q = \min[N,\, d(N)]^2$$
+
+où $N$ = nombre de qubits, $d$ = profondeur du circuit.
+
+---
+
+# 🔑 À retenir absolument
+
+- $|\alpha|^2 + |\beta|^2 = 1$ — toujours !
+- La mesure **détruit** la superposition (Born Rule)
+- $H^2 = I$ — Hadamard est sa propre inverse
+- **Intrication** ≠ corrélation classique
+- **Décohérence** = ennemi numéro 1 du quantum computing
+- Mesures intermédiaires **tuent** l'interférence
+- $n$ qubits → espace de $2^n$ dimensions

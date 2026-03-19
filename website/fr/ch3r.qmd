@@ -1,185 +1,324 @@
-# 🧠 Résumé Révision — Informatique Quantique (Lecture 3)
+---
+title: "⚡ Fiche de révision — Quantum Computing · Lecture 3"
+subtitle: "Propriétés fondamentales de l'informatique quantique"
+author: "14X060 — Université de Genève"
+lang: fr
+---
 
 ---
 
-# Applications & Algorithmes Clés
+# 🗺️ Vue d'ensemble
 
-## 5 Grandes Applications
+> **5 propriétés fondamentales à maîtriser absolument**
 
-| # | Application | Avantage quantique | Auteur/Date |
-|---|---|---|---|
-| 1 | **Factorisation** | Exponentiel | Shor, 1994 |
-| 2 | **Recherche** | Quadratique | Grover, 1997 |
-| 3 | **Simulation** | Exponentiel | — |
-| 4 | **Optimisation** | Potentiel (non prouvé) | — |
-| 5 | **Réseaux quantiques** | Sécurité physique | — |
-
----
-
-## Application 1 — Factorisation (Shor)
-
-**Idée :** trouver la période de $f(s) = x^s \bmod N$ via la QFT
-
-**Complexités :**
-
-| Classique | Quantique |
-|---|---|
-| $O(\exp(n^{1/3}))$ | $O(n^3 \log n)$ |
-| $10^{24}$ étapes | $10^{10}$ étapes |
-| 150 000 ans | < 1 seconde |
-
-**Étapes de l'algorithme :**
-
-1. Choisir $x$ premier avec $N$
-2. Appliquer la QFT pour trouver la période de $f(s) = x^s \bmod N$
-3. Déduire les facteurs candidats via l'ordre de $x$
-4. Vérifier — recommencer si nécessaire
-
-**Théorème clé :** si $a \not\equiv \pm b \pmod{N}$ mais $a^2 \equiv b^2 \pmod{N}$, alors $\gcd(a+b, N)$ est un facteur de $N$
+| # | Propriété | Résumé en une phrase |
+|---|-----------|----------------------|
+| 1 | **Distinguishabilité** | États orthogonaux → toujours distinguables ; non orthogonaux → jamais parfaitement |
+| 2 | **Borne Helstrom-Holevo** | Limite max de discrimination entre deux états quelconques |
+| 3 | **No-Signalling** | L'intrication ≠ communication d'information |
+| 4 | **No-Cloning** | Impossible de copier un état quantique arbitraire |
+| 5 | **No-Deleting** | Impossible de supprimer une copie d'un état quantique |
 
 ---
 
-## Application 2 — Recherche (Grover)
+# 📐 Rappels indispensables
 
-- Recherche dans une base **non triée** de $N$ éléments
-- Classique : $O(N)$ — Quantique : $O(\sqrt{N})$
-- Utile pour : big data, inversion de fonctions, pattern recognition
+## État d'un qubit
 
----
+$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \qquad |\alpha|^2 + |\beta|^2 = 1$$
 
-## Application 3 — Simulation Quantique
+- $\alpha, \beta \in \mathbb{C}$ — **amplitudes de probabilité**
+- Probabilité de mesurer $|0\rangle$ : $|\alpha|^2$ ; de mesurer $|1\rangle$ : $|\beta|^2$
+- $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ — état en superposition équilibrée
 
-**Problème :** $N$ systèmes quantiques → $2^N$ équations couplées
+## Opérateurs de mesure
 
-$$i\hbar \frac{\partial \Psi}{\partial t} = H\Psi$$
+- **Projecteur** : $M_m = |\psi_m\rangle\langle\psi_m|$
+- **Équation de complétude** (toujours vérifiée) : $\displaystyle\sum_m M_m^\dagger M_m = I$
+- **Probabilité** d'obtenir $m$ : $p(m) = \langle\psi|M_m^\dagger M_m|\psi\rangle$
 
-**Solution :** simulateur quantique = ensemble de qubits à interactions programmables
+## Orthogonalité
 
-**Plateformes :** ions atomiques, atomes piégés, supraconducteurs, NV-diamond
+Deux états $|\psi_0\rangle$ et $|\psi_1\rangle$ sont **orthogonaux** ssi :
 
----
-
-## Application 4 — Optimisation Quantique
-
-Minimiser via superposition quantique :
-
-$$f(x_1, x_2, \ldots) = \sum_{i < j} q_{ij} x_i x_j + \sum_i c_i x_i$$
-
-- Correspond à l'énergie d'un réseau magnétique quantique
-- **Attention :** quantum speedup **non garanti** pour tous les problèmes
+$$\langle\psi_0|\psi_1\rangle = 0$$
 
 ---
 
-## Application 5 — Réseaux Quantiques
+# 🔬 Distinguer des états quantiques
 
-**Usages :**
+## États orthogonaux — distinction parfaite ✅
 
-- Cryptographie (QKD)
-- Nombres aléatoires certifiables
-- Répéteurs quantiques
-- Intrication distribuée
-- Large-scale quantum computing
+**Stratégie :**
 
----
+1. Construire $U = \begin{bmatrix}\alpha & \gamma \\ \beta & \delta\end{bmatrix}$ (colonnes = états à distinguer)
+2. Appliquer $U^\dagger$ → envoie $|\psi_0\rangle \to |0\rangle$ et $|\psi_1\rangle \to |1\rangle$
+3. Mesurer dans la base computationnelle
 
-# Études de Cas
+> **Équivalent :** mesurer directement dans la base $(|\psi_0\rangle, |\psi_1\rangle)$
 
-## Cryptographie Quantique (BB84)
+**Vérification :** $p(M_{|\psi_0\rangle}\,|\,|\psi\rangle = |\psi_0\rangle) = 1$ et $p(M_{|\psi_0\rangle}\,|\,|\psi\rangle = |\psi_1\rangle) = 0$ ✓
 
-**Protocole en 4 étapes :**
+## États non orthogonaux — distinction impossible à 100% ❌
 
-1. Alice envoie des q-bits dans une base aléatoire : $\{|0\rangle, |1\rangle\}$ ou $\{|0\rangle \pm |1\rangle\}$
-2. Bob mesure dans une base aléatoire → bit aléatoire si mauvaise base
-3. Eve perturbe les bits si elle espionne → **détectable**
-4. Alice & Bob comparent les bases publiquement → gardent uniquement les bits avec bases identiques (*sifted key*)
-
-**Principe fondamental :** toute mesure quantique perturbe l'état → espionnage détectable
+- Si $\langle\psi_a|\psi_b\rangle \neq 0$ → **aucune mesure** ne distingue parfaitement
+- On peut seulement **améliorer** la probabilité au-delà de 50 %
+- Plus les états sont **proches** → plus la discrimination est difficile
 
 ---
 
-## Téléportation Quantique
+# 📊 Borne de Helstrom-Holevo
 
-**5 étapes :**
+## Formule à retenir 🔑
 
-1. Créer une paire intriquée (A, B) dans un état de Bell
-2. Envoyer A à Alice, B à Bob
-3. Alice mesure l'état de Bell de (A, C) → intrique A et C
-4. Alice envoie **2 bits classiques** à Bob
-5. Bob applique $\sigma_i$ sur B → obtient $|\Psi\rangle_B \equiv |\Psi\rangle_C$
+$$\boxed{p_{\text{succès}} \leq \frac{1}{2}(1 + \sin\theta)}$$
 
-**Points clés à retenir :**
+avec $|\langle\psi_a|\psi_b\rangle| = \cos\theta$
 
-- L'état C **disparaît** chez Alice (no-cloning, no-deletion)
-- Pas de transmission superluminique — le canal classique est **indispensable**
-- C est « téléporté », pas copié
+## Borne atteinte par
+
+La base des vecteurs propres de :
+
+$$|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$$
+
+## Cas limites
+
+| Cas | $\theta$ | $\sin\theta$ | $p_{\text{max}}$ | Interprétation |
+|-----|----------|--------------|-----------------|----------------|
+| Orthogonaux | $\pi/2$ | $1$ | **$1$** | Distinction parfaite |
+| Quasi-alignés | $\approx 0$ | $\approx 0$ | **$\approx 1/2$** | Pas mieux que hasard |
+| Général | $(0, \pi/2)$ | $(0,1)$ | $(1/2, 1)$ | Distinction partielle |
+
+## Exemple : $|0\rangle$ vs $|+\rangle$
+
+$$\langle 0|+\rangle = \frac{1}{\sqrt{2}} \Rightarrow \cos\theta = \frac{1}{\sqrt{2}} \Rightarrow \theta = \frac{\pi}{4}$$
+
+$$p_{\text{opt}} = \frac{1}{2}\!\left(1 + \frac{1}{\sqrt{2}}\right) \approx \mathbf{0.85}$$
+
+**Base computationnelle (sous-optimale) :**
+
+| État | $P(0)$ | $P(1)$ | Décision si 0 | Décision si 1 |
+|------|--------|--------|---------------|---------------|
+| $|0\rangle$ | $1$ | $0$ | $|0\rangle$ ✓ | — |
+| $|+\rangle$ | $1/2$ | $1/2$ | $|0\rangle$ ✗ | $|+\rangle$ ✓ |
+
+$$p_{\text{base comp.}} = 1 - \frac{3}{4}\times\frac{1}{3} = \frac{3}{4} = \mathbf{0.75}$$
+
+::: {.callout-tip}
+**Astuce :** Mesurer 1 → **certitude à 100%** que l'état est $|+\rangle$.
+Mesurer 0 → incertitude (75% $|0\rangle$, 25% $|+\rangle$).
+:::
+
+## Deux stratégies visuelles
+
+| Stratégie | Base | $p_{\text{succès}}$ | Avantage |
+|-----------|------|---------------------|----------|
+| **Optimale** | Bissectrice des deux états | **85%** | Meilleure probabilité globale |
+| **Asymétrique** | Un vecteur aligné avec un état | **75%** | Certitude 100% pour un résultat |
 
 ---
 
-## VQE — Variational Quantum Eigensolver
+# 📡 Principe de Non-Signalisation (*No-Signalling*)
 
-**Principe :** algorithme hybride quantique/classique pour trouver les valeurs propres de $H$
+## Énoncé
+
+::: {.callout-important}
+**L'intrication quantique ne peut PAS être utilisée pour transmettre de l'information,
+quelle que soit la distance.**
+:::
+
+## Scénario Alice-Bob (paire de Bell)
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+- Alice mesure son qubit → effondrement instantané du qubit de Bob
+- **Mais** Bob ne peut pas détecter si Alice a mesuré ou non
+
+## Preuve (en 3 lignes)
+
+| Situation | État de Bob | $p(\text{Bob mesure }0)$ |
+|-----------|-------------|--------------------------|
+| Alice **n'a pas** mesuré | $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ | $\left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}$ |
+| Alice **a** mesuré | $|0\rangle$ ou $|1\rangle$ (prob. $\frac{1}{2}$ chacun) | $\frac{1}{2}\cdot 1 + \frac{1}{2}\cdot 0 = \frac{1}{2}$ |
+
+> **Les statistiques sont identiques** → Bob ne voit aucune différence. ✓
+
+## À retenir
+
+- Valide pour **tout type d'intrication**
+- Valide pour **tout schéma de mesure** (bases arbitraires, transformations…)
+- Compatible avec la **théorie de la relativité**
+
+::: {.callout-warning}
+**Piège classique :** L'état du qubit de Bob *a* bien changé instantanément,
+mais Bob ne peut pas le **savoir** sans communication classique avec Alice.
+Effondrement ≠ transmission d'information.
+:::
+
+---
+
+# 🚫 Principe de Non-Clonage (*No-Cloning*)
+
+## Énoncé
+
+::: {.callout-important}
+**Il n'existe aucun opérateur unitaire $U$ tel que $U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$
+pour tout état $|\psi\rangle$.**
+:::
+
+## Pourquoi c'est important ?
+
+- Sans no-cloning → on pourrait violer le **no-signalling**
+- Sans no-cloning → correction d'erreurs triviale (mais pas meilleure !)
+- Sans no-cloning → comprimer $\infty$ bits classiques dans 1 qubit
+
+## Preuve (idée centrale)
+
+Supposer que $U$ existe, appliquer à $|\psi\rangle$ et $|\phi\rangle$, prendre le produit scalaire :
+
+$$\underbrace{\langle\psi|\phi\rangle}_{\text{avant clonage}} = \underbrace{(\langle\psi|\phi\rangle)^2}_{\text{après clonage}}$$
+
+Cette équation n'est vraie que si :
+
+- $\langle\psi|\phi\rangle = 0$ → états **orthogonaux**
+- $\langle\psi|\phi\rangle = 1$ → états **identiques**
+
+> **Contradiction** : un unitaire *préserve* les produits scalaires, mais le clonage les *élève au carré*.
+
+## Résumé visuel
 
 ```
-┌─────────────────────────────────────────┐
-│         Boucle classique                │
-│  ┌────────────────────────────────┐     │
-│  │     Partie quantique           │     │
-│  │  1. Préparer |ψ⟩ (ansatz)     │     │
-│  │  2. Mesurer ⟨ψ|H|ψ⟩           │     │
-│  └────────────┬───────────────────┘     │
-│               ↓                         │
-│    Optimiseur classique non linéaire    │
-│    → ajuste paramètres de l'ansatz      │
-│               ↓                         │
-│         Convergence ? → stop            │
-└─────────────────────────────────────────┘
+|ψ⟩ ──┐              |ψ⟩ ──
+      │  U   →               ← IMPOSSIBLE
+|0⟩ ──┘              |ψ⟩ ──   (sauf si ψ classique)
 ```
 
 ---
 
-# QFT — Transformée de Fourier Quantique
+# 🗑️ Principe de Non-Suppression (*No-Deleting*)
 
-$$U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{xy} |y\rangle\langle x|$$
+## Énoncé
 
-$$U^\dagger_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{-xy} |x\rangle\langle y|$$
+$$\nexists\, \tilde{U} \text{ tel que } \tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle \quad \forall|\psi\rangle$$
 
-- Outil central de l'algorithme de Shor
-- Permet de détecter la **période** d'une fonction quantique
+## Lien avec le non-clonage
 
----
+- No-Deleting = **dual temporel** du No-Cloning
+- Le calcul quantique est **réversible** (sauf mesure)
+- Si supprimer était possible → cloner serait possible → contradiction
 
-# Post-Quantum World
-
-**Menace :** RSA-2048 cassable dans **5–10 ans** (~8 000 qubits nécessaires)
-
-**Problème :** données chiffrées aujourd'hui peuvent être stockées et déchiffrées plus tard (*harvest now, decrypt later*)
-
-**Solutions :**
-
-| Solution | Statut |
-|---|---|
-| Chiffrement symétrique / hachage | Résistant si clés assez longues |
-| Algorithmes sur réseaux (*lattice*) | Standardisé par NIST |
-| QKD (*Quantum Key Distribution*) | Déjà utilisé par certains gouvernements/banques |
+::: {.callout-note}
+**Règle générale :** (im)possibilité d'une opération quantique ⟺ (im)possibilité de son inverse.
+:::
 
 ---
 
-# Défis Actuels
+# 🔗 Relations entre les principes
 
-| Problème | Explication |
-|---|---|
-| **Décohérence** | Sensibilité à l'environnement → isolation difficile |
-| **Temps de cohérence** | Doit dépasser le temps d'exécution de l'algorithme |
-| **Correction d'erreurs** | Nécessite des qubits supplémentaires |
-| **Implémentation physique** | Portes quantiques imparfaites |
-| **Algorithmes** | Peu de problèmes avec speedup prouvé |
-| **Passage à l'échelle** | Temps exponentiel avec taille de matrice |
+```
+No-Cloning
+    │
+    │ dual temporel
+    ▼
+No-Deleting
+
+No-Cloning ──────────────────► No-Signalling
+    (si clonage possible, on peut signaler)
+
+Orthogonalité ──────────────► Distinguishabilité parfaite
+Non-orthogonalité ──────────► Borne Helstrom-Holevo
+```
 
 ---
 
-# Lois & Projections
+# 📋 Tableau récapitulatif complet
 
-- **Loi de Neven :** nombre de qubits double tous les **12–18 mois** (croissance doublement exponentielle)
-- **Marché projeté :** $5B USD (2020) → >$100B USD (d'ici ~2030)
-- **Seuil critique :** ~8 000 qubits pour casser RSA-2048
-- Informatique quantique = *Peak of Inflated Expectations* sur le Gartner Hype Cycle → adoption grand public **> 10 ans**
+| Principe | Formule / Condition | Résultat | Implication |
+|----------|--------------------:|----------|-------------|
+| **Distinguishabilité** | $\langle\psi_0\|\psi_1\rangle = 0$ | Distinction parfaite | Mesurer dans la bonne base |
+| **Helstrom-Holevo** | $\|\langle\psi_a\|\psi_b\rangle\| = \cos\theta$ | $p \leq \frac{1}{2}(1+\sin\theta)$ | Fondement de QKD |
+| **No-Signalling** | Intrication Bell | Stat. identiques ± mesure d'Alice | Compatibilité relativité |
+| **No-Cloning** | $\langle\psi\|\phi\rangle = (\langle\psi\|\phi\rangle)^2$ | Seulement pour $0$ ou $1$ | Sécurité protocole BB84 |
+| **No-Deleting** | Dual de No-Cloning | Aucun $\tilde{U}$ | Réversibilité quantique |
+
+---
+
+# ⚠️ Pièges classiques à l'examen
+
+::: {.callout-warning}
+## Pièges à éviter
+
+1. **Confondre orthogonalité et distinguishabilité**
+   → L'orthogonalité est *nécessaire et suffisante* pour la distinction parfaite
+
+2. **Croire que la borne Helstrom-Holevo est toujours atteinte par la base computationnelle**
+   → La base optimale est celle des vecteurs propres de $|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$
+
+3. **Croire que l'effondrement de la paire de Bell transmet de l'info**
+   → Les statistiques de Bob sont *identiques* avec ou sans mesure d'Alice
+
+4. **Croire que No-Cloning interdit de copier *des* états**
+   → On peut copier des états orthogonaux (= classiques) ; l'interdiction vise les états *arbitraires*
+
+5. **Oublier que $U^\dagger U = I$ dans la preuve du No-Cloning**
+   → C'est ce qui force le produit scalaire à être préservé → contradiction
+
+6. **Confondre No-Cloning et No-Deleting**
+   → No-Deleting = inverse temporel de No-Cloning ; même preuve, sens opposé
+:::
+
+---
+
+# ✅ Checklist de révision
+
+Avant l'examen, je dois savoir :
+
+- [ ] Écrire les opérateurs de mesure $M_m$ pour une base orthogonale quelconque
+- [ ] Vérifier l'équation de complétude $\sum_m M_m^\dagger M_m = I$
+- [ ] Appliquer la borne Helstrom-Holevo à un exemple concret (ex : $|0\rangle$ vs $|+\rangle$)
+- [ ] Calculer $\theta$ à partir de $|\langle\psi_a|\psi_b\rangle|$
+- [ ] Expliquer en 3 phrases pourquoi No-Signalling est vrai (scénario Alice-Bob)
+- [ ] Reproduire la preuve du No-Cloning par le produit scalaire
+- [ ] Expliquer le lien No-Cloning ↔ No-Deleting (réversibilité)
+- [ ] Connaître les implications pratiques de chaque principe
+
+---
+
+# ❓ Questions type examen
+
+::: {.callout-note}
+## Q1 — Distinguishabilité
+Soient $|\psi_0\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle$ et
+$|\psi_1\rangle = \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle$.
+Peut-on les distinguer parfaitement ? Si oui, comment ?
+:::
+
+::: {.callout-note}
+## Q2 — Helstrom-Holevo
+Calculer la probabilité maximale de distinguer $|0\rangle$ et
+$|\psi\rangle = \cos(30°)|0\rangle + \sin(30°)|1\rangle$.
+:::
+
+::: {.callout-note}
+## Q3 — No-Signalling
+Alice et Bob partagent $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$.
+Alice mesure dans la base $\{|+\rangle, |-\rangle\}$.
+Montrer que les statistiques de Bob sont inchangées.
+:::
+
+::: {.callout-note}
+## Q4 — No-Cloning
+Supposer qu'un clonage est possible. Montrer que cela violerait le No-Signalling.
+*(Indication : Alice clone son qubit, l'envoie partiellement à Bob…)*
+:::
+
+---
+
+# 🏁 Mini-résumé final (60 secondes)
+
+> - **Orthogonaux** → distinguables à 100% avec la bonne base
+> - **Non orthogonaux** → au mieux $\frac{1}{2}(1+\sin\theta)$ de succès *(Helstrom-Holevo)*
+> - **Intrication** → corrélations instantanées, mais **zéro** info transmise *(No-Signalling)*
+> - **Clonage** → impossible car $\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$ implique ortho ou identique *(No-Cloning)*
+> - **Suppression** → impossible car dual temporel du No-Cloning *(No-Deleting)*
+> - Tout découle de la **linéarité** et de l'**unitarité** de la mécanique quantique.
