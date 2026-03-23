@@ -232,7 +232,7 @@ The circuit can be drawn like in @circuit.
   )
 )<circuit>
 
-= Exercise 12.4
+= Exercise 5
 
 Suppose Alice sends Bob an equal mixture of the four pure states
 $
@@ -246,6 +246,10 @@ Show that the maximum mutual information between Bob's measurement and Alice's t
 is less than one bit.
 A POVM which achieves $approx 0.415$ bits is known.
 Can you construct this or better yet, one which achieves the Holevo bound?
+
+The mutual information is defined as follow:
+
+$ I(X; Y) = - sum_(x, y) p(x, y) log(p(x, y)/(p(x)p(y))) $
 
 #v(2em)
 
