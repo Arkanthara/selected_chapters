@@ -237,9 +237,9 @@ The circuit can be drawn like in @circuit.
 Suppose Alice sends Bob an equal mixture of the four pure states
 $
   |X_1 chevron.r & = |0 chevron.r \
-  |X_2 chevron.r & = sqrt(1/3) lr([|0 chevron.r + sqrt(2)|1 chevron.r]) \
-  |X_3 chevron.r & = sqrt(1/3) lr([|0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r]) \
-  |X_4 chevron.r & = sqrt(1/3) lr([|0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r])
+  |X_2 chevron.r & = sqrt(1/3) [ |0 chevron.r + sqrt(2)|1 chevron.r] \
+  |X_3 chevron.r & = sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r] \
+  |X_4 chevron.r & = sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r]
 $
 
 Show that the maximum mutual information between Bob's measurement and Alice's transmission
@@ -247,9 +247,161 @@ is less than one bit.
 A POVM which achieves $approx 0.415$ bits is known.
 Can you construct this or better yet, one which achieves the Holevo bound?
 
-The mutual information is defined as follow:
+// The mutual information is defined as follow:
 
-$ I(X; Y) = - sum_(x, y) p(x, y) log(p(x, y)/(p(x)p(y))) $
+// $ I(X; Y) = - sum_(x, y) p(x, y) log(p(x, y)/(p(x)p(y))) $
+
+*Von Neumann entropy for quantum states*
+
+The entropy of a quantum state with density $rho$ is given by:
+
+$ S(rho) = - tr(rho log rho) $
+
+
+*Theorem 11.8: Basic properties of von Neumann entropy*
+
+(1) The entropy is non-negative. The entropy is zero if and only if the state is pure.
+
+(2) In a $d$-dimensional Hilbert space the entropy is at most $log d$. The entropy is equal to $log d$ if and only if the system is in the completely mixed state $I / d$.
+
+(3) Suppose a composite system $A B$ is in a pure state. Then $S(A) = S(B)$.
+
+(4) Suppose $p_i$ are probabilities, and the states $rho_i$ have support on orthogonal subspaces. Then
+$
+S( sum_i p_i rho_i ) = H(p_i) + sum_i p_i S(rho_i).
+$
+
+(5) Joint entropy theorem: Suppose $p_i$ are probabilities, $|i⟩$ are orthogonal states for a system $A$, and $rho_i$ is any set of density operators for another system $B$. Then
+$
+S( sum_i p_i |i chevron.r chevron i| times.o rho_i ) = H(p_i) + sum_i p_i S(rho_i).
+$
+
+*Holevo bound theorem*:  
+Suppose Alice prepares a state $rho_x$ where $x = 0, dots, n$ with probabilities $p_0, dots, p_n$.
+Bob performs a measurement described by POVM elements ${E_y} = {E_0, dots, E_m}$ on that state, with measurement outcome $Y$.
+
+The Holevo bound states that for any such measurement Bob may do:
+$
+I(X; Y) <= S(rho) - sum_x p_x S(rho_x)
+$
+where
+$rho = sum_x p_x rho_x$.
+
+As all the four pure states are only a composition of qubits $|0 chevron.r$  and $|1 chevron.r$, it means that they live in the ${|0 chevron.r, |1 chevron.r}$ basis which is an Hilbert basis.
+
+In accordance with point (2) of von Neumann's properties of entropy, since the states lie in a two-dimensional Hilbert space, the entropy is at most $log 2 = 1$ bit, with equality holding only if the system is in the fully mixed state $I/2$.
+
+// So to have the mutual information equal to 1 bit, Alice and Bob must have their system in the state $I/2$.
+// In fact, mutual information tells us to what extent knowing the state of Bob's system allows us to determine the state of Alice's system, and vice versa.
+
+// And as shown on @venn, having mutual information equal to 1 in this case corresponds to the fact that knowledge of the state of Bob's system (or Alice's) fully allows us to determine the state of Alice's system (or Bob's), and that the entropy of Bob's system (or Alice's) is equal to 1.
+
+// #figure(image("img/venn.svg"), caption: "Venn diagram of entropy of two random variables X and Y") <venn>
+
+We want to find the bound of the mutual information according to the Holevo bound theorem.
+
+_Computation of $sum_i p_i S(rho_i)$_
+
+Alice send with probability $1/4$ one of the four pure states with density $rho_i$.
+As she sends some pure state, according to property (1) of entropy of Von Neumann, the entropy is 0.
+
+So we have:
+
+#align(left,
+$
+  sum_i p_i S(rho_i) &= sum_i p_i dot 0 = 0
+$)
+
+_Precomputations_
+
+#align(center, 
+$
+  rho_1 &= |X_1 chevron.r chevron X_1| \
+  &= |0 chevron.r chevron 0| \
+  &= mat(1, 0; 0, 0)$)
+
+#align(left, $
+  rho_2 &= |X_2 chevron.r chevron X_2| \
+  &= sqrt(1/3) [ |0 chevron.r + sqrt(2)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) chevron 1| ] \
+  &= 1/3 [ vec(1, 0) + sqrt(2)vec(0, 1)] [ mat(1, 0) + sqrt(2) mat(0, 1) ] \
+  &= 1/3 vec(1, sqrt(2))  mat(1, sqrt(2)) \
+  &= 1/3 mat(1, sqrt(2); sqrt(2), 2) \
+$)
+
+#align(left, 
+$
+  rho_3 &= |X_3 chevron.r chevron X_3| \
+  &= sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) e^(-2 pi i \/ 3) chevron 1| ] \
+  &= 1/3 [ vec(1, 0) + sqrt(2) e^(2 pi i \/ 3)vec(0, 1)] [ mat(1, 0) + sqrt(2) e^(-2 pi i \/ 3) mat(0, 1) ] \
+  &= 1/3 vec(1, sqrt(2) e^(2 pi i \/ 3))  mat(1, sqrt(2) e^(-2 pi i \/ 3)) \
+  &= 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2e^(0)) \
+  &= 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) \
+$)
+
+#align(left, 
+$
+  rho_4 &= |X_4 chevron.r chevron X_4| \
+  &= sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) e^(-4 pi i \/ 3) chevron 1| ] \
+  &= 1/3 [ vec(1, 0) + sqrt(2) e^(4 pi i \/ 3)vec(0, 1)] [ mat(1, 0) + sqrt(2) e^(-4 pi i \/ 3) mat(0, 1) ] \
+  &= 1/3 vec(1, sqrt(2) e^(4 pi i \/ 3))  mat(1, sqrt(2) e^(-4 pi i \/ 3)) \
+  &= 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) \
+$)
+
+_Computation of $S(rho)$_
+
+If Alice sends Bob an equal mixture of the four pure states, it means that Bob will get one of the $|X_i chevron.r$ with probability $p_i = 1/4$.
+
+So Bob can compute the density $rho$ of the system.
+
+#align(left, 
+$
+  rho &= sum_i p_i rho_i \
+  &= 1/4 rho_1 + 1/4 rho_2 + 1/4 rho_3 + 1/4 rho_4 \
+  &= 1/4 mat(1, 0; 0, 0) + 1/12 mat(1, sqrt(2); sqrt(2), 2) + 1/12 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) + 1/12 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) \
+  &= 1/12( mat(3, 0; 0, 0) + mat(1, sqrt(2); sqrt(2), 2) + mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) + mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 1/12 mat(6, sqrt(2)(1 + e^(-2 pi i \/ 3) + e^(-4 pi i \/ 3)); sqrt(2) (1 + e^(2 pi i \/ 3) + e^(4 pi i \/ 3)), 6) \
+  &= 1/12 mat(6, sqrt(2)(e^(-6 pi i \/ 3) + e^(-2 pi i \/ 3) + e^(-4 pi i \/ 3)); sqrt(2) (e^(6 pi i \/ 3) + e^(2 pi i \/ 3) + e^(4 pi i \/ 3)), 6) \
+  &= 1/12 mat(6, sqrt(2)(e^(-2 pi i \/ 3)^3 + e^(-2 pi i \/ 3) + e^(-4 pi i \/ 3)^2); sqrt(2) (e^(6 pi i \/ 3)^3 + e^(2 pi i \/ 3) + e^(4 pi i \/ 3)^2), 6) \
+  &= 1/12 mat(6, 0; 0, 6)^#report-footnote([As $e^(2 pi i \/ 3)$ and $e^(-2 pi i \/ 3)$ are primitive root. Indeed, $e^(2 pi i \/ 3)^3 = e^(-2 pi i \/ 3)^3 = 1$ so $e^(2 pi i \/ 3) + e^(2 pi i \/ 3)^2 + e^(2 pi i \/ 3)^3 =e^(-2 pi i \/ 3) + e^(-2 pi i \/ 3)^2 + e^(-2 pi i \/ 3)^3 = 0$ ]) \
+  &= I/2
+$)
+
+So the entropy of Bob's system is maximal: $S(rho) = S(I/2) = log 2 = 1$.
+
+So according to the Holevo bound theorem, we have:
+
+#align(left,
+$
+  I(X; Y) &<= S(rho) - sum_x p_x S(rho_x) \
+  <==> I(X; Y) &<= S(I\/2) - 0 \
+  <==> I(X; Y) &<= 1
+$)
+
+Now we want to prove that the mutual information is stricly less than 1.
+
+Mutual information is maximized only if Bob can determine Alice's qubit state without any error.
+Thus, if there is any overlap between the qubits $|X_i chevron.r$, Bob might make a mistake, and the mutual information would not be maximized.
+Indeed, mutual information tells us to what extent knowing the state of Bob's system allows us to determine the state of Alice's system, and vice versa.
+
+As the entropy of Bob's system is of 1, we want that the system of Bob allows to fully determinate the Alice's system to have a mutual information of 1.
+
+So we want to verify whether the four qubits do not overlap, that is, whether they are orthogonal.
+
+We have:
+
+#align(left, 
+$
+  chevron X_1 | X_2 chevron.r &= sqrt(1/3) chevron 0|  [ |0 chevron.r + sqrt(2)|1 chevron.r] \
+  &= sqrt(1/3) mat(1, 0) vec(1, sqrt(2)) \
+  &= sqrt(1/3)
+$)
+
+So there is an overlap between $|X_1 chevron.r$ and $|X_2 chevron.r$, meaning that Bob might make a mistake.
+So the mutual information is stricly less than 1.
+
+// So Alice's system has no information at all, so the knowledge of Alice's system indicate nothing on Bob's system.
+// So the mutual information is equal to 0 bit, which is less than 1 bit. 
+
 
 #v(2em)
 
