@@ -251,7 +251,7 @@ Can you construct this or better yet, one which achieves the Holevo bound?
 
 // The mutual information is defined as follow:
 
-// $ I(X; Y) = - sum_(x, y) p(x, y) log(p(x, y)/(p(x)p(y))) $
+// $ H(X: Y) = - sum_(x, y) p(x, y) log(p(x, y)/(p(x)p(y))) $
 
 *Von Neumann entropy for quantum states*
 
@@ -284,7 +284,7 @@ Bob performs a measurement described by POVM elements ${E_y} = {E_0, dots, E_m}$
 
 The Holevo bound states that for any such measurement Bob may do:
 $
-I(X; Y) <= S(rho) - sum_x p_x S(rho_x)
+H(X: Y) <= S(rho) - sum_x p_x S(rho_x)
 $
 where
 $rho = sum_x p_x rho_x$.
@@ -316,38 +316,31 @@ $)
 
 _Precomputations_
 
-#align(center, 
+
 $
   rho_1 &= |X_1 chevron.r chevron X_1| \
   &= |0 chevron.r chevron 0| \
-  &= mat(1, 0; 0, 0)$)
+  &= mat(1, 0; 0, 0) \
 
-#align(left, $
   rho_2 &= |X_2 chevron.r chevron X_2| \
   &= sqrt(1/3) [ |0 chevron.r + sqrt(2)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) chevron 1| ] \
   &= 1/3 [ vec(1, 0) + sqrt(2)vec(0, 1)] [ mat(1, 0) + sqrt(2) mat(0, 1) ] \
   &= 1/3 vec(1, sqrt(2))  mat(1, sqrt(2)) \
   &= 1/3 mat(1, sqrt(2); sqrt(2), 2) \
-$)
 
-#align(left, 
-$
   rho_3 &= |X_3 chevron.r chevron X_3| \
   &= sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) e^(-2 pi i \/ 3) chevron 1| ] \
   &= 1/3 [ vec(1, 0) + sqrt(2) e^(2 pi i \/ 3)vec(0, 1)] [ mat(1, 0) + sqrt(2) e^(-2 pi i \/ 3) mat(0, 1) ] \
   &= 1/3 vec(1, sqrt(2) e^(2 pi i \/ 3))  mat(1, sqrt(2) e^(-2 pi i \/ 3)) \
   &= 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2e^(0)) \
   &= 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) \
-$)
 
-#align(left, 
-$
   rho_4 &= |X_4 chevron.r chevron X_4| \
   &= sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) e^(-4 pi i \/ 3) chevron 1| ] \
   &= 1/3 [ vec(1, 0) + sqrt(2) e^(4 pi i \/ 3)vec(0, 1)] [ mat(1, 0) + sqrt(2) e^(-4 pi i \/ 3) mat(0, 1) ] \
   &= 1/3 vec(1, sqrt(2) e^(4 pi i \/ 3))  mat(1, sqrt(2) e^(-4 pi i \/ 3)) \
   &= 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) \
-$)
+$
 
 _Computation of $S(rho)$_
 
@@ -374,9 +367,9 @@ So according to the Holevo bound theorem, we have:
 
 #align(left,
 $
-  I(X; Y) &<= S(rho) - sum_x p_x S(rho_x) \
-  <==> I(X; Y) &<= S(I\/2) - 0 \
-  <==> I(X; Y) &<= 1
+  H(X: Y) &<= S(rho) - sum_x p_x S(rho_x) \
+  <==> H(X: Y) &<= S(I\/2) - 0 \
+  <==> H(X: Y) &<= 1
 $)
 
 Now we want to prove that the mutual information is stricly less than 1.
@@ -387,19 +380,10 @@ Indeed, mutual information tells us to what extent knowing the state of Bob's sy
 
 As the entropy of Bob's system is of 1, we want that the system of Bob allows to fully determinate the Alice's system to have a mutual information of 1.
 
-So we want to verify whether the four qubits do not overlap, that is, whether they are orthogonal.
-
-We have:
-
-#align(left, 
-$
-  chevron X_1 | X_2 chevron.r &= sqrt(1/3) chevron 0|  [ |0 chevron.r + sqrt(2)|1 chevron.r] \
-  &= sqrt(1/3) mat(1, 0) vec(1, sqrt(2)) \
-  &= sqrt(1/3)
-$)
-
-So there is an overlap between $|X_1 chevron.r$ and $|X_2 chevron.r$, meaning that Bob might make a mistake.
-So the mutual information is stricly less than 1.
+So we want to verify whether the four qubits state do not overlap.
+However, we have basicaly only two dimensions, so we can only have two orthogonal states that are clearly distinguishable.
+So the four states must overlap, so Bob might make a mistake.
+So the mutual information is strictly less than 1.
 
 The POVM (Posivite Operator-Valued Measure) is used for the analysis of the measurement.
 Indeed, suppose that a measurement is achieved with a measurement operator $M_m$ on a quantum system in the state $|psi chevron.r$, then the probability of outcome $m$ is given by
@@ -438,100 +422,126 @@ So we can define the POVM as ${E_i = 1/2 rho_i = 1/2 |X_i chevron.r chevron X_i|
 As used in page 534 of Quantum Computation and Quantum Information: 10th Anniversary Edition @Nielsen_Chuang_2010,
 the joint distribution $p(x, y)$ satisfies $p(x, y) = p(x)p(y|x) = p(x)tr(rho_x E_y)$.
 
-So we can compute $p(y|x) &= tr(rho_x E_y)$ for $x, y in {1, 2, 3, 4}$ with $p(x) = p_i$ the probability of Alice to send $|X_i chevron.r$.
+So we can construct the table of joint distribution $p(x, y)$ as follow:
 
-We can construct a matrix of probabilities $p(y|x)$ as follow:
+#table(
+  columns: 5,
+  rows: 5,
+  $x \\ y$, $1$, $2$, $3$, $4$,
+  $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $p_1 tr(rho_1 E_3)$, $p_1 tr(rho_1 E_4)$,
+  $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $p_2 tr(rho_2 E_3)$, $p_2 tr(rho_2 E_4)$,
+  $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $p_3 tr(rho_3 E_3)$, $p_3 tr(rho_3 E_4)$,
+  $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $p_4 tr(rho_4 E_3)$, $p_4 tr(rho_4 E_4)$
+)
 
-$
-  &mat(p(y = 1|x = 1), p(y = 2|x = 1), p(y = 3|x = 1), p(y = 4|x = 1); p(y = 1|x = 2), p(y = 2|x = 2), p(y = 3|x = 2), p(y = 4|x = 2); p(y = 1|x = 3), p(y = 2|x = 3), p(y = 3|x = 3), p(y = 4|x = 3); p(y = 1|x = 4), p(y = 2|x = 4), p(y = 3|x = 4), p(y = 4|x = 4)) \
-  =&mat(p_1 tr(rho_1 E_1), p_1 tr(rho_1 E_2), p_1 tr(rho_1 E_3), p_1 tr(rho_1 E_4); p_2 tr(rho_2 E_1), p_2 tr(rho_2 E_2), p_2 tr(rho_2 E_3), p_2 tr(rho_2 E_4); p_3 tr(rho_3 E_1), p_3 tr(rho_3 E_2), p_3 tr(rho_3 E_3), p_3 tr(rho_3 E_4); p_4 tr(rho_4 E_1), p_4 tr(rho_4 E_2), p_4 tr(rho_4 E_3), p_4 tr(rho_4 E_4)) \
-  =&mat(1/4 tr(1/2 rho_1 rho_1), 1/4 tr(1/2 rho_1 rho_2), 1/4 tr(1/2 rho_1 rho_3), 1/4 tr(1/2 rho_1 rho_4); 1/4 tr(1/2 rho_2 rho_1), 1/4 tr(1/2 rho_2 rho_2), 1/4 tr(1/2 rho_2 rho_3), 1/4 tr(1/2 rho_2 rho_4); 1/4 tr(1/2 rho_3 rho_1), 1/4 tr(1/2 rho_3 rho_2), 1/4 tr(1/2 rho_3 rho_3), 1/4 tr(1/2 rho_3 rho_4); 1/4 tr(1/2 rho_4 rho_1), 1/4 tr(1/2 rho_4 rho_2), 1/4 tr(1/2 rho_4 rho_3), 1/4 tr(1/2 rho_4 rho_4)) \
-$
+As $E_i = 1/2 rho_i$, we have:
 
-As $p_1 = p_2 = p_3 = p_4 = 1/4$, the matrix is symetric.
+#set math.equation(numbering: none)
 
-We have:
-
+#align(left, 
 $
   1/4 tr(1/2 rho_1 rho_1)
-  &= 1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
+  &=  1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
   &= 1/4 dot 1/2 \
-  &= 1/8
-$
+  &= 1/8 \
 
-$
   1/4 tr(1/2 rho_1 rho_2)
   &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
   &= 1/4 dot 1/2 dot 1/3 \
-  &= 1/24
-$
+  &= 1/24 \
 
-$
   1/4 tr(1/2 rho_1 rho_3)
   &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
   &= 1/4 dot 1/2 dot 1/3 \
-  &= 1/24
-$
-$
+  &= 1/24 \
+
   1/4 tr(1/2 rho_1 rho_4)
   &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
   &= 1/4 dot 1/2 dot 1/3 \
   &= 1/24
-$
+$)
+
+#align(left, 
+
 $
   1/4 tr(1/2 rho_2 rho_2)
   &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
   &= 1/4 tr(1/18 mat(3, 3 sqrt(2); 3 sqrt(2), 6)) \
-  &= 1/4 dot (3/18 + 6/18) \
-  &= 1/4 dot 1/2 \
-  &= 1/8
-$
-$
+  &= 1/4 (3/18 + 6/18) \
+  &= 1/4 * 1/2 \
+  &= 1/8 \
+
   1/4 tr(1/2 rho_2 rho_3)
   &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
   &= 1/4 tr(1/18 mat(1 + 2e^(2 pi i \/ 3), sqrt(2)(1 + 2e^(-2 pi i \/ 3)); sqrt(2)(1 + 2e^(2 pi i \/ 3)), 4 + 2e^(-2 pi i \/ 3))) \
-  &= 1/4 dot 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
-  &= 1/4 dot 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
-  &= 1/4 dot 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
-  &= 1/4 dot 1/18 dot (5 - 2) \
-  &= 1/24
-$
-$
+  &= 1/4 * 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
+  &= 1/4 * 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
+  &= 1/4 * 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
+  &= 1/4 * 1/18 dot (5 - 2) \
+  &= 1/24 \
   1/4 tr(1/2 rho_2 rho_4)
   &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
   &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
-  &= 1/4 dot 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
-  &= 1/4 dot 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
-   &= 1/4 dot 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
-   &= 1/24
-$
+  &= 1/4 * 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
+  &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+  &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+  &= 1/4 * 1/18 * 3 \
+  &= 1/24
+$)
+
+#align(left, 
 $
   1/4 tr(1/2 rho_3 rho_3)
   &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
   &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-2 pi i \/ 3); 3 sqrt(2) e^(2 pi i \/ 3), 6)) \
-  &= 1/4 dot (3/18 + 6/18) \
-  &= 1/8
-$
-$
+  &= 1/4 (3/18 + 6/18) \
+  &= 1/4 * 1/2 \
+  &= 1/8 \
+
   1/4 tr(1/2 rho_3 rho_4)
   &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
   &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
-  &= 1/4 dot 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
-  &= 1/4 dot 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
-  &= 1/24
-$
-$  1/4 tr(1/2 rho_4 rho_4)
+  &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+  &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+  &= 1/4 * 1/18 * 3 \
+  &= 1/24 \
+
+  1/4 tr(1/2 rho_4 rho_4)
   &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
   &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-4 pi i \/ 3); 3 sqrt(2) e^(4 pi i \/ 3), 6)) \
-  &= 1/4 dot (3/18 + 6/18) \
+  &= 1/4 (3/18 + 6/18) \
+  &= 1/4 * 1/2 \
   &= 1/8
+$)
+
+So the table of joint distribution $p(x, y)$ is:
+#pagebreak()
+#align(center, figure(table(
+  columns: 6,
+  rows: 6,
+  align: center,
+  inset: 10pt,
+  $x \\ y$, $1$, $2$, $3$, $4$, $p(y)$,
+  $1$, $1/8$, $1/24$, $1/24$, $1/24$, $1/4$,
+  $2$, $1/24$, $1/8$, $1/24$, $1/24$, $1/4$,
+  $3$, $1/24$, $1/24$, $1/8$, $1/24$, $1/4$,
+  $4$, $1/24$, $1/24$, $1/24$, $1/8$, $1/4$,
+  $p(x)$, $1/4$, $1/4$, $1/4$, $1/4$, $1$,
+), caption: "Joint probability distribution table")) <joint-distribution>
+
+So we have:
+
+- $H(X) = - sum_x p(x) log_2(p(x)) = - 4 dot 1/4 log_2(1/4) = 2$
+- $H(Y) = - sum_y p(y) log_2(p(y)) = - 4 dot 1/4 log_2(1/4) = 2$
+- $H(X, Y) = - sum_(x, y) p(x, y) log_2(p(x, y)) = - 4 dot 1/8 log_2(1/8) - 12 dot 1/24 log_2(1/24) = 3.792$
+
+So the mutual information is:
+$
+  H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 2 - 3.792 = 0.208
 $
 
-So the matrix of probabilities is:
-$
-  p(y|x) = &mat(1/4 tr(1/2 rho_1 rho_1), 1/4 tr(1/2 rho_1 rho_2), 1/4 tr(1/2 rho_1 rho_3), 1/4 tr(1/2 rho_1 rho_4); 1/4 tr(1/2 rho_2 rho_1), 1/4 tr(1/2 rho_2 rho_2), 1/4 tr(1/2 rho_2 rho_3), 1/4 tr(1/2 rho_2 rho_4); 1/4 tr(1/2 rho_3 rho_1), 1/4 tr(1/2 rho_3 rho_2), 1/4 tr(1/2 rho_3 rho_3), 1/4 tr(1/2 rho_3 rho_4); 1/4 tr(1/2 rho_4 rho_1), 1/4 tr(1/2 rho_4 rho_2), 1/4 tr(1/2 rho_4 rho_3), 1/4 tr(1/2 rho_4 rho_4)) \
-  &= mat(1/8, 1/24, 1/24, 1/24; 1/24, 1/8, 1/24, 1/24; 1/24, 1/24, 1/8, 1/24; 1/24, 1/24, 1/24, 1/8)
-$
+
+
 
 // So Alice's system has no information at all, so the knowledge of Alice's system indicate nothing on Bob's system.
 // So the mutual information is equal to 0 bit, which is less than 1 bit. 
