@@ -529,7 +529,7 @@ $
 
 So the matrix of probabilities is:
 $
-  &mat(1/4 tr(1/2 rho_1 rho_1), 1/4 tr(1/2 rho_1 rho_2), 1/4 tr(1/2 rho_1 rho_3), 1/4 tr(1/2 rho_1 rho_4); 1/4 tr(1/2 rho_2 rho_1), 1/4 tr(1/2 rho_2 rho_2), 1/4 tr(1/2 rho_2 rho_3), 1/4 tr(1/2 rho_2 rho_4); 1/4 tr(1/2 rho_3 rho_1), 1/4 tr(1/2 rho_3 rho_2), 1/4 tr(1/2 rho_3 rho_3), 1/4 tr(1/2 rho_3 rho_4); 1/4 tr(1/2 rho_4 rho_1), 1/4 tr(1/2 rho_4 rho_2), 1/4 tr(1/2 rho_4 rho_3), 1/4 tr(1/2 rho_4 rho_4)) \
+  p(y|x) = &mat(1/4 tr(1/2 rho_1 rho_1), 1/4 tr(1/2 rho_1 rho_2), 1/4 tr(1/2 rho_1 rho_3), 1/4 tr(1/2 rho_1 rho_4); 1/4 tr(1/2 rho_2 rho_1), 1/4 tr(1/2 rho_2 rho_2), 1/4 tr(1/2 rho_2 rho_3), 1/4 tr(1/2 rho_2 rho_4); 1/4 tr(1/2 rho_3 rho_1), 1/4 tr(1/2 rho_3 rho_2), 1/4 tr(1/2 rho_3 rho_3), 1/4 tr(1/2 rho_3 rho_4); 1/4 tr(1/2 rho_4 rho_1), 1/4 tr(1/2 rho_4 rho_2), 1/4 tr(1/2 rho_4 rho_3), 1/4 tr(1/2 rho_4 rho_4)) \
   &= mat(1/8, 1/24, 1/24, 1/24; 1/24, 1/8, 1/24, 1/24; 1/24, 1/24, 1/8, 1/24; 1/24, 1/24, 1/24, 1/8)
 $
 
