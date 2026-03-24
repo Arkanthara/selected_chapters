@@ -234,6 +234,8 @@ The circuit can be drawn like in @circuit.
 
 = Exercise 5
 
+#set math.equation(numbering: "(1)")
+
 Suppose Alice sends Bob an equal mixture of the four pure states
 $
   |X_1 chevron.r & = |0 chevron.r \
@@ -353,7 +355,7 @@ If Alice sends Bob an equal mixture of the four pure states, it means that Bob w
 
 So Bob can compute the density $rho$ of the system.
 
-#align(left, 
+
 $
   rho &= sum_i p_i rho_i \
   &= 1/4 rho_1 + 1/4 rho_2 + 1/4 rho_3 + 1/4 rho_4 \
@@ -364,7 +366,7 @@ $
   &= 1/12 mat(6, sqrt(2)(e^(-2 pi i \/ 3)^3 + e^(-2 pi i \/ 3) + e^(-4 pi i \/ 3)^2); sqrt(2) (e^(6 pi i \/ 3)^3 + e^(2 pi i \/ 3) + e^(4 pi i \/ 3)^2), 6) \
   &= 1/12 mat(6, 0; 0, 6)^#report-footnote([As $e^(2 pi i \/ 3)$ and $e^(-2 pi i \/ 3)$ are primitive root. Indeed, $e^(2 pi i \/ 3)^3 = e^(-2 pi i \/ 3)^3 = 1$ so $e^(2 pi i \/ 3) + e^(2 pi i \/ 3)^2 + e^(2 pi i \/ 3)^3 =e^(-2 pi i \/ 3) + e^(-2 pi i \/ 3)^2 + e^(-2 pi i \/ 3)^3 = 0$ ]) \
   &= I/2
-$)
+$ <eq-1>
 
 So the entropy of Bob's system is maximal: $S(rho) = S(I/2) = log 2 = 1$.
 
@@ -398,6 +400,138 @@ $)
 
 So there is an overlap between $|X_1 chevron.r$ and $|X_2 chevron.r$, meaning that Bob might make a mistake.
 So the mutual information is stricly less than 1.
+
+The POVM (Posivite Operator-Valued Measure) is used for the analysis of the measurement.
+Indeed, suppose that a measurement is achieved with a measurement operator $M_m$ on a quantum system in the state $|psi chevron.r$, then the probability of outcome $m$ is given by
+
+$ p(m) = chevron psi|E_m|psi chevron.r $ with $E_m = M_m^dagger M_m$.
+
+Due to the property of completeness equation of the measurement operator, we have: 
+
+$ sum_m M_m^dagger M_m = sum_m E_m = I $
+
+On top of that, as $p(m)$ is a probability, $p(m) >= 0$ $forall m$.
+So $chevron psi|E_m|psi chevron.r &>= 0$ $forall E_m$, which means that $E_m$ is a positif operator.
+
+The complete set of operators ${E_m}$ is known as POVM.
+
+So we want to construct a set of operators ${E_m}$ such that:
+- Each operator $E_m$ is positive
+- $sum_m E_m = I$
+
+From the calculation of @eq-1, we see that the result is $rho = I/2$.
+We also see that each $rho_i$ is strictly positive.
+Indeed, since the exponential function and the square root are non-negative, this means that each $rho_i$ is composed of non-negative values.
+The $rho_i$ are therefore positive.
+
+So according to @eq-1, we can construct:
+
+$
+  I/2 &= rho \
+  <==> I &= 2 rho \
+  <==> I &= 2 sum_i p_i rho_i \
+  <==> I &= 1/2 rho_1 + 1/2 rho_2 + 1/2 rho_3 + 1/2 rho_4 \
+$
+
+So we can define the POVM as ${E_i = 1/2 rho_i = 1/2 |X_i chevron.r chevron X_i|}_(i in {1, 2, 3, 4})$.
+
+As used in page 534 of Quantum Computation and Quantum Information: 10th Anniversary Edition @Nielsen_Chuang_2010,
+the joint distribution $p(x, y)$ satisfies $p(x, y) = p(x)p(y|x) = p(x)tr(rho_x E_y)$.
+
+So we can compute $p(y|x) &= tr(rho_x E_y)$ for $x, y in {1, 2, 3, 4}$ with $p(x) = p_i$ the probability of Alice to send $|X_i chevron.r$.
+
+We can construct a matrix of probabilities $p(y|x)$ as follow:
+
+$
+  &mat(p(y = 1|x = 1), p(y = 2|x = 1), p(y = 3|x = 1), p(y = 4|x = 1); p(y = 1|x = 2), p(y = 2|x = 2), p(y = 3|x = 2), p(y = 4|x = 2); p(y = 1|x = 3), p(y = 2|x = 3), p(y = 3|x = 3), p(y = 4|x = 3); p(y = 1|x = 4), p(y = 2|x = 4), p(y = 3|x = 4), p(y = 4|x = 4)) \
+  =&mat(p_1 tr(rho_1 E_1), p_1 tr(rho_1 E_2), p_1 tr(rho_1 E_3), p_1 tr(rho_1 E_4); p_2 tr(rho_2 E_1), p_2 tr(rho_2 E_2), p_2 tr(rho_2 E_3), p_2 tr(rho_2 E_4); p_3 tr(rho_3 E_1), p_3 tr(rho_3 E_2), p_3 tr(rho_3 E_3), p_3 tr(rho_3 E_4); p_4 tr(rho_4 E_1), p_4 tr(rho_4 E_2), p_4 tr(rho_4 E_3), p_4 tr(rho_4 E_4)) \
+  =&mat(1/4 tr(1/2 rho_1 rho_1), 1/4 tr(1/2 rho_1 rho_2), 1/4 tr(1/2 rho_1 rho_3), 1/4 tr(1/2 rho_1 rho_4); 1/4 tr(1/2 rho_2 rho_1), 1/4 tr(1/2 rho_2 rho_2), 1/4 tr(1/2 rho_2 rho_3), 1/4 tr(1/2 rho_2 rho_4); 1/4 tr(1/2 rho_3 rho_1), 1/4 tr(1/2 rho_3 rho_2), 1/4 tr(1/2 rho_3 rho_3), 1/4 tr(1/2 rho_3 rho_4); 1/4 tr(1/2 rho_4 rho_1), 1/4 tr(1/2 rho_4 rho_2), 1/4 tr(1/2 rho_4 rho_3), 1/4 tr(1/2 rho_4 rho_4)) \
+$
+
+As $p_1 = p_2 = p_3 = p_4 = 1/4$, the matrix is symetric.
+
+We have:
+
+$
+  1/4 tr(1/2 rho_1 rho_1)
+  &= 1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
+  &= 1/4 dot 1/2 \
+  &= 1/8
+$
+
+$
+  1/4 tr(1/2 rho_1 rho_2)
+  &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
+  &= 1/4 dot 1/2 dot 1/3 \
+  &= 1/24
+$
+
+$
+  1/4 tr(1/2 rho_1 rho_3)
+  &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+  &= 1/4 dot 1/2 dot 1/3 \
+  &= 1/24
+$
+$
+  1/4 tr(1/2 rho_1 rho_4)
+  &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 1/4 dot 1/2 dot 1/3 \
+  &= 1/24
+$
+$
+  1/4 tr(1/2 rho_2 rho_2)
+  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
+  &= 1/4 tr(1/18 mat(3, 3 sqrt(2); 3 sqrt(2), 6)) \
+  &= 1/4 dot (3/18 + 6/18) \
+  &= 1/4 dot 1/2 \
+  &= 1/8
+$
+$
+  1/4 tr(1/2 rho_2 rho_3)
+  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+  &= 1/4 tr(1/18 mat(1 + 2e^(2 pi i \/ 3), sqrt(2)(1 + 2e^(-2 pi i \/ 3)); sqrt(2)(1 + 2e^(2 pi i \/ 3)), 4 + 2e^(-2 pi i \/ 3))) \
+  &= 1/4 dot 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
+  &= 1/4 dot 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
+  &= 1/4 dot 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
+  &= 1/4 dot 1/18 dot (5 - 2) \
+  &= 1/24
+$
+$
+  1/4 tr(1/2 rho_2 rho_4)
+  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
+  &= 1/4 dot 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
+  &= 1/4 dot 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+   &= 1/4 dot 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+   &= 1/24
+$
+$
+  1/4 tr(1/2 rho_3 rho_3)
+  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+  &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-2 pi i \/ 3); 3 sqrt(2) e^(2 pi i \/ 3), 6)) \
+  &= 1/4 dot (3/18 + 6/18) \
+  &= 1/8
+$
+$
+  1/4 tr(1/2 rho_3 rho_4)
+  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
+  &= 1/4 dot 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+  &= 1/4 dot 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+  &= 1/24
+$
+$  1/4 tr(1/2 rho_4 rho_4)
+  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-4 pi i \/ 3); 3 sqrt(2) e^(4 pi i \/ 3), 6)) \
+  &= 1/4 dot (3/18 + 6/18) \
+  &= 1/8
+$
+
+So the matrix of probabilities is:
+$
+  &mat(1/4 tr(1/2 rho_1 rho_1), 1/4 tr(1/2 rho_1 rho_2), 1/4 tr(1/2 rho_1 rho_3), 1/4 tr(1/2 rho_1 rho_4); 1/4 tr(1/2 rho_2 rho_1), 1/4 tr(1/2 rho_2 rho_2), 1/4 tr(1/2 rho_2 rho_3), 1/4 tr(1/2 rho_2 rho_4); 1/4 tr(1/2 rho_3 rho_1), 1/4 tr(1/2 rho_3 rho_2), 1/4 tr(1/2 rho_3 rho_3), 1/4 tr(1/2 rho_3 rho_4); 1/4 tr(1/2 rho_4 rho_1), 1/4 tr(1/2 rho_4 rho_2), 1/4 tr(1/2 rho_4 rho_3), 1/4 tr(1/2 rho_4 rho_4)) \
+  &= mat(1/8, 1/24, 1/24, 1/24; 1/24, 1/8, 1/24, 1/24; 1/24, 1/24, 1/8, 1/24; 1/24, 1/24, 1/24, 1/8)
+$
 
 // So Alice's system has no information at all, so the knowledge of Alice's system indicate nothing on Bob's system.
 // So the mutual information is equal to 0 bit, which is less than 1 bit. 
