@@ -1,675 +1,696 @@
-# Applications des ordinateurs quantiques
+---
+title: "Applications des ordinateurs quantiques"
+---
 
-## Vue d'ensemble
+## Vue d'ensemble des applications
 
-Avant d'entrer dans les détails techniques de l'informatique quantique, il est utile de comprendre **pourquoi** ces machines nous intéressent. Les ordinateurs quantiques promettent des avancées révolutionnaires dans de nombreux domaines.
+Les ordinateurs quantiques ne sont pas simplement des ordinateurs classiques « plus rapides » : ils exploitent des phénomènes quantiques (superposition, intrication, interférence) pour résoudre certaines classes de problèmes de manière radicalement différente — voire impossible à réaliser classiquement en temps raisonnable.
 
-Les domaines d'application majeurs incluent :
+Les grandes familles d'applications sont :
 
-- **Voyage et logistique** — optimisation d'itinéraires complexes
-- **Chimie** — simulation moléculaire et réactions chimiques
-- **Pharmacologie** — conception de médicaments
-- **Modélisation climatique** — simulations à grande échelle
-- **Analyse financière** — optimisation de portefeuilles
-- **Cryptographie** — sécurisation et cassage de chiffrement
+- La **factorisation quantique** (Quantum Factoring) — Shor, 1994
+- La **recherche quantique** (Quantum Search) — Grover, 1997
+- La **simulation quantique** (Quantum Simulation)
+- L'**optimisation quantique** (Quantum Optimization)
+- Les **réseaux quantiques** (Quantum Networks)
 
 ---
 
-## Application 1 — Factorisation Quantique
+### Application 1 : Factorisation quantique (Quantum Factoring)
 
-> *P. Shor, 1994*
+#### Le problème de la factorisation
 
-### Le problème de la factorisation
+Factoriser un entier, c'est trouver ses diviseurs premiers. Par exemple :
 
-La factorisation consiste à décomposer un entier $N$ en ses facteurs premiers.
+$$15 = 3 \times 5$$
 
-- $15 = 3 \times 5$ → facile !
-- $38647884621009387621432325631 = \; ? \times \; ?$ → très difficile pour un ordinateur classique.
+Cela semble simple pour de petits nombres. Mais pour un nombre de 30 chiffres comme :
 
-::: {.callout-important}
-**Importance : cryptanalyse**
+$$386478846210093876214325631 = \; ? \times \; ?$$
 
-La cryptographie à clé publique (ex. : RSA) repose entièrement sur l'**impossibilité pratique** de factoriser de grands nombres. Un ordinateur quantique capable de le faire briserait la plupart des communications sécurisées actuelles.
+la tâche devient astronomiquement difficile pour un ordinateur classique.
+
+::: {.callout-important title="Importance cryptographique"}
+La cryptographie à clé publique (RSA) repose précisément sur cette difficulté : factoriser de grands nombres est supposé être un problème *computationnellement* intraitable. Un ordinateur quantique suffisamment grand remettrait en cause ce fondement.
 :::
 
-### Comparaison des performances
+#### Avantage quantique
 
-| Algorithme | Complexité | Temps (ordinateur THz) |
+| Méthode | Complexité | Temps estimé (ordinateur THz) |
 |---|---|---|
-| Meilleur algorithme classique | $O(\exp(n^{1/3}))$ — $10^{24}$ étapes | **150 000 ans** |
-| Algorithme de Shor (quantique) | $O(n^3 \log n)$ — $10^{10}$ étapes | **< 1 seconde** |
+| Meilleur algorithme classique | $10^{24}$ étapes | 150 000 ans |
+| Algorithme de Shor (quantique) | $10^{10}$ étapes | moins d'1 seconde |
 
-L'avantage quantique est ici **exponentiel** : l'algorithme de Shor est incomparablement plus rapide que tout algorithme classique connu.
-
----
-
-## Application 2 — Recherche Quantique
-
-> *L. Grover, 1997*
-
-### Le problème de la recherche non structurée
-
-Imaginons que l'on cherche le nom d'une personne dans un annuaire **non trié**, en ne connaissant que son numéro de téléphone.
-
-- Classiquement : il faut inspecter en moyenne $N/2$ entrées → $O(N)$ opérations.
-- Avec l'algorithme de Grover : seulement $O(\sqrt{N})$ opérations — un gain **quadratique**.
-
-### Domaines d'importance (*problèmes de satisfiabilité*)
-
-- Recherche rapide dans de grands jeux de données
-- Inversion de fonctions complexes
-- Calcul de propriétés globales (médiane, etc.)
-- Reconnaissance de formes et vision par ordinateur
-
----
-
-## Application 3 — Simulation Quantique
-
-### Pourquoi la simulation classique est-elle difficile ?
-
-Simuler $N$ systèmes quantiques en interaction nécessite de résoudre $2^N$ équations couplées, issues de l'équation de Schrödinger :
-
-$$
-i\hbar \frac{\partial \Psi}{\partial t} = H\Psi
-$$
-
-Pour $N = 50$ particules, cela représente $2^{50} \approx 10^{15}$ équations — bien au-delà des capacités classiques.
-
-### L'approche par simulateur quantique
-
-L'idée est d'utiliser un **ensemble standard de qubits avec des interactions programmables** pour imiter le système physique cible.
-
-Les plateformes physiques disponibles sont :
-
-- **Ions atomiques** piégés
-- **Atomes neutres** dans des réseaux optiques
-- **Supraconducteurs** (circuits Josephson)
-- **Centres NV** dans le diamant
-
-### Applications concrètes
-
-- **Quantum Material Design** — comprendre et concevoir de nouveaux matériaux exotiques
-- **Récolte d'énergie et de lumière** — simuler des théories de jauge QCD sur réseau
-- **Théories quantiques des champs** — connecter cosmologie et théorie de l'information (AdS-CFT)
-
----
-
-## Application 4 — Optimisation Quantique
-
-### Principe
-
-L'optimisation quantique consiste à minimiser des fonctions complexes (non linéaires) en explorant **simultanément** tout l'espace des solutions grâce à la superposition quantique.
-
-### Exemple — Optimisation quadratique
-
-On cherche à minimiser une fonction de la forme :
-
-$$
-f(x_1, x_2, \ldots) = \sum_{i < j} q_{ij} x_i x_j + \sum_i c_i x_i
-$$
-
-Cette fonction correspond à l'énergie d'un réseau magnétique quantique (*Ising model*), ce qui permet de mapper le problème sur un système quantique physique.
-
-### Domaines d'application
-
-- Logistique et routage
-- Recherche opérationnelle
-- Conception VLSI (circuits intégrés)
-- Finance (optimisation de portefeuilles)
-
-::: {.callout-note}
-**Application potentiellement révolutionnaire (*Killer Application*)**
-
-L'optimisation quantique pourrait résoudre une large classe de problèmes réputés intractables : factorisation, *problème du voyageur de commerce*, etc. Cependant, il n'est pas encore prouvé qu'il existe toujours un avantage quantique.
+::: {.callout-tip title="Intuition"}
+L'algorithme de Shor utilise la **Transformée de Fourier Quantique (QFT)** pour trouver la période d'une fonction modulaire. La périodicité permet ensuite de déduire les facteurs de N par un calcul classique.
 :::
 
 ---
 
-## Application 5 — Réseaux Quantiques
+### Application 2 : Recherche quantique (Quantum Search)
 
-### Architecture d'un réseau quantique
+#### Le problème
 
-Un réseau quantique connecte plusieurs nœuds (de 0,1 m à 10 000 km de distance) via des canaux capables de transmettre des états quantiques.
+Imaginons un annuaire téléphonique non trié : on cherche le nom du propriétaire d'un numéro donné. Classiquement, il faut en moyenne inspecter la moitié des entrées : complexité $O(N)$.
 
+::: {.callout-note title="À retenir"}
+L'algorithme de **Grover (1997)** permet de résoudre ce problème en $O(\sqrt{N})$ opérations, soit un **gain quadratique** par rapport à la recherche classique.
+:::
+
+#### Applications pratiques
+
+Ce gain quadratique est utile pour :
+
+- La **recherche rapide dans de grandes bases de données**
+- L'**inversion de fonctions complexes**
+- Le **calcul de la médiane** ou d'autres propriétés globales de données
+- La **reconnaissance de motifs** et la vision par machine
+
+---
+
+### Application 3 : Simulation quantique (Quantum Simulation)
+
+#### Pourquoi c'est difficile classiquement
+
+Simuler un système quantique de $N$ particules requiert de résoudre $2^N$ équations couplées — l'équation de Schrödinger :
+
+$$i\hbar \frac{\partial \Psi}{\partial t} = H\Psi$$
+
+Pour $N = 50$ particules, cela représente $2^{50} \approx 10^{15}$ équations : hors de portée de tout supercalculateur classique.
+
+#### L'approche quantique
+
+L'idée est d'utiliser un **simulateur quantique** : un ensemble standard de qubits avec des interactions programmables. Les types de systèmes physiques utilisés sont :
+
+- **Ions atomiques** (Atomic ions)
+- **Atomes piégés** (Trapped atoms)
+- **Supraconducteurs** (Superconductors)
+- **Centres NV dans le diamant** (NV-diamond)
+
+#### Domaines d'application
+
+**Conception de matériaux quantiques (Quantum Material Design)**
+: Comprendre les propriétés exotiques de matériaux existants, ou concevoir de nouveaux matériaux quantiques à partir de principes fondamentaux.
+
+**Récolte d'énergie et de lumière (Energy and Light Harvesting)**
+: Utiliser un simulateur quantique pour programmer des théories de jauge de la QCD sur réseau, et tester des idées reliant la cosmologie à la théorie de l'information (AdS-CFT, etc.).
+
+**Théories des champs quantiques (Quantum Field Theories)**
+: Programmer des théories de jauge de la QCD sur réseau, explorer les connexions entre cosmologie et théorie de l'information.
+
+---
+
+### Application 4 : Optimisation quantique (Quantum Optimization)
+
+#### Le principe
+
+L'optimisation quantique consiste à minimiser des fonctions complexes (non linéaires) en « échantillonnant simultanément » tout l'espace de paramètres grâce à la **superposition quantique**.
+
+Un exemple classique : l'optimisation quadratique. On cherche à minimiser :
+
+$$f(x_1, x_2, \ldots) = \sum_{i < j} q_{ij} x_i x_j + \sum_i c_i x_i$$
+
+Cette fonction se mappe naturellement sur l'énergie d'un réseau magnétique quantique.
+
+#### Domaines d'application
+
+- Logistique (Logistics)
+- Recherche opérationnelle (Operations Research)
+- Conception de circuits intégrés VLSI (VLSI design)
+- Finance
+
+::: {.callout-warning title="Limite actuelle"}
+L'optimisation quantique est parfois appelée « application tueuse » (*killer application*), car elle pourrait résoudre une grande classe de problèmes intractables (factorisation, problème du voyageur de commerce...). Cependant, il n'est **pas encore prouvé** qu'il existe toujours un avantage quantique (*quantum speedup*) pour ces problèmes.
+:::
+
+---
+
+### Application 5 : Réseaux quantiques (Quantum Networks)
+
+#### Architecture
+
+Un réseau quantique relie des sites distants (de 0,1 m à 10 000 km) via un canal quantique permettant l'échange de qubits intriqués.
+
+```{mermaid}
+graph TD
+    A[Site A] <-->|Canal quantique| QN[Réseau Quantique]
+    B[Site B] <-->|Canal quantique| QN
+    C[Site C] <-->|Canal quantique| QN
+    D[Site D] <-->|Canal quantique| QN
 ```
-Location A ←——→ Réseau Quantique ←——→ Location B
-                      ↕                      
-                 Location C             Location D
-```
 
-### Utilisations d'un réseau quantique
+#### Usages d'un réseau quantique
 
-- **Génération de clés secrètes** — cryptographie quantique
+- **Génération de clés secrètes** (cryptographie)
 - **Génération de nombres aléatoires certifiés**
-- **Répéteurs quantiques** — amplificateurs de signaux quantiques
-- **Intrication distribuée** — pour la prise de décision optimale
-- **Calcul quantique à grande échelle** — interconnexion de QPUs
+- **Répéteurs quantiques** (amplificateurs)
+- **Intrication quantique distribuée** pour la prise de décision optimale
+- **Calcul quantique à grande échelle** (distributed quantum computing)
 
 ---
 
-# Communications Quantiques
+## Prérequis : Intrication comme ressource
 
-> *Étude de cas 1 : utilisation de l'intrication comme ressource*
+Avant d'aborder les protocoles de communication quantique, rappelons le contexte.
 
-## Vue d'ensemble
+Alice et Bob partagent une **paire intriquée** :
 
-Nous allons explorer trois protocoles fondamentaux qui tirent parti de l'**intrication quantique** comme ressource de communication :
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
 
-- **Téléportation quantique** — transmettre un qubit en utilisant 2 bits classiques + 1 paire intriquée
-- **Codage superdense** — transmettre 2 bits classiques en envoyant 1 qubit + 1 paire intriquée
-- **Distribution quantique de clés (QKD)** — créer un pad à usage unique sans que Alice et Bob ne se rencontrent
+On a vu que cette intrication seule ne suffit pas à envoyer de l'information (pas de signalisation). Mais combinée à un **canal classique**, elle permet deux protocoles remarquables :
 
-::: {.callout-note}
-Ces protocoles permettent d'accomplir des tâches **impossibles classiquement**, même en principe.
-:::
-
-## Configuration de base — Alice et Bob
-
-Dans tous ces protocoles, Alice et Bob partagent une paire de qubits intriqués :
-
-$$
-|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
-$$
-
-Ils disposent également d'un canal de communication classique (téléphone, internet...).
+1. **Téléportation** : utiliser l'intrication + 2 bits classiques pour transmettre 1 qubit
+2. **Codage superdense** (Superdense Coding) : utiliser l'intrication + 1 qubit pour transmettre 2 bits classiques
 
 ---
 
-## Téléportation Quantique
+## Étude de cas 1 : Communications quantiques
 
-### Le problème du transport de qubits
+### Téléportation quantique (Quantum Teleportation)
 
-> *Comment transmettre un qubit d'un point à un autre sans détruire la superposition et l'information de phase ?*
+#### Le problème : transporter des qubits
 
-D'après le **théorème de non-clonage**, les qubits ne peuvent pas être copiés. Il n'est donc pas possible de simplement lire le qubit, envoyer sa valeur, et le recréer à destination.
+D'après le **théorème de non-clonage** (no-cloning theorem), il est **impossible de dupliquer** un qubit inconnu.
 
-La téléportation quantique offre une solution : transmettre l'**état** d'un qubit en préservant parfaitement l'information.
+La question se pose alors : comment transmettre l'état quantique :
 
-::: {.callout-important}
-**Ce que la téléportation n'est PAS :**
+$$|\Psi\rangle = \alpha |0\rangle + \beta |1\rangle$$
 
-- Le déplacement de matière d'un point à un autre (pas de dématérialisation)
-- Un voyage dans le temps (ni en avant, ni en arrière)
+d'Alice à Bob, sans détruire l'information de superposition et de phase ?
+
+::: {.callout-note title="À retenir"}
+La **téléportation quantique** permet de transférer parfaitement l'état d'un qubit, en préservant toutes les informations quantiques ($\alpha$, $\beta$), potentiellement sur de très grandes distances.
 :::
 
-### Ressources nécessaires
+#### Ce que la téléportation n'implique PAS
 
-Pour téléporter un qubit, il faut :
+- Déplacer de la matière d'un point à un autre par dématérialisation/rematérialisation
+- Voyager dans le temps (en avant ou en arrière)
 
-1. **2 qubits intriqués** — une paire de Bell, dont chaque partie est distribuée à Alice et Bob
-2. **1 qubit message** $|\psi\rangle$ à envoyer (côté Alice)
-3. **1 canal classique** pour transmettre 2 bits d'information
+#### Ressources nécessaires
 
-::: {.callout-warning}
-**Note fondamentale**
+Pour téléporter 1 qubit, il faut :
 
-Comme la téléportation nécessite un canal de communication classique, elle **ne peut pas aller plus vite que la lumière** !
+- 2 qubits intriqués (un pour Alice, un pour Bob)
+- 1 qubit « message » à transmettre
+- 1 canal de communication classique pour transmettre 2 bits classiques
+
+::: {.callout-warning title="Limite fondamentale"}
+Puisque la téléportation requiert une communication classique, elle **ne peut pas être plus rapide que la lumière**.
 :::
 
-### Protocole — étape par étape
+---
 
-#### Étape 1 : Créer la paire intriquée
+#### Le protocole pas à pas
 
-On applique une porte Hadamard ($H$) sur le premier qubit $|0\rangle$, puis une porte CNOT :
+##### Étape 1 : Créer une paire intriquée
 
-$$
-|00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|0\rangle \xrightarrow{\text{CNOT}} |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
-$$
+On crée la paire de Bell $|\Phi^+\rangle$ via :
 
-Alice conserve le premier qubit ; Bob reçoit le second.
+1. Un qubit $|0\rangle$ passe par une porte Hadamard (H)
+2. Puis une porte CNOT (Controlled-NOT) avec le second qubit $|0\rangle$
 
-#### Étape 2 : Distribuer les qubits et calculer l'état total
+$$|\psi_{in}\rangle = |00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|0\rangle \xrightarrow{CNOT} |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
 
-Alice possède maintenant **deux qubits** :
+Alice et Bob peuvent créer cette paire eux-mêmes, ou la recevoir d'un tiers.
 
-- Son qubit de la paire intriquée
-- Le qubit message $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+---
+
+##### Étape 2 : Distribuer les qubits intriqués
+
+Alice dispose maintenant de **deux qubits** :
+
+- Sa moitié de la paire intriquée
+- Le qubit « message » $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
 
 L'état total du système à 3 qubits est :
 
-$$
-|\psi\rangle \otimes |\Phi^+\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
-$$
+$$|\psi\rangle \otimes |\Phi^+\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
 
-$$
-= \frac{1}{\sqrt{2}}\left[\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle\right]
-$$
+Ce qui développé donne :
 
-#### Étape 3 : Alice applique CNOT sur ses deux qubits
+$$\frac{1}{\sqrt{2}}\bigl[\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle\bigr]$$
 
-Alice utilise $|\psi\rangle$ comme contrôle et son qubit intriqué comme cible :
+---
 
-$$
-\text{État 1} \xrightarrow{\text{CNOT}} \text{État 2} = \frac{1}{\sqrt{2}}\left[\alpha|000\rangle + \alpha|011\rangle + \beta|101\rangle + \beta|110\rangle\right]
-$$
+##### Étape 3 : Alice applique CNOT sur ses deux qubits
 
-#### Étape 4 : Alice applique la porte H sur $|\psi\rangle$
+Alice applique CNOT avec :
 
-En utilisant $H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ et $H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$ :
+- Le qubit message $|\psi\rangle$ comme **contrôle**
+- Son qubit de la paire intriquée comme **cible**
 
-$$
-\text{État 3} = \frac{1}{2}\Big[\alpha\big(|000\rangle + |011\rangle + |100\rangle + |111\rangle\big) + \beta\big(|001\rangle + |010\rangle - |101\rangle - |110\rangle\big)\Big]
-$$
+L'état évolue vers :
 
-#### Étape 5 : Alice mesure ses deux qubits
+$$\frac{1}{\sqrt{2}}\bigl[\alpha|000\rangle + \alpha|011\rangle + \beta|101\rangle + \beta|110\rangle\bigr]$$
 
-Il y a **4 résultats possibles** (en bits classiques $b_1 b_0$) :
+---
 
-| Mesure d'Alice ($b_1 b_0$) | État de Bob |
+##### Étape 4 : Alice applique une porte H sur $|\psi\rangle$
+
+La porte Hadamard sur le qubit message transforme l'état en :
+
+$$\frac{1}{2}\bigl[\alpha|000\rangle + |011\rangle + |100\rangle + |111\rangle + \beta(|001\rangle + |010\rangle - |101\rangle - |110\rangle)\bigr]$$
+
+---
+
+##### Étape 5 : Alice mesure ses deux qubits
+
+Alice mesure ses 2 qubits. Il y a **4 résultats possibles** (00, 01, 10, 11), chacun avec probabilité $\frac{1}{4}$.
+
+L'état résultant avant mesure peut se réécrire :
+
+$$\frac{1}{2}\bigl[\alpha|\textbf{00}|0\rangle + |\textbf{01}|1\rangle + |\textbf{10}|0\rangle + |\textbf{11}|1\rangle + \beta(|\textbf{00}|1\rangle + |\textbf{01}|0\rangle - |\textbf{10}|1\rangle - |\textbf{11}|0\rangle)\bigr]$$
+
+En regroupant par résultat de mesure d'Alice, on obtient l'état du qubit de Bob :
+
+| Mesure d'Alice | État du qubit de Bob |
 |---|---|
-| $00$ | $\alpha\|0\rangle + \beta\|1\rangle$ |
-| $01$ | $\alpha\|1\rangle + \beta\|0\rangle$ |
-| $10$ | $\alpha\|0\rangle - \beta\|1\rangle$ |
-| $11$ | $\alpha\|1\rangle - \beta\|0\rangle$ |
-
-#### Étapes 6 & 7 : Alice envoie ses 2 bits classiques à Bob
-
-Bob reçoit les bits $b_1 b_0$ et les utilise pour corriger son qubit :
-
-- Si $b_0 = 1$ → appliquer une porte NOT ($X$) : $X = \begin{pmatrix}0&1\\1&0\end{pmatrix}$
-- Si $b_1 = 1$ → appliquer une porte Z : $Z = \begin{pmatrix}1&0\\0&-1\end{pmatrix}$
-
-Après correction, Bob obtient exactement $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$. ✓
-
-### Circuit quantique complet
-
-```
-Alice:
-|ψ⟩ ───────●──── H ──── M ────────────────────●
-           |                                   |
-|0⟩ ── H ──⊕──────────── M ────────●           |
-- - - - - - - - - - - - - - - - -|-(barrière classique)
-Bob:                               |           |
-|0⟩ ─────────────────────────────⊕────── Z ──|ψ⟩
-```
-
-*(Les doubles traits représentent la transmission des 2 bits classiques)*
-
-### Remarques importantes
-
-- Alice ne connaît **jamais** l'état $|\psi\rangle$ qu'elle téléporte
-- Alice et Bob **détruisent** leurs qubits intriqués pendant la téléportation
-- Pour téléporter $n$ qubits, il faut $n$ paires intriquées
-- Démontré expérimentalement pour la première fois en **1997**
-- Record de distance : **1 400 km** via le satellite Micius (2017)
-
-### Pourquoi la téléportation est-elle utile ?
-
-1. **Transmission classique plus rapide que quantique** — déplacer un état de qubit sur de longues distances est lent et sujet aux erreurs ; les canaux classiques sont beaucoup plus fiables pour la signalisation.
-
-2. **Transport d'états connus plus fiable** — les qubits "mobiles" partagent le même état intriqué ; on peut pré-partager de nombreuses paires en avance.
-
-3. **Parallélisation possible** — le qubit "lent" est transmis pendant que son partenaire effectue des calculs ; le délai se réduit à la transmission classique et aux portes de correction.
-
----
-
-## Codage Superdense
-
-> *Découvert en 1992, réalisé expérimentalement en 1996*
-
-### Principe — l'inverse de la téléportation
-
-Le codage superdense est en quelque sorte l'inverse de la téléportation :
-
-| Protocole | Ressource partagée | Envoyé | Reçu |
-|---|---|---|---|
-| Téléportation | 1 paire intriquée | 2 bits classiques | 1 qubit |
-| **Codage superdense** | **1 paire intriquée** | **1 qubit** | **2 bits classiques** |
-
-### Protocole — côté Alice (encodage)
-
-Alice souhaite envoyer l'un des 4 messages : $00$, $01$, $10$ ou $11$. Elle applique une porte unitaire à **son seul qubit** :
-
-| État initial | Bitstring d'Alice | Opération | État final |
-|---|---|---|---|
-| $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ | $00$ | $I$ | $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ |
-| $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ | $01$ | $X$ | $\frac{1}{\sqrt{2}}(\|10\rangle + \|01\rangle)$ |
-| $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ | $10$ | $Z$ | $\frac{1}{\sqrt{2}}(\|00\rangle - \|11\rangle)$ |
-| $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ | $11$ | $XZ$ | $\frac{1}{\sqrt{2}}(\|10\rangle - \|01\rangle)$ |
-
-Alice envoie ensuite son qubit à Bob.
-
-### Protocole — côté Bob (décodage)
-
-Bob possède maintenant les deux qubits. Il applique le circuit suivant (CNOT puis $H$) :
-
-```
-Alice's qubit ──── ● ─────── H ────
-Bob's qubit   ──── ⊕ ─────────────
-```
-
-Résultat après décodage :
-
-| État reçu | Après CNOT | Après H | Résultat |
-|---|---|---|---|
-| $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ | $\frac{1}{\sqrt{2}}(\|0\rangle+\|1\rangle)\|0\rangle$ | $\|00\rangle$ | **00** |
-| $\frac{1}{\sqrt{2}}(\|10\rangle + \|01\rangle)$ | $\frac{1}{\sqrt{2}}(\|0\rangle+\|1\rangle)\|1\rangle$ | $\|01\rangle$ | **01** |
-| $\frac{1}{\sqrt{2}}(\|00\rangle - \|11\rangle)$ | $\frac{1}{\sqrt{2}}(\|0\rangle-\|1\rangle)\|0\rangle$ | $\|10\rangle$ | **10** |
-| $\frac{1}{\sqrt{2}}(\|10\rangle - \|01\rangle)$ | $\frac{1}{\sqrt{2}}(\|0\rangle-\|1\rangle)\|1\rangle$ | $\|11\rangle$ | **11** |
-
-Bob mesure alors ses deux qubits dans la base computationnelle et obtient le bitstring d'Alice. ✓
-
----
-
-## Distribution Quantique de Clés (QKD)
-
-### Motivation — le pad à usage unique (*one-time pad*)
-
-La cryptographie moderne (RSA, etc.) garantit une sécurité **computationnelle** : le chiffrement est difficile à casser *avec les ordinateurs actuels*, mais pas impossible en principe.
-
-Un standard plus fort est la sécurité **théorique de l'information** (*information-theoretically secure*). Le plus simple exemple : le **pad à usage unique**.
-
-#### Fonctionnement du pad à usage unique
-
-Alice veut envoyer un message $m$ de $n$ bits à Bob. Le protocole est :
-
-1. Alice et Bob se rencontrent au préalable et partagent une clé secrète $r$ de $n$ bits aléatoires.
-2. Alice chiffre : elle envoie $m \oplus r$ (XOR bit à bit).
-3. Bob déchiffre : $(m \oplus r) \oplus r = m$.
-4. Alice et Bob **détruisent** $r$ après usage.
-
-::: {.callout-tip}
-**Pourquoi est-ce sûr ?**
-
-Sans accès à $r$, un espion (Eve) ne reçoit qu'une chaîne de bits aléatoires — aucune information sur $m$ n'est divulguée.
-:::
-
-#### Le problème pratique
-
-Alice et Bob doivent **se rencontrer physiquement** (ou disposer d'un canal absolument sûr) pour s'échanger la clé $r$ au préalable. C'est impraticable à grande échelle.
-
-**Solution : QKD** — générer $r$ à distance sans se rencontrer, en utilisant des propriétés quantiques.
-
-### Ressources requises pour QKD
-
-Pour implémenter QKD (sans rencontre préalable), il faut :
-
-- **Un canal classique authentifié** — si un message prétend venir de Bob, Alice peut en être certaine (et vice versa).
-- **Un canal quantique** — potentiellement susceptible d'être écouté.
-- **Alice** dispose d'une source de bits classiques aléatoires et peut préparer des qubits dans les états $|0\rangle$, $|1\rangle = X|0\rangle$, $|+\rangle = H|0\rangle$ et $|-\rangle = H|1\rangle$.
-- **Bob** peut mesurer dans la base computationnelle $\{|0\rangle, |1\rangle\}$ ou dans la base de Hadamard $\{|+\rangle, |-\rangle\}$.
-
-### Le protocole BB84
-
-> *C. Bennett & G. Brassard, 1984*
-
-BB84 est le protocole QKD original. Il ne requiert **pas** d'intrication (bien que des protocoles ultérieurs en utilisent).
-
-#### Étapes du protocole
-
-1. **Alice** possède un bitstring. Pour chaque bit, elle l'encode **aléatoirement** dans l'une des deux bases :
-   - Base $\mathcal{Z}$ : $\{|0\rangle, |1\rangle\}$
-   - Base $\mathcal{X}$ : $\{|+\rangle, |-\rangle\}$
-   
-   Elle envoie le qubit résultant à Bob.
-
-2. **Bob** reçoit le qubit et le mesure aléatoirement dans $\mathcal{Z}$ ou dans $\mathcal{X}$.
-
-3. **Bob** annonce publiquement dans quelle base il a mesuré *(pas le résultat)*.
-
-4. **Alice** répond publiquement si c'était la **bonne base** *(pas sa valeur de bit)*.
-
-5. Si les bases concordent → Bob a mesuré le bon bit → ils l'ajoutent tous deux à leur clé partagée. Sinon, ils **rejettent** ce bit.
-
-En moyenne, **la moitié des bits sont conservés**.
-
-::: {.callout-important}
-**Propriété clé de sécurité**
-
-Toute tentative d'écoute par Eve **perturbera la clé** de manière détectable. Alice et Bob peuvent comparer une partie de leur clé sur le canal public pour détecter une intrusion.
-:::
-
-### Exemple concret de BB84
-
-| Bit A | Base A | Qubit | Base B | Bit B | Accord ? |
-|---|---|---|---|---|---|
-| 0 | $\mathcal{Z}$ | $\|0\rangle$ | $\mathcal{Z}$ | 0 | ✓ **clé : 0** |
-| 1 | $\mathcal{X}$ | $\|-\rangle$ | $\mathcal{X}$ | 1 | ✓ **clé : 1** |
-| 1 | $\mathcal{Z}$ | $\|1\rangle$ | $\mathcal{X}$ | $\{0,1\}$ | ✗ rejeté |
-| 0 | $\mathcal{Z}$ | $\|0\rangle$ | $\mathcal{Z}$ | 0 | ✓ **clé : 0** |
-| 1 | $\mathcal{Z}$ | $\|1\rangle$ | $\mathcal{Z}$ | 1 | ✓ **clé : 1** |
-| 0 | $\mathcal{X}$ | $\|+\rangle$ | $\mathcal{X}$ | 0 | ✓ **clé : 0** |
-| 1 | $\mathcal{Z}$ | $\|1\rangle$ | $\mathcal{X}$ | $\{0,1\}$ | ✗ rejeté |
-| 1 | $\mathcal{X}$ | $\|-\rangle$ | $\mathcal{Z}$ | $\{0,1\}$ | ✗ rejeté |
-
-La clé partagée finale est : **0, 1, 0, 1, 0**.
-
-### Sécurité contre l'espionnage
-
-#### Attaque par interception-mesure-retransmission
-
-Eve intercepte le qubit, le mesure, puis envoie un nouveau qubit à Bob. Problème : elle doit choisir sa base **avant** de savoir quelle base Alice a utilisée.
-
-Si Eve choisit la mauvaise base (probabilité 1/2) :
-
-- Elle introduit des erreurs dans la clé de Bob.
-- Alice et Bob détectent ces erreurs en comparant publiquement une fraction de leurs bits.
-
-#### Attaque par copie (*intercept, copy, retransmit*)
-
-Eve voudrait garder une copie du qubit pour le mesurer plus tard. Mais cela **viole le théorème de non-clonage** — les qubits ne peuvent pas être copiés.
-
-::: {.callout-tip}
-**Résultat fondamental**
-
-Tout espion qui essaie d'obtenir de l'information sur la clé **laisse forcément des traces détectables**. La sécurité de QKD est garantie par les lois de la physique quantique, pas par la difficulté computationnelle.
+| 00 | $\alpha|0\rangle + \beta|1\rangle$ |
+| 01 | $\alpha|1\rangle + \beta|0\rangle$ |
+| 10 | $\alpha|0\rangle - \beta|1\rangle$ |
+| 11 | $\alpha|1\rangle - \beta|0\rangle$ |
+
+::: {.callout-tip title="Intuition"}
+En mesurant ses 2 qubits, Alice « effondre » l'état global et projette le qubit de Bob dans un état déterminé. Mais Bob ne sait pas encore lequel — il a besoin du résultat de mesure d'Alice pour corriger son qubit.
 :::
 
 ---
 
-# Algorithme de Shor pour la Factorisation
+##### Étape 6 : Alice transmet ses 2 bits classiques à Bob
 
-> *Étude de cas 2*
+Alice envoie le résultat de sa mesure ($b_1 b_0$) à Bob via un canal classique.
 
-## Principe mathématique
+---
 
-L'algorithme de Shor repose sur un théorème de théorie des nombres :
+##### Étape 7 : Bob récupère $|\psi\rangle$
 
-::: {.callout-note}
-**Théorème**
+Bob applique des **portes de correction** selon les bits reçus :
+
+- Si $b_1 = 1$ : appliquer la porte **Z** $\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}$
+- Si $b_0 = 1$ : appliquer la porte **NOT (X)** $\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$
+
+| Mesure d'Alice ($b_1 b_0$) | État de Bob | Correction |
+|---|---|---|
+| 00 | $\alpha|0\rangle + \beta|1\rangle$ | Aucune |
+| 01 | $\alpha|1\rangle + \beta|0\rangle$ | Appliquer NOT |
+| 10 | $\alpha|0\rangle - \beta|1\rangle$ | Appliquer Z |
+| 11 | $\alpha|1\rangle - \beta|0\rangle$ | Appliquer NOT et Z |
+
+Après correction, Bob possède exactement $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$.
+
+---
+
+#### Circuit complet de téléportation
+
+Le circuit quantique complet pour téléporter $|\psi\rangle$ d'Alice à Bob est :
+
+```
+|ψ⟩ ────────●────── H ──── [M] ──────────────────●───
+            │                                     │
+|0⟩ ── H ──●──⊕── ........ [M] ──────●──────────|──
+                                      │          │
+|0⟩ ────────────────────────────────⊕─────── Z ──── |ψ⟩
+```
+
+(Les traits doubles représentent les canaux classiques.)
+
+---
+
+#### Notes importantes sur la téléportation
+
+- Alice ne connaît **jamais** l'état $|\psi\rangle$ qu'elle téléporte (sinon elle pourrait l'envoyer classiquement !)
+- La communication n'est **pas supraluminique** : le canal classique est obligatoire
+- Alice et Bob **détruisent leurs qubits intriqués** lors de la téléportation — pour transférer plusieurs qubits, il faut davantage de paires intriquées partagées au préalable
+- Expérimentalement démontrée de nombreuses fois. En **2017**, des qubits ont été téléportés de la Terre vers l'espace via le satellite **Micius**, établissant un record de **1 400 km**
+
+#### Pourquoi la téléportation est-elle utile ?
+
+1. **La transmission réelle est plus rapide via des canaux classiques** qu'en déplaçant physiquement des qubits (qui sont très lents à déplacer et sujets aux erreurs)
+
+2. **Déplacer des états de qubits *connus* est plus fiable** que des états *inconnus* : on peut pré-partager de nombreuses paires intriquées à l'avance
+
+3. **Option de parallélisation** : le qubit « lent » est transmis en même temps que son pair effectue des calculs quantiques. Le délai est seulement celui de la ligne classique
+
+---
+
+### Codage superdense (Superdense Coding)
+
+#### Principe
+
+Le codage superdense est l'**inverse** de la téléportation :
+
+- Téléportation : 2 bits classiques + 1 paire intriquée → transmettre 1 qubit
+- Codage superdense : 1 qubit + 1 paire intriquée → transmettre 2 bits classiques
+
+::: {.callout-note title="À retenir"}
+Découvert en **1992** et réalisé expérimentalement en **1996**, le codage superdense permet d'encoder **2 bits d'information classique** dans l'envoi d'**un seul qubit**, grâce à l'intrication partagée.
+:::
+
+#### La transmission d'Alice
+
+Alice et Bob partagent la paire de Bell $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$.
+
+Alice veut envoyer l'un des 4 messages possibles : 00, 01, 10 ou 11. Elle **applique une porte unitaire à son seul qubit** :
+
+| Chaîne de bits | Opération | État final |
+|---|---|---|
+| 00 | $I$ (identité) | $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ |
+| 01 | $X$ (NOT) | $\frac{1}{\sqrt{2}}(|10\rangle + |01\rangle)$ |
+| 10 | $Z$ | $\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ |
+| 11 | $XZ$ | $\frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ |
+
+Ces 4 états sont les **4 états de Bell** — une base orthonormée complète de l'espace de Hilbert à 2 qubits.
+
+Alice envoie ensuite **son qubit** à Bob.
+
+---
+
+#### La correction de Bob
+
+Bob reçoit le qubit d'Alice et possède maintenant les **deux qubits**. Il applique le circuit suivant :
+
+1. Une porte **CNOT** (qubit d'Alice en contrôle, le sien en cible)
+2. Une porte **H** sur le qubit d'Alice
+
+Ce circuit « désenchevêtre » la paire de Bell et ramène l'état vers la base computationnelle :
+
+| État initial | Après CNOT | Après H |
+|---|---|---|
+| $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|0\rangle$ | $|00\rangle$ |
+| $\frac{1}{\sqrt{2}}(|10\rangle + |01\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|1\rangle$ | $|01\rangle$ |
+| $\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)|0\rangle$ | $|10\rangle$ |
+| $\frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)|1\rangle$ | $|11\rangle$ |
+
+Bob effectue une **mesure en base computationnelle** et obtient exactement la chaîne de bits envoyée par Alice.
+
+::: {.callout-tip title="Intuition"}
+L'intrication préalablement partagée agit comme une ressource « stockée » qui double la capacité d'information du canal quantique. Sans intrication, un seul qubit ne peut transmettre qu'1 bit classique (théorème de Holevo).
+:::
+
+---
+
+### Distribution quantique de clés (Quantum Key Distribution — QKD)
+
+#### Contexte : le masque jetable (One-Time Pad)
+
+La cryptographie moderne (RSA) repose sur des garanties **computationnelles** : factoriser est difficile *en pratique*. Mais il existe une forme de sécurité plus forte : la sécurité **théorique de l'information** (*information-theoretically secure*).
+
+Le **masque jetable** (one-time pad) en est l'exemple le plus simple :
+
+1. Alice voudra envoyer un message de $n$ bits dans le futur
+2. Alice et Bob se retrouvent et partagent une clé secrète $r$ : une liste de $n$ bits aléatoires
+3. Alice encode son message $m$ en envoyant $m \oplus r$ (XOR)
+4. Bob décode : $(m \oplus r) \oplus r = m$
+5. Alice et Bob **détruisent** $r$
+
+Un espion (Ève) qui intercepte $m \oplus r$ sans connaître $r$ ne peut rien déduire : il voit juste une chaîne aléatoire.
+
+::: {.callout-warning title="Le problème pratique">
+Le masque jetable est parfait... mais il faut qu'Alice et Bob se rencontrent en personne (ou disposent d'un canal absolument sécurisé) pour partager la clé. C'est là que la **QKD** intervient.
+:::
+
+---
+
+#### Principe de la QKD
+
+La QKD permet de **générer un masque jetable à distance** sans qu'Alice et Bob se rencontrent physiquement. Les ressources nécessaires sont :
+
+- Un **canal classique public authentifié** (on sait avec certitude qui parle)
+- Un **canal quantique** (qui pourrait être écouté)
+
+De plus :
+
+- Alice dispose d'une **source de bits aléatoires classiques**
+- Alice peut préparer des qubits dans les états : $|0\rangle$, $|1\rangle = X|0\rangle$, $|+\rangle = H|0\rangle$, $|-\rangle = H|1\rangle$
+- Bob peut mesurer en base computationnelle $\{|0\rangle, |1\rangle\}$ ou en base de Hadamard $\{|+\rangle, |-\rangle\}$
+
+---
+
+#### Le protocole BB84
+
+Découvert en **1984** par **Charles Bennett** et **Gilles Brassard** (d'où le nom BB84). Il est notable que BB84 ne requiert **pas** d'intrication quantique (certains protocoles ultérieurs en utilisent).
+
+::: {.callout-note title="À retenir"}
+BB84 a été indépendamment découvert par des chercheurs du GCHQ (le renseignement britannique) mais n'a pas été rendu public à l'époque.
+:::
+
+Le protocole se déroule ainsi :
+
+1. **Alice** dispose d'une chaîne de bits et encode chaque bit dans l'une des deux bases, choisie aléatoirement avec probabilité égale :
+   - Base $\{|0\rangle, |1\rangle\}$ : 0 → $|0\rangle$, 1 → $|1\rangle$
+   - Base $\{|+\rangle, |-\rangle\}$ : 0 → $|+\rangle$, 1 → $|-\rangle$
+   Alice envoie le qubit à Bob.
+
+2. **Bob** reçoit le qubit et mesure dans l'une des deux bases, choisie aléatoirement.
+
+3. **Bob annonce publiquement** dans quelle base il a mesuré (pas le résultat !).
+
+4. **Alice répond publiquement** si c'était la bonne base.
+
+5. Si les bases **coïncident**, le résultat de Bob correspond au bit d'Alice → ils conservent ce bit pour la clé. Sinon, ils le rejettent.
+
+En moyenne, Alice et Bob rejettent **la moitié** de leurs bits.
+
+::: {.callout-tip title="Intuition">
+Si Bob mesure dans la mauvaise base, le résultat est aléatoire et ne correspond pas nécessairement au bit d'Alice. Ces cas sont donc inutilisables et jetés. Les cas où ils ont utilisé la même base forment la clé partagée.
+:::
+
+---
+
+#### Exemple numérique BB84 (sans espion)
+
+| Bit A | Base A | Qubit | Base B | Bit B |
+|---|---|---|---|---|
+| 0 | $\{|0\rangle,|1\rangle\}$ | $|0\rangle$ | $\{|0\rangle,|1\rangle\}$ | **0** ✓ |
+| 1 | $\{|+\rangle,|-\rangle\}$ | $|-\rangle$ | $\{|+\rangle,|-\rangle\}$ | **1** ✓ |
+| 1 | $\{|0\rangle,|1\rangle\}$ | $|1\rangle$ | $\{|+\rangle,|-\rangle\}$ | $\{0,1\}$ ✗ |
+| 0 | $\{|0\rangle,|1\rangle\}$ | $|0\rangle$ | $\{|0\rangle,|1\rangle\}$ | **0** ✓ |
+| 1 | $\{|0\rangle,|1\rangle\}$ | $|1\rangle$ | $\{|0\rangle,|1\rangle\}$ | **1** ✓ |
+| 0 | $\{|+\rangle,|-\rangle\}$ | $|+\rangle$ | $\{|+\rangle,|-\rangle\}$ | **0** ✓ |
+
+La clé partagée est constituée des bits pour lesquels Alice et Bob ont utilisé la **même base de mesure**.
+
+---
+
+#### Sécurité : attaque par interception-mesure-retransmission
+
+Un espion Ève peut tenter d'**intercepter, mesurer et retransmettre** les qubits. Mais voici le problème pour Ève :
+
+- Le protocole exige que ce soit **Bob** qui annonce sa base en premier, et **Alice** qui confirme ensuite
+- Au moment où Ève mesure et retransmet, elle ne sait pas encore dans quelle base Alice a préparé le qubit
+- Ève doit donc **deviner la base** au hasard pour mesurer, puis retransmettre
+
+**Conséquence :** Ève introduit des **erreurs** dans les bits pour lesquels Alice et Bob ont la même base — exactement 25% d'entre eux seront erronés. Alice et Bob peuvent détecter la présence d'Ève en **comparant publiquement un sous-ensemble de leurs bits clés**.
+
+::: {.callout-important title="Propriété fondamentale de BB84">
+Toute tentative d'espionnage du canal quantique **perturbe inévitablement** les qubits transmis (conséquence du théorème de non-clonage et du postulat de mesure quantique). Cette perturbation est **détectable statistiquement**, garantissant la sécurité du protocole.
+:::
+
+---
+
+#### Autres stratégies d'attaque et leurs limites
+
+**Attaque par interception-copie-retransmission** (*intercept, copy, retransmit*)
+
+Ève tente de garder une copie du qubit et de ne le mesurer qu'après qu'Alice et Bob ont publiquement partagé leurs bases. Mais cela **violerait le principe de non-clonage** : copier un qubit inconnu est physiquement impossible.
+
+**Attaque par stockage du qubit**
+
+Ève intercepte le qubit, envoie un qubit aléatoire pré-préparé à Bob, et garde l'original pour le mesurer plus tard. Mais Bob reçoit alors des bits totalement aléatoires, et la comparaison publique des bases révèle la présence de l'espion.
+
+**Record actuel**
+
+Le taux de transfert record de clés sécurisées est de **1 Mbit/s**, dans une collaboration entre l'Université de Genève et Toshiba.
+
+---
+
+## Étude de cas 2 : Algorithme de Shor pour la factorisation
+
+### Vue d'ensemble
+
+L'algorithme de Shor (1994) utilise une propriété de la **théorie des nombres** pour réduire le problème de la factorisation à la **recherche de la période d'une fonction**.
+
+#### Théorème fondamental de la théorie des nombres
 
 Si $a \not\equiv \pm b \pmod{N}$ mais $a^2 \equiv b^2 \pmod{N}$, alors $\gcd(a+b, N)$ est un facteur non trivial de $N$.
-:::
 
-## Algorithme sur un ordinateur quantique
+#### La procédure sur un ordinateur quantique
 
 Pour factoriser $N$ :
 
-1. **Choisir** $x$ copremier avec $N$ (aléatoirement).
-2. **Utiliser la Transformée de Fourier Quantique (QFT)** pour trouver la période $l$ de la fonction :
+1. **Choisir** un entier $x$ copremier avec $N$ (i.e., $\gcd(x, N) = 1$)
+2. Utiliser la **QFT** sur l'ordinateur quantique pour trouver la période $l$ de la fonction :
    $$f(s) = x^s \bmod N$$
-3. **Utiliser l'ordre** de $x$ pour calculer les facteurs candidats de $N$.
-4. **Vérifier** les facteurs ; si incorrect, recommencer.
+3. Utiliser l'ordre (période) de $x$ pour calculer des facteurs possibles de $N$
+4. **Vérifier** les candidats ; si aucun ne fonctionne, recommencer avec un autre $x$
 
-## La Transformée de Fourier Quantique (QFT)
+#### Comparaison de complexité
 
-La QFT est l'opérateur unitaire :
-
-$$
-U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{xy} |y\rangle\langle x|
-$$
-
-Son adjoint (la QFT inverse) est :
-
-$$
-U_{QFT}^\dagger = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{-xy} |x\rangle\langle y|
-$$
-
-La QFT transforme une superposition périodique en pics de fréquence, permettant d'identifier la période $l$ de $f(s)$.
-
-## Circuit quantique de Shor
-
-Le circuit complet utilise deux registres :
-
-```
-|0⟩ ─── H ─────────── ⋯ ──── ● ───── QFT⁻¹ ──── M
- ⋮        ⋮                    ⋮         ⋮           ⋮
-|0⟩ ─── H ─────────── ⋯ ─── ● ──── QFT⁻¹ ──── M
-|0⟩ ─── H ─────────── ⋯ ─●─────── QFT⁻¹ ──── M
-|1⟩ ──── Ua²⁰ ── Ua²¹ ── ⋯ ── Ua^{2^{2n-1}} ───────
-```
-
-## Comparaison des complexités
-
-| Algorithme | Complexité temporelle |
+| Méthode | Complexité temporelle |
 |---|---|
-| Meilleur algorithme classique | $O(\exp(n^{1/3}))$ |
-| Algorithme de Shor (quantique) | $O(n^3 \log n)$ |
+| Meilleur algorithme classique | $O\bigl(\exp(n^{1/3})\bigr)$ |
+| Algorithme de Shor | $O(n^3 \log n)$ |
 
-L'avantage est **exponentiel** — c'est l'un des gains quantiques les plus spectaculaires connus.
+où $n$ est le nombre de bits de $N$.
 
----
-
-# Solveur Propre Variationnel Quantique (VQE)
-
-> *Étude de cas 3 — Variational Quantum Eigensolver*
-
-## Contexte
-
-Le VQE est un algorithme **hybride quantique-classique** conçu pour trouver les valeurs propres d'une matrice $H$. En simulation quantique, $H$ est typiquement le **Hamiltonien** d'un système électronique.
-
-## Architecture hybride
-
-Le VQE alterne entre deux composantes :
-
-### Partie quantique
-
-1. **Préparer** l'état quantique $|\psi(\theta)\rangle$ — l'*ansatz* paramétré
-2. **Mesurer** la valeur d'espérance $\langle \psi(\theta) | H | \psi(\theta) \rangle$
-
-### Partie classique
-
-1. Utiliser un **optimiseur non linéaire classique** pour minimiser la valeur d'espérance
-2. **Itérer** jusqu'à convergence
-
-```
-                ┌─────────────────────────┐
-                │  Boucle d'optimisation  │
-                │         classique       │
-                └──────────┬─────────────┘
-                           │ θ (paramètres)
-                           ▼
-              ┌────────────────────────┐
-              │   Circuit quantique    │
-              │  |ψ(θ)⟩ (ansatz)       │
-              │  Mesure ⟨ψ|H|ψ⟩        │
-              └────────────────────────┘
-                           │ valeur d'espérance
-                           ▼
-              (mise à jour des paramètres θ)
-```
-
-## Critère variationnel
-
-La convergence repose sur le **principe variationnel** :
-
-$$
-\langle \psi(\theta) | H | \psi(\theta) \rangle \geq E_0
-$$
-
-où $E_0$ est l'énergie de l'état fondamental. En minimisant la valeur d'espérance, on converge vers $E_0$.
-
----
-
-# Vers un Monde Post-Quantique
-
-## La menace sur la cryptographie actuelle
-
-::: {.callout-warning}
-**Alerte sécurité**
-
-Il y a une forte probabilité que des ordinateurs quantiques puissent **casser RSA-2048 dans les 5 à 10 prochaines années** (environ 8 000 qubits logiques nécessaires).
-:::
-
-Quelques réalités à considérer :
-
-- Des données chiffrées ont une durée de vie supérieure à 10 ans.
-- La transition vers un nouveau schéma de chiffrement prend elle-même ~10 ans.
-- Des acteurs malveillants peuvent **enregistrer maintenant, déchiffrer plus tard** (*harvest now, decrypt later*).
-
-## Solutions émergentes
-
-Les communications sécurisées migreront probablement vers :
-
-- **Chiffrement symétrique** (AES-256 reste sûr avec Grover si les clés sont suffisamment longues)
-- **Algorithmes de hachage** (SHA-3, etc.)
-- **Algorithmes à réseau** (*lattice-based cryptography*) — candidats NIST Post-Quantum
-- **QKD** — pour les communications les plus sensibles
-
-## État actuel de la transition
-
-- Certains gouvernements et banques utilisent déjà des algorithmes *Quantum Safe*.
-- Le NIST a finalisé en 2024 ses premiers standards post-quantiques (CRYSTALS-Kyber, CRYSTALS-Dilithium, etc.).
-- Cette transition devrait s'accélérer au cours de la prochaine décennie.
-
----
-
-# Défis Actuels des Ordinateurs Quantiques
-
-## Problèmes techniques majeurs
-
-**Décohérence**
-
-Le système quantique est extrêmement sensible à l'environnement extérieur. Il est nécessaire de l'isoler parfaitement. Il est difficile d'atteindre un temps de décohérence supérieur au temps d'exécution de l'algorithme.
-
-**Correction d'erreurs**
-
-Les portes quantiques sont imparfaites et introduisent des erreurs. La correction d'erreurs quantiques nécessite de nombreux qubits physiques supplémentaires (rapport ~1000:1 pour un qubit logique fiable).
-
-**Implémentation physique**
-
-Mettre en œuvre des calculs sur des systèmes physiques réels (supraconducteurs, ions piégés, etc.) reste extrêmement difficile.
-
-**Algorithmes**
-
-Il manque encore des algorithmes quantiques pour résoudre un plus grand nombre de problèmes avec un avantage quantique prouvé.
-
-**Transfert de données**
-
-La création et le maintien d'états intriqués pour le transfert de données à grande échelle restent des défis ouverts.
-
-**Scalabilité**
-
-Le temps d'exécution croît exponentiellement avec la taille de la matrice pour certains problèmes.
-
-## Loi de Neven (*Quor's Law*)
-
-Analogue à la loi de Moore pour les processeurs classiques, la **loi de Neven** (nommée d'après Hartmut Neven, directeur du lab d'IA quantique de Google) stipule que les processeurs quantiques croissent à un rythme **doublement exponentiel** — environ un doublement du nombre de qubits tous les 18 mois en moyenne.
-
-::: {.callout-note}
-**Zone de danger**
-
-Selon les projections, le seuil de ~8 000 qubits nécessaires pour casser RSA-2048 pourrait être atteint avant 2030, selon le taux de croissance retenu.
+::: {.callout-tip title="Intuition">
+Trouver la période d'une fonction classiquement nécessite d'évaluer la fonction pour de nombreuses entrées. La **Transformée de Fourier Quantique** extrait cette information de manière exponentielle en utilisant l'interférence quantique, sans avoir à évaluer la fonction point par point.
 :::
 
 ---
 
-# Synthèse — Récapitulatif des Applications
+### La Transformée de Fourier Quantique (QFT)
 
-| Application | Avantage quantique | Algorithme clé | Année |
-|---|---|---|---|
-| Factorisation | Exponentiel | Algorithme de Shor | 1994 |
-| Recherche | Quadratique | Algorithme de Grover | 1997 |
-| Simulation | Exponentiel | QFT + Hamiltonien | En cours |
-| Optimisation | Quadratique/Exponentiel | QAOA, VQE | En cours |
-| Communications | Inconditionnellement sûr | BB84, téléportation | 1984–1993 |
+La QFT est le cœur de l'algorithme de Shor. Elle est définie comme :
+
+$$U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{xy} |y\rangle\langle x|$$
+
+et son inverse :
+
+$$U_{QFT}^\dagger = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \sum_{x=0}^{N-1} \omega_N^{-xy} |x\rangle\langle y|$$
+
+où $\omega_N = e^{2\pi i / N}$.
+
+Appliquée à un état périodique de période $l$, la QFT produit un état dont les amplitudes sont concentrées sur des multiples de $2^n / l$, permettant d'extraire $l$ par mesure.
 
 ---
 
-# Glossaire des Termes Clés
+### Circuit de l'algorithme de Shor
 
-| Terme | Définition |
-|---|---|
-| **Qubit** | Bit quantique — superposition de $\|0\rangle$ et $\|1\rangle$ |
-| **Intrication (*Entanglement*)** | Corrélation non locale entre qubits : la mesure de l'un affecte instantanément l'autre |
-| **Superposition** | Un qubit peut être dans une combinaison linéaire de $\|0\rangle$ et $\|1\rangle$ simultanément |
-| **Décohérence** | Perte des propriétés quantiques par interaction avec l'environnement |
-| **Porte quantique** | Opération unitaire agissant sur un ou plusieurs qubits |
-| **CNOT** | Porte Controlled-NOT : retourne le qubit cible si le qubit de contrôle est $\|1\rangle$ |
-| **QFT** | Quantum Fourier Transform — analogue quantique de la DFT |
-| **QKD** | Quantum Key Distribution — protocole de distribution de clés |
-| **BB84** | Premier protocole QKD, par Bennett & Brassard (1984) |
-| **Théorème de non-clonage** | Il est impossible de copier un état quantique inconnu |
-| **VQE** | Variational Quantum Eigensolver — algorithme hybride classique-quantique |
-| **Ansatz** | État quantique paramétré utilisé comme essai dans VQE |
-| **Pad à usage unique** | Clé secrète aléatoire aussi longue que le message — sécurité parfaite |
+Le circuit quantique complet pour factoriser $N$ sur $n$ bits utilise :
+
+- $2n$ qubits de registre (initialisés à $|0\rangle$, passant par des portes H)
+- $n$ qubits de travail (initialisés à $|1\rangle$)
+- Des opérateurs $U_a^{2^k}$ (multiplication modulaire contrôlée)
+- La QFT inverse sur $2n$ qubits
+- Des mesures finales
+
+::: {.callout-note title="À retenir">
+L'algorithme de Shor est le premier exemple concret d'avantage quantique **exponentiel** sur un problème d'intérêt pratique (cryptographie). Il motive à lui seul une grande partie de la recherche en informatique quantique.
+:::
+
+---
+
+## Étude de cas 3 : Solveur variationnel quantique (VQE)
+
+### Qu'est-ce que le VQE ?
+
+Le **Solveur variationnel quantique** (Variational Quantum Eigensolver — VQE) est un algorithme **hybride quantique/classique** conçu pour trouver les **valeurs propres** (eigenvalues) d'une matrice $H$.
+
+Dans le contexte des simulations quantiques, $H$ est typiquement le **Hamiltonien** d'un système électronique — c'est-à-dire l'opérateur qui encode toute l'énergie du système.
+
+### Architecture : boucle hybride
+
+Le VQE alterne entre deux phases :
+
+**Phase quantique**
+
+1. Préparer l'état quantique $|\psi(\theta)\rangle$, appelé **ansatz**, paramétré par des angles $\theta$
+2. Mesurer la valeur d'espérance : $\langle\psi(\theta)|H|\psi(\theta)\rangle$
+
+**Phase classique**
+
+1. Utiliser un **optimiseur non linéaire classique** pour minimiser la valeur d'espérance en ajustant les paramètres $\theta$
+2. Itérer jusqu'à **convergence**
+
+```{mermaid}
+flowchart LR
+    A[Initialiser θ] --> B[Préparer |ψ(θ)⟩]
+    B --> C[Mesurer ⟨H⟩]
+    C --> D{Convergé ?}
+    D -- Non --> E[Optimiser θ]
+    E --> B
+    D -- Oui --> F[Valeur propre minimale]
+```
+
+### Principe variationnel
+
+Le VQE repose sur le **principe variationnel** :
+
+$$\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
+
+où $E_0$ est la valeur propre minimale (énergie fondamentale). En minimisant la valeur d'espérance, on s'approche de l'énergie fondamentale.
+
+::: {.callout-tip title="Intuition">
+L'idée est de chercher le meilleur état quantique représentable par le circuit paramétrique (l'ansatz). Plus l'ansatz est expressif, plus on se rapproche de la vraie valeur propre. Le côté classique guide la recherche dans l'espace des paramètres.
+:::
+
+### Applications du VQE
+
+- **Chimie quantique** : calcul des énergies de molécules (eau, azote, etc.)
+- **Science des matériaux** : propriétés des matériaux à forte corrélation
+- **Physique des hautes énergies** : simulation de théories de jauge
+
+---
+
+## Le monde post-quantique (Post-Quantum World)
+
+### La menace pour la cryptographie actuelle
+
+Il existe une **forte probabilité** que des ordinateurs quantiques soient capables de casser le chiffrement **RSA-2048** dans les 5 à 10 prochaines années. Pour cela, il faudrait environ **8 000 qubits logiques** dans un ordinateur universel.
+
+::: {.callout-warning title="Urgence actuelle">
+Certaines données chiffrées ont une durée de vie de plus de 10 ans. Il peut falloir 10 ans pour migrer vers de nouveaux schémas de chiffrement. Organisations et gouvernements doivent agir **maintenant**.
+:::
+
+La plupart des chiffrements utilisés aujourd'hui (HTTPS, VPN, etc.) **ne sont pas sûrs dans un monde quantique**. Un adversaire qui enregistre des sessions HTTPS aujourd'hui pourrait les déchiffrer dans quelques années avec un ordinateur quantique.
+
+### Les solutions
+
+**Chiffrement symétrique et fonctions de hachage**
+: Ces algorithmes nécessitent seulement de doubler la taille des clés pour maintenir leur sécurité face à un ordinateur quantique (algorithme de Grover donne un avantage quadratique, pas exponentiel).
+
+**Algorithmes à base de réseaux euclidiens** (*lattice-based cryptography*)
+: Résistants aux algorithmes quantiques connus. En cours de standardisation par le NIST.
+
+**QKD (Distribution Quantique de Clés)**
+: Sera probablement adoptée pour les communications les plus sensibles. Offre une sécurité **théorique de l'information**.
+
+::: {.callout-note title="À retenir">
+Certains gouvernements et banques utilisent déjà des algorithmes « Quantum Safe ». Cette adoption devrait s'accélérer sur la prochaine décennie.
+:::
+
+---
+
+## Problèmes et défis des ordinateurs quantiques
+
+### Décoherence (Decoherence)
+
+Un système quantique est **extrêmement sensible** à son environnement. Toute interaction avec l'extérieur détruit la superposition — c'est la décoherence.
+
+- Le système doit être **isolé** thermiquement et électromagnétiquement (températures proches de 0 K pour les supraconducteurs)
+- Il est difficile de maintenir la décoherence suffisamment longtemps pour que l'algorithme s'exécute
+
+### Correction d'erreurs quantiques (Quantum Error Correction)
+
+Les qubits réels sont bruités. La correction d'erreurs quantiques requiert d'**encoder un qubit logique dans de nombreux qubits physiques** (souvent des centaines), ce qui gonfle considérablement le nombre de qubits nécessaires.
+
+### Autres défis
+
+- **Implémentation physique** des opérations quantiques avec haute fidélité
+- **Conception de nouveaux algorithmes quantiques** pour élargir les cas d'usage
+- **États intriqués pour le transfert de données** à grande échelle
+- **Temps d'exécution** qui augmente exponentiellement avec la taille de la matrice pour certaines simulations
+
+---
+
+## Tendances et futur
+
+### Loi de Neven (*Neven's Law*)
+
+Hartmut Neven, directeur du laboratoire d'IA quantique de Google, observe que les processeurs quantiques croissent à un **rythme doublement exponentiel** — parfois appelé « Loi de Quor » par analogie avec la loi de Moore.
+
+En pratique, le nombre de qubits double tous les **1 à 2 ans** en moyenne.
+
+### Cycle Hype de Gartner
+
+Selon Gartner, l'informatique quantique est encore dans une phase d'attentes gonflées (*Peak of Inflated Expectations*). Le marché est estimé à **5 milliards de dollars** en 2020, avec une projection dépassant potentiellement **100 milliards en 10 ans**.
+
+### Zone de danger
+
+Les projections montrent que le seuil de **2048 bits de chiffrement cassable** (danger zone) pourrait être atteint entre 2030 et 2035 selon le rythme de croissance des qubits, d'où l'urgence de la migration post-quantique.
+
+::: {.callout-important title="Message clé">
+L'informatique quantique n'est pas une technologie distante : ses implications pour la cryptographie, la simulation moléculaire et l'optimisation sont déjà en cours de déploiement. Comprendre ses fondements est devenu essentiel pour tout ingénieur ou chercheur en informatique, en physique ou en sécurité.
+:::

@@ -1,287 +1,222 @@
-# Applications des Ordinateurs Quantiques
+---
+title: "Applications des ordinateurs quantiques — Révision"
+---
 
-## Vue d'ensemble rapide
+## Applications clés
 
 | Application | Avantage | Algorithme | Année |
 |---|---|---|---|
-| Factorisation | **Exponentiel** | Shor | 1994 |
-| Recherche | **Quadratique** | Grover | 1997 |
-| Simulation | **Exponentiel** | QFT + Hamiltonien | — |
-| Optimisation | Quadratique/Exp. | QAOA, VQE | — |
-| Communications | Sécurité absolue | BB84, téléportation | 1984–93 |
+| Factorisation (Factoring) | Exponentiel | Shor | 1994 |
+| Recherche (Search) | Quadratique $O(\sqrt{N})$ | Grover | 1997 |
+| Simulation (Simulation) | Exponentiel | — | — |
+| Optimisation (Optimization) | Possible* | QAOA | — |
+| Réseaux (Networks) | — | BB84, QKD | — |
+
+*avantage non toujours prouvé
 
 ---
 
-## Shor — Factorisation
+## Téléportation quantique (Quantum Teleportation)
 
-- **Classique** : $O(\exp(n^{1/3}))$ → 150 000 ans (ordinateur THz)
-- **Quantique** : $O(n^3 \log n)$ → < 1 seconde
+**But :** transmettre $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ sans mesurer son état
 
-> **Importance** : RSA repose sur l'impossibilité de factoriser → Shor brise RSA
+**Ressources :** 3 qubits + 2 bits classiques + 1 paire de Bell $|\Phi^+\rangle$
 
-**Idée** : trouver la période de $f(s) = x^s \bmod N$ via la **QFT**
+### Protocole (8 étapes)
 
----
+1. Créer $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ via H + CNOT
+2. Distribuer : Alice garde qubit intriqué + qubit message
+3. Alice applique **CNOT** ($|\psi\rangle$ contrôle, son qubit cible)
+4. Alice applique **H** sur $|\psi\rangle$
+5. Alice **mesure** ses 2 qubits → 4 résultats équiprobables
+6. Déduire l'état de Bob selon la mesure
+7. Alice envoie **2 bits classiques** ($b_1 b_0$) à Bob
+8. Bob applique les corrections
 
-## Grover — Recherche
+### Corrections de Bob
 
-- Base de données non triée de $N$ éléments
-- **Classique** : $O(N)$ — **Quantique** : $O(\sqrt{N})$
-
-> **Importance** : satisfiabilité, big data, pattern recognition
-
----
-
-# Communications Quantiques
-
-## Les 3 protocoles fondamentaux
-
-| Protocole | Ressource partagée | Canal envoyé | Résultat |
-|---|---|---|---|
-| **Téléportation** | 1 paire intriquée | 2 bits classiques | 1 qubit transmis |
-| **Codage superdense** | 1 paire intriquée | 1 qubit | 2 bits transmis |
-| **QKD (BB84)** | — | qubits + bits publics | clé secrète partagée |
-
-### État partagé de base
-
-$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
-
----
-
-## Téléportation Quantique
-
-### Ressources nécessaires
-
-- 1 paire de Bell $|\Phi^+\rangle$ (distribuée entre Alice et Bob)
-- 1 qubit message $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ (chez Alice)
-- 1 canal classique (2 bits)
-
-### Les 8 étapes
-
-1. Créer $|\Phi^+\rangle$ via $H$ + CNOT
-2. Distribuer : Alice garde qubit 2, Bob garde qubit 3
-3. Alice calcule l'état total à 3 qubits :
-$$\frac{1}{\sqrt{2}}[\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle]$$
-4. Alice applique **CNOT** ($|\psi\rangle$ = contrôle, son qubit = cible)
-5. Alice applique **H** sur $|\psi\rangle$
-6. Alice **mesure** ses 2 qubits → 4 cas possibles
-7. Alice envoie les **2 bits classiques** $b_1 b_0$ à Bob
-8. Bob **corrige** son qubit
-
-### Table de correction de Bob
-
-| Mesure Alice $b_1 b_0$ | État de Bob | Correction |
+| Mesure Alice ($b_1 b_0$) | État Bob | Correction |
 |---|---|---|
-| $00$ | $\alpha\|0\rangle + \beta\|1\rangle$ | **Rien** |
-| $01$ | $\alpha\|1\rangle + \beta\|0\rangle$ | Appliquer **X (NOT)** |
-| $10$ | $\alpha\|0\rangle - \beta\|1\rangle$ | Appliquer **Z** |
-| $11$ | $\alpha\|1\rangle - \beta\|0\rangle$ | Appliquer **X puis Z** |
+| 00 | $\alpha\|0\rangle + \beta\|1\rangle$ | Aucune |
+| 01 | $\alpha\|1\rangle + \beta\|0\rangle$ | NOT (X) |
+| 10 | $\alpha\|0\rangle - \beta\|1\rangle$ | Z |
+| 11 | $\alpha\|1\rangle - \beta\|0\rangle$ | NOT + Z |
 
-### Points critiques ⚠️
-
-- Alice ne connaît **jamais** l'état $|\psi\rangle$
-- **Pas de FTL** (faster than light) : nécessite canal classique
-- Les qubits intriqués sont **détruits** après usage
-- 1 téléportation = 1 paire intriquée consommée
-- Découvert en **1993**, réalisé en **1997**, record distance : **1 400 km** (satellite Micius)
-
----
-
-## Codage Superdense
-
-### Table d'encodage (Alice)
-
-| Bitstring | Opération sur son qubit | État final |
-|---|---|---|
-| $00$ | $I$ | $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ |
-| $01$ | $X$ | $\frac{1}{\sqrt{2}}(\|10\rangle + \|01\rangle)$ |
-| $10$ | $Z$ | $\frac{1}{\sqrt{2}}(\|00\rangle - \|11\rangle)$ |
-| $11$ | $XZ$ | $\frac{1}{\sqrt{2}}(\|10\rangle - \|01\rangle)$ |
-
-Alice envoie son qubit → Bob applique **CNOT puis H** → mesure → obtient le bitstring d'Alice
-
-### Point critique ⚠️
-
-- Inverse de la téléportation : 1 qubit envoyé = 2 bits classiques reçus
-
----
-
-## Distribution Quantique de Clés — QKD
-
-### One-time pad (OTP)
-
-- Clé $r$ aléatoire de $n$ bits, partagée entre Alice et Bob
-- Chiffrement : $m \oplus r$ — Déchiffrement : $(m \oplus r) \oplus r = m$
-- **Sécurité théorique de l'information** (pas computationnelle)
-- **Problème** : Alice et Bob doivent se rencontrer pour partager $r$
-
-### BB84 — Protocole
-
-**Bases utilisées :**
-
-- Base $\mathcal{Z}$ : $\{|0\rangle,\, |1\rangle\}$
-- Base $\mathcal{X}$ : $\{|+\rangle = H|0\rangle,\, |-\rangle = H|1\rangle\}$
-
-**Étapes :**
-
-1. Alice encode chaque bit dans une base choisie **aléatoirement** → envoie qubit
-2. Bob mesure dans une base choisie **aléatoirement**
-3. Bob annonce sa **base** (public)
-4. Alice confirme si c'était la **bonne base** (public)
-5. Bases identiques → bit gardé dans la clé | Bases différentes → bit rejeté
-
-> En moyenne, **50% des bits sont conservés**
-
-### Pourquoi l'espionnage est détectable
-
-- Eve doit choisir sa base **avant** de connaître celle d'Alice
-- Mauvaise base (50% du temps) → **erreurs introduites** dans la clé de Bob
-- Alice et Bob comparent une fraction de leurs bits → **détection statistique**
-- Copie impossible : **théorème de non-clonage**
-
-### Points critiques ⚠️
-
-- BB84 ne requiert **pas** d'intrication
-- Découvert en **1984** (et par GCHQ, non publié)
-- Record bit rate : **1 Mbit/s**
-
----
-
-# Algorithme de Shor
-
-## Théorème clé
-
-$$a \not\equiv \pm b \pmod{N},\quad a^2 \equiv b^2 \pmod{N} \implies \gcd(a+b,\, N) \text{ est un facteur de } N$$
-
-## Étapes sur un ordinateur quantique
-
-1. Choisir $x$ copremier avec $N$
-2. Appliquer la **QFT** pour trouver la période $l$ de $f(s) = x^s \bmod N$
-3. Utiliser $l$ pour calculer les facteurs candidats
-4. Vérifier — si échec, recommencer
-
-## Quantum Fourier Transform (QFT)
-
-$$U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\sum_{x=0}^{N-1} \omega_N^{xy}|y\rangle\langle x|$$
-
-$$U_{QFT}^\dagger = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\sum_{x=0}^{N-1} \omega_N^{-xy}|x\rangle\langle y|$$
-
----
-
-# Variational Quantum Eigensolver (VQE)
-
-## En un mot
-
-Algorithme **hybride classique-quantique** pour trouver les valeurs propres minimales de $H$ (Hamiltonien).
-
-## Deux composantes
-
-**Partie quantique :**
-
-- Préparer l'ansatz $|\psi(\theta)\rangle$
-- Mesurer $\langle\psi(\theta)|H|\psi(\theta)\rangle$
-
-**Partie classique :**
-
-- Minimiser la valeur d'espérance via optimiseur non-linéaire
-- Mettre à jour $\theta$, itérer jusqu'à convergence
-
-## Principe variationnel
-
-$$\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
-
-> Minimiser → converge vers l'énergie fondamentale $E_0$
-
----
-
-# Monde Post-Quantique
-
-## Menaces sur la cryptographie actuelle
-
-- RSA-2048 cassable avec **~8 000 qubits logiques**
-- Probabilité élevée d'ici **5–10 ans**
-- Données à longue durée de vie déjà en danger (*harvest now, decrypt later*)
-
-## Solutions
-
-- **Chiffrement symétrique** (AES-256 — résistant si clé assez longue)
-- **Algorithmes à réseau** (*lattice-based* : CRYSTALS-Kyber, Dilithium — standards NIST 2024)
-- **QKD** — pour communications ultra-sensibles
-
----
-
-# Défis Actuels
-
-| Problème | Détail |
-|---|---|
-| **Décohérence** | Sensibilité extrême à l'environnement ; temps de cohérence < temps d'algorithme |
-| **Correction d'erreurs** | ~1000 qubits physiques par qubit logique |
-| **Scalabilité** | Temps exponentiel avec la taille pour certains problèmes |
-| **Algorithmes** | Peu de problèmes avec avantage quantique prouvé |
-
----
-
-# Pièges Classiques ⚠️
-
-::: {.callout-warning}
-## À ne pas confondre
-
-- **Téléportation ≠ transfert de matière** — seul l'état est transmis
-- **Téléportation ≠ FTL** — canal classique obligatoire → limité par $c$
-- **Codage superdense ≠ téléportation** — sens inverse (qubit → bits)
-- **Sécurité QKD ≠ computationnelle** — elle est physique (lois de la nature)
-- **BB84 ≠ entanglement** — ne nécessite pas d'intrication
-- **Avantage quantique ≠ universel** — seulement sur certains problèmes
-- **Copier un qubit ≡ impossible** — théorème de non-clonage
+::: {.callout-warning title="Pièges"}
+- Alice ne connaît **jamais** $|\psi\rangle$
+- Pas de communication supraluminique (canal classique obligatoire)
+- Chaque téléportation **consomme** la paire intriquée
 :::
 
 ---
 
-# Checklist de Révision ✅
+## Codage superdense (Superdense Coding)
 
-- [ ] Je sais expliquer la différence entre téléportation et codage superdense
-- [ ] Je connais les 8 étapes de la téléportation et la table de correction de Bob
-- [ ] Je sais pourquoi l'espionnage dans BB84 est détectable
-- [ ] Je connais les deux bases utilisées dans BB84 ($\mathcal{Z}$ et $\mathcal{X}$)
-- [ ] Je sais ce qu'est la QFT et son rôle dans l'algorithme de Shor
-- [ ] Je comprends la différence entre sécurité computationnelle et théorique de l'information
-- [ ] Je connais les ressources nécessaires pour chaque protocole de communication
-- [ ] Je sais ce qu'est le VQE et son architecture hybride
-- [ ] Je connais les principaux défis actuels (décohérence, correction d'erreurs)
+**But :** transmettre **2 bits classiques** avec **1 qubit** (+ intrication partagée)
 
----
+**Inverse** de la téléportation
 
-# Questions Type Examen
+### Opérations d'Alice sur son qubit
 
-**Q1.** Quelles sont les ressources nécessaires pour la téléportation quantique ? Pourquoi ne peut-elle pas être supraluminique ?
+| Bits à envoyer | Porte | État final |
+|---|---|---|
+| 00 | $I$ | $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ |
+| 01 | $X$ | $\frac{1}{\sqrt{2}}(\|10\rangle + \|01\rangle)$ |
+| 10 | $Z$ | $\frac{1}{\sqrt{2}}(\|00\rangle - \|11\rangle)$ |
+| 11 | $XZ$ | $\frac{1}{\sqrt{2}}(\|10\rangle - \|01\rangle)$ |
 
-**Q2.** Dans BB84, Bob mesure dans la mauvaise base. Que se passe-t-il ? Ce bit est-il utilisé dans la clé ?
+### Correction de Bob : CNOT → H → mesure
 
-**Q3.** Comparez la complexité de Shor vs le meilleur algorithme classique. Quel est l'impact sur RSA ?
+- Les 4 états finaux sont les **4 états de Bell** (base orthonormée)
+- Bob mesure en base computationnelle → retrouve les 2 bits d'Alice
 
-**Q4.** Décrivez le rôle de la QFT dans l'algorithme de Shor.
-
-**Q5.** Eve intercepte un qubit dans BB84 et le retransmet. Comment Alice et Bob détectent-ils son intrusion ?
-
-**Q6.** Quelle est la différence fondamentale entre un *one-time pad* classique et QKD ?
-
-**Q7.** Dans le codage superdense, Alice veut envoyer $10$. Quelle porte applique-t-elle ? Quel est l'état final ?
-
-**Q8.** Pourquoi la correction d'erreurs quantiques est-elle un défi majeur pour le passage à l'échelle ?
+::: {.callout-note title="Découverte : 1992, expérience : 1996"}
+:::
 
 ---
 
-# Glossaire Ultra-Compact
+## Distribution quantique de clés (QKD — BB84)
 
-| Terme | Définition en 5 mots |
+### Masque jetable (One-Time Pad)
+
+- Clé secrète $r$ partagée au préalable
+- Chiffrement : $m \oplus r$ — Déchiffrement : $(m \oplus r) \oplus r = m$
+- Sécurité **théorique** (information-theoretically secure)
+- **Problème :** partage de clé requiert rencontre physique → résolu par QKD
+
+### Ressources BB84
+
+- Canal classique **public authentifié**
+- Canal quantique (potentiellement espionné)
+- Alice : source de bits aléatoires + prépare $|0\rangle, |1\rangle, |+\rangle, |-\rangle$
+- Bob : mesure en base $\{|0\rangle,|1\rangle\}$ ou $\{|+\rangle,|-\rangle\}$
+
+### Protocole BB84
+
+1. Alice encode chaque bit dans une base choisie aléatoirement
+2. Bob mesure dans une base choisie aléatoirement
+3. Bob annonce sa **base** (pas le résultat) sur canal public
+4. Alice confirme si c'était la bonne base
+5. Bits avec **même base** → clé partagée (∼50% conservés)
+
+### Exemple BB84
+
+| Bit A | Base A | Qubit | Base B | Bit B | Retenu ? |
+|---|---|---|---|---|---|
+| 0 | $\{0,1\}$ | $\|0\rangle$ | $\{0,1\}$ | 0 | ✓ |
+| 1 | $\{+,-\}$ | $\|-\rangle$ | $\{+,-\}$ | 1 | ✓ |
+| 1 | $\{0,1\}$ | $\|1\rangle$ | $\{+,-\}$ | ? | ✗ |
+| 0 | $\{0,1\}$ | $\|0\rangle$ | $\{0,1\}$ | 0 | ✓ |
+
+### Sécurité — Attaques et défenses
+
+| Attaque d'Ève | Limite |
 |---|---|
-| **Qubit** | Superposition de $\|0\rangle$ et $\|1\rangle$ |
-| **Intrication** | Corrélation non-locale entre qubits |
-| **Décohérence** | Perte des propriétés quantiques |
-| **CNOT** | NOT conditionnel à un qubit contrôle |
-| **QFT** | Fourier quantique — détecte périodicité |
-| **Ansatz** | État paramétré d'essai (VQE) |
-| **OTP** | Clé aléatoire = sécurité parfaite |
-| **BB84** | QKD sans intrication (1984) |
-| **Non-clonage** | Copier un qubit = impossible |
-| **$|\Phi^+\rangle$** | Paire de Bell maximalement intriquée |
+| Interception + mesure + retransmission | Introduit ~25% d'erreurs → détectable |
+| Interception + copie + mesure tardive | Impossible : **théorème de non-clonage** |
+| Stockage + qubit aléatoire à Bob | Bob a des bits aléatoires → erreurs détectées |
+
+::: {.callout-important title="Propriété fondamentale">
+Toute écoute **perturbe** inévitablement les qubits → détectable statistiquement
+:::
+
+---
+
+## Algorithme de Shor (Factorisation)
+
+### Idée clé
+
+Réduire la factorisation à la **recherche de période** d'une fonction modulaire :
+
+$$f(s) = x^s \bmod N$$
+
+### Étapes
+
+1. Choisir $x$ copremier avec $N$
+2. Trouver la période $l$ de $f$ via la **QFT**
+3. Calculer $\gcd(x^{l/2} \pm 1,\ N)$ → facteurs de $N$
+4. Vérifier ; sinon recommencer
+
+### Théorème de base
+
+Si $a \not\equiv \pm b \pmod{N}$ mais $a^2 \equiv b^2 \pmod{N}$ alors $\gcd(a+b, N)$ est un facteur de $N$
+
+### Complexité
+
+| Méthode | Complexité |
+|---|---|
+| Classique (meilleur) | $O(\exp(n^{1/3}))$ |
+| Shor (quantique) | $O(n^3 \log n)$ |
+
+### Transformée de Fourier Quantique (QFT)
+
+$$U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\sum_{x=0}^{N-1} \omega_N^{xy}|y\rangle\langle x|, \quad \omega_N = e^{2\pi i/N}$$
+
+- Extrait la période par **interférence quantique**
+- Cœur de l'algorithme de Shor
+
+---
+
+## VQE — Solveur variationnel quantique (Variational Quantum Eigensolver)
+
+**But :** trouver les valeurs propres minimales (énergie fondamentale) d'un Hamiltonien $H$
+
+### Boucle hybride quantique/classique
+
+- **Quantique :** préparer l'ansatz $|\psi(\theta)\rangle$ + mesurer $\langle\psi(\theta)|H|\psi(\theta)\rangle$
+- **Classique :** optimiser $\theta$ pour minimiser la valeur d'espérance
+
+### Principe variationnel
+
+$$\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
+
+- La minimisation converge vers l'énergie fondamentale $E_0$
+
+### Applications
+
+- Chimie quantique (molécules)
+- Science des matériaux
+- Physique des hautes énergies
+
+---
+
+## Monde post-quantique (Post-Quantum World)
+
+### Menaces
+
+- RSA-2048 cassable avec ~8 000 qubits logiques (horizon 5–10 ans)
+- HTTPS, VPN, clés asymétriques → **non sûrs** à long terme
+
+### Solutions
+
+| Approche | Mécanisme | Résistance quantique |
+|---|---|---|
+| Chiffrement symétrique | Doubler la taille des clés | ✓ (Grover = avantage quadratique seulement) |
+| Réseaux euclidiens (*lattice*) | Problèmes géométriques durs | ✓ |
+| QKD (BB84) | Sécurité théorique de l'information | ✓ (absolu) |
+
+---
+
+## Problèmes des ordinateurs quantiques
+
+| Problème | Description |
+|---|---|
+| **Décoherence** | Sensibilité à l'environnement → isolation difficile |
+| **Correction d'erreurs** | 1 qubit logique ≈ centaines de qubits physiques |
+| **Portes imparfaites** | Fidélité < 100% → accumulation d'erreurs |
+| **Algorithmes limités** | Peu de problèmes avec avantage prouvé |
+| **Temps de cohérence** | Doit dépasser le temps d'exécution |
+
+---
+
+## Relations clés entre protocoles
+
+| Protocole | Ressource quantique | Canal classique | Résultat |
+|---|---|---|---|
+| Téléportation | 1 paire Bell + 1 qubit message | 2 bits | Bob reçoit 1 qubit |
+| Codage superdense | 1 paire Bell | 0 bit (qubit envoyé) | Bob reçoit 2 bits |
+| BB84 | Canal quantique seul | Bases annoncées | Clé secrète partagée |
+
+::: {.callout-tip title="Symétrie téléportation ↔ codage superdense"}
+Téléportation et codage superdense sont **duaux** : l'un échange qubits contre bits, l'autre bits contre qubits, tous deux grâce à l'intrication partagée.
+:::
