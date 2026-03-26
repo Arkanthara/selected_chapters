@@ -1,0 +1,151 @@
+---
+title: "Propriétés fondamentales de l'informatique quantique — Révision"
+---
+
+# Mesure & distinction d'états
+
+## Mesure dans la base computationnelle (Computational Basis Measurement)
+
+- $|\psi\rangle = |0\rangle$ ou $|1\rangle$ → mesure **déterministe** (information classique)
+- $|1\rangle = 0|0\rangle + 1|1\rangle$ → $p(\text{mesurer }1) = |1|^2 = 1$
+
+## États orthogonaux (Orthogonal States)
+
+::: {.callout-important title="Règle clé"}
+Deux états **orthogonaux** → distinction **parfaite** toujours possible.
+:::
+
+**Méthode :**
+
+1. Construire $U = \begin{bmatrix}\alpha & \gamma \\ \beta & \delta\end{bmatrix}$ (colonnes = $|\psi_0\rangle$, $|\psi_1\rangle$)
+2. Appliquer $U^\dagger$ → aligne les états sur la base computationnelle
+3. Mesurer dans la base computationnelle
+
+**Opérateurs de mesure :** $M_{|\psi_0\rangle} = |\psi_0\rangle\langle\psi_0|$ et $M_{|\psi_1\rangle} = |\psi_1\rangle\langle\psi_1|$
+
+**Équation de complétude :** $\sum_m M_m^\dagger M_m = I$ ✓ (car $U U^\dagger = I$)
+
+## États non-orthogonaux (Non-Orthogonal States)
+
+- Distinction **parfaite** → **impossible**
+- On peut obtenir de l'information partielle sur la probabilité d'appartenance
+
+---
+
+# Borne de Helstrom-Holevo (Helstrom-Holevo Bound)
+
+::: {.callout-important title="Formule"}
+$|\langle\psi_a|\psi_b\rangle| = \cos\theta \implies p_{\text{succès}} \leq \dfrac{1}{2}(1 + \sin\theta)$
+:::
+
+| Cas | $\theta$ | $\sin\theta$ | $p_{\text{succès}}$ |
+|-----|----------|--------------|---------------------|
+| États orthogonaux | $\pi/2$ | $1$ | $1$ (parfait) |
+| États quelconques | $\theta$ | $\sin\theta$ | $\frac{1}{2}(1+\sin\theta)$ |
+| États identiques | $0$ | $0$ | $\frac{1}{2}$ (hasard) |
+
+**Base optimale :** vecteurs propres (Eigenvectors) de $|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$
+
+## Exemple : $|0\rangle$ vs $|+\rangle$
+
+- $\langle 0|{+}\rangle = \frac{1}{\sqrt{2}} \neq 0$ → non orthogonaux
+- $p_{\text{succès}}^{\text{opt}} = \frac{1}{2}(1 + \sin(\arccos(1/\sqrt{2}))) \approx \mathbf{0.85}$
+
+**Dans la base computationnelle (sous-optimal) :**
+
+| | Outcome 0 | Outcome 1 |
+|--|--|--|
+| $|0\rangle$ | $1$ | $0$ |
+| $|+\rangle$ | $1/2$ | $1/2$ |
+
+- Outcome $1$ → **certitude** : $|\psi\rangle = |+\rangle$
+- Outcome $0$ → guess $|0\rangle$, mais $\frac{1}{3}$ des cas = $|+\rangle$
+- $p_{\text{succès}} = \frac{3}{4} = \mathbf{0.75}$ (< 0.85)
+
+## Stratégies de discrimination
+
+| Stratégie | $p_{\text{succès}}$ | Certitude possible ? |
+|-----------|---------------------|----------------------|
+| Base optimale (symétrique) | Max = $\frac{1}{2}(1+\sin\theta)$ | Non |
+| Base asymétrique | $< \frac{1}{2}(1+\sin\theta)$ | Oui (sur un outcome) |
+
+::: {.callout-tip title="Piège"}
+Mesurer dans la base computationnelle n'est **pas** la stratégie optimale en général.
+:::
+
+---
+
+# Principe de non-signalisation (No-Signalling Principle)
+
+::: {.callout-important title="Énoncé"}
+L'intrication quantique **ne peut pas** transmettre de l'information plus vite que la lumière.
+:::
+
+**Scénario Alice–Bob (paire de Bell $\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$) :**
+
+- Alice mesure → qubit de Bob s'effondre **instantanément**
+- Bob mesure son qubit : $p_B(0) = p_B(1) = \frac{1}{2}$ dans **les deux cas** (avec ou sans mesure d'Alice)
+- Bob **ne peut pas détecter** si Alice a mesuré → pas de signal
+
+::: {.callout-note title="Clé de la preuve"}
+Sans communication classique d'Alice, Bob ne connaît pas l'outcome d'Alice → ses statistiques restent identiques.
+:::
+
+**Généralisation :** valide pour tout type d'intrication, toute base de mesure, toute transformation unitaire locale.
+
+---
+
+# Principe de non-clonage (No-Cloning Theorem)
+
+::: {.callout-important title="Énoncé"}
+Il n'existe **aucune** transformation unitaire $U$ telle que $U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$ pour tout $|\psi\rangle$.
+:::
+
+**Preuve (par contradiction) :**
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle \quad \text{et} \quad U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle$$
+
+$$\xRightarrow{U^\dagger U = I} \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+$$\Rightarrow \langle\psi|\phi\rangle \in \{0, 1\} \quad \text{(orthogonaux ou identiques seulement)}$$
+
+**Conséquences :**
+
+- Correction d'erreurs quantique (Quantum Error Correction) → plus complexe
+- Clonage + no-signalling → contradiction
+- Clonage → super-compression d'info classique impossible
+
+---
+
+# Principe de non-suppression (No-Deleting Theorem)
+
+::: {.callout-important title="Énoncé"}
+Il n'existe **aucune** transformation unitaire $\tilde{U}$ telle que $\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$.
+:::
+
+- **Dual temporel** du non-clonage
+- Non-clonage : interdit $1 \to 2$ copies
+- Non-suppression : interdit $2 \to 1$ copies
+
+::: {.callout-note title="À retenir"}
+Le calcul quantique est **réversible** (sauf mesure) → l'impossibilité d'une opération implique l'impossibilité de son inverse.
+:::
+
+---
+
+# Synthèse globale
+
+| Propriété | Condition | Résultat |
+|-----------|-----------|----------|
+| Distinction parfaite | États **orthogonaux** | ✅ Toujours possible |
+| Distinction parfaite | États **non-orthogonaux** | ❌ Impossible |
+| $p_{\text{succès}}$ max | $|\langle\psi_a|\psi_b\rangle| = \cos\theta$ | $\frac{1}{2}(1+\sin\theta)$ |
+| Transmission d'info (intrication) | Toujours | ❌ Non-signalisation |
+| Clonage d'état arbitraire | Toujours | ❌ Non-clonage |
+| Suppression d'une copie | Toujours | ❌ Non-suppression |
+
+::: {.callout-warning title="Relations entre principes"}
+- Clonage possible $\Rightarrow$ non-signalisation violée
+- Non-suppression = dual du non-clonage (réversibilité)
+- $\theta = \pi/2$ (orthogonaux) $\Rightarrow$ Helstrom-Holevo donne $p = 1$ ✓
+:::
