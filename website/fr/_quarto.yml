@@ -5,7 +5,8 @@ project:
 
 website:
   # Language switching setup
-
+  page-footer:
+    center: "Copyright © 2026 University of Geneva"
   navbar:
     # background: primary
     search: true
