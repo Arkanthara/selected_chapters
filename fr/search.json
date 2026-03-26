@@ -925,303 +925,327 @@
     ]
   },
   {
-    "objectID": "ch4.html",
-    "href": "ch4.html",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html",
+    "href": "ch3.html",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "Avant d’entrer dans les détails techniques de l’informatique quantique, il est utile de comprendre pourquoi ces machines nous intéressent. Les ordinateurs quantiques promettent des avancées révolutionnaires dans de nombreux domaines.\nLes domaines d’application majeurs incluent :\n\nVoyage et logistique — optimisation d’itinéraires complexes\nChimie — simulation moléculaire et réactions chimiques\nPharmacologie — conception de médicaments\nModélisation climatique — simulations à grande échelle\nAnalyse financière — optimisation de portefeuilles\nCryptographie — sécurisation et cassage de chiffrement\n\n\n\n\n\n\nP. Shor, 1994\n\n\n\nLa factorisation consiste à décomposer un entier \\(N\\) en ses facteurs premiers.\n\n\\(15 = 3 \\times 5\\) → facile !\n\\(38647884621009387621432325631 = \\; ? \\times \\; ?\\) → très difficile pour un ordinateur classique.\n\n\n\n\n\n\n\nImportant\n\n\n\nImportance : cryptanalyse\nLa cryptographie à clé publique (ex. : RSA) repose entièrement sur l’impossibilité pratique de factoriser de grands nombres. Un ordinateur quantique capable de le faire briserait la plupart des communications sécurisées actuelles.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgorithme\nComplexité\nTemps (ordinateur THz)\n\n\n\n\nMeilleur algorithme classique\n\\(O(\\exp(n^{1/3}))\\) — \\(10^{24}\\) étapes\n150 000 ans\n\n\nAlgorithme de Shor (quantique)\n\\(O(n^3 \\log n)\\) — \\(10^{10}\\) étapes\n&lt; 1 seconde\n\n\n\nL’avantage quantique est ici exponentiel : l’algorithme de Shor est incomparablement plus rapide que tout algorithme classique connu.\n\n\n\n\n\n\nL. Grover, 1997\n\n\n\nImaginons que l’on cherche le nom d’une personne dans un annuaire non trié, en ne connaissant que son numéro de téléphone.\n\nClassiquement : il faut inspecter en moyenne \\(N/2\\) entrées → \\(O(N)\\) opérations.\nAvec l’algorithme de Grover : seulement \\(O(\\sqrt{N})\\) opérations — un gain quadratique.\n\n\n\n\n\nRecherche rapide dans de grands jeux de données\nInversion de fonctions complexes\nCalcul de propriétés globales (médiane, etc.)\nReconnaissance de formes et vision par ordinateur\n\n\n\n\n\n\n\n\nSimuler \\(N\\) systèmes quantiques en interaction nécessite de résoudre \\(2^N\\) équations couplées, issues de l’équation de Schrödinger :\n\\[\ni\\hbar \\frac{\\partial \\Psi}{\\partial t} = H\\Psi\n\\]\nPour \\(N = 50\\) particules, cela représente \\(2^{50} \\approx 10^{15}\\) équations — bien au-delà des capacités classiques.\n\n\n\nL’idée est d’utiliser un ensemble standard de qubits avec des interactions programmables pour imiter le système physique cible.\nLes plateformes physiques disponibles sont :\n\nIons atomiques piégés\nAtomes neutres dans des réseaux optiques\nSupraconducteurs (circuits Josephson)\nCentres NV dans le diamant\n\n\n\n\n\nQuantum Material Design — comprendre et concevoir de nouveaux matériaux exotiques\nRécolte d’énergie et de lumière — simuler des théories de jauge QCD sur réseau\nThéories quantiques des champs — connecter cosmologie et théorie de l’information (AdS-CFT)\n\n\n\n\n\n\n\n\nL’optimisation quantique consiste à minimiser des fonctions complexes (non linéaires) en explorant simultanément tout l’espace des solutions grâce à la superposition quantique.\n\n\n\nOn cherche à minimiser une fonction de la forme :\n\\[\nf(x_1, x_2, \\ldots) = \\sum_{i &lt; j} q_{ij} x_i x_j + \\sum_i c_i x_i\n\\]\nCette fonction correspond à l’énergie d’un réseau magnétique quantique (Ising model), ce qui permet de mapper le problème sur un système quantique physique.\n\n\n\n\nLogistique et routage\nRecherche opérationnelle\nConception VLSI (circuits intégrés)\nFinance (optimisation de portefeuilles)\n\n\n\n\n\n\n\nNote\n\n\n\nApplication potentiellement révolutionnaire (Killer Application)\nL’optimisation quantique pourrait résoudre une large classe de problèmes réputés intractables : factorisation, problème du voyageur de commerce, etc. Cependant, il n’est pas encore prouvé qu’il existe toujours un avantage quantique.\n\n\n\n\n\n\n\n\n\nUn réseau quantique connecte plusieurs nœuds (de 0,1 m à 10 000 km de distance) via des canaux capables de transmettre des états quantiques.\nLocation A ←——→ Réseau Quantique ←——→ Location B\n                      ↕                      \n                 Location C             Location D\n\n\n\n\nGénération de clés secrètes — cryptographie quantique\nGénération de nombres aléatoires certifiés\nRépéteurs quantiques — amplificateurs de signaux quantiques\nIntrication distribuée — pour la prise de décision optimale\nCalcul quantique à grande échelle — interconnexion de QPUs",
+    "text": "Ce chapitre explore plusieurs propriétés essentielles des systèmes quantiques qui distinguent fondamentalement l’information quantique de l’information classique.\nNous allons étudier :\n\nLa mesure dans la base computationnelle et dans d’autres bases orthogonales\nL’impossibilité de distinguer parfaitement des états non orthogonaux (borne de Helstrom-Holevo)\nLe principe de non-signalisation (no-signalling)\nLe principe de non-clonage (no-cloning)\nLe principe de non-suppression (no-deleting)\n\n\n\n\n\n\nUn qubit est le système d’information fondamental en informatique quantique. Son état général s’écrit :\n\\[|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle \\qquad \\text{avec } |\\alpha|^2 + |\\beta|^2 = 1\\]\nOn peut toujours paramétrer cet état sous la forme :\n\\[|\\psi\\rangle = \\cos\\!\\left(\\frac{\\theta}{2}\\right)|0\\rangle\n  + e^{i\\varphi}\\sin\\!\\left(\\frac{\\theta}{2}\\right)|1\\rangle\\]\nce qui permet de représenter tout état pur d’un qubit comme un point sur une sphère unitaire : la sphère de Bloch.\n\n\n\n\n\n\n\nSi l’état \\(|\\psi\\rangle\\) est soit \\(|0\\rangle\\) soit \\(|1\\rangle\\), on peut les distinguer parfaitement en mesurant dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\).\nExemple : L’état \\(|1\\rangle\\) s’écrit dans la base computationnelle :\n\\[|1\\rangle = 0 \\cdot |0\\rangle + 1 \\cdot |1\\rangle\\]\nOn mesure \\(1\\) avec probabilité \\(|1|^2 = 1\\) (et \\(0\\) avec probabilité \\(|0|^2 = 0\\)).\n\n\n\n\n\n\n\nSupposons que \\(|\\psi\\rangle\\) est soit \\(|\\psi_0\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\), soit \\(|\\psi_1\\rangle = \\gamma|0\\rangle + \\delta|1\\rangle\\), avec \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) (orthogonaux).\n\n\n\nOn construit la matrice unitaire :\n\\[U = \\begin{bmatrix} \\alpha & \\gamma \\\\ \\beta & \\delta \\end{bmatrix}\\]\nCette matrice est unitaire car ses colonnes forment une base orthonormée. L’opérateur \\(U^\\dagger\\) réalise la rotation de base :\n\\[U^\\dagger |\\psi_0\\rangle \\to |0\\rangle \\qquad U^\\dagger |\\psi_1\\rangle \\to |1\\rangle\\]\nAprès cette transformation, une mesure dans la base computationnelle identifie l’état.\n\n\n\nLes projecteurs satisfont l’équation de complétude (condition nécessaire) :\n\\[\\sum_m M_m^\\dagger M_m\n  = (|\\psi_0\\rangle\\langle\\psi_0|)^2 + (|\\psi_1\\rangle\\langle\\psi_1|)^2\n  = |\\psi_0\\rangle\\langle\\psi_0| + |\\psi_1\\rangle\\langle\\psi_1|\n  = U|0\\rangle\\langle 0|U^\\dagger + U|1\\rangle\\langle 1|U^\\dagger\n  = UIU^\\dagger = I \\checkmark\\]\n\n\n\nPour \\(|\\psi\\rangle = |\\psi_0\\rangle\\) :\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_0\\rangle) = (\\langle\\psi_0|\\psi_0\\rangle)^3 = 1\\]\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_1\\rangle) = \\langle\\psi_1|\\psi_0\\rangle\n  \\cdot\\langle\\psi_0|\\psi_0\\rangle\\cdot\\langle\\psi_0|\\psi_1\\rangle = 0\\]\n(car \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) par orthogonalité)\n\n\n\n\n\nIntuition géométrique :\n\nPlus \\(|\\psi_a\\rangle\\) et \\(|\\psi_b\\rangle\\) sont proches (petit angle \\(\\theta\\) entre eux), plus ils sont difficiles à distinguer.\nPlus ils sont éloignés (proche de l’orthogonalité), plus la distinction est facile.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSituation\nAngle \\(\\theta\\)\n\\(\\sin\\theta\\)\n\\(p_{\\text{succès}}\\)\n\n\n\n\nÉtats orthogonaux\n\\(\\theta = \\pi/2\\)\n\\(1\\)\n\\(1\\) (parfait)\n\n\nÉtats presque alignés\n\\(\\theta \\approx 0\\)\n\\(\\approx 0\\)\n\\(\\approx 1/2\\) (hasard)\n\n\nCas intermédiaire\n\\(0 &lt; \\theta &lt; \\pi/2\\)\n\\((0,1)\\)\nEntre \\(1/2\\) et \\(1\\)\n\n\n\n\n\n\n\n\n\n\n\\[\\langle 0|+\\rangle = \\begin{bmatrix}1 & 0\\end{bmatrix}\n  \\begin{bmatrix}1/\\sqrt{2} \\\\ 1/\\sqrt{2}\\end{bmatrix} = \\frac{1}{\\sqrt{2}} \\neq 0\\]\n\n\n\n\n\n\n\nStratégie optimale : Avec \\(|\\langle 0|+\\rangle| = 1/\\sqrt{2}\\), donc \\(\\theta = \\pi/4\\) :\n\\[p_{\\text{succès}} = \\frac{1}{2}\\!\\left(1 + \\sin\\!\\left(\\arccos\\frac{1}{\\sqrt{2}}\\right)\\right)\n  = \\frac{1}{2}\\!\\left(1 + \\frac{1}{\\sqrt{2}}\\right) \\approx 0.85\\]\nStratégie simple (base computationnelle) :\n\n\n\nÉtat\n\\(P(\\text{mesure}=0)\\)\n\\(P(\\text{mesure}=1)\\)\n\n\n\n\n\\(|0\\rangle\\)\n\\(1\\)\n\\(0\\)\n\n\n\\(|+\\rangle\\)\n\\(1/2\\)\n\\(1/2\\)\n\n\n\n\nSi on mesure \\(1\\) → on est certain que l’état était \\(|+\\rangle\\).\nSi on mesure \\(0\\) → on devine \\(|0\\rangle\\), avec \\(1/3\\) de chance d’erreur.\n\n\\[p_{\\text{succès}} = 1 - \\frac{3}{4} \\times \\frac{1}{3} = \\frac{3}{4} = 0.75\\]\n\n\n\n\n\n\n\nL’intrication quantique produit un phénomène spectaculaire : mesurer un qubit influence instantanément l’état de son partenaire intriqué, même si les deux sont à des distances cosmiques. Einstein appelait cela l’“action fantôme à distance”.\nQuestion cruciale : peut-on utiliser ce phénomène pour transmettre de l’information plus vite que la lumière ?\n\n\n\n\n\n\n\nCas 1 : Alice n’a PAS mesuré.\nL’état global reste \\(\\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\). Pour Bob, la probabilité de mesurer \\(0\\) ou \\(1\\) est :\n\\[p(\\text{Bob mesure }0) = \\left(\\frac{1}{\\sqrt{2}}\\right)^2 = \\frac{1}{2}\\]\nCas 2 : Alice A mesuré.\nLe qubit de Bob s’est effondré vers \\(|0\\rangle\\) ou \\(|1\\rangle\\) (chacun avec probabilité \\(1/2\\)). Bob ne sait pas lequel. Pour lui :\n\\[p(\\text{Bob mesure }0) = \\frac{1}{2} \\cdot 1 + \\frac{1}{2} \\cdot 0 = \\frac{1}{2}\\]\n\n\n\n\n\n\n\nSi le clonage d’états quantiques était possible, on pourrait :\n\nFaciliter la correction d’erreurs quantiques\nComprimer une infinité d’information classique dans un seul qubit\nVioler le principe de non-signalisation (voir exercices)\n\n\n\n\n\n\n\n\nSupposons qu’un tel \\(U\\) existe. Il doit fonctionner pour tout état, donc en particulier pour deux états arbitraires \\(|\\psi\\rangle\\) et \\(|\\phi\\rangle\\) :\n\\[U(|\\psi\\rangle|0\\rangle) = |\\psi\\rangle|\\psi\\rangle \\qquad\n  U(|\\phi\\rangle|0\\rangle) = |\\phi\\rangle|\\phi\\rangle\\]\nPrenons le produit scalaire des deux membres :\n\\[\\langle\\psi|\\langle 0|U^\\dagger U|\\phi\\rangle|0\\rangle\n  = (\\langle\\psi|\\langle\\psi|)(|\\phi\\rangle|\\phi\\rangle)\\]\nMembre gauche (\\(U^\\dagger U = I\\)) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle 0|0\\rangle = \\langle\\psi|\\phi\\rangle\\]\nMembre droit (produit tensoriel) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\]\nOn obtient donc \\(\\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\). Cette équation n’a que deux solutions :\n\n\\(\\langle\\psi|\\phi\\rangle = 0\\) : états orthogonaux\n\\(\\langle\\psi|\\phi\\rangle = 1\\) : états identiques\n\n\n\n\n\n\n\n\nLe principe de non-suppression est le dual temporel du non-clonage. Il n’existe aucun opérateur unitaire \\(\\tilde{U}\\) tel que :\n\\[\\tilde{U}(|\\psi\\rangle|\\psi\\rangle) = |\\psi\\rangle|0\\rangle \\quad \\text{pour tout } |\\psi\\rangle\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa mesure quantique est caractérisée par des opérateurs de mesure satisfaisant l’équation de complétude \\(\\sum_m M_m^\\dagger M_m = I\\).\nDeux états orthogonaux sont toujours parfaitement distinguables ; deux états non orthogonaux ne le sont jamais.\nLa borne de Helstrom-Holevo donne la probabilité maximale de distinguer deux états : \\(\\frac{1}{2}(1 + \\sin\\theta)\\), atteinte par une base de mesure optimale.\nLe principe de non-signalisation garantit que l’intrication ne peut pas servir à communiquer plus vite que la lumière.\nLe théorème de non-clonage interdit la copie d’états quantiques arbitraires — résultat fondateur de la cryptographie quantique (protocole BB84).\nLe principe de non-suppression est le dual du non-clonage, et reflète la réversibilité fondamentale de la mécanique quantique.",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#vue-densemble",
-    "href": "ch4.html#vue-densemble",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#états-dun-qubit-et-sphère-de-bloch",
+    "href": "ch3.html#états-dun-qubit-et-sphère-de-bloch",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "Avant d’entrer dans les détails techniques de l’informatique quantique, il est utile de comprendre pourquoi ces machines nous intéressent. Les ordinateurs quantiques promettent des avancées révolutionnaires dans de nombreux domaines.\nLes domaines d’application majeurs incluent :\n\nVoyage et logistique — optimisation d’itinéraires complexes\nChimie — simulation moléculaire et réactions chimiques\nPharmacologie — conception de médicaments\nModélisation climatique — simulations à grande échelle\nAnalyse financière — optimisation de portefeuilles\nCryptographie — sécurisation et cassage de chiffrement",
+    "text": "Un qubit est le système d’information fondamental en informatique quantique. Son état général s’écrit :\n\\[|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle \\qquad \\text{avec } |\\alpha|^2 + |\\beta|^2 = 1\\]\nOn peut toujours paramétrer cet état sous la forme :\n\\[|\\psi\\rangle = \\cos\\!\\left(\\frac{\\theta}{2}\\right)|0\\rangle\n  + e^{i\\varphi}\\sin\\!\\left(\\frac{\\theta}{2}\\right)|1\\rangle\\]\nce qui permet de représenter tout état pur d’un qubit comme un point sur une sphère unitaire : la sphère de Bloch.",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#application-1-factorisation-quantique",
-    "href": "ch4.html#application-1-factorisation-quantique",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#mesure-dans-la-base-computationnelle",
+    "href": "ch3.html#mesure-dans-la-base-computationnelle",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "P. Shor, 1994\n\n\n\nLa factorisation consiste à décomposer un entier \\(N\\) en ses facteurs premiers.\n\n\\(15 = 3 \\times 5\\) → facile !\n\\(38647884621009387621432325631 = \\; ? \\times \\; ?\\) → très difficile pour un ordinateur classique.\n\n\n\n\n\n\n\nImportant\n\n\n\nImportance : cryptanalyse\nLa cryptographie à clé publique (ex. : RSA) repose entièrement sur l’impossibilité pratique de factoriser de grands nombres. Un ordinateur quantique capable de le faire briserait la plupart des communications sécurisées actuelles.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgorithme\nComplexité\nTemps (ordinateur THz)\n\n\n\n\nMeilleur algorithme classique\n\\(O(\\exp(n^{1/3}))\\) — \\(10^{24}\\) étapes\n150 000 ans\n\n\nAlgorithme de Shor (quantique)\n\\(O(n^3 \\log n)\\) — \\(10^{10}\\) étapes\n&lt; 1 seconde\n\n\n\nL’avantage quantique est ici exponentiel : l’algorithme de Shor est incomparablement plus rapide que tout algorithme classique connu.",
+    "text": "Si l’état \\(|\\psi\\rangle\\) est soit \\(|0\\rangle\\) soit \\(|1\\rangle\\), on peut les distinguer parfaitement en mesurant dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\).\nExemple : L’état \\(|1\\rangle\\) s’écrit dans la base computationnelle :\n\\[|1\\rangle = 0 \\cdot |0\\rangle + 1 \\cdot |1\\rangle\\]\nOn mesure \\(1\\) avec probabilité \\(|1|^2 = 1\\) (et \\(0\\) avec probabilité \\(|0|^2 = 0\\)).",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#application-2-recherche-quantique",
-    "href": "ch4.html#application-2-recherche-quantique",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#distinguer-des-états-orthogonaux-quelconques",
+    "href": "ch3.html#distinguer-des-états-orthogonaux-quelconques",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "L. Grover, 1997\n\n\n\nImaginons que l’on cherche le nom d’une personne dans un annuaire non trié, en ne connaissant que son numéro de téléphone.\n\nClassiquement : il faut inspecter en moyenne \\(N/2\\) entrées → \\(O(N)\\) opérations.\nAvec l’algorithme de Grover : seulement \\(O(\\sqrt{N})\\) opérations — un gain quadratique.\n\n\n\n\n\nRecherche rapide dans de grands jeux de données\nInversion de fonctions complexes\nCalcul de propriétés globales (médiane, etc.)\nReconnaissance de formes et vision par ordinateur",
+    "text": "Supposons que \\(|\\psi\\rangle\\) est soit \\(|\\psi_0\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\), soit \\(|\\psi_1\\rangle = \\gamma|0\\rangle + \\delta|1\\rangle\\), avec \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) (orthogonaux).\n\n\n\nOn construit la matrice unitaire :\n\\[U = \\begin{bmatrix} \\alpha & \\gamma \\\\ \\beta & \\delta \\end{bmatrix}\\]\nCette matrice est unitaire car ses colonnes forment une base orthonormée. L’opérateur \\(U^\\dagger\\) réalise la rotation de base :\n\\[U^\\dagger |\\psi_0\\rangle \\to |0\\rangle \\qquad U^\\dagger |\\psi_1\\rangle \\to |1\\rangle\\]\nAprès cette transformation, une mesure dans la base computationnelle identifie l’état.\n\n\n\nLes projecteurs satisfont l’équation de complétude (condition nécessaire) :\n\\[\\sum_m M_m^\\dagger M_m\n  = (|\\psi_0\\rangle\\langle\\psi_0|)^2 + (|\\psi_1\\rangle\\langle\\psi_1|)^2\n  = |\\psi_0\\rangle\\langle\\psi_0| + |\\psi_1\\rangle\\langle\\psi_1|\n  = U|0\\rangle\\langle 0|U^\\dagger + U|1\\rangle\\langle 1|U^\\dagger\n  = UIU^\\dagger = I \\checkmark\\]\n\n\n\nPour \\(|\\psi\\rangle = |\\psi_0\\rangle\\) :\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_0\\rangle) = (\\langle\\psi_0|\\psi_0\\rangle)^3 = 1\\]\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_1\\rangle) = \\langle\\psi_1|\\psi_0\\rangle\n  \\cdot\\langle\\psi_0|\\psi_0\\rangle\\cdot\\langle\\psi_0|\\psi_1\\rangle = 0\\]\n(car \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) par orthogonalité)",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#application-3-simulation-quantique",
-    "href": "ch4.html#application-3-simulation-quantique",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#impossibilité-de-distinguer-des-états-non-orthogonaux",
+    "href": "ch3.html#impossibilité-de-distinguer-des-états-non-orthogonaux",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "Simuler \\(N\\) systèmes quantiques en interaction nécessite de résoudre \\(2^N\\) équations couplées, issues de l’équation de Schrödinger :\n\\[\ni\\hbar \\frac{\\partial \\Psi}{\\partial t} = H\\Psi\n\\]\nPour \\(N = 50\\) particules, cela représente \\(2^{50} \\approx 10^{15}\\) équations — bien au-delà des capacités classiques.\n\n\n\nL’idée est d’utiliser un ensemble standard de qubits avec des interactions programmables pour imiter le système physique cible.\nLes plateformes physiques disponibles sont :\n\nIons atomiques piégés\nAtomes neutres dans des réseaux optiques\nSupraconducteurs (circuits Josephson)\nCentres NV dans le diamant\n\n\n\n\n\nQuantum Material Design — comprendre et concevoir de nouveaux matériaux exotiques\nRécolte d’énergie et de lumière — simuler des théories de jauge QCD sur réseau\nThéories quantiques des champs — connecter cosmologie et théorie de l’information (AdS-CFT)",
+    "text": "Intuition géométrique :\n\nPlus \\(|\\psi_a\\rangle\\) et \\(|\\psi_b\\rangle\\) sont proches (petit angle \\(\\theta\\) entre eux), plus ils sont difficiles à distinguer.\nPlus ils sont éloignés (proche de l’orthogonalité), plus la distinction est facile.",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#application-4-optimisation-quantique",
-    "href": "ch4.html#application-4-optimisation-quantique",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#la-borne-de-helstrom-holevo",
+    "href": "ch3.html#la-borne-de-helstrom-holevo",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "L’optimisation quantique consiste à minimiser des fonctions complexes (non linéaires) en explorant simultanément tout l’espace des solutions grâce à la superposition quantique.\n\n\n\nOn cherche à minimiser une fonction de la forme :\n\\[\nf(x_1, x_2, \\ldots) = \\sum_{i &lt; j} q_{ij} x_i x_j + \\sum_i c_i x_i\n\\]\nCette fonction correspond à l’énergie d’un réseau magnétique quantique (Ising model), ce qui permet de mapper le problème sur un système quantique physique.\n\n\n\n\nLogistique et routage\nRecherche opérationnelle\nConception VLSI (circuits intégrés)\nFinance (optimisation de portefeuilles)\n\n\n\n\n\n\n\nNote\n\n\n\nApplication potentiellement révolutionnaire (Killer Application)\nL’optimisation quantique pourrait résoudre une large classe de problèmes réputés intractables : factorisation, problème du voyageur de commerce, etc. Cependant, il n’est pas encore prouvé qu’il existe toujours un avantage quantique.",
+    "text": "Situation\nAngle \\(\\theta\\)\n\\(\\sin\\theta\\)\n\\(p_{\\text{succès}}\\)\n\n\n\n\nÉtats orthogonaux\n\\(\\theta = \\pi/2\\)\n\\(1\\)\n\\(1\\) (parfait)\n\n\nÉtats presque alignés\n\\(\\theta \\approx 0\\)\n\\(\\approx 0\\)\n\\(\\approx 1/2\\) (hasard)\n\n\nCas intermédiaire\n\\(0 &lt; \\theta &lt; \\pi/2\\)\n\\((0,1)\\)\nEntre \\(1/2\\) et \\(1\\)",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#application-5-réseaux-quantiques",
-    "href": "ch4.html#application-5-réseaux-quantiques",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#exemple-distinguer-0rangle-et-rangle",
+    "href": "ch3.html#exemple-distinguer-0rangle-et-rangle",
+    "title": "Informatique Quantique — Lecture 3",
     "section": "",
-    "text": "Un réseau quantique connecte plusieurs nœuds (de 0,1 m à 10 000 km de distance) via des canaux capables de transmettre des états quantiques.\nLocation A ←——→ Réseau Quantique ←——→ Location B\n                      ↕                      \n                 Location C             Location D\n\n\n\n\nGénération de clés secrètes — cryptographie quantique\nGénération de nombres aléatoires certifiés\nRépéteurs quantiques — amplificateurs de signaux quantiques\nIntrication distribuée — pour la prise de décision optimale\nCalcul quantique à grande échelle — interconnexion de QPUs",
+    "text": "\\[\\langle 0|+\\rangle = \\begin{bmatrix}1 & 0\\end{bmatrix}\n  \\begin{bmatrix}1/\\sqrt{2} \\\\ 1/\\sqrt{2}\\end{bmatrix} = \\frac{1}{\\sqrt{2}} \\neq 0\\]\n\n\n\n\n\n\n\nStratégie optimale : Avec \\(|\\langle 0|+\\rangle| = 1/\\sqrt{2}\\), donc \\(\\theta = \\pi/4\\) :\n\\[p_{\\text{succès}} = \\frac{1}{2}\\!\\left(1 + \\sin\\!\\left(\\arccos\\frac{1}{\\sqrt{2}}\\right)\\right)\n  = \\frac{1}{2}\\!\\left(1 + \\frac{1}{\\sqrt{2}}\\right) \\approx 0.85\\]\nStratégie simple (base computationnelle) :\n\n\n\nÉtat\n\\(P(\\text{mesure}=0)\\)\n\\(P(\\text{mesure}=1)\\)\n\n\n\n\n\\(|0\\rangle\\)\n\\(1\\)\n\\(0\\)\n\n\n\\(|+\\rangle\\)\n\\(1/2\\)\n\\(1/2\\)\n\n\n\n\nSi on mesure \\(1\\) → on est certain que l’état était \\(|+\\rangle\\).\nSi on mesure \\(0\\) → on devine \\(|0\\rangle\\), avec \\(1/3\\) de chance d’erreur.\n\n\\[p_{\\text{succès}} = 1 - \\frac{3}{4} \\times \\frac{1}{3} = \\frac{3}{4} = 0.75\\]",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#vue-densemble-1",
-    "href": "ch4.html#vue-densemble-1",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Vue d’ensemble",
-    "text": "Vue d’ensemble\nNous allons explorer trois protocoles fondamentaux qui tirent parti de l’intrication quantique comme ressource de communication :\n\nTéléportation quantique — transmettre un qubit en utilisant 2 bits classiques + 1 paire intriquée\nCodage superdense — transmettre 2 bits classiques en envoyant 1 qubit + 1 paire intriquée\nDistribution quantique de clés (QKD) — créer un pad à usage unique sans que Alice et Bob ne se rencontrent\n\n\n\n\n\n\n\nNote\n\n\n\nCes protocoles permettent d’accomplir des tâches impossibles classiquement, même en principe.",
+    "objectID": "ch3.html#le-principe-de-non-signalisation-no-signalling",
+    "href": "ch3.html#le-principe-de-non-signalisation-no-signalling",
+    "title": "Informatique Quantique — Lecture 3",
+    "section": "",
+    "text": "L’intrication quantique produit un phénomène spectaculaire : mesurer un qubit influence instantanément l’état de son partenaire intriqué, même si les deux sont à des distances cosmiques. Einstein appelait cela l’“action fantôme à distance”.\nQuestion cruciale : peut-on utiliser ce phénomène pour transmettre de l’information plus vite que la lumière ?\n\n\n\n\n\n\n\nCas 1 : Alice n’a PAS mesuré.\nL’état global reste \\(\\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\). Pour Bob, la probabilité de mesurer \\(0\\) ou \\(1\\) est :\n\\[p(\\text{Bob mesure }0) = \\left(\\frac{1}{\\sqrt{2}}\\right)^2 = \\frac{1}{2}\\]\nCas 2 : Alice A mesuré.\nLe qubit de Bob s’est effondré vers \\(|0\\rangle\\) ou \\(|1\\rangle\\) (chacun avec probabilité \\(1/2\\)). Bob ne sait pas lequel. Pour lui :\n\\[p(\\text{Bob mesure }0) = \\frac{1}{2} \\cdot 1 + \\frac{1}{2} \\cdot 0 = \\frac{1}{2}\\]",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#configuration-de-base-alice-et-bob",
-    "href": "ch4.html#configuration-de-base-alice-et-bob",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Configuration de base — Alice et Bob",
-    "text": "Configuration de base — Alice et Bob\nDans tous ces protocoles, Alice et Bob partagent une paire de qubits intriqués :\n\\[\n|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\n\\]\nIls disposent également d’un canal de communication classique (téléphone, internet…).",
+    "objectID": "ch3.html#le-principe-de-non-clonage-no-cloning",
+    "href": "ch3.html#le-principe-de-non-clonage-no-cloning",
+    "title": "Informatique Quantique — Lecture 3",
+    "section": "",
+    "text": "Si le clonage d’états quantiques était possible, on pourrait :\n\nFaciliter la correction d’erreurs quantiques\nComprimer une infinité d’information classique dans un seul qubit\nVioler le principe de non-signalisation (voir exercices)\n\n\n\n\n\n\n\n\nSupposons qu’un tel \\(U\\) existe. Il doit fonctionner pour tout état, donc en particulier pour deux états arbitraires \\(|\\psi\\rangle\\) et \\(|\\phi\\rangle\\) :\n\\[U(|\\psi\\rangle|0\\rangle) = |\\psi\\rangle|\\psi\\rangle \\qquad\n  U(|\\phi\\rangle|0\\rangle) = |\\phi\\rangle|\\phi\\rangle\\]\nPrenons le produit scalaire des deux membres :\n\\[\\langle\\psi|\\langle 0|U^\\dagger U|\\phi\\rangle|0\\rangle\n  = (\\langle\\psi|\\langle\\psi|)(|\\phi\\rangle|\\phi\\rangle)\\]\nMembre gauche (\\(U^\\dagger U = I\\)) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle 0|0\\rangle = \\langle\\psi|\\phi\\rangle\\]\nMembre droit (produit tensoriel) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\]\nOn obtient donc \\(\\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\). Cette équation n’a que deux solutions :\n\n\\(\\langle\\psi|\\phi\\rangle = 0\\) : états orthogonaux\n\\(\\langle\\psi|\\phi\\rangle = 1\\) : états identiques",
     "crumbs": [
       "Cours",
-      "Applications des ordinateurs quantiques",
+      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch4.html#téléportation-quantique",
-    "href": "ch4.html#téléportation-quantique",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch3.html#le-principe-de-non-suppression-no-deleting",
+    "href": "ch3.html#le-principe-de-non-suppression-no-deleting",
+    "title": "Informatique Quantique — Lecture 3",
+    "section": "",
+    "text": "Le principe de non-suppression est le dual temporel du non-clonage. Il n’existe aucun opérateur unitaire \\(\\tilde{U}\\) tel que :\n\\[\\tilde{U}(|\\psi\\rangle|\\psi\\rangle) = |\\psi\\rangle|0\\rangle \\quad \\text{pour tout } |\\psi\\rangle\\]",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 3",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch3.html#points-clés-à-retenir",
+    "href": "ch3.html#points-clés-à-retenir",
+    "title": "Informatique Quantique — Lecture 3",
+    "section": "",
+    "text": "La mesure quantique est caractérisée par des opérateurs de mesure satisfaisant l’équation de complétude \\(\\sum_m M_m^\\dagger M_m = I\\).\nDeux états orthogonaux sont toujours parfaitement distinguables ; deux états non orthogonaux ne le sont jamais.\nLa borne de Helstrom-Holevo donne la probabilité maximale de distinguer deux états : \\(\\frac{1}{2}(1 + \\sin\\theta)\\), atteinte par une base de mesure optimale.\nLe principe de non-signalisation garantit que l’intrication ne peut pas servir à communiquer plus vite que la lumière.\nLe théorème de non-clonage interdit la copie d’états quantiques arbitraires — résultat fondateur de la cryptographie quantique (protocole BB84).\nLe principe de non-suppression est le dual du non-clonage, et reflète la réversibilité fondamentale de la mécanique quantique.",
+    "crumbs": [
+      "Cours",
+      "Quantum computing chapter 3",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch4r.html",
+    "href": "ch4r.html",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "",
+    "text": "Application\nAvantage\nAlgorithme\nAnnée\n\n\n\n\nFactorisation\nExponentiel\nShor\n1994\n\n\nRecherche\nQuadratique\nGrover\n1997\n\n\nSimulation\nExponentiel\nQFT + Hamiltonien\n—\n\n\nOptimisation\nQuadratique/Exp.\nQAOA, VQE\n—\n\n\nCommunications\nSécurité absolue\nBB84, téléportation\n1984–93\n\n\n\n\n\n\n\n\nClassique : \\(O(\\exp(n^{1/3}))\\) → 150 000 ans (ordinateur THz)\nQuantique : \\(O(n^3 \\log n)\\) → &lt; 1 seconde\n\n\nImportance : RSA repose sur l’impossibilité de factoriser → Shor brise RSA\n\nIdée : trouver la période de \\(f(s) = x^s \\bmod N\\) via la QFT\n\n\n\n\n\nBase de données non triée de \\(N\\) éléments\nClassique : \\(O(N)\\) — Quantique : \\(O(\\sqrt{N})\\)\n\n\nImportance : satisfiabilité, big data, pattern recognition",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch4r.html#vue-densemble-rapide",
+    "href": "ch4r.html#vue-densemble-rapide",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "",
+    "text": "Application\nAvantage\nAlgorithme\nAnnée\n\n\n\n\nFactorisation\nExponentiel\nShor\n1994\n\n\nRecherche\nQuadratique\nGrover\n1997\n\n\nSimulation\nExponentiel\nQFT + Hamiltonien\n—\n\n\nOptimisation\nQuadratique/Exp.\nQAOA, VQE\n—\n\n\nCommunications\nSécurité absolue\nBB84, téléportation\n1984–93",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch4r.html#shor-factorisation",
+    "href": "ch4r.html#shor-factorisation",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "",
+    "text": "Classique : \\(O(\\exp(n^{1/3}))\\) → 150 000 ans (ordinateur THz)\nQuantique : \\(O(n^3 \\log n)\\) → &lt; 1 seconde\n\n\nImportance : RSA repose sur l’impossibilité de factoriser → Shor brise RSA\n\nIdée : trouver la période de \\(f(s) = x^s \\bmod N\\) via la QFT",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch4r.html#grover-recherche",
+    "href": "ch4r.html#grover-recherche",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "",
+    "text": "Base de données non triée de \\(N\\) éléments\nClassique : \\(O(N)\\) — Quantique : \\(O(\\sqrt{N})\\)\n\n\nImportance : satisfiabilité, big data, pattern recognition",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch4r.html#les-3-protocoles-fondamentaux",
+    "href": "ch4r.html#les-3-protocoles-fondamentaux",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Les 3 protocoles fondamentaux",
+    "text": "Les 3 protocoles fondamentaux\n\n\n\n\n\n\n\n\n\nProtocole\nRessource partagée\nCanal envoyé\nRésultat\n\n\n\n\nTéléportation\n1 paire intriquée\n2 bits classiques\n1 qubit transmis\n\n\nCodage superdense\n1 paire intriquée\n1 qubit\n2 bits transmis\n\n\nQKD (BB84)\n—\nqubits + bits publics\nclé secrète partagée\n\n\n\n\nÉtat partagé de base\n\\[|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\]",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Synthese"
+    ]
+  },
+  {
+    "objectID": "ch4r.html#téléportation-quantique",
+    "href": "ch4r.html#téléportation-quantique",
+    "title": "Applications des Ordinateurs Quantiques",
     "section": "Téléportation Quantique",
-    "text": "Téléportation Quantique\n\nLe problème du transport de qubits\n\nComment transmettre un qubit d’un point à un autre sans détruire la superposition et l’information de phase ?\n\nD’après le théorème de non-clonage, les qubits ne peuvent pas être copiés. Il n’est donc pas possible de simplement lire le qubit, envoyer sa valeur, et le recréer à destination.\nLa téléportation quantique offre une solution : transmettre l’état d’un qubit en préservant parfaitement l’information.\n\n\n\n\n\n\nImportant\n\n\n\nCe que la téléportation n’est PAS :\n\nLe déplacement de matière d’un point à un autre (pas de dématérialisation)\nUn voyage dans le temps (ni en avant, ni en arrière)\n\n\n\n\n\nRessources nécessaires\nPour téléporter un qubit, il faut :\n\n2 qubits intriqués — une paire de Bell, dont chaque partie est distribuée à Alice et Bob\n1 qubit message \\(|\\psi\\rangle\\) à envoyer (côté Alice)\n1 canal classique pour transmettre 2 bits d’information\n\n\n\n\n\n\n\nWarning\n\n\n\nNote fondamentale\nComme la téléportation nécessite un canal de communication classique, elle ne peut pas aller plus vite que la lumière !\n\n\n\n\nProtocole — étape par étape\n\nÉtape 1 : Créer la paire intriquée\nOn applique une porte Hadamard (\\(H\\)) sur le premier qubit \\(|0\\rangle\\), puis une porte CNOT :\n\\[\n|00\\rangle \\xrightarrow{H \\otimes I} \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle)|0\\rangle \\xrightarrow{\\text{CNOT}} |\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\n\\]\nAlice conserve le premier qubit ; Bob reçoit le second.\n\n\nÉtape 2 : Distribuer les qubits et calculer l’état total\nAlice possède maintenant deux qubits :\n\nSon qubit de la paire intriquée\nLe qubit message \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\)\n\nL’état total du système à 3 qubits est :\n\\[\n|\\psi\\rangle \\otimes |\\Phi^+\\rangle = (\\alpha|0\\rangle + \\beta|1\\rangle) \\otimes \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\n\\]\n\\[\n= \\frac{1}{\\sqrt{2}}\\left[\\alpha|000\\rangle + \\alpha|011\\rangle + \\beta|100\\rangle + \\beta|111\\rangle\\right]\n\\]\n\n\nÉtape 3 : Alice applique CNOT sur ses deux qubits\nAlice utilise \\(|\\psi\\rangle\\) comme contrôle et son qubit intriqué comme cible :\n\\[\n\\text{État 1} \\xrightarrow{\\text{CNOT}} \\text{État 2} = \\frac{1}{\\sqrt{2}}\\left[\\alpha|000\\rangle + \\alpha|011\\rangle + \\beta|101\\rangle + \\beta|110\\rangle\\right]\n\\]\n\n\nÉtape 4 : Alice applique la porte H sur \\(|\\psi\\rangle\\)\nEn utilisant \\(H|0\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle)\\) et \\(H|1\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle - |1\\rangle)\\) :\n\\[\n\\text{État 3} = \\frac{1}{2}\\Big[\\alpha\\big(|000\\rangle + |011\\rangle + |100\\rangle + |111\\rangle\\big) + \\beta\\big(|001\\rangle + |010\\rangle - |101\\rangle - |110\\rangle\\big)\\Big]\n\\]\n\n\nÉtape 5 : Alice mesure ses deux qubits\nIl y a 4 résultats possibles (en bits classiques \\(b_1 b_0\\)) :\n\n\n\nMesure d’Alice (\\(b_1 b_0\\))\nÉtat de Bob\n\n\n\n\n\\(00\\)\n\\(\\alpha\\|0\\rangle + \\beta\\|1\\rangle\\)\n\n\n\\(01\\)\n\\(\\alpha\\|1\\rangle + \\beta\\|0\\rangle\\)\n\n\n\\(10\\)\n\\(\\alpha\\|0\\rangle - \\beta\\|1\\rangle\\)\n\n\n\\(11\\)\n\\(\\alpha\\|1\\rangle - \\beta\\|0\\rangle\\)\n\n\n\n\n\nÉtapes 6 & 7 : Alice envoie ses 2 bits classiques à Bob\nBob reçoit les bits \\(b_1 b_0\\) et les utilise pour corriger son qubit :\n\nSi \\(b_0 = 1\\) → appliquer une porte NOT (\\(X\\)) : \\(X = \\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\)\nSi \\(b_1 = 1\\) → appliquer une porte Z : \\(Z = \\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}\\)\n\nAprès correction, Bob obtient exactement \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\). ✓\n\n\n\nCircuit quantique complet\nAlice:\n|ψ⟩ ───────●──── H ──── M ────────────────────●\n           |                                   |\n|0⟩ ── H ──⊕──────────── M ────────●           |\n- - - - - - - - - - - - - - - - -|-(barrière classique)\nBob:                               |           |\n|0⟩ ─────────────────────────────⊕────── Z ──|ψ⟩\n(Les doubles traits représentent la transmission des 2 bits classiques)\n\n\nRemarques importantes\n\nAlice ne connaît jamais l’état \\(|\\psi\\rangle\\) qu’elle téléporte\nAlice et Bob détruisent leurs qubits intriqués pendant la téléportation\nPour téléporter \\(n\\) qubits, il faut \\(n\\) paires intriquées\nDémontré expérimentalement pour la première fois en 1997\nRecord de distance : 1 400 km via le satellite Micius (2017)\n\n\n\nPourquoi la téléportation est-elle utile ?\n\nTransmission classique plus rapide que quantique — déplacer un état de qubit sur de longues distances est lent et sujet aux erreurs ; les canaux classiques sont beaucoup plus fiables pour la signalisation.\nTransport d’états connus plus fiable — les qubits “mobiles” partagent le même état intriqué ; on peut pré-partager de nombreuses paires en avance.\nParallélisation possible — le qubit “lent” est transmis pendant que son partenaire effectue des calculs ; le délai se réduit à la transmission classique et aux portes de correction.",
+    "text": "Téléportation Quantique\n\nRessources nécessaires\n\n1 paire de Bell \\(|\\Phi^+\\rangle\\) (distribuée entre Alice et Bob)\n1 qubit message \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\) (chez Alice)\n1 canal classique (2 bits)\n\n\n\nLes 8 étapes\n\nCréer \\(|\\Phi^+\\rangle\\) via \\(H\\) + CNOT\nDistribuer : Alice garde qubit 2, Bob garde qubit 3\nAlice calcule l’état total à 3 qubits : \\[\\frac{1}{\\sqrt{2}}[\\alpha|000\\rangle + \\alpha|011\\rangle + \\beta|100\\rangle + \\beta|111\\rangle]\\]\nAlice applique CNOT (\\(|\\psi\\rangle\\) = contrôle, son qubit = cible)\nAlice applique H sur \\(|\\psi\\rangle\\)\nAlice mesure ses 2 qubits → 4 cas possibles\nAlice envoie les 2 bits classiques \\(b_1 b_0\\) à Bob\nBob corrige son qubit\n\n\n\nTable de correction de Bob\n\n\n\nMesure Alice \\(b_1 b_0\\)\nÉtat de Bob\nCorrection\n\n\n\n\n\\(00\\)\n\\(\\alpha\\|0\\rangle + \\beta\\|1\\rangle\\)\nRien\n\n\n\\(01\\)\n\\(\\alpha\\|1\\rangle + \\beta\\|0\\rangle\\)\nAppliquer X (NOT)\n\n\n\\(10\\)\n\\(\\alpha\\|0\\rangle - \\beta\\|1\\rangle\\)\nAppliquer Z\n\n\n\\(11\\)\n\\(\\alpha\\|1\\rangle - \\beta\\|0\\rangle\\)\nAppliquer X puis Z\n\n\n\n\n\nPoints critiques ⚠️\n\nAlice ne connaît jamais l’état \\(|\\psi\\rangle\\)\nPas de FTL (faster than light) : nécessite canal classique\nLes qubits intriqués sont détruits après usage\n1 téléportation = 1 paire intriquée consommée\nDécouvert en 1993, réalisé en 1997, record distance : 1 400 km (satellite Micius)",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#codage-superdense",
-    "href": "ch4.html#codage-superdense",
-    "title": "Applications des ordinateurs quantiques",
+    "objectID": "ch4r.html#codage-superdense",
+    "href": "ch4r.html#codage-superdense",
+    "title": "Applications des Ordinateurs Quantiques",
     "section": "Codage Superdense",
-    "text": "Codage Superdense\n\nDécouvert en 1992, réalisé expérimentalement en 1996\n\n\nPrincipe — l’inverse de la téléportation\nLe codage superdense est en quelque sorte l’inverse de la téléportation :\n\n\n\n\n\n\n\n\n\nProtocole\nRessource partagée\nEnvoyé\nReçu\n\n\n\n\nTéléportation\n1 paire intriquée\n2 bits classiques\n1 qubit\n\n\nCodage superdense\n1 paire intriquée\n1 qubit\n2 bits classiques\n\n\n\n\n\nProtocole — côté Alice (encodage)\nAlice souhaite envoyer l’un des 4 messages : \\(00\\), \\(01\\), \\(10\\) ou \\(11\\). Elle applique une porte unitaire à son seul qubit :\n\n\n\n\n\n\n\n\n\nÉtat initial\nBitstring d’Alice\nOpération\nÉtat final\n\n\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(00\\)\n\\(I\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(01\\)\n\\(X\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle + \\|01\\rangle)\\)\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(10\\)\n\\(Z\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle - \\|11\\rangle)\\)\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(11\\)\n\\(XZ\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle - \\|01\\rangle)\\)\n\n\n\nAlice envoie ensuite son qubit à Bob.\n\n\nProtocole — côté Bob (décodage)\nBob possède maintenant les deux qubits. Il applique le circuit suivant (CNOT puis \\(H\\)) :\nAlice's qubit ──── ● ─────── H ────\nBob's qubit   ──── ⊕ ─────────────\nRésultat après décodage :\n\n\n\n\n\n\n\n\n\nÉtat reçu\nAprès CNOT\nAprès H\nRésultat\n\n\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle+\\|1\\rangle)\\|0\\rangle\\)\n\\(\\|00\\rangle\\)\n00\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle + \\|01\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle+\\|1\\rangle)\\|1\\rangle\\)\n\\(\\|01\\rangle\\)\n01\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle - \\|11\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle-\\|1\\rangle)\\|0\\rangle\\)\n\\(\\|10\\rangle\\)\n10\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle - \\|01\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle-\\|1\\rangle)\\|1\\rangle\\)\n\\(\\|11\\rangle\\)\n11\n\n\n\nBob mesure alors ses deux qubits dans la base computationnelle et obtient le bitstring d’Alice. ✓",
+    "text": "Codage Superdense\n\nTable d’encodage (Alice)\n\n\n\nBitstring\nOpération sur son qubit\nÉtat final\n\n\n\n\n\\(00\\)\n\\(I\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\n\n\\(01\\)\n\\(X\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle + \\|01\\rangle)\\)\n\n\n\\(10\\)\n\\(Z\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle - \\|11\\rangle)\\)\n\n\n\\(11\\)\n\\(XZ\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle - \\|01\\rangle)\\)\n\n\n\nAlice envoie son qubit → Bob applique CNOT puis H → mesure → obtient le bitstring d’Alice\n\n\nPoint critique ⚠️\n\nInverse de la téléportation : 1 qubit envoyé = 2 bits classiques reçus",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#distribution-quantique-de-clés-qkd",
-    "href": "ch4.html#distribution-quantique-de-clés-qkd",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Distribution Quantique de Clés (QKD)",
-    "text": "Distribution Quantique de Clés (QKD)\n\nMotivation — le pad à usage unique (one-time pad)\nLa cryptographie moderne (RSA, etc.) garantit une sécurité computationnelle : le chiffrement est difficile à casser avec les ordinateurs actuels, mais pas impossible en principe.\nUn standard plus fort est la sécurité théorique de l’information (information-theoretically secure). Le plus simple exemple : le pad à usage unique.\n\nFonctionnement du pad à usage unique\nAlice veut envoyer un message \\(m\\) de \\(n\\) bits à Bob. Le protocole est :\n\nAlice et Bob se rencontrent au préalable et partagent une clé secrète \\(r\\) de \\(n\\) bits aléatoires.\nAlice chiffre : elle envoie \\(m \\oplus r\\) (XOR bit à bit).\nBob déchiffre : \\((m \\oplus r) \\oplus r = m\\).\nAlice et Bob détruisent \\(r\\) après usage.\n\n\n\n\n\n\n\nTip\n\n\n\nPourquoi est-ce sûr ?\nSans accès à \\(r\\), un espion (Eve) ne reçoit qu’une chaîne de bits aléatoires — aucune information sur \\(m\\) n’est divulguée.\n\n\n\n\nLe problème pratique\nAlice et Bob doivent se rencontrer physiquement (ou disposer d’un canal absolument sûr) pour s’échanger la clé \\(r\\) au préalable. C’est impraticable à grande échelle.\nSolution : QKD — générer \\(r\\) à distance sans se rencontrer, en utilisant des propriétés quantiques.\n\n\n\nRessources requises pour QKD\nPour implémenter QKD (sans rencontre préalable), il faut :\n\nUn canal classique authentifié — si un message prétend venir de Bob, Alice peut en être certaine (et vice versa).\nUn canal quantique — potentiellement susceptible d’être écouté.\nAlice dispose d’une source de bits classiques aléatoires et peut préparer des qubits dans les états \\(|0\\rangle\\), \\(|1\\rangle = X|0\\rangle\\), \\(|+\\rangle = H|0\\rangle\\) et \\(|-\\rangle = H|1\\rangle\\).\nBob peut mesurer dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\) ou dans la base de Hadamard \\(\\{|+\\rangle, |-\\rangle\\}\\).\n\n\n\nLe protocole BB84\n\nC. Bennett & G. Brassard, 1984\n\nBB84 est le protocole QKD original. Il ne requiert pas d’intrication (bien que des protocoles ultérieurs en utilisent).\n\nÉtapes du protocole\n\nAlice possède un bitstring. Pour chaque bit, elle l’encode aléatoirement dans l’une des deux bases :\n\nBase \\(\\mathcal{Z}\\) : \\(\\{|0\\rangle, |1\\rangle\\}\\)\nBase \\(\\mathcal{X}\\) : \\(\\{|+\\rangle, |-\\rangle\\}\\)\n\nElle envoie le qubit résultant à Bob.\nBob reçoit le qubit et le mesure aléatoirement dans \\(\\mathcal{Z}\\) ou dans \\(\\mathcal{X}\\).\nBob annonce publiquement dans quelle base il a mesuré (pas le résultat).\nAlice répond publiquement si c’était la bonne base (pas sa valeur de bit).\nSi les bases concordent → Bob a mesuré le bon bit → ils l’ajoutent tous deux à leur clé partagée. Sinon, ils rejettent ce bit.\n\nEn moyenne, la moitié des bits sont conservés.\n\n\n\n\n\n\nImportant\n\n\n\nPropriété clé de sécurité\nToute tentative d’écoute par Eve perturbera la clé de manière détectable. Alice et Bob peuvent comparer une partie de leur clé sur le canal public pour détecter une intrusion.\n\n\n\n\n\nExemple concret de BB84\n\n\n\n\n\n\n\n\n\n\n\nBit A\nBase A\nQubit\nBase B\nBit B\nAccord ?\n\n\n\n\n0\n\\(\\mathcal{Z}\\)\n\\(\\|0\\rangle\\)\n\\(\\mathcal{Z}\\)\n0\n✓ clé : 0\n\n\n1\n\\(\\mathcal{X}\\)\n\\(\\|-\\rangle\\)\n\\(\\mathcal{X}\\)\n1\n✓ clé : 1\n\n\n1\n\\(\\mathcal{Z}\\)\n\\(\\|1\\rangle\\)\n\\(\\mathcal{X}\\)\n\\(\\{0,1\\}\\)\n✗ rejeté\n\n\n0\n\\(\\mathcal{Z}\\)\n\\(\\|0\\rangle\\)\n\\(\\mathcal{Z}\\)\n0\n✓ clé : 0\n\n\n1\n\\(\\mathcal{Z}\\)\n\\(\\|1\\rangle\\)\n\\(\\mathcal{Z}\\)\n1\n✓ clé : 1\n\n\n0\n\\(\\mathcal{X}\\)\n\\(\\|+\\rangle\\)\n\\(\\mathcal{X}\\)\n0\n✓ clé : 0\n\n\n1\n\\(\\mathcal{Z}\\)\n\\(\\|1\\rangle\\)\n\\(\\mathcal{X}\\)\n\\(\\{0,1\\}\\)\n✗ rejeté\n\n\n1\n\\(\\mathcal{X}\\)\n\\(\\|-\\rangle\\)\n\\(\\mathcal{Z}\\)\n\\(\\{0,1\\}\\)\n✗ rejeté\n\n\n\nLa clé partagée finale est : 0, 1, 0, 1, 0.\n\n\nSécurité contre l’espionnage\n\nAttaque par interception-mesure-retransmission\nEve intercepte le qubit, le mesure, puis envoie un nouveau qubit à Bob. Problème : elle doit choisir sa base avant de savoir quelle base Alice a utilisée.\nSi Eve choisit la mauvaise base (probabilité 1/2) :\n\nElle introduit des erreurs dans la clé de Bob.\nAlice et Bob détectent ces erreurs en comparant publiquement une fraction de leurs bits.\n\n\n\nAttaque par copie (intercept, copy, retransmit)\nEve voudrait garder une copie du qubit pour le mesurer plus tard. Mais cela viole le théorème de non-clonage — les qubits ne peuvent pas être copiés.\n\n\n\n\n\n\nTip\n\n\n\nRésultat fondamental\nTout espion qui essaie d’obtenir de l’information sur la clé laisse forcément des traces détectables. La sécurité de QKD est garantie par les lois de la physique quantique, pas par la difficulté computationnelle.",
+    "objectID": "ch4r.html#distribution-quantique-de-clés-qkd",
+    "href": "ch4r.html#distribution-quantique-de-clés-qkd",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Distribution Quantique de Clés — QKD",
+    "text": "Distribution Quantique de Clés — QKD\n\nOne-time pad (OTP)\n\nClé \\(r\\) aléatoire de \\(n\\) bits, partagée entre Alice et Bob\nChiffrement : \\(m \\oplus r\\) — Déchiffrement : \\((m \\oplus r) \\oplus r = m\\)\nSécurité théorique de l’information (pas computationnelle)\nProblème : Alice et Bob doivent se rencontrer pour partager \\(r\\)\n\n\n\nBB84 — Protocole\nBases utilisées :\n\nBase \\(\\mathcal{Z}\\) : \\(\\{|0\\rangle,\\, |1\\rangle\\}\\)\nBase \\(\\mathcal{X}\\) : \\(\\{|+\\rangle = H|0\\rangle,\\, |-\\rangle = H|1\\rangle\\}\\)\n\nÉtapes :\n\nAlice encode chaque bit dans une base choisie aléatoirement → envoie qubit\nBob mesure dans une base choisie aléatoirement\nBob annonce sa base (public)\nAlice confirme si c’était la bonne base (public)\nBases identiques → bit gardé dans la clé | Bases différentes → bit rejeté\n\n\nEn moyenne, 50% des bits sont conservés\n\n\n\nPourquoi l’espionnage est détectable\n\nEve doit choisir sa base avant de connaître celle d’Alice\nMauvaise base (50% du temps) → erreurs introduites dans la clé de Bob\nAlice et Bob comparent une fraction de leurs bits → détection statistique\nCopie impossible : théorème de non-clonage\n\n\n\nPoints critiques ⚠️\n\nBB84 ne requiert pas d’intrication\nDécouvert en 1984 (et par GCHQ, non publié)\nRecord bit rate : 1 Mbit/s",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#principe-mathématique",
-    "href": "ch4.html#principe-mathématique",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Principe mathématique",
-    "text": "Principe mathématique\nL’algorithme de Shor repose sur un théorème de théorie des nombres :\n\n\n\n\n\n\nNote\n\n\n\nThéorème\nSi \\(a \\not\\equiv \\pm b \\pmod{N}\\) mais \\(a^2 \\equiv b^2 \\pmod{N}\\), alors \\(\\gcd(a+b, N)\\) est un facteur non trivial de \\(N\\).",
+    "objectID": "ch4r.html#théorème-clé",
+    "href": "ch4r.html#théorème-clé",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Théorème clé",
+    "text": "Théorème clé\n\\[a \\not\\equiv \\pm b \\pmod{N},\\quad a^2 \\equiv b^2 \\pmod{N} \\implies \\gcd(a+b,\\, N) \\text{ est un facteur de } N\\]",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#algorithme-sur-un-ordinateur-quantique",
-    "href": "ch4.html#algorithme-sur-un-ordinateur-quantique",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Algorithme sur un ordinateur quantique",
-    "text": "Algorithme sur un ordinateur quantique\nPour factoriser \\(N\\) :\n\nChoisir \\(x\\) copremier avec \\(N\\) (aléatoirement).\nUtiliser la Transformée de Fourier Quantique (QFT) pour trouver la période \\(l\\) de la fonction : \\[f(s) = x^s \\bmod N\\]\nUtiliser l’ordre de \\(x\\) pour calculer les facteurs candidats de \\(N\\).\nVérifier les facteurs ; si incorrect, recommencer.",
+    "objectID": "ch4r.html#étapes-sur-un-ordinateur-quantique",
+    "href": "ch4r.html#étapes-sur-un-ordinateur-quantique",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Étapes sur un ordinateur quantique",
+    "text": "Étapes sur un ordinateur quantique\n\nChoisir \\(x\\) copremier avec \\(N\\)\nAppliquer la QFT pour trouver la période \\(l\\) de \\(f(s) = x^s \\bmod N\\)\nUtiliser \\(l\\) pour calculer les facteurs candidats\nVérifier — si échec, recommencer",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#la-transformée-de-fourier-quantique-qft",
-    "href": "ch4.html#la-transformée-de-fourier-quantique-qft",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "La Transformée de Fourier Quantique (QFT)",
-    "text": "La Transformée de Fourier Quantique (QFT)\nLa QFT est l’opérateur unitaire :\n\\[\nU_{QFT} = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1} \\sum_{x=0}^{N-1} \\omega_N^{xy} |y\\rangle\\langle x|\n\\]\nSon adjoint (la QFT inverse) est :\n\\[\nU_{QFT}^\\dagger = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1} \\sum_{x=0}^{N-1} \\omega_N^{-xy} |x\\rangle\\langle y|\n\\]\nLa QFT transforme une superposition périodique en pics de fréquence, permettant d’identifier la période \\(l\\) de \\(f(s)\\).",
+    "objectID": "ch4r.html#quantum-fourier-transform-qft",
+    "href": "ch4r.html#quantum-fourier-transform-qft",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Quantum Fourier Transform (QFT)",
+    "text": "Quantum Fourier Transform (QFT)\n\\[U_{QFT} = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1}\\sum_{x=0}^{N-1} \\omega_N^{xy}|y\\rangle\\langle x|\\]\n\\[U_{QFT}^\\dagger = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1}\\sum_{x=0}^{N-1} \\omega_N^{-xy}|x\\rangle\\langle y|\\]",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#circuit-quantique-de-shor",
-    "href": "ch4.html#circuit-quantique-de-shor",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Circuit quantique de Shor",
-    "text": "Circuit quantique de Shor\nLe circuit complet utilise deux registres :\n|0⟩ ─── H ─────────── ⋯ ──── ● ───── QFT⁻¹ ──── M\n ⋮        ⋮                    ⋮         ⋮           ⋮\n|0⟩ ─── H ─────────── ⋯ ─── ● ──── QFT⁻¹ ──── M\n|0⟩ ─── H ─────────── ⋯ ─●─────── QFT⁻¹ ──── M\n|1⟩ ──── Ua²⁰ ── Ua²¹ ── ⋯ ── Ua^{2^{2n-1}} ───────",
+    "objectID": "ch4r.html#en-un-mot",
+    "href": "ch4r.html#en-un-mot",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "En un mot",
+    "text": "En un mot\nAlgorithme hybride classique-quantique pour trouver les valeurs propres minimales de \\(H\\) (Hamiltonien).",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#comparaison-des-complexités",
-    "href": "ch4.html#comparaison-des-complexités",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Comparaison des complexités",
-    "text": "Comparaison des complexités\n\n\n\nAlgorithme\nComplexité temporelle\n\n\n\n\nMeilleur algorithme classique\n\\(O(\\exp(n^{1/3}))\\)\n\n\nAlgorithme de Shor (quantique)\n\\(O(n^3 \\log n)\\)\n\n\n\nL’avantage est exponentiel — c’est l’un des gains quantiques les plus spectaculaires connus.",
+    "objectID": "ch4r.html#deux-composantes",
+    "href": "ch4r.html#deux-composantes",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Deux composantes",
+    "text": "Deux composantes\nPartie quantique :\n\nPréparer l’ansatz \\(|\\psi(\\theta)\\rangle\\)\nMesurer \\(\\langle\\psi(\\theta)|H|\\psi(\\theta)\\rangle\\)\n\nPartie classique :\n\nMinimiser la valeur d’espérance via optimiseur non-linéaire\nMettre à jour \\(\\theta\\), itérer jusqu’à convergence",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#contexte",
-    "href": "ch4.html#contexte",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Contexte",
-    "text": "Contexte\nLe VQE est un algorithme hybride quantique-classique conçu pour trouver les valeurs propres d’une matrice \\(H\\). En simulation quantique, \\(H\\) est typiquement le Hamiltonien d’un système électronique.",
+    "objectID": "ch4r.html#principe-variationnel",
+    "href": "ch4r.html#principe-variationnel",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Principe variationnel",
+    "text": "Principe variationnel\n\\[\\langle\\psi(\\theta)|H|\\psi(\\theta)\\rangle \\geq E_0\\]\n\nMinimiser → converge vers l’énergie fondamentale \\(E_0\\)",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#architecture-hybride",
-    "href": "ch4.html#architecture-hybride",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Architecture hybride",
-    "text": "Architecture hybride\nLe VQE alterne entre deux composantes :\n\nPartie quantique\n\nPréparer l’état quantique \\(|\\psi(\\theta)\\rangle\\) — l’ansatz paramétré\nMesurer la valeur d’espérance \\(\\langle \\psi(\\theta) | H | \\psi(\\theta) \\rangle\\)\n\n\n\nPartie classique\n\nUtiliser un optimiseur non linéaire classique pour minimiser la valeur d’espérance\nItérer jusqu’à convergence\n\n                ┌─────────────────────────┐\n                │  Boucle d'optimisation  │\n                │         classique       │\n                └──────────┬─────────────┘\n                           │ θ (paramètres)\n                           ▼\n              ┌────────────────────────┐\n              │   Circuit quantique    │\n              │  |ψ(θ)⟩ (ansatz)       │\n              │  Mesure ⟨ψ|H|ψ⟩        │\n              └────────────────────────┘\n                           │ valeur d'espérance\n                           ▼\n              (mise à jour des paramètres θ)",
+    "objectID": "ch4r.html#menaces-sur-la-cryptographie-actuelle",
+    "href": "ch4r.html#menaces-sur-la-cryptographie-actuelle",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Menaces sur la cryptographie actuelle",
+    "text": "Menaces sur la cryptographie actuelle\n\nRSA-2048 cassable avec ~8 000 qubits logiques\nProbabilité élevée d’ici 5–10 ans\nDonnées à longue durée de vie déjà en danger (harvest now, decrypt later)",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
-    "objectID": "ch4.html#critère-variationnel",
-    "href": "ch4.html#critère-variationnel",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Critère variationnel",
-    "text": "Critère variationnel\nLa convergence repose sur le principe variationnel :\n\\[\n\\langle \\psi(\\theta) | H | \\psi(\\theta) \\rangle \\geq E_0\n\\]\noù \\(E_0\\) est l’énergie de l’état fondamental. En minimisant la valeur d’espérance, on converge vers \\(E_0\\).",
+    "objectID": "ch4r.html#solutions",
+    "href": "ch4r.html#solutions",
+    "title": "Applications des Ordinateurs Quantiques",
+    "section": "Solutions",
+    "text": "Solutions\n\nChiffrement symétrique (AES-256 — résistant si clé assez longue)\nAlgorithmes à réseau (lattice-based : CRYSTALS-Kyber, Dilithium — standards NIST 2024)\nQKD — pour communications ultra-sensibles",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Details"
-    ]
-  },
-  {
-    "objectID": "ch4.html#la-menace-sur-la-cryptographie-actuelle",
-    "href": "ch4.html#la-menace-sur-la-cryptographie-actuelle",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "La menace sur la cryptographie actuelle",
-    "text": "La menace sur la cryptographie actuelle\n\n\n\n\n\n\nWarning\n\n\n\nAlerte sécurité\nIl y a une forte probabilité que des ordinateurs quantiques puissent casser RSA-2048 dans les 5 à 10 prochaines années (environ 8 000 qubits logiques nécessaires).\n\n\nQuelques réalités à considérer :\n\nDes données chiffrées ont une durée de vie supérieure à 10 ans.\nLa transition vers un nouveau schéma de chiffrement prend elle-même ~10 ans.\nDes acteurs malveillants peuvent enregistrer maintenant, déchiffrer plus tard (harvest now, decrypt later).",
-    "crumbs": [
-      "Cours",
-      "Applications des ordinateurs quantiques",
-      "Details"
-    ]
-  },
-  {
-    "objectID": "ch4.html#solutions-émergentes",
-    "href": "ch4.html#solutions-émergentes",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Solutions émergentes",
-    "text": "Solutions émergentes\nLes communications sécurisées migreront probablement vers :\n\nChiffrement symétrique (AES-256 reste sûr avec Grover si les clés sont suffisamment longues)\nAlgorithmes de hachage (SHA-3, etc.)\nAlgorithmes à réseau (lattice-based cryptography) — candidats NIST Post-Quantum\nQKD — pour les communications les plus sensibles",
-    "crumbs": [
-      "Cours",
-      "Applications des ordinateurs quantiques",
-      "Details"
-    ]
-  },
-  {
-    "objectID": "ch4.html#état-actuel-de-la-transition",
-    "href": "ch4.html#état-actuel-de-la-transition",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "État actuel de la transition",
-    "text": "État actuel de la transition\n\nCertains gouvernements et banques utilisent déjà des algorithmes Quantum Safe.\nLe NIST a finalisé en 2024 ses premiers standards post-quantiques (CRYSTALS-Kyber, CRYSTALS-Dilithium, etc.).\nCette transition devrait s’accélérer au cours de la prochaine décennie.",
-    "crumbs": [
-      "Cours",
-      "Applications des ordinateurs quantiques",
-      "Details"
-    ]
-  },
-  {
-    "objectID": "ch4.html#problèmes-techniques-majeurs",
-    "href": "ch4.html#problèmes-techniques-majeurs",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Problèmes techniques majeurs",
-    "text": "Problèmes techniques majeurs\nDécohérence\nLe système quantique est extrêmement sensible à l’environnement extérieur. Il est nécessaire de l’isoler parfaitement. Il est difficile d’atteindre un temps de décohérence supérieur au temps d’exécution de l’algorithme.\nCorrection d’erreurs\nLes portes quantiques sont imparfaites et introduisent des erreurs. La correction d’erreurs quantiques nécessite de nombreux qubits physiques supplémentaires (rapport ~1000:1 pour un qubit logique fiable).\nImplémentation physique\nMettre en œuvre des calculs sur des systèmes physiques réels (supraconducteurs, ions piégés, etc.) reste extrêmement difficile.\nAlgorithmes\nIl manque encore des algorithmes quantiques pour résoudre un plus grand nombre de problèmes avec un avantage quantique prouvé.\nTransfert de données\nLa création et le maintien d’états intriqués pour le transfert de données à grande échelle restent des défis ouverts.\nScalabilité\nLe temps d’exécution croît exponentiellement avec la taille de la matrice pour certains problèmes.",
-    "crumbs": [
-      "Cours",
-      "Applications des ordinateurs quantiques",
-      "Details"
-    ]
-  },
-  {
-    "objectID": "ch4.html#loi-de-neven-quors-law",
-    "href": "ch4.html#loi-de-neven-quors-law",
-    "title": "Applications des ordinateurs quantiques",
-    "section": "Loi de Neven (Quor’s Law)",
-    "text": "Loi de Neven (Quor’s Law)\nAnalogue à la loi de Moore pour les processeurs classiques, la loi de Neven (nommée d’après Hartmut Neven, directeur du lab d’IA quantique de Google) stipule que les processeurs quantiques croissent à un rythme doublement exponentiel — environ un doublement du nombre de qubits tous les 18 mois en moyenne.\n\n\n\n\n\n\nNote\n\n\n\nZone de danger\nSelon les projections, le seuil de ~8 000 qubits nécessaires pour casser RSA-2048 pourrait être atteint avant 2030, selon le taux de croissance retenu.",
-    "crumbs": [
-      "Cours",
-      "Applications des ordinateurs quantiques",
-      "Details"
+      "Synthese"
     ]
   },
   {
@@ -1585,328 +1609,535 @@
     ]
   },
   {
-    "objectID": "ch4r.html",
-    "href": "ch4r.html",
-    "title": "Applications des Ordinateurs Quantiques",
+    "objectID": "ch4.html",
+    "href": "ch4.html",
+    "title": "Applications des ordinateurs quantiques",
     "section": "",
-    "text": "Application\nAvantage\nAlgorithme\nAnnée\n\n\n\n\nFactorisation\nExponentiel\nShor\n1994\n\n\nRecherche\nQuadratique\nGrover\n1997\n\n\nSimulation\nExponentiel\nQFT + Hamiltonien\n—\n\n\nOptimisation\nQuadratique/Exp.\nQAOA, VQE\n—\n\n\nCommunications\nSécurité absolue\nBB84, téléportation\n1984–93\n\n\n\n\n\n\n\n\nClassique : \\(O(\\exp(n^{1/3}))\\) → 150 000 ans (ordinateur THz)\nQuantique : \\(O(n^3 \\log n)\\) → &lt; 1 seconde\n\n\nImportance : RSA repose sur l’impossibilité de factoriser → Shor brise RSA\n\nIdée : trouver la période de \\(f(s) = x^s \\bmod N\\) via la QFT\n\n\n\n\n\nBase de données non triée de \\(N\\) éléments\nClassique : \\(O(N)\\) — Quantique : \\(O(\\sqrt{N})\\)\n\n\nImportance : satisfiabilité, big data, pattern recognition",
+    "text": "Avant d’entrer dans les détails techniques de l’informatique quantique, il est utile de comprendre pourquoi ces machines nous intéressent. Les ordinateurs quantiques promettent des avancées révolutionnaires dans de nombreux domaines.\nLes domaines d’application majeurs incluent :\n\nVoyage et logistique — optimisation d’itinéraires complexes\nChimie — simulation moléculaire et réactions chimiques\nPharmacologie — conception de médicaments\nModélisation climatique — simulations à grande échelle\nAnalyse financière — optimisation de portefeuilles\nCryptographie — sécurisation et cassage de chiffrement\n\n\n\n\n\n\nP. Shor, 1994\n\n\n\nLa factorisation consiste à décomposer un entier \\(N\\) en ses facteurs premiers.\n\n\\(15 = 3 \\times 5\\) → facile !\n\\(38647884621009387621432325631 = \\; ? \\times \\; ?\\) → très difficile pour un ordinateur classique.\n\n\n\n\n\n\n\nImportant\n\n\n\nImportance : cryptanalyse\nLa cryptographie à clé publique (ex. : RSA) repose entièrement sur l’impossibilité pratique de factoriser de grands nombres. Un ordinateur quantique capable de le faire briserait la plupart des communications sécurisées actuelles.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgorithme\nComplexité\nTemps (ordinateur THz)\n\n\n\n\nMeilleur algorithme classique\n\\(O(\\exp(n^{1/3}))\\) — \\(10^{24}\\) étapes\n150 000 ans\n\n\nAlgorithme de Shor (quantique)\n\\(O(n^3 \\log n)\\) — \\(10^{10}\\) étapes\n&lt; 1 seconde\n\n\n\nL’avantage quantique est ici exponentiel : l’algorithme de Shor est incomparablement plus rapide que tout algorithme classique connu.\n\n\n\n\n\n\nL. Grover, 1997\n\n\n\nImaginons que l’on cherche le nom d’une personne dans un annuaire non trié, en ne connaissant que son numéro de téléphone.\n\nClassiquement : il faut inspecter en moyenne \\(N/2\\) entrées → \\(O(N)\\) opérations.\nAvec l’algorithme de Grover : seulement \\(O(\\sqrt{N})\\) opérations — un gain quadratique.\n\n\n\n\n\nRecherche rapide dans de grands jeux de données\nInversion de fonctions complexes\nCalcul de propriétés globales (médiane, etc.)\nReconnaissance de formes et vision par ordinateur\n\n\n\n\n\n\n\n\nSimuler \\(N\\) systèmes quantiques en interaction nécessite de résoudre \\(2^N\\) équations couplées, issues de l’équation de Schrödinger :\n\\[\ni\\hbar \\frac{\\partial \\Psi}{\\partial t} = H\\Psi\n\\]\nPour \\(N = 50\\) particules, cela représente \\(2^{50} \\approx 10^{15}\\) équations — bien au-delà des capacités classiques.\n\n\n\nL’idée est d’utiliser un ensemble standard de qubits avec des interactions programmables pour imiter le système physique cible.\nLes plateformes physiques disponibles sont :\n\nIons atomiques piégés\nAtomes neutres dans des réseaux optiques\nSupraconducteurs (circuits Josephson)\nCentres NV dans le diamant\n\n\n\n\n\nQuantum Material Design — comprendre et concevoir de nouveaux matériaux exotiques\nRécolte d’énergie et de lumière — simuler des théories de jauge QCD sur réseau\nThéories quantiques des champs — connecter cosmologie et théorie de l’information (AdS-CFT)\n\n\n\n\n\n\n\n\nL’optimisation quantique consiste à minimiser des fonctions complexes (non linéaires) en explorant simultanément tout l’espace des solutions grâce à la superposition quantique.\n\n\n\nOn cherche à minimiser une fonction de la forme :\n\\[\nf(x_1, x_2, \\ldots) = \\sum_{i &lt; j} q_{ij} x_i x_j + \\sum_i c_i x_i\n\\]\nCette fonction correspond à l’énergie d’un réseau magnétique quantique (Ising model), ce qui permet de mapper le problème sur un système quantique physique.\n\n\n\n\nLogistique et routage\nRecherche opérationnelle\nConception VLSI (circuits intégrés)\nFinance (optimisation de portefeuilles)\n\n\n\n\n\n\n\nNote\n\n\n\nApplication potentiellement révolutionnaire (Killer Application)\nL’optimisation quantique pourrait résoudre une large classe de problèmes réputés intractables : factorisation, problème du voyageur de commerce, etc. Cependant, il n’est pas encore prouvé qu’il existe toujours un avantage quantique.\n\n\n\n\n\n\n\n\n\nUn réseau quantique connecte plusieurs nœuds (de 0,1 m à 10 000 km de distance) via des canaux capables de transmettre des états quantiques.\nLocation A ←——→ Réseau Quantique ←——→ Location B\n                      ↕                      \n                 Location C             Location D\n\n\n\n\nGénération de clés secrètes — cryptographie quantique\nGénération de nombres aléatoires certifiés\nRépéteurs quantiques — amplificateurs de signaux quantiques\nIntrication distribuée — pour la prise de décision optimale\nCalcul quantique à grande échelle — interconnexion de QPUs",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#vue-densemble-rapide",
-    "href": "ch4r.html#vue-densemble-rapide",
-    "title": "Applications des Ordinateurs Quantiques",
+    "objectID": "ch4.html#vue-densemble",
+    "href": "ch4.html#vue-densemble",
+    "title": "Applications des ordinateurs quantiques",
     "section": "",
-    "text": "Application\nAvantage\nAlgorithme\nAnnée\n\n\n\n\nFactorisation\nExponentiel\nShor\n1994\n\n\nRecherche\nQuadratique\nGrover\n1997\n\n\nSimulation\nExponentiel\nQFT + Hamiltonien\n—\n\n\nOptimisation\nQuadratique/Exp.\nQAOA, VQE\n—\n\n\nCommunications\nSécurité absolue\nBB84, téléportation\n1984–93",
+    "text": "Avant d’entrer dans les détails techniques de l’informatique quantique, il est utile de comprendre pourquoi ces machines nous intéressent. Les ordinateurs quantiques promettent des avancées révolutionnaires dans de nombreux domaines.\nLes domaines d’application majeurs incluent :\n\nVoyage et logistique — optimisation d’itinéraires complexes\nChimie — simulation moléculaire et réactions chimiques\nPharmacologie — conception de médicaments\nModélisation climatique — simulations à grande échelle\nAnalyse financière — optimisation de portefeuilles\nCryptographie — sécurisation et cassage de chiffrement",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#shor-factorisation",
-    "href": "ch4r.html#shor-factorisation",
-    "title": "Applications des Ordinateurs Quantiques",
+    "objectID": "ch4.html#application-1-factorisation-quantique",
+    "href": "ch4.html#application-1-factorisation-quantique",
+    "title": "Applications des ordinateurs quantiques",
     "section": "",
-    "text": "Classique : \\(O(\\exp(n^{1/3}))\\) → 150 000 ans (ordinateur THz)\nQuantique : \\(O(n^3 \\log n)\\) → &lt; 1 seconde\n\n\nImportance : RSA repose sur l’impossibilité de factoriser → Shor brise RSA\n\nIdée : trouver la période de \\(f(s) = x^s \\bmod N\\) via la QFT",
+    "text": "P. Shor, 1994\n\n\n\nLa factorisation consiste à décomposer un entier \\(N\\) en ses facteurs premiers.\n\n\\(15 = 3 \\times 5\\) → facile !\n\\(38647884621009387621432325631 = \\; ? \\times \\; ?\\) → très difficile pour un ordinateur classique.\n\n\n\n\n\n\n\nImportant\n\n\n\nImportance : cryptanalyse\nLa cryptographie à clé publique (ex. : RSA) repose entièrement sur l’impossibilité pratique de factoriser de grands nombres. Un ordinateur quantique capable de le faire briserait la plupart des communications sécurisées actuelles.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAlgorithme\nComplexité\nTemps (ordinateur THz)\n\n\n\n\nMeilleur algorithme classique\n\\(O(\\exp(n^{1/3}))\\) — \\(10^{24}\\) étapes\n150 000 ans\n\n\nAlgorithme de Shor (quantique)\n\\(O(n^3 \\log n)\\) — \\(10^{10}\\) étapes\n&lt; 1 seconde\n\n\n\nL’avantage quantique est ici exponentiel : l’algorithme de Shor est incomparablement plus rapide que tout algorithme classique connu.",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#grover-recherche",
-    "href": "ch4r.html#grover-recherche",
-    "title": "Applications des Ordinateurs Quantiques",
+    "objectID": "ch4.html#application-2-recherche-quantique",
+    "href": "ch4.html#application-2-recherche-quantique",
+    "title": "Applications des ordinateurs quantiques",
     "section": "",
-    "text": "Base de données non triée de \\(N\\) éléments\nClassique : \\(O(N)\\) — Quantique : \\(O(\\sqrt{N})\\)\n\n\nImportance : satisfiabilité, big data, pattern recognition",
+    "text": "L. Grover, 1997\n\n\n\nImaginons que l’on cherche le nom d’une personne dans un annuaire non trié, en ne connaissant que son numéro de téléphone.\n\nClassiquement : il faut inspecter en moyenne \\(N/2\\) entrées → \\(O(N)\\) opérations.\nAvec l’algorithme de Grover : seulement \\(O(\\sqrt{N})\\) opérations — un gain quadratique.\n\n\n\n\n\nRecherche rapide dans de grands jeux de données\nInversion de fonctions complexes\nCalcul de propriétés globales (médiane, etc.)\nReconnaissance de formes et vision par ordinateur",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#les-3-protocoles-fondamentaux",
-    "href": "ch4r.html#les-3-protocoles-fondamentaux",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Les 3 protocoles fondamentaux",
-    "text": "Les 3 protocoles fondamentaux\n\n\n\n\n\n\n\n\n\nProtocole\nRessource partagée\nCanal envoyé\nRésultat\n\n\n\n\nTéléportation\n1 paire intriquée\n2 bits classiques\n1 qubit transmis\n\n\nCodage superdense\n1 paire intriquée\n1 qubit\n2 bits transmis\n\n\nQKD (BB84)\n—\nqubits + bits publics\nclé secrète partagée\n\n\n\n\nÉtat partagé de base\n\\[|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\]",
+    "objectID": "ch4.html#application-3-simulation-quantique",
+    "href": "ch4.html#application-3-simulation-quantique",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "",
+    "text": "Simuler \\(N\\) systèmes quantiques en interaction nécessite de résoudre \\(2^N\\) équations couplées, issues de l’équation de Schrödinger :\n\\[\ni\\hbar \\frac{\\partial \\Psi}{\\partial t} = H\\Psi\n\\]\nPour \\(N = 50\\) particules, cela représente \\(2^{50} \\approx 10^{15}\\) équations — bien au-delà des capacités classiques.\n\n\n\nL’idée est d’utiliser un ensemble standard de qubits avec des interactions programmables pour imiter le système physique cible.\nLes plateformes physiques disponibles sont :\n\nIons atomiques piégés\nAtomes neutres dans des réseaux optiques\nSupraconducteurs (circuits Josephson)\nCentres NV dans le diamant\n\n\n\n\n\nQuantum Material Design — comprendre et concevoir de nouveaux matériaux exotiques\nRécolte d’énergie et de lumière — simuler des théories de jauge QCD sur réseau\nThéories quantiques des champs — connecter cosmologie et théorie de l’information (AdS-CFT)",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#téléportation-quantique",
-    "href": "ch4r.html#téléportation-quantique",
-    "title": "Applications des Ordinateurs Quantiques",
+    "objectID": "ch4.html#application-4-optimisation-quantique",
+    "href": "ch4.html#application-4-optimisation-quantique",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "",
+    "text": "L’optimisation quantique consiste à minimiser des fonctions complexes (non linéaires) en explorant simultanément tout l’espace des solutions grâce à la superposition quantique.\n\n\n\nOn cherche à minimiser une fonction de la forme :\n\\[\nf(x_1, x_2, \\ldots) = \\sum_{i &lt; j} q_{ij} x_i x_j + \\sum_i c_i x_i\n\\]\nCette fonction correspond à l’énergie d’un réseau magnétique quantique (Ising model), ce qui permet de mapper le problème sur un système quantique physique.\n\n\n\n\nLogistique et routage\nRecherche opérationnelle\nConception VLSI (circuits intégrés)\nFinance (optimisation de portefeuilles)\n\n\n\n\n\n\n\nNote\n\n\n\nApplication potentiellement révolutionnaire (Killer Application)\nL’optimisation quantique pourrait résoudre une large classe de problèmes réputés intractables : factorisation, problème du voyageur de commerce, etc. Cependant, il n’est pas encore prouvé qu’il existe toujours un avantage quantique.",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch4.html#application-5-réseaux-quantiques",
+    "href": "ch4.html#application-5-réseaux-quantiques",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "",
+    "text": "Un réseau quantique connecte plusieurs nœuds (de 0,1 m à 10 000 km de distance) via des canaux capables de transmettre des états quantiques.\nLocation A ←——→ Réseau Quantique ←——→ Location B\n                      ↕                      \n                 Location C             Location D\n\n\n\n\nGénération de clés secrètes — cryptographie quantique\nGénération de nombres aléatoires certifiés\nRépéteurs quantiques — amplificateurs de signaux quantiques\nIntrication distribuée — pour la prise de décision optimale\nCalcul quantique à grande échelle — interconnexion de QPUs",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch4.html#vue-densemble-1",
+    "href": "ch4.html#vue-densemble-1",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Vue d’ensemble",
+    "text": "Vue d’ensemble\nNous allons explorer trois protocoles fondamentaux qui tirent parti de l’intrication quantique comme ressource de communication :\n\nTéléportation quantique — transmettre un qubit en utilisant 2 bits classiques + 1 paire intriquée\nCodage superdense — transmettre 2 bits classiques en envoyant 1 qubit + 1 paire intriquée\nDistribution quantique de clés (QKD) — créer un pad à usage unique sans que Alice et Bob ne se rencontrent\n\n\n\n\n\n\n\nNote\n\n\n\nCes protocoles permettent d’accomplir des tâches impossibles classiquement, même en principe.",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch4.html#configuration-de-base-alice-et-bob",
+    "href": "ch4.html#configuration-de-base-alice-et-bob",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Configuration de base — Alice et Bob",
+    "text": "Configuration de base — Alice et Bob\nDans tous ces protocoles, Alice et Bob partagent une paire de qubits intriqués :\n\\[\n|\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\n\\]\nIls disposent également d’un canal de communication classique (téléphone, internet…).",
+    "crumbs": [
+      "Cours",
+      "Applications des ordinateurs quantiques",
+      "Details"
+    ]
+  },
+  {
+    "objectID": "ch4.html#téléportation-quantique",
+    "href": "ch4.html#téléportation-quantique",
+    "title": "Applications des ordinateurs quantiques",
     "section": "Téléportation Quantique",
-    "text": "Téléportation Quantique\n\nRessources nécessaires\n\n1 paire de Bell \\(|\\Phi^+\\rangle\\) (distribuée entre Alice et Bob)\n1 qubit message \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\) (chez Alice)\n1 canal classique (2 bits)\n\n\n\nLes 8 étapes\n\nCréer \\(|\\Phi^+\\rangle\\) via \\(H\\) + CNOT\nDistribuer : Alice garde qubit 2, Bob garde qubit 3\nAlice calcule l’état total à 3 qubits : \\[\\frac{1}{\\sqrt{2}}[\\alpha|000\\rangle + \\alpha|011\\rangle + \\beta|100\\rangle + \\beta|111\\rangle]\\]\nAlice applique CNOT (\\(|\\psi\\rangle\\) = contrôle, son qubit = cible)\nAlice applique H sur \\(|\\psi\\rangle\\)\nAlice mesure ses 2 qubits → 4 cas possibles\nAlice envoie les 2 bits classiques \\(b_1 b_0\\) à Bob\nBob corrige son qubit\n\n\n\nTable de correction de Bob\n\n\n\nMesure Alice \\(b_1 b_0\\)\nÉtat de Bob\nCorrection\n\n\n\n\n\\(00\\)\n\\(\\alpha\\|0\\rangle + \\beta\\|1\\rangle\\)\nRien\n\n\n\\(01\\)\n\\(\\alpha\\|1\\rangle + \\beta\\|0\\rangle\\)\nAppliquer X (NOT)\n\n\n\\(10\\)\n\\(\\alpha\\|0\\rangle - \\beta\\|1\\rangle\\)\nAppliquer Z\n\n\n\\(11\\)\n\\(\\alpha\\|1\\rangle - \\beta\\|0\\rangle\\)\nAppliquer X puis Z\n\n\n\n\n\nPoints critiques ⚠️\n\nAlice ne connaît jamais l’état \\(|\\psi\\rangle\\)\nPas de FTL (faster than light) : nécessite canal classique\nLes qubits intriqués sont détruits après usage\n1 téléportation = 1 paire intriquée consommée\nDécouvert en 1993, réalisé en 1997, record distance : 1 400 km (satellite Micius)",
+    "text": "Téléportation Quantique\n\nLe problème du transport de qubits\n\nComment transmettre un qubit d’un point à un autre sans détruire la superposition et l’information de phase ?\n\nD’après le théorème de non-clonage, les qubits ne peuvent pas être copiés. Il n’est donc pas possible de simplement lire le qubit, envoyer sa valeur, et le recréer à destination.\nLa téléportation quantique offre une solution : transmettre l’état d’un qubit en préservant parfaitement l’information.\n\n\n\n\n\n\nImportant\n\n\n\nCe que la téléportation n’est PAS :\n\nLe déplacement de matière d’un point à un autre (pas de dématérialisation)\nUn voyage dans le temps (ni en avant, ni en arrière)\n\n\n\n\n\nRessources nécessaires\nPour téléporter un qubit, il faut :\n\n2 qubits intriqués — une paire de Bell, dont chaque partie est distribuée à Alice et Bob\n1 qubit message \\(|\\psi\\rangle\\) à envoyer (côté Alice)\n1 canal classique pour transmettre 2 bits d’information\n\n\n\n\n\n\n\nWarning\n\n\n\nNote fondamentale\nComme la téléportation nécessite un canal de communication classique, elle ne peut pas aller plus vite que la lumière !\n\n\n\n\nProtocole — étape par étape\n\nÉtape 1 : Créer la paire intriquée\nOn applique une porte Hadamard (\\(H\\)) sur le premier qubit \\(|0\\rangle\\), puis une porte CNOT :\n\\[\n|00\\rangle \\xrightarrow{H \\otimes I} \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle)|0\\rangle \\xrightarrow{\\text{CNOT}} |\\Phi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\n\\]\nAlice conserve le premier qubit ; Bob reçoit le second.\n\n\nÉtape 2 : Distribuer les qubits et calculer l’état total\nAlice possède maintenant deux qubits :\n\nSon qubit de la paire intriquée\nLe qubit message \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\)\n\nL’état total du système à 3 qubits est :\n\\[\n|\\psi\\rangle \\otimes |\\Phi^+\\rangle = (\\alpha|0\\rangle + \\beta|1\\rangle) \\otimes \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\n\\]\n\\[\n= \\frac{1}{\\sqrt{2}}\\left[\\alpha|000\\rangle + \\alpha|011\\rangle + \\beta|100\\rangle + \\beta|111\\rangle\\right]\n\\]\n\n\nÉtape 3 : Alice applique CNOT sur ses deux qubits\nAlice utilise \\(|\\psi\\rangle\\) comme contrôle et son qubit intriqué comme cible :\n\\[\n\\text{État 1} \\xrightarrow{\\text{CNOT}} \\text{État 2} = \\frac{1}{\\sqrt{2}}\\left[\\alpha|000\\rangle + \\alpha|011\\rangle + \\beta|101\\rangle + \\beta|110\\rangle\\right]\n\\]\n\n\nÉtape 4 : Alice applique la porte H sur \\(|\\psi\\rangle\\)\nEn utilisant \\(H|0\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle)\\) et \\(H|1\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle - |1\\rangle)\\) :\n\\[\n\\text{État 3} = \\frac{1}{2}\\Big[\\alpha\\big(|000\\rangle + |011\\rangle + |100\\rangle + |111\\rangle\\big) + \\beta\\big(|001\\rangle + |010\\rangle - |101\\rangle - |110\\rangle\\big)\\Big]\n\\]\n\n\nÉtape 5 : Alice mesure ses deux qubits\nIl y a 4 résultats possibles (en bits classiques \\(b_1 b_0\\)) :\n\n\n\nMesure d’Alice (\\(b_1 b_0\\))\nÉtat de Bob\n\n\n\n\n\\(00\\)\n\\(\\alpha\\|0\\rangle + \\beta\\|1\\rangle\\)\n\n\n\\(01\\)\n\\(\\alpha\\|1\\rangle + \\beta\\|0\\rangle\\)\n\n\n\\(10\\)\n\\(\\alpha\\|0\\rangle - \\beta\\|1\\rangle\\)\n\n\n\\(11\\)\n\\(\\alpha\\|1\\rangle - \\beta\\|0\\rangle\\)\n\n\n\n\n\nÉtapes 6 & 7 : Alice envoie ses 2 bits classiques à Bob\nBob reçoit les bits \\(b_1 b_0\\) et les utilise pour corriger son qubit :\n\nSi \\(b_0 = 1\\) → appliquer une porte NOT (\\(X\\)) : \\(X = \\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\)\nSi \\(b_1 = 1\\) → appliquer une porte Z : \\(Z = \\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}\\)\n\nAprès correction, Bob obtient exactement \\(|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\). ✓\n\n\n\nCircuit quantique complet\nAlice:\n|ψ⟩ ───────●──── H ──── M ────────────────────●\n           |                                   |\n|0⟩ ── H ──⊕──────────── M ────────●           |\n- - - - - - - - - - - - - - - - -|-(barrière classique)\nBob:                               |           |\n|0⟩ ─────────────────────────────⊕────── Z ──|ψ⟩\n(Les doubles traits représentent la transmission des 2 bits classiques)\n\n\nRemarques importantes\n\nAlice ne connaît jamais l’état \\(|\\psi\\rangle\\) qu’elle téléporte\nAlice et Bob détruisent leurs qubits intriqués pendant la téléportation\nPour téléporter \\(n\\) qubits, il faut \\(n\\) paires intriquées\nDémontré expérimentalement pour la première fois en 1997\nRecord de distance : 1 400 km via le satellite Micius (2017)\n\n\n\nPourquoi la téléportation est-elle utile ?\n\nTransmission classique plus rapide que quantique — déplacer un état de qubit sur de longues distances est lent et sujet aux erreurs ; les canaux classiques sont beaucoup plus fiables pour la signalisation.\nTransport d’états connus plus fiable — les qubits “mobiles” partagent le même état intriqué ; on peut pré-partager de nombreuses paires en avance.\nParallélisation possible — le qubit “lent” est transmis pendant que son partenaire effectue des calculs ; le délai se réduit à la transmission classique et aux portes de correction.",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#codage-superdense",
-    "href": "ch4r.html#codage-superdense",
-    "title": "Applications des Ordinateurs Quantiques",
+    "objectID": "ch4.html#codage-superdense",
+    "href": "ch4.html#codage-superdense",
+    "title": "Applications des ordinateurs quantiques",
     "section": "Codage Superdense",
-    "text": "Codage Superdense\n\nTable d’encodage (Alice)\n\n\n\nBitstring\nOpération sur son qubit\nÉtat final\n\n\n\n\n\\(00\\)\n\\(I\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\n\n\\(01\\)\n\\(X\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle + \\|01\\rangle)\\)\n\n\n\\(10\\)\n\\(Z\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle - \\|11\\rangle)\\)\n\n\n\\(11\\)\n\\(XZ\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle - \\|01\\rangle)\\)\n\n\n\nAlice envoie son qubit → Bob applique CNOT puis H → mesure → obtient le bitstring d’Alice\n\n\nPoint critique ⚠️\n\nInverse de la téléportation : 1 qubit envoyé = 2 bits classiques reçus",
+    "text": "Codage Superdense\n\nDécouvert en 1992, réalisé expérimentalement en 1996\n\n\nPrincipe — l’inverse de la téléportation\nLe codage superdense est en quelque sorte l’inverse de la téléportation :\n\n\n\n\n\n\n\n\n\nProtocole\nRessource partagée\nEnvoyé\nReçu\n\n\n\n\nTéléportation\n1 paire intriquée\n2 bits classiques\n1 qubit\n\n\nCodage superdense\n1 paire intriquée\n1 qubit\n2 bits classiques\n\n\n\n\n\nProtocole — côté Alice (encodage)\nAlice souhaite envoyer l’un des 4 messages : \\(00\\), \\(01\\), \\(10\\) ou \\(11\\). Elle applique une porte unitaire à son seul qubit :\n\n\n\n\n\n\n\n\n\nÉtat initial\nBitstring d’Alice\nOpération\nÉtat final\n\n\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(00\\)\n\\(I\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(01\\)\n\\(X\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle + \\|01\\rangle)\\)\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(10\\)\n\\(Z\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle - \\|11\\rangle)\\)\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(11\\)\n\\(XZ\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle - \\|01\\rangle)\\)\n\n\n\nAlice envoie ensuite son qubit à Bob.\n\n\nProtocole — côté Bob (décodage)\nBob possède maintenant les deux qubits. Il applique le circuit suivant (CNOT puis \\(H\\)) :\nAlice's qubit ──── ● ─────── H ────\nBob's qubit   ──── ⊕ ─────────────\nRésultat après décodage :\n\n\n\n\n\n\n\n\n\nÉtat reçu\nAprès CNOT\nAprès H\nRésultat\n\n\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle + \\|11\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle+\\|1\\rangle)\\|0\\rangle\\)\n\\(\\|00\\rangle\\)\n00\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle + \\|01\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle+\\|1\\rangle)\\|1\\rangle\\)\n\\(\\|01\\rangle\\)\n01\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|00\\rangle - \\|11\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle-\\|1\\rangle)\\|0\\rangle\\)\n\\(\\|10\\rangle\\)\n10\n\n\n\\(\\frac{1}{\\sqrt{2}}(\\|10\\rangle - \\|01\\rangle)\\)\n\\(\\frac{1}{\\sqrt{2}}(\\|0\\rangle-\\|1\\rangle)\\|1\\rangle\\)\n\\(\\|11\\rangle\\)\n11\n\n\n\nBob mesure alors ses deux qubits dans la base computationnelle et obtient le bitstring d’Alice. ✓",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#distribution-quantique-de-clés-qkd",
-    "href": "ch4r.html#distribution-quantique-de-clés-qkd",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Distribution Quantique de Clés — QKD",
-    "text": "Distribution Quantique de Clés — QKD\n\nOne-time pad (OTP)\n\nClé \\(r\\) aléatoire de \\(n\\) bits, partagée entre Alice et Bob\nChiffrement : \\(m \\oplus r\\) — Déchiffrement : \\((m \\oplus r) \\oplus r = m\\)\nSécurité théorique de l’information (pas computationnelle)\nProblème : Alice et Bob doivent se rencontrer pour partager \\(r\\)\n\n\n\nBB84 — Protocole\nBases utilisées :\n\nBase \\(\\mathcal{Z}\\) : \\(\\{|0\\rangle,\\, |1\\rangle\\}\\)\nBase \\(\\mathcal{X}\\) : \\(\\{|+\\rangle = H|0\\rangle,\\, |-\\rangle = H|1\\rangle\\}\\)\n\nÉtapes :\n\nAlice encode chaque bit dans une base choisie aléatoirement → envoie qubit\nBob mesure dans une base choisie aléatoirement\nBob annonce sa base (public)\nAlice confirme si c’était la bonne base (public)\nBases identiques → bit gardé dans la clé | Bases différentes → bit rejeté\n\n\nEn moyenne, 50% des bits sont conservés\n\n\n\nPourquoi l’espionnage est détectable\n\nEve doit choisir sa base avant de connaître celle d’Alice\nMauvaise base (50% du temps) → erreurs introduites dans la clé de Bob\nAlice et Bob comparent une fraction de leurs bits → détection statistique\nCopie impossible : théorème de non-clonage\n\n\n\nPoints critiques ⚠️\n\nBB84 ne requiert pas d’intrication\nDécouvert en 1984 (et par GCHQ, non publié)\nRecord bit rate : 1 Mbit/s",
+    "objectID": "ch4.html#distribution-quantique-de-clés-qkd",
+    "href": "ch4.html#distribution-quantique-de-clés-qkd",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Distribution Quantique de Clés (QKD)",
+    "text": "Distribution Quantique de Clés (QKD)\n\nMotivation — le pad à usage unique (one-time pad)\nLa cryptographie moderne (RSA, etc.) garantit une sécurité computationnelle : le chiffrement est difficile à casser avec les ordinateurs actuels, mais pas impossible en principe.\nUn standard plus fort est la sécurité théorique de l’information (information-theoretically secure). Le plus simple exemple : le pad à usage unique.\n\nFonctionnement du pad à usage unique\nAlice veut envoyer un message \\(m\\) de \\(n\\) bits à Bob. Le protocole est :\n\nAlice et Bob se rencontrent au préalable et partagent une clé secrète \\(r\\) de \\(n\\) bits aléatoires.\nAlice chiffre : elle envoie \\(m \\oplus r\\) (XOR bit à bit).\nBob déchiffre : \\((m \\oplus r) \\oplus r = m\\).\nAlice et Bob détruisent \\(r\\) après usage.\n\n\n\n\n\n\n\nTip\n\n\n\nPourquoi est-ce sûr ?\nSans accès à \\(r\\), un espion (Eve) ne reçoit qu’une chaîne de bits aléatoires — aucune information sur \\(m\\) n’est divulguée.\n\n\n\n\nLe problème pratique\nAlice et Bob doivent se rencontrer physiquement (ou disposer d’un canal absolument sûr) pour s’échanger la clé \\(r\\) au préalable. C’est impraticable à grande échelle.\nSolution : QKD — générer \\(r\\) à distance sans se rencontrer, en utilisant des propriétés quantiques.\n\n\n\nRessources requises pour QKD\nPour implémenter QKD (sans rencontre préalable), il faut :\n\nUn canal classique authentifié — si un message prétend venir de Bob, Alice peut en être certaine (et vice versa).\nUn canal quantique — potentiellement susceptible d’être écouté.\nAlice dispose d’une source de bits classiques aléatoires et peut préparer des qubits dans les états \\(|0\\rangle\\), \\(|1\\rangle = X|0\\rangle\\), \\(|+\\rangle = H|0\\rangle\\) et \\(|-\\rangle = H|1\\rangle\\).\nBob peut mesurer dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\) ou dans la base de Hadamard \\(\\{|+\\rangle, |-\\rangle\\}\\).\n\n\n\nLe protocole BB84\n\nC. Bennett & G. Brassard, 1984\n\nBB84 est le protocole QKD original. Il ne requiert pas d’intrication (bien que des protocoles ultérieurs en utilisent).\n\nÉtapes du protocole\n\nAlice possède un bitstring. Pour chaque bit, elle l’encode aléatoirement dans l’une des deux bases :\n\nBase \\(\\mathcal{Z}\\) : \\(\\{|0\\rangle, |1\\rangle\\}\\)\nBase \\(\\mathcal{X}\\) : \\(\\{|+\\rangle, |-\\rangle\\}\\)\n\nElle envoie le qubit résultant à Bob.\nBob reçoit le qubit et le mesure aléatoirement dans \\(\\mathcal{Z}\\) ou dans \\(\\mathcal{X}\\).\nBob annonce publiquement dans quelle base il a mesuré (pas le résultat).\nAlice répond publiquement si c’était la bonne base (pas sa valeur de bit).\nSi les bases concordent → Bob a mesuré le bon bit → ils l’ajoutent tous deux à leur clé partagée. Sinon, ils rejettent ce bit.\n\nEn moyenne, la moitié des bits sont conservés.\n\n\n\n\n\n\nImportant\n\n\n\nPropriété clé de sécurité\nToute tentative d’écoute par Eve perturbera la clé de manière détectable. Alice et Bob peuvent comparer une partie de leur clé sur le canal public pour détecter une intrusion.\n\n\n\n\n\nExemple concret de BB84\n\n\n\n\n\n\n\n\n\n\n\nBit A\nBase A\nQubit\nBase B\nBit B\nAccord ?\n\n\n\n\n0\n\\(\\mathcal{Z}\\)\n\\(\\|0\\rangle\\)\n\\(\\mathcal{Z}\\)\n0\n✓ clé : 0\n\n\n1\n\\(\\mathcal{X}\\)\n\\(\\|-\\rangle\\)\n\\(\\mathcal{X}\\)\n1\n✓ clé : 1\n\n\n1\n\\(\\mathcal{Z}\\)\n\\(\\|1\\rangle\\)\n\\(\\mathcal{X}\\)\n\\(\\{0,1\\}\\)\n✗ rejeté\n\n\n0\n\\(\\mathcal{Z}\\)\n\\(\\|0\\rangle\\)\n\\(\\mathcal{Z}\\)\n0\n✓ clé : 0\n\n\n1\n\\(\\mathcal{Z}\\)\n\\(\\|1\\rangle\\)\n\\(\\mathcal{Z}\\)\n1\n✓ clé : 1\n\n\n0\n\\(\\mathcal{X}\\)\n\\(\\|+\\rangle\\)\n\\(\\mathcal{X}\\)\n0\n✓ clé : 0\n\n\n1\n\\(\\mathcal{Z}\\)\n\\(\\|1\\rangle\\)\n\\(\\mathcal{X}\\)\n\\(\\{0,1\\}\\)\n✗ rejeté\n\n\n1\n\\(\\mathcal{X}\\)\n\\(\\|-\\rangle\\)\n\\(\\mathcal{Z}\\)\n\\(\\{0,1\\}\\)\n✗ rejeté\n\n\n\nLa clé partagée finale est : 0, 1, 0, 1, 0.\n\n\nSécurité contre l’espionnage\n\nAttaque par interception-mesure-retransmission\nEve intercepte le qubit, le mesure, puis envoie un nouveau qubit à Bob. Problème : elle doit choisir sa base avant de savoir quelle base Alice a utilisée.\nSi Eve choisit la mauvaise base (probabilité 1/2) :\n\nElle introduit des erreurs dans la clé de Bob.\nAlice et Bob détectent ces erreurs en comparant publiquement une fraction de leurs bits.\n\n\n\nAttaque par copie (intercept, copy, retransmit)\nEve voudrait garder une copie du qubit pour le mesurer plus tard. Mais cela viole le théorème de non-clonage — les qubits ne peuvent pas être copiés.\n\n\n\n\n\n\nTip\n\n\n\nRésultat fondamental\nTout espion qui essaie d’obtenir de l’information sur la clé laisse forcément des traces détectables. La sécurité de QKD est garantie par les lois de la physique quantique, pas par la difficulté computationnelle.",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#théorème-clé",
-    "href": "ch4r.html#théorème-clé",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Théorème clé",
-    "text": "Théorème clé\n\\[a \\not\\equiv \\pm b \\pmod{N},\\quad a^2 \\equiv b^2 \\pmod{N} \\implies \\gcd(a+b,\\, N) \\text{ est un facteur de } N\\]",
+    "objectID": "ch4.html#principe-mathématique",
+    "href": "ch4.html#principe-mathématique",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Principe mathématique",
+    "text": "Principe mathématique\nL’algorithme de Shor repose sur un théorème de théorie des nombres :\n\n\n\n\n\n\nNote\n\n\n\nThéorème\nSi \\(a \\not\\equiv \\pm b \\pmod{N}\\) mais \\(a^2 \\equiv b^2 \\pmod{N}\\), alors \\(\\gcd(a+b, N)\\) est un facteur non trivial de \\(N\\).",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#étapes-sur-un-ordinateur-quantique",
-    "href": "ch4r.html#étapes-sur-un-ordinateur-quantique",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Étapes sur un ordinateur quantique",
-    "text": "Étapes sur un ordinateur quantique\n\nChoisir \\(x\\) copremier avec \\(N\\)\nAppliquer la QFT pour trouver la période \\(l\\) de \\(f(s) = x^s \\bmod N\\)\nUtiliser \\(l\\) pour calculer les facteurs candidats\nVérifier — si échec, recommencer",
+    "objectID": "ch4.html#algorithme-sur-un-ordinateur-quantique",
+    "href": "ch4.html#algorithme-sur-un-ordinateur-quantique",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Algorithme sur un ordinateur quantique",
+    "text": "Algorithme sur un ordinateur quantique\nPour factoriser \\(N\\) :\n\nChoisir \\(x\\) copremier avec \\(N\\) (aléatoirement).\nUtiliser la Transformée de Fourier Quantique (QFT) pour trouver la période \\(l\\) de la fonction : \\[f(s) = x^s \\bmod N\\]\nUtiliser l’ordre de \\(x\\) pour calculer les facteurs candidats de \\(N\\).\nVérifier les facteurs ; si incorrect, recommencer.",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#quantum-fourier-transform-qft",
-    "href": "ch4r.html#quantum-fourier-transform-qft",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Quantum Fourier Transform (QFT)",
-    "text": "Quantum Fourier Transform (QFT)\n\\[U_{QFT} = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1}\\sum_{x=0}^{N-1} \\omega_N^{xy}|y\\rangle\\langle x|\\]\n\\[U_{QFT}^\\dagger = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1}\\sum_{x=0}^{N-1} \\omega_N^{-xy}|x\\rangle\\langle y|\\]",
+    "objectID": "ch4.html#la-transformée-de-fourier-quantique-qft",
+    "href": "ch4.html#la-transformée-de-fourier-quantique-qft",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "La Transformée de Fourier Quantique (QFT)",
+    "text": "La Transformée de Fourier Quantique (QFT)\nLa QFT est l’opérateur unitaire :\n\\[\nU_{QFT} = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1} \\sum_{x=0}^{N-1} \\omega_N^{xy} |y\\rangle\\langle x|\n\\]\nSon adjoint (la QFT inverse) est :\n\\[\nU_{QFT}^\\dagger = \\frac{1}{\\sqrt{N}} \\sum_{y=0}^{N-1} \\sum_{x=0}^{N-1} \\omega_N^{-xy} |x\\rangle\\langle y|\n\\]\nLa QFT transforme une superposition périodique en pics de fréquence, permettant d’identifier la période \\(l\\) de \\(f(s)\\).",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#en-un-mot",
-    "href": "ch4r.html#en-un-mot",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "En un mot",
-    "text": "En un mot\nAlgorithme hybride classique-quantique pour trouver les valeurs propres minimales de \\(H\\) (Hamiltonien).",
+    "objectID": "ch4.html#circuit-quantique-de-shor",
+    "href": "ch4.html#circuit-quantique-de-shor",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Circuit quantique de Shor",
+    "text": "Circuit quantique de Shor\nLe circuit complet utilise deux registres :\n|0⟩ ─── H ─────────── ⋯ ──── ● ───── QFT⁻¹ ──── M\n ⋮        ⋮                    ⋮         ⋮           ⋮\n|0⟩ ─── H ─────────── ⋯ ─── ● ──── QFT⁻¹ ──── M\n|0⟩ ─── H ─────────── ⋯ ─●─────── QFT⁻¹ ──── M\n|1⟩ ──── Ua²⁰ ── Ua²¹ ── ⋯ ── Ua^{2^{2n-1}} ───────",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#deux-composantes",
-    "href": "ch4r.html#deux-composantes",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Deux composantes",
-    "text": "Deux composantes\nPartie quantique :\n\nPréparer l’ansatz \\(|\\psi(\\theta)\\rangle\\)\nMesurer \\(\\langle\\psi(\\theta)|H|\\psi(\\theta)\\rangle\\)\n\nPartie classique :\n\nMinimiser la valeur d’espérance via optimiseur non-linéaire\nMettre à jour \\(\\theta\\), itérer jusqu’à convergence",
+    "objectID": "ch4.html#comparaison-des-complexités",
+    "href": "ch4.html#comparaison-des-complexités",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Comparaison des complexités",
+    "text": "Comparaison des complexités\n\n\n\nAlgorithme\nComplexité temporelle\n\n\n\n\nMeilleur algorithme classique\n\\(O(\\exp(n^{1/3}))\\)\n\n\nAlgorithme de Shor (quantique)\n\\(O(n^3 \\log n)\\)\n\n\n\nL’avantage est exponentiel — c’est l’un des gains quantiques les plus spectaculaires connus.",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#principe-variationnel",
-    "href": "ch4r.html#principe-variationnel",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Principe variationnel",
-    "text": "Principe variationnel\n\\[\\langle\\psi(\\theta)|H|\\psi(\\theta)\\rangle \\geq E_0\\]\n\nMinimiser → converge vers l’énergie fondamentale \\(E_0\\)",
+    "objectID": "ch4.html#contexte",
+    "href": "ch4.html#contexte",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Contexte",
+    "text": "Contexte\nLe VQE est un algorithme hybride quantique-classique conçu pour trouver les valeurs propres d’une matrice \\(H\\). En simulation quantique, \\(H\\) est typiquement le Hamiltonien d’un système électronique.",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#menaces-sur-la-cryptographie-actuelle",
-    "href": "ch4r.html#menaces-sur-la-cryptographie-actuelle",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Menaces sur la cryptographie actuelle",
-    "text": "Menaces sur la cryptographie actuelle\n\nRSA-2048 cassable avec ~8 000 qubits logiques\nProbabilité élevée d’ici 5–10 ans\nDonnées à longue durée de vie déjà en danger (harvest now, decrypt later)",
+    "objectID": "ch4.html#architecture-hybride",
+    "href": "ch4.html#architecture-hybride",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Architecture hybride",
+    "text": "Architecture hybride\nLe VQE alterne entre deux composantes :\n\nPartie quantique\n\nPréparer l’état quantique \\(|\\psi(\\theta)\\rangle\\) — l’ansatz paramétré\nMesurer la valeur d’espérance \\(\\langle \\psi(\\theta) | H | \\psi(\\theta) \\rangle\\)\n\n\n\nPartie classique\n\nUtiliser un optimiseur non linéaire classique pour minimiser la valeur d’espérance\nItérer jusqu’à convergence\n\n                ┌─────────────────────────┐\n                │  Boucle d'optimisation  │\n                │         classique       │\n                └──────────┬─────────────┘\n                           │ θ (paramètres)\n                           ▼\n              ┌────────────────────────┐\n              │   Circuit quantique    │\n              │  |ψ(θ)⟩ (ansatz)       │\n              │  Mesure ⟨ψ|H|ψ⟩        │\n              └────────────────────────┘\n                           │ valeur d'espérance\n                           ▼\n              (mise à jour des paramètres θ)",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
+      "Details"
     ]
   },
   {
-    "objectID": "ch4r.html#solutions",
-    "href": "ch4r.html#solutions",
-    "title": "Applications des Ordinateurs Quantiques",
-    "section": "Solutions",
-    "text": "Solutions\n\nChiffrement symétrique (AES-256 — résistant si clé assez longue)\nAlgorithmes à réseau (lattice-based : CRYSTALS-Kyber, Dilithium — standards NIST 2024)\nQKD — pour communications ultra-sensibles",
+    "objectID": "ch4.html#critère-variationnel",
+    "href": "ch4.html#critère-variationnel",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Critère variationnel",
+    "text": "Critère variationnel\nLa convergence repose sur le principe variationnel :\n\\[\n\\langle \\psi(\\theta) | H | \\psi(\\theta) \\rangle \\geq E_0\n\\]\noù \\(E_0\\) est l’énergie de l’état fondamental. En minimisant la valeur d’espérance, on converge vers \\(E_0\\).",
     "crumbs": [
       "Cours",
       "Applications des ordinateurs quantiques",
-      "Synthese"
-    ]
-  },
-  {
-    "objectID": "ch3.html",
-    "href": "ch3.html",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Ce chapitre explore plusieurs propriétés essentielles des systèmes quantiques qui distinguent fondamentalement l’information quantique de l’information classique.\nNous allons étudier :\n\nLa mesure dans la base computationnelle et dans d’autres bases orthogonales\nL’impossibilité de distinguer parfaitement des états non orthogonaux (borne de Helstrom-Holevo)\nLe principe de non-signalisation (no-signalling)\nLe principe de non-clonage (no-cloning)\nLe principe de non-suppression (no-deleting)\n\n\n\n\n\n\nUn qubit est le système d’information fondamental en informatique quantique. Son état général s’écrit :\n\\[|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle \\qquad \\text{avec } |\\alpha|^2 + |\\beta|^2 = 1\\]\nOn peut toujours paramétrer cet état sous la forme :\n\\[|\\psi\\rangle = \\cos\\!\\left(\\frac{\\theta}{2}\\right)|0\\rangle\n  + e^{i\\varphi}\\sin\\!\\left(\\frac{\\theta}{2}\\right)|1\\rangle\\]\nce qui permet de représenter tout état pur d’un qubit comme un point sur une sphère unitaire : la sphère de Bloch.\n\n\n\n\n\n\n\nSi l’état \\(|\\psi\\rangle\\) est soit \\(|0\\rangle\\) soit \\(|1\\rangle\\), on peut les distinguer parfaitement en mesurant dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\).\nExemple : L’état \\(|1\\rangle\\) s’écrit dans la base computationnelle :\n\\[|1\\rangle = 0 \\cdot |0\\rangle + 1 \\cdot |1\\rangle\\]\nOn mesure \\(1\\) avec probabilité \\(|1|^2 = 1\\) (et \\(0\\) avec probabilité \\(|0|^2 = 0\\)).\n\n\n\n\n\n\n\nSupposons que \\(|\\psi\\rangle\\) est soit \\(|\\psi_0\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\), soit \\(|\\psi_1\\rangle = \\gamma|0\\rangle + \\delta|1\\rangle\\), avec \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) (orthogonaux).\n\n\n\nOn construit la matrice unitaire :\n\\[U = \\begin{bmatrix} \\alpha & \\gamma \\\\ \\beta & \\delta \\end{bmatrix}\\]\nCette matrice est unitaire car ses colonnes forment une base orthonormée. L’opérateur \\(U^\\dagger\\) réalise la rotation de base :\n\\[U^\\dagger |\\psi_0\\rangle \\to |0\\rangle \\qquad U^\\dagger |\\psi_1\\rangle \\to |1\\rangle\\]\nAprès cette transformation, une mesure dans la base computationnelle identifie l’état.\n\n\n\nLes projecteurs satisfont l’équation de complétude (condition nécessaire) :\n\\[\\sum_m M_m^\\dagger M_m\n  = (|\\psi_0\\rangle\\langle\\psi_0|)^2 + (|\\psi_1\\rangle\\langle\\psi_1|)^2\n  = |\\psi_0\\rangle\\langle\\psi_0| + |\\psi_1\\rangle\\langle\\psi_1|\n  = U|0\\rangle\\langle 0|U^\\dagger + U|1\\rangle\\langle 1|U^\\dagger\n  = UIU^\\dagger = I \\checkmark\\]\n\n\n\nPour \\(|\\psi\\rangle = |\\psi_0\\rangle\\) :\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_0\\rangle) = (\\langle\\psi_0|\\psi_0\\rangle)^3 = 1\\]\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_1\\rangle) = \\langle\\psi_1|\\psi_0\\rangle\n  \\cdot\\langle\\psi_0|\\psi_0\\rangle\\cdot\\langle\\psi_0|\\psi_1\\rangle = 0\\]\n(car \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) par orthogonalité)\n\n\n\n\n\nIntuition géométrique :\n\nPlus \\(|\\psi_a\\rangle\\) et \\(|\\psi_b\\rangle\\) sont proches (petit angle \\(\\theta\\) entre eux), plus ils sont difficiles à distinguer.\nPlus ils sont éloignés (proche de l’orthogonalité), plus la distinction est facile.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSituation\nAngle \\(\\theta\\)\n\\(\\sin\\theta\\)\n\\(p_{\\text{succès}}\\)\n\n\n\n\nÉtats orthogonaux\n\\(\\theta = \\pi/2\\)\n\\(1\\)\n\\(1\\) (parfait)\n\n\nÉtats presque alignés\n\\(\\theta \\approx 0\\)\n\\(\\approx 0\\)\n\\(\\approx 1/2\\) (hasard)\n\n\nCas intermédiaire\n\\(0 &lt; \\theta &lt; \\pi/2\\)\n\\((0,1)\\)\nEntre \\(1/2\\) et \\(1\\)\n\n\n\n\n\n\n\n\n\n\n\\[\\langle 0|+\\rangle = \\begin{bmatrix}1 & 0\\end{bmatrix}\n  \\begin{bmatrix}1/\\sqrt{2} \\\\ 1/\\sqrt{2}\\end{bmatrix} = \\frac{1}{\\sqrt{2}} \\neq 0\\]\n\n\n\n\n\n\n\nStratégie optimale : Avec \\(|\\langle 0|+\\rangle| = 1/\\sqrt{2}\\), donc \\(\\theta = \\pi/4\\) :\n\\[p_{\\text{succès}} = \\frac{1}{2}\\!\\left(1 + \\sin\\!\\left(\\arccos\\frac{1}{\\sqrt{2}}\\right)\\right)\n  = \\frac{1}{2}\\!\\left(1 + \\frac{1}{\\sqrt{2}}\\right) \\approx 0.85\\]\nStratégie simple (base computationnelle) :\n\n\n\nÉtat\n\\(P(\\text{mesure}=0)\\)\n\\(P(\\text{mesure}=1)\\)\n\n\n\n\n\\(|0\\rangle\\)\n\\(1\\)\n\\(0\\)\n\n\n\\(|+\\rangle\\)\n\\(1/2\\)\n\\(1/2\\)\n\n\n\n\nSi on mesure \\(1\\) → on est certain que l’état était \\(|+\\rangle\\).\nSi on mesure \\(0\\) → on devine \\(|0\\rangle\\), avec \\(1/3\\) de chance d’erreur.\n\n\\[p_{\\text{succès}} = 1 - \\frac{3}{4} \\times \\frac{1}{3} = \\frac{3}{4} = 0.75\\]\n\n\n\n\n\n\n\nL’intrication quantique produit un phénomène spectaculaire : mesurer un qubit influence instantanément l’état de son partenaire intriqué, même si les deux sont à des distances cosmiques. Einstein appelait cela l’“action fantôme à distance”.\nQuestion cruciale : peut-on utiliser ce phénomène pour transmettre de l’information plus vite que la lumière ?\n\n\n\n\n\n\n\nCas 1 : Alice n’a PAS mesuré.\nL’état global reste \\(\\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\). Pour Bob, la probabilité de mesurer \\(0\\) ou \\(1\\) est :\n\\[p(\\text{Bob mesure }0) = \\left(\\frac{1}{\\sqrt{2}}\\right)^2 = \\frac{1}{2}\\]\nCas 2 : Alice A mesuré.\nLe qubit de Bob s’est effondré vers \\(|0\\rangle\\) ou \\(|1\\rangle\\) (chacun avec probabilité \\(1/2\\)). Bob ne sait pas lequel. Pour lui :\n\\[p(\\text{Bob mesure }0) = \\frac{1}{2} \\cdot 1 + \\frac{1}{2} \\cdot 0 = \\frac{1}{2}\\]\n\n\n\n\n\n\n\nSi le clonage d’états quantiques était possible, on pourrait :\n\nFaciliter la correction d’erreurs quantiques\nComprimer une infinité d’information classique dans un seul qubit\nVioler le principe de non-signalisation (voir exercices)\n\n\n\n\n\n\n\n\nSupposons qu’un tel \\(U\\) existe. Il doit fonctionner pour tout état, donc en particulier pour deux états arbitraires \\(|\\psi\\rangle\\) et \\(|\\phi\\rangle\\) :\n\\[U(|\\psi\\rangle|0\\rangle) = |\\psi\\rangle|\\psi\\rangle \\qquad\n  U(|\\phi\\rangle|0\\rangle) = |\\phi\\rangle|\\phi\\rangle\\]\nPrenons le produit scalaire des deux membres :\n\\[\\langle\\psi|\\langle 0|U^\\dagger U|\\phi\\rangle|0\\rangle\n  = (\\langle\\psi|\\langle\\psi|)(|\\phi\\rangle|\\phi\\rangle)\\]\nMembre gauche (\\(U^\\dagger U = I\\)) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle 0|0\\rangle = \\langle\\psi|\\phi\\rangle\\]\nMembre droit (produit tensoriel) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\]\nOn obtient donc \\(\\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\). Cette équation n’a que deux solutions :\n\n\\(\\langle\\psi|\\phi\\rangle = 0\\) : états orthogonaux\n\\(\\langle\\psi|\\phi\\rangle = 1\\) : états identiques\n\n\n\n\n\n\n\n\nLe principe de non-suppression est le dual temporel du non-clonage. Il n’existe aucun opérateur unitaire \\(\\tilde{U}\\) tel que :\n\\[\\tilde{U}(|\\psi\\rangle|\\psi\\rangle) = |\\psi\\rangle|0\\rangle \\quad \\text{pour tout } |\\psi\\rangle\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa mesure quantique est caractérisée par des opérateurs de mesure satisfaisant l’équation de complétude \\(\\sum_m M_m^\\dagger M_m = I\\).\nDeux états orthogonaux sont toujours parfaitement distinguables ; deux états non orthogonaux ne le sont jamais.\nLa borne de Helstrom-Holevo donne la probabilité maximale de distinguer deux états : \\(\\frac{1}{2}(1 + \\sin\\theta)\\), atteinte par une base de mesure optimale.\nLe principe de non-signalisation garantit que l’intrication ne peut pas servir à communiquer plus vite que la lumière.\nLe théorème de non-clonage interdit la copie d’états quantiques arbitraires — résultat fondateur de la cryptographie quantique (protocole BB84).\nLe principe de non-suppression est le dual du non-clonage, et reflète la réversibilité fondamentale de la mécanique quantique.",
-    "crumbs": [
-      "Cours",
-      "Quantum computing chapter 3",
       "Details"
     ]
   },
   {
-    "objectID": "ch3.html#états-dun-qubit-et-sphère-de-bloch",
-    "href": "ch3.html#états-dun-qubit-et-sphère-de-bloch",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Un qubit est le système d’information fondamental en informatique quantique. Son état général s’écrit :\n\\[|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle \\qquad \\text{avec } |\\alpha|^2 + |\\beta|^2 = 1\\]\nOn peut toujours paramétrer cet état sous la forme :\n\\[|\\psi\\rangle = \\cos\\!\\left(\\frac{\\theta}{2}\\right)|0\\rangle\n  + e^{i\\varphi}\\sin\\!\\left(\\frac{\\theta}{2}\\right)|1\\rangle\\]\nce qui permet de représenter tout état pur d’un qubit comme un point sur une sphère unitaire : la sphère de Bloch.",
+    "objectID": "ch4.html#la-menace-sur-la-cryptographie-actuelle",
+    "href": "ch4.html#la-menace-sur-la-cryptographie-actuelle",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "La menace sur la cryptographie actuelle",
+    "text": "La menace sur la cryptographie actuelle\n\n\n\n\n\n\nWarning\n\n\n\nAlerte sécurité\nIl y a une forte probabilité que des ordinateurs quantiques puissent casser RSA-2048 dans les 5 à 10 prochaines années (environ 8 000 qubits logiques nécessaires).\n\n\nQuelques réalités à considérer :\n\nDes données chiffrées ont une durée de vie supérieure à 10 ans.\nLa transition vers un nouveau schéma de chiffrement prend elle-même ~10 ans.\nDes acteurs malveillants peuvent enregistrer maintenant, déchiffrer plus tard (harvest now, decrypt later).",
     "crumbs": [
       "Cours",
-      "Quantum computing chapter 3",
+      "Applications des ordinateurs quantiques",
       "Details"
     ]
   },
   {
-    "objectID": "ch3.html#mesure-dans-la-base-computationnelle",
-    "href": "ch3.html#mesure-dans-la-base-computationnelle",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Si l’état \\(|\\psi\\rangle\\) est soit \\(|0\\rangle\\) soit \\(|1\\rangle\\), on peut les distinguer parfaitement en mesurant dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\).\nExemple : L’état \\(|1\\rangle\\) s’écrit dans la base computationnelle :\n\\[|1\\rangle = 0 \\cdot |0\\rangle + 1 \\cdot |1\\rangle\\]\nOn mesure \\(1\\) avec probabilité \\(|1|^2 = 1\\) (et \\(0\\) avec probabilité \\(|0|^2 = 0\\)).",
+    "objectID": "ch4.html#solutions-émergentes",
+    "href": "ch4.html#solutions-émergentes",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Solutions émergentes",
+    "text": "Solutions émergentes\nLes communications sécurisées migreront probablement vers :\n\nChiffrement symétrique (AES-256 reste sûr avec Grover si les clés sont suffisamment longues)\nAlgorithmes de hachage (SHA-3, etc.)\nAlgorithmes à réseau (lattice-based cryptography) — candidats NIST Post-Quantum\nQKD — pour les communications les plus sensibles",
     "crumbs": [
       "Cours",
-      "Quantum computing chapter 3",
+      "Applications des ordinateurs quantiques",
       "Details"
     ]
   },
   {
-    "objectID": "ch3.html#distinguer-des-états-orthogonaux-quelconques",
-    "href": "ch3.html#distinguer-des-états-orthogonaux-quelconques",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Supposons que \\(|\\psi\\rangle\\) est soit \\(|\\psi_0\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\), soit \\(|\\psi_1\\rangle = \\gamma|0\\rangle + \\delta|1\\rangle\\), avec \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) (orthogonaux).\n\n\n\nOn construit la matrice unitaire :\n\\[U = \\begin{bmatrix} \\alpha & \\gamma \\\\ \\beta & \\delta \\end{bmatrix}\\]\nCette matrice est unitaire car ses colonnes forment une base orthonormée. L’opérateur \\(U^\\dagger\\) réalise la rotation de base :\n\\[U^\\dagger |\\psi_0\\rangle \\to |0\\rangle \\qquad U^\\dagger |\\psi_1\\rangle \\to |1\\rangle\\]\nAprès cette transformation, une mesure dans la base computationnelle identifie l’état.\n\n\n\nLes projecteurs satisfont l’équation de complétude (condition nécessaire) :\n\\[\\sum_m M_m^\\dagger M_m\n  = (|\\psi_0\\rangle\\langle\\psi_0|)^2 + (|\\psi_1\\rangle\\langle\\psi_1|)^2\n  = |\\psi_0\\rangle\\langle\\psi_0| + |\\psi_1\\rangle\\langle\\psi_1|\n  = U|0\\rangle\\langle 0|U^\\dagger + U|1\\rangle\\langle 1|U^\\dagger\n  = UIU^\\dagger = I \\checkmark\\]\n\n\n\nPour \\(|\\psi\\rangle = |\\psi_0\\rangle\\) :\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_0\\rangle) = (\\langle\\psi_0|\\psi_0\\rangle)^3 = 1\\]\n\\[p(M_{|\\psi_0\\rangle} \\mid |\\psi\\rangle = |\\psi_1\\rangle) = \\langle\\psi_1|\\psi_0\\rangle\n  \\cdot\\langle\\psi_0|\\psi_0\\rangle\\cdot\\langle\\psi_0|\\psi_1\\rangle = 0\\]\n(car \\(\\langle\\psi_0|\\psi_1\\rangle = 0\\) par orthogonalité)",
+    "objectID": "ch4.html#état-actuel-de-la-transition",
+    "href": "ch4.html#état-actuel-de-la-transition",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "État actuel de la transition",
+    "text": "État actuel de la transition\n\nCertains gouvernements et banques utilisent déjà des algorithmes Quantum Safe.\nLe NIST a finalisé en 2024 ses premiers standards post-quantiques (CRYSTALS-Kyber, CRYSTALS-Dilithium, etc.).\nCette transition devrait s’accélérer au cours de la prochaine décennie.",
     "crumbs": [
       "Cours",
-      "Quantum computing chapter 3",
+      "Applications des ordinateurs quantiques",
       "Details"
     ]
   },
   {
-    "objectID": "ch3.html#impossibilité-de-distinguer-des-états-non-orthogonaux",
-    "href": "ch3.html#impossibilité-de-distinguer-des-états-non-orthogonaux",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Intuition géométrique :\n\nPlus \\(|\\psi_a\\rangle\\) et \\(|\\psi_b\\rangle\\) sont proches (petit angle \\(\\theta\\) entre eux), plus ils sont difficiles à distinguer.\nPlus ils sont éloignés (proche de l’orthogonalité), plus la distinction est facile.",
+    "objectID": "ch4.html#problèmes-techniques-majeurs",
+    "href": "ch4.html#problèmes-techniques-majeurs",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Problèmes techniques majeurs",
+    "text": "Problèmes techniques majeurs\nDécohérence\nLe système quantique est extrêmement sensible à l’environnement extérieur. Il est nécessaire de l’isoler parfaitement. Il est difficile d’atteindre un temps de décohérence supérieur au temps d’exécution de l’algorithme.\nCorrection d’erreurs\nLes portes quantiques sont imparfaites et introduisent des erreurs. La correction d’erreurs quantiques nécessite de nombreux qubits physiques supplémentaires (rapport ~1000:1 pour un qubit logique fiable).\nImplémentation physique\nMettre en œuvre des calculs sur des systèmes physiques réels (supraconducteurs, ions piégés, etc.) reste extrêmement difficile.\nAlgorithmes\nIl manque encore des algorithmes quantiques pour résoudre un plus grand nombre de problèmes avec un avantage quantique prouvé.\nTransfert de données\nLa création et le maintien d’états intriqués pour le transfert de données à grande échelle restent des défis ouverts.\nScalabilité\nLe temps d’exécution croît exponentiellement avec la taille de la matrice pour certains problèmes.",
     "crumbs": [
       "Cours",
-      "Quantum computing chapter 3",
+      "Applications des ordinateurs quantiques",
       "Details"
     ]
   },
   {
-    "objectID": "ch3.html#la-borne-de-helstrom-holevo",
-    "href": "ch3.html#la-borne-de-helstrom-holevo",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Situation\nAngle \\(\\theta\\)\n\\(\\sin\\theta\\)\n\\(p_{\\text{succès}}\\)\n\n\n\n\nÉtats orthogonaux\n\\(\\theta = \\pi/2\\)\n\\(1\\)\n\\(1\\) (parfait)\n\n\nÉtats presque alignés\n\\(\\theta \\approx 0\\)\n\\(\\approx 0\\)\n\\(\\approx 1/2\\) (hasard)\n\n\nCas intermédiaire\n\\(0 &lt; \\theta &lt; \\pi/2\\)\n\\((0,1)\\)\nEntre \\(1/2\\) et \\(1\\)",
+    "objectID": "ch4.html#loi-de-neven-quors-law",
+    "href": "ch4.html#loi-de-neven-quors-law",
+    "title": "Applications des ordinateurs quantiques",
+    "section": "Loi de Neven (Quor’s Law)",
+    "text": "Loi de Neven (Quor’s Law)\nAnalogue à la loi de Moore pour les processeurs classiques, la loi de Neven (nommée d’après Hartmut Neven, directeur du lab d’IA quantique de Google) stipule que les processeurs quantiques croissent à un rythme doublement exponentiel — environ un doublement du nombre de qubits tous les 18 mois en moyenne.\n\n\n\n\n\n\nNote\n\n\n\nZone de danger\nSelon les projections, le seuil de ~8 000 qubits nécessaires pour casser RSA-2048 pourrait être atteint avant 2030, selon le taux de croissance retenu.",
     "crumbs": [
       "Cours",
-      "Quantum computing chapter 3",
+      "Applications des ordinateurs quantiques",
       "Details"
     ]
   },
   {
-    "objectID": "ch3.html#exemple-distinguer-0rangle-et-rangle",
-    "href": "ch3.html#exemple-distinguer-0rangle-et-rangle",
-    "title": "Informatique Quantique — Lecture 3",
+    "objectID": "ch5.html",
+    "href": "ch5.html",
+    "title": "Correction d’erreurs quantiques",
     "section": "",
-    "text": "\\[\\langle 0|+\\rangle = \\begin{bmatrix}1 & 0\\end{bmatrix}\n  \\begin{bmatrix}1/\\sqrt{2} \\\\ 1/\\sqrt{2}\\end{bmatrix} = \\frac{1}{\\sqrt{2}} \\neq 0\\]\n\n\n\n\n\n\n\nStratégie optimale : Avec \\(|\\langle 0|+\\rangle| = 1/\\sqrt{2}\\), donc \\(\\theta = \\pi/4\\) :\n\\[p_{\\text{succès}} = \\frac{1}{2}\\!\\left(1 + \\sin\\!\\left(\\arccos\\frac{1}{\\sqrt{2}}\\right)\\right)\n  = \\frac{1}{2}\\!\\left(1 + \\frac{1}{\\sqrt{2}}\\right) \\approx 0.85\\]\nStratégie simple (base computationnelle) :\n\n\n\nÉtat\n\\(P(\\text{mesure}=0)\\)\n\\(P(\\text{mesure}=1)\\)\n\n\n\n\n\\(|0\\rangle\\)\n\\(1\\)\n\\(0\\)\n\n\n\\(|+\\rangle\\)\n\\(1/2\\)\n\\(1/2\\)\n\n\n\n\nSi on mesure \\(1\\) → on est certain que l’état était \\(|+\\rangle\\).\nSi on mesure \\(0\\) → on devine \\(|0\\rangle\\), avec \\(1/3\\) de chance d’erreur.\n\n\\[p_{\\text{succès}} = 1 - \\frac{3}{4} \\times \\frac{1}{3} = \\frac{3}{4} = 0.75\\]",
-    "crumbs": [
-      "Cours",
-      "Quantum computing chapter 3",
-      "Details"
-    ]
+    "text": "Les ordinateurs numériques classiques modernes sont, en pratique, exempts d’erreurs. Leur architecture repose sur des transistors robustes et des mécanismes de redondance matérielle qui rendent les erreurs de calcul extrêmement rares. On peut donc, pour les besoins de l’analyse algorithmique, les considérer comme parfaits.\nLes ordinateurs quantiques, en revanche, sont fondamentalement différents. Les qubits sont des objets physiques fragiles — atomes piégés, photons, circuits supraconducteurs — qui interagissent inévitablement avec leur environnement. Cette interaction provoque des erreurs quantiques qui corrompent le calcul.\n\n\n\n\n\n\nWarningDeux raisons fondamentales pour la correction d’erreurs\n\n\n\nCourt terme — algorithmes hybrides quantique-classiques : Même les algorithmes hybrides (Quantum-Classical), conçus pour fonctionner malgré le bruit, nécessitent un certain niveau de correction d’erreurs pour atteindre des performances satisfaisantes. Il devient de plus en plus évident qu’aucune approche variationelle bruitée ne suffira seule.\nLong terme — supériorité quantique asymptotique : Pour affirmer que les algorithmes quantiques surpasseront effectivement les algorithmes classiques en pratique, il est indispensable de comprendre la signification asymptotique des erreurs quantiques — c’est-à-dire leur impact à grande échelle — et de démontrer que ces erreurs peuvent être corrigées efficacement.\n\n\nLa correction d’erreurs quantiques (Quantum Error Correction, QEC) est donc un pilier central de l’informatique quantique, pas une option périphérique."
   },
   {
-    "objectID": "ch3.html#le-principe-de-non-signalisation-no-signalling",
-    "href": "ch3.html#le-principe-de-non-signalisation-no-signalling",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "L’intrication quantique produit un phénomène spectaculaire : mesurer un qubit influence instantanément l’état de son partenaire intriqué, même si les deux sont à des distances cosmiques. Einstein appelait cela l’“action fantôme à distance”.\nQuestion cruciale : peut-on utiliser ce phénomène pour transmettre de l’information plus vite que la lumière ?\n\n\n\n\n\n\n\nCas 1 : Alice n’a PAS mesuré.\nL’état global reste \\(\\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)\\). Pour Bob, la probabilité de mesurer \\(0\\) ou \\(1\\) est :\n\\[p(\\text{Bob mesure }0) = \\left(\\frac{1}{\\sqrt{2}}\\right)^2 = \\frac{1}{2}\\]\nCas 2 : Alice A mesuré.\nLe qubit de Bob s’est effondré vers \\(|0\\rangle\\) ou \\(|1\\rangle\\) (chacun avec probabilité \\(1/2\\)). Bob ne sait pas lequel. Pour lui :\n\\[p(\\text{Bob mesure }0) = \\frac{1}{2} \\cdot 1 + \\frac{1}{2} \\cdot 0 = \\frac{1}{2}\\]",
-    "crumbs": [
-      "Cours",
-      "Quantum computing chapter 3",
-      "Details"
-    ]
+    "objectID": "ch5.html#définition-du-canal-binaire-symétrique-binary-symmetric-channel",
+    "href": "ch5.html#définition-du-canal-binaire-symétrique-binary-symmetric-channel",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Définition du canal binaire symétrique (Binary Symmetric Channel)",
+    "text": "Définition du canal binaire symétrique (Binary Symmetric Channel)\nAvant d’aborder les erreurs quantiques, il est utile de rappeler le modèle d’erreur classique le plus simple : le canal binaire symétrique (Binary Symmetric Channel, BSC).\nDans ce modèle, chaque bit transmis — qui vaut soit \\(0\\) soit \\(1\\) — peut être inversé (flipped) avec une probabilité \\(p_e\\), indépendamment de sa valeur et des autres bits. La transmission est correcte avec probabilité \\(1 - p_e\\).\n\n\n\n\n\n\nTipIntuition\n\n\n\nImaginez envoyer un bit par une ligne téléphonique bruitée. À chaque transmission, une petite probabilité \\(p_e\\) existe que le signal soit déformé et que le \\(0\\) arrive comme un \\(1\\), ou vice versa.\n\n\nLe schéma du canal est symétrique :\n\n\\(0 \\xrightarrow{1-p_e} 0\\) (transmission correcte)\n\\(0 \\xrightarrow{p_e} 1\\) (erreur : bit inversé)\n\\(1 \\xrightarrow{p_e} 0\\) (erreur : bit inversé)\n\\(1 \\xrightarrow{1-p_e} 1\\) (transmission correcte)"
   },
   {
-    "objectID": "ch3.html#le-principe-de-non-clonage-no-cloning",
-    "href": "ch3.html#le-principe-de-non-clonage-no-cloning",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Si le clonage d’états quantiques était possible, on pourrait :\n\nFaciliter la correction d’erreurs quantiques\nComprimer une infinité d’information classique dans un seul qubit\nVioler le principe de non-signalisation (voir exercices)\n\n\n\n\n\n\n\n\nSupposons qu’un tel \\(U\\) existe. Il doit fonctionner pour tout état, donc en particulier pour deux états arbitraires \\(|\\psi\\rangle\\) et \\(|\\phi\\rangle\\) :\n\\[U(|\\psi\\rangle|0\\rangle) = |\\psi\\rangle|\\psi\\rangle \\qquad\n  U(|\\phi\\rangle|0\\rangle) = |\\phi\\rangle|\\phi\\rangle\\]\nPrenons le produit scalaire des deux membres :\n\\[\\langle\\psi|\\langle 0|U^\\dagger U|\\phi\\rangle|0\\rangle\n  = (\\langle\\psi|\\langle\\psi|)(|\\phi\\rangle|\\phi\\rangle)\\]\nMembre gauche (\\(U^\\dagger U = I\\)) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle 0|0\\rangle = \\langle\\psi|\\phi\\rangle\\]\nMembre droit (produit tensoriel) :\n\\[\\langle\\psi|\\phi\\rangle \\cdot \\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\]\nOn obtient donc \\(\\langle\\psi|\\phi\\rangle = (\\langle\\psi|\\phi\\rangle)^2\\). Cette équation n’a que deux solutions :\n\n\\(\\langle\\psi|\\phi\\rangle = 0\\) : états orthogonaux\n\\(\\langle\\psi|\\phi\\rangle = 1\\) : états identiques",
-    "crumbs": [
-      "Cours",
-      "Quantum computing chapter 3",
-      "Details"
-    ]
+    "objectID": "ch5.html#hypothèse-sur-p_e",
+    "href": "ch5.html#hypothèse-sur-p_e",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Hypothèse sur \\(p_e\\)",
+    "text": "Hypothèse sur \\(p_e\\)\nSans perte de généralité, on peut supposer \\(p_e \\leq 0{,}5\\).\nEn effet :\n\nSi \\(p_e &gt; 0{,}5\\), alors il est plus probable qu’une inversion ait eu lieu. Dans ce cas, il suffit d’inverser systématiquement le bit reçu, ce qui revient à un canal de paramètre \\(1 - p_e &lt; 0{,}5\\).\nSi \\(p_e = 0{,}5\\), le canal est complètement aléatoire : aucune information ne peut être récupérée.\n\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nLe paramètre \\(p_e\\) représente le taux d’erreur. Plus il est petit, meilleure est la qualité du canal. L’objectif de la correction d’erreurs est de réduire le taux d’erreur effectif à quelque chose de bien inférieur à \\(p_e\\)."
   },
   {
-    "objectID": "ch3.html#le-principe-de-non-suppression-no-deleting",
-    "href": "ch3.html#le-principe-de-non-suppression-no-deleting",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "Le principe de non-suppression est le dual temporel du non-clonage. Il n’existe aucun opérateur unitaire \\(\\tilde{U}\\) tel que :\n\\[\\tilde{U}(|\\psi\\rangle|\\psi\\rangle) = |\\psi\\rangle|0\\rangle \\quad \\text{pour tout } |\\psi\\rangle\\]",
-    "crumbs": [
-      "Cours",
-      "Quantum computing chapter 3",
-      "Details"
-    ]
+    "objectID": "ch5.html#principe-du-code-à-répétition-repetition-code",
+    "href": "ch5.html#principe-du-code-à-répétition-repetition-code",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Principe du code à répétition (Repetition Code)",
+    "text": "Principe du code à répétition (Repetition Code)\nLe code à répétition sur 3 bits est la technique la plus élémentaire pour protéger un bit contre des erreurs dans le canal binaire symétrique.\nL’idée est simple : au lieu de transmettre le bit une seule fois, on le répète trois fois.\n\\[0 \\rightarrow 000\\]\n\\[1 \\rightarrow 111\\]\nLe récepteur applique ensuite une règle de vote majoritaire : la valeur la plus fréquente parmi les trois bits reçus est déclarée comme la valeur originale."
   },
   {
-    "objectID": "ch3.html#points-clés-à-retenir",
-    "href": "ch3.html#points-clés-à-retenir",
-    "title": "Informatique Quantique — Lecture 3",
-    "section": "",
-    "text": "La mesure quantique est caractérisée par des opérateurs de mesure satisfaisant l’équation de complétude \\(\\sum_m M_m^\\dagger M_m = I\\).\nDeux états orthogonaux sont toujours parfaitement distinguables ; deux états non orthogonaux ne le sont jamais.\nLa borne de Helstrom-Holevo donne la probabilité maximale de distinguer deux états : \\(\\frac{1}{2}(1 + \\sin\\theta)\\), atteinte par une base de mesure optimale.\nLe principe de non-signalisation garantit que l’intrication ne peut pas servir à communiquer plus vite que la lumière.\nLe théorème de non-clonage interdit la copie d’états quantiques arbitraires — résultat fondateur de la cryptographie quantique (protocole BB84).\nLe principe de non-suppression est le dual du non-clonage, et reflète la réversibilité fondamentale de la mécanique quantique.",
-    "crumbs": [
-      "Cours",
-      "Quantum computing chapter 3",
-      "Details"
-    ]
+    "objectID": "ch5.html#analyse-de-la-probabilité-derreur-résiduelle",
+    "href": "ch5.html#analyse-de-la-probabilité-derreur-résiduelle",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Analyse de la probabilité d’erreur résiduelle",
+    "text": "Analyse de la probabilité d’erreur résiduelle\nAvec le code à répétition, une erreur de décodage se produit uniquement si au moins deux des trois bits sont inversés par le canal. Il y a deux cas :\n\nExactement deux bits sont inversés : cela peut arriver de \\(\\binom{3}{2} = 3\\) façons différentes.\nLes trois bits sont inversés : cela peut arriver d’\\(1\\) façon.\n\nLa probabilité d’erreur résiduelle \\(p_e'\\) vaut donc :\n\\[p_e' = 3p_e^2(1 - p_e) + p_e^3\\]\n\n\n\n\n\n\nTipIntuition\n\n\n\nSi \\(p_e\\) est petit, alors \\(p_e^2\\) est très petit, et \\(p_e^3\\) est encore plus petit. L’erreur residuelle est donc dominée par le terme \\(3p_e^2\\), ce qui est bien inférieur à \\(p_e\\) pour des petites valeurs de \\(p_e\\)."
+  },
+  {
+    "objectID": "ch5.html#suppression-de-lerreur",
+    "href": "ch5.html#suppression-de-lerreur",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Suppression de l’erreur",
+    "text": "Suppression de l’erreur\nPour \\(p_e &lt; 0{,}5\\), on peut vérifier que \\(p_e' &lt; p_e\\). En pratique, quand \\(p_e\\) est petit, on dit que le code à répétition supprime l’erreur à l’ordre \\(\\mathcal{O}(p_e^2)\\).\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nLe code à répétition sur 3 bits réduit le taux d’erreur de \\(p_e\\) à \\(\\mathcal{O}(p_e^2)\\). C’est un gain considérable lorsque \\(p_e\\) est petit. Cette idée sera transposée — avec adaptations — au monde quantique."
+  },
+  {
+    "objectID": "ch5.html#trois-complications-fondamentales",
+    "href": "ch5.html#trois-complications-fondamentales",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Trois complications fondamentales",
+    "text": "Trois complications fondamentales\nNaïvement, on pourrait vouloir appliquer directement la stratégie classique — répéter l’état quantique plusieurs fois, puis voter — aux qubits. Cependant, trois obstacles fondamentaux s’y opposent.\n\nObstacle 1 — Le principe de non-clonage (No-Cloning Principle)\nLe théorème de non-clonage (No-Cloning Theorem) établit qu’il est impossible de copier un état quantique arbitraire inconnu.\nPlus précisément, il n’existe pas d’opération unitaire \\(U\\) telle que :\n\\[U|\\psi\\rangle|0\\rangle = |\\psi\\rangle|\\psi\\rangle\\]\npour tout état \\(|\\psi\\rangle\\).\n\n\n\n\n\n\nTipIntuition\n\n\n\nEn classique, copier un bit est trivial : lire sa valeur, écrire cette valeur ailleurs. En quantique, “lire” un état le détruit (voir l’obstacle 2). On ne peut donc pas copier un état en le mesurant.\n\n\nCela interdit directement la stratégie de répétition classique. On ne peut pas créer trois copies d’un état \\(|\\psi\\rangle\\) inconnu.\n\n\nObstacle 2 — La mesure détruit l’information quantique\nEn mécanique quantique, mesurer un état en superposition le fait s’effondrer sur l’un des états de base. Après mesure, la superposition est détruite.\nSi on mesure les qubits pour détecter les erreurs (comme en classique), on perd l’information quantique que l’on cherchait à protéger.\n\n\n\n\n\n\nWarningConséquence cruciale\n\n\n\nLa procédure de détection d’erreur ne doit révéler aucune information sur l’état quantique lui-même — uniquement sur la présence ou l’absence d’erreurs.\n\n\n\n\nObstacle 3 — Les erreurs quantiques sont continues\nUn qubit est dans un état de la forme :\n\\[|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle\\]\noù \\(\\alpha, \\beta \\in \\mathbb{C}\\). Une erreur quantique ne fait pas simplement “basculer” le qubit — elle perturbe continûment les coefficients \\(\\alpha\\) et \\(\\beta\\) :\n\\[\\alpha|0\\rangle + \\beta|1\\rangle \\rightarrow (\\alpha + \\epsilon_0)|0\\rangle + (\\beta + \\epsilon_1)|1\\rangle\\]\nIl semble donc qu’il faille corriger un continuum infini d’erreurs possibles, ce qui paraît impossible."
+  },
+  {
+    "objectID": "ch5.html#la-bonne-nouvelle",
+    "href": "ch5.html#la-bonne-nouvelle",
+    "title": "Correction d’erreurs quantiques",
+    "section": "La bonne nouvelle",
+    "text": "La bonne nouvelle\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nMalgré ces trois obstacles, il est possible de corriger des erreurs quantiques avec de l’ingéniosité. Chacun des trois obstacles a une solution élégante, comme nous allons le voir."
+  },
+  {
+    "objectID": "ch5.html#idée-générale-lenchevêtrement-remplace-la-copie",
+    "href": "ch5.html#idée-générale-lenchevêtrement-remplace-la-copie",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Idée générale : l’enchevêtrement remplace la copie",
+    "text": "Idée générale : l’enchevêtrement remplace la copie\nPuisqu’on ne peut pas copier un état quantique, on va utiliser l’enchevêtrement (entanglement) pour jouer le rôle de la répétition. L’idée centrale est d’encoder l’état logique dans un état enchevêtré de trois qubits.\nLes états de base logiques sont encodés comme suit :\n\\[|0\\rangle \\rightarrow |000\\rangle\\]\n\\[|1\\rangle \\rightarrow |111\\rangle\\]\nUn état général \\(\\alpha|0\\rangle + \\beta|1\\rangle\\) devient alors :\n\\[\\alpha|0\\rangle + \\beta|1\\rangle \\rightarrow \\alpha|000\\rangle + \\beta|111\\rangle\\]\n\n\n\n\n\n\nWarningAttention — Ce n’est pas de la copie !\n\n\n\nL’état \\(\\alpha|000\\rangle + \\beta|111\\rangle\\) est un état enchevêtré des trois qubits. Ce n’est pas la même chose que trois copies de \\(\\alpha|0\\rangle + \\beta|1\\rangle\\). Le théorème de non-clonage n’est pas violé."
+  },
+  {
+    "objectID": "ch5.html#circuit-dencodage",
+    "href": "ch5.html#circuit-dencodage",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Circuit d’encodage",
+    "text": "Circuit d’encodage\nL’encodage est réalisé par le circuit suivant : l’état logique \\(\\alpha|0\\rangle + \\beta|1\\rangle\\) est combiné avec deux qubits auxiliaires \\(|0\\rangle\\) via deux portes CNOT (Controlled-NOT) :\n\nLe qubit d’entrée contrôle le deuxième qubit (initialement \\(|0\\rangle\\)) via un CNOT.\nLe qubit d’entrée contrôle le troisième qubit (initialement \\(|0\\rangle\\)) via un autre CNOT.\n\nCela produit :\n\\[(\\alpha|0\\rangle + \\beta|1\\rangle)|00\\rangle \\xrightarrow{\\text{CNOT}_1} (\\alpha|00\\rangle + \\beta|11\\rangle)|0\\rangle \\xrightarrow{\\text{CNOT}_2} \\alpha|000\\rangle + \\beta|111\\rangle\\]"
+  },
+  {
+    "objectID": "ch5.html#détection-et-correction-des-erreurs-de-retournement-de-bit",
+    "href": "ch5.html#détection-et-correction-des-erreurs-de-retournement-de-bit",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Détection et correction des erreurs de retournement de bit",
+    "text": "Détection et correction des erreurs de retournement de bit\nPour détecter et corriger les erreurs, on utilise deux qubits ancilla (auxiliaires) et des mesures de parité (parity-check measurements).\nL’idée est cruciale : ces mesures nous disent si une erreur a eu lieu, sans jamais nous révéler les valeurs de \\(\\alpha\\) et \\(\\beta\\).\n\nTableau de détection et correction\n\n\n\n\n\n\n\n\n\n\n\nRetournement\nÉtat \\(|\\psi_1\\rangle\\) après erreur\nMesure \\(M_1\\)\nMesure \\(M_2\\)\nCorrection\nÉtat récupéré \\(|\\psi_2\\rangle\\)\n\n\n\n\nAucun\n\\(\\alpha|000\\rangle + \\beta|111\\rangle\\)\n\\(0\\)\n\\(0\\)\n\\(I \\otimes I \\otimes I\\)\n\\(\\alpha|000\\rangle + \\beta|111\\rangle\\)\n\n\nQubit 1\n\\(\\alpha|100\\rangle + \\beta|011\\rangle\\)\n\\(1\\)\n\\(0\\)\n\\(X \\otimes I \\otimes I\\)\n\\(\\alpha|000\\rangle + \\beta|111\\rangle\\)\n\n\nQubit 2\n\\(\\alpha|010\\rangle + \\beta|101\\rangle\\)\n\\(1\\)\n\\(1\\)\n\\(I \\otimes X \\otimes I\\)\n\\(\\alpha|000\\rangle + \\beta|111\\rangle\\)\n\n\nQubit 3\n\\(\\alpha|001\\rangle + \\beta|110\\rangle\\)\n\\(0\\)\n\\(1\\)\n\\(I \\otimes I \\otimes X\\)\n\\(\\alpha|000\\rangle + \\beta|111\\rangle\\)\n\n\n\n\n\n\n\n\n\nNoteÀ retenir — Mesures de parité (Parity-Check Measurements)\n\n\n\nLes mesures \\(M_1\\) et \\(M_2\\) sont des mesures comparatives de parité : elles comparent le premier et le deuxième qubit, puis le deuxième et le troisième. Elles indiquent seulement si deux qubits sont identiques ou différents — jamais leur valeur absolue.\nCes mesures ne révèlent aucune information sur \\(\\alpha\\) ou \\(\\beta\\), donc l’état quantique n’est pas détruit."
+  },
+  {
+    "objectID": "ch5.html#motivation-un-deuxième-type-derreur",
+    "href": "ch5.html#motivation-un-deuxième-type-derreur",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Motivation : un deuxième type d’erreur",
+    "text": "Motivation : un deuxième type d’erreur\nLe code à retournement de bit résout deux des trois obstacles identifiés :\n\nIl utilise l’enchevêtrement pour contourner le non-clonage.\nIl utilise des mesures de parité qui ne détruisent pas l’information quantique.\n\nCependant, il ne traite pas le troisième obstacle : les erreurs continues (et en particulier les erreurs de phase).\nUne erreur de phase (phase-flip, ou erreur \\(Z\\)) agit sur un qubit de la manière suivante :\n\\[|0\\rangle \\rightarrow |0\\rangle, \\quad |1\\rangle \\rightarrow -|1\\rangle\\]\nCe type d’erreur est invisible dans la base computationnelle \\(\\{|0\\rangle, |1\\rangle\\}\\), mais devient un retournement de bit dans la base de Hadamard \\(\\{|+\\rangle, |-\\rangle\\}\\)."
+  },
+  {
+    "objectID": "ch5.html#encodage-dans-la-base-rangle--rangle",
+    "href": "ch5.html#encodage-dans-la-base-rangle--rangle",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Encodage dans la base \\(|+\\rangle, |-\\rangle\\)",
+    "text": "Encodage dans la base \\(|+\\rangle, |-\\rangle\\)\nLe code à retournement de phase encode l’état dans la base de Hadamard. L’encodage est :\n\\[(\\alpha|0\\rangle + \\beta|1\\rangle)|0\\rangle^{\\otimes 2} \\rightarrow \\alpha|{+}{+}{+}\\rangle + \\beta|{-}{-}{-}\\rangle\\]\nCe qui s’obtient en appliquant d’abord deux portes CNOT (comme pour le code à retournement de bit), puis une porte de Hadamard \\(H\\) sur chacun des trois qubits.\n\n\n\n\n\n\nTipIntuition\n\n\n\nUne erreur de phase dans la base \\(\\{|0\\rangle, |1\\rangle\\}\\) devient une erreur de retournement de bit dans la base \\(\\{|+\\rangle, |-\\rangle\\}\\), car :\n\\[|+\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle) \\xrightarrow{Z} \\frac{1}{\\sqrt{2}}(|0\\rangle - |1\\rangle) = |-\\rangle\\]\n\\[|-\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle - |1\\rangle) \\xrightarrow{Z} \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle) = |+\\rangle\\]\nLe retournement de phase est donc un retournement de bit dans cette base, et on peut appliquer les mêmes techniques que précédemment."
+  },
+  {
+    "objectID": "ch5.html#détection-et-correction-des-erreurs-de-phase",
+    "href": "ch5.html#détection-et-correction-des-erreurs-de-phase",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Détection et correction des erreurs de phase",
+    "text": "Détection et correction des erreurs de phase\nPour détecter les erreurs, on applique à nouveau des portes Hadamard pour revenir dans la base computationnelle, puis des mesures de parité.\n\nTableau de détection et correction des phases\n\n\n\n\n\n\n\n\n\n\n\nRetournement\nÉtat \\(|\\psi_1\\rangle\\)\n\\(M_1\\)\n\\(M_2\\)\nCorrection\nÉtat récupéré \\(|\\psi_2\\rangle\\)\n\n\n\n\nAucun\n\\(\\alpha|{+}{+}{+}\\rangle + \\beta|{-}{-}{-}\\rangle\\)\n\\(0\\)\n\\(0\\)\n\\(I \\otimes I \\otimes I\\)\n\\(\\alpha|{+}{+}{+}\\rangle + \\beta|{-}{-}{-}\\rangle\\)\n\n\nQubit 1\n\\(\\alpha|{-}{+}{+}\\rangle + \\beta|{+}{-}{-}\\rangle\\)\n\\(1\\)\n\\(0\\)\n\\(Z \\otimes I \\otimes I\\)\n\\(\\alpha|{+}{+}{+}\\rangle + \\beta|{-}{-}{-}\\rangle\\)\n\n\nQubit 2\n\\(\\alpha|{+}{-}{+}\\rangle + \\beta|{-}{+}{-}\\rangle\\)\n\\(1\\)\n\\(1\\)\n\\(I \\otimes Z \\otimes I\\)\n\\(\\alpha|{+}{+}{+}\\rangle + \\beta|{-}{-}{-}\\rangle\\)\n\n\nQubit 3\n\\(\\alpha|{+}{+}{-}\\rangle + \\beta|{-}{-}{+}\\rangle\\)\n\\(0\\)\n\\(1\\)\n\\(I \\otimes I \\otimes Z\\)\n\\(\\alpha|{+}{+}{+}\\rangle + \\beta|{-}{-}{-}\\rangle\\)"
+  },
+  {
+    "objectID": "ch5.html#architecture-concaténation-de-deux-codes",
+    "href": "ch5.html#architecture-concaténation-de-deux-codes",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Architecture : concaténation de deux codes",
+    "text": "Architecture : concaténation de deux codes\nLe code de Shor est un code sur 9 qubits qui corrige à la fois les erreurs de retournement de bit (\\(X\\)) et les erreurs de retournement de phase (\\(Z\\)) sur un seul qubit quelconque.\nIl est construit par concaténation (concatenation) des deux codes vus précédemment :\n\nD’abord, on applique le code à retournement de phase sur 3 qubits, qui encode l’état dans trois blocs.\nEnsuite, on applique le code à retournement de bit sur 3 qubits à chacun des trois blocs.\n\nLe circuit d’encodage combine ainsi des portes CNOT et des portes de Hadamard sur 9 qubits."
+  },
+  {
+    "objectID": "ch5.html#encodage-des-états-logiques",
+    "href": "ch5.html#encodage-des-états-logiques",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Encodage des états logiques",
+    "text": "Encodage des états logiques\nLes états logiques encodés sont les suivants :\n\\[|0\\rangle \\rightarrow |0_L\\rangle = \\frac{1}{2\\sqrt{2}}\\big(|000\\rangle + |111\\rangle\\big)\\big(|000\\rangle + |111\\rangle\\big)\\big(|000\\rangle + |111\\rangle\\big)\\]\n\\[|1\\rangle \\rightarrow |1_L\\rangle = \\frac{1}{2\\sqrt{2}}\\big(|000\\rangle - |111\\rangle\\big)\\big(|000\\rangle - |111\\rangle\\big)\\big(|000\\rangle - |111\\rangle\\big)\\]\n\n\n\n\n\n\nTipIntuition — Structure du code de Shor\n\n\n\nOn peut voir le code de Shor comme opérant à deux niveaux :\n\nNiveau interne (blocs de 3 qubits) : protège contre les retournements de bit (\\(X\\)), grâce au code à retournement de bit.\nNiveau externe (les 3 blocs) : protège contre les retournements de phase (\\(Z\\)), grâce au code à retournement de phase."
+  },
+  {
+    "objectID": "ch5.html#correction-des-retournements-de-bit-avec-le-code-de-shor",
+    "href": "ch5.html#correction-des-retournements-de-bit-avec-le-code-de-shor",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Correction des retournements de bit avec le code de Shor",
+    "text": "Correction des retournements de bit avec le code de Shor\nLe code de Shor peut détecter et corriger un retournement de bit sur n’importe lequel des 9 qubits.\nPar exemple, si un retournement de bit se produit sur le premier qubit, l’état encodé devient :\n\\[\\frac{1}{2\\sqrt{2}}\\Big(\\alpha\\big(|100\\rangle + |011\\rangle\\big)\\big(|000\\rangle + |111\\rangle\\big)\\big(|000\\rangle + |111\\rangle\\big)\\] \\[+ \\beta\\big(|100\\rangle - |011\\rangle\\big)\\big(|000\\rangle - |111\\rangle\\big)\\big(|000\\rangle - |111\\rangle\\big)\\Big)\\]\nCe retournement est détecté par des mesures de parité sur les trois premiers qubits (exactement comme dans le code à retournement de bit à 3 qubits), et corrigé en appliquant une porte \\(X\\) sur le premier qubit.\nPar symétrie, le même principe s’applique à chacun des 9 qubits."
+  },
+  {
+    "objectID": "ch5.html#correction-des-retournements-de-phase-avec-le-code-de-shor",
+    "href": "ch5.html#correction-des-retournements-de-phase-avec-le-code-de-shor",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Correction des retournements de phase avec le code de Shor",
+    "text": "Correction des retournements de phase avec le code de Shor\nLe code de Shor peut également détecter et corriger un retournement de phase sur n’importe lequel des 9 qubits.\nSi un retournement de phase se produit sur le premier qubit, l’état encodé devient :\n\\[\\frac{1}{2\\sqrt{2}}\\Big(\\alpha\\big(|000\\rangle - |111\\rangle\\big)\\big(|000\\rangle + |111\\rangle\\big)\\big(|000\\rangle + |111\\rangle\\big)\\] \\[+ \\beta\\big(|000\\rangle + |111\\rangle\\big)\\big(|000\\rangle - |111\\rangle\\big)\\big(|000\\rangle - |111\\rangle\\big)\\Big)\\]\nL’idée clé est de détecter quel bloc de 3 qubits a subi un changement de signe. On applique des mesures de parité entre les blocs (après avoir appliqué des portes Hadamard pour revenir dans la bonne base).\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nLe code de Shor peut corriger à la fois des erreurs de retournement de bit et de phase — et donc toute combinaison de telles erreurs — sur n’importe quel qubit unique parmi les 9 qubits du code."
+  },
+  {
+    "objectID": "ch5.html#lerreur-générale-sur-un-seul-qubit",
+    "href": "ch5.html#lerreur-générale-sur-un-seul-qubit",
+    "title": "Correction d’erreurs quantiques",
+    "section": "L’erreur générale sur un seul qubit",
+    "text": "L’erreur générale sur un seul qubit\nUne erreur quantique générale sur le premier qubit envoie :\n\\[|0\\rangle \\rightarrow a|0\\rangle + b|1\\rangle, \\quad |1\\rangle \\rightarrow c|0\\rangle + d|1\\rangle\\]\noù \\(a, b, c, d\\) sont des coefficients complexes. Il s’agit d’une transformation linéaire générale — une perturbation continue arbitraire.\nEn posant \\(k = \\frac{1}{2}(a+d)\\), \\(l = \\frac{1}{2}(b+c)\\), \\(m = \\frac{1}{2}(a-d)\\), \\(n = \\frac{1}{2}(b-c)\\), l’état après erreur peut être décomposé en quatre termes correspondant à :\n\n\\(k\\) : aucune erreur (terme \\(I\\))\n\\(l\\) : retournement de bit (\\(X\\))\n\\(m\\) : retournement de phase (\\(Z\\))\n\\(n\\) : retournement de bit et de phase (\\(XZ = iY\\))"
+  },
+  {
+    "objectID": "ch5.html#procédure-de-correction",
+    "href": "ch5.html#procédure-de-correction",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Procédure de correction",
+    "text": "Procédure de correction\n\nÉtape 1 — Mesure de parité pour les retournements de bit\nOn effectue d’abord une mesure de parité sur le premier bloc de trois qubits. Le résultat est soit \\(00\\) (pas de retournement de bit dans ce bloc), soit \\(10\\) ou \\(01\\) (retournement du premier ou deuxième qubit du bloc).\nLa mesure fait s’effondrer l’état sur l’un de ces cas, éliminant la superposition des différents types d’erreurs.\n\n\nÉtape 2 — Mesure de parité pour les retournements de phase\nAprès correction éventuelle du retournement de bit, on effectue une mesure de parité entre les blocs. Le résultat est \\(0\\) (pas de retournement de phase) ou \\(1\\) (retournement de phase détecté).\n\n\n\n\n\n\nTipIntuition — Digitalisation des erreurs (Digitisation of Errors)\n\n\n\nC’est ici que se manifeste un phénomène remarquable : même si l’erreur initiale est continue (les coefficients \\(a, b, c, d\\) peuvent prendre n’importe quelle valeur), les mesures de parité font s’effondrer l’état sur l’un des quatre cas discrets :\n\nPas d’erreur\nRetournement de bit seulement\nRetournement de phase seulement\nRetournement de bit ET de phase\n\nLa correction d’erreurs digitise les erreurs continues en erreurs discrètes. C’est la résolution du troisième obstacle !\n\n\n\n\n\n\n\n\nWarningPropriété remarquable — Digitalisation des erreurs\n\n\n\nEn effectuant les mesures de parité (bit et phase), un état général soumis à une erreur continue s’effondre sur le cas où soit le bit, soit la phase, soit les deux ont été inversés — ou bien aucun — selon le résultat de la mesure. Cette propriété permet de corriger un continuum d’erreurs en ne corrigeant que des erreurs binaires discrètes."
+  },
+  {
+    "objectID": "ch5.html#définition-du-canal-dépolarisant",
+    "href": "ch5.html#définition-du-canal-dépolarisant",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Définition du canal dépolarisant",
+    "text": "Définition du canal dépolarisant\nLe canal dépolarisant (Depolarising Channel) est le modèle de bruit quantique analogue au canal binaire symétrique classique.\nDans ce modèle, un qubit physique subit :\n\nAucune erreur avec probabilité \\(1 - p_e\\)\nUn retournement de bit (\\(X\\)) avec probabilité \\(\\frac{p_e}{3}\\)\nUn retournement de phase (\\(Z\\)) avec probabilité \\(\\frac{p_e}{3}\\)\nUn retournement de bit et de phase (\\(XZ\\)) avec probabilité \\(\\frac{p_e}{3}\\)\n\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nLa probabilité totale d’erreur est \\(p_e = \\frac{p_e}{3} + \\frac{p_e}{3} + \\frac{p_e}{3}\\). Le canal dépolarisant est le modèle de bruit quantique standard pour analyser les performances des codes correcteurs."
+  },
+  {
+    "objectID": "ch5.html#suppression-de-lerreur-par-le-code-de-shor",
+    "href": "ch5.html#suppression-de-lerreur-par-le-code-de-shor",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Suppression de l’erreur par le code de Shor",
+    "text": "Suppression de l’erreur par le code de Shor\nDe la même manière que le code à répétition classique supprime l’erreur du canal binaire symétrique de \\(p_e\\) à \\(\\mathcal{O}(p_e^2)\\), le code de Shor supprime l’erreur du canal dépolarisant de \\(p_e\\) à \\(\\mathcal{O}(p_e^2)\\).\nUn argument analogue à celui du code classique à répétition montre ce résultat : pour qu’une erreur non corrigeable survienne, il faut qu’au moins deux qubits du code soient affectés simultanément, ce qui arrive avec probabilité \\(\\mathcal{O}(p_e^2)\\)."
+  },
+  {
+    "objectID": "ch5.html#le-canal-dépolarisant-comme-modèle-général",
+    "href": "ch5.html#le-canal-dépolarisant-comme-modèle-général",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Le canal dépolarisant comme modèle général",
+    "text": "Le canal dépolarisant comme modèle général\n\nModélisation d’un canal bruité général\nDans l’exemple ci-dessus, on n’a considéré que le cas simple où un seul qubit du code de Shor est sujet au bruit. En réalité, si chaque qubit est indépendamment soumis à un canal bruité général, le même principe s’applique :\n\n\n\n\n\n\nTipIntuition\n\n\n\nSi le bruit sur chaque qubit est petit, il est très probable qu’aucun retournement de bit ni de phase n’ait eu lieu. La probabilité que deux qubits soient affectés est en \\(\\mathcal{O}(p_e^2)\\), ce qui reste petit.\n\n\nLa digitalisation des erreurs permet d’analyser des canaux bruités généraux comme des canaux dépolarisants, sous l’hypothèse que les erreurs sur les différents qubits physiques sont indépendantes. C’est une hypothèse raisonnable si le code est bien implémenté.\n\n\nChoix conservateur du modèle\nCertains canaux physiques auront des retournements de bit ou de phase plus probables dans une direction. Il sera généralement possible de choisir un modèle dépolarisant conservateur (ne sous-estimant pas les sources d’erreurs) pour couvrir ces cas.\n\n\n\n\n\n\nNoteÀ retenir — Universalité du modèle dépolarisant\n\n\n\nGrâce à la digitalisation, le canal dépolarisant est un modèle de bruit suffisamment général pour analyser la correction d’erreurs quantiques dans la plupart des contextes pratiques. Si un code corrige toutes les erreurs du canal dépolarisant, il corrige essentiellement toutes les erreurs du canal réel."
+  },
+  {
+    "objectID": "ch5.html#probabilités-après-mesure-de-parité",
+    "href": "ch5.html#probabilités-après-mesure-de-parité",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Probabilités après mesure de parité",
+    "text": "Probabilités après mesure de parité\nExaminons plus précisément ce qui se passe lors de la mesure de parité pour la détection de retournements de bit.\nLorsqu’on mesure les bits de parité, la probabilité d’obtenir \\(|00\\rangle\\) (c’est-à-dire d’observer qu’aucun retournement de bit n’a eu lieu) est \\(|k|^2 + |m|^2\\).\nRappelons que par définition, le bruit envoie :\n\\[|0\\rangle \\rightarrow a|0\\rangle + b|1\\rangle, \\quad |1\\rangle \\rightarrow c|0\\rangle + d|1\\rangle\\]\net \\(k = \\frac{1}{2}(a + d)\\). Pour un bruit faible (\\((a, d) \\approx 1\\)), on a \\(k \\approx 1\\), donc \\(|k|^2 + |m|^2 \\approx 1\\) : la probabilité qu’aucun retournement de bit ne soit détecté est élevée.\nLe même principe s’applique à la détection des retournements de phase. Pour des niveaux de bruit faibles, la correction d’erreurs fonctionne avec une très haute probabilité.\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nLa digitalisation des erreurs signifie que la correction d’erreurs quantiques peut être décrite comme si des erreurs discrètes (bit-flip et/ou phase-flip) se produisaient avec certaines probabilités. Bien que les erreurs soient continues à l’origine, après mesure elles deviennent binaires."
+  },
+  {
+    "objectID": "ch5.html#limitations-des-codes-à-répétition",
+    "href": "ch5.html#limitations-des-codes-à-répétition",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Limitations des codes à répétition",
+    "text": "Limitations des codes à répétition\nLes codes à répétition sont utiles pour illustrer les principes de la correction d’erreurs, mais ils sont trop inefficaces en pratique :\n\nPour protéger 1 bit d’information, on utilise 3 bits physiques.\nPlus généralement, pour corriger \\(t\\) erreurs, on a besoin de \\(2t+1\\) répétitions.\nLe taux de code (code rate), défini comme le rapport bits d’information / bits physiques, est \\(\\frac{1}{3}\\) pour le code à répétition sur 3 bits, ce qui est très faible."
+  },
+  {
+    "objectID": "ch5.html#le-code-de-hamming-74-hamming-code",
+    "href": "ch5.html#le-code-de-hamming-74-hamming-code",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Le code de Hamming (7,4) — Hamming Code",
+    "text": "Le code de Hamming (7,4) — Hamming Code\nUn code particulièrement élégant est le code de Hamming (7,4) : il encode un mot de données de 4 bits (\\(d\\)) sous forme d’un mot de code de 7 bits (\\(c\\)), selon la relation :\n\\[c = Gd \\pmod{2}\\]\noù \\(G\\) est la matrice génératrice (generator matrix) :\n\\[G = \\begin{bmatrix} 1 & 1 & 0 & 1 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 1 & 1 & 1 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}\\]"
+  },
+  {
+    "objectID": "ch5.html#détection-des-erreurs-par-la-matrice-de-parité",
+    "href": "ch5.html#détection-des-erreurs-par-la-matrice-de-parité",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Détection des erreurs par la matrice de parité",
+    "text": "Détection des erreurs par la matrice de parité\nLes erreurs sont détectées en appliquant la matrice de contrôle de parité (parity-check matrix) \\(H\\) à un mot de code reçu :\n\\[H = \\begin{bmatrix} 1 & 0 & 1 & 0 & 1 & 0 & 1 \\\\ 0 & 1 & 1 & 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 1 & 1 & 1 & 1 \\end{bmatrix}\\]\nEn calculant \\(p = Hc \\pmod{2}\\) :\n\nSi \\(p = 000\\), le mot de code reçu est valide (aucune erreur).\nSinon, les 7 valeurs non nulles possibles de \\(p\\) (chaînes de 3 bits avec au moins un \\(1\\)) indiquent la position exacte de l’erreur unique.\n\n\n\n\n\n\n\nNoteÀ retenir — Efficacité du code de Hamming (7,4)\n\n\n\nLe code de Hamming (7,4) a un taux de code de \\(\\frac{4}{7} \\approx 0{,}57\\), soit bien supérieur au code à répétition. Il peut détecter et corriger n’importe quelle erreur de bit unique. C’est un code linéaire (Linear Code) : les mots de code sont un sous-espace vectoriel de \\(\\mathbb{F}_2^7\\)."
+  },
+  {
+    "objectID": "ch5.html#les-codes-css-calderbank-shor-steane",
+    "href": "ch5.html#les-codes-css-calderbank-shor-steane",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Les codes CSS — Calderbank-Shor-Steane",
+    "text": "Les codes CSS — Calderbank-Shor-Steane\nIl existe une technique systématique pour construire des codes correcteurs quantiques à partir de codes linéaires classiques. Ces codes sont appelés codes CSS (Calderbank-Shor-Steane codes).\nLa construction CSS utilise deux codes linéaires classiques compatibles pour encoder l’information quantique en corrigeant séparément les erreurs de type \\(X\\) (retournements de bit) et \\(Z\\) (retournements de phase).\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nL’analyse détaillée des codes CSS dépasse le cadre de ce cours, mais il est important de savoir qu’ils forment une famille importante de codes quantiques, dont le code de Shor est un cas particulier."
+  },
+  {
+    "objectID": "ch5.html#le-code-de-steane-steane-code",
+    "href": "ch5.html#le-code-de-steane-steane-code",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Le code de Steane (Steane Code)",
+    "text": "Le code de Steane (Steane Code)\nUn exemple important de code CSS est le code de Steane, construit à partir du code de Hamming (7,4). Le code de Steane encode 1 qubit logique en 7 qubits physiques.\nLes états logiques encodés sont :\n\\[|0_L\\rangle = \\frac{1}{\\sqrt{8}}\\Big(|0000000\\rangle + |1010101\\rangle + |0110011\\rangle + |1100110\\rangle\\] \\[\\quad + |0001111\\rangle + |1011010\\rangle + |0111100\\rangle + |1101001\\rangle\\Big)\\]\n\\[|1_L\\rangle = \\frac{1}{\\sqrt{8}}\\Big(|1111111\\rangle + |0101010\\rangle + |1001100\\rangle + |0011001\\rangle\\] \\[\\quad + |1110000\\rangle + |0100101\\rangle + |1000011\\rangle + |0010110\\rangle\\Big)\\]"
+  },
+  {
+    "objectID": "ch5.html#propriétés-du-code-de-steane",
+    "href": "ch5.html#propriétés-du-code-de-steane",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Propriétés du code de Steane",
+    "text": "Propriétés du code de Steane\nComme le code de Shor, le code de Steane garantit de corriger tout retournement de bit et/ou de phase se produisant sur un qubit unique parmi les 7.\n\n\n\n\n\n\nTipAvantage du code de Steane sur le code de Shor\n\n\n\n\nCode de Shor : 9 qubits physiques pour encoder 1 qubit logique → taux \\(\\frac{1}{9}\\)\nCode de Steane : 7 qubits physiques pour encoder 1 qubit logique → taux \\(\\frac{1}{7}\\)\n\nLe code de Steane est donc plus efficace. Tous deux suppriment l’erreur du canal dépolarisant de \\(p_e\\) à \\(\\mathcal{O}(p_e^2)\\).\n\n\n\n\n\n\n\n\nNoteÀ retenir\n\n\n\nLe code de Steane supprime l’erreur du canal dépolarisant de \\(p_e\\) à \\(\\mathcal{O}(p_e^2)\\), tout comme le code de Shor, mais avec seulement 7 qubits physiques au lieu de 9. C’est un exemple concret et important de l’utilisation des codes linéaires classiques pour construire des codes correcteurs quantiques efficaces."
+  },
+  {
+    "objectID": "ch5.html#les-trois-obstacles-et-leurs-solutions",
+    "href": "ch5.html#les-trois-obstacles-et-leurs-solutions",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Les trois obstacles et leurs solutions",
+    "text": "Les trois obstacles et leurs solutions\nLa correction d’erreurs quantiques doit surmonter trois obstacles fondamentaux par rapport à la correction d’erreurs classique. Chacun a une solution élégante :\n\n\n\n\n\n\n\nObstacle\nSolution\n\n\n\n\nPrincipe de non-clonage : on ne peut pas copier un état quantique\nUtiliser l’enchevêtrement à la place de la copie\n\n\nLa mesure détruit l’information quantique\nConcevoir des codes avec des mesures de parité qui révèlent uniquement la présence d’erreurs, pas l’état lui-même\n\n\nLes erreurs quantiques sont continues\nLa correction d’erreurs digitalise les erreurs : les mesures font s’effondrer l’état sur des cas discrets"
+  },
+  {
+    "objectID": "ch5.html#hiérarchie-des-codes-présentés",
+    "href": "ch5.html#hiérarchie-des-codes-présentés",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Hiérarchie des codes présentés",
+    "text": "Hiérarchie des codes présentés\n\n\n\n\n\ngraph TD\n    A[\"Erreur classique\\n(Canal BSC)\"] --&gt; B[\"Code à répétition 3 bits\\n(classique)\"]\n    C[\"Erreur quantique\\n(Canal dépolarisant)\"] --&gt; D[\"Code à retournement de bit\\n(3 qubits)\"]\n    C --&gt; E[\"Code à retournement de phase\\n(3 qubits)\"]\n    D --&gt; F[\"Code de Shor\\n(9 qubits)\"]\n    E --&gt; F\n    G[\"Code de Hamming (7,4)\\n(classique)\"] --&gt; H[\"Code de Steane\\n(7 qubits — CSS)\"]"
+  },
+  {
+    "objectID": "ch5.html#passage-à-des-codes-plus-efficaces",
+    "href": "ch5.html#passage-à-des-codes-plus-efficaces",
+    "title": "Correction d’erreurs quantiques",
+    "section": "Passage à des codes plus efficaces",
+    "text": "Passage à des codes plus efficaces\nEn pratique, les codes à répétition sont trop inefficaces. Les codes linéaires classiques, comme le code de Hamming (7,4), permettent d’encoder de l’information de manière plus compacte. La construction CSS généralise cette idée au monde quantique.\nLe code de Steane, construit à partir du code de Hamming (7,4), encode 1 qubit logique en 7 qubits physiques et offre les mêmes garanties de correction que le code de Shor (9 qubits), mais avec une meilleure efficacité.\n\n\n\n\n\n\nNoteÀ retenir — Bilan général\n\n\n\nLa correction d’erreurs quantiques est possible et efficace :\n\nL’enchevêtrement remplace la copie.\nLes mesures de parité détectent les erreurs sans détruire l’état quantique.\nLe processus de correction digitalise les erreurs continues en erreurs discrètes.\nDes codes sophistiqués comme le code de Steane (CSS) permettent une correction efficace avec un nombre raisonnable de qubits physiques.\n\nCes codes suppriment l’erreur du canal dépolarisant de \\(p_e\\) à \\(\\mathcal{O}(p_e^2)\\), ouvrant la voie à un calcul quantique fiable à grande échelle."
   },
   {
     "objectID": "ch2.html#point-de-départ-quest-ce-que-linformation-quantique",
