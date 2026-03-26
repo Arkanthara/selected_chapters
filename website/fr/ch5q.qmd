@@ -1,0 +1,303 @@
+---
+title: "Correction d'erreurs quantiques — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Niveau 1 — Fondamentaux
+
+```{quizdown}
+### Pourquoi les ordinateurs quantiques nécessitent-ils une correction d'erreurs, contrairement aux ordinateurs classiques modernes ?
+
+> Pense à la nature physique des qubits et à leur interaction avec leur environnement.
+
+1. [ ] Les processeurs quantiques calculent trop vite pour détecter les erreurs
+1. [ ] Les erreurs classiques et quantiques sont identiques mais plus fréquentes
+1. [x] Les qubits sont physiquement fragiles et interagissent inévitablement avec leur environnement, causant des erreurs
+    > Correct : les qubits (atomes piégés, photons, circuits supraconducteurs) sont sensibles aux perturbations extérieures, ce qui rend les erreurs inévitables sans correction.
+1. [ ] La correction d'erreurs est uniquement nécessaire pour les algorithmes de cryptographie
+```
+
+```{quizdown}
+### Dans le canal binaire symétrique (Binary Symmetric Channel), que se passe-t-il si le taux d'erreur est p_e = 0,5 ?
+
+> Pense à ce que signifie une probabilité d'inversion de 50% pour chaque bit.
+
+1. [ ] Le canal transmet l'information avec un taux d'erreur corrigible
+1. [ ] On peut inverser les bits reçus pour récupérer l'information
+1. [ ] Le canal est optimal et aucune correction n'est nécessaire
+1. [x] Aucune information ne peut être récupérée du canal
+    > Correct : si p_e = 0,5, chaque bit est aussi probablement correct qu'incorrect. Le canal ne transporte aucune information utile.
+```
+
+```{quizdown}
+### Quels sont les trois obstacles fondamentaux qui empêchent d'appliquer directement la correction d'erreurs classique aux qubits ?
+
+> Il y a exactement trois raisons structurelles liées aux propriétés de la mécanique quantique.
+
+- [x] Le principe de non-clonage interdit de copier un état quantique inconnu
+    > Correct : le theorème de non-clonage (No-Cloning Theorem) est un obstacle direct à la stratégie de répétition classique.
+- [ ] Les qubits sont trop coûteux à fabriquer en grand nombre
+    > Incorrect : le coût matériel n'est pas un obstacle théorique à la correction d'erreurs.
+- [x] La mesure détruit l'information quantique par effondrement de la superposition
+    > Correct : toute mesure d'un état en superposition le fait s'effondrer, ce qui détruirait l'information à protéger.
+- [x] Les erreurs quantiques sont continues, pas discrètes comme en classique
+    > Correct : un qubit alpha|0> + beta|1> peut subir une perturbation continue sur les coefficients complexes.
+- [ ] Les portes quantiques ne peuvent pas être combinées avec des mesures
+    > Incorrect : portes et mesures peuvent coexister dans un circuit quantique.
+```
+
+```{quizdown}
+### Quelle est la probabilité d'erreur residuelle apres encodage par le code a repetition sur 3 bits classique ?
+
+> Rappelle-toi combien de bits doivent être inversés pour que le vote majoritaire échoue.
+
+1. [ ] p_e' = p_e^2
+1. [ ] p_e' = 2p_e(1 - p_e)
+1. [x] p_e' = 3p_e^2(1 - p_e) + p_e^3
+    > Correct : une erreur survient si exactement 2 bits (3 façons) ou les 3 bits sont inversés simultanément.
+1. [ ] p_e' = p_e / 3
+```
+
+```{quizdown}
+### Dans le code a retournement de bit sur 3 qubits (Three-Qubit Bit-Flip Code), comment est encode l'etat logique alpha|0> + beta|1> ?
+
+> Ce n'est pas une copie des trois qubits — pense a ce que produisent les portes CNOT a partir de |00>.
+
+1. [ ] (alpha|0> + beta|1>) tensor (alpha|0> + beta|1>) tensor (alpha|0> + beta|1>)
+1. [x] alpha|000> + beta|111>
+    > Correct : l'encodage produit un état enchevêtré des trois qubits. Ce n'est pas trois copies independantes de l'état logique.
+1. [ ] alpha|010> + beta|101>
+1. [ ] (alpha + beta)(|000> + |111>)
+```
+
+```{quizdown}
+### Qu'est-ce qu'une erreur de retournement de phase (phase-flip) agit sur un qubit dans la base computationnelle ?
+
+> Pense à l'action de la porte Z sur |0> et |1>.
+
+1. [ ] Elle envoie |0> sur |1> et |1> sur |0>
+1. [x] Elle laisse |0> inchange et envoie |1> sur -|1>
+    > Correct : la porte Z applique |0> -> |0> et |1> -> -|1>. Dans la base computationnelle, |0> est inchangé.
+1. [ ] Elle envoie |+> sur |+> et |-> sur |->
+1. [ ] Elle applique une rotation de 90 degrés dans le plan XY de la sphere de Bloch
+```
+
+---
+
+## Niveau 2 — Comprehension
+
+```{quizdown}
+### Pourquoi les mesures de parite (parity-check measurements) dans le code a retournement de bit ne detruisent-elles pas l'etat quantique ?
+
+> Pense a quelle information ces mesures revelent — et a quelle information elles ne donnent pas acces.
+
+1. [ ] Parce qu'elles sont effectuees sur des qubits ancilla, pas directement sur les qubits logiques
+1. [ ] Parce qu'elles utilisent des portes Hadamard qui preservent la coherence
+1. [x] Parce qu'elles ne revelent que la presence d'une erreur, sans jamais reveler les valeurs de alpha et beta
+    > Correct : les mesures M1 et M2 comparent les qubits deux a deux (parite) sans acceder aux coefficients de superposition. L'état logique reste intact.
+1. [ ] Parce qu'elles sont effectuees apres la correction, pas avant
+```
+
+```{quizdown}
+### Pourquoi une erreur de phase (Z) est-elle equivalente a un retournement de bit (X) dans la base de Hadamard {|+>, |->} ?
+
+> Rappelle-toi comment la porte Z transforme |+> et |->.
+
+1. [ ] Parce que les portes X et Z commutent dans cette base
+1. [ ] Parce que |+> et |-> sont des etats propres de la porte Z
+1. [x] Parce que la porte Z echange |+> et |->, exactement comme la porte X echange |0> et |1>
+    > Correct : Z|+> = |-> et Z|-> = |+>. Un retournement de phase dans la base computationnelle est donc un retournement de bit dans la base de Hadamard.
+1. [ ] Parce que les bases de Hadamard et computationnelle sont orthogonales
+```
+
+```{quizdown}
+### Le code de Shor est construit par concatenation de deux codes. Dans quel ordre sont-ils appliques et quel type d'erreur chaque niveau protege-t-il ?
+
+> Pense aux deux niveaux de structure du code de Shor : les blocs internes et le niveau externe.
+
+1. [x] Niveau externe : code a retournement de phase (3 blocs) ; niveau interne : code a retournement de bit (dans chaque bloc de 3 qubits)
+    > Correct : le code de phase protège les 3 blocs entre eux (erreurs Z), le code bit-flip protège chaque bloc de 3 qubits individuellement (erreurs X).
+1. [ ] Niveau externe : code a retournement de bit ; niveau interne : code a retournement de phase
+1. [ ] Les deux niveaux protegent contre les memes types d'erreurs pour augmenter la robustesse
+1. [ ] Le code de Shor n'utilise pas de concatenation mais une seule couche de protection
+```
+
+```{quizdown}
+### Qu'est-ce que la "digitalisation des erreurs" (Digitisation of Errors) dans le contexte de la correction d'erreurs quantiques ?
+
+> C'est le phenomene qui resout le troisieme obstacle identifie (erreurs continues).
+
+1. [ ] Le fait de convertir les qubits en bits classiques pour les corriger
+1. [ ] L'utilisation de portes numeriques au lieu de portes analogiques
+1. [x] Le fait que les mesures de parite font s'effondrer une erreur continue sur l'un des quatre cas discrets : aucune erreur, bit-flip, phase-flip, ou les deux
+    > Correct : meme si l'erreur est continuement parametree par a, b, c, d, la mesure projette l'etat sur l'un des quatre sous-espaces discrets. On ne corrige que 4 types d'erreurs.
+1. [ ] La conversion du bruit analogique en signal numerique par le materiel quantique
+```
+
+```{quizdown}
+### Dans le canal depolarisant (Depolarising Channel), un qubit subit un bit-flip avec probabilite p_e/3. Quelle est la probabilite totale d'erreur ?
+
+> Le canal depolarisant repartit le bruit egalement entre trois types d'erreurs.
+
+1. [ ] p_e / 9
+1. [ ] p_e / 3
+1. [ ] 2p_e / 3
+1. [x] p_e
+    > Correct : p_e/3 (bit-flip) + p_e/3 (phase-flip) + p_e/3 (bit+phase-flip) = p_e. La probabilite de rester inchange est 1 - p_e.
+```
+
+```{quizdown}
+### Quelle est la difference fondamentale entre l'etat encode alpha|000> + beta|111> et trois copies independantes de alpha|0> + beta|1> ?
+
+> Rappelle-toi le theoreme de non-clonage et la nature de l'enchevêtrement.
+
+- [x] L'etat alpha|000> + beta|111> est un etat enchevetre des trois qubits, pas un produit tensoriel de trois qubits identiques
+    > Correct : si les trois qubits étaient en copies indépendantes, l'état serait (alpha|0>+beta|1>) tensor (alpha|0>+beta|1>) tensor (alpha|0>+beta|1>), ce qui est différent et imposerait de connaitre alpha et beta.
+- [x] Produire trois copies independantes violerait le theoreme de non-clonage
+    > Correct : c'est precisement pourquoi on utilise l'enchevêtrement. On ne peut pas copier un état quantique inconnu.
+- [ ] Les deux etats sont physiquement identiques mais notes differemment
+- [ ] L'etat enchevetre est plus facile a produire que trois copies independantes
+```
+
+```{quizdown}
+### Le code de Hamming (7,4) encode 4 bits en 7 bits. Comment detecte-t-il et localise-t-il une erreur ?
+
+> Pense au role de la matrice de controle de parite H et au syndrome p = Hc mod 2.
+
+1. [ ] En comparant le mot recu avec tous les mots de code valides stockes en memoire
+1. [ ] En repetant la transmission trois fois et en votant
+1. [x] En calculant le syndrome p = Hc mod 2 : si p = 000 pas d'erreur, sinon les 7 valeurs non nulles possibles indiquent la position de l'erreur unique
+    > Correct : les 7 chaînes de 3 bits non nulles correspondent aux 7 positions possibles d'une erreur unique. C'est l'avantage des codes lineaires.
+1. [ ] En mesurant la distance de Hamming entre le mot recu et le mot envoye
+```
+
+---
+
+## Niveau 3 — Maitrise
+
+```{quizdown}
+### Un qubit logique est encode avec le code a retournement de bit sur 3 qubits. Apres passage dans un canal bruite, les mesures de parite donnent M1 = 1 et M2 = 1. Quel qubit a subi un bit-flip et quelle correction appliquer ?
+
+> Consulte le tableau de detection : M1 compare les qubits 1 et 2, M2 compare les qubits 2 et 3.
+
+1. [ ] Qubit 1 — correction X tensor I tensor I
+1. [x] Qubit 2 — correction I tensor X tensor I
+    > Correct : M1=1 indique que les qubits 1 et 2 different, M2=1 indique que les qubits 2 et 3 different. Le qubit 2 est donc en desaccord avec les deux autres -> c'est lui qui a ete inverse.
+1. [ ] Qubit 3 — correction I tensor I tensor X
+1. [ ] Aucun qubit — les mesures indiquent l'absence d'erreur
+```
+
+```{quizdown}
+### Une erreur generale sur le premier qubit du code de Shor est decrite par |0> -> a|0> + b|1> et |1> -> c|0> + d|1>. Apres les mesures de parite, pourquoi peut-on corriger cet etat malgre la continuite de a, b, c, d ?
+
+> Rappelle-toi le phenomene de digitalisation et l'effet des mesures sur la superposition des types d'erreurs.
+
+1. [ ] Parce que les coefficients a, b, c, d doivent necessairement etre proches de 0 ou 1 pour un canal physique reel
+1. [ ] Parce que le code de Shor possede suffisamment de qubits pour corriger toutes les erreurs continues simultanement
+1. [x] Parce que les mesures de parite font s'effondrer l'etat sur l'un des quatre cas discrets (I, X, Z, XZ), transformant une erreur continue en erreur discrete corrigible
+    > Correct : la superposition k·(pas d'erreur) + l·(bit-flip) + m·(phase-flip) + n·(bit+phase-flip) s'effondre sur un seul cas lors de la mesure. Corriger ce cas discret suffit.
+1. [ ] Parce que les erreurs continues n'existent pas en pratique — seuls les retournements discrets se produisent
+```
+
+```{quizdown}
+### Comparaison des codes de Shor et de Steane : laquelle de ces affirmations est correcte ?
+
+> Pense aux parametres de chaque code : nombre de qubits physiques, qubits logiques encodes, et garanties de correction.
+
+- [x] Le code de Steane encode 1 qubit logique en 7 qubits physiques, contre 9 pour le code de Shor
+    > Correct : le code de Steane est plus efficace avec un taux de 1/7 contre 1/9 pour le code de Shor.
+- [x] Les deux codes corrigent toute erreur de bit-flip et/ou phase-flip sur un seul qubit
+    > Correct : les deux codes offrent les memes garanties de correction, mais avec une efficacite differente.
+- [ ] Le code de Shor peut corriger des erreurs sur 2 qubits simultanement, contrairement au code de Steane
+    > Incorrect : ni l'un ni l'autre ne garantit la correction d'erreurs sur deux qubits simultanement dans sa version de base.
+- [x] Le code de Steane est un code CSS construit a partir du code de Hamming (7,4)
+    > Correct : le code de Steane est l'exemple canonique de code CSS (Calderbank-Shor-Steane) derive d'un code lineaire classique.
+- [ ] Le code de Shor supprime l'erreur a O(p_e^3) alors que le code de Steane la supprime seulement a O(p_e^2)
+    > Incorrect : les deux codes suppriment l'erreur du canal depolarisant de p_e a O(p_e^2).
+```
+
+```{quizdown}
+### Remets les etapes de correction d'une erreur generale avec le code de Shor dans le bon ordre.
+
+> Pense au schema sequentiel : d'abord les erreurs de bit-flip, ensuite les erreurs de phase-flip.
+
+1. Encodage de l'etat logique sur 9 qubits (concatenation des deux codes)
+2. Passage dans le canal bruite (une erreur quelconque affecte au plus un qubit)
+3. Mesure de parite sur chaque bloc de 3 qubits pour detecter un bit-flip
+4. Correction eventuelle du bit-flip identifie par les mesures
+5. Mesure de parite entre les trois blocs pour detecter un phase-flip
+6. Correction eventuelle du phase-flip identifie
+7. Recuperation de l'etat logique original
+```
+
+```{quizdown}
+### Sous quelle hypothese peut-on modeliser un canal bruité general comme un canal depolarisant apres application de la correction d'erreurs ?
+
+> Pense a la condition sur les erreurs des differents qubits physiques composant le code.
+
+1. [ ] Les erreurs doivent etre uniquement de type bit-flip, pas de type phase-flip
+1. [x] Les erreurs sur les differents qubits physiques doivent etre independantes les unes des autres
+    > Correct : l'independance des erreurs entre qubits permet de decomposer l'analyse et de traiter chaque qubit comme soumis independamment a un canal depolarisant.
+1. [ ] Le taux d'erreur p_e doit etre inferieur a 0,1
+1. [ ] Le canal physique doit etre un canal depolarisant exactement, sans approximation
+```
+
+```{quizdown}
+### Remets dans le bon ordre les etapes de construction du code de Shor a partir des deux codes de base.
+
+> Le code de Shor concatene d'abord le code de phase, puis applique le code de bit-flip a chaque bloc resultant.
+
+1. Partir de l'etat logique alpha|0> + beta|1>
+2. Appliquer le code a retournement de phase : obtenir alpha|+++> + beta|--->
+3. Appliquer des portes CNOT pour creer trois blocs enchevêtres de 3 qubits chacun
+4. Appliquer des portes Hadamard sur chaque qubit pour obtenir les blocs (|000>+|111>) et (|000>-|111>)
+5. Obtenir l'etat logique encode sur 9 qubits : |0_L> ou |1_L>
+```
+
+```{quizdown}
+### Le code a repetition classique sur 3 bits est-il directement transposable au probleme de correction d'erreurs quantiques ?
+
+1. [ ] Vrai
+1. [x] Faux
+    > Faux : trois obstacles fondamentaux s'y opposent — le principe de non-clonage (impossible de copier un etat quantique), la mesure destructrice (qui efface la superposition), et la continuite des erreurs quantiques. Il faut adapter la strategie avec l'enchevêtrement et les mesures de parite.
+```
+
+```{quizdown}
+### Quel est le taux de code (code rate) du code de Steane, et en quoi est-il avantageux par rapport au code de Shor ?
+
+> Le taux de code est le rapport entre le nombre de qubits logiques encodes et le nombre de qubits physiques utilises.
+
+1. [ ] 1/9 — identique au code de Shor, donc pas d'avantage
+1. [ ] 1/3 — identique aux codes a 3 qubits, mais avec des garanties plus fortes
+1. [x] 1/7 — superieur au 1/9 du code de Shor, donc plus efficace pour les memes garanties de correction
+    > Correct : le code de Steane utilise 7 qubits physiques pour 1 qubit logique (taux 1/7), contre 9 pour le code de Shor (taux 1/9). Les deux corrigent les memes types d'erreurs.
+1. [ ] 4/7 — identique au code de Hamming (7,4) dont il est derive
+    > Incorrect : le code de Steane encode 1 qubit logique quantique (pas 4 bits classiques) en 7 qubits physiques. Le taux quantique est 1/7.
+```
+
+```{quizdown}
+### Dans le contexte du canal depolarisant, que signifie "supprimer l'erreur a O(p_e^2)" pour un code correcteur quantique ?
+
+> Compare avec l'analyse du code a repetition classique et sa probabilite d'erreur residuelle.
+
+1. [ ] Le code peut corriger deux erreurs independantes simultanement avec certitude
+1. [ ] L'erreur est reduite de moitie par rapport a p_e
+1. [x] Pour un faible taux d'erreur p_e, la probabilite d'erreur residuelle apres correction est proportionnelle a p_e^2, ce qui est bien plus petit que p_e
+    > Correct : si p_e = 0,01, alors p_e^2 = 0,0001 — une reduction d'un facteur 100. La correction necessite qu'au moins 2 qubits soient simultanément en erreur pour echouer.
+1. [ ] Le code necessite deux fois plus de qubits pour reduire l'erreur de moitie
+```
+
+```{quizdown}
+### Quelle propriete des mesures de parite permet de resoudre simultanement les obstacles 2 et 3 identifies pour la correction d'erreurs quantiques ?
+
+> L'obstacle 2 concerne la destruction de l'information quantique. L'obstacle 3 concerne la continuite des erreurs.
+
+1. [ ] Les mesures de parite sont rapides, donc elles n'ont pas le temps de detruire la coherence
+1. [x] Elles ne revelent que la presence ou l'absence d'erreur (pas les valeurs de alpha et beta), et leur resultat fait s'effondrer l'etat sur un cas discret, digitalisant ainsi les erreurs continues
+    > Correct : d'un cote, les mesures de parite preservent l'etat logique en ne donnant aucune information sur alpha et beta. De l'autre, leur resultat (0 ou 1) discretise automatiquement l'erreur continue.
+1. [ ] Elles utilisent des qubits ancilla qui absorbent le bruit sans affecter les qubits logiques
+1. [ ] Elles sont reversibles, donc l'information quantique peut etre restauree apres la mesure
+```
