@@ -1,0 +1,297 @@
+---
+title: "Introduction à l'informatique quantique — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Niveau 1 — Fondamentaux
+```{quizdown}
+### Quelle est la definition de l'informatique quantique ?
+
+> Reflechis a ce qui distingue fondamentalement ce paradigme de l'informatique classique.
+
+1. [ ] Un systeme de calcul utilisant des processeurs tres rapides bases sur la physique classique
+1. [x] Un paradigme de calcul fonde sur les principes de la mecanique quantique
+    > Correct : l'informatique quantique exploite les lois de la mecanique quantique, pas la physique classique.
+1. [ ] Un systeme de calcul distribue sur plusieurs machines classiques
+1. [ ] Un modele de calcul probabiliste classique
+```
+```{quizdown}
+### Que signifie l'acronyme NISQ ?
+
+> Pense aux caracteristiques des dispositifs quantiques actuels.
+
+1. [ ] Non-Isolated Scalable Quantum
+1. [ ] Network-Integrated Superposition Qubit
+1. [x] Noisy Intermediate-Scale Quantum
+    > Correct : NISQ designe les dispositifs quantiques bruites a echelle intermediaire (environ 100 qubits).
+1. [ ] Normalized Instruction Set for Quantum computing
+```
+```{quizdown}
+### Quels sont les trois effets quantiques principaux exploites par un ordinateur quantique ?
+
+> Ces trois proprietes distinguent les qubits des bits classiques.
+
+- [x] Superposition
+    > Correct : la superposition permet a un qubit d'etre dans plusieurs etats simultanement.
+- [ ] Transistance
+    > Incorrect : ce terme n'existe pas en mecanique quantique.
+- [x] Enchevêtrement
+    > Correct : l'enchevêtrement cree des correlations non classiques entre qubits.
+- [x] Interference
+    > Correct : l'interference permet d'amplifier les bonnes reponses et de supprimer les mauvaises.
+- [ ] Decoherence amplifiee
+    > Incorrect : la decoherence est un probleme, pas une ressource.
+```
+```{quizdown}
+### Combien de nombres complexes sont necessaires pour decrire l'etat de N particules quantiques ?
+
+> Pense a la representation vectorielle de l'etat quantique.
+
+1. [ ] N
+1. [ ] N au carre
+1. [x] 2 puissance N
+    > Correct : l'etat de N particules est un vecteur dans C^(2^N), ce qui explique la complexite exponentielle.
+1. [ ] 2 fois N
+```
+```{quizdown}
+### Quel type de qubit physique est utilise par Google et IBM ?
+
+> Pense a la plateforme la plus repandue dans l'industrie.
+
+1. [ ] Ions pieges
+1. [ ] Polarisation de photon
+1. [x] Qubits supraconducteurs
+    > Correct : les qubits supraconducteurs sont des boucles supraconductrices sur puce silicium, utilises par Google et IBM.
+1. [ ] Spin nucleaire
+```
+```{quizdown}
+### Qu'est-ce que la suprématie quantique (Quantum Supremacy) ?
+
+> Il s'agit d'un critere de demonstration, pas d'un avantage algorithmique general.
+
+1. [ ] Un ordinateur quantique qui resout tous les problemes NP-difficiles
+1. [ ] Un systeme quantique sans aucune erreur
+1. [x] Une demonstration convaincante qu'un ordinateur quantique accomplit une tache infaisable raisonnablement par un ordinateur classique
+    > Correct : la suprematie quantique est une preuve experimentale, non une garantie d'utilite pratique generale.
+1. [ ] Un ordinateur quantique avec plus d'un million de qubits
+```
+```{quizdown}
+### En quelle annee Peter Shor a-t-il publie son algorithme de factorisation ?
+
+> Situe cet evenement dans la chronologie des debuts de l'informatique quantique.
+
+1. [ ] 1981
+1. [ ] 1985
+1. [ ] 1992
+1. [x] 1994
+    > Correct : Shor a publie son algorithme en 1994, menacant directement la cryptographie RSA et Diffie-Hellman.
+```
+
+---
+
+## Niveau 2 — Comprehension
+```{quizdown}
+### Pourquoi la simulation classique exacte d'un systeme de 300 particules quantiques est-elle impossible en pratique ?
+
+> Compare le nombre d'etats necessaires au nombre d'atomes connus dans l'univers.
+
+1. [ ] Parce que les ordinateurs classiques ne peuvent pas effectuer de calculs complexes
+1. [ ] Parce que la mecanique quantique interdit toute simulation
+1. [x] Parce que 2^300 depasse largement le nombre d'atomes dans l'univers observable (environ 10^82)
+    > Correct : stocker ou manipuler un vecteur de taille 2^300 est physiquement impossible pour tout systeme classique.
+1. [ ] Parce que les particules se deplacent trop vite pour etre tracees
+```
+```{quizdown}
+### Quelle est la conclusion de Feynman en 1981 concernant la simulation quantique par des ordinateurs classiques ?
+
+> Feynman a pose une question precise sur la capacite des ordinateurs probabilistes.
+
+1. [ ] Oui, les ordinateurs probabilistes peuvent simuler efficacement la mecanique quantique
+1. [x] Non, les ordinateurs probabilistes ne peuvent pas simuler efficacement la mecanique quantique
+    > Correct : Feynman conclut que la nature n'etant pas classique, une simulation fidele doit etre quantique.
+```
+```{quizdown}
+### Quel est l'impact de l'algorithme de Shor sur la cryptographie ?
+
+> Reflechis aux fondements mathematiques des principaux systemes de chiffrement a cle publique.
+
+- [x] Il brise le systeme RSA
+    > Correct : RSA repose sur la difficulte de factoriser de grands entiers, ce que Shor resout efficacement.
+- [x] Il brise le protocole Diffie-Hellman
+    > Correct : Diffie-Hellman repose sur le probleme du logarithme discret, lie au probleme du sous-groupe cache que Shor generalise.
+- [ ] Il brise les chiffrements symetriques comme AES
+    > Incorrect : Shor n'affecte pas directement AES. Grover reduirait sa securite, mais pas de facon catastrophique.
+- [ ] Il ameliore la securite de RSA
+    > Incorrect : Shor compromet RSA, il ne l'ameliore pas.
+```
+```{quizdown}
+### Quelle est la difference entre l'avantage obtenu par Deutsch (annees 1980) et celui de Simon (1992) ?
+
+> Compare les types d'acceleration obtenus dans chaque cas.
+
+1. [ ] Deutsch a un avantage exponentiel, Simon un avantage constant
+1. [x] Deutsch a un avantage constant, Simon un avantage super-polynomial
+    > Correct : Deutsch montre un gain d'un facteur constant, tandis que Simon demontre un avantage super-polynomial, ce qui est une rupture de classe de complexite.
+1. [ ] Les deux ont le meme type d'avantage quadratique
+1. [ ] Deutsch a un avantage polynomial, Simon un avantage constant
+```
+```{quizdown}
+### Pourquoi l'algorithme classique d'Ewin Tang (2018) est-il remarquable pour l'informatique quantique ?
+
+> Reflechis a l'origine de l'inspiration de cet algorithme.
+
+1. [ ] Il prouve qu'aucun algorithme quantique ne peut etre plus rapide que le classique
+1. [ ] Il remplace l'algorithme de Shor de facon classique
+1. [x] Il montre que penser quantiquement peut inspirer de meilleurs algorithmes classiques
+    > Correct : Tang s'est inspire de l'algorithme quantique de Kerenidis-Prakash pour obtenir une acceleration similaire de facon purement classique, prouvant la valeur des idees quantiques meme sans ordinateur quantique.
+1. [ ] Il demontre la suprematie quantique sur les systemes de recommandation
+```
+```{quizdown}
+### Quels problemes les algorithmes quantiques peuvent-ils resoudre avec une acceleration exponentielle ?
+
+> Distingue les types de problemes selon leur structure mathematique.
+
+- [x] Factorisation entiere avec l'algorithme de Shor
+    > Correct : Shor offre une acceleration exponentielle sur la factorisation.
+- [ ] Tri d'une liste non ordonnee
+    > Incorrect : le tri n'a pas de structure exploitable quantiquement pour une acceleration exponentielle.
+- [x] Simulation de systemes quantiques
+    > Correct : la simulation quantique beneficie d'une acceleration exponentielle, c'est le reve de Feynman.
+- [ ] Recherche dans une base de donnees non structuree
+    > Incorrect : la recherche non structuree (Grover) n'offre qu'une acceleration quadratique, pas exponentielle.
+```
+```{quizdown}
+### Pourquoi les dispositifs NISQ ne peuvent-ils pas executer l'algorithme de Shor sur de grands entiers ?
+
+> Pense aux exigences de Shor en termes de fiabilite des qubits.
+
+1. [ ] Parce que Shor n'a pas encore ete programme
+1. [ ] Parce que les qubits NISQ sont trop peu nombreux uniquement
+1. [x] Parce que les dispositifs NISQ sont trop bruites et manquent de correction d'erreurs
+    > Correct : Shor necessite des millions de qubits logiques avec correction d'erreurs, ce que les dispositifs NISQ actuels ne fournissent pas.
+1. [ ] Parce que Shor necessite un ordinateur classique uniquement
+```
+
+---
+
+## Niveau 3 — Maitrise
+```{quizdown}
+### Remets dans l'ordre chronologique les etapes cles de l'histoire de l'informatique quantique.
+
+> Pense a la progression depuis les fondements theoriques jusqu'aux demonstrations experimentales.
+
+1. Fondements de la mecanique quantique (premiere revolution quantique)
+2. Feynman propose l'idee d'un simulateur quantique
+3. Deutsch : premier probleme resolu plus vite sur un ordinateur quantique
+4. Bernstein-Vazirani et Simon : avantage super-polynomial
+5. Shor : algorithme de factorisation
+6. Suprematie quantique de Google (Sycamore, 53 qubits)
+```
+```{quizdown}
+### Un chercheur affirme que son ordinateur quantique resout le probleme du voyageur de commerce (TSP) en temps polynomial. Quelle est la reaction correcte ?
+
+> Reflechis a ce que l'on sait de la complexite des problemes NP-difficiles et des ordinateurs quantiques.
+
+1. [ ] C'est certain, les ordinateurs quantiques resolvent tous les problemes NP en temps polynomial
+1. [ ] C'est impossible car les ordinateurs quantiques sont moins puissants que les classiques
+1. [x] C'est tres probablement faux, car les QC ne semblent pas pouvoir resoudre les problemes NP-difficiles en temps polynomial
+    > Correct : il n'existe aucune preuve ni forte conjecture que les QC resolvent NP-difficile en temps polynomial. TSP n'a pas la structure mathematique exploitable par les algorithmes quantiques connus.
+1. [ ] C'est vrai uniquement pour les dispositifs NISQ
+```
+```{quizdown}
+### En novembre 2021, des chercheurs de l'Academie des Sciences de Chine ont reproduit l'experience de suprematie quantique de Google. Quelle methode ont-ils utilisee ?
+
+> Pense au plus grand concurrent des ordinateurs quantiques selon le cours.
+
+1. [ ] Un nouvel ordinateur quantique plus puissant
+1. [x] Des algorithmes de reseaux de tenseurs sur 512 GPU en 15 heures
+    > Correct : ils ont utilise des algorithmes classiques intelligents (tensor networks), rappelant que l'avantage quantique doit toujours etre mesure par rapport aux meilleurs algorithmes classiques disponibles.
+1. [ ] L'algorithme de Grover sur un superordinateur classique
+1. [ ] Une simulation probabiliste Monte Carlo
+```
+```{quizdown}
+### Qu'est-ce qu'un optimiseur hybride quantique-classique (Hybrid Quantum-Classical Optimizer) ?
+
+> Reflechis a l'architecture utilisee pour les dispositifs NISQ actuels.
+
+1. [ ] Un ordinateur quantique qui remplace entierement le processeur classique
+1. [ ] Un algorithme classique inspire par des idees quantiques
+1. [x] Un systeme ou un processeur quantique mesure une fonction de cout et un optimiseur classique ajuste le circuit quantique
+    > Correct : dans cette architecture, le QC et l'ordinateur classique travaillent en boucle, chacun faisant ce qu'il fait le mieux.
+1. [ ] Un ordinateur classique simulant un ordinateur quantique
+```
+```{quizdown}
+### Remets dans le bon ordre les etapes du fonctionnement d'un optimiseur hybride quantique-classique.
+
+> Pense a la boucle d'interaction entre le processeur quantique et l'optimiseur classique.
+
+1. Preparation du circuit quantique parametrise
+2. Execution du circuit sur le processeur quantique
+3. Mesure de la fonction de cout
+4. Transmission du resultat a l'optimiseur classique
+5. Ajustement des parametres du circuit par l'optimiseur
+6. Repetition jusqu'a convergence
+```
+```{quizdown}
+### Quelle est la principale application des ordinateurs quantiques consideree comme la plus importante a ce jour ?
+
+> Feynman l'avait identifie comme motivation originelle.
+
+1. [ ] La cryptanalyse des systemes de chiffrement classiques
+1. [ ] L'optimisation combinatoire de type TSP
+1. [x] La simulation de systemes physiques et chimiques quantiques
+    > Correct : simuler la physique et la chimie quantiques est probablement l'application la plus importante des QC. C'est le reve originel de Feynman et la motivation la plus naturelle.
+1. [ ] L'apprentissage automatique non supervise
+```
+```{quizdown}
+### Pour obtenir un ordinateur quantique tolerant aux pannes (Fault-Tolerant QC), quelle condition est necessaire ?
+
+> Reflechis au defi fondamental pose par le bruit dans les systemes quantiques.
+
+1. [ ] Utiliser uniquement des qubits supraconducteurs
+1. [ ] Avoir plus de 10 000 qubits physiques sans correction d'erreurs
+1. [x] Corriger les erreurs plus vite qu'elles ne se produisent
+    > Correct : la tolerance aux pannes exige que le taux de correction depasse le taux d'apparition des erreurs, ce qui necessite la correction d'erreurs quantique.
+1. [ ] Operer a temperature ambiante
+```
+```{quizdown}
+### Selon David Deutsch, pourquoi la theorie de la computation ne doit-elle pas etre etudiee uniquement comme sujet de mathematiques pures ?
+
+> Reflechis a la nature physique des ordinateurs et des calculs.
+
+1. [ ] Parce que les mathematiques sont insuffisantes pour modeliser les algorithmes
+1. [x] Parce que les ordinateurs sont des objets physiques et les calculs sont des processus physiques, gouvernes par les lois de la physique
+    > Correct : Deutsch affirme que ce qu'un ordinateur peut ou ne peut pas calculer est determine par les lois de la physique, pas par les mathematiques pures.
+1. [ ] Parce que les mathematiques ne permettent pas de prouver la correction des programmes
+1. [ ] Parce que la physique classique suffit a tout expliquer
+```
+```{quizdown}
+### Quels domaines scientifiques sont directement connectes a l'informatique quantique ?
+
+> L'informatique quantique est un domaine profondement interdisciplinaire.
+
+- [x] Physique de la matiere condensee
+    > Correct : les phenomenes quantiques collectifs en matiere condensee sont directement lies aux fondements des qubits.
+- [x] Cryptographie
+    > Correct : l'algorithme de Shor menace la cryptographie classique, et la cryptographie quantique (QKD) en emerge.
+- [x] Theorie de la complexite
+    > Correct : la question de savoir ce que les QC peuvent calculer est au coeur de la theorie de la complexite.
+- [x] Gravite quantique
+    > Correct : l'enchevêtrement quantique et les codes correcteurs d'erreurs jouent un role dans les theories de la gravite quantique.
+- [ ] Biologie macroscopique classique
+    > Incorrect : la biologie macroscopique classique n'est pas directement liee a l'informatique quantique dans le cours.
+```
+```{quizdown}
+### Qu'est-ce que la correction d'erreurs quantique (Quantum Error Correction) ?
+
+> Distingue cette notion des ameliorations materielles classiques.
+
+1. [ ] Une amelioration du materiel pour fabriquer des qubits plus resistants
+1. [ ] Un algorithme classique detectant les erreurs dans les programmes quantiques
+1. [x] Un ensemble de techniques logicielles et physiques pour gerer le bruit et les erreurs dans les systemes quantiques
+    > Correct : la correction d'erreurs quantique encode l'information logique dans de multiples qubits physiques pour detecter et corriger les erreurs sans mesurer directement l'etat quantique.
+1. [ ] Un protocole de communication pour securiser les transmissions quantiques
+```
