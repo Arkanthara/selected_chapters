@@ -653,6 +653,57 @@ This is always not the expected result.
 We can try another basis... Indeed, the ${|0 chevron.r, |1 chevron.r}$ basis allows to detect flip of bits.
 Instead, we will try to use the basis $|- chevron.r, |+ chevron.r$ which is sensitive to phase.
 
+So we can construct the POVM from this basis like follows:
+
+- $E_1 = |+ chevron.r chevron +| = 1/sqrt(2)[ |0 chevron.r + |1 chevron.r] 1/sqrt(2)[chevron 0| + chevron 1| ] = 1/2 mat(1, 1; 1, 1)$
+- $E_2 = |- chevron.r chevron -| = 1/sqrt(2)[ |0 chevron.r - |1 chevron.r] 1/sqrt(2)[chevron 0| - chevron 1| ] = 1/2 mat(1, -1; -1, 1)$
+
+So we have $E_1 + E_2 = I$.
+
+Then, we can compute the joint-distribution $p(x, y)$:
+
+#align(
+  center,
+  $
+    #table(
+      columns: 4,
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(y)$,
+      $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $?$,
+      $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $?$,
+      $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $?$,
+      $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $?$,
+      $p(x)$, $?$, $?$, $1$,
+    ) \
+    = #table(
+      columns: 4,
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(y)$,
+      $1$, $1/4 tr(mat(1, 0; 0, 0) mat(1, 1; 1, 1))$, $1/4 tr(mat(1, 0; 0, 0) mat(1, -1; -1, 1))$, $?$,
+      $2$,
+      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, 1; 1, 1))$,
+      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, -1; -1, 1))$,
+      $?$,
+
+      $3$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
+      $?$,
+
+      $4$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
+      $?$,
+
+      $p(x)$, $?$, $?$, $1$,
+    ) \
+  $
+)
+
 
 
 
