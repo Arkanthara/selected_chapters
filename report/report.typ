@@ -91,17 +91,18 @@ So the entropy is always greater or equal to zero.
 
 So we have:
 
-#align(left,
-$
-  H(p(x,y) || p(x) p(y)) &= sum_x sum_y p(x, y) log(p(x, y) / (p(x)p(y))) \
-  &= sum_x sum_y p(x, y) [log(p(x, y)) - log(p(x)p(y))] \
-  &= sum_x sum_y p(x, y) log(p(x, y)) - sum_x sum_y p(x, y)log(p(x)p(y)) \
-  &= - H(p(x, y)) - sum_x sum_y p(x, y)[log(p(x)) + log(p(y))] \
-  &= - H(p(x, y)) - sum_x sum_y p(x, y)log(p(x)) - sum_x sum_y p(x, y)log(p(y)) \
-  &= - H(p(x, y)) - sum_x p(x)log(p(x)) - sum_y p(y)log(p(y)) \
-  &= - H(p(x, y)) + H(p(x)) + H(p(y)) \
-
-$)
+#align(
+  left,
+  $
+    H(p(x,y) || p(x) p(y)) & = sum_x sum_y p(x, y) log(p(x, y) / (p(x)p(y))) \
+                           & = sum_x sum_y p(x, y) [log(p(x, y)) - log(p(x)p(y))] \
+                           & = sum_x sum_y p(x, y) log(p(x, y)) - sum_x sum_y p(x, y)log(p(x)p(y)) \
+                           & = - H(p(x, y)) - sum_x sum_y p(x, y)[log(p(x)) + log(p(y))] \
+                           & = - H(p(x, y)) - sum_x sum_y p(x, y)log(p(x)) - sum_x sum_y p(x, y)log(p(y)) \
+                           & = - H(p(x, y)) - sum_x p(x)log(p(x)) - sum_y p(y)log(p(y)) \
+                           & = - H(p(x, y)) + H(p(x)) + H(p(y)) \
+  $,
+)
 
 Deduce that $H(X, Y) <= H(X) + H(Y)$, with equality if and only if $X$ and $Y$ are independent random variables.
 
@@ -109,25 +110,29 @@ We have shown that $H(p(x,y) || p(x) p(y)) = H(p(x)) + H(p(y)) - H(p(x,y))$.
 
 As the entropy of discrete variables is always greater or equal to zero, we have:
 
-#align(left, 
-$
-  H(p(x,y) || p(x) p(y)) &>= 0 \
-  <==> H(p(x)) + H(p(y)) - H(p(x,y)) &>= 0 \
-  <==> H(p(x)) + H(p(y)) &>= H(p(x,y)) \
-$)
+#align(
+  left,
+  $
+                H(p(x,y) || p(x) p(y)) & >= 0 \
+    <==> H(p(x)) + H(p(y)) - H(p(x,y)) & >= 0 \
+                <==> H(p(x)) + H(p(y)) & >= H(p(x,y)) \
+  $,
+)
 
 If $p(x)$ and $p(y)$ are independent, $p(x, y) = p(x)p(y)$.
 
 So
-#align(left,
-$
-  H(p(x, y)) &= H(p(x)p(y)) \
-  &= -sum_x sum_y p(x)p(y) log(p(x)p(y)) \
-  &= -sum_x sum_y p(x)p(y) [log(p(x)) + log(p(y))] \
-  &= -sum_x sum_y p(x)p(y) log(p(x)) -sum_x sum_y p(x)p(y)log(p(y)) \
-  &= -sum_x p(x) log(p(x)) -sum_y p(y)log(p(y)) \
-  &= H(p(x)) + H(p(y))
-$)
+#align(
+  left,
+  $
+    H(p(x, y)) & = H(p(x)p(y)) \
+               & = -sum_x sum_y p(x)p(y) log(p(x)p(y)) \
+               & = -sum_x sum_y p(x)p(y) [log(p(x)) + log(p(y))] \
+               & = -sum_x sum_y p(x)p(y) log(p(x)) -sum_x sum_y p(x)p(y)log(p(y)) \
+               & = -sum_x p(x) log(p(x)) -sum_y p(y)log(p(y)) \
+               & = H(p(x)) + H(p(y))
+  $,
+)
 
 So $H(p(x)) + H(p(y)) >= H(p(x,y))$ and if $p(x)$ and $p(y)$ are independent,
 
@@ -157,14 +162,15 @@ In our case, as we work with only  one qubit, this qubit can be in state $|0 che
 
 So we have:
 
-#align(left, 
+#align(
+  left,
   $
-  rho &= sum_i p_i |psi_i chevron.r chevron psi_i| \
-  &= p_0 |0 chevron.r chevron 0| + p_1 |1 chevron.r chevron 1| \
-  &= p_0 vec(1, 0) mat(1, 0) + p_1 vec(0, 1) mat(0, 1) \
-  &= mat(p_0, 0; 0, 0) + mat(0, 0; 0, p_1) \
-  &= mat(p_0, 0; 0, p_1)
-  $
+    rho & = sum_i p_i |psi_i chevron.r chevron psi_i| \
+        & = p_0 |0 chevron.r chevron 0| + p_1 |1 chevron.r chevron 1| \
+        & = p_0 vec(1, 0) mat(1, 0) + p_1 vec(0, 1) mat(0, 1) \
+        & = mat(p_0, 0; 0, 0) + mat(0, 0; 0, p_1) \
+        & = mat(p_0, 0; 0, p_1)
+  $,
 )
 
 Suppose that the result of the measurement is unknown to us.
@@ -173,16 +179,17 @@ So the state of the system afterwards is $rho' = M_1 rho M_1^dagger + M_2 rho M_
 
 So we have:
 
-#align(left, 
-$
-  rho' &= M_1 rho M_1^dagger + M_2 rho M_2^dagger \
-  &= mat(1, 0; 0, 0) mat(p_0, 0; 0, p_1) mat(1, 0; 0, 0) + mat(0, 1; 0, 0)mat(p_0, 0; 0, p_1) mat(0, 0; 1, 0) \
-  &= mat(p_0, 0; 0, 0) mat(1, 0; 0, 0) + mat(0, p_1; 0, 0) mat(0, 0; 1, 0) \
-  &= mat(p_0, 0; 0, 0) + mat(p_1, 0; 0, 0) \
-  &= mat(p_0 + p_1, 0; 0, 0) \
-  &= mat(1, 0; 0, 0) \
-  &= |0 chevron.r chevron 0|
-$
+#align(
+  left,
+  $
+    rho' & = M_1 rho M_1^dagger + M_2 rho M_2^dagger \
+         & = mat(1, 0; 0, 0) mat(p_0, 0; 0, p_1) mat(1, 0; 0, 0) + mat(0, 1; 0, 0)mat(p_0, 0; 0, p_1) mat(0, 0; 1, 0) \
+         & = mat(p_0, 0; 0, 0) mat(1, 0; 0, 0) + mat(0, p_1; 0, 0) mat(0, 0; 1, 0) \
+         & = mat(p_0, 0; 0, 0) + mat(p_1, 0; 0, 0) \
+         & = mat(p_0 + p_1, 0; 0, 0) \
+         & = mat(1, 0; 0, 0) \
+         & = |0 chevron.r chevron 0|
+  $,
 )
 
 So as $rho = p_0 |0 chevron.r chevron 0| + p_1 |1 chevron.r chevron 1|$ and $rho' = |0 chevron.r chevron 0|$, it means that the quantity of information has decreased.
@@ -227,9 +234,18 @@ The circuit can be drawn like in @circuit.
 #figure(
   caption: "Quantum circuit to clone states of two orthogonal qubits",
   quantum-circuit(
-    lstick([$|psi chevron.r$ or $|phi chevron.r$]), $U$, ctrl(1), $U^dagger$, rstick([$|psi chevron.r$ or $|phi chevron.r$]), [\ ],
-    lstick($|0 chevron.r$), 1, targ(), $U^dagger$, rstick([$|psi chevron.r$ or $|phi chevron.r$])
-  )
+    lstick([$|psi chevron.r$ or $|phi chevron.r$]),
+    $U$,
+    ctrl(1),
+    $U^dagger$,
+    rstick([$|psi chevron.r$ or $|phi chevron.r$]),
+    [\ ],
+    lstick($|0 chevron.r$),
+    1,
+    targ(),
+    $U^dagger$,
+    rstick([$|psi chevron.r$ or $|phi chevron.r$]),
+  ),
 )<circuit>
 
 = Exercise 5
@@ -242,7 +258,7 @@ $
   |X_2 chevron.r & = sqrt(1/3) [ |0 chevron.r + sqrt(2)|1 chevron.r] \
   |X_3 chevron.r & = sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r] \
   |X_4 chevron.r & = sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r]
-$
+$ <init>
 
 Show that the maximum mutual information between Bob's measurement and Alice's transmission
 is less than one bit.
@@ -270,21 +286,21 @@ $ S(rho) = - tr(rho log rho) $
 
 (4) Suppose $p_i$ are probabilities, and the states $rho_i$ have support on orthogonal subspaces. Then
 $
-S( sum_i p_i rho_i ) = H(p_i) + sum_i p_i S(rho_i).
+  S( sum_i p_i rho_i ) = H(p_i) + sum_i p_i S(rho_i).
 $
 
 (5) Joint entropy theorem: Suppose $p_i$ are probabilities, $|i⟩$ are orthogonal states for a system $A$, and $rho_i$ is any set of density operators for another system $B$. Then
 $
-S( sum_i p_i |i chevron.r chevron i| times.o rho_i ) = H(p_i) + sum_i p_i S(rho_i).
+  S( sum_i p_i |i chevron.r chevron i| times.o rho_i ) = H(p_i) + sum_i p_i S(rho_i).
 $
 
-*Holevo bound theorem*:  
+*Holevo bound theorem*:
 Suppose Alice prepares a state $rho_x$ where $x = 0, dots, n$ with probabilities $p_0, dots, p_n$.
 Bob performs a measurement described by POVM elements ${E_y} = {E_0, dots, E_m}$ on that state, with measurement outcome $Y$.
 
 The Holevo bound states that for any such measurement Bob may do:
 $
-H(X: Y) <= S(rho) - sum_x p_x S(rho_x)
+  H(X: Y) <= S(rho) - sum_x p_x S(rho_x)
 $
 where
 $rho = sum_x p_x rho_x$.
@@ -309,10 +325,12 @@ As she sends some pure state, according to property (1) of entropy of Von Neuman
 
 So we have:
 
-#align(left,
-$
-  sum_i p_i S(rho_i) &= sum_i p_i dot 0 = 0
-$)
+#align(
+  left,
+  $
+    sum_i p_i S(rho_i) & = sum_i p_i dot 0 = 0
+  $,
+)
 
 _Precomputations_
 
@@ -321,24 +339,21 @@ $
   rho_1 &= |X_1 chevron.r chevron X_1| \
   &= |0 chevron.r chevron 0| \
   &= mat(1, 0; 0, 0) \
-
   rho_2 &= |X_2 chevron.r chevron X_2| \
   &= sqrt(1/3) [ |0 chevron.r + sqrt(2)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) chevron 1| ] \
   &= 1/3 [ vec(1, 0) + sqrt(2)vec(0, 1)] [ mat(1, 0) + sqrt(2) mat(0, 1) ] \
-  &= 1/3 vec(1, sqrt(2))  mat(1, sqrt(2)) \
+  &= 1/3 vec(1, sqrt(2)) mat(1, sqrt(2)) \
   &= 1/3 mat(1, sqrt(2); sqrt(2), 2) \
-
   rho_3 &= |X_3 chevron.r chevron X_3| \
   &= sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) e^(-2 pi i \/ 3) chevron 1| ] \
   &= 1/3 [ vec(1, 0) + sqrt(2) e^(2 pi i \/ 3)vec(0, 1)] [ mat(1, 0) + sqrt(2) e^(-2 pi i \/ 3) mat(0, 1) ] \
-  &= 1/3 vec(1, sqrt(2) e^(2 pi i \/ 3))  mat(1, sqrt(2) e^(-2 pi i \/ 3)) \
+  &= 1/3 vec(1, sqrt(2) e^(2 pi i \/ 3)) mat(1, sqrt(2) e^(-2 pi i \/ 3)) \
   &= 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2e^(0)) \
   &= 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) \
-
   rho_4 &= |X_4 chevron.r chevron X_4| \
   &= sqrt(1/3) [ |0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r] sqrt(1/3) [ chevron 0| + sqrt(2) e^(-4 pi i \/ 3) chevron 1| ] \
   &= 1/3 [ vec(1, 0) + sqrt(2) e^(4 pi i \/ 3)vec(0, 1)] [ mat(1, 0) + sqrt(2) e^(-4 pi i \/ 3) mat(0, 1) ] \
-  &= 1/3 vec(1, sqrt(2) e^(4 pi i \/ 3))  mat(1, sqrt(2) e^(-4 pi i \/ 3)) \
+  &= 1/3 vec(1, sqrt(2) e^(4 pi i \/ 3)) mat(1, sqrt(2) e^(-4 pi i \/ 3)) \
   &= 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) \
 $
 
@@ -365,12 +380,14 @@ So the entropy of Bob's system is maximal: $S(rho) = S(I/2) = log 2 = 1$.
 
 So according to the Holevo bound theorem, we have:
 
-#align(left,
-$
-  H(X: Y) &<= S(rho) - sum_x p_x S(rho_x) \
-  <==> H(X: Y) &<= S(I\/2) - 0 \
-  <==> H(X: Y) &<= 1
-$)
+#align(
+  left,
+  $
+         H(X: Y) & <= S(rho) - sum_x p_x S(rho_x) \
+    <==> H(X: Y) & <= S(I\/2) - 0 \
+    <==> H(X: Y) & <= 1
+  $,
+)
 
 Now we want to prove that the mutual information is stricly less than 1.
 
@@ -390,7 +407,7 @@ Indeed, suppose that a measurement is achieved with a measurement operator $M_m$
 
 $ p(m) = chevron psi|E_m|psi chevron.r $ with $E_m = M_m^dagger M_m$.
 
-Due to the property of completeness equation of the measurement operator, we have: 
+Due to the property of completeness equation of the measurement operator, we have:
 
 $ sum_m M_m^dagger M_m = sum_m E_m = I $
 
@@ -411,10 +428,10 @@ The $rho_i$ are therefore positive.
 So according to @eq-1, we can construct:
 
 $
-  I/2 &= rho \
-  <==> I &= 2 rho \
-  <==> I &= 2 sum_i p_i rho_i \
-  <==> I &= 1/2 rho_1 + 1/2 rho_2 + 1/2 rho_3 + 1/2 rho_4 \
+     I/2 & = rho \
+  <==> I & = 2 rho \
+  <==> I & = 2 sum_i p_i rho_i \
+  <==> I & = 1/2 rho_1 + 1/2 rho_2 + 1/2 rho_3 + 1/2 rho_4 \
 $
 
 So we can define the POVM as ${E_i = 1/2 rho_i = 1/2 |X_i chevron.r chevron X_i|}_(i in {1, 2, 3, 4})$.
@@ -431,103 +448,102 @@ So we can construct the table of joint distribution $p(x, y)$ as follow:
   $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $p_1 tr(rho_1 E_3)$, $p_1 tr(rho_1 E_4)$,
   $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $p_2 tr(rho_2 E_3)$, $p_2 tr(rho_2 E_4)$,
   $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $p_3 tr(rho_3 E_3)$, $p_3 tr(rho_3 E_4)$,
-  $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $p_4 tr(rho_4 E_3)$, $p_4 tr(rho_4 E_4)$
+  $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $p_4 tr(rho_4 E_3)$, $p_4 tr(rho_4 E_4)$,
 )
 
 As $E_i = 1/2 rho_i$, we have:
 
 #set math.equation(numbering: none)
 
-#align(left, 
-$
-  1/4 tr(1/2 rho_1 rho_1)
-  &=  1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
-  &= 1/4 dot 1/2 \
-  &= 1/8 \
+#align(
+  left,
+  $
+    1/4 tr(1/2 rho_1 rho_1) & = 1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
+                            & = 1/4 dot 1/2 \
+                            & = 1/8 \
+    1/4 tr(1/2 rho_1 rho_2) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
+                            & = 1/4 dot 1/2 dot 1/3 \
+                            & = 1/24 \
+    1/4 tr(1/2 rho_1 rho_3) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+                            & = 1/4 dot 1/2 dot 1/3 \
+                            & = 1/24 \
+    1/4 tr(1/2 rho_1 rho_4) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+                            & = 1/4 dot 1/2 dot 1/3 \
+                            & = 1/24
+  $,
+)
 
-  1/4 tr(1/2 rho_1 rho_2)
-  &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
-  &= 1/4 dot 1/2 dot 1/3 \
-  &= 1/24 \
+#align(
+  left,
 
-  1/4 tr(1/2 rho_1 rho_3)
-  &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
-  &= 1/4 dot 1/2 dot 1/3 \
-  &= 1/24 \
+  $
+    1/4 tr(1/2 rho_2 rho_2)
+    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
+    &= 1/4 tr(1/18 mat(3, 3 sqrt(2); 3 sqrt(2), 6)) \
+    &= 1/4 (3/18 + 6/18) \
+    &= 1/4 * 1/2 \
+    &= 1/8 \
+    1/4 tr(1/2 rho_2 rho_3)
+    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+    &= 1/4 tr(1/18 mat(1 + 2e^(2 pi i \/ 3), sqrt(2)(1 + 2e^(-2 pi i \/ 3)); sqrt(2)(1 + 2e^(2 pi i \/ 3)), 4 + 2e^(-2 pi i \/ 3))) \
+    &= 1/4 * 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
+    &= 1/4 * 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
+    &= 1/4 * 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
+    &= 1/4 * 1/18 dot (5 - 2) \
+    &= 1/24 \
+    1/4 tr(1/2 rho_2 rho_4)
+    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+    &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
+    &= 1/4 * 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
+    &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+    &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+    &= 1/4 * 1/18 * 3 \
+    &= 1/24
+  $,
+)
 
-  1/4 tr(1/2 rho_1 rho_4)
-  &= 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-  &= 1/4 dot 1/2 dot 1/3 \
-  &= 1/24
-$)
-
-#align(left, 
-
-$
-  1/4 tr(1/2 rho_2 rho_2)
-  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
-  &= 1/4 tr(1/18 mat(3, 3 sqrt(2); 3 sqrt(2), 6)) \
-  &= 1/4 (3/18 + 6/18) \
-  &= 1/4 * 1/2 \
-  &= 1/8 \
-
-  1/4 tr(1/2 rho_2 rho_3)
-  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
-  &= 1/4 tr(1/18 mat(1 + 2e^(2 pi i \/ 3), sqrt(2)(1 + 2e^(-2 pi i \/ 3)); sqrt(2)(1 + 2e^(2 pi i \/ 3)), 4 + 2e^(-2 pi i \/ 3))) \
-  &= 1/4 * 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
-  &= 1/4 * 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
-  &= 1/4 * 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
-  &= 1/4 * 1/18 dot (5 - 2) \
-  &= 1/24 \
-  1/4 tr(1/2 rho_2 rho_4)
-  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-  &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
-  &= 1/4 * 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
-  &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
-  &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
-  &= 1/4 * 1/18 * 3 \
-  &= 1/24
-$)
-
-#align(left, 
-$
-  1/4 tr(1/2 rho_3 rho_3)
-  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
-  &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-2 pi i \/ 3); 3 sqrt(2) e^(2 pi i \/ 3), 6)) \
-  &= 1/4 (3/18 + 6/18) \
-  &= 1/4 * 1/2 \
-  &= 1/8 \
-
-  1/4 tr(1/2 rho_3 rho_4)
-  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-  &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
-  &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
-  &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
-  &= 1/4 * 1/18 * 3 \
-  &= 1/24 \
-
-  1/4 tr(1/2 rho_4 rho_4)
-  &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-  &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-4 pi i \/ 3); 3 sqrt(2) e^(4 pi i \/ 3), 6)) \
-  &= 1/4 (3/18 + 6/18) \
-  &= 1/4 * 1/2 \
-  &= 1/8
-$)
+#align(
+  left,
+  $
+    1/4 tr(1/2 rho_3 rho_3)
+    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+    &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-2 pi i \/ 3); 3 sqrt(2) e^(2 pi i \/ 3), 6)) \
+    &= 1/4 (3/18 + 6/18) \
+    &= 1/4 * 1/2 \
+    &= 1/8 \
+    1/4 tr(1/2 rho_3 rho_4)
+    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+    &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
+    &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+    &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+    &= 1/4 * 1/18 * 3 \
+    &= 1/24 \
+    1/4 tr(1/2 rho_4 rho_4)
+    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+    &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-4 pi i \/ 3); 3 sqrt(2) e^(4 pi i \/ 3), 6)) \
+    &= 1/4 (3/18 + 6/18) \
+    &= 1/4 * 1/2 \
+    &= 1/8
+  $,
+)
 
 So the table of joint distribution $p(x, y)$ is:
 #pagebreak()
-#align(center, figure(table(
-  columns: 6,
-  rows: 6,
-  align: center,
-  inset: 10pt,
-  $x \\ y$, $1$, $2$, $3$, $4$, $p(y)$,
-  $1$, $1/8$, $1/24$, $1/24$, $1/24$, $1/4$,
-  $2$, $1/24$, $1/8$, $1/24$, $1/24$, $1/4$,
-  $3$, $1/24$, $1/24$, $1/8$, $1/24$, $1/4$,
-  $4$, $1/24$, $1/24$, $1/24$, $1/8$, $1/4$,
-  $p(x)$, $1/4$, $1/4$, $1/4$, $1/4$, $1$,
-), caption: "Joint probability distribution table")) <joint-distribution>
+#align(center, figure(
+  table(
+    columns: 6,
+    rows: 6,
+    align: center,
+    inset: 10pt,
+    $x \\ y$, $1$, $2$, $3$, $4$, $p(y)$,
+    $1$, $1/8$, $1/24$, $1/24$, $1/24$, $1/4$,
+    $2$, $1/24$, $1/8$, $1/24$, $1/24$, $1/4$,
+    $3$, $1/24$, $1/24$, $1/8$, $1/24$, $1/4$,
+    $4$, $1/24$, $1/24$, $1/24$, $1/8$, $1/4$,
+    $p(x)$, $1/4$, $1/4$, $1/4$, $1/4$, $1$,
+  ),
+  caption: "Joint probability distribution table",
+)) <joint-distribution>
 
 So we have:
 
@@ -540,11 +556,108 @@ $
   H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 2 - 3.792 = 0.208
 $
 
+We want to check now if we can find a set of ${E_m}$ that are build from an orthogonal basis and what are results with this set.
+
+Indeed, the orthogonal basis maximize the recognition of quantum states while minimizing overlaps.
+
+We have the quantum pure states as described in @init.
+
+We choose the basis ${|0 chevron.r, |1 chevron.r}$ which is a simple orthogonal basis.
+
+Then, we can construct the POVM from this basis like follows:
+
+- $E_1 = |0 chevron.r chevron 0| = mat(1, 0; 0, 0)$
+- $E_2 = |1 chevron.r chevron 1| = mat(0, 0; 0, 1)$
+
+Basically, we have $E_1 + E_2 = I$.
+
+
+As used in page 534 of Quantum Computation and Quantum Information: 10th Anniversary Edition @Nielsen_Chuang_2010,
+the joint distribution $p(x, y)$ satisfies $p(x, y) = p(x)p(y|x) = p(x)tr(rho_x E_y)$.
+
+So we can compute the joint-distribution $p(x, y)$:
+
+#pagebreak()
+
+#align(
+  center,
+  $
+    #table(
+      columns: 4,
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(y)$,
+      $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $?$,
+      $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $?$,
+      $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $?$,
+      $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $?$,
+      $p(x)$, $?$, $?$, $1$,
+    ) \
+    = #table(
+      columns: 4,
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(y)$,
+      $1$, $1/4 tr(mat(1, 0; 0, 0) mat(1, 0; 0, 0))$, $1/4 tr(mat(1, 0; 0, 0) mat(0, 0; 0, 1))$, $?$,
+      $2$,
+      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, 0; 0, 0))$,
+      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(0, 0; 0, 1))$,
+      $?$,
+
+      $3$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, 0; 0, 0))$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(0, 0; 0, 1))$,
+      $?$,
+
+      $4$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, 0; 0, 0))$,
+      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(0, 0; 0, 1))$,
+      $?$,
+
+      $p(x)$, $?$, $?$, $1$,
+    ) \
+    = #table(
+      columns: 4,
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(y)$,
+      $1$, $1/4$, $0$, $1/4$,
+      $2$, $1/12$, $1/6$, $1/4$,
+
+      $3$, $1/12$, $1/6$, $1/4$,
+
+      $4$, $1/12$, $1/6$, $1/4$,
+
+      $p(x)$, $1/2$, $1/2$, $1$,
+    ) \
+  $,
+)
+
+So we have:
+
+- $H(X) = - sum_x p(x) log_2(p(x)) = - 4 dot 1/4 log_2(1/4) = 2$
+- $H(Y) = - sum_y p(y) log_2(p(y)) = - 2 dot 1/2 log_2(1/2) = 1$
+- $H(X, Y) = - sum_(x, y) p(x, y) log_2(p(x, y)) = - 1/4 log_2(1/4) - 3 dot 1/12 log_2(1/12) - 3 dot 1/6 log_2(1/6) = 2.689$
+
+So the mutual information is:
+
+$
+  H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 1 - 2.689 = 0.311
+$
+
+This is always not the expected result.
+
+We can try another basis... Indeed, the ${|0 chevron.r, |1 chevron.r}$ basis allows to detect flip of bits.
+Instead, we will try to use the basis $|- chevron.r, |+ chevron.r$ which is sensitive to phase.
+
 
 
 
 // So Alice's system has no information at all, so the knowledge of Alice's system indicate nothing on Bob's system.
-// So the mutual information is equal to 0 bit, which is less than 1 bit. 
+// So the mutual information is equal to 0 bit, which is less than 1 bit.
 
 
 #v(2em)
