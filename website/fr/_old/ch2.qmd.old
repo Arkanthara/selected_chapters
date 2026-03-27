@@ -1,0 +1,810 @@
+---
+title: "Fondements de l'informatique quantique"
+---
+
+# Point de départ : Qu'est-ce que l'informatique quantique ?
+
+## La théorie de l'information quantique
+
+La **théorie de l'information quantique** (Quantum Information Theory) est une généralisation de la théorie classique des probabilités dans laquelle les probabilités peuvent être **négatives**, voire des **nombres complexes**.
+
+Cette simple observation est fondamentale : elle signifie que le comportement des systèmes quantiques ne peut pas être réduit à une simple distribution de probabilités classique. Les amplitudes quantiques — les analogues quantiques des probabilités — obéissent à des règles algébriques bien plus riches, ce qui donne aux systèmes quantiques des capacités de calcul radicalement différentes.
+
+::: {.callout-tip title="Intuition"}
+Imaginez que vous lancez une pièce : classiquement, la probabilité d'obtenir pile est entre 0 et 1. En informatique quantique, l'équivalent de cette probabilité — appelé **amplitude** — peut être un nombre complexe. Ce n'est que lorsqu'on **mesure** le système que l'on obtient un résultat réel et positif (la probabilité au sens classique).
+:::
+
+---
+
+# La définition du qubit
+
+## Le bit classique
+
+Un **bit** est un système classique possédant deux états distinguables :
+
+- L'état $|0\rangle$
+- L'état $|1\rangle$
+
+Ces états sont également appelés **états classiques** (Classical States) ou **états de la base standard** (Standard Basis States).
+
+Un bit classique est toujours dans l'un de ces deux états, et uniquement l'un des deux.
+
+## Le qubit (Quantum Bit)
+
+Un **qubit** (quantum bit) est l'unité fondamentale d'information quantique. Contrairement au bit classique, un qubit peut se trouver dans une **superposition** (Superposition) des états classiques $|0\rangle$ et $|1\rangle$.
+
+::: {.callout-note title="À retenir"}
+Le qubit est l'analogue quantique du bit. Il est souvent illustré par l'analogie du **chat de Schrödinger** : tant que l'on n'ouvre pas la boîte (tant qu'on ne mesure pas), le système est dans un état indéterminé, mélange des deux états possibles.
+:::
+
+## Représentation mathématique du qubit
+
+Mathématiquement, l'état d'un qubit est une **combinaison linéaire complexe** (Complex Linear Combination) des états de base $|0\rangle$ et $|1\rangle$ :
+
+$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle = \alpha \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \beta \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
+
+où $\alpha, \beta \in \mathbb{C}$ sont des **nombres complexes** satisfaisant la condition de normalisation :
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+Autrement dit, $|\psi\rangle$ est un **vecteur unitaire de dimension 2** dans $\mathbb{C}^2$.
+
+::: {.callout-tip title="Intuition"}
+Le vecteur $|\psi\rangle$ vit dans un espace vectoriel complexe à deux dimensions. La condition de normalisation garantit que les probabilités associées à chaque état de mesure somment à 1, ce qui est cohérent avec la physique.
+:::
+
+## Exemples d'états de qubit valides et invalides
+
+### États valides
+
+$$\frac{1}{\sqrt{2}} |0\rangle + \frac{1}{\sqrt{2}} |1\rangle$$
+
+Vérification : $\left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2} + \frac{1}{2} = 1$ ✓
+
+$$\frac{1}{\sqrt{2}} |0\rangle - \frac{i}{\sqrt{2}} |1\rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -i \end{pmatrix}$$
+
+Vérification : $\left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{-i}{\sqrt{2}}\right|^2 = \frac{1}{2} + \frac{1}{2} = 1$ ✓
+
+### État invalide
+
+$$i |0\rangle - \frac{1}{2} |1\rangle$$
+
+Vérification : $|i|^2 + \left|-\frac{1}{2}\right|^2 = 1 + \frac{1}{4} = \frac{5}{4} \neq 1$ ✗
+
+::: {.callout-warning title="Condition de validité"}
+Pour qu'un état $\alpha|0\rangle + \beta|1\rangle$ soit un état de qubit valide, il **faut impérativement** que $|\alpha|^2 + |\beta|^2 = 1$. Cette condition garantit la cohérence probabiliste lors de la mesure.
+:::
+
+## Les amplitudes
+
+Les coefficients $\alpha$ et $\beta$ sont appelés les **amplitudes** (Amplitudes) des états $|0\rangle$ et $|1\rangle$ respectivement.
+
+- Ils jouent un rôle analogue aux probabilités en théorie classique.
+- Mais, contrairement aux probabilités classiques, ils peuvent être **négatifs** ou même des **nombres complexes**.
+- C'est cette propriété qui est à l'origine des phénomènes d'**interférence quantique**.
+
+Un qubit dans l'état $\alpha|0\rangle + \beta|1\rangle$ est souvent dit être $|0\rangle$ et $|1\rangle$ « en même temps ». Cette formulation, bien qu'intuitive, est à interpréter avec précaution : le sens précis est révélé par la **règle de Born** lors de la mesure.
+
+---
+
+# Bit classique vs Qubit : tableau comparatif
+
+| Propriété | Bit classique | Qubit |
+|-----------|--------------|-------|
+| États possibles | 0 ou 1 | $\|0\rangle$, $\|1\rangle$, ou toute superposition |
+| Mesure | Complète et non destructrice | Partielle, avec probabilité ; destructrice |
+| Effet de la mesure | Aucun changement | L'état est modifié (collapse) |
+| Copie | Possible | **Impossible** (théorème de non-clonage) |
+| Effacement | Possible | **Impossible** |
+
+::: {.callout-important title="Différences fondamentales"}
+Deux propriétés distinguent radicalement le qubit du bit classique :
+
+- **L'impossibilité de copier** un qubit inconnu (théorème de non-clonage quantique).
+- **L'impossibilité d'effacer** un qubit (réversibilité des opérations quantiques).
+
+Ces propriétés ont des implications profondes pour la cryptographie et la transmission d'information.
+:::
+
+---
+
+# Avantages des qubits et puissance quantique
+
+## Stockage exponentiel
+
+L'un des avantages majeurs des qubits est que l'ajout d'un seul qubit **double la puissance de calcul** du système.
+
+- Pour doubler la puissance d'un ordinateur classique : passer de 32 bits à 64 bits (ajout de 32 bits).
+- Pour doubler la puissance d'un ordinateur quantique : passer de 32 qubits à **33 qubits** (ajout d'1 seul qubit).
+
+Concrètement :
+
+- Un ordinateur à 64 bits opère sur des nombres binaires de 64 bits à la fois.
+- Un ordinateur quantique à 64 qubits opère dans un espace de $2^{64}$ dimensions, soit environ $16 \times 10^{18}$ nombres pour décrire l'état du système quantique.
+
+## Parallélisme massif
+
+Un ordinateur quantique peut effectuer des opérations sur **toutes les superpositions** simultanément — ce qui s'apparente à un **calcul massivement parallèle** (Massively Parallel Computation).
+
+- En classique : une opération mathématique sur $2^n$ nombres (encodés avec $n$ bits) requiert $2^n$ étapes ou $2^n$ processeurs parallèles.
+- En quantique : la **même opération** sur $2^n$ nombres encodés par $n$ qubits ne requiert qu'**une seule étape**.
+
+::: {.callout-tip title="Intuition"}
+Imaginez devoir chercher un mot dans un dictionnaire de $2^{30}$ entrées. Un ordinateur classique doit les parcourir une à une (ou en parallèle avec plusieurs processeurs). Un ordinateur quantique peut, dans certains algorithmes, explorer toutes les entrées simultanément grâce à la superposition.
+:::
+
+## Implication générale
+
+Ces propriétés rendent les problèmes complexes potentiellement bien plus faciles à résoudre pour un ordinateur quantique. Certains problèmes considérés comme **intractables** classiquement (factorisation, simulation de molécules, etc.) deviennent accessibles quantiquement.
+
+---
+
+# Notation de Dirac (Bra-ket)
+
+## Les vecteurs ket et bra
+
+La **notation de Dirac** (Dirac Notation), ou notation **bra-ket**, est l'outil mathématique standard pour représenter les états quantiques.
+
+- Un **ket** $|\psi\rangle$ est un vecteur colonne (l'état du système).
+- Un **bra** $\langle\psi|$ est le **conjugué dual/Hermitien** (Dual/Hermitian Conjugate) du ket, c'est-à-dire un vecteur ligne dont les entrées sont les conjugués complexes du ket.
+
+Pour les états de base :
+
+$$\langle 0| = \begin{pmatrix} 1, & 0 \end{pmatrix} \qquad \langle 1| = \begin{pmatrix} 0, & 1 \end{pmatrix}$$
+
+Et pour un qubit général :
+
+$$|\psi\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} = \alpha|0\rangle + \beta|1\rangle \qquad \langle\psi| = \begin{pmatrix} \bar{\alpha} & \bar{\beta} \end{pmatrix} = \bar{\alpha}\langle 0| + \bar{\beta}\langle 1|$$
+
+où $\bar{\alpha}, \bar{\beta}$ désignent les **conjugués complexes** (Complex Conjugates) de $\alpha, \beta$.
+
+## Le produit scalaire (Inner Product)
+
+Soient $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ et $|\theta\rangle = \gamma|0\rangle + \delta|1\rangle$ deux vecteurs colonnes. Leur **produit scalaire** (Inner Product) est :
+
+$$\langle\psi|\theta\rangle = \begin{pmatrix} \bar{\alpha} & \bar{\beta} \end{pmatrix} \begin{pmatrix} \gamma \\ \delta \end{pmatrix} = \bar{\alpha}\gamma + \bar{\beta}\delta$$
+
+::: {.callout-warning title="L'ordre des vecteurs est important !"}
+Le produit scalaire n'est **pas symétrique** en général. On a :
+
+$$\langle\theta|\psi\rangle = \bar{\gamma}\alpha + \bar{\delta}\beta = \overline{\langle\psi|\theta\rangle}$$
+
+Le produit scalaire dans l'autre sens donne le **conjugué complexe** du premier.
+:::
+
+## Généralisation à la dimension $d$
+
+Si les vecteurs sont de dimension $d$ :
+
+$$|\psi\rangle = \alpha_0|0\rangle + \alpha_1|1\rangle + \cdots + \alpha_{d-1}|d-1\rangle$$
+
+$$|\theta\rangle = \beta_0|0\rangle + \beta_1|1\rangle + \cdots + \beta_{d-1}|d-1\rangle$$
+
+Alors leur produit scalaire est :
+
+$$\langle\psi|\theta\rangle = \bar{\alpha}_0\beta_0 + \bar{\alpha}_1\beta_1 + \cdots + \bar{\alpha}_{d-1}\beta_{d-1}$$
+
+::: {.callout-note title="À retenir"}
+La notation de Dirac est très utile pour identifier rapidement les **scalaires**, les **vecteurs lignes**, les **vecteurs colonnes** et les **matrices** dans des expressions complexes. C'est le langage universel de la mécanique quantique.
+:::
+
+---
+
+# Systèmes quantiques composites
+
+## Produit tensoriel de deux qubits
+
+Si le qubit 1 est dans l'état $|\psi_1\rangle$ et le qubit 2 dans l'état $|\psi_2\rangle$, alors l'**état joint** du système de deux qubits est :
+
+$$|\psi_1\rangle \otimes |\psi_2\rangle$$
+
+C'est un **vecteur unitaire de dimension 4** dans l'espace produit tensoriel $\mathbb{C}^2 \otimes \mathbb{C}^2$.
+
+## L'espace de Hilbert
+
+Les états quantiques vivent dans un **espace de Hilbert** (Hilbert Space) $H$. Pour nos besoins, les propriétés clés des espaces de Hilbert sont :
+
+- Les espaces de Hilbert de dimension finie sont isomorphes à $\mathbb{C}^d$ pour une certaine dimension $d$.
+- Il existe une opération de **produit scalaire** entre deux vecteurs.
+- On peut prendre des **produits tensoriels** d'espaces de Hilbert.
+
+Pour deux qubits, l'espace de Hilbert est $\mathbb{C}^2 \otimes \mathbb{C}^2$, avec pour base :
+
+$$|0\rangle \otimes |0\rangle, \quad |0\rangle \otimes |1\rangle, \quad |1\rangle \otimes |0\rangle, \quad |1\rangle \otimes |1\rangle$$
+
+On abrège généralement en : $|0,0\rangle$, $|0,1\rangle$, $|1,0\rangle$, $|1,1\rangle$.
+
+## La multiplication tensorielle (Tensor Multiplication)
+
+En plus de la multiplication scalaire et de la multiplication matricielle, la description des systèmes quantiques nécessite une **troisième forme de multiplication** : le **produit tensoriel** (Tensor Product).
+
+Soient $A$ une matrice $n \times m$ et $B$ une matrice $n' \times m'$. Leur produit tensoriel $A \otimes B$ est défini par :
+
+$$A \otimes B = \begin{bmatrix} a_{11}B & \cdots & a_{1m}B \\ \vdots & \ddots & \vdots \\ a_{n1}B & \cdots & a_{nm}B \end{bmatrix}$$
+
+La matrice résultante est de dimension $nn' \times mm'$.
+
+**Exemple :**
+
+$$\begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix} \otimes \begin{bmatrix} 1 & 2 & 3 \end{bmatrix} = \begin{bmatrix} 1 & 2 & 3 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 & 4 & 6 \end{bmatrix}$$
+
+Le produit tensoriel est **associatif** : $A \otimes (B \otimes C) = (A \otimes B) \otimes C$.
+
+---
+
+# L'intrication quantique (Quantum Entanglement)
+
+## États produits vs états intriqués
+
+Tous les états de $\mathbb{C}^2 \otimes \mathbb{C}^2$ ne peuvent pas s'écrire sous la forme $|\psi_1\rangle \otimes |\psi_2\rangle$. Les états qui peuvent s'écrire ainsi sont appelés **états produits** (Product States).
+
+Les états qui **ne peuvent pas** s'écrire comme un produit tensoriel de deux états individuels sont appelés **états intriqués** (Entangled States).
+
+## La paire EPR / paire de Bell
+
+L'exemple emblématique d'état intriqué est la **paire d'Einstein-Podolsky-Rosen (EPR)**, également appelée **paire de Bell** (Bell Pair) :
+
+$$|\Phi\rangle = \frac{1}{\sqrt{2}} \Big( |0,0\rangle + |1,1\rangle \Big)$$
+
+Cet état ne peut pas s'écrire comme $|\psi_1\rangle \otimes |\psi_2\rangle$ pour aucun choix de $|\psi_1\rangle$ et $|\psi_2\rangle$.
+
+## Exemple : produit tensoriel de deux qubits
+
+Supposons que deux qubits soient dans les états :
+
+$$\alpha|0\rangle + \beta|1\rangle \qquad \text{et} \qquad \alpha'|0\rangle + \beta'|1\rangle$$
+
+L'état du système combiné est leur produit tensoriel :
+
+$$(\alpha|0\rangle + \beta|1\rangle)(\alpha'|0\rangle + \beta'|1\rangle) = \alpha\alpha'|00\rangle + \alpha\beta'|01\rangle + \beta\alpha'|10\rangle + \beta\beta'|11\rangle$$
+
+**Question :** Lesquels des états suivants sont des états produits ou intriqués ?
+
+1. $\frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle - \frac{1}{2}|10\rangle - \frac{1}{2}|11\rangle$ → **état produit** (indépendant)
+2. $\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$ → **état intriqué**
+
+## Propriétés de l'intrication
+
+L'intrication est un **phénomène uniquement quantique** : un qubit est intimement lié à un autre d'une manière que la physique classique ne peut pas expliquer. Les propriétés essentielles sont :
+
+- L'état quantique de chaque particule d'une paire intriquée **ne peut pas être décrit indépendamment** de l'état de l'autre, même lorsque les particules sont **séparées par une grande distance**.
+- Une paire intriquée est un système quantique unique en **superposition d'états également possibles**. L'état intriqué ne contient aucune information sur les particules individuelles, seulement qu'elles sont dans des états opposés (ou corrélés).
+- Si l'état de l'une est modifié, l'état de l'autre est **instantanément** ajusté pour rester cohérent avec les règles de la mécanique quantique.
+- Si une mesure est effectuée sur l'une, l'autre **s'effondre automatiquement** dans un état cohérent.
+
+::: {.callout-note title="À retenir"}
+Einstein appelait l'intrication les **« actions fantômes à distance »** (*spooky actions at a distance*). L'intrication est au cœur de la différence entre la physique classique et la physique quantique — c'est une caractéristique primaire de la mécanique quantique qui n'a pas d'équivalent classique.
+:::
+
+---
+
+# Observer les qubits : mesure et décohérence
+
+## La décohérence (Decoherence)
+
+La **décohérence quantique** (Quantum Decoherence) est la perte de la superposition due à l'**interaction spontanée** entre un système quantique et son environnement.
+
+- La décohérence peut être vue comme la **fuite d'information** d'un système vers son environnement.
+- C'est la raison pour laquelle les ordinateurs quantiques ont encore un long chemin à parcourir : la superposition et l'intrication sont des états **extrêmement fragiles**.
+- **Prévenir la décohérence** reste le plus grand défi dans la construction d'ordinateurs quantiques.
+
+::: {.callout-tip title="Intuition"}
+Imaginez une pièce en équilibre sur sa tranche : elle peut tomber côté pile ou côté face. Tout contact avec l'environnement (une vibration, un courant d'air) la fait tomber dans un état classique défini. C'est exactement ce qui se passe avec la décohérence : l'environnement « mesure » le système et le fait sortir de la superposition.
+:::
+
+## La règle de Born (Born Rule)
+
+L'état d'un qubit **ne peut pas être directement observé**. Il doit être **mesuré** (Measured), ce qui donne un état classique $|0\rangle$ ou $|1\rangle$ avec des probabilités définies par la **règle de Born** :
+
+$$\Pr[\text{observer } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{observer } |1\rangle] = |\beta|^2$$
+
+Puisque les états de qubit ont une norme unitaire, ces probabilités s'additionnent bien à 1 :
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+## Collapse de l'état après mesure
+
+Après la mesure, le système devient **classique** :
+
+- L'état du qubit **s'effondre** (Collapses) vers $|0\rangle$ ou $|1\rangle$.
+- L'état précédent est **définitivement perdu**.
+- En mécanique quantique, **la mesure perturbe généralement le système**.
+
+Une fois que l'état s'est effondré vers $|0\rangle$, toute mesure ultérieure donnera $|0\rangle$ avec probabilité 1. Autrement dit :
+
+> **Mesurer un système deux fois est équivalent à le mesurer une fois.**
+
+On représente la mesure d'un qubit par le symbole de circuit :
+
+$$|\psi\rangle \longrightarrow \boxed{\nearrow}$$
+
+---
+
+# Le chat de Schrödinger
+
+## Illustration du principe de superposition
+
+Le **chat de Schrödinger** est une expérience de pensée illustrant la superposition quantique.
+
+On considère une boîte avec deux états classiques :
+
+- Chat endormi : $|0\rangle$
+- Chat réveillé : $|1\rangle$
+
+En mécanique quantique, la boîte peut être dans une **superposition** d'états endormi et éveillé — tant qu'on ne l'ouvre pas (c'est-à-dire qu'on ne la mesure pas).
+
+## Exemple de calcul de probabilités
+
+Supposons que la boîte commence dans l'état :
+
+$$\frac{1}{\sqrt{3}} |0\rangle - i\frac{\sqrt{2}}{\sqrt{3}} |1\rangle$$
+
+et qu'elle est mesurée. Alors :
+
+1. Avec probabilité $\left|\frac{1}{\sqrt{3}}\right|^2 = \frac{1}{3}$, l'état s'effondre vers $|0\rangle$ (chat endormi).
+
+2. Avec probabilité $\left|-i\frac{\sqrt{2}}{\sqrt{3}}\right|^2 = \frac{2}{3}$, l'état s'effondre vers $|1\rangle$ (chat éveillé).
+
+---
+
+# Transformations sur les qubits : les portes quantiques
+
+## Définition d'une porte quantique
+
+Une **porte quantique** (Quantum Gate) ou **porte logique quantique** (Quantum Logic Gate) est une opération élémentaire sur des qubits dans un circuit quantique.
+
+- Les portes quantiques sont les **blocs de construction** des circuits quantiques, tout comme les portes logiques classiques le sont pour les circuits numériques conventionnels.
+- En raison de la condition de normalisation, toute opération de porte $U$ doit être **unitaire** : $UU^* = I$.
+- Le nombre de qubits en entrée et en sortie d'une porte doit être **égal** ; une porte agissant sur $n$ qubits est représentée par une matrice unitaire $2^n \times 2^n$.
+- Contrairement à beaucoup de portes logiques classiques, les **portes quantiques sont réversibles**.
+
+## Transformation unitaire
+
+En plus de la mesure, l'état d'un qubit peut changer via une **transformation unitaire** (Unitary Transformation). Tout comme dans le calcul réversible classique, les transformations unitaires peuvent être représentées par des **matrices**.
+
+On représente une transformation unitaire $U$ agissant sur l'état $|\psi\rangle$ par le diagramme de circuit :
+
+$$|\psi\rangle \longrightarrow \boxed{U} \longrightarrow$$
+
+## Définitions équivalentes d'une matrice unitaire
+
+Une matrice $U$ est unitaire si et seulement si elle satisfait l'une des conditions équivalentes suivantes :
+
+- **Définition 1 :** L'inverse de $U$ est son conjugué Hermitien $U^\dagger$ (« U dagger »), dont l'entrée $(i,j)$ est le conjugué complexe de l'entrée $(j,i)$ de $U$ : $U^\dagger_{i,j} = \overline{U_{j,i}}$.
+- **Définition 2 :** $U$ transforme les vecteurs unitaires en vecteurs unitaires (c'est-à-dire les états quantiques en états quantiques).
+- **Définition 3 :** Les lignes de $U$ forment une base orthonormée de $\mathbb{C}^d$, et les colonnes forment également une base orthonormée de $\mathbb{C}^d$.
+- **Définition 4 :** $U$ préserve les produits scalaires entre vecteurs : le produit scalaire de $|\psi\rangle$ et $|\theta\rangle$ est le même que le produit scalaire de $U|\psi\rangle$ et $U|\theta\rangle$.
+
+---
+
+# Exemples de portes quantiques
+
+## La porte Pauli-X (NOT quantique)
+
+La **porte Pauli-X** (Pauli-X Gate) est l'équivalent quantique de la porte NOT classique.
+
+**Comportement en notation de Dirac :**
+
+$$|0\rangle \rightarrow |1\rangle \qquad |1\rangle \rightarrow |0\rangle$$
+
+**Représentation matricielle :**
+
+$$X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$$
+
+**Représentation en circuit :**
+
+$$\longrightarrow \boxed{X} \longrightarrow$$
+
+**Vérification :**
+
+$$X\begin{bmatrix}1\\0\end{bmatrix} = \begin{bmatrix}0&1\\1&0\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix} = \begin{bmatrix}0\\1\end{bmatrix} = |1\rangle$$
+
+$$X\begin{bmatrix}0\\1\end{bmatrix} = \begin{bmatrix}0&1\\1&0\end{bmatrix}\begin{bmatrix}0\\1\end{bmatrix} = \begin{bmatrix}1\\0\end{bmatrix} = |0\rangle$$
+
+En agissant sur des états purs, la porte Pauli-X devient une porte NOT classique : $|0\rangle \rightarrow \boxed{X} \rightarrow |1\rangle$.
+
+## La porte Pauli-Y
+
+La **porte Pauli-Y** (Pauli-Y Gate) n'a pas d'équivalent classique.
+
+$$|0\rangle \rightarrow i|1\rangle \qquad |1\rangle \rightarrow -i|0\rangle$$
+
+$$Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$$
+
+## La porte Pauli-Z et les portes de phase
+
+La **porte Pauli-Z** (Pauli-Z Gate) et les portes de phase associées opèrent sur la composante de phase du qubit.
+
+**Porte Pauli-Z :**
+
+$$Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$$
+
+**Porte de Phase S :**
+
+$$S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \qquad S^2 = Z$$
+
+**Porte $\pi/8$ (T gate) :**
+
+$$T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$$
+
+Ces portes peuvent être visualisées sur la **sphère de Bloch** (Bloch Sphere), une représentation géométrique de l'état d'un qubit en termes d'angles $\theta$ et $\varphi$.
+
+## La porte de Hadamard (Hadamard Gate)
+
+La **porte de Hadamard** (Hadamard Gate) est l'une des portes les plus importantes en informatique quantique. Elle agit sur un seul qubit et correspond à la **transformée de Hadamard**, qui crée des superpositions.
+
+**Comportement en notation de Dirac :**
+
+$$|0\rangle \rightarrow \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$$
+
+$$|1\rangle \rightarrow \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
+
+Et inversement :
+
+$$\frac{|0\rangle + |1\rangle}{\sqrt{2}} \rightarrow |0\rangle \qquad \frac{|0\rangle - |1\rangle}{\sqrt{2}} \rightarrow |1\rangle$$
+
+**Représentation matricielle :**
+
+$$H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$
+
+**Représentation en circuit :**
+
+$$\longrightarrow \boxed{H} \longrightarrow$$
+
+::: {.callout-note title="À retenir — Pas d'équivalent classique !"}
+La porte de Hadamard n'a **aucun équivalent classique**. Elle crée une superposition parfaite entre $|0\rangle$ et $|1\rangle$.
+:::
+
+## La porte de Hadamard est son propre inverse : l'étonnante porte H
+
+La porte H possède des propriétés remarquables :
+
+- Après qu'un qubit dans l'état $|0\rangle$ ou $|1\rangle$ a été traité par H, son état est une **superposition égale** de $|0\rangle$ et $|1\rangle$. Le qubit passe d'un état déterministe à un état **vraiment aléatoire** : si mesuré, on obtiendra $|0\rangle$ ou $|1\rangle$ avec probabilité égale.
+- H est **son propre inverse** : $H^{-1} = H$, ou $H^2 = I$. Appliquer H deux fois à un qubit ne change rien.
+- En appliquant une opération « randomisante » à un état aléatoire, on obtient un **résultat déterministe** ! C'est une manifestation de l'interférence quantique.
+- C'est l'une des portes les plus importantes en informatique quantique.
+
+::: {.callout-tip title="Intuition — L'auto-inverse de H"}
+La porte H agit comme une « rotation à 45° » dans l'espace de Hilbert. La faire deux fois donne une rotation de 90°... qui ramène à l'état initial. C'est pourquoi $H^2 = I$.
+:::
+
+## La porte CNOT (Controlled-NOT)
+
+La **porte CNOT** (Controlled NOT Gate) est une porte à **deux qubits**.
+
+- Si le **qubit de contrôle** est à 0, le qubit cible reste inchangé.
+- Si le **qubit de contrôle** est à 1, le qubit cible est **inversé** (flip).
+
+**Comportement :**
+
+$$|00\rangle \rightarrow |00\rangle \qquad |01\rangle \rightarrow |01\rangle \qquad |10\rangle \rightarrow |11\rangle \qquad |11\rangle \rightarrow |10\rangle$$
+
+**Représentation matricielle :**
+
+$$\text{CNOT} = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{bmatrix}$$
+
+La porte CNOT est équivalente à la porte **XOR classique** (la sortie est « vraie » si et seulement si exactement l'un des opérandes est « vrai »).
+
+## Tableau comparatif : portes quantiques vs portes classiques
+
+| Opérateur quantique | Porte(s) classique(s) équivalente(s) |
+|---------------------|--------------------------------------|
+| Pauli-X (X) | NOT |
+| CNOT (CX) | XOR |
+| Toffoli (CCNOT) | NAND (universel classique) |
+| Pauli-Y (Y) | Aucun équivalent classique |
+| Hadamard (H) | Aucun équivalent classique |
+| Phase (S, P) | Aucun équivalent classique |
+| $\pi/8$ (T) | Aucun équivalent classique |
+
+::: {.callout-important title="Réversibilité des portes quantiques"}
+Toutes les portes quantiques sont **réversibles**, ce qui n'est pas le cas pour toutes les portes classiques (par exemple, AND et OR ne sont pas réversibles). Cette propriété découle directement de l'unitarité des transformations quantiques.
+:::
+
+---
+
+# Traitement des qubits : interférence quantique
+
+## Distinguer deux états quantiques
+
+Supposons qu'on nous remette physiquement un qubit (la boîte de Schrödinger) dont l'état $|\psi\rangle$ est soit $|+\rangle$ soit $|-\rangle$ :
+
+$$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} \qquad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}$$
+
+Ces deux vecteurs forment une **base orthonormée** de $\mathbb{C}^2$.
+
+Ouvrir la boîte (mesurer directement) donnerait un chat endormi ou éveillé avec **probabilité égale dans les deux cas** — on ne pourrait pas distinguer $|+\rangle$ de $|-\rangle$ par mesure directe.
+
+**Solution :** Appliquer H au qubit **avant** de mesurer !
+
+- **Cas 1 :** $|\psi\rangle = |+\rangle$. Appliquant H : $H|+\rangle = |0\rangle$. La mesure donne toujours $|0\rangle$.
+- **Cas 2 :** $|\psi\rangle = |-\rangle$. Appliquant H : $H|-\rangle = |1\rangle$. La mesure donne toujours $|1\rangle$.
+
+En mécanique quantique, les **états orthogonaux peuvent être parfaitement distingués** en appliquant une matrice unitaire appropriée, puis en mesurant dans la base standard.
+
+## Les états $|+\rangle$ et $|-\rangle$ comme base alternative
+
+$$|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = H|0\rangle$$
+
+$$|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = H|1\rangle$$
+
+Et réciproquement :
+
+$$|0\rangle = H|+\rangle \qquad |1\rangle = H|-\rangle$$
+
+La matrice de Hadamard **transforme la base $\{|+\rangle, |-\rangle\}$ en la base standard $\{|0\rangle, |1\rangle\}$** et vice versa.
+
+## Expérience A : mesure intermédiaire
+
+Considérons le circuit suivant :
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+Étapes :
+
+1. H transforme $|0\rangle$ en $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+2. Mesure intermédiaire : obtient $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$ chacun.
+3. H est appliqué au résultat.
+4. Mesure finale.
+
+**Distribution finale des résultats :** $|0\rangle$ et $|1\rangle$ avec probabilité égale $\frac{1}{2}$.
+
+## Expérience B : sans mesure intermédiaire
+
+Considérons le circuit :
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+Étapes :
+
+1. H transforme $|0\rangle$ en $|+\rangle$.
+2. H est appliqué à nouveau : $H|+\rangle = |0\rangle$ (car $H^2 = I$).
+3. Mesure finale.
+
+**Distribution finale des résultats :** $|0\rangle$ toujours.
+
+::: {.callout-important title="Interférence quantique — Conclusion"}
+Insérer ou supprimer une mesure intermédiaire peut **changer drastiquement** le comportement d'un système quantique !
+
+La raison est l'**interférence quantique** (Quantum Interference) : les amplitudes de transition peuvent être positives, négatives ou complexes. Sans mesure intermédiaire, les chemins menant à $|1\rangle$ **s'annulent destructivement** (interférence destructive), tandis que les chemins menant à $|0\rangle$ **s'additionnent constructivement** (interférence constructive).
+
+En physique classique, on additionne des probabilités (toujours positives). En physique quantique, on additionne des amplitudes, qui peuvent être négatives. L'interférence est un exemple de « bizarrerie quantique ».
+:::
+
+## Mécanisme de l'interférence
+
+En appliquant plusieurs opérations unitaires à un qubit, on crée un **arbre de chemins** entre états. Chaque chemin a une **amplitude de transition** associée : le produit des amplitudes le long du chemin.
+
+Avant la mesure, l'amplitude d'arriver dans l'état $|b\rangle$ est la **somme des amplitudes de transition** de tous les chemins qui se terminent en $|b\rangle$.
+
+Puisque les amplitudes de transition peuvent être négatives ou complexes, les chemins peuvent **s'interférer constructivement ou destructivement**.
+
+Si une mesure intermédiaire existe, seuls les chemins **cohérents avec le résultat de la mesure** sont comptabilisés. Les mesures intermédiaires **détruisent la superposition et empêchent l'interférence**.
+
+---
+
+# Circuits quantiques (Quantum Circuits)
+
+## Définition
+
+Un **circuit quantique** (Quantum Circuit) est un modèle de calcul quantique dans lequel un calcul est une **séquence de portes quantiques** sur un registre de $n$ qubits reliés par des « fils ».
+
+- Le circuit a une « largeur » fixe correspondant au **nombre de qubits** traités.
+- Contrairement aux circuits classiques, **le même nombre de fils traverse tout le circuit** (les opérations quantiques sont réversibles et n'effacent pas d'information).
+
+## Génération d'intrication par circuit
+
+Une paire de Bell peut être générée avec deux portes seulement : une porte **Hadamard** et une porte **CNOT**.
+```{mermaid}
+flowchart LR
+    A["|0⟩"] --> H["H"]
+    H --> C{•}
+    B["|0⟩"] --> C
+    C --> O1["qubit 1"]
+    C --> O2["qubit 2"]
+```
+
+Calcul :
+
+1. **État initial :** $|0\rangle_1 \otimes |0\rangle_2 = |00\rangle$
+2. **Après H sur qubit 1 :** $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$
+3. **Après CNOT :** $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+
+On obtient l'état de Bell $\frac{|00\rangle + |11\rangle}{\sqrt{2}}$, un état intriqué.
+
+::: {.callout-tip title="Intuition"}
+La porte Hadamard crée une superposition sur le premier qubit. La porte CNOT crée ensuite une **corrélation** entre les deux qubits : si le premier est 1, le second est inversé. Le résultat est un état où les deux qubits sont toujours dans le même état — mais lequel est indéterminé jusqu'à la mesure.
+:::
+
+---
+
+# Circuits classiques vs circuits quantiques
+
+## Circuits logiques classiques
+
+- Le comportement du circuit est gouverné implicitement par la **physique classique**.
+- Les états des signaux sont de simples vecteurs de bits, par exemple $X = 01010111$.
+- Les opérations sont définies par l'**algèbre de Boole**.
+- Aucune restriction sur la copie ou la mesure des signaux.
+- Ensembles de portes universelles bien définis, par exemple {NAND}, {AND, OR, NOT}.
+- Méthodologies CAO (Conception Assistée par Ordinateur) bien développées.
+- Les circuits sont facilement implémentés dans des technologies rapides, évolutives et macroscopiques comme CMOS.
+
+## Circuits logiques quantiques
+
+- Le comportement du circuit est gouverné explicitement par la **mécanique quantique**.
+- Les états des signaux sont des vecteurs interprétés comme une **superposition de vecteurs de qubits** avec des coefficients à nombres complexes.
+- Les opérations sont définies par l'**algèbre linéaire sur l'espace de Hilbert** et représentées par des **matrices unitaires** avec des éléments complexes.
+- Des **restrictions sévères** existent sur la copie et la mesure des signaux.
+- De nombreux ensembles de portes universelles existent mais les meilleurs types ne sont **pas évidents**.
+- Les circuits doivent utiliser des technologies microscopiques qui sont **lentes, fragiles et pas encore évolutives**, par exemple NMR (Nuclear Magnetic Resonance).
+
+::: {.callout-note title="À retenir"}
+Les circuits quantiques opèrent dans un espace d'états de dimension **exponentiellement plus grande** que les circuits classiques : $2^n$ dimensions pour $n$ qubits, contre $n$ pour $n$ bits classiques. C'est la source principale de la puissance quantique, mais aussi de sa fragilité.
+:::
+
+---
+
+# Algorithmes quantiques (Quantum Algorithms)
+
+## Pourquoi les algorithmes quantiques peuvent-ils être plus rapides ?
+
+Il peut être possible de résoudre un problème sur un système quantique beaucoup plus vite (en utilisant moins d'étapes) que sur un ordinateur classique. Ce qui rend un algorithme quantique potentiellement plus rapide est :
+
+- **Parallélisme quantique** (Quantum Parallelism) : en utilisant des superpositions d'états quantiques, l'ordinateur exécute l'algorithme sur **toutes les entrées possibles à la fois**.
+- **Dimension de l'espace de Hilbert quantique** (Dimension of Quantum Hilbert Space) : la « taille » de l'espace d'états pour le système quantique est **exponentiellement plus grande** que celle du système classique correspondant.
+- **Capacité d'intrication** (Entanglement Capability) : différents sous-systèmes (qubits) dans un ordinateur quantique deviennent intriqués, exhibant des **corrélations non classiques**.
+
+::: {.callout-important title="Implications pour la cryptographie"}
+La factorisation et la recherche sont des exemples de problèmes pour lesquels des algorithmes quantiques sont connus et sont plus rapides que tout algorithme classique. Ces algorithmes ont des implications directes pour la **cryptographie et la sécurité de l'information** (notamment RSA, basé sur la difficulté de la factorisation).
+:::
+
+## Comparaison des performances
+
+| Algorithme | Étapes classiques | Étapes quantiques |
+|-----------|-------------------|-------------------|
+| Transformée de Fourier (ex. : factorisation de Shor, logarithme discret, algorithme Deutsch-Jozsa) | $N\log(N) = n2^n$ ($N=2^n$, $n$ qubits, $N$ nombres) | $\log^2(N) = n^2$ |
+| Algorithmes de recherche | $N$ | $\sqrt{N}$ |
+| Simulation quantique | $c^N$ bits | $kn$ qubits |
+
+::: {.callout-tip title="Intuition — La transformée de Fourier quantique"}
+Pour la transformée de Fourier, l'algorithme quantique est **exponentiellement plus rapide** que l'algorithme classique FFT. Mais attention : l'information est « cachée » dans les amplitudes, et l'effondrement de la fonction d'onde empêche d'y accéder directement. Les algorithmes quantiques doivent donc être astucieusement conçus pour extraire l'information utile.
+:::
+
+---
+
+# Programmation quantique (Quantum Programming)
+
+## QCL (Quantum Computation Language)
+
+Le **QCL** (Quantum Computation Language) est l'un des premiers langages de programmation quantique, avec une syntaxe de type C. Il permet de **combiner code quantique et code classique** dans le même programme.
+
+Exemple — simulation d'un lancer de pièce :
+```
+procedure FlipCoin() {
+  qureg q[1]; int x;
+  reset;
+  H(q);
+  measure q, x;
+  if x == 1 { print "Heads"; }
+  if x == 0 { print "Tails"; }
+  reset;
+}
+```
+
+Dans cet exemple :
+
+- `H(q)` applique la porte de Hadamard au registre quantique `q`, créant une superposition parfaite.
+- `measure q, x` mesure le qubit et stocke le résultat dans la variable classique `x`.
+
+## Qiskit (Quantum Information Science Kit)
+
+**Qiskit** est un framework open-source pour l'informatique quantique développé par IBM. Il fournit des outils pour créer et manipuler des programmes quantiques, et les exécuter sur des dispositifs quantiques prototypes via **IBM Quantum Experience** (accès basé sur le cloud).
+
+Exemple d'utilisation en Python :
+```python
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from qiskit.tools.visualization import circuit_drawer
+import numpy as np
+
+qr = QuantumRegister(2)
+cr = ClassicalRegister(2)
+qp = QuantumCircuit(qr, cr)
+
+qp.rx(np.pi/2, qr[0])
+qp.cx(qr[0], qr[1])
+qp.measure(qr, cr)
+circuit_drawer(qp)
+```
+
+Ce code crée un circuit à deux qubits, applique une rotation $R_x(\pi/2)$ au premier qubit, puis une porte CNOT entre les deux qubits, et mesure le tout.
+
+---
+
+# Architecture des ordinateurs quantiques
+
+## Vue d'ensemble de l'architecture
+
+Un ordinateur quantique fonctionne en collaboration avec un ordinateur classique :
+
+1. L'ordinateur classique prépare et soumet un programme quantique.
+2. Le **contrôleur de l'ordinateur quantique** (Quantum Computer Controller) traduit les instructions.
+3. Les **commandes** (portes) sont envoyées au **registre quantique** (Quantum Register).
+4. Les **résultats de mesure** sont renvoyés à l'ordinateur classique.
+
+Le flux d'exécution typique est :
+```{mermaid}
+flowchart LR
+    A[Soumettre un job] --> B[File d'attente]
+    B --> C[Traduire le circuit quantique en impulsions micro-ondes]
+    C --> D[Exécuter sur l'ordinateur quantique]
+    D --> E[Résultats de mesure]
+    E --> A
+```
+
+## Exigences techniques
+
+Pour construire un ordinateur quantique, les exigences sont :
+
+- **Implémentation physique des qubits** eux-mêmes.
+- **Contrôle de l'évolution unitaire** des qubits.
+- **Préparation de l'état initial** des qubits.
+- **Mesure de l'état final** des qubits.
+
+## Considérations pratiques supplémentaires
+
+- Les systèmes doivent être **presque complètement isolés** de leur environnement pour éviter la décohérence.
+- L'**état quantique cohérent** doit être préservé pendant toute la durée du calcul.
+- Les **temps de décohérence** doivent être très longs.
+- Capacité à **effectuer des opérations sur plusieurs qubits en parallèle**.
+- Système physique avec **deux états uniquement adressables** (les niveaux d'énergie du qubit).
+- Un **ensemble universel de portes quantiques** doit être disponible.
+- Capacité à **enchevêtrer deux qubits**.
+
+---
+
+# Le volume quantique (Quantum Volume)
+
+## Définition
+
+Le **volume quantique** $V_Q$ (Quantum Volume) est une métrique qui mesure les **capacités et les taux d'erreur** d'un ordinateur quantique.
+
+Il a été défini par Nikolaj Moll *et al.* dans *Quantum Science and Technology*, **3**, 030503 (2018).
+
+Il dépend de :
+
+- Le **nombre de qubits** $N$.
+- Le **nombre d'étapes** pouvant être exécutées, la **profondeur du circuit** $d$.
+
+La formule originale est :
+
+$$\tilde{V}_Q = \min[N, d(N)]^2$$
+
+IBM a modifié la définition du volume quantique en :
+
+$$\log_2 V_Q = \arg\max_{n \leq N} \{\min[n, d(n)]\}$$
+
+## Évolution historique du volume quantique
+
+| Date | Volume quantique (taille du circuit) | Fabricant | Notes |
+|------|--------------------------------------|-----------|-------|
+| Janvier 2020 | 32 (5×5) | IBM | « Raleigh » (28 qubits) |
+| Juin 2020 | 64 (6×6) | Honeywell | 6 qubits |
+| Août 2020 | 64 (6×6) | IBM | 27 qubits |
+| Novembre 2020 | 128 (7×7) | Honeywell | « H1 » (10 qubits) |
+
+::: {.callout-tip title="Intuition — Pourquoi cette métrique ?"}
+Le nombre brut de qubits n'est pas une mesure suffisante de la puissance d'un ordinateur quantique. Un ordinateur avec beaucoup de qubits mais des erreurs fréquentes est moins utile qu'un ordinateur avec moins de qubits mais très fiables. Le volume quantique capture cette **tension entre quantité et qualité** des qubits.
+:::
+
+::: {.callout-note title="À retenir — Synthèse du chapitre"}
+Ce chapitre a introduit les fondements théoriques de l'informatique quantique :
+
+- Un **qubit** est un vecteur unitaire de $\mathbb{C}^2$, dont les amplitudes peuvent être des nombres complexes.
+- La **mesure** (règle de Born) donne une probabilité $|\alpha|^2$ pour $|0\rangle$ et $|\beta|^2$ pour $|1\rangle$, et provoque l'effondrement de l'état.
+- L'**intrication** est une corrélation non classique entre qubits qui ne peut pas être expliquée par la physique classique.
+- La **décohérence** est la principale difficulté pratique : maintenir la superposition requiert un isolement extrême de l'environnement.
+- Les **portes quantiques** (X, Y, Z, H, CNOT, etc.) sont des matrices unitaires constituant les blocs de base des circuits quantiques.
+- L'**interférence quantique** permet à un algorithme bien conçu de supprimer les mauvaises réponses et d'amplifier la bonne.
+- La **puissance quantique** provient du parallélisme (superposition), de la dimension exponentielle de l'espace de Hilbert et de l'intrication.
+:::

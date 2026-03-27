@@ -1,0 +1,308 @@
+---
+title: "Bases du calcul quantique — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Niveau 1 — Fondamentaux
+```{quizdown}
+### Quelle condition doit satisfaire un état qubit valide ?
+
+> Pense au lien entre les amplitudes et les probabilités de mesure.
+
+1. [ ] Les amplitudes alpha et beta doivent etre des reels positifs
+1. [ ] La somme des amplitudes doit valoir 1
+1. [x] La somme des carres des modules des amplitudes doit valoir 1
+    > Correct : |alpha|^2 + |beta|^2 = 1 est la condition de normalisation. Elle garantit que les probabilites de mesure s'additionnent a 1.
+1. [ ] Les amplitudes doivent etre egales
+    > Incorrect : les amplitudes peuvent avoir n'importe quelles valeurs complexes du moment que la normalisation est respectee.
+```
+```{quizdown}
+### Parmi les etats suivants, lequel est un etat qubit INVALIDE ?
+
+> Verifie la condition de normalisation pour chacun.
+
+1. [ ] (1/racine(2))|0> + (1/racine(2))|1>
+1. [ ] (1/racine(3))|0> - i*(racine(2)/racine(3))|1>
+1. [x] i|0> - (1/2)|1>
+    > Correct : |i|^2 + |-1/2|^2 = 1 + 1/4 = 5/4 est different de 1. L'etat est invalide.
+1. [ ] |0>
+    > Incorrect : |1|^2 + |0|^2 = 1. Cet etat est valide, c'est l'etat de base classique |0>.
+```
+```{quizdown}
+### Que representent les amplitudes alpha et beta d'un qubit ?
+
+- [x] Des nombres complexes dont les carres des modules donnent les probabilites de mesure
+    > Correct : |alpha|^2 = Pr[mesurer |0>] et |beta|^2 = Pr[mesurer |1>] selon la regle de Born.
+- [ ] Des probabilites classiques comprises entre 0 et 1
+    > Incorrect : contrairement aux probabilites classiques, les amplitudes peuvent etre negatives ou complexes.
+- [x] Des quantites pouvant etre negatives ou complexes
+    > Correct : c'est precisement ce qui distingue le cadre quantique du cadre probabiliste classique.
+- [ ] Les valeurs directement observables du qubit
+    > Incorrect : les amplitudes ne sont pas directement observables. Seule la mesure donne un resultat classique.
+```
+```{quizdown}
+### En notation de Dirac, que represente le vecteur bra <psi| ?
+
+> Pense a la structure algebrique de la notation bra-ket.
+
+1. [ ] Un vecteur colonne identique au ket |psi>
+1. [x] Le conjugue hermitien de |psi>, c'est-a-dire un vecteur ligne dont les composantes sont les conjuguees complexes de celles de |psi>
+    > Correct : <psi| = (alpha_barre, beta_barre) est le vecteur ligne dual du ket |psi>.
+1. [ ] La mesure du qubit |psi>
+1. [ ] La probabilite associee a l'etat |psi>
+```
+```{quizdown}
+### Quelle est la valeur du produit scalaire <psi|theta> si |psi> = alpha|0> + beta|1> et |theta> = gamma|0> + delta|1> ?
+
+> Rappelle-toi de la formule du produit scalaire en notation de Dirac.
+
+1. [ ] alpha*gamma + beta*delta
+1. [x] alpha_barre*gamma + beta_barre*delta
+    > Correct : <psi|theta> = alpha_barre * gamma + beta_barre * delta. On conjugue les composantes du bra (vecteur de gauche).
+1. [ ] |alpha|^2 + |beta|^2
+1. [ ] gamma_barre*alpha + delta_barre*beta
+    > Incorrect : cette expression correspond a <theta|psi>, qui est le conjugue complexe de <psi|theta>.
+```
+```{quizdown}
+### Qu'est-ce que la decoherence quantique (Quantum Decoherence) ?
+
+> Pense a ce qui se passe quand un systeme quantique n'est pas parfaitement isole.
+
+1. [ ] La mesure volontaire d'un qubit pour obtenir un resultat classique
+1. [x] La perte de superposition d'un systeme quantique due a son interaction spontanee avec l'environnement
+    > Correct : la decoherence transforme les etats de superposition en etats classiques de maniere non controlee, ce qui est le principal obstacle technique des ordinateurs quantiques.
+1. [ ] L'intrication de deux qubits
+1. [ ] L'application d'une porte unitaire incorrecte
+```
+```{quizdown}
+### Quelle est la regle de Born (Born Rule) ?
+
+> C'est la regle fondamentale qui relie les amplitudes aux resultats de mesure.
+
+1. [ ] La probabilite de mesurer |0> vaut alpha
+1. [ ] La probabilite de mesurer |0> vaut |alpha|
+1. [x] La probabilite de mesurer |0> vaut |alpha|^2
+    > Correct : Pr[observer |0>] = |alpha|^2 et Pr[observer |1>] = |beta|^2. On prend le carre du module de l'amplitude.
+1. [ ] La probabilite de mesurer |0> vaut alpha^2
+    > Incorrect : si alpha est complexe, alpha^2 peut etre complexe, ce qui n'est pas une probabilite valide. Il faut prendre le carre du module.
+```
+
+---
+
+## Niveau 2 — Comprehension
+```{quizdown}
+### Quelles proprietes distinguent un qubit d'un bit classique ?
+
+> Pense aux differences fondamentales listees dans le cours.
+
+- [x] Un qubit peut etre dans une superposition des etats |0> et |1>
+    > Correct : c'est la propriete de superposition, absente en informatique classique.
+- [ ] Un qubit peut etre copie librement
+    > Incorrect : le theoreme de non-clonage interdit la copie d'un etat quantique inconnu.
+- [x] La mesure d'un qubit modifie son etat
+    > Correct : apres la mesure, l'etat s'effondre vers |0> ou |1> et l'etat anterieur est perdu.
+- [x] Un qubit ne peut pas etre efface
+    > Correct : les transformations unitaires sont reversibles, ce qui interdit l'effacement.
+- [ ] Un qubit est toujours dans l'etat |0> avant d'etre utilise
+```
+```{quizdown}
+### Que se passe-t-il si on mesure un qubit deux fois de suite ?
+
+> Reflechis a ce que devient l'etat apres la premiere mesure.
+
+1. [ ] Le second resultat peut differer du premier
+1. [x] Le second resultat est identique au premier avec probabilite 1
+    > Correct : apres la premiere mesure, l'etat s'effondre vers |0> ou |1>. Mesurer a nouveau un etat de base donne toujours le meme resultat. Mesurer deux fois equivaut a mesurer une fois.
+1. [ ] Le qubit retourne a sa superposition initiale
+1. [ ] La mesure est impossible a repeter
+```
+```{quizdown}
+### Pourquoi dit-on que la porte Hadamard H n'a pas d'equivalent classique ?
+
+> Pense a ce que H fait a un etat de base, puis a ce que fait H deux fois.
+
+1. [ ] Parce qu'elle agit sur deux qubits simultanement
+1. [ ] Parce qu'elle est irreversible
+1. [x] Parce qu'elle cree des superpositions et que H appliquee deux fois redonne l'identite, comportement impossible pour un outil de randomisation classique
+    > Correct : H transforme |0> en |+> (superposition) et H^2 = I. Appliquer une operation randomisante a un etat aleatoire donne un resultat deterministe — c'est l'interference quantique, sans equivalent classique.
+1. [ ] Parce qu'elle necessite plusieurs bits classiques pour etre simulee
+```
+```{quizdown}
+### Qu'est-ce qu'un etat intrigue (Entangled State) ?
+
+> Pense a la definition par opposition aux etats produits.
+
+1. [ ] Un etat ou les deux qubits sont dans l'etat |0>
+1. [ ] Un etat qui peut s'ecrire comme le produit tensoriel de deux etats individuels
+1. [x] Un etat de deux qubits ou plus qui ne peut PAS etre factorise en un produit d'etats individuels
+    > Correct : si l'etat conjoint ne s'ecrit pas |psi1> entangle |psi2>, les qubits sont intrinques et ne peuvent pas etre decrits independamment l'un de l'autre.
+1. [ ] Un etat ou les deux qubits ont la meme amplitude
+```
+```{quizdown}
+### Parmi les etats suivants, lequel est un etat intrique (Entangled State) ?
+
+> Essaie de factoriser chaque etat en un produit de deux etats individuels.
+
+1. [ ] (1/2)|00> + (1/2)|01> - (1/2)|10> - (1/2)|11>
+    > Incorrect : cet etat se factorise en (1/racine(2))(|0> - |1>) entangle (1/racine(2))(|0> + |1>). C'est un etat produit.
+1. [x] (1/racine(2))|00> + (1/racine(2))|11>
+    > Correct : c'est la paire de Bell. Il n'existe aucune paire (alpha, beta, alpha', beta') telle que le produit tensoriel donne cet etat. C'est un etat maximalement intrique.
+1. [ ] |01>
+1. [ ] (1/racine(2))|00> + (1/racine(2))|01>
+    > Incorrect : cet etat vaut |0> entangle (1/racine(2))(|0> + |1>). C'est un etat produit.
+```
+```{quizdown}
+### Quelle est la difference entre l'Experience A et l'Experience B avec la porte H ?
+
+> L'experience A = H, mesure, H, mesure. L'experience B = H, H, mesure.
+
+1. [ ] Les deux experiences donnent le meme resultat probabiliste
+1. [x] L'experience A donne 50/50 alors que l'experience B donne toujours |0>
+    > Correct : dans l'experience B, sans mesure intermediaire, les amplitudes des chemins s'additionnent (interference constructive vers |0> et destructive vers |1>). Dans l'experience A, la mesure intermediaire detruit la superposition.
+1. [ ] L'experience A donne toujours |0> et l'experience B donne 50/50
+1. [ ] Les deux experiences donnent toujours |0>
+```
+```{quizdown}
+### Qu'est-ce que le produit tensoriel A entangle B de deux matrices ?
+
+> Rappelle-toi de la structure bloc de cette operation.
+
+1. [ ] La multiplication matricielle classique de A par B
+1. [x] Une matrice de blocs ou chaque element de A est remplace par le produit de cet element par la matrice B entiere
+    > Correct : (A entangle B)_ij = a_ij * B. Si A est n x m et B est n' x m', le resultat est nn' x mm'.
+1. [ ] La somme element par element de A et B
+1. [ ] La transposee du produit de A et B
+```
+
+---
+
+## Niveau 3 — Maitrise
+```{quizdown}
+### Un programme applique la sequence H -> mesure intermediaire -> H sur un qubit initialement dans |0>. Quel est le resultat final ?
+
+> Pense a l'effet de la mesure intermediaire sur la superposition.
+
+1. [ ] Toujours |0>
+1. [x] |0> ou |1> avec probabilite egale (50/50)
+    > Correct : la mesure intermediaire effondre le qubit vers |0> ou |1> avec probabilite 1/2 chacun. La seconde porte H cree ensuite une nouvelle superposition, qui est mesuree aleatoirement. L'interference est detruite.
+1. [ ] Toujours |1>
+1. [ ] L'etat |+> non mesurable directement
+```
+```{quizdown}
+### Quels sont les avantages fondamentaux qui peuvent rendre un algorithme quantique plus rapide qu'un algorithme classique ?
+
+> Pense aux trois sources d'acceleration mentionnees dans le cours.
+
+- [x] Le parallelisme quantique : execution sur toutes les entrees en superposition simultanement
+    > Correct : c'est l'une des trois sources principales d'acceleration quantique.
+- [ ] La vitesse superieure des processeurs quantiques en GHz
+    > Incorrect : les processeurs quantiques sont en realite plus lents en frequence que les processeurs classiques. L'avantage est algorithmique, pas en frequence.
+- [x] La dimension exponentielle de l'espace de Hilbert : 2^n dimensions pour n qubits
+    > Correct : l'espace d'etats quantiques est exponentiellement plus grand que l'espace classique correspondant.
+- [x] La capacite d'intricage entre sous-systemes, generant des correlations non classiques
+    > Correct : l'intrication est la troisieme source d'acceleration, permettant des correlations impossibles classiquement.
+- [ ] La possibilite de copier les qubits a volonte pour paralleliser les calculs
+    > Incorrect : le theoreme de non-clonage interdit la copie des etats quantiques.
+```
+```{quizdown}
+### Pour l'algorithme de Shor (factorisation), quelle est la complexite quantique comparee a la complexite classique ?
+
+> Rappelle-toi du tableau de comparaison des algorithmes du cours.
+
+1. [ ] Classique : O(N) — Quantique : O(racine(N))
+1. [ ] Classique : O(N^2) — Quantique : O(N log N)
+1. [x] Classique : O(n * 2^n) — Quantique : O(n^2) pour N = 2^n
+    > Correct : la transformee de Fourier quantique sur n qubits (traitant N = 2^n nombres) necessite seulement n^2 etapes logiques contre n * 2^n classiquement. C'est une acceleration exponentielle.
+1. [ ] Classique : O(2^N) — Quantique : O(N)
+```
+```{quizdown}
+### Quelles affirmations sur la porte CNOT (Controlled NOT) sont correctes ?
+
+> Rappelle-toi du comportement de la porte selon l'etat du qubit de controle.
+
+- [x] Si le qubit de controle est dans l'etat |0>, le qubit cible est inchange
+    > Correct : CNOT applique la porte X au qubit cible uniquement si le qubit de controle est |1>.
+- [x] Si le qubit de controle est dans l'etat |1>, la porte X est appliquee au qubit cible
+    > Correct : c'est la definition de la porte CNOT (Controlled NOT).
+- [ ] La porte CNOT agit sur un seul qubit
+    > Incorrect : la porte CNOT agit sur deux qubits — un qubit de controle et un qubit cible.
+- [x] La porte CNOT est equivalente a la porte XOR classique sur les etats de base
+    > Correct : sur les etats de base, CNOT se comporte exactement comme XOR.
+- [ ] La porte CNOT est irreversible
+    > Incorrect : comme toutes les portes quantiques, CNOT est unitaire donc reversible. CNOT est d'ailleurs sa propre inverse.
+```
+```{quizdown}
+### Remets dans le bon ordre les etapes du flux de travail d'un calcul sur un ordinateur quantique distant.
+
+> Pense au cycle complet depuis le programme classique jusqu'au resultat.
+
+1. Soumission du job depuis l'ordinateur classique
+2. Mise en file d'attente (Job Queue)
+3. Traduction du circuit quantique en impulsions micro-ondes
+4. Execution sur le processeur quantique
+5. Retour des resultats de mesure a l'ordinateur classique
+```
+```{quizdown}
+### Qu'est-ce que le volume quantique (Quantum Volume) ?
+
+> Cette metrique ne se reduit pas au simple nombre de qubits.
+
+1. [ ] Le nombre total de qubits d'un processeur quantique
+1. [ ] La frequence d'horloge du processeur quantique en GHz
+1. [x] Une metrique globale qui depend a la fois du nombre de qubits et de la profondeur de circuit realisable, penalisee par les taux d'erreur
+    > Correct : log2(V_Q) = argmax_{n <= N} {min[n, d(n)]}. Un processeur avec peu de qubits mais tres fiable peut avoir un volume quantique superieur a un processeur avec plus de qubits mais bruite.
+1. [ ] Le nombre d'operations par seconde d'un processeur quantique
+```
+```{quizdown}
+### Remets dans le bon ordre les elements de la generation d'un etat de Bell a partir de deux qubits initialises dans |00>.
+
+> Pense au circuit utilisant une porte Hadamard et une porte CNOT.
+
+1. Initialisation des deux qubits dans l'etat |00>
+2. Application de la porte Hadamard H sur le premier qubit
+3. Application de la porte CNOT avec le premier qubit comme controle et le second comme cible
+4. Obtention de l'etat (|00> + |11>) / racine(2)
+```
+```{quizdown}
+### Un processeur A possede 50 qubits avec un taux d'erreur eleve, permettant une profondeur de circuit de 3. Un processeur B possede 10 qubits avec un faible taux d'erreur, permettant une profondeur de circuit de 15. Lequel a le plus grand volume quantique ?
+
+> Rappelle-toi de la formule : log2(V_Q) = argmax_{n <= N} {min[n, d(n)]}.
+
+1. [ ] Le processeur A, car il a plus de qubits
+    > Incorrect : le nombre de qubits seul ne determine pas le volume quantique.
+1. [x] Le processeur B, car min[n, d(n)] est maximise a une valeur plus grande
+    > Correct : pour B, min[10, 15] = 10, donc log2(V_Q) = 10. Pour A, min[3, 3] = 3 (la profondeur limite n), donc log2(V_Q) = 3. B est bien superieur.
+1. [ ] Les deux processeurs ont le meme volume quantique
+1. [ ] On ne peut pas comparer sans connaitre la frequence d'horloge
+```
+```{quizdown}
+### Quelles affirmations sur la mesure d'un qubit sont correctes ?
+
+> Pense aux consequences physiques et informationnelles de la mesure.
+
+- [x] La mesure donne un resultat classique : soit |0>, soit |1>
+    > Correct : la mesure projette l'etat quantique sur l'un des etats de base de facon probabiliste.
+- [x] Apres la mesure, l'etat precedent du qubit est definitivement perdu
+    > Correct : l'effondrement de la fonction d'onde est irreversible. L'information de superposition est detruite.
+- [ ] La mesure peut etre effectuee sans perturber le systeme quantique
+    > Incorrect : contrairement a la physique classique, la mesure quantique perturbe generalement le systeme en effondrant la superposition.
+- [ ] On peut connaitre les amplitudes alpha et beta en mesurant suffisamment de fois le meme qubit
+    > Incorrect : chaque mesure effondre l'etat. Pour estimer les amplitudes, il faudrait preparer de nombreuses copies identiques (tomographie d'etat), mais on ne peut pas copier un qubit inconnu.
+- [x] Les probabilites de mesure sont donnees par les carres des modules des amplitudes (regle de Born)
+    > Correct : Pr[|0>] = |alpha|^2 et Pr[|1>] = |beta|^2.
+```
+```{quizdown}
+### Pourquoi l'algorithme de Shor constitue-t-il une menace pour la cryptographie classique (RSA) ?
+
+> Pense a la complexite de factorisation et au fondement de la securite RSA.
+
+1. [ ] Parce qu'il permet de copier des cles cryptographiques
+1. [ ] Parce qu'il est plus rapide en temps absolu sur tout type de materiel
+1. [x] Parce qu'il factorise les grands entiers en temps polynomial, brisant la difficulte sur laquelle repose RSA
+    > Correct : la securite RSA repose sur la difficulte classique de factoriser de grands entiers (complexite exponentielle). Shor reduit cette complexite a O(n^2), rendant RSA vulnerable face a un ordinateur quantique suffisamment puissant.
+1. [ ] Parce qu'il resout le probleme de la recherche en O(racine(N))
+    > Incorrect : la recherche en O(racine(N)) est l'apport de l'algorithme de Grover, pas de Shor.
+```

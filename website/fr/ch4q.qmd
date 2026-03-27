@@ -1,0 +1,333 @@
+---
+title: "Applications des ordinateurs quantiques — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Niveau 1 — Fondamentaux
+
+```{quizdown}
+### Quel algorithme quantique permet de factoriser de grands entiers de manière exponentiellement plus rapide qu'un ordinateur classique ?
+
+> Pense au nom du chercheur qui l'a proposé en 1994.
+
+1. [ ] Algorithme de Grover
+    > Incorrect : Grover est associe a la recherche dans une base de donnees non triee.
+1. [x] Algorithme de Shor
+    > Correct : Peter Shor a propose en 1994 cet algorithme qui exploite la Transformee de Fourier Quantique pour trouver la periode d'une fonction modulaire.
+1. [ ] Algorithme VQE
+1. [ ] Algorithme BB84
+```
+
+```{quizdown}
+### Quel est l'avantage quantique apporte par l'algorithme de Grover pour la recherche dans une base non triee de N entrees ?
+
+> Compare la complexite classique O(N) a celle de Grover.
+
+1. [ ] Avantage exponentiel : O(log N)
+1. [ ] Aucun avantage : O(N)
+1. [x] Avantage quadratique : O(racine de N)
+    > Correct : Grover reduit la complexite de O(N) a O(racine de N), ce qui constitue un avantage quadratique.
+1. [ ] Avantage lineaire : O(N/2)
+```
+
+```{quizdown}
+### Que signifie le theoreme de non-clonage (no-cloning theorem) en informatique quantique ?
+
+> Ce theoreme impose une contrainte fondamentale sur la copie d'etats quantiques.
+
+1. [x] Il est impossible de dupliquer un qubit inconnu
+    > Correct : on ne peut pas creer une copie parfaite d'un etat quantique arbitraire inconnu, ce qui distingue fondamentalement l'information quantique de l'information classique.
+1. [ ] Il est impossible de mesurer un qubit
+1. [ ] Il est impossible de teleporter un qubit
+1. [ ] Il est impossible d'intriques deux qubits
+```
+
+```{quizdown}
+### Quelle est la paire de Bell utilisee comme ressource partagee dans la teleportation quantique ?
+
+> C'est un etat maximalement intrique de deux qubits.
+
+1. [ ] (1/racine(2))(|01> + |10>)
+1. [x] (1/racine(2))(|00> + |11>)
+    > Correct : la paire de Bell Phi+ est (1/racine(2))(|00> + |11>), obtenue par une porte Hadamard suivie d'une porte CNOT.
+1. [ ] |00>
+1. [ ] (1/2)(|00> + |01> + |10> + |11>)
+```
+
+```{quizdown}
+### Combien de bits classiques Alice doit-elle envoyer a Bob lors d'une teleportation quantique ?
+
+> Ce nombre correspond aux resultats possibles de la mesure d'Alice sur ses deux qubits.
+
+1. [ ] 0
+1. [ ] 1
+1. [x] 2
+    > Correct : Alice mesure ses deux qubits et obtient l'un des quatre resultats possibles (00, 01, 10, 11). Elle transmet ces 2 bits a Bob pour qu'il puisse corriger son qubit.
+1. [ ] 3
+```
+
+```{quizdown}
+### Le protocole BB84 a ete propose par :
+
+> Cherche les initiales du nom du protocole.
+
+1. [x] Charles Bennett et Gilles Brassard en 1984
+    > Correct : BB84 vient des initiales Bennett-Brassard et de l'annee 1984.
+1. [ ] Peter Shor en 1994
+1. [ ] Lov Grover en 1997
+1. [ ] Albert Einstein et Niels Bohr en 1935
+```
+
+```{quizdown}
+### Qu'est-ce que le masque jetable (one-time pad) garantit, que la cryptographie RSA ne garantit pas ?
+
+> Pense a la difference entre securite computationnelle et securite theorique.
+
+1. [ ] Une chiffrement plus rapide
+1. [ ] Une resistance aux attaques par force brute
+1. [x] Une securite theorique de l'information (information-theoretically secure)
+    > Correct : le masque jetable est le seul systeme offrant une securite absolue prouvee mathematiquement, independamment de la puissance de calcul de l'adversaire. RSA repose sur la difficulte computationnelle de factoriser.
+1. [ ] Une cle plus courte que le message
+```
+
+```{quizdown}
+### Quels phenomenes quantiques constituent la base du fonctionnement des ordinateurs quantiques ?
+
+> Ces proprietes n'ont pas d'equivalent classique.
+
+- [x] Superposition
+    > Correct : la superposition permet a un qubit d'etre dans une combinaison lineaire de |0> et |1> simultanement.
+- [x] Intrication (Entanglement)
+    > Correct : l'intrication cree des correlations non classiques entre qubits.
+- [x] Interference
+    > Correct : l'interference permet d'amplifier les bonnes reponses et d'annuler les mauvaises.
+- [ ] Diffraction
+    > Incorrect : la diffraction est un phenomene optique classique, pas specifique a l'informatique quantique.
+```
+
+---
+
+## Niveau 2 — Comprehension
+
+```{quizdown}
+### Pourquoi la teleportation quantique ne permet-elle pas de communiquer plus vite que la lumiere ?
+
+> Reflechis a ce dont Bob a besoin pour finaliser la teleportation.
+
+1. [ ] Parce que les qubits se deplacent physiquement
+1. [ ] Parce que l'intrication prend du temps a se former
+1. [x] Parce qu'elle necessite un canal classique pour transmettre le resultat de la mesure d'Alice
+    > Correct : sans les 2 bits classiques d'Alice, Bob ne peut pas savoir quelle correction appliquer. Ce canal classique est limite par la vitesse de la lumiere.
+1. [ ] Parce que la mesure detruit toujours l'information
+```
+
+```{quizdown}
+### Dans le codage superdense, Alice veut envoyer les bits "10". Quelle porte applique-t-elle a son qubit ?
+
+> Consulte la table des quatre etats de Bell.
+
+1. [ ] Porte X (NOT)
+1. [ ] Porte I (identite)
+1. [x] Porte Z
+    > Correct : pour envoyer "10", Alice applique Z, transformant la paire de Bell en (1/racine(2))(|00> - |11>).
+1. [ ] Porte XZ
+```
+
+```{quizdown}
+### Quelle propriete quantique garantit la securite du protocole BB84 contre l'espionnage ?
+
+> Un espion doit interagir avec le canal quantique pour obtenir de l'information.
+
+1. [ ] La superposition permet a Alice de cacher ses bits
+1. [ ] L'intrication entre Alice et Bob empeche l'ecoute
+1. [x] Toute mesure d'un qubit par un espion perturbe inevitablement son etat, ce qui est detectable statistiquement
+    > Correct : c'est une consequence directe du postulat de mesure et du theoreme de non-clonage. Eve ne peut pas mesurer sans perturber, et cette perturbation se traduit par un taux d'erreur anormal detecte lors de la comparaison publique.
+1. [ ] Les bases de mesure sont gardees secretes indefiniment
+```
+
+```{quizdown}
+### Dans la simulation quantique, pourquoi est-il exponentiel de simuler N particules quantiques sur un ordinateur classique ?
+
+> Pense au nombre d'equations couplees a resoudre.
+
+1. [ ] Parce que les calculs quantiques sont intrinsequement plus lents
+1. [ ] Parce qu'il faut N processeurs pour N particules
+1. [x] Parce que l'equation de Schrodinger requiert de resoudre 2 puissance N equations couplees
+    > Correct : l'espace de Hilbert d'un systeme de N qubits est de dimension 2^N. Pour N=50, cela depasse 10^15 equations, hors de portee des supercalculateurs classiques.
+1. [ ] Parce que les ordinateurs classiques ne peuvent pas traiter des nombres complexes
+```
+
+```{quizdown}
+### Quelle est la relation entre la teleportation quantique et le codage superdense ?
+
+> Ces deux protocoles utilisent les memes ressources de facon inverse.
+
+1. [ ] Ce sont deux noms du meme protocole
+1. [x] Ils sont duaux : la teleportation echange 1 qubit contre 2 bits classiques, le codage superdense echange 2 bits classiques contre 1 qubit, tous deux grace a une paire intrique partagee
+    > Correct : cette dualite illustre la complementarite entre information classique et quantique lorsque l'intrication est disponible comme ressource.
+1. [ ] Le codage superdense est une version amelioree de la teleportation
+1. [ ] Ils n'ont aucun lien, hormis l'utilisation de qubits
+```
+
+```{quizdown}
+### Dans BB84, Eve tente une attaque "intercepter, copier, retransmettre" : elle garde une copie du qubit et attend qu'Alice et Bob revelent leurs bases pour le mesurer ensuite. Pourquoi cette attaque echoue-t-elle ?
+
+> Pense au theoreme fondamental sur la copie des etats quantiques.
+
+1. [ ] Parce qu'Alice change de base trop rapidement
+1. [ ] Parce que Bob detecte le retard de transmission
+1. [x] Parce que copier un qubit inconnu est physiquement impossible selon le theoreme de non-clonage
+    > Correct : Eve ne peut pas garder une copie parfaite du qubit d'Alice. Le theoreme de non-clonage interdit toute duplication d'un etat quantique arbitraire inconnu.
+1. [ ] Parce que le canal classique est chiffre
+```
+
+```{quizdown}
+### Quelle operation Bob applique-t-il apres avoir recu le qubit d'Alice dans le codage superdense, pour retrouver les 2 bits envoyes ?
+
+> Le but est de "desentrever" la paire de Bell et de revenir a la base computationnelle.
+
+1. [ ] Une porte Hadamard uniquement
+1. [ ] Une mesure directe en base computationnelle
+1. [x] Une porte CNOT suivie d'une porte Hadamard, puis une mesure en base computationnelle
+    > Correct : ce circuit inverse exactement la creation d'une paire de Bell (CNOT + H). Il transforme chacun des 4 etats de Bell en l'un des 4 etats de la base computationnelle |00>, |01>, |10>, |11>.
+1. [ ] Une porte CNOT uniquement
+```
+
+---
+
+## Niveau 3 — Maitrise
+
+```{quizdown}
+### Alice mesure ses deux qubits et obtient le resultat "10" lors d'une teleportation quantique. Dans quel etat se trouve le qubit de Bob avant correction ?
+
+> Consulte la table des corrections : le premier bit b1 conditionne l'application de Z, le second b0 conditionne X.
+
+1. [ ] alpha|1> + beta|0>
+1. [ ] alpha|1> - beta|0>
+1. [x] alpha|0> - beta|1>
+    > Correct : pour la mesure 10, b1=1 et b0=0. Seule la porte Z est necessaire. L'etat de Bob est alpha|0> - beta|1>, et apres application de Z on retrouve alpha|0> + beta|1>.
+1. [ ] alpha|0> + beta|1>
+    > Incorrect : c'est l'etat final apres correction, pas l'etat avant correction pour la mesure 10.
+```
+
+```{quizdown}
+### Remets les etapes du protocole de teleportation quantique dans le bon ordre.
+
+> Commence par la creation de la ressource partagee, termine par la correction de Bob.
+
+1. Creer la paire de Bell entre deux qubits
+2. Distribuer un qubit intrique a Bob et donner l'autre a Alice avec le qubit message
+3. Alice applique CNOT (qubit message en controle, son qubit en cible)
+4. Alice applique la porte Hadamard sur le qubit message
+5. Alice mesure ses deux qubits
+6. Alice envoie les 2 bits classiques a Bob
+7. Bob applique les corrections Z et/ou X selon les bits recus
+```
+
+```{quizdown}
+### Remets les etapes du protocole BB84 dans le bon ordre.
+
+> Commence par la preparation des qubits, termine par la construction de la cle.
+
+1. Alice encode chaque bit dans une base choisie aleatoirement et envoie le qubit a Bob
+2. Bob mesure chaque qubit dans une base choisie aleatoirement
+3. Bob annonce publiquement sa base de mesure (pas son resultat)
+4. Alice confirme publiquement si Bob a utilise la bonne base
+5. Alice et Bob conservent uniquement les bits pour lesquels les bases coincidaient
+6. Alice et Bob comparent un sous-ensemble de bits pour verifier l'absence d'espion
+```
+
+```{quizdown}
+### Un ingenieur veut transmettre 2 bits classiques a son collegue a distance. Ils partagent une paire de Bell. Quelle est la methode la plus efficace utilisant cette ressource quantique ?
+
+> Pense au protocole qui tire parti de l'intrication pour doubler la capacite du canal.
+
+1. [ ] Teleportation quantique
+    > Incorrect : la teleportation sert a transmettre un qubit en utilisant 2 bits classiques, pas a transmettre 2 bits classiques.
+1. [x] Codage superdense (Superdense Coding)
+    > Correct : le codage superdense permet d'encoder 2 bits classiques dans l'envoi d'un seul qubit, en exploitant la paire intrique partagee.
+1. [ ] Protocole BB84
+    > Incorrect : BB84 sert a generer une cle secrete, pas a transmettre des donnees.
+1. [ ] Algorithme de Shor
+```
+
+```{quizdown}
+### Quels sont les defis majeurs qui limitent actuellement les ordinateurs quantiques ?
+
+> Plusieurs obstacles techniques coexistent.
+
+- [x] La decoherence (Decoherence) : sensibilite a l'environnement exterieur
+    > Correct : toute interaction avec l'environnement detruit la superposition quantique. Les qubits doivent etre isoles a des temperatures proches du zero absolu.
+- [x] La correction d'erreurs quantiques qui necessite de nombreux qubits physiques par qubit logique
+    > Correct : un qubit logique fiable necessite parfois des centaines de qubits physiques redondants pour la correction d'erreurs.
+- [x] La difficulte d'implementation physique des operations quantiques avec haute fidelite
+    > Correct : les portes quantiques reelles ont une fidelite inferieure a 100%, les erreurs s'accumulent.
+- [ ] L'impossibilite de programmer les ordinateurs quantiques avec des langages classiques
+    > Incorrect : des langages et SDK classiques (Qiskit, Cirq...) permettent de programmer les ordinateurs quantiques.
+```
+
+```{quizdown}
+### Dans le contexte post-quantique, pourquoi le chiffrement RSA-2048 est-il considere comme menace a moyen terme ?
+
+> Relie la puissance de l'algorithme de Shor a la taille des cles RSA.
+
+1. [ ] Parce que les ordinateurs classiques deviennent suffisamment rapides pour casser RSA
+1. [x] Parce qu'un ordinateur quantique disposant d'environ 8000 qubits logiques pourrait executer l'algorithme de Shor pour factoriser une cle RSA-2048 en temps polynomial
+    > Correct : Shor reduit la factorisation de complexite exponentielle (classique) a polynomiale (quantique). RSA-2048 repose entierement sur la difficulte classique de la factorisation.
+1. [ ] Parce que BB84 peut casser RSA directement
+1. [ ] Parce que la loi de Moore rend les cles de 2048 bits insuffisantes
+```
+
+```{quizdown}
+### Le VQE (Variational Quantum Eigensolver) est qualifie d'algorithme "hybride". Que signifie ce terme dans ce contexte ?
+
+> Pense aux deux composantes du processus d'optimisation dans VQE.
+
+1. [ ] Il utilise deux types de qubits differents
+1. [ ] Il combine deux protocoles de communication quantique
+1. [x] Il alterne entre une partie quantique (preparation de l'ansatz et mesure de la valeur d'esperance) et une partie classique (optimisation des parametres)
+    > Correct : le qualificatif "hybride" designe cette boucle alternee entre le processeur quantique (preparation + mesure) et l'optimiseur classique (mise a jour des parametres theta). Cela permet de tirer parti des deux types de ressources.
+1. [ ] Il peut s'executer indifferemment sur un ordinateur classique ou quantique
+```
+
+```{quizdown}
+### Dans BB84, Eve intercepte chaque qubit, le mesure dans une base aleatoire, puis retransmet un nouveau qubit a Bob dans l'etat qu'elle a mesure. Quel est le taux d'erreur introduit sur les bits que Alice et Bob conservent dans leur cle ?
+
+> Eve choisit la bonne base avec probabilite 1/2. Quand elle se trompe, elle retransmet dans le mauvais etat.
+
+1. [ ] 0% : Eve ne laisse aucune trace
+1. [ ] 50% : tous les bits sont affectes
+1. [x] 25% : la moitie des fois Eve se trompe de base, et dans ce cas Bob obtient un resultat errone avec probabilite 1/2
+    > Correct : Eve choisit la bonne base avec P=1/2. Quand elle se trompe (P=1/2), Bob recoit un qubit dans le mauvais etat et obtient un resultat errone avec P=1/2. Le taux d'erreur global sur les bits conserves est donc 1/2 x 1/2 = 1/4 = 25%.
+1. [ ] 12.5%
+```
+
+```{quizdown}
+### Quelle propriete du principe variationnel justifie l'approche du VQE pour trouver l'energie fondamentale d'un systeme ?
+
+> Ce principe etablit une borne sur la valeur d'esperance du Hamiltonien.
+
+1. [ ] La valeur d'esperance de H est toujours nulle pour tout etat
+1. [x] Pour tout etat |psi>, la valeur d'esperance <psi|H|psi> est superieure ou egale a l'energie fondamentale E0, donc minimiser cette quantite permet de s'en approcher
+    > Correct : le principe variationnel garantit que l'energie fondamentale est un minimum global de <H>. En cherchant a minimiser <psi(theta)|H|psi(theta)>, on converge vers E0 si l'ansatz est suffisamment expressif.
+1. [ ] L'energie fondamentale est toujours accessible par un circuit quantique a profondeur 1
+1. [ ] La valeur propre minimale correspond toujours a l'etat |0...0>
+```
+
+```{quizdown}
+### Quelles applications constituent des usages reconnus des reseaux quantiques (Quantum Networks) ?
+
+> Un reseau quantique permet l'echange de qubits intrigues entre sites distants.
+
+- [x] Generation de cles secretes par cryptographie quantique
+    > Correct : la QKD distribue a grande echelle est une application directe des reseaux quantiques.
+- [x] Generation de nombres aleatoires certifies
+    > Correct : l'intrication quantique permet de certifier le caractere veritablement aleatoire des nombres generes.
+- [x] Calcul quantique distribue a grande echelle
+    > Correct : relier plusieurs processeurs quantiques en reseau permet d'atteindre une puissance de calcul inaccessible a un seul processeur.
+- [ ] Acceleration des reseaux de neurones classiques
+    > Incorrect : cela releve du domaine de l'apprentissage automatique quantique, pas des reseaux quantiques de communication.
+```

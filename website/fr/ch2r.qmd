@@ -1,0 +1,218 @@
+---
+title: "Bases du calcul quantique — Révision"
+---
+
+## Qubit & Superposition
+
+**Bit classique (Classical Bit)** : 2 états $|0\rangle$ ou $|1\rangle$ uniquement.
+
+**Qubit (Quantum Bit)** : superposition $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ avec $|\alpha|^2 + |\beta|^2 = 1$.
+
+::: {.callout-important title="Condition de normalisation"}
+$|\alpha|^2 + |\beta|^2 = 1$ — obligatoire pour tout état qubit valide.
+:::
+
+**Amplitudes** $\alpha, \beta \in \mathbb{C}$ : peuvent être négatives ou complexes (≠ probabilités classiques).
+
+**État invalide** : $i|0\rangle - \frac{1}{2}|1\rangle$ car $1 + \frac{1}{4} \neq 1$.
+
+---
+
+## Notation de Dirac (Bra-Ket)
+
+| Notation | Signification |
+|---|---|
+| $\|ψ\rangle$ (ket) | vecteur colonne = état quantique |
+| $\langle ψ\|$ (bra) | vecteur ligne = conjugué hermitien |
+| $\langle ψ \| θ\rangle$ | produit scalaire |
+
+**Produit scalaire :** $\langle\psi|\theta\rangle = \bar{\alpha}\gamma + \bar{\beta}\delta$
+
+::: {.callout-warning title="Attention"}
+$\langle\theta|\psi\rangle = \overline{\langle\psi|\theta\rangle}$ — l'ordre compte !
+:::
+
+---
+
+## Bit classique vs Qubit
+
+| Propriété | Bit classique | Qubit |
+|---|---|---|
+| États | $\{0,1\}$ | toute superposition |
+| Mesure | complète, non destructive | partielle, probabiliste |
+| Après mesure | inchangé | effondrement (collapse) |
+| Copie | ✅ | ❌ (non-clonage) |
+| Effacement | ✅ | ❌ (réversibilité) |
+
+---
+
+## Mesure & Règle de Born (Born Rule)
+
+$$\Pr[|0\rangle] = |\alpha|^2 \qquad \Pr[|1\rangle] = |\beta|^2$$
+
+- Après mesure → état **s'effondre** vers $|0\rangle$ ou $|1\rangle$.
+- État précédent **perdu**.
+- Mesurer deux fois = mesurer une fois.
+- **Décoherence (Decoherence)** : perte de superposition par interaction avec l'environnement → principal défi technologique.
+
+---
+
+## Systèmes composites & Intrication
+
+**Produit tensoriel (Tensor Product)** : état joint de 2 qubits = $|\psi_1\rangle \otimes |\psi_2\rangle$ → vecteur 4D dans $\mathbb{C}^2 \otimes \mathbb{C}^2$.
+
+**Base à 2 qubits :** $|00\rangle,\ |01\rangle,\ |10\rangle,\ |11\rangle$
+
+**État produit (Product State)** : se factorise en $|\psi_1\rangle \otimes |\psi_2\rangle$.
+
+**État intriqué (Entangled State)** : ne se factorise PAS.
+
+::: {.callout-note title="Paire de Bell / EPR"}
+$$|\Phi\rangle = \frac{1}{\sqrt{2}}\big(|00\rangle + |11\rangle\big) \quad \text{— état intriqué canonique}$$
+:::
+
+**Propriétés de l'intrication :**
+
+- Corrélation instantanée à distance (« spooky actions at a distance »)
+- Mesure d'un qubit → effondrement immédiat de l'autre
+- Phénomène **uniquement quantique**
+
+---
+
+## Portes quantiques (Quantum Gates) — Rappel clé
+
+**Règle :** toute porte $U$ est **unitaire** : $UU^\dagger = I$ → réversible.
+
+Une porte sur $n$ qubits = matrice $2^n \times 2^n$.
+
+### Portes à 1 qubit
+
+| Porte | Matrice | Action |
+|---|---|---|
+| Pauli-X | $\begin{bmatrix}0&1\\1&0\end{bmatrix}$ | $\|0\rangle\leftrightarrow\|1\rangle$ (NOT) |
+| Pauli-Y | $\begin{bmatrix}0&-i\\i&0\end{bmatrix}$ | $\|0\rangle\to i\|1\rangle,\ \|1\rangle\to -i\|0\rangle$ |
+| Pauli-Z | $\begin{bmatrix}1&0\\0&-1\end{bmatrix}$ | $\|1\rangle\to -\|1\rangle$ |
+| Hadamard H | $\frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$ | crée superposition |
+| Phase S | $\begin{bmatrix}1&0\\0&i\end{bmatrix}$ | $S^2=Z$ |
+| T ($\pi/8$) | $\begin{bmatrix}1&0\\0&e^{i\pi/4}\end{bmatrix}$ | déphasage |
+
+### Porte CNOT (2 qubits)
+
+- Contrôle = 0 → cible inchangée
+- Contrôle = 1 → cible inversée (XOR classique)
+
+$$CNOT : |10\rangle\to|11\rangle,\quad |11\rangle\to|10\rangle$$
+
+---
+
+## La porte Hadamard H — Points critiques
+
+::: {.callout-important title="À retenir absolument"}
+- $H|0\rangle = |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$
+- $H|1\rangle = |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$
+- $H^2 = I$ (sa propre inverse)
+- **Pas d'équivalent classique**
+:::
+
+**États $|+\rangle$ et $|-\rangle$ :**
+
+$$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} \qquad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}$$
+
+**Distinguer $|+\rangle$ de $|-\rangle$ :** appliquer $H$ puis mesurer → $|0\rangle$ ou $|1\rangle$ avec certitude.
+
+---
+
+## Interférence quantique (Quantum Interference)
+
+| Expérience | Circuit | Résultat |
+|---|---|---|
+| A | $\|0\rangle \to H \to$ mesure $\to H \to$ mesure | 50/50 aléatoire |
+| B | $\|0\rangle \to H \to H \to$ mesure | toujours $\|0\rangle$ |
+
+**Explication :** sans mesure intermédiaire, les amplitudes des chemins **s'additionnent** :
+
+- Vers $|0\rangle$ : $\frac{1}{2} + \frac{1}{2} = 1$ → **interférence constructive**
+- Vers $|1\rangle$ : $\frac{1}{2} - \frac{1}{2} = 0$ → **interférence destructive**
+
+::: {.callout-warning title="Piège fréquent"}
+Une mesure intermédiaire **détruit la superposition** et empêche l'interférence → résultat 50/50 au lieu de déterministe.
+:::
+
+---
+
+## Générer l'intrication par circuit
+
+Circuit : porte H sur qubit 1, puis CNOT (ctrl=1, cible=2)
+
+$$|00\rangle \xrightarrow{H\otimes I} \frac{1}{\sqrt{2}}(|00\rangle+|10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$$
+
+→ **État de Bell** (Bell State) = état maximalement intriqué.
+
+---
+
+## Avantages quantiques
+
+**Puissance exponentielle :**
+
+- $n$ qubits → espace de $2^n$ dimensions
+- Ajouter 1 qubit = doubler la puissance (vs $+32$ bits en classique)
+
+**Trois sources d'accélération :**
+
+1. **Parallélisme quantique** (Quantum Parallelism) : toutes les entrées simultanément
+2. **Espace de Hilbert exponentiel** : $2^n$ vs $n$ classique
+3. **Intrication** (Entanglement) : corrélations non classiques
+
+---
+
+## Algorithmes quantiques — Complexités clés
+
+| Problème | Classique | Quantique |
+|---|---|---|
+| Transformée de Fourier / Shor | $n \cdot 2^n$ | $n^2$ |
+| Recherche (Grover) | $N$ | $\sqrt{N}$ |
+| Simulation quantique | $c^N$ bits | $kn$ qubits |
+
+::: {.callout-note title="Implications cryptographie"}
+Shor factorise en temps polynomial → **menace RSA** → nécessité de cryptographie post-quantique (Post-Quantum Cryptography).
+:::
+
+---
+
+## Volume quantique (Quantum Volume)
+
+$$\log_2 V_Q = \underset{n \leq N}{\arg\max}\{\min[n,\ d(n)]\}$$
+
+- Dépend du nombre de qubits $N$ **ET** de la profondeur de circuit $d$
+- Peu de qubits + faible erreur > beaucoup de qubits + bruité
+- Métrique globale de qualité d'un QPU
+
+---
+
+## Récapitulatif : relations entre concepts
+```{mermaid}
+flowchart TD
+    Q["Qubit\nα|0⟩ + β|1⟩"] --> S["Superposition"]
+    Q --> M["Mesure → Born Rule\nPr = |α|², |β|²"]
+    S --> I["Interférence\n(constructive/destructive)"]
+    S --> E["Intrication\n(Entanglement)"]
+    E --> B["Paire de Bell\n(|00⟩+|11⟩)/√2"]
+    Q --> G["Portes unitaires\nX, Y, Z, H, CNOT"]
+    G --> C["Circuits quantiques"]
+    C --> A["Algorithmes\nShor, Grover"]
+    M --> D["Décoherence\n→ perte superposition"]
+```
+
+---
+
+## Pièges & Points critiques
+
+::: {.callout-warning title="Ne pas confondre"}
+
+- **Amplitude** ≠ probabilité (peut être négative/complexe)
+- **Mesure** ≠ lecture passive → modifie l'état
+- **Qubit** ≠ bit aléatoire (l'interférence prouve la différence)
+- **Nombre de qubits** ≠ puissance totale (voir volume quantique)
+- $H$ deux fois = identité ($H^2 = I$), mais H puis mesure puis H ≠ identité
+
+:::

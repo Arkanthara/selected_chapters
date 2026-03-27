@@ -1,0 +1,141 @@
+---
+title: "Introduction à l'informatique quantique — Révision"
+---
+
+## Définitions essentielles
+
+| Terme | Définition |
+|---|---|
+| Informatique quantique (Quantum Computing) | Calcul fondé sur la mécanique quantique, pas la physique classique |
+| Mécanique quantique (Quantum Mechanics) | Description de la nature au niveau subatomique |
+| Qubit | Unité quantique d'information (≠ bit classique) |
+| Suprématie quantique (Quantum Supremacy) | Démonstration qu'un QC accomplit une tâche infaisable classiquement |
+| NISQ | Noisy Intermediate-Scale Quantum — ère actuelle (~100 qubits, bruités) |
+| Correction d'erreurs quantique (Quantum Error Correction) | Technique pour gérer bruit et erreurs dans les systèmes quantiques |
+| Tolérance aux pannes (Fault-Tolerant QC) | QC capable de corriger erreurs plus vite qu'elles ne se produisent |
+
+---
+
+## Effets quantiques exploités
+
+- **Superposition** (Superposition) — un qubit dans plusieurs états simultanément
+- **Enchevêtrement** (Entanglement) — corrélations non classiques entre qubits
+- **Interférence** (Interference) — amplification des bonnes réponses, suppression des mauvaises
+
+::: {.callout-warning title="Piège fréquent"}
+Un QC **ne teste pas toutes les solutions en parallèle** — il exploite l'interférence de manière ciblée.
+:::
+
+---
+
+## L'exponentialité de la mécanique quantique
+
+- État de $N$ particules $\Rightarrow$ vecteur dans $\mathbb{C}^{2^N}$
+- Pour $N \approx 300$ : $2^N \gg 10^{82}$ (> atomes de l'univers)
+- Simulation classique exacte = **impossible** en pratique
+
+$$|\psi\rangle \in \mathbb{C}^{2^N}$$
+
+---
+
+## Algorithmes quantiques clés
+
+| Algorithme | Type d'accélération | Problème cible |
+|---|---|---|
+| **Shor** | Exponentielle | Factorisation entière → brise RSA |
+| **Grover** | Quadratique ($O(N) \to O(\sqrt{N})$) | Recherche non structurée |
+| **VQE** | Variationnel (NISQ) | Simulation chimie/physique |
+| **QAOA** | Hybride classique-quantique | Optimisation combinatoire |
+| **HHL** | Exponentielle (conditions) | Systèmes linéaires |
+
+---
+
+## Ce que les QC peuvent / ne peuvent PAS faire
+
+| Affirmation | Verdict |
+|---|---|
+| Résoudre en testant toutes les possibilités | ❌ FAUX |
+| Résoudre TSP rapidement | ❌ FAUX (probablement) |
+| Factoriser efficacement (algo de Shor) | ✅ OUI |
+| Résoudre tous les problèmes NP difficiles | ❌ FAUX |
+| Avantage sur certains problèmes structurés | ✅ OUI |
+| Simuler la physique/chimie quantique | ✅ OUI (avantage probable) |
+| Résoudre le changement climatique | ⚠️ INCERTAIN |
+
+---
+
+## Chronologie historique
+
+- **~1930** — 1ère révolution quantique : fondements de la QM
+- **1981** — Feynman : *"Can probabilistic computers simulate QM?"* → **NON**
+- **1985** — Deutsch : 1er problème résolu plus vite sur QC (facteur constant)
+- **1992** — Bernstein-Vazirani, Simon : avantage **super-polynomial**
+- **1994** — **Shor** : factorisation → menace RSA et Diffie-Hellman
+- **~2017** — Passage de ~10 à ~200 qubits, début ère NISQ
+- **2019** — Google : suprématie quantique (Sycamore, 53 qubits)
+- **2021** — Académie des Sciences de Chine : reproduction classique via tensor networks (512 GPU, 15h)
+- **~2030+** — Horizon : informatique quantique tolérante aux pannes
+
+---
+
+## Types de qubits physiques
+
+- Courant persistant dans circuit supraconducteur ← **Google, IBM**
+- Polarisation de photon
+- Spin électronique (champ magnétique)
+- État interne d'atome (ions piégés)
+
+---
+
+## Stratégies classiques pour contourner la complexité QM
+
+| Stratégie | Exemples |
+|---|---|
+| Approximations analytiques | Bethe ansatz, Feynman diagrams, perturbation theory, mean field |
+| Simulations numériques | DFT, Quantum Monte Carlo |
+| Systèmes favorables | Systèmes quasi-classiques, faiblement corrélés |
+
+---
+
+## Relations entre concepts
+```{mermaid}
+flowchart TD
+    QM["Mécanique Quantique"] --> SP["Superposition"]
+    QM --> ENT["Enchevêtrement"]
+    QM --> INT["Interférence"]
+    SP & ENT & INT --> QC["Ordinateur Quantique"]
+    QC --> SHOR["Algo de Shor\n(factorisation)"]
+    QC --> GROVER["Algo de Grover\n(recherche)"]
+    QC --> SIM["Simulation quantique"]
+    QC --> NISQ["Dispositifs NISQ\n(VQE, QAOA)"]
+```
+
+---
+
+## Points critiques à retenir
+
+::: {.callout-important title="Impact cryptographique"}
+Shor brise **RSA** et **Diffie-Hellman** → sécurité Internet menacée dès qu'un QC fault-tolerant existe.
+:::
+
+::: {.callout-note title="Quantum-inspired"}
+Penser quantiquement a une valeur **même classiquement** — ex. algorithme de Tang (2018) inspiré de Kerenidis-Prakash, atteignant $\mathcal{O}(\text{poly}\log(mn))$ classiquement.
+:::
+
+::: {.callout-warning title="NISQ ≠ avantage garanti"}
+Les dispositifs NISQ actuels ne peuvent pas faire tourner Shor. L'avantage pratique sur des problèmes réels reste à démontrer.
+:::
+
+---
+
+## Disciplines connexes
+
+**Mathématiques** — algèbres d'opérateurs, théorie des nombres, géométrie algébrique
+
+**Physique** — matière condensée, gravité quantique, théorie des cordes
+
+**Informatique** — complexité, cryptographie, ML quantique, optimisation
+
+**Chimie** — simulations moléculaires, encodage fermionique
+
+**Ingénierie** — réseaux quantiques, distribution de clés (QKD)

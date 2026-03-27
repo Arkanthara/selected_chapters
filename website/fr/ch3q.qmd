@@ -1,0 +1,283 @@
+---
+title: "Propriétés fondamentales de l'informatique quantique — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Niveau 1 — Fondamentaux
+
+```{quizdown}
+### Que se passe-t-il lorsqu'on mesure un qubit dans l'état |1> dans la base computationnelle ?
+
+> Rappelle-toi de la décomposition |1> = 0|0> + 1|1> et de la règle de Born.
+
+1. [ ] On obtient 0 avec probabilité 1
+1. [ ] On obtient 0 ou 1 avec probabilité 1/2 chacun
+1. [x] On obtient 1 avec probabilité 1
+    > Correct : |1> = 0|0> + 1|1>, donc p(mesurer 1) = |1|^2 = 1. Il n'y a aucune quanticité, c'est de l'information classique.
+1. [ ] Le résultat est indéterminable
+```
+
+```{quizdown}
+### Quelle est la condition nécessaire et suffisante pour distinguer parfaitement deux états quantiques par une mesure ?
+
+> Pense à la relation géométrique entre les deux vecteurs d'état.
+
+1. [ ] Les états doivent avoir la même norme
+1. [ ] Les états doivent être dans la base computationnelle
+1. [x] Les états doivent être orthogonaux
+    > Correct : deux états sont distinguables parfaitement si et seulement si leur produit scalaire est nul, c'est-à-dire s'ils sont orthogonaux.
+1. [ ] Les états doivent avoir des amplitudes réelles
+```
+
+```{quizdown}
+### Qu'est-ce que la borne de Helstrom-Holevo (Helstrom-Holevo Bound) exprime ?
+
+> Cette borne relie l'angle entre deux états à une probabilité maximale.
+
+1. [ ] Le nombre maximal de qubits mesurables simultanément
+1. [x] La probabilité maximale de distinguer correctement deux états non orthogonaux
+    > Correct : si |<psi_a|psi_b>| = cos(theta), alors p_succes <= (1 + sin(theta)) / 2. C'est la limite fondamentale de la discrimination d'états.
+1. [ ] La fidélité minimale entre deux états intriqués
+1. [ ] La vitesse maximale de transmission d'information quantique
+```
+
+```{quizdown}
+### Que stipule le principe de non-clonage (No-Cloning Theorem) ?
+
+> Pense à ce qu'un opérateur unitaire de clonage devrait satisfaire pour tout état arbitraire.
+
+1. [ ] Il est impossible de mesurer un état quantique sans le modifier
+1. [ ] Il est impossible de transmettre un état quantique par intrication
+1. [ ] Il est impossible de copier un qubit dans l'état |0>
+1. [x] Il est impossible de copier un état quantique arbitraire par une transformation unitaire
+    > Correct : aucun unitaire U ne peut satisfaire U(|psi>|0>) = |psi>|psi> pour tout |psi>. La preuve découle de la linéarité de la mécanique quantique.
+```
+
+```{quizdown}
+### Que dit le principe de non-signalisation (No-Signalling Principle) ?
+
+> Pense au scénario d'Alice et Bob partageant une paire de Bell.
+
+1. [ ] Les qubits intriqués ne peuvent pas être séparés physiquement
+1. [ ] La mesure d'un qubit détruit toujours l'intrication
+1. [x] L'intrication quantique ne permet pas de transmettre de l'information plus vite que la lumière
+    > Correct : même si Alice effondre l'état de Bob par sa mesure, les statistiques de Bob restent identiques. Il ne peut pas détecter la mesure d'Alice sans signal classique.
+1. [ ] Deux qubits intriqués ne peuvent jamais avoir des états différents après mesure
+```
+
+```{quizdown}
+### Quel est le dual temporel du principe de non-clonage ?
+
+> La réversibilité du calcul quantique crée une symétrie entre création et destruction de copies.
+
+1. [ ] Le principe de non-signalisation
+1. [ ] Le théorème de Bell
+1. [x] Le principe de non-suppression (No-Deleting Theorem)
+    > Correct : le non-clonage interdit de passer de 1 à 2 copies, le non-suppression interdit de passer de 2 à 1 copie. Ils sont reliés par la réversibilité unitaire.
+1. [ ] La borne de Helstrom-Holevo
+```
+
+## Niveau 2 — Comprehension
+
+```{quizdown}
+### Lesquels de ces énoncés sont corrects concernant la distinction d'états quantiques ?
+
+> Pense aux deux cas : états orthogonaux vs non orthogonaux, et à ce que la borne garantit.
+
+- [x] Deux états orthogonaux peuvent toujours être distingués parfaitement
+    > Correct : il suffit d'appliquer U-dagger pour aligner les états sur la base computationnelle, puis de mesurer.
+- [ ] Deux états non orthogonaux ne peuvent jamais être distingués
+    > Incorrect : on peut obtenir de l'information partielle. La borne de Helstrom-Holevo donne la probabilité de succès maximale, qui est toujours strictement supérieure à 1/2.
+- [x] La borne de Helstrom-Holevo est toujours atteinte pour une base de mesure optimale
+    > Correct : la borne est exacte et atteinte en mesurant dans la base des vecteurs propres de |psi_a><psi_a| - |psi_b><psi_b|.
+- [ ] Mesurer dans la base computationnelle est toujours la stratégie optimale
+    > Incorrect : la stratégie optimale dépend des états à distinguer. La base computationnelle est rarement optimale pour des états non orthogonaux génériques.
+```
+
+```{quizdown}
+### Lorsqu'on tente de distinguer |0> et |+> en mesurant dans la base computationnelle, quelle affirmation est vraie ?
+
+> Analyse les probabilités de chaque outcome pour chacun des deux états.
+
+1. [ ] Si on mesure 0, on est certain que l'état est |0>
+1. [x] Si on mesure 1, on est certain que l'état est |+>
+    > Correct : |0> ne donne jamais l'outcome 1. Donc si on mesure 1, l'état était necessairement |+>. En revanche, outcome 0 ne permet pas de conclure avec certitude.
+1. [ ] La probabilité de succès est de 85%
+1. [ ] Cette stratégie est optimale
+```
+
+```{quizdown}
+### Dans la preuve du principe de non-signalisation pour une paire de Bell, pourquoi Bob ne peut-il pas savoir si Alice a mesuré ?
+
+> Compare les statistiques de Bob dans les deux cas.
+
+1. [ ] Parce que Bob est trop loin d'Alice
+1. [ ] Parce que la mesure d'Alice détruit l'intrication avant que Bob mesure
+1. [x] Parce que les probabilités de mesure de Bob sont identiques que Alice ait mesuré ou non
+    > Correct : dans les deux cas, Bob mesure 0 ou 1 avec probabilité 1/2. En l'absence de communication classique, les statistiques sont indiscernables.
+1. [ ] Parce que Bob n'a pas accès à la base de mesure d'Alice
+```
+
+```{quizdown}
+### Pourquoi le calcul quantique est-il dit reversible (Reversible Computing), sauf pour la mesure ?
+
+> Pense à la nature des transformations utilisées entre les mesures.
+
+1. [ ] Parce que les qubits peuvent revenir spontanément à leur état initial
+1. [ ] Parce qu'on peut toujours défaire une mesure quantique
+1. [x] Parce que les transformations entre mesures sont unitaires, donc inversibles
+    > Correct : tout unitaire U admet un inverse U-dagger. La mesure est la seule opération irréversible en calcul quantique.
+1. [ ] Parce que l'information quantique est toujours conservée, même lors des mesures
+```
+
+```{quizdown}
+### Laquelle de ces situations illustre correctement la stratégie de discrimination asymetrique (Unambiguous Discrimination) ?
+
+> Dans cette stratégie, on aligne un vecteur de mesure avec l'un des états.
+
+1. [ ] On mesure dans la base qui maximise la probabilité de succès moyenne
+1. [ ] On répète la mesure un grand nombre de fois pour réduire l'erreur
+1. [x] On aligne un vecteur de base de mesure avec un des états, obtenant parfois une certitude absolue sur l'autre
+    > Correct : si |psi_a> est orthogonal à un vecteur de la base de mesure, obtenir l'outcome correspondant certifie que l'état etait |psi_b>. En contrepartie, la probabilité de succès globale est plus faible.
+1. [ ] On utilise un qubit ancillaire pour améliorer la discrimination
+```
+
+```{quizdown}
+### Lesquelles de ces conséquences découleraient d'un hypothetique theoreme de clonage ?
+
+> Enumère ce que permettrait un opérateur de clonage universel.
+
+- [x] La violation du principe de non-signalisation
+    > Correct : avec le clonage, Alice pourrait envoyer de l'information supraluminale, ce qui violerait la relativité et le non-signalisation.
+- [x] La compression d'une quantité infinie d'information classique dans un seul qubit
+    > Correct : on pourrait encoder un long message dans un état de qubit, cloner à l'infini, puis reconstruire le message par tomographie quantique.
+- [ ] La possibilité de distinguer parfaitement tout état quantique
+    > Incorrect : même avec le clonage, la borne de Helstrom-Holevo s'appliquerait toujours sur chaque copie individuelle.
+- [x] La correction d'erreurs quantique deviendrait triviale
+    > Correct : si on pouvait cloner, la redondance classique suffirait pour corriger les erreurs, comme en calcul classique.
+```
+
+## Niveau 3 — Maitrise
+
+```{quizdown}
+### Deux états |psi_a> et |psi_b> vérifient |<psi_a|psi_b>| = cos(30 degrés). Quelle est la probabilite maximale de les distinguer correctement ?
+
+> Applique directement la borne de Helstrom-Holevo : p = (1 + sin(theta)) / 2.
+
+1. [ ] 0.50
+1. [ ] 0.75
+1. [x] 0.75
+    > Correct : |<psi_a|psi_b>| = cos(30°), donc theta = 30°, sin(30°) = 0.5, et p = (1 + 0.5)/2 = 0.75. Attention, l'angle theta est bien arccos(|<psi_a|psi_b>|).
+1. [ ] 1.00
+```
+
+```{quizdown}
+### Dans la preuve du theoreme de non-clonage, on arrive a l'equation <psi|phi> = (<psi|phi>)^2. Quelle conclusion en tire-t-on ?
+
+> Cette equation polynomiale n'a que deux solutions réelles dans [0,1].
+
+1. [ ] Tout produit scalaire est egal a 0
+1. [ ] La transformation unitaire n'existe que pour les etats de la base computationnelle
+1. [x] Le clonage n'est possible que si les etats sont identiques ou orthogonaux
+    > Correct : x = x^2 implique x = 0 (etats orthogonaux) ou x = 1 (etats identiques). Pour tout autre paire d'etats, la contradiction est établie.
+1. [ ] La transformation unitaire doit etre appliquée deux fois
+```
+
+```{quizdown}
+### Un physicien affirme : "J'ai construit une machine qui clone parfaitement l'etat |+> et l'etat |->." Est-ce compatible avec le theoreme de non-clonage ?
+
+> Le theoreme de non-clonage parle d'etats ARBITRAIRES. Verifie si |+> et |-> sont orthogonaux.
+
+1. [x] Oui, car |+> et |-> sont orthogonaux, et on peut cloner des etats orthogonaux
+    > Correct : <+|-> = 0, donc |+> et |-> sont orthogonaux. Le theoreme de non-clonage interdit le clonage d'etats ARBITRAIRES, pas le clonage restreint à une paire fixe d'etats orthogonaux (qui revient à copier un bit classique).
+1. [ ] Non, le theoreme de non-clonage est absolu et interdit tout type de clonage
+1. [ ] Oui, mais uniquement si la machine utilise une mesure intermédiaire
+1. [ ] Non, car |+> et |-> ne sont pas dans la base computationnelle
+```
+
+```{quizdown}
+### Remets les etapes de la methode pour distinguer deux etats orthogonaux dans le bon ordre.
+
+> Pense a la transformation qui aligne les etats sur la base computationnelle avant de mesurer.
+
+1. Identifier les etats |psi_0> et |psi_1> a distinguer
+2. Construire la matrice unitaire U dont les colonnes sont |psi_0> et |psi_1>
+3. Appliquer la transformation U-dagger a l'etat inconnu
+4. Mesurer dans la base computationnelle
+5. Lire le resultat : 0 pour |psi_0>, 1 pour |psi_1>
+```
+
+```{quizdown}
+### Alice et Bob partagent une paire de Bell. Alice effectue une rotation unitaire sur son qubit puis le mesure. Bob peut-il detecter que Alice a effectue une operation ?
+
+> Rappelle le principe de non-signalisation et sa généralisation.
+
+1. [ ] Oui, car la rotation unitaire modifie les correlations d'intrication
+1. [ ] Oui, mais seulement si Bob mesure dans la meme base qu'Alice
+1. [x] Non, car le principe de non-signalisation s'applique a toute transformation unitaire locale suivie d'une mesure
+    > Correct : le non-signalisation est general. Quelle que soit la base ou la transformation unitaire locale qu'Alice applique, les statistiques de Bob restent inchangées.
+1. [ ] Cela depend de la rotation effectuee par Alice
+```
+
+```{quizdown}
+### Remets les etapes de la verification de l'equation de completude pour une mesure dans la base (|psi_0>, |psi_1>) dans le bon ordre.
+
+> La completude garantit que les probabilites de tous les outcomes somment a 1.
+
+1. Ecrire les operateurs de mesure M_{|psi_0>} = |psi_0><psi_0| et M_{|psi_1>} = |psi_1><psi_1|
+2. Calculer M_m-dagger * M_m pour chaque m en utilisant que les projecteurs sont auto-adjoints
+3. Sommer les termes : |psi_0><psi_0| + |psi_1><psi_1|
+4. Exprimer la somme comme U(|0><0| + |1><1|)U-dagger
+5. Conclure que la somme vaut U*I*U-dagger = I
+```
+
+```{quizdown}
+### Quelle est la probabilite de succes lorsqu'on tente de distinguer |0> et |+> dans la base computationnelle, et quelle est la borne theorique maximale ?
+
+> Calcule p_succes = 1 - (3/4)(1/3) pour la base computationnelle, et applique la borne de Helstrom-Holevo pour le maximum.
+
+1. [ ] 50% en pratique, 75% au maximum
+1. [ ] 75% en pratique, 75% au maximum (la base computationnelle est optimale)
+1. [ ] 85% en pratique, 100% au maximum
+1. [x] 75% en pratique, 85% au maximum theorique
+    > Correct : la base computationnelle donne 3/4 = 75%. La borne de Helstrom-Holevo donne (1 + sin(arccos(1/sqrt(2))))/2 = (1 + 1/sqrt(2))/2 ≈ 85%. La base computationnelle n'est pas optimale.
+```
+
+```{quizdown}
+### Laquelle de ces affirmations sur le principe de non-suppression (No-Deleting Theorem) est correcte ?
+
+> Pense a la relation entre non-clonage, non-suppression et réversibilité.
+
+1. [ ] Le non-suppression est une consequence directe du non-signalisation
+1. [ ] Le non-suppression interdit toute mesure destructive d'un qubit
+1. [x] Le non-suppression decoule de la reversibilite unitaire appliquee au non-clonage
+    > Correct : si U(|psi>|0>) = |psi>|psi> est impossible, alors par reversibilite, son inverse U-tilde(|psi>|psi>) = |psi>|0> est aussi impossible. C'est le non-suppression.
+1. [ ] Le non-suppression implique que l'on ne peut jamais reinitialiser un qubit
+```
+
+```{quizdown}
+### Un algorithme quantique tente d'améliorer la correction d'erreurs en copiant les qubits défectueux. Pourquoi cette approche est-elle fondamentalement impossible ?
+
+> Pense au theoreme qui interdit cette operation et a sa preuve.
+
+1. [ ] Parce que les erreurs quantiques sont continues et non discretes
+1. [x] Parce que le theoreme de non-clonage interdit de copier des etats quantiques arbitraires
+    > Correct : un qubit en erreur est dans un etat quantique arbitraire (superposition). Le non-clonage interdit de le copier. C'est pourquoi la correction d'erreurs quantique requiert des codes specificement conçus (comme les codes de stabilisateur).
+1. [ ] Parce que les qubits defectueux ne peuvent pas interagir avec d'autres qubits
+1. [ ] Parce que la mesure requise pour détecter l'erreur effondre l'etat
+```
+
+```{quizdown}
+### Soit deux etats |psi_a> et |psi_b> avec theta = 0 (etats identiques). Que prédit la borne de Helstrom-Holevo et quelle en est l'interpretation ?
+
+> Substitue theta = 0 dans la formule et interprete le resultat.
+
+1. [ ] p_succes = 1, car des etats identiques sont triviaux a identifier
+1. [x] p_succes = 1/2, ce qui signifie qu'on ne peut pas faire mieux que deviner au hasard
+    > Correct : sin(0) = 0, donc p = (1+0)/2 = 1/2. Intuitivement, si les deux etats sont identiques, toute mesure produit exactement les memes statistiques : on ne peut pas les distinguer du tout.
+1. [ ] La borne ne s'applique pas dans ce cas limite
+1. [ ] p_succes = 0, car les deux hypotheses sont indiscernables
+```
