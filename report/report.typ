@@ -420,142 +420,6 @@ So we want to construct a set of operators ${E_m}$ such that:
 - Each operator $E_m$ is positive
 - $sum_m E_m = I$
 
-From the calculation of @eq-1, we see that the result is $rho = I/2$.
-We also see that each $rho_i$ is strictly positive.
-Indeed, since the exponential function and the square root are non-negative, this means that each $rho_i$ is composed of non-negative values.
-The $rho_i$ are therefore positive.
-
-So according to @eq-1, we can construct:
-
-$
-     I/2 & = rho \
-  <==> I & = 2 rho \
-  <==> I & = 2 sum_i p_i rho_i \
-  <==> I & = 1/2 rho_1 + 1/2 rho_2 + 1/2 rho_3 + 1/2 rho_4 \
-$
-
-So we can define the POVM as ${E_i = 1/2 rho_i = 1/2 |X_i chevron.r chevron X_i|}_(i in {1, 2, 3, 4})$.
-
-As used in page 534 of Quantum Computation and Quantum Information: 10th Anniversary Edition @Nielsen_Chuang_2010,
-the joint distribution $p(x, y)$ satisfies $p(x, y) = p(x)p(y|x) = p(x)tr(rho_x E_y)$.
-
-So we can construct the table of joint distribution $p(x, y)$ as follow:
-
-#table(
-  columns: 5,
-  rows: 5,
-  $x \\ y$, $1$, $2$, $3$, $4$,
-  $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $p_1 tr(rho_1 E_3)$, $p_1 tr(rho_1 E_4)$,
-  $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $p_2 tr(rho_2 E_3)$, $p_2 tr(rho_2 E_4)$,
-  $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $p_3 tr(rho_3 E_3)$, $p_3 tr(rho_3 E_4)$,
-  $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $p_4 tr(rho_4 E_3)$, $p_4 tr(rho_4 E_4)$,
-)
-
-As $E_i = 1/2 rho_i$, we have:
-
-#set math.equation(numbering: none)
-
-#align(
-  left,
-  $
-    1/4 tr(1/2 rho_1 rho_1) & = 1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
-                            & = 1/4 dot 1/2 \
-                            & = 1/8 \
-    1/4 tr(1/2 rho_1 rho_2) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
-                            & = 1/4 dot 1/2 dot 1/3 \
-                            & = 1/24 \
-    1/4 tr(1/2 rho_1 rho_3) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
-                            & = 1/4 dot 1/2 dot 1/3 \
-                            & = 1/24 \
-    1/4 tr(1/2 rho_1 rho_4) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-                            & = 1/4 dot 1/2 dot 1/3 \
-                            & = 1/24
-  $,
-)
-
-#align(
-  left,
-
-  $
-    1/4 tr(1/2 rho_2 rho_2)
-    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
-    &= 1/4 tr(1/18 mat(3, 3 sqrt(2); 3 sqrt(2), 6)) \
-    &= 1/4 (3/18 + 6/18) \
-    &= 1/4 * 1/2 \
-    &= 1/8 \
-    1/4 tr(1/2 rho_2 rho_3)
-    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
-    &= 1/4 tr(1/18 mat(1 + 2e^(2 pi i \/ 3), sqrt(2)(1 + 2e^(-2 pi i \/ 3)); sqrt(2)(1 + 2e^(2 pi i \/ 3)), 4 + 2e^(-2 pi i \/ 3))) \
-    &= 1/4 * 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
-    &= 1/4 * 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
-    &= 1/4 * 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
-    &= 1/4 * 1/18 dot (5 - 2) \
-    &= 1/24 \
-    1/4 tr(1/2 rho_2 rho_4)
-    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-    &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
-    &= 1/4 * 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
-    &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
-    &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
-    &= 1/4 * 1/18 * 3 \
-    &= 1/24
-  $,
-)
-
-#align(
-  left,
-  $
-    1/4 tr(1/2 rho_3 rho_3)
-    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
-    &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-2 pi i \/ 3); 3 sqrt(2) e^(2 pi i \/ 3), 6)) \
-    &= 1/4 (3/18 + 6/18) \
-    &= 1/4 * 1/2 \
-    &= 1/8 \
-    1/4 tr(1/2 rho_3 rho_4)
-    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-    &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
-    &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
-    &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
-    &= 1/4 * 1/18 * 3 \
-    &= 1/24 \
-    1/4 tr(1/2 rho_4 rho_4)
-    &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
-    &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-4 pi i \/ 3); 3 sqrt(2) e^(4 pi i \/ 3), 6)) \
-    &= 1/4 (3/18 + 6/18) \
-    &= 1/4 * 1/2 \
-    &= 1/8
-  $,
-)
-
-So the table of joint distribution $p(x, y)$ is:
-#pagebreak()
-#align(center, figure(
-  table(
-    columns: 6,
-    rows: 6,
-    align: center,
-    inset: 10pt,
-    $x \\ y$, $1$, $2$, $3$, $4$, $p(y)$,
-    $1$, $1/8$, $1/24$, $1/24$, $1/24$, $1/4$,
-    $2$, $1/24$, $1/8$, $1/24$, $1/24$, $1/4$,
-    $3$, $1/24$, $1/24$, $1/8$, $1/24$, $1/4$,
-    $4$, $1/24$, $1/24$, $1/24$, $1/8$, $1/4$,
-    $p(x)$, $1/4$, $1/4$, $1/4$, $1/4$, $1$,
-  ),
-  caption: "Joint probability distribution table",
-)) <joint-distribution>
-
-So we have:
-
-- $H(X) = - sum_x p(x) log_2(p(x)) = - 4 dot 1/4 log_2(1/4) = 2$
-- $H(Y) = - sum_y p(y) log_2(p(y)) = - 4 dot 1/4 log_2(1/4) = 2$
-- $H(X, Y) = - sum_(x, y) p(x, y) log_2(p(x, y)) = - 4 dot 1/8 log_2(1/8) - 12 dot 1/24 log_2(1/24) = 3.792$
-
-So the mutual information is:
-$
-  H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 2 - 3.792 = 0.208
-$
-
 We want to check now if we can find a set of ${E_m}$ that are build from an orthogonal basis and what are results with this set.
 
 Indeed, the orthogonal basis maximize the recognition of quantum states while minimizing overlaps.
@@ -566,8 +430,9 @@ We choose the basis ${|0 chevron.r, |1 chevron.r}$ which is a simple orthogonal 
 
 Then, we can construct the POVM from this basis like follows:
 
-- $E_1 = |0 chevron.r chevron 0| = mat(1, 0; 0, 0)$
-- $E_2 = |1 chevron.r chevron 1| = mat(0, 0; 0, 1)$
+$ E_1 &= |0 chevron.r chevron 0| = mat(1, 0; 0, 0) \
+E_2 &= |1 chevron.r chevron 1| = mat(0, 0; 0, 1)
+$
 
 Basically, we have $E_1 + E_2 = I$.
 
@@ -579,27 +444,26 @@ So we can compute the joint-distribution $p(x, y)$:
 
 #pagebreak()
 
-#align(
-  center,
+
   $
-    #table(
-      columns: 4,
+    text("   ")#table(
+      columns: (2cm, 6cm, 6cm, 2cm),
       rows: 6,
       align: center,
       inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(y)$,
+      $x \\ y$, $1$, $2$, $p(x)$,
       $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $?$,
       $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $?$,
       $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $?$,
       $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $?$,
-      $p(x)$, $?$, $?$, $1$,
+      $p(y)$, $?$, $?$, $1$,
     ) \
     = #table(
-      columns: 4,
+      columns: (2cm, 6cm, 6cm, 2cm),
       rows: 6,
       align: center,
       inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(y)$,
+      $x \\ y$, $1$, $2$, $p(x)$,
       $1$, $1/4 tr(mat(1, 0; 0, 0) mat(1, 0; 0, 0))$, $1/4 tr(mat(1, 0; 0, 0) mat(0, 0; 0, 1))$, $?$,
       $2$,
       $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, 0; 0, 0))$,
@@ -616,14 +480,14 @@ So we can compute the joint-distribution $p(x, y)$:
       $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(0, 0; 0, 1))$,
       $?$,
 
-      $p(x)$, $?$, $?$, $1$,
+      $p(y)$, $?$, $?$, $1$,
     ) \
     = #table(
-      columns: 4,
+      columns: (2cm, 6cm, 6cm, 2cm),
       rows: 6,
       align: center,
       inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(y)$,
+      $x \\ y$, $1$, $2$, $p(x)$,
       $1$, $1/4$, $0$, $1/4$,
       $2$, $1/12$, $1/6$, $1/4$,
 
@@ -631,10 +495,9 @@ So we can compute the joint-distribution $p(x, y)$:
 
       $4$, $1/12$, $1/6$, $1/4$,
 
-      $p(x)$, $1/2$, $1/2$, $1$,
+      $p(y)$, $1/2$, $1/2$, $1$,
     ) \
-  $,
-)
+  $
 
 So we have:
 
@@ -655,56 +518,114 @@ Instead, we will try to use the basis $|- chevron.r, |+ chevron.r$ which is sens
 
 So we can construct the POVM from this basis like follows:
 
-- $E_1 = |+ chevron.r chevron +| = 1/sqrt(2)[ |0 chevron.r + |1 chevron.r] 1/sqrt(2)[chevron 0| + chevron 1| ] = 1/2 mat(1, 1; 1, 1)$
-- $E_2 = |- chevron.r chevron -| = 1/sqrt(2)[ |0 chevron.r - |1 chevron.r] 1/sqrt(2)[chevron 0| - chevron 1| ] = 1/2 mat(1, -1; -1, 1)$
+$
+E_1 &= |+ chevron.r chevron +| = 1/sqrt(2)[ |0 chevron.r + |1 chevron.r] 1/sqrt(2)[chevron 0| + chevron 1| ] = 1/2 mat(1, 1; 1, 1) \
+E_2 &= |- chevron.r chevron -| = 1/sqrt(2)[ |0 chevron.r - |1 chevron.r] 1/sqrt(2)[chevron 0| - chevron 1| ] = 1/2 mat(1, -1; -1, 1)
+$
 
 So we have $E_1 + E_2 = I$.
 
-Then, we can compute the joint-distribution $p(x, y)$:
-
-#align(
-  center,
-  $
-    #table(
-      columns: 4,
+Then, we can compute the joint- distribution $p(x, y)$:
+$
+    text("   ")#table(
+      columns: (2cm, 6cm, 6cm, 2cm),
       rows: 6,
       align: center,
       inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(y)$,
+      $x \\ y$, $1$, $2$, $p(x)$,
       $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $?$,
       $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $?$,
       $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $?$,
       $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $?$,
-      $p(x)$, $?$, $?$, $1$,
+      $p(y)$, $?$, $?$, $1$,
     ) \
-    = #table(
-      columns: 4,
+
+   = #table(
+      columns: (2cm, 6cm, 6cm, 2cm),
       rows: 6,
       align: center,
       inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(y)$,
-      $1$, $1/4 tr(mat(1, 0; 0, 0) mat(1, 1; 1, 1))$, $1/4 tr(mat(1, 0; 0, 0) mat(1, -1; -1, 1))$, $?$,
+      $x \\ y$, $1$, $2$, $p(x)$,
+      $1$, $1/4 tr(1/2mat(1, 0; 0, 0) mat(1, 1; 1, 1))$, $1/4 tr(1/2mat(1, 0; 0, 0) mat(1, -1; -1, 1))$, $?$,
       $2$,
-      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, 1; 1, 1))$,
-      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, -1; -1, 1))$,
+      $1/4 tr(1/6 mat(1, sqrt(2); sqrt(2), 2) mat(1, 1; 1, 1))$,
+      $1/4 tr(1/6 mat(1, sqrt(2); sqrt(2), 2) mat(1, -1; -1, 1))$,
       $?$,
 
       $3$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
+      $1/4 tr(1/6 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
+      $1/4 tr(1/6 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
       $?$,
 
       $4$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
+      $1/4 tr(1/6 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
+      $1/4 tr(1/6 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
       $?$,
 
-      $p(x)$, $?$, $?$, $1$,
+      $p(y)$, $?$, $?$, $1$,
+    )
+    $
+
+    $= #table(
+      columns: (2cm, 6cm, 6cm, 2cm),
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(x)$,
+      $1$, $1/8 tr(mat(1, 1; 0, 0))$, $1/8 tr(mat(1, -1; 0, 0))$, $?$,
+      $2$, $1/24 tr(mat(1 + sqrt(2), 1 + sqrt(2); 2 + sqrt(2), 2 + sqrt(2)))$, $1/24 tr(mat(1 - sqrt(2), sqrt(2) - 1; sqrt(2) - 2, 2 - sqrt(2)))$, $?$,
+      $3$, $1/24 tr(mat(1 + sqrt(2) e^(-2 pi i \/ 3), 1 + sqrt(2) e^(-2 pi i \/ 3); 2 + sqrt(2) e^(2 pi i \/ 3), 2 + sqrt(2) e^( 2 pi i \/ 3)))$, $1/24 tr(mat(1 - sqrt(2) e^(-2 pi i \/ 3), sqrt(2) e^(-2 pi i \/ 3) - 1; sqrt(2) e^(2 pi i \/ 3) - 2, 2 - sqrt(2) e^(2 pi i \/ 3)))$, $?$,
+      $4$, $1/24 tr(mat(1 + sqrt(2) e^(-4 pi i \/ 3), 1 + sqrt(2) e^(-4 pi i \/ 3); 2 + sqrt(2) e^(4 pi i \/ 3), 2 + sqrt(2) e^(4 pi i \/ 3)))$, $1/24 tr(mat(1 - sqrt(2) e^(-4 pi i \/ 3), sqrt(2) e^(-4 pi i \/ 3) - 1; sqrt(2) e^(4 pi i \/ 3) - 2, 2 - sqrt(2) e^(4 pi i \/ 3)))$, $?$,
+      $p(y)$, $?$, $?$, $1$,
+    ) \
+    = #table(
+      columns: (2cm, 6cm, 6cm, 2cm),
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(x)$,
+      $1$, $1/8$, $1/8$, $1/4$,
+      $2$, $1/24 (3 + 2 sqrt(2))$, $1/24 (3 - 2 sqrt(2))$, $?$,
+      $3$, $1/24 (3 + 2 sqrt(2))$, $1/24 (3 - 2 sqrt(2))$, $?$,
+      $4$, $1/24 (3 + 2 sqrt(2))$, $1/24 (3 - 2 sqrt(2))$, $?$,
+      $p(y)$, $?$, $?$, $1$,
+      ) \
+    = #table(
+      columns: (2cm, 6cm, 6cm, 2cm),
+      rows: 6,
+      align: center,
+      inset: 10pt,
+      $x \\ y$, $1$, $2$, $p(x)$,
+      $1$, $1/8$, $1/8$, $1/4$,
+      $2$, $1/8 + sqrt(2)/12$, $1/8 - sqrt(2)/12$, $1/4$,
+      $3$, $1/8 + sqrt(2)/12$, $1/8 - sqrt(2)/12$, $1/4$,
+      $4$, $1/8 + sqrt(2)/12$, $1/8 - sqrt(2)/12$, $1/4$,
+      $p(y)$, $1/2 + sqrt(2)/6$, $1/2 - sqrt(2)/6$, $1$,
     ) \
   $
-)
 
+So we have:
 
+$H(X) & = - sum_x p(x) log_2(p(x)) \
+          & = - 4 dot 1/4 log_2(1/4) \
+          & = 2$
+
+$H(Y) & = - sum_y p(y) log_2(p(y)) \
+          & = - (1/2 + sqrt(2)/6) log_2(1/2 + sqrt(2)/6) - (1/2 - sqrt(2)/6) log_2(1/2 - sqrt(2)/6) \
+          & = 0.833$
+
+$H(X, Y) & = - sum_(x, y) p(x, y) log_2(p(x, y)) \
+            & = - 2 dot 1/8 log_2(1/8) - 3 dot (1/8 + sqrt(2)/12) log_2(1/8 + sqrt(2)/12) - 3 dot (1/8 - sqrt(2)/12) log_2(1/8 - sqrt(2)/12) \
+            & = 2.390$
+
+So the mutual information is:
+$
+  H(X: Y) & = H(X) + H(Y) - H(X, Y) \
+          & = 2 + 0.833 - 2.390 \
+          & = 0.443
+$
+
+So we can see that the mutual information don't reach 1 bit, but the constructed POVM gives better results than the known POVM that gives a mutual information of 0.415 bits.
 
 
 // So Alice's system has no information at all, so the knowledge of Alice's system indicate nothing on Bob's system.
@@ -716,3 +637,139 @@ Then, we can compute the joint-distribution $p(x, y)$:
 #text(weight: "bold")[
   To archive all results (solutions, report together with your code, etc.) and submit them using Quantum computing course moodle.
 ]
+
+// From the calculation of @eq-1, we see that the result is $rho = I/2$.
+// We also see that each $rho_i$ is strictly positive.
+// Indeed, since the exponential function and the square root are non-negative, this means that each $rho_i$ is composed of non-negative values.
+// The $rho_i$ are therefore positive.
+
+// So according to @eq-1, we can construct:
+
+// $
+//      I/2 & = rho \
+//   <==> I & = 2 rho \
+//   <==> I & = 2 sum_i p_i rho_i \
+//   <==> I & = 1/2 rho_1 + 1/2 rho_2 + 1/2 rho_3 + 1/2 rho_4 \
+// $
+
+// So we can define the POVM as ${E_i = 1/2 rho_i = 1/2 |X_i chevron.r chevron X_i|}_(i in {1, 2, 3, 4})$.
+
+// As used in page 534 of Quantum Computation and Quantum Information: 10th Anniversary Edition @Nielsen_Chuang_2010,
+// the joint distribution $p(x, y)$ satisfies $p(x, y) = p(x)p(y|x) = p(x)tr(rho_x E_y)$.
+
+// So we can construct the table of joint distribution $p(x, y)$ as follow:
+
+// #table(
+//   columns: 5,
+//   rows: 5,
+//   $x \\ y$, $1$, $2$, $3$, $4$,
+//   $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $p_1 tr(rho_1 E_3)$, $p_1 tr(rho_1 E_4)$,
+//   $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $p_2 tr(rho_2 E_3)$, $p_2 tr(rho_2 E_4)$,
+//   $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $p_3 tr(rho_3 E_3)$, $p_3 tr(rho_3 E_4)$,
+//   $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $p_4 tr(rho_4 E_3)$, $p_4 tr(rho_4 E_4)$,
+// )
+
+// As $E_i = 1/2 rho_i$, we have:
+
+// #set math.equation(numbering: none)
+
+// #align(
+//   left,
+//   $
+//     1/4 tr(1/2 rho_1 rho_1) & = 1/4 tr(1/2 mat(1, 0; 0, 0) mat(1, 0; 0, 0)) \
+//                             & = 1/4 dot 1/2 \
+//                             & = 1/8 \
+//     1/4 tr(1/2 rho_1 rho_2) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
+//                             & = 1/4 dot 1/2 dot 1/3 \
+//                             & = 1/24 \
+//     1/4 tr(1/2 rho_1 rho_3) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+//                             & = 1/4 dot 1/2 dot 1/3 \
+//                             & = 1/24 \
+//     1/4 tr(1/2 rho_1 rho_4) & = 1/4 tr(1/2 mat(1, 0; 0, 0)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+//                             & = 1/4 dot 1/2 dot 1/3 \
+//                             & = 1/24
+//   $,
+// )
+
+// #align(
+//   left,
+
+//   $
+//     1/4 tr(1/2 rho_2 rho_2)
+//     &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2); sqrt(2), 2)) \
+//     &= 1/4 tr(1/18 mat(3, 3 sqrt(2); 3 sqrt(2), 6)) \
+//     &= 1/4 (3/18 + 6/18) \
+//     &= 1/4 * 1/2 \
+//     &= 1/8 \
+//     1/4 tr(1/2 rho_2 rho_3)
+//     &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+//     &= 1/4 tr(1/18 mat(1 + 2e^(2 pi i \/ 3), sqrt(2)(1 + 2e^(-2 pi i \/ 3)); sqrt(2)(1 + 2e^(2 pi i \/ 3)), 4 + 2e^(-2 pi i \/ 3))) \
+//     &= 1/4 * 1/18 dot (1 + 2e^(2 pi i \/ 3) + 4 + 2e^(-2 pi i \/ 3)) \
+//     &= 1/4 * 1/18 dot (5 + 2(e^(2 pi i \/ 3) + e^(-2 pi i \/ 3))) \
+//     &= 1/4 * 1/18 dot (5 + 2(-1/2 + i sqrt(3)/2 - 1/2 - i sqrt(3)/2)) \
+//     &= 1/4 * 1/18 dot (5 - 2) \
+//     &= 1/24 \
+//     1/4 tr(1/2 rho_2 rho_4)
+//     &= 1/4 tr(1/2 1/3 mat(1, sqrt(2); sqrt(2), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+//     &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
+//     &= 1/4 * 1/18 dot (1 + 2e^(4 pi i \/ 3) + 4 + 2e^(-4 pi i \/ 3)) \
+//     &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+//     &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+//     &= 1/4 * 1/18 * 3 \
+//     &= 1/24
+//   $,
+// )
+
+// #align(
+//   left,
+//   $
+//     1/4 tr(1/2 rho_3 rho_3)
+//     &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \
+//     &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-2 pi i \/ 3); 3 sqrt(2) e^(2 pi i \/ 3), 6)) \
+//     &= 1/4 (3/18 + 6/18) \
+//     &= 1/4 * 1/2 \
+//     &= 1/8 \
+//     1/4 tr(1/2 rho_3 rho_4)
+//     &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+//     &= 1/4 tr(1/18 mat(1 + 2e^(4 pi i \/ 3), sqrt(2)(1 + 2e^(-4 pi i \/ 3)); sqrt(2)(1 + 2e^(4 pi i \/ 3)), 4 + 2e^(-4 pi i \/ 3))) \
+//     &= 1/4 * 1/18 dot (5 + 2(e^(4 pi i \/ 3) + e^(-4 pi i \/ 3))) \
+//     &= 1/4 * 1/18 dot (5 + 2(-1/2 - i sqrt(3)/2 - 1/2 + i sqrt(3)/2)) \
+//     &= 1/4 * 1/18 * 3 \
+//     &= 1/24 \
+//     1/4 tr(1/2 rho_4 rho_4)
+//     &= 1/4 tr(1/2 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+//     &= 1/4 tr(1/18 mat(3, 3 sqrt(2) e^(-4 pi i \/ 3); 3 sqrt(2) e^(4 pi i \/ 3), 6)) \
+//     &= 1/4 (3/18 + 6/18) \
+//     &= 1/4 * 1/2 \
+//     &= 1/8
+//   $,
+// )
+
+// So the table of joint distribution $p(x, y)$ is:
+// #pagebreak()
+// #align(center, figure(
+//   table(
+//     columns: 6,
+//     rows: 6,
+//     align: center,
+//     inset: 10pt,
+//     $x \\ y$, $1$, $2$, $3$, $4$, $p(y)$,
+//     $1$, $1/8$, $1/24$, $1/24$, $1/24$, $1/4$,
+//     $2$, $1/24$, $1/8$, $1/24$, $1/24$, $1/4$,
+//     $3$, $1/24$, $1/24$, $1/8$, $1/24$, $1/4$,
+//     $4$, $1/24$, $1/24$, $1/24$, $1/8$, $1/4$,
+//     $p(x)$, $1/4$, $1/4$, $1/4$, $1/4$, $1$,
+//   ),
+//   caption: "Joint probability distribution table",
+// )) <joint-distribution>
+
+// So we have:
+
+// - $H(X) = - sum_x p(x) log_2(p(x)) = - 4 dot 1/4 log_2(1/4) = 2$
+// - $H(Y) = - sum_y p(y) log_2(p(y)) = - 4 dot 1/4 log_2(1/4) = 2$
+// - $H(X, Y) = - sum_(x, y) p(x, y) log_2(p(x, y)) = - 4 dot 1/8 log_2(1/8) - 12 dot 1/24 log_2(1/24) = 3.792$
+
+// So the mutual information is:
+// $
+//   H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 2 - 3.792 = 0.208
+// $
