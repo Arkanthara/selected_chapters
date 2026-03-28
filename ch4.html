@@ -8283,7 +8283,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 <li>Alice and Bob <strong>destroy</strong> <span class="math inline">\(r\)</span></li>
 </ol>
 <p>A spy (Eve) who intercepts <span class="math inline">\(m \oplus r\)</span> without knowing <span class="math inline">\(r\)</span> cannot deduce anything: he just sees a random string.</p>
-<p>::: {.callout-warning title=“The practical problem”&gt; The disposable mask is perfect… but Alice and Bob need to meet in person (or have an absolutely secure channel) to share the key. This is where <strong>QKD</strong> comes in. :::</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="The practical problem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The practical problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The disposable mask is perfect… but Alice and Bob need to meet in person (or have an absolutely secure channel) to share the key. This is where <strong>QKD</strong> comes in.</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="principle-of-qkd" class="level4">
@@ -8330,7 +8342,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 <li><p>If the bases <strong>match</strong>, Bob’s result matches Alice’s bit → they keep that bit for the key. Otherwise, they reject it.</p></li>
 </ol>
 <p>On average, Alice and Bob reject <strong>half</strong> of their bits.</p>
-<p>::: {.callout-tip title=“Intuition”&gt; If Bob measures in the wrong base, the result is random and does not necessarily match Alice’s bit. These cases are therefore unusable and thrown away. The cases where they used the same base form the shared key. :::</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Intuition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If Bob measures in the wrong base, the result is random and does not necessarily match Alice’s bit. These cases are therefore unusable and thrown away. The cases where they used the same base form the shared key.</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="numerical-example-bb84-without-spy" class="level4">
@@ -8409,7 +8433,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 <li>Eve must therefore <strong>guess the base</strong> at random to measure, then retransmit</li>
 </ul>
 <p><strong>Conséquence :</strong> Ève introduit des <strong>erreurs</strong> dans les bits pour lesquels Alice et Bob ont la même base — exactement 25% d’entre eux seront erronés. Alice and Bob can detect Eve’s presence by <strong>publicly comparing a subset of their key bits</strong>.</p>
-<p>::: {.callout-important title=“Fundamental property of BB84”&gt; Any attempt to spy on the quantum channel <strong>inevitably</strong> disrupts the transmitted qubits (consequence of the no-cloning theorem and the quantum measurement postulate). This disruption is <strong>statistically detectable</strong>, guaranteeing the security of the protocol. :::</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Fundamental property of BB84">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Fundamental property of BB84
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Any attempt to spy on the quantum channel <strong>inevitably</strong> disrupts the transmitted qubits (consequence of the no-cloning theorem and the quantum measurement postulate). This disruption is <strong>statistically detectable</strong>, guaranteeing the security of the protocol.</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="other-attack-strategies-and-their-limitations" class="level4">
@@ -8464,7 +8500,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 </tbody>
 </table>
 <p>where <span class="math inline">\(n\)</span> is the number of bits of <span class="math inline">\(N\)</span>.</p>
-<p>::: {.callout-tip title=“Intuition”&gt; Finding the period of a function classically requires evaluating the function for many inputs. The <strong>Quantum Fourier Transform</strong> extracts this information exponentially using quantum interference, without having to evaluate the function point by point. :::</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Intuition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Finding the period of a function classically requires evaluating the function for many inputs. The <strong>Quantum Fourier Transform</strong> extracts this information exponentially using quantum interference, without having to evaluate the function point by point.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -8488,7 +8536,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 <li>Inverse QFT on <span class="math inline">\(2n\)</span> qubits</li>
 <li>Final measurements</li>
 </ul>
-<p>::: {.callout-note title=“To remember”&gt; Shor’s algorithm is the first concrete example of an <strong>exponential</strong> quantum advantage on a problem of practical interest (cryptography). It single-handedly motivates much of the research in quantum computing. :::</p>
+<div class="callout callout-style-default callout-note callout-titled" title="To remember">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>To remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Shor’s algorithm is the first concrete example of an <strong>exponential</strong> quantum advantage on a problem of practical interest (cryptography). It single-handedly motivates much of the research in quantum computing.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -8536,7 +8596,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 <p>The VQE is based on the <strong>variational principle</strong>:</p>
 <p><span class="math display">\[\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0\]</span></p>
 <p>where <span class="math inline">\(E_0\)</span> is the minimum eigenvalue (fundamental energy). By minimizing the expectation value, we approach the fundamental energy.</p>
-<p>::: {.callout-tip title=“Intuition”&gt; The idea is to seek the best quantum state representable by the parametric circuit (ansatz). The more expressive the ansatz, the closer we get to the true eigenvalue. The classical side guides the search in the parameter space. :::</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Intuition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Intuition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The idea is to seek the best quantum state representable by the parametric circuit (ansatz). The more expressive the ansatz, the closer we get to the true eigenvalue. The classical side guides the search in the parameter space.</p>
+</div>
+</div>
 </section>
 <section id="vqe-applications" class="level3">
 <h3 class="anchored" data-anchor-id="vqe-applications">VQE applications</h3>
@@ -8553,7 +8625,19 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 <section id="the-threat-to-cryptography-today" class="level3">
 <h3 class="anchored" data-anchor-id="the-threat-to-cryptography-today">The threat to cryptography today</h3>
 <p>There is a <strong>high probability</strong> that quantum computers will be able to break the <strong>RSA-2048</strong> encryption within the next 5 to 10 years. This would require approximately <strong>8,000 logical qubits</strong> in a general-purpose computer.</p>
-<p>::: {.callout-warning title=“Current emergency”&gt; Some encrypted data has a lifespan of more than 10 years. It can take 10 years to migrate to new encryption schemes. Organizations and governments must act <strong>now</strong>. :::</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Current emergency">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Current emergency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some encrypted data has a lifespan of more than 10 years. It can take 10 years to migrate to new encryption schemes. Organizations and governments must act <strong>now</strong>.</p>
+</div>
+</div>
 <p>Most encryptions used today (HTTPS, VPN, etc.) <strong>are not secure in a quantum world</strong>. An adversary who records HTTPS sessions today could decrypt them in a few years with a quantum computer.</p>
 </section>
 <section id="solutions" class="level3">
@@ -8572,7 +8656,19 @@ Resistant to known quantum algorithms. Currently being standardized by NIST.
 Will probably be adopted for the most sensitive communications. Provides <strong>information-theoretic</strong> security.
 </dd>
 </dl>
-<p>::: {.callout-note title=“To remember”&gt; Some governments and banks already use “Quantum Safe” algorithms. This adoption is expected to accelerate over the next decade. :::</p>
+<div class="callout callout-style-default callout-note callout-titled" title="To remember">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>To remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some governments and banks already use “Quantum Safe” algorithms. This adoption is expected to accelerate over the next decade.</p>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -8615,7 +8711,19 @@ Will probably be adopted for the most sensitive communications. Provides <strong
 <section id="danger-zone" class="level3">
 <h3 class="anchored" data-anchor-id="danger-zone">Danger zone</h3>
 <p>Projections show that the threshold of <strong>2048 bits of breakable encryption</strong> (danger zone) could be reached between 2030 and 2035 depending on the rate of growth of qubits, hence the urgency of post-quantum migration.</p>
-<p>::: {.callout-important title=“Key message”&gt; Quantum computing is not a distant technology: its implications for cryptography, molecular simulation and optimization are already being deployed. Understanding its foundations has become essential for any engineer or researcher in computer science, physics or security. :::</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Key message">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key message
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quantum computing is not a distant technology: its implications for cryptography, molecular simulation and optimization are already being deployed. Understanding its foundations has become essential for any engineer or researcher in computer science, physics or security.</p>
+</div>
+</div>
 
 
 </section>
