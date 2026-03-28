@@ -3,3 +3,6 @@
 *.gitignore
 *_extensions
 *.quarto
+*_site
+*site_*
+*.html
