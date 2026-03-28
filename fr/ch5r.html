@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Propriétés fondamentales de l’informatique quantique — Révision – Selected Chapters</title>
+<title>Correction d’erreurs quantiques — Révision – Selected Chapters</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -4344,7 +4344,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch3.html">Quantum computing chapter 3</a></li><li class="breadcrumb-item"><a href="./ch3r.html">Synthèse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch5.html">Correction d’erreurs quantiques</a></li><li class="breadcrumb-item"><a href="./ch5r.html">Synthèse</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -4433,13 +4433,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Quantum computing chapter 3</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch3.html" class="sidebar-item-text sidebar-link">
@@ -4448,7 +4448,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch3r.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ch3r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Synthèse</span></a>
   </div>
 </li>
@@ -4491,13 +4491,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Correction d’erreurs quantiques</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch5.html" class="sidebar-item-text sidebar-link">
@@ -4506,7 +4506,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch5r.html" class="sidebar-item-text sidebar-link">
+  <a href="./ch5r.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Synthèse</span></a>
   </div>
 </li>
@@ -4530,21 +4530,23 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mesure-distinction-détats" id="toc-mesure-distinction-détats" class="nav-link active" data-scroll-target="#mesure-distinction-détats">Mesure &amp; distinction d’états</a>
+  <li><a href="#pourquoi-corriger-les-erreurs" id="toc-pourquoi-corriger-les-erreurs" class="nav-link active" data-scroll-target="#pourquoi-corriger-les-erreurs">Pourquoi corriger les erreurs ?</a></li>
+  <li><a href="#erreurs-classiques-canal-binaire-symétrique-binary-symmetric-channel-bsc" id="toc-erreurs-classiques-canal-binaire-symétrique-binary-symmetric-channel-bsc" class="nav-link" data-scroll-target="#erreurs-classiques-canal-binaire-symétrique-binary-symmetric-channel-bsc">Erreurs classiques — Canal binaire symétrique (Binary Symmetric Channel, BSC)</a></li>
+  <li><a href="#code-à-répétition-classique-sur-3-bits" id="toc-code-à-répétition-classique-sur-3-bits" class="nav-link" data-scroll-target="#code-à-répétition-classique-sur-3-bits">Code à répétition classique sur 3 bits</a></li>
+  <li><a href="#obstacles-à-la-qec-quantum-error-correction" id="toc-obstacles-à-la-qec-quantum-error-correction" class="nav-link" data-scroll-target="#obstacles-à-la-qec-quantum-error-correction">Obstacles à la QEC (Quantum Error Correction)</a></li>
+  <li><a href="#solutions-aux-3-obstacles" id="toc-solutions-aux-3-obstacles" class="nav-link" data-scroll-target="#solutions-aux-3-obstacles">Solutions aux 3 obstacles</a></li>
+  <li><a href="#code-à-retournement-de-bit-sur-3-qubits-three-qubit-bit-flip-code" id="toc-code-à-retournement-de-bit-sur-3-qubits-three-qubit-bit-flip-code" class="nav-link" data-scroll-target="#code-à-retournement-de-bit-sur-3-qubits-three-qubit-bit-flip-code">Code à retournement de bit sur 3 qubits (Three-Qubit Bit-Flip Code)</a></li>
+  <li><a href="#code-à-retournement-de-phase-sur-3-qubits-three-qubit-phase-flip-code" id="toc-code-à-retournement-de-phase-sur-3-qubits-three-qubit-phase-flip-code" class="nav-link" data-scroll-target="#code-à-retournement-de-phase-sur-3-qubits-three-qubit-phase-flip-code">Code à retournement de phase sur 3 qubits (Three-Qubit Phase-Flip Code)</a></li>
+  <li><a href="#code-de-shor-shor-code-9-qubits" id="toc-code-de-shor-shor-code-9-qubits" class="nav-link" data-scroll-target="#code-de-shor-shor-code-9-qubits">Code de Shor (Shor Code) — 9 qubits</a></li>
+  <li><a href="#correction-dune-erreur-générale-digitalisation-digitisation-of-errors" id="toc-correction-dune-erreur-générale-digitalisation-digitisation-of-errors" class="nav-link" data-scroll-target="#correction-dune-erreur-générale-digitalisation-digitisation-of-errors">Correction d’une erreur générale — Digitalisation (Digitisation of Errors)</a></li>
+  <li><a href="#canal-dépolarisant-depolarising-channel" id="toc-canal-dépolarisant-depolarising-channel" class="nav-link" data-scroll-target="#canal-dépolarisant-depolarising-channel">Canal dépolarisant (Depolarising Channel)</a></li>
+  <li><a href="#code-de-hamming-74-classique" id="toc-code-de-hamming-74-classique" class="nav-link" data-scroll-target="#code-de-hamming-74-classique">Code de Hamming (7,4) — Classique</a></li>
+  <li><a href="#codes-css-calderbank-shor-steane" id="toc-codes-css-calderbank-shor-steane" class="nav-link" data-scroll-target="#codes-css-calderbank-shor-steane">Codes CSS (Calderbank-Shor-Steane)</a>
   <ul class="collapse">
-  <li><a href="#mesure-dans-la-base-computationnelle-computational-basis-measurement" id="toc-mesure-dans-la-base-computationnelle-computational-basis-measurement" class="nav-link" data-scroll-target="#mesure-dans-la-base-computationnelle-computational-basis-measurement">Mesure dans la base computationnelle (Computational Basis Measurement)</a></li>
-  <li><a href="#états-orthogonaux-orthogonal-states" id="toc-états-orthogonaux-orthogonal-states" class="nav-link" data-scroll-target="#états-orthogonaux-orthogonal-states">États orthogonaux (Orthogonal States)</a></li>
-  <li><a href="#états-non-orthogonaux-non-orthogonal-states" id="toc-états-non-orthogonaux-non-orthogonal-states" class="nav-link" data-scroll-target="#états-non-orthogonaux-non-orthogonal-states">États non-orthogonaux (Non-Orthogonal States)</a></li>
+  <li><a href="#code-de-steane-steane-code-7-qubits" id="toc-code-de-steane-steane-code-7-qubits" class="nav-link" data-scroll-target="#code-de-steane-steane-code-7-qubits">Code de Steane (Steane Code) — 7 qubits</a></li>
   </ul></li>
-  <li><a href="#borne-de-helstrom-holevo-helstrom-holevo-bound" id="toc-borne-de-helstrom-holevo-helstrom-holevo-bound" class="nav-link" data-scroll-target="#borne-de-helstrom-holevo-helstrom-holevo-bound">Borne de Helstrom-Holevo (Helstrom-Holevo Bound)</a>
-  <ul class="collapse">
-  <li><a href="#exemple-0rangle-vs-rangle" id="toc-exemple-0rangle-vs-rangle" class="nav-link" data-scroll-target="#exemple-0rangle-vs-rangle">Exemple : <span class="math inline">\(|0\rangle\)</span> vs <span class="math inline">\(|+\rangle\)</span></a></li>
-  <li><a href="#stratégies-de-discrimination" id="toc-stratégies-de-discrimination" class="nav-link" data-scroll-target="#stratégies-de-discrimination">Stratégies de discrimination</a></li>
-  </ul></li>
-  <li><a href="#principe-de-non-signalisation-no-signalling-principle" id="toc-principe-de-non-signalisation-no-signalling-principle" class="nav-link" data-scroll-target="#principe-de-non-signalisation-no-signalling-principle">Principe de non-signalisation (No-Signalling Principle)</a></li>
-  <li><a href="#principe-de-non-clonage-no-cloning-theorem" id="toc-principe-de-non-clonage-no-cloning-theorem" class="nav-link" data-scroll-target="#principe-de-non-clonage-no-cloning-theorem">Principe de non-clonage (No-Cloning Theorem)</a></li>
-  <li><a href="#principe-de-non-suppression-no-deleting-theorem" id="toc-principe-de-non-suppression-no-deleting-theorem" class="nav-link" data-scroll-target="#principe-de-non-suppression-no-deleting-theorem">Principe de non-suppression (No-Deleting Theorem)</a></li>
-  <li><a href="#synthèse-globale" id="toc-synthèse-globale" class="nav-link" data-scroll-target="#synthèse-globale">Synthèse globale</a></li>
+  <li><a href="#comparaison-des-codes" id="toc-comparaison-des-codes" class="nav-link" data-scroll-target="#comparaison-des-codes">Comparaison des codes</a></li>
+  <li><a href="#récapitulatif-points-critiques" id="toc-récapitulatif-points-critiques" class="nav-link" data-scroll-target="#récapitulatif-points-critiques">Récapitulatif — Points critiques</a></li>
   </ul>
 </nav>
     </div>
@@ -4552,9 +4554,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch3.html">Quantum computing chapter 3</a></li><li class="breadcrumb-item"><a href="./ch3r.html">Synthèse</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Cours</li><li class="breadcrumb-item"><a href="./ch5.html">Correction d’erreurs quantiques</a></li><li class="breadcrumb-item"><a href="./ch5r.html">Synthèse</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Propriétés fondamentales de l’informatique quantique — Révision</h1>
+<h1 class="title">Correction d’erreurs quantiques — Révision</h1>
 </div>
 
 
@@ -4571,262 +4573,70 @@ window.Quarto = {
 </header>
 
 
-<section id="mesure-distinction-détats" class="level1">
-<h1>Mesure &amp; distinction d’états</h1>
-<section id="mesure-dans-la-base-computationnelle-computational-basis-measurement" class="level2">
-<h2 class="anchored" data-anchor-id="mesure-dans-la-base-computationnelle-computational-basis-measurement">Mesure dans la base computationnelle (Computational Basis Measurement)</h2>
-<ul>
-<li><span class="math inline">\(|\psi\rangle = |0\rangle\)</span> ou <span class="math inline">\(|1\rangle\)</span> → mesure <strong>déterministe</strong> (information classique)</li>
-<li><span class="math inline">\(|1\rangle = 0|0\rangle + 1|1\rangle\)</span> → <span class="math inline">\(p(\text{mesurer }1) = |1|^2 = 1\)</span></li>
-</ul>
-</section>
-<section id="états-orthogonaux-orthogonal-states" class="level2">
-<h2 class="anchored" data-anchor-id="états-orthogonaux-orthogonal-states">États orthogonaux (Orthogonal States)</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Règle clé">
+<section id="pourquoi-corriger-les-erreurs" class="level1">
+<h1>Pourquoi corriger les erreurs ?</h1>
+<div class="callout callout-style-default callout-warning callout-titled" title="Problème fondamental">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Règle clé
+<span class="screen-reader-only">Warning</span>Problème fondamental
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Deux états <strong>orthogonaux</strong> → distinction <strong>parfaite</strong> toujours possible.</p>
+<p>Les qubits sont fragiles → interactions avec l’environnement → erreurs inévitables. Les ordinateurs classiques sont exempts d’erreurs. <strong>Pas les quantiques.</strong></p>
 </div>
 </div>
-<p><strong>Méthode :</strong></p>
-<ol type="1">
-<li>Construire <span class="math inline">\(U = \begin{bmatrix}\alpha &amp; \gamma \\ \beta &amp; \delta\end{bmatrix}\)</span> (colonnes = <span class="math inline">\(|\psi_0\rangle\)</span>, <span class="math inline">\(|\psi_1\rangle\)</span>)</li>
-<li>Appliquer <span class="math inline">\(U^\dagger\)</span> → aligne les états sur la base computationnelle</li>
-<li>Mesurer dans la base computationnelle</li>
-</ol>
-<p><strong>Opérateurs de mesure :</strong> <span class="math inline">\(M_{|\psi_0\rangle} = |\psi_0\rangle\langle\psi_0|\)</span> et <span class="math inline">\(M_{|\psi_1\rangle} = |\psi_1\rangle\langle\psi_1|\)</span></p>
-<p><strong>Équation de complétude :</strong> <span class="math inline">\(\sum_m M_m^\dagger M_m = I\)</span> ✓ (car <span class="math inline">\(U U^\dagger = I\)</span>)</p>
-</section>
-<section id="états-non-orthogonaux-non-orthogonal-states" class="level2">
-<h2 class="anchored" data-anchor-id="états-non-orthogonaux-non-orthogonal-states">États non-orthogonaux (Non-Orthogonal States)</h2>
+<p><strong>Deux motivations :</strong></p>
 <ul>
-<li>Distinction <strong>parfaite</strong> → <strong>impossible</strong></li>
-<li>On peut obtenir de l’information partielle sur la probabilité d’appartenance</li>
+<li><strong>Court terme</strong> : les algorithmes hybrides nécessitent de la correction pour être performants</li>
+<li><strong>Long terme</strong> : prouver la supériorité quantique asymptotique (Quantum Advantage)</li>
 </ul>
 <hr>
 </section>
-</section>
-<section id="borne-de-helstrom-holevo-helstrom-holevo-bound" class="level1">
-<h1>Borne de Helstrom-Holevo (Helstrom-Holevo Bound)</h1>
-<div class="callout callout-style-default callout-important callout-titled" title="Formule">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Formule
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(|\langle\psi_a|\psi_b\rangle| = \cos\theta \implies p_{\text{succès}} \leq \dfrac{1}{2}(1 + \sin\theta)\)</span></p>
-</div>
-</div>
+<section id="erreurs-classiques-canal-binaire-symétrique-binary-symmetric-channel-bsc" class="level1">
+<h1>Erreurs classiques — Canal binaire symétrique (Binary Symmetric Channel, BSC)</h1>
+<p><strong>Modèle :</strong> chaque bit est inversé (flipped) avec probabilité <span class="math inline">\(p_e\)</span>, indépendamment.</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 20%">
-<col style="width: 28%">
-<col style="width: 42%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Cas</th>
-<th><span class="math inline">\(\theta\)</span></th>
-<th><span class="math inline">\(\sin\theta\)</span></th>
-<th><span class="math inline">\(p_{\text{succès}}\)</span></th>
+<th style="text-align: center;">Transition</th>
+<th style="text-align: center;">Probabilité</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>États orthogonaux</td>
-<td><span class="math inline">\(\pi/2\)</span></td>
-<td><span class="math inline">\(1\)</span></td>
-<td><span class="math inline">\(1\)</span> (parfait)</td>
+<td style="text-align: center;"><span class="math inline">\(0 \to 0\)</span> ou <span class="math inline">\(1 \to 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1 - p_e\)</span></td>
 </tr>
 <tr class="even">
-<td>États quelconques</td>
-<td><span class="math inline">\(\theta\)</span></td>
-<td><span class="math inline">\(\sin\theta\)</span></td>
-<td><span class="math inline">\(\frac{1}{2}(1+\sin\theta)\)</span></td>
-</tr>
-<tr class="odd">
-<td>États identiques</td>
-<td><span class="math inline">\(0\)</span></td>
-<td><span class="math inline">\(0\)</span></td>
-<td><span class="math inline">\(\frac{1}{2}\)</span> (hasard)</td>
+<td style="text-align: center;"><span class="math inline">\(0 \to 1\)</span> ou <span class="math inline">\(1 \to 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p_e\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Base optimale :</strong> vecteurs propres (Eigenvectors) de <span class="math inline">\(|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|\)</span></p>
-<section id="exemple-0rangle-vs-rangle" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-0rangle-vs-rangle">Exemple : <span class="math inline">\(|0\rangle\)</span> vs <span class="math inline">\(|+\rangle\)</span></h2>
-<ul>
-<li><span class="math inline">\(\langle 0|{+}\rangle = \frac{1}{\sqrt{2}} \neq 0\)</span> → non orthogonaux</li>
-<li><span class="math inline">\(p_{\text{succès}}^{\text{opt}} = \frac{1}{2}(1 + \sin(\arccos(1/\sqrt{2}))) \approx \mathbf{0.85}\)</span></li>
-</ul>
-<p><strong>Dans la base computationnelle (sous-optimal) :</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th>Outcome 0</th>
-<th>Outcome 1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(|0\rangle\)</span></td>
-<td><span class="math inline">\(1\)</span></td>
-<td><span class="math inline">\(0\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(|+\rangle\)</span></td>
-<td><span class="math inline">\(1/2\)</span></td>
-<td><span class="math inline">\(1/2\)</span></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Outcome <span class="math inline">\(1\)</span> → <strong>certitude</strong> : <span class="math inline">\(|\psi\rangle = |+\rangle\)</span></li>
-<li>Outcome <span class="math inline">\(0\)</span> → guess <span class="math inline">\(|0\rangle\)</span>, mais <span class="math inline">\(\frac{1}{3}\)</span> des cas = <span class="math inline">\(|+\rangle\)</span></li>
-<li><span class="math inline">\(p_{\text{succès}} = \frac{3}{4} = \mathbf{0.75}\)</span> (&lt; 0.85)</li>
-</ul>
-</section>
-<section id="stratégies-de-discrimination" class="level2">
-<h2 class="anchored" data-anchor-id="stratégies-de-discrimination">Stratégies de discrimination</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 38%">
-<col style="width: 40%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Stratégie</th>
-<th><span class="math inline">\(p_{\text{succès}}\)</span></th>
-<th>Certitude possible ?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Base optimale (symétrique)</td>
-<td>Max = <span class="math inline">\(\frac{1}{2}(1+\sin\theta)\)</span></td>
-<td>Non</td>
-</tr>
-<tr class="even">
-<td>Base asymétrique</td>
-<td><span class="math inline">\(&lt; \frac{1}{2}(1+\sin\theta)\)</span></td>
-<td>Oui (sur un outcome)</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-tip callout-titled" title="Piège">
+<div class="callout callout-style-default callout-note callout-titled" title="Convention">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Piège
+<span class="screen-reader-only">Note</span>Convention
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Mesurer dans la base computationnelle n’est <strong>pas</strong> la stratégie optimale en général.</p>
+<p>On suppose <span class="math inline">\(p_e \leq 0{,}5\)</span> sans perte de généralité. Si <span class="math inline">\(p_e = 0{,}5\)</span> → canal inutilisable.</p>
 </div>
 </div>
 <hr>
 </section>
-</section>
-<section id="principe-de-non-signalisation-no-signalling-principle" class="level1">
-<h1>Principe de non-signalisation (No-Signalling Principle)</h1>
-<div class="callout callout-style-default callout-important callout-titled" title="Énoncé">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Énoncé
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>L’intrication quantique <strong>ne peut pas</strong> transmettre de l’information plus vite que la lumière.</p>
-</div>
-</div>
-<p><strong>Scénario Alice–Bob (paire de Bell <span class="math inline">\(\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)\)</span>) :</strong></p>
-<ul>
-<li>Alice mesure → qubit de Bob s’effondre <strong>instantanément</strong></li>
-<li>Bob mesure son qubit : <span class="math inline">\(p_B(0) = p_B(1) = \frac{1}{2}\)</span> dans <strong>les deux cas</strong> (avec ou sans mesure d’Alice)</li>
-<li>Bob <strong>ne peut pas détecter</strong> si Alice a mesuré → pas de signal</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled" title="Clé de la preuve">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Clé de la preuve
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Sans communication classique d’Alice, Bob ne connaît pas l’outcome d’Alice → ses statistiques restent identiques.</p>
-</div>
-</div>
-<p><strong>Généralisation :</strong> valide pour tout type d’intrication, toute base de mesure, toute transformation unitaire locale.</p>
-<hr>
-</section>
-<section id="principe-de-non-clonage-no-cloning-theorem" class="level1">
-<h1>Principe de non-clonage (No-Cloning Theorem)</h1>
-<div class="callout callout-style-default callout-important callout-titled" title="Énoncé">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Énoncé
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Il n’existe <strong>aucune</strong> transformation unitaire <span class="math inline">\(U\)</span> telle que <span class="math inline">\(U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle\)</span> pour tout <span class="math inline">\(|\psi\rangle\)</span>.</p>
-</div>
-</div>
-<p><strong>Preuve (par contradiction) :</strong></p>
-<p><span class="math display">\[U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle \quad \text{et} \quad U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle\]</span></p>
-<p><span class="math display">\[\xRightarrow{U^\dagger U = I} \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2\]</span></p>
-<p><span class="math display">\[\Rightarrow \langle\psi|\phi\rangle \in \{0, 1\} \quad \text{(orthogonaux ou identiques seulement)}\]</span></p>
-<p><strong>Conséquences :</strong></p>
-<ul>
-<li>Correction d’erreurs quantique (Quantum Error Correction) → plus complexe</li>
-<li>Clonage + no-signalling → contradiction</li>
-<li>Clonage → super-compression d’info classique impossible</li>
-</ul>
-<hr>
-</section>
-<section id="principe-de-non-suppression-no-deleting-theorem" class="level1">
-<h1>Principe de non-suppression (No-Deleting Theorem)</h1>
-<div class="callout callout-style-default callout-important callout-titled" title="Énoncé">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Énoncé
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Il n’existe <strong>aucune</strong> transformation unitaire <span class="math inline">\(\tilde{U}\)</span> telle que <span class="math inline">\(\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle\)</span>.</p>
-</div>
-</div>
-<ul>
-<li><strong>Dual temporel</strong> du non-clonage</li>
-<li>Non-clonage : interdit <span class="math inline">\(1 \to 2\)</span> copies</li>
-<li>Non-suppression : interdit <span class="math inline">\(2 \to 1\)</span> copies</li>
-</ul>
+<section id="code-à-répétition-classique-sur-3-bits" class="level1">
+<h1>Code à répétition classique sur 3 bits</h1>
+<p><strong>Encodage :</strong> <span class="math inline">\(0 \to 000\)</span>, <span class="math inline">\(\quad 1 \to 111\)</span></p>
+<p><strong>Décodage :</strong> vote majoritaire</p>
+<p><strong>Probabilité d’erreur résiduelle :</strong></p>
+<p><span class="math display">\[p_e&#39; = 3p_e^2(1-p_e) + p_e^3\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="À retenir">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4837,74 +4647,404 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Le calcul quantique est <strong>réversible</strong> (sauf mesure) → l’impossibilité d’une opération implique l’impossibilité de son inverse.</p>
+<p>Pour <span class="math inline">\(p_e &lt; 0{,}5\)</span> : <span class="math inline">\(p_e&#39; &lt; p_e\)</span> → erreur supprimée à <span class="math inline">\(\mathcal{O}(p_e^2)\)</span></p>
 </div>
 </div>
 <hr>
 </section>
-<section id="synthèse-globale" class="level1">
-<h1>Synthèse globale</h1>
+<section id="obstacles-à-la-qec-quantum-error-correction" class="level1">
+<h1>Obstacles à la QEC (Quantum Error Correction)</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 34%">
-<col style="width: 34%">
-<col style="width: 31%">
+<col style="width: 38%">
+<col style="width: 30%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Propriété</th>
-<th>Condition</th>
-<th>Résultat</th>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Obstacle</th>
+<th style="text-align: left;">Nature</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Distinction parfaite</td>
-<td>États <strong>orthogonaux</strong></td>
-<td>✅ Toujours possible</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>Non-clonage</strong> (No-Cloning) : impossible de copier <span class="math inline">\(|\psi\rangle\)</span></td>
+<td style="text-align: left;">Pas de répétition directe</td>
 </tr>
 <tr class="even">
-<td>Distinction parfaite</td>
-<td>États <strong>non-orthogonaux</strong></td>
-<td>❌ Impossible</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><strong>Mesure destructrice</strong> : toute mesure effondre la superposition</td>
+<td style="text-align: left;">Pas de lecture sans destruction</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(p_{\text{succès}}\)</span> max</td>
-<td><span class="math inline">\(|\langle\psi_a|\psi_b\rangle| = \cos\theta\)</span></td>
-<td><span class="math inline">\(\frac{1}{2}(1+\sin\theta)\)</span></td>
-</tr>
-<tr class="even">
-<td>Transmission d’info (intrication)</td>
-<td>Toujours</td>
-<td>❌ Non-signalisation</td>
-</tr>
-<tr class="odd">
-<td>Clonage d’état arbitraire</td>
-<td>Toujours</td>
-<td>❌ Non-clonage</td>
-</tr>
-<tr class="even">
-<td>Suppression d’une copie</td>
-<td>Toujours</td>
-<td>❌ Non-suppression</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><strong>Erreurs continues</strong> : <span class="math inline">\(\alpha|0\rangle+\beta|1\rangle \to (\alpha+\epsilon_0)|0\rangle+(\beta+\epsilon_1)|1\rangle\)</span></td>
+<td style="text-align: left;">Continuum d’erreurs à corriger</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-warning callout-titled" title="Relations entre principes">
+<div class="callout callout-style-default callout-tip callout-titled" title="Bonne nouvelle">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Relations entre principes
+<span class="screen-reader-only">Tip</span>Bonne nouvelle
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chacun de ces obstacles a une solution → la correction d’erreurs quantiques est <strong>possible</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="solutions-aux-3-obstacles" class="level1">
+<h1>Solutions aux 3 obstacles</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Obstacle</th>
+<th style="text-align: left;">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Non-clonage</td>
+<td style="text-align: left;"><strong>Enchevêtrement</strong> (entanglement) à la place de la copie</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mesure destructrice</td>
+<td style="text-align: left;"><strong>Mesures de parité</strong> (parity-check) : révèlent l’erreur, pas l’état</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Erreurs continues</td>
+<td style="text-align: left;">La correction <strong>digitalise</strong> les erreurs → discrétisation automatique</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="code-à-retournement-de-bit-sur-3-qubits-three-qubit-bit-flip-code" class="level1">
+<h1>Code à retournement de bit sur 3 qubits (Three-Qubit Bit-Flip Code)</h1>
+<p><strong>Encodage :</strong></p>
+<p><span class="math display">\[\alpha|0\rangle + \beta|1\rangle \;\longrightarrow\; \alpha|000\rangle + \beta|111\rangle\]</span></p>
+<p><strong>Circuit :</strong> 2 portes CNOT (qubit logique contrôle deux ancillas <span class="math inline">\(|0\rangle\)</span>)</p>
+<p><strong>Détection :</strong> 2 qubits ancilla + mesures de parité comparant les qubits deux à deux</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Bit-flip</th>
+<th style="text-align: center;"><span class="math inline">\(M_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(M_2\)</span></th>
+<th style="text-align: center;">Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Aucun</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(I \otimes I \otimes I\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Qubit 1</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X \otimes I \otimes I\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Qubit 2</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(I \otimes X \otimes I\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Qubit 3</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(I \otimes I \otimes X\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Clé">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Clé
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les mesures <span class="math inline">\(M_1\)</span>, <span class="math inline">\(M_2\)</span> ne révèlent <strong>rien</strong> sur <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> → état quantique préservé.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="code-à-retournement-de-phase-sur-3-qubits-three-qubit-phase-flip-code" class="level1">
+<h1>Code à retournement de phase sur 3 qubits (Three-Qubit Phase-Flip Code)</h1>
+<p><strong>Erreur de phase (Z) :</strong> <span class="math inline">\(|+\rangle \leftrightarrow |-\rangle\)</span> (invisible dans la base <span class="math inline">\(\{|0\rangle,|1\rangle\}\)</span>)</p>
+<p><strong>Encodage :</strong> 2 CNOTs + portes Hadamard <span class="math inline">\(H\)</span> sur chaque qubit</p>
+<p><span class="math display">\[\alpha|0\rangle + \beta|1\rangle \;\longrightarrow\; \alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle\]</span></p>
+<p><strong>Principe :</strong> une phase-flip dans <span class="math inline">\(\{|0\rangle,|1\rangle\}\)</span> = bit-flip dans <span class="math inline">\(\{|+\rangle,|-\rangle\}\)</span> → mêmes techniques</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ph-flip</th>
+<th style="text-align: center;"><span class="math inline">\(M_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(M_2\)</span></th>
+<th style="text-align: center;">Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Aucun</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(I \otimes I \otimes I\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Qubit 1</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Z \otimes I \otimes I\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Qubit 2</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(I \otimes Z \otimes I\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Qubit 3</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(I \otimes I \otimes Z\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="code-de-shor-shor-code-9-qubits" class="level1">
+<h1>Code de Shor (Shor Code) — 9 qubits</h1>
+<p><strong>Construction :</strong> concaténation (concatenation) des deux codes précédents</p>
+<ul>
+<li>Niveau <strong>externe</strong> (3 blocs) → protège contre les <strong>phase-flips</strong> (<span class="math inline">\(Z\)</span>)</li>
+<li>Niveau <strong>interne</strong> (blocs de 3 qubits) → protège contre les <strong>bit-flips</strong> (<span class="math inline">\(X\)</span>)</li>
+</ul>
+<p><strong>États logiques encodés :</strong></p>
+<p><span class="math display">\[|0_L\rangle = \frac{1}{2\sqrt{2}}\big(|000\rangle+|111\rangle\big)\big(|000\rangle+|111\rangle\big)\big(|000\rangle+|111\rangle\big)\]</span></p>
+<p><span class="math display">\[|1_L\rangle = \frac{1}{2\sqrt{2}}\big(|000\rangle-|111\rangle\big)\big(|000\rangle-|111\rangle\big)\big(|000\rangle-|111\rangle\big)\]</span></p>
+<p><strong>Capacité :</strong> corrige <strong>tout</strong> bit-flip, phase-flip ou combinaison sur <strong>n’importe lequel</strong> des 9 qubits.</p>
+<hr>
+</section>
+<section id="correction-dune-erreur-générale-digitalisation-digitisation-of-errors" class="level1">
+<h1>Correction d’une erreur générale — Digitalisation (Digitisation of Errors)</h1>
+<p><strong>Erreur générale sur 1 qubit :</strong></p>
+<p><span class="math display">\[|0\rangle \to a|0\rangle + b|1\rangle, \quad |1\rangle \to c|0\rangle + d|1\rangle\]</span></p>
+<p><strong>Décomposition</strong> (avec <span class="math inline">\(k=\frac{a+d}{2}\)</span>, <span class="math inline">\(l=\frac{b+c}{2}\)</span>, <span class="math inline">\(m=\frac{a-d}{2}\)</span>, <span class="math inline">\(n=\frac{b-c}{2}\)</span>) :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Terme</th>
+<th style="text-align: left;">Erreur</th>
+<th style="text-align: center;">Opérateur</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(k\)</span></td>
+<td style="text-align: left;">Aucune erreur</td>
+<td style="text-align: center;"><span class="math inline">\(I\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(l\)</span></td>
+<td style="text-align: left;">Bit-flip</td>
+<td style="text-align: center;"><span class="math inline">\(X\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(m\)</span></td>
+<td style="text-align: left;">Phase-flip</td>
+<td style="text-align: center;"><span class="math inline">\(Z\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: left;">Bit-flip + Phase-flip</td>
+<td style="text-align: center;"><span class="math inline">\(XZ\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled" title="Phénomène clé — Digitalisation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Phénomène clé — Digitalisation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les mesures de parité <strong>font s’effondrer</strong> l’état continu sur l’un des 4 cas discrets. → Corriger un <strong>continuum</strong> d’erreurs revient à corriger 4 types discrets.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="canal-dépolarisant-depolarising-channel" class="level1">
+<h1>Canal dépolarisant (Depolarising Channel)</h1>
+<p><strong>Modèle de bruit quantique standard :</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Événement</th>
+<th style="text-align: center;">Probabilité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Aucune erreur</td>
+<td style="text-align: center;"><span class="math inline">\(1 - p_e\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bit-flip (<span class="math inline">\(X\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(p_e/3\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phase-flip (<span class="math inline">\(Z\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(p_e/3\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bit + Phase flip (<span class="math inline">\(XZ\)</span>)</td>
+<td style="text-align: center;"><span class="math inline">\(p_e/3\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Code de Shor sur canal dépolarisant :</strong> erreur supprimée de <span class="math inline">\(p_e\)</span> à <span class="math inline">\(\mathcal{O}(p_e^2)\)</span></p>
+<p>::: {.callout-note title=“Généralité du modèle”&gt; Sous hypothèse d’indépendance des erreurs entre qubits → tout canal bruité général peut être modélisé comme un canal dépolarisant. :::</p>
+<hr>
+</section>
+<section id="code-de-hamming-74-classique" class="level1">
+<h1>Code de Hamming (7,4) — Classique</h1>
+<p><strong>Paramètres :</strong> encode 4 bits → 7 bits | taux <span class="math inline">\(= 4/7 \approx 0{,}57\)</span></p>
+<p><strong>Détection :</strong> syndrome <span class="math inline">\(p = Hc \bmod 2\)</span></p>
+<ul>
+<li><span class="math inline">\(p = 000\)</span> → pas d’erreur</li>
+<li><span class="math inline">\(p \neq 000\)</span> → position de l’erreur unique (parmi 7 possibilités)</li>
+</ul>
+<p><strong>Corrige :</strong> toute erreur de bit unique</p>
+<hr>
+</section>
+<section id="codes-css-calderbank-shor-steane" class="level1">
+<h1>Codes CSS (Calderbank-Shor-Steane)</h1>
+<p><strong>Principe :</strong> construire des codes quantiques à partir de codes linéaires classiques compatibles</p>
+<ul>
+<li>Erreurs <span class="math inline">\(X\)</span> (bit-flip) corrigées par un code classique</li>
+<li>Erreurs <span class="math inline">\(Z\)</span> (phase-flip) corrigées par un autre code classique</li>
+</ul>
+<section id="code-de-steane-steane-code-7-qubits" class="level2">
+<h2 class="anchored" data-anchor-id="code-de-steane-steane-code-7-qubits">Code de Steane (Steane Code) — 7 qubits</h2>
+<p><strong>Construit à partir du :</strong> code de Hamming (7,4)</p>
+<p><strong>Encode :</strong> 1 qubit logique en <strong>7 qubits physiques</strong> (vs 9 pour Shor)</p>
+<p><strong>Capacité :</strong> corrige tout bit-flip et/ou phase-flip sur 1 qubit unique</p>
+<p><strong>Performance :</strong> supprime l’erreur de <span class="math inline">\(p_e\)</span> à <span class="math inline">\(\mathcal{O}(p_e^2)\)</span> sur le canal dépolarisant</p>
+<hr>
+</section>
+</section>
+<section id="comparaison-des-codes" class="level1">
+<h1>Comparaison des codes</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Code</th>
+<th style="text-align: center;">Qubits physiques</th>
+<th style="text-align: center;">Qubits logiques</th>
+<th style="text-align: center;">Taux</th>
+<th style="text-align: left;">Corrige</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Répétition bit (classique)</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1 bit</td>
+<td style="text-align: center;"><span class="math inline">\(1/3\)</span></td>
+<td style="text-align: left;">1 bit-flip</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bit-flip quantique</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1/3\)</span></td>
+<td style="text-align: left;">1 bit-flip (<span class="math inline">\(X\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phase-flip quantique</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1/3\)</span></td>
+<td style="text-align: left;">1 phase-flip (<span class="math inline">\(Z\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Shor</strong></td>
+<td style="text-align: center;"><strong>9</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong><span class="math inline">\(1/9\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="math inline">\(X\)</span>, <span class="math inline">\(Z\)</span>, <span class="math inline">\(XZ\)</span> sur 1 qubit</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Steane (CSS)</strong></td>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong><span class="math inline">\(1/7\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="math inline">\(X\)</span>, <span class="math inline">\(Z\)</span>, <span class="math inline">\(XZ\)</span> sur 1 qubit</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="récapitulatif-points-critiques" class="level1">
+<h1>Récapitulatif — Points critiques</h1>
+<div class="callout callout-style-default callout-warning callout-titled" title="Pièges fréquents">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Pièges fréquents
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Clonage possible <span class="math inline">\(\Rightarrow\)</span> non-signalisation violée</li>
-<li>Non-suppression = dual du non-clonage (réversibilité)</li>
-<li><span class="math inline">\(\theta = \pi/2\)</span> (orthogonaux) <span class="math inline">\(\Rightarrow\)</span> Helstrom-Holevo donne <span class="math inline">\(p = 1\)</span> ✓</li>
+<li>L’encodage <span class="math inline">\(\alpha|000\rangle + \beta|111\rangle\)</span> <strong>n’est pas</strong> 3 copies de <span class="math inline">\(\alpha|0\rangle+\beta|1\rangle\)</span> → c’est un état <strong>enchevêtré</strong></li>
+<li>Les mesures de parité ne mesurent <strong>pas</strong> <span class="math inline">\(\alpha\)</span> ou <span class="math inline">\(\beta\)</span> → l’état n’est pas détruit</li>
+<li>La digitalisation n’est pas un postulat → c’est une <strong>conséquence</strong> de l’effondrement par mesure</li>
+<li>Le code de Shor corrige <strong>toute</strong> erreur sur 1 qubit, pas seulement <span class="math inline">\(X\)</span> ou <span class="math inline">\(Z\)</span> séparément</li>
 </ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Formule clé à retenir">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Formule clé à retenir
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[p_e&#39; = 3p_e^2(1-p_e) + p_e^3 \approx \mathcal{O}(p_e^2) \quad \text{pour } p_e \ll 1\]</span></p>
 </div>
 </div>
 
