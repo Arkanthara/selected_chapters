@@ -166,7 +166,7 @@ Les mesures de parité **font s'effondrer** l'état continu sur l'un des 4 cas d
 
 **Code de Shor sur canal dépolarisant :** erreur supprimée de $p_e$ à $\mathcal{O}(p_e^2)$
 
-::: {.callout-note title="Généralité du modèle">
+::: {.callout-note title="Généralité du modèle"}
 Sous hypothèse d'indépendance des erreurs entre qubits → tout canal bruité général peut être modélisé comme un canal dépolarisant.
 :::
 

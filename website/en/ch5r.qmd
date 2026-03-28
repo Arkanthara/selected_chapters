@@ -166,7 +166,7 @@ Parity measurements **collapse** the continuous state on one of the 4 discrete c
 
 **Shor code on depolarizing channel:** error removed from $p_e$ to $\mathcal{O}(p_e^2)$
 
-::: {.callout-note title="Template general">
+::: {.callout-note title="Template general"}
 Under the assumption of independence of errors between qubits → any general noisy channel can be modeled as a depolarizing channel.
 :::
 

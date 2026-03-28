@@ -406,7 +406,7 @@ Le **masque jetable** (one-time pad) en est l'exemple le plus simple :
 
 Un espion (Ève) qui intercepte $m \oplus r$ sans connaître $r$ ne peut rien déduire : il voit juste une chaîne aléatoire.
 
-::: {.callout-warning title="Le problème pratique">
+::: {.callout-warning title="Le problème pratique"}
 Le masque jetable est parfait... mais il faut qu'Alice et Bob se rencontrent en personne (ou disposent d'un canal absolument sécurisé) pour partager la clé. C'est là que la **QKD** intervient.
 :::
 
@@ -452,7 +452,7 @@ Le protocole se déroule ainsi :
 
 En moyenne, Alice et Bob rejettent **la moitié** de leurs bits.
 
-::: {.callout-tip title="Intuition">
+::: {.callout-tip title="Intuition"}
 Si Bob mesure dans la mauvaise base, le résultat est aléatoire et ne correspond pas nécessairement au bit d'Alice. Ces cas sont donc inutilisables et jetés. Les cas où ils ont utilisé la même base forment la clé partagée.
 :::
 
@@ -483,7 +483,7 @@ Un espion Ève peut tenter d'**intercepter, mesurer et retransmettre** les qubit
 
 **Conséquence :** Ève introduit des **erreurs** dans les bits pour lesquels Alice et Bob ont la même base — exactement 25% d'entre eux seront erronés. Alice et Bob peuvent détecter la présence d'Ève en **comparant publiquement un sous-ensemble de leurs bits clés**.
 
-::: {.callout-important title="Propriété fondamentale de BB84">
+::: {.callout-important title="Propriété fondamentale de BB84"}
 Toute tentative d'espionnage du canal quantique **perturbe inévitablement** les qubits transmis (conséquence du théorème de non-clonage et du postulat de mesure quantique). Cette perturbation est **détectable statistiquement**, garantissant la sécurité du protocole.
 :::
 
@@ -534,7 +534,7 @@ Pour factoriser $N$ :
 
 où $n$ est le nombre de bits de $N$.
 
-::: {.callout-tip title="Intuition">
+::: {.callout-tip title="Intuition"}
 Trouver la période d'une fonction classiquement nécessite d'évaluer la fonction pour de nombreuses entrées. La **Transformée de Fourier Quantique** extrait cette information de manière exponentielle en utilisant l'interférence quantique, sans avoir à évaluer la fonction point par point.
 :::
 
@@ -566,7 +566,7 @@ Le circuit quantique complet pour factoriser $N$ sur $n$ bits utilise :
 - La QFT inverse sur $2n$ qubits
 - Des mesures finales
 
-::: {.callout-note title="À retenir">
+::: {.callout-note title="À retenir"}
 L'algorithme de Shor est le premier exemple concret d'avantage quantique **exponentiel** sur un problème d'intérêt pratique (cryptographie). Il motive à lui seul une grande partie de la recherche en informatique quantique.
 :::
 
@@ -612,7 +612,7 @@ $$\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
 
 où $E_0$ est la valeur propre minimale (énergie fondamentale). En minimisant la valeur d'espérance, on s'approche de l'énergie fondamentale.
 
-::: {.callout-tip title="Intuition">
+::: {.callout-tip title="Intuition"}
 L'idée est de chercher le meilleur état quantique représentable par le circuit paramétrique (l'ansatz). Plus l'ansatz est expressif, plus on se rapproche de la vraie valeur propre. Le côté classique guide la recherche dans l'espace des paramètres.
 :::
 
@@ -630,7 +630,7 @@ L'idée est de chercher le meilleur état quantique représentable par le circui
 
 Il existe une **forte probabilité** que des ordinateurs quantiques soient capables de casser le chiffrement **RSA-2048** dans les 5 à 10 prochaines années. Pour cela, il faudrait environ **8 000 qubits logiques** dans un ordinateur universel.
 
-::: {.callout-warning title="Urgence actuelle">
+::: {.callout-warning title="Urgence actuelle"}
 Certaines données chiffrées ont une durée de vie de plus de 10 ans. Il peut falloir 10 ans pour migrer vers de nouveaux schémas de chiffrement. Organisations et gouvernements doivent agir **maintenant**.
 :::
 
@@ -647,7 +647,7 @@ La plupart des chiffrements utilisés aujourd'hui (HTTPS, VPN, etc.) **ne sont p
 **QKD (Distribution Quantique de Clés)**
 : Sera probablement adoptée pour les communications les plus sensibles. Offre une sécurité **théorique de l'information**.
 
-::: {.callout-note title="À retenir">
+::: {.callout-note title="À retenir"}
 Certains gouvernements et banques utilisent déjà des algorithmes « Quantum Safe ». Cette adoption devrait s'accélérer sur la prochaine décennie.
 :::
 
@@ -691,6 +691,6 @@ Selon Gartner, l'informatique quantique est encore dans une phase d'attentes gon
 
 Les projections montrent que le seuil de **2048 bits de chiffrement cassable** (danger zone) pourrait être atteint entre 2030 et 2035 selon le rythme de croissance des qubits, d'où l'urgence de la migration post-quantique.
 
-::: {.callout-important title="Message clé">
+::: {.callout-important title="Message clé"}
 L'informatique quantique n'est pas une technologie distante : ses implications pour la cryptographie, la simulation moléculaire et l'optimisation sont déjà en cours de déploiement. Comprendre ses fondements est devenu essentiel pour tout ingénieur ou chercheur en informatique, en physique ou en sécurité.
 :::

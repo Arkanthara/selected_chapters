@@ -406,7 +406,7 @@ The **disposable mask** (one-time pad) is the simplest example:
 
 A spy (Eve) who intercepts $m \oplus r$ without knowing $r$ cannot deduce anything: he just sees a random string.
 
-::: {.callout-warning title="The practical problem">
+::: {.callout-warning title="The practical problem"}
 The disposable mask is perfect... but Alice and Bob need to meet in person (or have an absolutely secure channel) to share the key. This is where **QKD** comes in.
 :::
 
@@ -452,7 +452,7 @@ Alice sends the qubit to Bob.
 
 On average, Alice and Bob reject **half** of their bits.
 
-::: {.callout-tip title="Intuition">
+::: {.callout-tip title="Intuition"}
 If Bob measures in the wrong base, the result is random and does not necessarily match Alice's bit. These cases are therefore unusable and thrown away. The cases where they used the same base form the shared key.
 :::
 
@@ -483,7 +483,7 @@ An Eve spy can attempt to **intercept, measure and retransmit** the qubits. But 
 
 **Conséquence :** Ève introduit des **erreurs** dans les bits pour lesquels Alice et Bob ont la même base — exactement 25% d'entre eux seront erronés. Alice and Bob can detect Eve's presence by **publicly comparing a subset of their key bits**.
 
-::: {.callout-important title="Fundamental property of BB84">
+::: {.callout-important title="Fundamental property of BB84"}
 Any attempt to spy on the quantum channel **inevitably** disrupts the transmitted qubits (consequence of the no-cloning theorem and the quantum measurement postulate). This disruption is **statistically detectable**, guaranteeing the security of the protocol.
 :::
 
@@ -534,7 +534,7 @@ To factor $N$:
 
 where $n$ is the number of bits of $N$.
 
-::: {.callout-tip title="Intuition">
+::: {.callout-tip title="Intuition"}
 Finding the period of a function classically requires evaluating the function for many inputs. The **Quantum Fourier Transform** extracts this information exponentially using quantum interference, without having to evaluate the function point by point.
 :::
 
@@ -566,7 +566,7 @@ The complete quantum circuit for factoring $N$ onto $n$ bits uses:
 - Inverse QFT on $2n$ qubits
 - Final measurements
 
-::: {.callout-note title="To remember">
+::: {.callout-note title="To remember"}
 Shor's algorithm is the first concrete example of an **exponential** quantum advantage on a problem of practical interest (cryptography). It single-handedly motivates much of the research in quantum computing.
 :::
 
@@ -612,7 +612,7 @@ $$\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
 
 where $E_0$ is the minimum eigenvalue (fundamental energy). By minimizing the expectation value, we approach the fundamental energy.
 
-::: {.callout-tip title="Intuition">
+::: {.callout-tip title="Intuition"}
 The idea is to seek the best quantum state representable by the parametric circuit (ansatz). The more expressive the ansatz, the closer we get to the true eigenvalue. The classical side guides the search in the parameter space.
 :::
 
@@ -630,7 +630,7 @@ The idea is to seek the best quantum state representable by the parametric circu
 
 There is a **high probability** that quantum computers will be able to break the **RSA-2048** encryption within the next 5 to 10 years. This would require approximately **8,000 logical qubits** in a general-purpose computer.
 
-::: {.callout-warning title="Current emergency">
+::: {.callout-warning title="Current emergency"}
 Some encrypted data has a lifespan of more than 10 years. It can take 10 years to migrate to new encryption schemes. Organizations and governments must act **now**.
 :::
 
@@ -647,7 +647,7 @@ Most encryptions used today (HTTPS, VPN, etc.) **are not secure in a quantum wor
 **QKD (Quantum Key Distribution)**
 : Will probably be adopted for the most sensitive communications. Provides **information-theoretic** security.
 
-::: {.callout-note title="To remember">
+::: {.callout-note title="To remember"}
 Some governments and banks already use “Quantum Safe” algorithms. This adoption is expected to accelerate over the next decade.
 :::
 
@@ -691,6 +691,6 @@ According to Gartner, quantum computing is still in a peak of inflated expectati
 
 Projections show that the threshold of **2048 bits of breakable encryption** (danger zone) could be reached between 2030 and 2035 depending on the rate of growth of qubits, hence the urgency of post-quantum migration.
 
-::: {.callout-important title="Key message">
+::: {.callout-important title="Key message"}
 Quantum computing is not a distant technology: its implications for cryptography, molecular simulation and optimization are already being deployed. Understanding its foundations has become essential for any engineer or researcher in computer science, physics or security.
 :::

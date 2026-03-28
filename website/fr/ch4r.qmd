@@ -116,7 +116,7 @@ title: "Applications des ordinateurs quantiques — Révision"
 | Interception + copie + mesure tardive | Impossible : **théorème de non-clonage** |
 | Stockage + qubit aléatoire à Bob | Bob a des bits aléatoires → erreurs détectées |
 
-::: {.callout-important title="Propriété fondamentale">
+::: {.callout-important title="Propriété fondamentale"}
 Toute écoute **perturbe** inévitablement les qubits → détectable statistiquement
 :::
 

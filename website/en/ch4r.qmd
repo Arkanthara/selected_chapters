@@ -116,7 +116,7 @@ title: "Applications of Quantum Computers — Review"
 | Interception + copy + late measure | Impossible: **no-cloning theorem** |
 | Storage + random qubit to Bob | Bob has random bits → errors detected |
 
-::: {.callout-important title="Fundamental property">
+::: {.callout-important title="Fundamental property"}
 Any eavesdropping **inevitably disrupts** the qubits → statistically detectable
 :::
 
