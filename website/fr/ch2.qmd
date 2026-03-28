@@ -6,6 +6,7 @@ title: "Fondements de l'informatique quantique"
 
 ## La théorie de l'information quantique
 
+
 La **théorie de l'information quantique** (Quantum Information Theory) est une généralisation de la théorie classique des probabilités dans laquelle les probabilités peuvent être **négatives**, voire des **nombres complexes**.
 
 Cette simple observation est fondamentale : elle signifie que le comportement des systèmes quantiques ne peut pas être réduit à une simple distribution de probabilités classique. Les amplitudes quantiques — les analogues quantiques des probabilités — obéissent à des règles algébriques bien plus riches, ce qui donne aux systèmes quantiques des capacités de calcul radicalement différentes.

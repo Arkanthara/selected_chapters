@@ -12,12 +12,12 @@ execute:
 
 > Pense au lien entre les amplitudes et les probabilités de mesure.
 
-1. [ ] Les amplitudes alpha et beta doivent etre des reels positifs
+1. [ ] Les amplitudes alpha et beta doivent être des réels positifs
 1. [ ] La somme des amplitudes doit valoir 1
-1. [x] La somme des carres des modules des amplitudes doit valoir 1
-    > Correct : |alpha|^2 + |beta|^2 = 1 est la condition de normalisation. Elle garantit que les probabilites de mesure s'additionnent a 1.
-1. [ ] Les amplitudes doivent etre egales
-    > Incorrect : les amplitudes peuvent avoir n'importe quelles valeurs complexes du moment que la normalisation est respectee.
+1. [x] La somme des carrés des modules des amplitudes doit valoir 1
+    > Correct : |alpha|^2 + |beta|^2 = 1 est la condition de normalisation. Elle garantit que les probabilités de mesure s'additionnent à 1.
+1. [ ] Les amplitudes doivent être égales
+    > Incorrect : les amplitudes peuvent avoir n'importe quelles valeurs complexes du moment que la normalisation est respectée.
 ```
 ```{quizdown}
 ### Parmi les etats suivants, lequel est un etat qubit INVALIDE ?

@@ -59,6 +59,7 @@ La mécanique quantique nous dit que la nature, à très petite échelle, se com
 
 Deux citations fondatrices illustrent la philosophie de l'informatique quantique.
 
+
 **Richard Feynman** (1982) suggérait que simuler la physique par ordinateur serait un programme excellent, et que la vraie utilité en serait avec la mécanique quantique — car la nature n'est pas classique, et toute simulation fidèle de la nature doit être quantique.
 
 **David Deutsch** soulignait que la théorie de la computation a traditionnellement été étudiée de manière abstraite, comme un sujet de mathématiques pures — ce qui passe à côté de l'essentiel. Les ordinateurs sont des objets physiques, et les calculs sont des processus physiques. Ce que les ordinateurs peuvent ou ne peuvent pas calculer est déterminé par les lois de la physique seules, et non par les mathématiques pures.

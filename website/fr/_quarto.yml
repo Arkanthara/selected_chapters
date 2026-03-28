@@ -4,13 +4,10 @@ project:
   output-dir: ../_site/fr
 
 website:
-  # Language switching setup
   page-footer:
     center: "Copyright © 2026 University of Geneva"
   navbar:
-    # background: primary
     search: true
-    # Right side for language selector
     right:
       - text: Langage
         icon: globe
@@ -29,28 +26,44 @@ website:
         contents:
           - section: "Quantum computing"
             contents:
-              - text: "Details"
+              - text: "Détails"
                 href: ch1.qmd
-              - text: "Synthese"
+              - text: "Synthèse"
                 href: ch1r.qmd
+              - text: "Quiz"
+                href: ch1q.qmd
           - section: "Quantum computing chapter 2"
             contents:
-              - text: "Details"
+              - text: "Détails"
                 href: ch2.qmd
-              - text: "Synthese"
+              - text: "Synthèse"
                 href: ch2r.qmd
+              - text: "Quiz"
+                href: ch2q.qmd
           - section: "Quantum computing chapter 3"
             contents:
-              - text: "Details"
+              - text: "Détails"
                 href: ch3.qmd
-              - text: "Synthese"
+              - text: "Synthèse"
                 href: ch3r.qmd
+              - text: "Quiz"
+                href: ch3q.qmd
           - section: "Applications des ordinateurs quantiques"
             contents:
-              - text: "Details"
+              - text: "Détails"
                 href: ch4.qmd
-              - text: "Synthese"
+              - text: "Synthèse"
                 href: ch4r.qmd
+              - text: "Quiz"
+                href: ch4q.qmd
+          - section: "Correction d'erreurs quantiques"
+            contents:
+              - text: "Détails"
+                href: ch5.qmd
+              - text: "Synthèse"
+                href: ch5r.qmd
+              - text: "Quiz"
+                href: ch5q.qmd
 
 
 format:
@@ -60,10 +73,6 @@ format:
       light: ../latte.scss
     toc: true
     embed-resources: true
-  # pdf:
-  #   toc: true
-  # docx:
-  #   toc: true
 
 # filters:
 #   - diagram

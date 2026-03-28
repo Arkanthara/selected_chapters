@@ -38,7 +38,7 @@ execute:
 > Il y a exactement trois raisons structurelles liées aux propriétés de la mécanique quantique.
 
 - [x] Le principe de non-clonage interdit de copier un état quantique inconnu
-    > Correct : le theorème de non-clonage (No-Cloning Theorem) est un obstacle direct à la stratégie de répétition classique.
+    > Correct : le théorème de non-clonage (No-Cloning Theorem) est un obstacle direct à la stratégie de répétition classique.
 - [ ] Les qubits sont trop coûteux à fabriquer en grand nombre
     > Incorrect : le coût matériel n'est pas un obstacle théorique à la correction d'erreurs.
 - [x] La mesure détruit l'information quantique par effondrement de la superposition

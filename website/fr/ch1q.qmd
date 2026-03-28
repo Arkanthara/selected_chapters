@@ -8,15 +8,15 @@ execute:
 
 ## Niveau 1 — Fondamentaux
 ```{quizdown}
-### Quelle est la definition de l'informatique quantique ?
+### Quelle est la définition de l'informatique quantique ?
 
-> Reflechis a ce qui distingue fondamentalement ce paradigme de l'informatique classique.
+> Réfléchis à ce qui distingue fondamentalement ce paradigme de l'informatique classique.
 
-1. [ ] Un systeme de calcul utilisant des processeurs tres rapides bases sur la physique classique
-1. [x] Un paradigme de calcul fonde sur les principes de la mecanique quantique
-    > Correct : l'informatique quantique exploite les lois de la mecanique quantique, pas la physique classique.
-1. [ ] Un systeme de calcul distribue sur plusieurs machines classiques
-1. [ ] Un modele de calcul probabiliste classique
+1. [ ] Un système de calcul utilisant des processeurs très rapides basés sur la physique classique
+1. [x] Un paradigme de calcul fondé sur les principes de la mécanique quantique
+    > Correct : l'informatique quantique exploite les lois de la mécanique quantique, pas la physique classique.
+1. [ ] Un système de calcul distribué sur plusieurs machines classiques
+1. [ ] Un modèle de calcul probabiliste classique
 ```
 ```{quizdown}
 ### Que signifie l'acronyme NISQ ?

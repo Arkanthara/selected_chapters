@@ -14,9 +14,9 @@ execute:
 > Pense au nom du chercheur qui l'a proposé en 1994.
 
 1. [ ] Algorithme de Grover
-    > Incorrect : Grover est associe a la recherche dans une base de donnees non triee.
+    > Incorrect : Grover est associé à la recherche dans une base de données non triée.
 1. [x] Algorithme de Shor
-    > Correct : Peter Shor a propose en 1994 cet algorithme qui exploite la Transformee de Fourier Quantique pour trouver la periode d'une fonction modulaire.
+    > Correct : Peter Shor a proposé en 1994 cet algorithme qui exploite la Transformée de Fourier Quantique pour trouver la période d'une fonction modulaire.
 1. [ ] Algorithme VQE
 1. [ ] Algorithme BB84
 ```

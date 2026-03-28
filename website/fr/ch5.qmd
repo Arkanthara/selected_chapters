@@ -4,6 +4,7 @@ title: "Correction d'erreurs quantiques"
 
 # Pourquoi la correction d'erreurs est-elle nécessaire ?
 
+
 Les ordinateurs numériques classiques modernes sont, en pratique, exempts d'erreurs. Leur architecture repose sur des transistors robustes et des mécanismes de redondance matérielle qui rendent les erreurs de calcul extrêmement rares. On peut donc, pour les besoins de l'analyse algorithmique, les considérer comme parfaits.
 
 Les ordinateurs quantiques, en revanche, sont fondamentalement différents. Les qubits sont des objets physiques fragiles — atomes piégés, photons, circuits supraconducteurs — qui interagissent inévitablement avec leur environnement. Cette interaction provoque des **erreurs quantiques** qui corrompent le calcul.

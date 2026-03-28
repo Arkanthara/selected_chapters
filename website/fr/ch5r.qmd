@@ -2,6 +2,7 @@
 title: "Correction d'erreurs quantiques — Révision"
 ---
 
+
 # Pourquoi corriger les erreurs ?
 
 ::: {.callout-warning title="Problème fondamental"}
