@@ -1,0 +1,218 @@
+---
+title: "Basics of Quantum Computing — Review"
+---
+
+## Qubit & Superposition
+
+**Classical Bit**: 2 states $|0\rangle$ or $|1\rangle$ only.
+
+**Qubit (Quantum Bit)**: superposition $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ with $|\alpha|^2 + |\beta|^2 = 1$.
+
+::: {.callout-important title="Normalization condition"}
+$|\alpha|^2 + |\beta|^2 = 1$ — required for any valid qubit state.
+:::
+
+**Amplitudes** $\alpha, \beta \in \mathbb{C}$: can be negative or complex (≠ classic probabilities).
+
+**Invalid state**: $i|0\rangle - \frac{1}{2}|1\rangle$ because $1 + \frac{1}{4} \neq 1$.
+
+---
+
+## Dirac notation (Bra-Ket)
+
+| Rating | Meaning |
+|---|---|
+| $\|ψ\rangle$ (ket) | column vector = quantum state |
+| $\langle ψ\|$ (bra) | line vector = Hermitian conjugate |
+| $\langle ψ \| θ\rangle$ | dot product |
+
+**Dot product:** $\langle\psi|\theta\rangle = \bar{\alpha}\gamma + \bar{\beta}\delta$
+
+::: {.callout-warning title="Warning"}
+$\langle\theta|\psi\rangle = \overline{\langle\psi|\theta\rangle}$ — order matters!
+:::
+
+---
+
+## Classic Bit vs Qubit
+
+| Property | Classic bit | Qubit |
+|---|---|---|
+| States | $\{0,1\}$ | any overlay |
+| Measurement | complete, non-destructive | partial, probabilistic |
+| After measurement | unchanged | collapse (collapse) |
+| Copy | ✅ | ❌ (non-cloning) |
+| Erasure | ✅ | ❌ (reversibility) |
+
+---
+
+## Measurement & Born Rule
+
+$$\Pr[|0\rangle] = |\alpha|^2 \qquad \Pr[|1\rangle] = |\beta|^2$$
+
+- After measurement → state **collapses** to $|0\rangle$ or $|1\rangle$.
+- Previous state **lost**.
+- Measure twice = measure once.
+- **Decoherence**: loss of superposition by interaction with the environment → main technological challenge.
+
+---
+
+## Composite systems & Entanglement
+
+**Tensor Product**: joint state of 2 qubits = $|\psi_1\rangle \otimes |\psi_2\rangle$ → 4D vector in $\mathbb{C}^2 \otimes \mathbb{C}^2$.
+
+**2-qubit basis:** $|00\rangle,\ |01\rangle,\ |10\rangle,\ |11\rangle$
+
+**Product State**: factors into $|\psi_1\rangle \otimes |\psi_2\rangle$.
+
+**Entangled State**: does NOT factor.
+
+::: {.callout-note title="Pair of Bell / EPR"}
+$$|\Phi\rangle = \frac{1}{\sqrt{2}}\big(|00\rangle + |11\rangle\big) \quad \text{— état intriqué canonique}$$
+:::
+
+**Properties of entanglement:**
+
+- Instantaneous correlation at a distance (“spooky actions at a distance”)
+- Measurement of one qubit → immediate collapse of the other
+- Phenomenon **only quantum**
+
+---
+
+## Quantum Gates — Key reminder
+
+**Rule:** every $U$ door is **unitary**: $UU^\dagger = I$ → reversible.
+
+A gate on $n$ qubits = matrix $2^n \times 2^n$.
+
+### 1 qubit gates
+
+| Door | Matrix | Action |
+|---|---|---|
+| Pauli-X | $\begin{bmatrix}0&1\\1&0\end{bmatrix}$ | $\|0\rangle\leftrightarrow\|1\rangle$ (NOT) |
+| Pauli-Y | $\begin{bmatrix}0&-i\\i&0\end{bmatrix}$ | $\|0\rangle\to i\|1\rangle,\ \|1\rangle\to -i\|0\rangle$ |
+| Pauli-Z | $\begin{bmatrix}1&0\\0&-1\end{bmatrix}$ | $\|1\rangle\to -\|1\rangle$ |
+| Hadamard H | $\frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$ | creates overlay |
+| Phase S | $\begin{bmatrix}1&0\\0&i\end{bmatrix}$ | $S^2=Z$ |
+| T ($\pi/8$) | $\begin{bmatrix}1&0\\0&e^{i\pi/4}\end{bmatrix}$ | phase shift |
+
+### CNOT gate (2 qubits)
+
+- Control = 0 → target unchanged
+- Control = 1 → inverted target (classic XOR)
+
+$$CNOT : |10\rangle\to|11\rangle,\quad |11\rangle\to|10\rangle$$
+
+---
+
+## The Hadamard H gate — Critical points
+
+::: {.callout-important title="Must remember"}
+- $H|0\rangle = |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$
+- $H|1\rangle = |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$
+- $H^2 = I$ (its own inverse)
+- **No classic equivalent**
+:::
+
+**States $|+\rangle$ and $|-\rangle$:**
+
+$$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} \qquad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}$$
+
+**Distinguish $|+\rangle$ from $|-\rangle$:** apply $H$ then measure → $|0\rangle$ or $|1\rangle$ with certainty.
+
+---
+
+## Quantum Interference
+
+| Experience | Circuit | Result |
+|---|---|---|
+| A | $\|0\rangle \to H \to$ measure $\to H \to$ measure | 50/50 random |
+| B | $\|0\rangle \to H \to H \to$ measurement | always $\|0\rangle$ |
+
+**Explanation:** without intermediate measurement, the amplitudes of the paths **add up**:
+
+- Towards $|0\rangle$: $\frac{1}{2} + \frac{1}{2} = 1$ → **constructive interference**
+- Towards $|1\rangle$: $\frac{1}{2} - \frac{1}{2} = 0$ → **destructive interference**
+
+::: {.callout-warning title="Frequent trap"}
+An intermediate measurement **destroys the superposition** and prevents interference → 50/50 result instead of deterministic.
+:::
+
+---
+
+## Generate entanglement by circuit
+
+Circuit: gate H on qubit 1, then CNOT (ctrl=1, target=2)
+
+$$|00\rangle \xrightarrow{H\otimes I} \frac{1}{\sqrt{2}}(|00\rangle+|10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$$
+
+→ **Bell State** (Bell State) = maximally entangled state.
+
+---
+
+## Quantum benefits
+
+**Exponential power:**
+
+- $n$ qubits → $2^n$ dimensional space
+- Add 1 qubit = double the power (vs $+32$ bits in classic)
+
+**Three sources of acceleration:**
+
+1. **Quantum Parallelism**: all inputs simultaneously
+2. **Exponential Hilbert space**: $2^n$ vs classic $n$
+3. **Entanglement**: non-classical correlations
+
+---
+
+## Quantum algorithms — Key complexities
+
+| Problem | Classic | Quantum |
+|---|---|---|
+| Fourier/Shor transform | $n \cdot 2^n$ | $n^2$ |
+| Search (Grover) | $N$ | $\sqrt{N}$ |
+| Quantum simulation | $c^N$ bits | $kn$ qubits |
+
+::: {.callout-note title="Cryptographic Implications"}
+Shor factors in polynomial time → **RSA threat** → need for Post-Quantum Cryptography.
+:::
+
+---
+
+## Quantum Volume
+
+$$\log_2 V_Q = \underset{n \leq N}{\arg\max}\{\min[n,\ d(n)]\}$$
+
+- Depends on the number of qubits $N$ **AND** on the circuit depth $d$
+- Few qubits + low error > many qubits + noisy
+- Overall quality metric of a QPU
+
+---
+
+## Summary: relationships between concepts
+```{mermaid}
+flowchart TD
+    Q["Qubit\nα|0⟩ + β|1⟩"] --> S["Superposition"]
+    Q --> M["Mesure → Born Rule\nPr = |α|², |β|²"]
+    S --> I["Interférence\n(constructive/destructive)"]
+    S --> E["Intrication\n(Entanglement)"]
+    E --> B["Paire de Bell\n(|00⟩+|11⟩)/√2"]
+    Q --> G["Portes unitaires\nX, Y, Z, H, CNOT"]
+    G --> C["Circuits quantiques"]
+    C --> A["Algorithmes\nShor, Grover"]
+    M --> D["Décoherence\n→ perte superposition"]
+```
+
+---
+
+## Traps & Critical Points
+
+::: {.callout-warning title="Do not confuse"}
+
+- **Amplitude** ≠ probability (can be negative/complex)
+- **Measurement** ≠ passive reading → changes state
+- **Qubit** ≠ random bit (interference proves the difference)
+- **Number of qubits** ≠ total power (see quantum volume)
+- $H$ twice = identity ($H^2 = I$), but H then measure then H ≠ identity
+
+:::

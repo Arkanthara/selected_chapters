@@ -1,0 +1,141 @@
+---
+title: "Introduction to Quantum Computing — Review"
+---
+
+## Essential definitions
+
+| Term | Definition |
+|---|---|
+| Quantum Computing | Calculation based on quantum mechanics, not classical physics |
+| Quantum Mechanics (Quantum Mechanics) | Description of nature at the subatomic level |
+| Qubit | Quantum unit of information (≠ classical bit) |
+| Quantum Supremacy | Demonstration that a QC accomplishes a classically infeasible task |
+| NISQ | Noisy Intermediate-Scale Quantum — current era (~100 qubits, noisy) |
+| Quantum Error Correction | Technique for managing noise and errors in quantum systems |
+| Fault-Tolerant QC | QC capable of correcting errors faster than they occur |
+
+---
+
+## Quantum effects exploited
+
+- **Superposition** (Superposition) — a qubit in several states simultaneously
+- **Entanglement** — non-classical correlations between qubits
+- **Interference** (Interference) — amplification of correct answers, suppression of incorrect ones
+
+::: {.callout-warning title="Frequent trap"}
+A QC **does not test all solutions in parallel** — it exploits interference in a targeted way.
+:::
+
+---
+
+## The exponentiality of quantum mechanics
+
+- State of $N$ particles $\Rightarrow$ vector in $\mathbb{C}^{2^N}$
+- For $N \approx 300$: $2^N \gg 10^{82}$ (> atoms of the universe)
+- Exact classical simulation = **impossible** in practice
+
+$$|\psi\rangle \in \mathbb{C}^{2^N}$$
+
+---
+
+## Key quantum algorithms
+
+| Algorithm | Acceleration type | Target problem |
+|---|---|---|
+| **Shor** | Exponential | Integer factorization → breaks RSA |
+| **Grover** | Quadratic ($O(N) \to O(\sqrt{N})$) | Unstructured search |
+| **VQE** | Variational (NISQ) | Chemistry/physics simulation |
+| **QAOA** | Classical-quantum hybrid | Combinatorial optimization |
+| **HHL** | Exponential (conditions) | Linear systems |
+
+---
+
+## What QCs can/can NOT do
+
+| Affirmation | Verdict |
+|---|---|
+| Solve by testing all possibilities | ❌ FALSE |
+| Solve TSP quickly | ❌ FALSE (probably) |
+| Factor efficiently (Shor's algo) | ✅ YES |
+| Solve all hard NP problems | ❌ FALSE |
+| Advantage on certain structured problems | ✅ YES |
+| Simulate Quantum Physics/Chemistry | ✅ YES (probable benefit) |
+| Solving climate change | ⚠️ UNCERTAIN |
+
+---
+
+## Historical timeline
+
+- **~1930** — 1st quantum revolution: foundations of QM
+- **1981** — Feynman: *"Can probabilistic computers simulate QM?"* → **NO**
+- **1985** — Deutsch: 1st problem solved faster on QC (constant factor)
+- **1992** — Bernstein-Vazirani, Simon: **super-polynomial** advantage
+- **1994** — **Shor**: factorization → RSA and Diffie-Hellman threat
+- **~2017** — Transition from ~10 to ~200 qubits, start of NISQ era
+- **2019** — Google: quantum supremacy (Sycamore, 53 qubits)
+- **2021** — Chinese Academy of Sciences: classical reproduction via tensor networks (512 GPUs, 3 p.m.)
+- **~2030+** — Horizon: fault-tolerant quantum computing
+
+---
+
+## Types of physical qubits
+
+- Persistent current in superconducting circuit ← **Google, IBM**
+- Photon polarization
+- Electronic spin (magnetic field)
+- Internal state of atom (trapped ions)
+
+---
+
+## Classic strategies to circumvent QM complexity
+
+| Strategy | Examples |
+|---|---|
+| Analytical approximations | Bethe ansatz, Feynman diagrams, disturbance theory, mean field |
+| Numerical simulations | DFT, Quantum Monte Carlo |
+| Favorable systems | Quasi-classical, weakly correlated systems |
+
+---
+
+## Relations between concepts
+```{mermaid}
+flowchart TD
+    QM["Mécanique Quantique"] --> SP["Superposition"]
+    QM --> ENT["Enchevêtrement"]
+    QM --> INT["Interférence"]
+    SP & ENT & INT --> QC["Ordinateur Quantique"]
+    QC --> SHOR["Algo de Shor\n(factorisation)"]
+    QC --> GROVER["Algo de Grover\n(recherche)"]
+    QC --> SIM["Simulation quantique"]
+    QC --> NISQ["Dispositifs NISQ\n(VQE, QAOA)"]
+```
+
+---
+
+## Critical points to remember
+
+::: {.callout-important title="Cryptographic impact"}
+Shor breaks **RSA** and **Diffie-Hellman** → Internet security threatened as soon as a fault-tolerant QC exists.
+:::
+
+::: {.callout-note title="Quantum-inspired"}
+Thinking quantumly has value **even classically** — e.g. Tang algorithm (2018) inspired by Kerenidis-Prakash, reaching $\mathcal{O}(\text{poly}\log(mn))$ classically.
+:::
+
+::: {.callout-warning title="NISQ ≠ guaranteed benefit"}
+Current NISQ devices cannot run Shor. The practical advantage on real problems remains to be demonstrated.
+:::
+
+---
+
+## Related disciplines
+
+**Mathematics** — operator algebras, number theory, algebraic geometry
+
+**Physics** — condensed matter, quantum gravity, string theory
+
+**Computing** — complexity, cryptography, quantum ML, optimization
+
+**Chemistry** — molecular simulations, fermionic encoding
+
+**Engineering** — quantum networks, key distribution (QKD)

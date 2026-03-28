@@ -1,0 +1,151 @@
+---
+title: "Fundamental Properties of Quantum Computing — Review"
+---
+
+# Measurement & distinction of states
+
+## Computational Basis Measurement
+
+- $|\psi\rangle = |0\rangle$ or $|1\rangle$ → **deterministic** measurement (classic information)
+- $|1\rangle = 0|0\rangle + 1|1\rangle$ → $p(\text{mesurer }1) = |1|^2 = 1$
+
+## Orthogonal States
+
+::: {.callout-important title="Key rule"}
+Two **orthogonal** states → **perfect** distinction always possible.
+:::
+
+**Method :**
+
+1. Construct $U = \begin{bmatrix}\alpha & \gamma \\ \beta & \delta\end{bmatrix}$ (columns = $|\psi_0\rangle$, $|\psi_1\rangle$)
+2. Apply $U^\dagger$ → aligns states with computational basis
+3. Measure in the computational base
+
+**Measurement operators:** $M_{|\psi_0\rangle} = |\psi_0\rangle\langle\psi_0|$ and $M_{|\psi_1\rangle} = |\psi_1\rangle\langle\psi_1|$
+
+**Completeness equation:** $\sum_m M_m^\dagger M_m = I$ ✓ (because $U U^\dagger = I$)
+
+## Non-Orthogonal States
+
+- **perfect** distinction → **impossible**
+- We can obtain partial information on the probability of membership
+
+---
+
+# Helstrom-Holevo Bound
+
+::: {.callout-important title="Formula"}
+$|\langle\psi_a|\psi_b\rangle| = \cos\theta \implies p_{\text{succès}} \leq \dfrac{1}{2}(1 + \sin\theta)$
+:::
+
+| Case | $\theta$ | $\sin\theta$ | $p_{\text{succès}}$ |
+|-----|----------|--------------|---------------------|
+| Orthogonal states | $\pi/2$ | $1$ | $1$ (perfect) |
+| Any states | $\theta$ | $\sin\theta$ | $\frac{1}{2}(1+\sin\theta)$ |
+| Identical States | $0$ | $0$ | $\frac{1}{2}$ (chance) |
+
+**Optimal basis:** eigenvectors (Eigenvectors) of $|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$
+
+## Example: $|0\rangle$ vs $|+\rangle$
+
+- $\langle 0|{+}\rangle = \frac{1}{\sqrt{2}} \neq 0$ → non-orthogonal
+- $p_{\text{succès}}^{\text{opt}} = \frac{1}{2}(1 + \sin(\arccos(1/\sqrt{2}))) \approx \mathbf{0.85}$
+
+**In the computational basis (suboptimal):**
+
+| | Outcome 0 | Outcome 1 |
+|--|--|--|
+| $|0\rangle$ | $1$ | $0$ |
+| $|+\rangle$ | $1/2$ | $1/2$ |
+
+- Outcome $1$ → **certainty**: $|\psi\rangle = |+\rangle$
+- Outcome $0$ → guess $|0\rangle$, but case $\frac{1}{3}$ = $|+\rangle$
+- $p_{\text{succès}} = \frac{3}{4} = \mathbf{0.75}$ (< 0.85)
+
+## Discrimination strategies
+
+| Strategy | $p_{\text{succès}}$ | Possible certainty? |
+|-----------|---------------------|----------------------|
+| Optimal basis (symmetric) | Max = $\frac{1}{2}(1+\sin\theta)$ | No |
+| Asymmetrical base | $< \frac{1}{2}(1+\sin\theta)$ | Yes (on an outcome) |
+
+::: {.callout-tip title="Trap"}
+Measuring in the computational base is **not** the optimal strategy in general.
+:::
+
+---
+
+# No-Signalling Principle
+
+::: {.callout-important title="Statement"}
+Quantum entanglement **cannot** transmit information faster than light.
+:::
+
+**Alice–Bob scenario (Bell pair $\frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$):**
+
+- Alice measures → Bob's qubit collapses **instantly**
+- Bob measures his qubit: $p_B(0) = p_B(1) = \frac{1}{2}$ in **both cases** (with or without Alice's measurement)
+- Bob **cannot detect** if Alice has measured → no signal
+
+::: {.callout-note title="Proof Key"}
+Without classic communication from Alice, Bob does not know Alice's outcome → her statistics remain the same.
+:::
+
+**Generalization:** valid for any type of entanglement, any measurement basis, any local unitary transformation.
+
+---
+
+# No-Cloning Theorem
+
+::: {.callout-important title="Statement"}
+There is **no** unitary transformation $U$ such as $U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$ for all $|\psi\rangle$.
+:::
+
+**Proof (by contradiction):**
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle \quad \text{et} \quad U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle$$
+
+$$\xRightarrow{U^\dagger U = I} \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+$$\Rightarrow \langle\psi|\phi\rangle \in \{0, 1\} \quad \text{(orthogonaux ou identiques seulement)}$$
+
+**Consequences :**
+
+- Quantum Error Correction → more complex
+- Cloning + no-signalling → contradiction
+- Cloning → classic super-compression of information impossible
+
+---
+
+# No-Deleting Theorem
+
+::: {.callout-important title="Statement"}
+There is **no** unitary transformation $\tilde{U}$ such as $\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$.
+:::
+
+- **Dual time** of non-cloning
+- Non-cloning: prohibited $1 \to 2$ copies
+- Non-deletion: prohibited $2 \to 1$ copies
+
+::: {.callout-note title="To remember"}
+Quantum calculation is **reversible** (except measurement) → the impossibility of an operation implies the impossibility of its inverse.
+:::
+
+---
+
+# Overall summary
+
+| Property | Condition | Result |
+|-----------|-----------|----------|
+| Perfect distinction | **orthogonal** states | ✅ Always possible |
+| Perfect distinction | States **non-orthogonal** | ❌ Impossible |
+| $p_{\text{succès}}$ max | $|\langle\psi_a|\psi_b\rangle| = \cos\theta$ | $\frac{1}{2}(1+\sin\theta)$ |
+| Transmission of information (entanglement) | Always | ❌ Non-signalling |
+| Arbitrary state cloning | Always | ❌ Non-cloning |
+| Deleting a copy | Always | ❌ Non-deletion |
+
+::: {.callout-warning title="Relationships between principles"}
+- Cloning possible $\Rightarrow$ non-signaling violated
+- Non-deletion = dual to non-cloning (reversibility)
+- $\theta = \pi/2$ (orthogonal) $\Rightarrow$ Helstrom-Holevo gives $p = 1$ ✓
+:::

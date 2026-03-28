@@ -1,0 +1,297 @@
+---
+title: "Introduction to Quantum Computing — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Level 1 — Fundamentals
+```{quizdown}
+### What is the definition of quantum computing?
+
+> Think about what fundamentally distinguishes this paradigm from classical computing.
+
+1. [ ] A computing system using very fast processors based on classical physics
+1. [x] A computational paradigm based on the principles of quantum mechanics
+    > Correct: Quantum computing exploits the laws of quantum mechanics, not classical physics.
+1. [ ] A computing system distributed across several classic machines
+1. [ ] A classic probabilistic calculation model
+```
+```{quizdown}
+### What does the acronym NISQ mean?
+
+> Think about the characteristics of current quantum devices.
+
+1. [ ] Non-Isolated Scalable Quantum
+1. [ ] Network-Integrated Superposition Qubit
+1. [x] Noisy Intermediate-Scale Quantum
+    > Correct: NISQ designates noisy quantum devices on an intermediate scale (around 100 qubits).
+1. [ ] Normalized Instruction Set for Quantum computing
+```
+```{quizdown}
+### What are the three main quantum effects exploited by a quantum computer?
+
+> These three properties distinguish qubits from classic bits.
+
+- [x] Overlay
+    > Correct: superposition allows a qubit to be in several states simultaneously.
+- [ ] Transistence
+    > Incorrect: this term does not exist in quantum mechanics.
+- [x] Entanglement
+    > Correct: entanglement creates non-classical correlations between qubits.
+- [x] Interference
+    > Correct: Interference amplifies the correct answers and suppresses the incorrect ones.
+- [ ] Amplified decoherence
+    > Incorrect: decoherence is a problem, not a resource.
+```
+```{quizdown}
+### How many complex numbers are needed to describe the state of N quantum particles?
+
+> Think about the vector representation of the quantum state.
+
+1. [ ] N
+1. [ ] N squared
+1. [x] 2 to the power of N
+    > Correct: the state of N particles is a vector in C^(2^N), which explains the exponential complexity.
+1. [ ] 2 times N
+```
+```{quizdown}
+### What type of physical qubit is used by Google and IBM?
+
+> Think about the most popular platform in the industry.
+
+1. [ ] Trapped ions
+1. [ ] Photon polarization
+1. [x] Superconducting qubits
+    > Correct: superconducting qubits are superconducting loops on silicon chips, used by Google and IBM.
+1. [ ] Nuclear spin
+```
+```{quizdown}
+### What is Quantum Supremacy?
+
+> This is a demonstration criterion, not a general algorithmic advantage.
+
+1. [ ] A quantum computer that solves all NP-hard problems
+1. [ ] A quantum system without any error
+1. [x] A convincing demonstration that a quantum computer accomplishes a task reasonably infeasible by a classical computer
+    > Correct: quantum supremacy is an experimental proof, not a guarantee of general practical utility.
+1. [ ] A quantum computer with more than a million qubits
+```
+```{quizdown}
+### In what year did Peter Shor publish his factorization algorithm?
+
+> Place this event in the timeline of the beginnings of quantum computing.
+
+1. [ ] 1981
+1. [ ] 1985
+1. [ ] 1992
+1. [x] 1994
+    > Correct: Shor published his algorithm in 1994, directly threatening RSA and Diffie-Hellman cryptography.
+```
+
+---
+
+## Level 2 — Comprehension
+```{quizdown}
+### Why is the exact classical simulation of a system of 300 quantum particles impossible in practice?
+
+> Compare the number of states needed to the number of atoms known in the universe.
+
+1. [ ] Because classical computers cannot perform complex calculations
+1. [ ] Because quantum mechanics prohibits any simulation
+1. [x] Because 2^300 far exceeds the number of atoms in the observable universe (around 10^82)
+    > Correct: storing or manipulating a vector of size 2^300 is physically impossible for any classical system.
+1. [ ] Because the particles move too fast to be traced
+```
+```{quizdown}
+### What was Feynman's conclusion in 1981 regarding quantum simulation by classical computers?
+
+> Feynman asked a specific question about the capability of probabilistic computers.
+
+1. [ ] Yes, probabilistic computers can effectively simulate quantum mechanics
+1. [x] No, probabilistic computers cannot effectively simulate quantum mechanics
+    > Correct: Feynman concludes that since nature is not classical, a faithful simulation must be quantum.
+```
+```{quizdown}
+### What is the impact of Shor's algorithm on cryptography?
+
+> Consider the mathematical foundations of the main public key encryption systems.
+
+- [x] It breaks the RSA system
+    > Correct: RSA relies on the difficulty of factoring large integers, which Shor solves effectively.
+- [x] He breaks the Diffie-Hellman protocol
+    > Correct: Diffie-Hellman is based on the discrete logarithm problem, linked to the hidden subgroup problem that Shor generalizes.
+- [ ] It breaks symmetric ciphers like AES
+    > Incorrect: Shor does not directly affect AES. Grover would reduce his security, but not catastrophically.
+- [ ] It improves RSA security
+    > Incorrect: Shor compromises RSA, he does not improve it.
+```
+```{quizdown}
+### What is the difference between the advantage obtained by Deutsch (1980s) and that of Simon (1992)?
+
+> Compare the types of acceleration obtained in each case.
+
+1. [ ] Deutsch has an exponential advantage, Simon a constant advantage
+1. [x] Deutsch has a constant advantage, Simon a super-polynomial advantage
+    > Correct: Deutsch shows a gain of a constant factor, while Simon demonstrates a super-polynomial advantage, which is a complexity class break.
+1. [ ] Both have the same type of quadratic advantage
+1. [ ] Deutsch has a polynomial advantage, Simon a constant advantage
+```
+```{quizdown}
+### Why is Ewin Tang's (2018) classical algorithm notable for quantum computing?
+
+> Think about the origin of the inspiration for this algorithm.
+
+1. [ ] It proves that no quantum algorithm can be faster than the classical one
+1. [ ] It replaces Shor's algorithm in a classic way
+1. [x] It shows that thinking quantumly can inspire better classical algorithms
+    > Correct: Tang took inspiration from the Kerenidis-Prakash quantum algorithm to achieve a similar speedup in a purely classical way, proving the value of quantum ideas even without a quantum computer.
+1. [ ] It demonstrates quantum supremacy over recommendation systems
+```
+```{quizdown}
+### What problems can quantum algorithms solve with exponential acceleration?
+
+> Distinguishes the types of problems according to their mathematical structure.
+
+- [x] Integer factorization with Shor's algorithm
+    > Correct: Shor provides exponential speedup on factorization.
+- [ ] Sorting an unordered list
+    > Incorrect: sorting has no quantum-exploitable structure for exponential acceleration.
+- [x] Simulation of quantum systems
+    > Correct: Quantum simulation benefits from exponential acceleration, it's Feynman's dream.
+- [ ] Searching an unstructured database
+    > Incorrect: Unstructured search (Grover) only offers quadratic speedup, not exponential.
+```
+```{quizdown}
+### Why can't NISQ devices run Shor's algorithm on large integers?
+
+> Think about Shor's requirements for qubit reliability.
+
+1. [ ] Because Shor has not yet been programmed
+1. [ ] Because the NISQ qubits are too few in number only
+1. [x] Because NISQ devices are too noisy and lack error correction
+    > Correct: Shor requires millions of logical qubits with error correction, which current NISQ devices do not provide.
+1. [ ] Because Shor requires a classic computer only
+```
+
+---
+
+## Level 3 — Mastery
+```{quizdown}
+### Put the key stages in the history of quantum computing in chronological order.
+
+> Think about the progression from theoretical foundations to experimental demonstrations.
+
+1. Foundations of quantum mechanics (first quantum revolution)
+2. Feynman proposes the idea of ​​a quantum simulator
+3. Deutsch: first problem solved faster on a quantum computer
+4. Bernstein-Vazirani and Simon: super-polynomial advantage
+5. Shor: factorization algorithm
+6. Google Quantum Supremacy (Sycamore, 53 qubits)
+```
+```{quizdown}
+### A researcher claims that his quantum computer solves the traveling salesman problem (TSP) in polynomial time. What is the correct reaction?
+
+> Think about what we know about the complexity of NP-hard problems and quantum computers.
+
+1. [ ] It is certain, quantum computers solve all NP problems in polynomial time
+1. [ ] This is impossible because quantum computers are less powerful than classical ones
+1. [x] This is most likely false, because QC does not seem to be able to solve NP-hard problems in polynomial time
+    > Correct: there is no proof or strong conjecture that QCs solve NP-hard in polynomial time. TSP does not have the mathematical structure that can be exploited by known quantum algorithms.
+1. [ ] This is only true for NISQ devices
+```
+```{quizdown}
+### In November 2021, researchers from the Chinese Academy of Sciences replicated Google's quantum supremacy experiment. What method did they use?
+
+> Think about the biggest competitor to quantum computers according to the course.
+
+1. [ ] A new, more powerful quantum computer
+1. [x] Tensor network algorithms on 512 GPUs in 15 hours
+    > Correct: they used intelligent classical algorithms (tensor networks), reminding us that quantum advantage must always be measured against the best classical algorithms available.
+1. [ ] Grover's algorithm on a classical supercomputer
+1. [ ] A probabilistic Monte Carlo simulation
+```
+```{quizdown}
+### What is a Hybrid Quantum-Classical Optimizer?
+
+> Consider the architecture used for current NISQ devices.
+
+1. [ ] A quantum computer that completely replaces the classical processor
+1. [ ] A classical algorithm inspired by quantum ideas
+1. [x] A quantum system or processor measures a cost function and a classical optimizer adjusts the quantum circuit
+    > Correct: In this architecture, the QC and the classical computer work in a loop, each doing what it does best.
+1. [ ] A classical computer simulating a quantum computer
+```
+```{quizdown}
+### Put the steps in the operation of a hybrid quantum-classical optimizer in the correct order.
+
+> Think about the interaction loop between the quantum processor and the classical optimizer.
+
+1. Preparation of the parameterized quantum circuit
+2. Executing the circuit on the quantum processor
+3. Measuring the cost function
+4. Transmission of the result to the classic optimizer
+5. Adjustment of circuit parameters by the optimizer
+6. Repetition until convergence
+```
+```{quizdown}
+### What is the main application of quantum computers considered the most important to date?
+
+> Feynman identified it as the original motivation.
+
+1. [ ] Cryptanalysis of classical encryption systems
+1. [ ] TSP type combinatorial optimization
+1. [x] Simulation of quantum physical and chemical systems
+    > Correct: Simulating quantum physics and chemistry is probably the most important application of QC. This is Feynman's original dream and the most natural motivation.
+1. [ ] Unsupervised machine learning
+```
+```{quizdown}
+### To obtain a fault-tolerant quantum computer (Fault-Tolerant QC), what condition is necessary?
+
+> Consider the fundamental challenge posed by noise in quantum systems.
+
+1. [ ] Use only superconducting qubits
+1. [ ] Have more than 10,000 physical qubits without error correction
+1. [x] Fix errors faster than they happen
+    > Correct: Fault tolerance requires that the correction rate exceeds the error occurrence rate, which requires quantum error correction.
+1. [ ] Operate at room temperature
+```
+```{quizdown}
+### According to David Deutsch, why should the theory of computation not be studied only as a subject of pure mathematics?
+
+> Think about the physical nature of computers and calculations.
+
+1. [ ] Because mathematics is insufficient to model algorithms
+1. [x] Because computers are physical objects and calculations are physical processes, governed by the laws of physics
+    > Correct: Deutsch asserts that what a computer can or cannot calculate is determined by the laws of physics, not pure mathematics.
+1. [ ] Because mathematics does not allow us to prove the correctness of programs
+1. [ ] Because classical physics is enough to explain everything
+```
+```{quizdown}
+### Which scientific fields are directly connected to quantum computing?
+
+> Quantum computing is a deeply interdisciplinary field.
+
+- [x] Physics of condensed matter
+    > Correct: collective quantum phenomena in condensed matter are directly linked to the foundations of qubits.
+- [x] Cryptography
+    > Correct: Shor's algorithm threatens classical cryptography, and quantum cryptography (QKD) is emerging.
+- [x] Complexity theory
+    > Correct: The question of what QCs can calculate is at the heart of complexity theory.
+- [x] Quantum gravity
+    > Correct: Quantum entanglement and error-correcting codes play a role in theories of quantum gravity.
+- [ ] Classical macroscopic biology
+    > Incorrect: Classical macroscopic biology is not directly related to quantum computing in the course.
+```
+```{quizdown}
+### What is Quantum Error Correction?
+
+> Distinguishes this notion from traditional hardware improvements.
+
+1. [ ] An improvement in hardware to make more resistant qubits
+1. [ ] A classical algorithm detecting errors in quantum programs
+1. [x] A set of software and physical techniques for managing noise and errors in quantum systems
+    > Correct: Quantum error correction encodes logical information into multiple physical qubits to detect and correct errors without directly measuring the quantum state.
+1. [ ] A communication protocol to secure quantum transmissions
+```

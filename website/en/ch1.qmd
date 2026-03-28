@@ -1,0 +1,501 @@
+---
+title: "Introduction to Quantum Computing"
+---
+
+## Course content
+
+This course covers four main thematic axes which structure the study of quantum computing:
+
+- The **theoretical bases** of quantum computing
+- The **practical basics** of quantum computing
+- The **near-term potential** of quantum computing
+- **Other applications** of quantum information
+
+These four pillars make it possible to approach the field comprehensively: from the mathematical and physical foundations to concrete achievements and future prospects.
+
+## Assessment
+
+The course is evaluated according to two components of equal importance:
+
+- **Oral exam** (lecture): 50%
+- **Practical work (TP)**: 50%
+
+## Recommended bibliographic references
+
+Four reference works are recommended to deepen the concepts of the course:
+
+- *Quantum Computation and Quantum Information* — **Michael A. Nielsen & Isaac L. Chuang** (Cambridge University Press) — The essential reference, often called “Nielsen & Chuang”
+- *Quantum Information Theory: Concepts and Methods* — **Joseph M. Renes** (De Gruyter)
+- *Quantum Computing for Computer Scientists* — **Noson S. Yanofsky & Mirco A. Mannucci**
+- *Mathematics of Quantum Computing: An Introduction* — **Wolfgang Scherer** (Springer)
+
+These works cover both theoretical aspects (linear algebra, quantum mechanics) and algorithmic and computer science aspects.
+
+---
+
+## What is quantum computing?
+
+### General definition
+
+Quantum Computing is a paradigm of calculation – and more generally of information processing – based on the **principles of quantum mechanics**, rather than on classical physics.
+
+::: {.callout-note title="To remember"}
+Quantum computing is not just about using faster computers. This is a fundamental change in the **way information is represented and processed**.
+:::
+
+### Quantum mechanics as a fundamental description of nature
+
+Quantum Mechanics (QM) is the description of nature at its most fundamental level.
+
+- It was formulated at the beginning of the 20th century to explain the behavior of **subatomic particles** (electrons, photons, etc.)
+- His specializations — quantum field theory, quantum chromodynamics, etc. — have had spectacular success in explaining **microscopic physical phenomena**
+- Examples of applications: structure of the hydrogen atom (atomic orbitals), phenomenon of **superconductivity**
+
+::: {.callout-tip title="Intuition"}
+Quantum mechanics tells us that nature, on a very small scale, behaves in ways that are radically different from what we observe on a daily basis. Particles can exist in **superpositions of states**, become **entangled** with each other, and exhibit **interference** behaviors. Quantum computing seeks to exploit these properties to perform calculations.
+:::
+
+### The vision of Feynman and Deutsch
+
+Two founding quotes illustrate the philosophy of quantum computing.
+
+
+**Richard Feynman** (1982) suggested that simulating physics by computer would be an excellent program, and that the real use would be with quantum mechanics — because nature is not classical, and any faithful simulation of nature must be quantum.
+
+**David Deutsch** pointed out that computational theory has traditionally been studied abstractly, as a subject of pure mathematics — which misses the point. Computers are physical objects, and calculations are physical processes. What computers can or cannot calculate is determined by the laws of physics alone, not pure mathematics.
+
+::: {.callout-important title="A fundamental paradigm shift"}
+These two perspectives converge on a central idea: **computer science is a physical science**. Quantum physics offers computational resources that classical physics cannot provide.
+:::
+
+---
+
+## The exponentiality of quantum mechanics
+
+### The classical simulation problem
+
+After nearly a century of study, the best **classical** methods for predicting the behavior of general quantum systems require **exponential** resources.
+
+The basic fact is this:
+
+> The state of $N$ quantum particles requires **at least $2^N$ complex numbers** to be described.
+
+Formally, the state of a system of $N$ qubits is a vector:
+
+$$|\psi\rangle = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_{2^N} \end{pmatrix} \in \mathbb{C}^{2^N}$$
+
+### Growth that goes beyond the observable universe
+
+To illustrate the scale of the problem:
+
+- For $N \approx 300$ (i.e. the number of particles in **a single uranium atom**), we have $2^N \gg 10^{82}$
+- However, the estimated number of atoms in the observable universe is approximately $10^{82}$
+
+::: {.callout-warning title="Major consequence"}
+It is **physically impossible** to store or manipulate the state of a moderately sized quantum system (a few hundred particles) on a classical computer. Nature seems to be doing an extravagant amount of calculations behind the scenes.
+:::
+
+### How do physicists do in practice?
+
+Faced with this intrinsic complexity, physicists have developed three main strategies:
+
+**Answer #1 — Approximations and shortcuts (100+ years of ingenuity)**
+
+Analytical techniques make it possible to circumvent the exact simulation:
+
+- Ansatz of Bethe (Bethe ansatz)
+- Feynman diagrams
+- Perturbation theory
+- Mean field approximations
+
+**Answer #2 — Classic numerical simulations**
+
+Powerful computer algorithms make it possible to approach certain systems:
+
+- Density Functional Theory (DFT)
+- Quantum Markov Chain Monte Carlo methods
+
+**Answer #3 — Study of favorable systems**
+
+In practice, physicists have often had the chance to study systems that lend themselves to the above approaches:
+
+- **Essentially traditional** systems
+- Systems with **weakly correlated particles** (not strongly interacting)
+
+::: {.callout-tip title="Intuition"}
+The vast majority of physical phenomena that we understand well are precisely those that escape exponential complexity. But for **strongly correlated** or **strongly entangled** systems, these methods fail — and that's precisely where the quantum computer could shine.
+:::
+
+### Feynman's Question (1981)
+
+In 1981, Richard Feynman asked the crucial question:
+
+> *"Can probabilistic computers simulate quantum mechanics?"*
+
+His answer was: **NO**.
+
+His conclusion: since nature is not classical, any faithful simulation of nature must be **quantum mechanical**.
+
+It was this idea, developed jointly with **David Deutsch**, **Paul Benioff** and **Yuri Manin**, which gave birth to the concept of the quantum computer.
+
+---
+
+## Why study quantum computing in computer science?
+
+Quantum computing opens up numerous fields of application directly linked to computer sciences:
+
+- **Quantum software development** (Quantum software development)
+- **Quantum algorithm design** (Quantum algorithm design)
+- **Quantum machine learning** (Quantum machine learning)
+- **Quantum computer architecture and compiler design**
+- **Research in quantum information theory** (Quantum information theory research)
+- **Development of quantum communication systems** (Quantum communication system development)
+- **Quantum security system development** (Quantum security system development)
+
+::: {.callout-note title="To remember"}
+Quantum computing is not just for physicists. It directly touches on fundamental questions in computer science: algorithmic complexity, cryptography, machine learning, systems architecture.
+:::
+
+---
+
+## The beginnings of quantum computing
+
+### Feynman's motivation: to simulate quantum systems
+
+Feynman's initial motivation for quantum computers was the most natural: **to simulate quantum systems**. Although almost tautological (using a quantum system to simulate a quantum system), this idea was radical and was not fully appreciated for many years.
+
+### The first algorithmic advances (1980s–1994)
+
+**1980s — David Deutsch**
+
+David Deutsch found an example of a **non-physical** problem that could be solved faster on a quantum computer than on any classical computer (with a constant factor advantage). This is the first proof of principle that a quantum advantage exists.
+
+**1992 — Bernstein-Vazirani & Dan Simons**
+
+Bernstein, Vazirani and Simon found examples of non-physical problems that could be solved by a quantum computer **super-polynomially faster** than by a classical computer. This is an important breakthrough: the advantage is no longer just a constant factor, but a difference in complexity class.
+
+**1994 — Peter Shor and the factorization algorithm**
+
+Peter Shor realized that Simon's idea could be extended to effectively solve the following problem:
+
+**Integer Factorization**: Given an integer $N > 0$, calculate its decomposition into prime factors.
+
+Example: $N = 597\,680\,597 = 17\,449 \times 34\,253$
+
+::: {.callout-warning title="Impact on cryptography"}
+The security of the **RSA** cryptographic system — the most widely deployed public key encryption system on the Internet — is based on the assumption that **factoring a large integer is difficult**. Shor's algorithm fundamentally challenges this assumption for an adversary with a sufficiently powerful quantum computer.
+:::
+
+### Crossroads
+
+Since Shor's algorithm, physicists and computer scientists face three options:
+
+1. Quantum mechanics is **incorrect**
+2. There is a **fast classical algorithm** for factorization
+3. There is a **fundamentally more powerful computing model** than classical computers
+
+The third option — the quantum computer — is today the most seriously pursued avenue.
+
+---
+
+## Myths and realities of quantum computing
+
+### Myth #1: Quantum computers solve problems by trying all possibilities simultaneously
+
+::: {.callout-warning title="FALSE"}
+This is one of the most common misconceptions. A quantum computer **does not test all solutions in parallel** as independent processes. Quantum superposition is not equivalent to massive parallelism.
+
+Measuring a quantum state in superposition gives **a single probabilistic result**. The art of quantum algorithms consists of using **interference** to amplify the correct responses and suppress the wrong ones, before measurement.
+:::
+
+### The reality: targeted exploitation of quantum effects
+
+::: {.callout-note title="To remember"}
+**FACT**: Quantum computers can solve **certain types of problems** faster by carefully exploiting quantum effects such as:
+
+- **Entanglement**: non-classical correlations between qubits
+- **Interference** (Interference): constructive/destructive amplification of amplitudes
+- **Superposition** (Superposition): simultaneous representation of several states
+
+The key is **algorithmic design** — not blind acceleration of all problems.
+:::
+
+### Myth #2: Quantum computers can solve the traveling salesman problem quickly
+
+::: {.callout-warning title="FALSE"}
+The **Traveling Salesman Problem** (TSP) is an NP-hard problem. There is no proof — or even strong conjecture — that a quantum computer can solve it in polynomial time.
+:::
+
+**FACT**: Quantum computers *probably* **not** solve TSP quickly.
+
+::: {.callout-tip title="Intuition"}
+A quantum computer is not a magic machine that solves all difficult problems. He excels on problems with a **particular mathematical structure** (like periodicity for Shor, or unstructured search for Grover). NP-complete problems like TSP do not seem to have this exploitable structure.
+:::
+
+### Myth #3: Quantum computers will solve climate change
+
+**Qualified response**: The situation is **unclear** (Unclear).
+
+Quantum computers *could* solve difficult problems in chemistry and physics, which could in turn be linked to the design of more durable materials, better batteries, or new energy technologies. But the causal chain is long and uncertain.
+
+### Myth #4: Large quantum computers with millions of qubits are imminent
+
+**Qualified response**: The progress is real but the challenges are immense. This assertion is regularly relayed by press articles or consultants, but it reflects commercial enthusiasm more than the real state of research.
+
+---
+
+## Emerging quantum computers
+
+### The NISQ era
+
+Until around 2017, most quantum computing devices had **around 10 qubits**. A considerable acceleration in industrial investments then made it possible to develop programmable quantum computers with **around 200 qubits**.
+
+The major problem with these devices: **quantum errors** (noise). Qubits are extremely fragile and sensitive to environmental disturbances (decoherence).
+
+We are currently in the so-called **NISQ** era:
+
+> **NISQ** = **N**oisy **I**ntermediate-**S**cale **Quantum (Intermediate-Scale Quantum Noise)
+
+NISQ Era Features:
+
+- Noisy devices with **around 100 controllable qubits**
+- **Incapable** of running Shor's algorithm (which requires millions of logical qubits with error correction)
+- But *potentially* capable of solving **interesting and difficult problems** in certain areas
+
+### Exciting times for quantum computing
+
+Three reasons make this period particularly stimulating:
+
+**1. Engineering**
+
+Increasingly sophisticated quantum computers are being built, with several hundred controllable qubits. Technological progress is rapid.
+
+**2. Theoretical developments**
+
+- New quantum algorithms
+- New cryptographic protocols
+- New Perspectives on How Quantum Computing Compares to Classical Computing
+
+**3. Deep connections to other sciences**
+
+Quantum computing touches on condensed matter physics, quantum gravity, materials science, chemistry, pure mathematics.
+
+---
+
+## The road to scaling up
+
+### The reliability challenge
+
+To continue to increase the size of quantum computers, we must make **qubits** more reliable. Hardware improvements alone will not be enough; it is necessary to resort to **quantum error correction** (Quantum Error Correction): a set of techniques to manage noise and errors in quantum systems.
+
+To obtain a **fault-tolerant** quantum computer (Fault-Tolerant QC), errors must be corrected **faster than they occur**.
+
+Recent years have seen **remarkable breakthroughs** in error correction technology.
+
+### Superconducting Qubits
+
+The most advanced platform to date is based on **superconducting qubits**:
+
+- Qubits are **superconducting loops** on a silicon chip (persistent current in a superconducting circuit)
+- It is the platform of choice for **Google**, **IBM** and many other companies
+- An impressive error correction experiment was demonstrated with **101 physical qubits**
+- The effective error rate *decreased* with each increase in code size — which is a sign that error correction is working
+
+### Other types of qubits
+
+There are several technologies for implementing a physical qubit:
+
+- **Persistent current in a superconducting circuit** (Persistent current in a superconducting circuit)
+- **Photon polarization** (Photon polarization)
+- **Electron Magnetic Field** (Electron Magnetic Field) — electron spin
+- **Internal state of an atom** (Atom Internal State) — trapped ions
+
+### Assessment of material efforts
+
+::: {.callout-note title="To remember"}
+- We are at an **inflection point** in the NISQ era
+- There is a real qubit race, but the number of qubits is not everything — quality (low error rate) is just as important
+- Scaling up is a difficult engineering challenge, but with no known fundamental hurdle: there is no physical law prohibiting building a quantum computer with $10^6$ qubits without noise
+- Signs that quantum error correction is **feasible** are growing
+
+The central question: **How ​​to scale quantum computers in a fault-tolerant way?**
+:::
+
+### Quantum Supremacy
+
+**Fall 2019**: Google announced that it had achieved **quantum supremacy** (Quantum Supremacy) with its 53-qubit Sycamore quantum processor.
+
+**Definition**: Quantum supremacy is a convincing real-world demonstration that a quantum computer accomplishes a task that **cannot be reasonably accomplished by a classical computer**.
+
+- The strategic point: 53 qubits represent a space of $2^{53} \approx 9 \times 10^{15}$ operations — just beyond what Google's computing clusters could simulate in a reasonable time
+- Other research groups have since announced similar quantum supremacy results
+
+### Quantum vs classical: competition from classical algorithms
+
+::: {.callout-important title="An unexpected competitor"}
+The biggest competitor to quantum computers is... **clever classical algorithms**.
+
+In November 2021, a group from the Chinese Academy of Sciences used tensor network algorithms to reproduce the statistics of Google's Supremacy experiment in 15 hours using 512 GPUs.
+
+This calls into question the true scope of quantum supremacy in 2019, and serves as a reminder that quantum advantage must always be measured against the best classical algorithms available.
+:::
+
+### Hybrid quantum-classical optimizers
+
+A pragmatic approach for NISQ devices: **hybrid quantum-classical optimizers**.
+```{mermaid}
+flowchart LR
+    QP["Processeur Quantique"] -->|"mesure de la\nfonction de coût"| CO["Optimiseur Classique"]
+    CO -->|"ajustement du\ncircuit quantique"| QP
+```
+
+The philosophy, summarized by Eddie Farhi: *"Try it and see if it works!"*
+
+The idea is this:
+
+- A quantum computer is not expected to solve worst-case NP-hard problems
+- But it *could* find better approximate solutions, or find them faster
+- Classic optimization algorithms are very sophisticated after decades of research — the bar is high
+
+::: {.callout-tip title="Intuition"}
+NISQ devices may be able to do better than traditional methods for some optimization problems, but we don't know for sure yet. The hybrid approach is an empirical way to explore this potential.
+:::
+
+### Quantum algorithms inspired by classical
+
+A fascinating example illustrates the indirect impact of quantum thinking on classical algorithms.
+
+**Background**: One of the most important problems in data science is the construction of **recommendation systems**. With $n$ products and a purchase history of $m$ users, the goal is to make personalized recommendations.
+
+**Timeline**:
+
+- Until 2016: known classical techniques were executed in $\mathcal{O}(\text{poly}(mn))$ time
+- **2016**: Iordanis Kerenidis and Anupam Prakash publish a **quantum algorithm** solving this problem in $\mathcal{O}(\text{poly}\log(mn))$ time — an **exponential acceleration**
+- **2018**: Ewin Tang publishes a **classical algorithm** inspired by the quantum algorithm of Kerenidis and Prakash, also reaching $\mathcal{O}(\text{poly}\log(mn))$
+
+::: {.callout-note title="To remember"}
+Even in a purely classical world, **thinking quantumly** has intrinsic value. Ideas and structures developed for quantum algorithms can inspire new classical algorithms.
+:::
+
+---
+
+## Overview of quantum algorithms
+
+### Exponential speedups for structured problems
+
+For algebraic problems with a **rich mathematical structure**, quantum computers offer exponential speedups:
+
+- **Integer factorization** — Shor's algorithm
+- **Hidden Subgroup Problem** (Hidden Subgroup Problem) — generalization of Shor
+
+### Polynomial speedups for unstructured search problems
+
+For searching an unordered database, Grover's algorithm offers quadratic speedup:
+
+- **Grover search: changes from $O(N)$ to $O(\sqrt{N})$ queries
+
+It's not exponential, but it's provably optimal for unstructured search.
+
+### Exponential accelerations for quantum simulation
+
+This is probably **the most important** application of quantum computers to date:
+
+- **Quantum physics and chemistry simulation** — Feynman's dream
+- Simulation of molecules for drug discovery
+- Simulation of materials for energy and electronics
+
+::: {.callout-tip title="Intuition"}
+Using a quantum system to simulate another quantum system is almost tautological — but that's precisely why it's effective. A quantum computer naturally encodes the state of $N$ particles into $N$ qubits, instead of the required classical $2^N$ bits.
+:::
+
+### Algorithms for near-term quantum computers
+
+For current NISQ devices, algorithms specifically designed for a noisy environment have been developed:
+
+- **Variational Eigensolvers** (Variational Eigensolvers) — VQE (Variational Quantum Eigensolver)
+- **Classical-Quantum Hybrid Algorithms** (Classical-Quantum Hybrid Algorithms) — QAOA (Quantum Approximate Optimization Algorithm)
+
+### Quantum Machine Learning
+
+A growing field explores the intersections between quantum computing and machine learning:
+
+- Solving linear systems (Linear system solvers) — HHL algorithm
+- Positive Semi-Definite Programming (SDPs) and Convex Optimization
+- Quantum neural networks (Quantum neural nets)
+- Recommendation systems
+
+---
+
+## Connections with fundamental physics
+
+### Quantum gravity and entanglement
+
+The key to a **theory of quantum gravity** (Quantum Gravity) could lie in:
+
+- Quantum Entanglement — non-local correlations between quantum systems
+- Quantum Error Correcting Codes — mathematical structures that appear in the holographic description of gravity
+
+The AdS/CFT (Anti-de Sitter/Conformal Field Theory) correspondence suggests that space-time itself could emerge from quantum entanglement.
+
+### The black hole wall of fire paradox
+
+The **Blackhole Firewall Paradox** is a fundamental problem linked to **quantum information**:
+
+- Would an object falling into a black hole encounter a high-energy "wall" at the event horizon?
+- Possible resolutions to this paradox involve concepts of Quantum Cryptography.
+
+::: {.callout-note title="To remember"}
+Quantum computing and information are not just technological tools: they illuminate some of the most profound questions in fundamental physics, from the nature of space-time to the paradoxes of black holes.
+:::
+
+---
+
+## Historical timeline
+
+The history of quantum computing can be read in three main phases:
+
+### First quantum revolution (~1930)
+
+Development of **quantum mechanics** (QM) — theoretical understanding of microscopic physics. Figures: Einstein, Bohr, Heisenberg, Schrödinger, Dirac.
+
+### Birth of quantum information science (~1980)
+
+Development of the **theoretical framework**: founding algorithms, principle experiments, communication and metrology protocols. Figures: Feynman, Deutsch, Benioff, Manin, Bennett, Shor, Grover.
+
+In 2007: first qubit of reasonable quality (not-so-bad qubit) at Yale — start of the modern experimental era.
+
+### Second quantum revolution (~2020 and beyond)
+
+**Applied use** of quantum mechanics:
+
+- Information processing
+- Data acquisition and transmission
+- Quantum transduction
+
+Key steps:
+
+- First validations of **quantum superiority** (Quantum Superiority)
+- First attempts at Quantum Advantage on practical problems
+- Foundations for real-world, large-scale deployment of **quantum-assisted technologies**
+
+The target horizon: **Fault-Tolerant Quantum Computing** — beyond 2030.
+
+---
+
+## The interdisciplinarity of quantum computing
+
+Quantum computing is at the crossroads of many scientific disciplines:
+
+**Mathematics** — Operator algebras, representation theory, number theory, algebraic geometry, statistics
+
+**Physics** — Condensed matter physics, quantum gravity, string theory, quantum field theory
+
+**Chemistry** — Quantum chemistry simulations, fermionic encoding methods, chemical dynamics
+
+**Engineering** — Cryptographic key distribution, quantum networks, quantum precision measurement (quantum enhanced sensing)
+
+**Computer Science** — Complexity theory, cryptography, algorithms, optimization, machine learning, information theory
+
+::: {.callout-tip title="Intuition"}
+It is precisely this interdisciplinary richness that makes quantum computing so fascinating — and so challenging. Mastering this field requires navigating between mathematical abstraction, physical intuition and algorithmic rigor.
+:::

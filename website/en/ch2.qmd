@@ -1,0 +1,811 @@
+---
+title: "Foundations of Quantum Computing"
+---
+
+# Starting point: What is quantum computing?
+
+## Quantum information theory
+
+
+**Quantum Information Theory** is a generalization of classical probability theory in which probabilities can be **negative**, or even **complex numbers**.
+
+This simple observation is fundamental: it means that the behavior of quantum systems cannot be reduced to a simple classical probability distribution. Quantum amplitudes — the quantum analogues of probabilities — obey much richer algebraic rules, giving quantum systems radically different computational capabilities.
+
+::: {.callout-tip title="Intuition"}
+Imagine that you toss a coin: classically, the probability of getting tails is between 0 and 1. In quantum computing, the equivalent of this probability — called **amplitude** — can be a complex number. It is only when we **measure** the system that we obtain a real and positive result (probability in the classical sense).
+:::
+
+---
+
+# The definition of the qubit
+
+## The classic bit
+
+A **bit** is a classical system having two distinguishable states:
+
+- The $|0\rangle$ state
+- The $|1\rangle$ state
+
+These states are also called Classical States or Standard Basis States.
+
+A classical bit is always in one of these two states, and only one of the two.
+
+## The qubit (Quantum Bit)
+
+A **qubit** (quantum bit) is the fundamental unit of quantum information. Unlike the classical bit, a qubit can be in a **superposition** (Superposition) of the classical states $|0\rangle$ and $|1\rangle$.
+
+::: {.callout-note title="To remember"}
+The qubit is the quantum analogue of the bit. It is often illustrated by the analogy of **Schrödinger's cat**: as long as we do not open the box (as long as we do not measure), the system is in an indeterminate state, a mixture of the two possible states.
+:::
+
+## Mathematical representation of the qubit
+
+Mathematically, the state of a qubit is a **complex linear combination** (Complex Linear Combination) of the basic states $|0\rangle$ and $|1\rangle$:
+
+$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle = \alpha \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \beta \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
+
+where $\alpha, \beta \in \mathbb{C}$ are **complex numbers** satisfying the normalization condition:
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+In other words, $|\psi\rangle$ is a **2-dimensional unit vector** in $\mathbb{C}^2$.
+
+::: {.callout-tip title="Intuition"}
+The vector $|\psi\rangle$ lives in a complex two-dimensional vector space. The normalization condition ensures that the probabilities associated with each measurement state sum to 1, which is consistent with physics.
+:::
+
+## Examples of valid and invalid qubit states
+
+### Valid States
+
+$$\frac{1}{\sqrt{2}} |0\rangle + \frac{1}{\sqrt{2}} |1\rangle$$
+
+Verification: $\left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2} + \frac{1}{2} = 1$ ✓
+
+$$\frac{1}{\sqrt{2}} |0\rangle - \frac{i}{\sqrt{2}} |1\rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -i \end{pmatrix}$$
+
+Verification: $\left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{-i}{\sqrt{2}}\right|^2 = \frac{1}{2} + \frac{1}{2} = 1$ ✓
+
+### Invalid state
+
+$$i |0\rangle - \frac{1}{2} |1\rangle$$
+
+Verification: $|i|^2 + \left|-\frac{1}{2}\right|^2 = 1 + \frac{1}{4} = \frac{5}{4} \neq 1$ ✗
+
+::: {.callout-warning title="Condition of validity"}
+For a state $\alpha|0\rangle + \beta|1\rangle$ to be a valid qubit state, it **must** be $|\alpha|^2 + |\beta|^2 = 1$. This condition guarantees probabilistic consistency during measurement.
+:::
+
+## The amplitudes
+
+The coefficients $\alpha$ and $\beta$ are called the **amplitudes** (Amplitudes) of the states $|0\rangle$ and $|1\rangle$ respectively.
+
+- They play a role analogous to probabilities in classical theory.
+- But, unlike classical probabilities, they can be **negative** or even **complex numbers**.
+- It is this property which is at the origin of the phenomena of **quantum interference**.
+
+A qubit in the $\alpha|0\rangle + \beta|1\rangle$ state is often said to be $|0\rangle$ and $|1\rangle$ “at the same time”. This formulation, although intuitive, should be interpreted with caution: the precise meaning is revealed by **Born's rule** during measurement.
+
+---
+
+# Classic Bit vs Qubit: comparison table
+
+| Property | Classic bit | Qubit |
+|-----------|--------------|-------|
+| Possible states | 0 or 1 | $\|0\rangle$, $\|1\rangle$, or any overlay |
+| Measurement | Complete and non-destructive | Partial, with probability; destructive |
+| Effect of the measure | No change | State is changed (collapse) |
+| Copy | Possible | **Impossible** (no-cloning theorem) |
+| Erasure | Possible | **Impossible** |
+
+::: {.callout-important title="Basic differences"}
+Two properties radically distinguish the qubit from the classic bit:
+
+- **The impossibility of copying** an unknown qubit (quantum non-cloning theorem).
+- **The impossibility of erasing** a qubit (reversibility of quantum operations).
+
+These properties have profound implications for cryptography and information transmission.
+:::
+
+---
+
+# Advantages of qubits and quantum power
+
+## Exponential storage
+
+One of the major advantages of qubits is that adding a single qubit **doubles the computing power** of the system.
+
+- To double the power of a classic computer: go from 32 bits to 64 bits (addition of 32 bits).
+- To double the power of a quantum computer: go from 32 qubits to **33 qubits** (adding a single qubit).
+
+Concretely:
+
+- A 64-bit computer operates on binary numbers 64 bits at a time.
+- A 64-qubit quantum computer operates in a space of $2^{64}$ dimensions, or approximately $16 \times 10^{18}$ numbers to describe the state of the quantum system.
+
+## Massive parallelism
+
+A quantum computer can perform operations on **all superpositions** simultaneously — which is akin to **massively parallel computing** (Massively Parallel Computation).
+
+- In classic: a mathematical operation on $2^n$ numbers (encoded with $n$ bits) requires $2^n$ steps or $2^n$ parallel processors.
+- In quantum: the **same operation** on $2^n$ numbers encoded by $n$ qubits requires only **one step**.
+
+::: {.callout-tip title="Intuition"}
+Imagine having to look up a word in a dictionary of $2^{30}$ entries. A classic computer must go through them one by one (or in parallel with several processors). A quantum computer can, in some algorithms, explore all inputs simultaneously through superposition.
+:::
+
+## General implication
+
+These properties make complex problems potentially much easier for a quantum computer to solve. Certain problems considered classically **intractable** (factoring, simulation of molecules, etc.) become quantumly accessible.
+
+---
+
+# Dirac notation (Bra-ket)
+
+## The ket and bra vectors
+
+**Dirac Notation**, or **bra-ket** notation, is the standard mathematical tool for representing quantum states.
+
+- A **ket** $|\psi\rangle$ is a column vector (the state of the system).
+- A **bra** $\langle\psi|$ is the **dual/Hermitian Conjugate** of ket, that is to say a row vector whose entries are the complex conjugates of ket.
+
+For basic states:
+
+$$\langle 0| = \begin{pmatrix} 1, & 0 \end{pmatrix} \qquad \langle 1| = \begin{pmatrix} 0, & 1 \end{pmatrix}$$
+
+And for a general qubit:
+
+$$|\psi\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} = \alpha|0\rangle + \beta|1\rangle \qquad \langle\psi| = \begin{pmatrix} \bar{\alpha} & \bar{\beta} \end{pmatrix} = \bar{\alpha}\langle 0| + \bar{\beta}\langle 1|$$
+
+where $\bar{\alpha}, \bar{\beta}$ designate the **complex conjugates** (Complex Conjugates) of $\alpha, \beta$.
+
+## The scalar product (Inner Product)
+
+Let $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ and $|\theta\rangle = \gamma|0\rangle + \delta|1\rangle$ be two column vectors. Their **dot product** (Inner Product) is:
+
+$$\langle\psi|\theta\rangle = \begin{pmatrix} \bar{\alpha} & \bar{\beta} \end{pmatrix} \begin{pmatrix} \gamma \\ \delta \end{pmatrix} = \bar{\alpha}\gamma + \bar{\beta}\delta$$
+
+::: {.callout-warning title="Vector order is important!"}
+The dot product is **not symmetric** in general. We have:
+
+$$\langle\theta|\psi\rangle = \bar{\gamma}\alpha + \bar{\delta}\beta = \overline{\langle\psi|\theta\rangle}$$
+
+The dot product in the other direction gives the **complex conjugate** of the first.
+:::
+
+## Generalization to the $d$ dimension
+
+If the vectors are of dimension $d$:
+
+$$|\psi\rangle = \alpha_0|0\rangle + \alpha_1|1\rangle + \cdots + \alpha_{d-1}|d-1\rangle$$
+
+$$|\theta\rangle = \beta_0|0\rangle + \beta_1|1\rangle + \cdots + \beta_{d-1}|d-1\rangle$$
+
+Then their scalar product is:
+
+$$\langle\psi|\theta\rangle = \bar{\alpha}_0\beta_0 + \bar{\alpha}_1\beta_1 + \cdots + \bar{\alpha}_{d-1}\beta_{d-1}$$
+
+::: {.callout-note title="To remember"}
+Dirac notation is very useful for quickly identifying **scalars**, **row vectors**, **column vectors** and **matrices** in complex expressions. This is the universal language of quantum mechanics.
+:::
+
+---
+
+# Composite quantum systems
+
+## Tensor product of two qubits
+
+If qubit 1 is in state $|\psi_1\rangle$ and qubit 2 is in state $|\psi_2\rangle$, then the **joined state** of the system of two qubits is:
+
+$$|\psi_1\rangle \otimes |\psi_2\rangle$$
+
+It is a **unit vector of dimension 4** in the tensor product space $\mathbb{C}^2 \otimes \mathbb{C}^2$.
+
+## Hilbert space
+
+Quantum states live in a **Hilbert space** (Hilbert Space) $H$. For our purposes, the key properties of Hilbert spaces are:
+
+- Finite-dimensional Hilbert spaces are isomorphic to $\mathbb{C}^d$ for a certain dimension $d$.
+- There is a **dot product** operation between two vectors.
+- We can take **tensor products** of Hilbert spaces.
+
+For two qubits, the Hilbert space is $\mathbb{C}^2 \otimes \mathbb{C}^2$, with the basis:
+
+$$|0\rangle \otimes |0\rangle, \quad |0\rangle \otimes |1\rangle, \quad |1\rangle \otimes |0\rangle, \quad |1\rangle \otimes |1\rangle$$
+
+It is generally abbreviated as: $|0,0\rangle$, $|0,1\rangle$, $|1,0\rangle$, $|1,1\rangle$.
+
+## Tensor Multiplication
+
+In addition to scalar multiplication and matrix multiplication, the description of quantum systems requires a **third form of multiplication**: the **tensor product** (Tensor Product).
+
+Let $A$ be a $n \times m$ matrix and $B$ be a $n' \times m'$ matrix. Their tensor product $A \otimes B$ is defined by:
+
+$$A \otimes B = \begin{bmatrix} a_{11}B & \cdots & a_{1m}B \\ \vdots & \ddots & \vdots \\ a_{n1}B & \cdots & a_{nm}B \end{bmatrix}$$
+
+The resulting matrix has dimension $nn' \times mm'$.
+
+**Example :**
+
+$$\begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix} \otimes \begin{bmatrix} 1 & 2 & 3 \end{bmatrix} = \begin{bmatrix} 1 & 2 & 3 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 & 4 & 6 \end{bmatrix}$$
+
+The tensor product is **associative**: $A \otimes (B \otimes C) = (A \otimes B) \otimes C$.
+
+---
+
+#Quantum Entanglement
+
+## Produced states vs. entangled states
+
+Not all states of $\mathbb{C}^2 \otimes \mathbb{C}^2$ can be written in the form $|\psi_1\rangle \otimes |\psi_2\rangle$. States that can be written like this are called Product States.
+
+States that **cannot** be written as a tensor product of two individual states are called **Entangled States**.
+
+## The EPR pair / Bell pair
+
+The emblematic example of an entangled state is the **Einstein-Podolsky-Rosen pair (EPR)**, also called **Bell pair** (Bell Pair):
+
+$$|\Phi\rangle = \frac{1}{\sqrt{2}} \Big( |0,0\rangle + |1,1\rangle \Big)$$
+
+This state cannot be written as $|\psi_1\rangle \otimes |\psi_2\rangle$ for any choice of $|\psi_1\rangle$ and $|\psi_2\rangle$.
+
+## Example: tensor product of two qubits
+
+Suppose two qubits are in the states:
+
+$$\alpha|0\rangle + \beta|1\rangle \qquad \text{et} \qquad \alpha'|0\rangle + \beta'|1\rangle$$
+
+The state of the combined system is their tensor product:
+
+$$(\alpha|0\rangle + \beta|1\rangle)(\alpha'|0\rangle + \beta'|1\rangle) = \alpha\alpha'|00\rangle + \alpha\beta'|01\rangle + \beta\alpha'|10\rangle + \beta\beta'|11\rangle$$
+
+**Question:** Which of the following states are produced or entangled states?
+
+1. $\frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle - \frac{1}{2}|10\rangle - \frac{1}{2}|11\rangle$ → **product state** (independent)
+2. $\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$ → **entangled state**
+
+## Properties of entanglement
+
+Entanglement is a uniquely quantum phenomenon: one qubit is intimately linked to another in a way that classical physics cannot explain. The essential properties are:
+
+- The quantum state of each particle in an entangled pair **cannot be described independently** of the state of the other, even when the particles are **separated by a large distance**.
+- An entangled pair is a unique quantum system in **superposition of equally possible states**. The entangled state contains no information about the individual particles, only that they are in opposite (or correlated) states.
+- If the state of one is modified, the state of the other is **instantly** adjusted to remain consistent with the rules of quantum mechanics.
+- If a measurement is made on one, the other **automatically collapses** into a coherent state.
+
+::: {.callout-note title="To remember"}
+Einstein called entanglement “spooky actions at a distance”. Entanglement is at the heart of the difference between classical and quantum physics — it is a primary feature of quantum mechanics that has no classical equivalent.
+:::
+
+---
+
+# Observing qubits: measurement and decoherence
+
+## Decoherence
+
+**Quantum Decoherence** is the loss of superposition due to the **spontaneous interaction** between a quantum system and its environment.
+
+- Decoherence can be seen as the **leakage of information** from a system to its environment.
+- This is why quantum computers still have a long way to go: superposition and entanglement are **extremely fragile** states.
+- **Preventing decoherence** remains the biggest challenge in building quantum computers.
+
+::: {.callout-tip title="Intuition"}
+Imagine a coin balanced on its edge: it can fall heads or tails. Any contact with the environment (a vibration, a current of air) causes it to fall into a defined classical state. This is exactly what happens with decoherence: the environment “measures” the system and pushes it out of superposition.
+:::
+
+## Born Rule
+
+The state of a qubit **cannot be directly observed**. It must be **Measured**, which gives a classic state $|0\rangle$ or $|1\rangle$ with probabilities defined by the **Born rule**:
+
+$$\Pr[\text{observer } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{observer } |1\rangle] = |\beta|^2$$
+
+Since qubit states have a unitary norm, these probabilities add up nicely to 1:
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+## State collapse after measurement
+
+After the measurement, the system becomes **classic**:
+
+- The qubit state **collapses** (Collapses) to $|0\rangle$ or $|1\rangle$.
+- The previous state is **permanently lost**.
+- In quantum mechanics, **measurement generally disturbs the system**.
+
+Once the state has collapsed to $|0\rangle$, any further measurement will give $|0\rangle$ with probability 1. In other words:
+
+> **Measuring a system twice is equivalent to measuring it once.**
+
+We represent the measurement of a qubit by the circuit symbol:
+
+$$|\psi\rangle \longrightarrow \boxed{\nearrow}$$
+
+---
+
+# Schrödinger's Cat
+
+## Illustration of the superposition principle
+
+**Schrödinger's Cat** is a thought experiment illustrating quantum superposition.
+
+We consider a box with two classical states:
+
+- Sleeping cat: $|0\rangle$
+- Awakened cat: $|1\rangle$
+
+In quantum mechanics, the box can be in a **superposition** of sleeping and waking states — as long as we don't open it (i.e. measure it).
+
+## Example of probability calculation
+
+Suppose the box starts in the state:
+
+$$\frac{1}{\sqrt{3}} |0\rangle - i\frac{\sqrt{2}}{\sqrt{3}} |1\rangle$$
+
+and that it is measured. SO :
+
+1. With probability $\left|\frac{1}{\sqrt{3}}\right|^2 = \frac{1}{3}$, the state collapses to $|0\rangle$ (sleeping cat).
+
+2. With probability $\left|-i\frac{\sqrt{2}}{\sqrt{3}}\right|^2 = \frac{2}{3}$, the state collapses to $|1\rangle$ (awake cat).
+
+---
+
+# Transformations on qubits: quantum gates
+
+## Definition of a quantum gate
+
+A **quantum gate** (Quantum Gate) or **quantum logic gate** (Quantum Logic Gate) is an elementary operation on qubits in a quantum circuit.
+
+- Quantum gates are the **building blocks** of quantum circuits, just as classical logic gates are for conventional digital circuits.
+- Due to the normalization condition, any $U$ gate operation must be **unitary**: $UU^* = I$.
+- The number of qubits at the input and output of a gate must be **equal**; a gate acting on $n$ qubits is represented by a unit matrix $2^n \times 2^n$.
+- Unlike many classical logic gates, **quantum gates are reversible**.
+
+## Unitary transformation
+
+In addition to measurement, the state of a qubit can change via a Unitary Transformation. Just as in classical reversible calculus, unitary transformations can be represented by **matrices**.
+
+We represent a unitary transformation $U$ acting on the state $|\psi\rangle$ by the circuit diagram:
+
+$$|\psi\rangle \longrightarrow \boxed{U} \longrightarrow$$
+
+## Equivalent definitions of a unitary matrix
+
+A $U$ matrix is ​​unitary if and only if it satisfies one of the following equivalent conditions:
+
+- **Definition 1:** The inverse of $U$ is its Hermitian conjugate $U^\dagger$ ("U dagger"), whose entry $(i,j)$ is the complex conjugate of the entry $(j,i)$ of $U$: $U^\dagger_{i,j} = \overline{U_{j,i}}$.
+- **Definition 2:** $U$ transforms unit vectors into unit vectors (i.e. quantum states into quantum states).
+- **Definition 3:** The rows of $U$ form an orthonormal basis of $\mathbb{C}^d$, and the columns also form an orthonormal basis of $\mathbb{C}^d$.
+- **Definition 4:** $U$ preserves dot products between vectors: the dot product of $|\psi\rangle$ and $|\theta\rangle$ is the same as the dot product of $U|\psi\rangle$ and $U|\theta\rangle$.
+
+---
+
+# Examples of quantum gates
+
+## The Pauli-X gate (quantum NOT)
+
+The Pauli-X Gate is the quantum equivalent of the classical NOT gate.
+
+**Behavior in Dirac notation:**
+
+$$|0\rangle \rightarrow |1\rangle \qquad |1\rangle \rightarrow |0\rangle$$
+
+**Matrix representation:**
+
+$$X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$$
+
+**Circuit performance:**
+
+$$\longrightarrow \boxed{X} \longrightarrow$$
+
+**Verification :**
+
+$$X\begin{bmatrix}1\\0\end{bmatrix} = \begin{bmatrix}0&1\\1&0\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix} = \begin{bmatrix}0\\1\end{bmatrix} = |1\rangle$$
+
+$$X\begin{bmatrix}0\\1\end{bmatrix} = \begin{bmatrix}0&1\\1&0\end{bmatrix}\begin{bmatrix}0\\1\end{bmatrix} = \begin{bmatrix}1\\0\end{bmatrix} = |0\rangle$$
+
+By acting on pure states, the Pauli-X gate becomes a classic NOT gate: $|0\rangle \rightarrow \boxed{X} \rightarrow |1\rangle$.
+
+## The Pauli-Y door
+
+The **Pauli-Y Gate** (Pauli-Y Gate) has no classic equivalent.
+
+$$|0\rangle \rightarrow i|1\rangle \qquad |1\rangle \rightarrow -i|0\rangle$$
+
+$$Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$$
+
+## The Pauli-Z gate and phase gates
+
+The Pauli-Z Gate and associated phase gates operate on the phase component of the qubit.
+
+**Pauli-Z door:**
+
+$$Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$$
+
+**S Phase Gate:**
+
+$$S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \qquad S^2 = Z$$
+
+**Gate $\pi/8$ (T gate):**
+
+$$T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$$
+
+These gates can be visualized on the Bloch Sphere, a geometric representation of the state of a qubit in terms of angles $\theta$ and $\varphi$.
+
+## Hadamard Gate
+
+The Hadamard Gate is one of the most important gates in quantum computing. It acts on a single qubit and corresponds to the **Hadamard transform**, which creates superpositions.
+
+**Behavior in Dirac notation:**
+
+$$|0\rangle \rightarrow \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$$
+
+$$|1\rangle \rightarrow \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
+
+And vice versa:
+
+$$\frac{|0\rangle + |1\rangle}{\sqrt{2}} \rightarrow |0\rangle \qquad \frac{|0\rangle - |1\rangle}{\sqrt{2}} \rightarrow |1\rangle$$
+
+**Matrix representation:**
+
+$$H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$
+
+**Circuit performance:**
+
+$$\longrightarrow \boxed{H} \longrightarrow$$
+
+::: {.callout-note title="To remember — No classic equivalent!"}
+The Hadamard Gate has **no classical equivalent**. It creates a perfect superposition between $|0\rangle$ and $|1\rangle$.
+:::
+
+## The Hadamard Gate is its own opposite: the astonishing H Gate
+
+Door H has remarkable properties:
+
+- After a qubit in state $|0\rangle$ or $|1\rangle$ has been processed by H, its state is an **equal superposition** of $|0\rangle$ and $|1\rangle$. The qubit goes from a deterministic state to a **truly random** state: if measured, we will obtain $|0\rangle$ or $|1\rangle$ with equal probability.
+- H is **its own inverse**: $H^{-1} = H$, or $H^2 = I$. Applying H twice to a qubit doesn't change anything.
+- By applying a “randomizing” operation to a random state, we obtain a **deterministic result**! It is a manifestation of quantum interference.
+- It is one of the most important gates in quantum computing.
+
+::: {.callout-tip title="Intuition — The self-inverse of H"}
+Gate H acts as a “45° rotation” in Hilbert space. Doing it twice gives a 90° rotation... which returns to the initial state. This is why $H^2 = I$.
+:::
+
+## The CNOT (Controlled-NOT) gate
+
+The **CNOT** gate (Controlled NOT Gate) is a **two-qubit gate**.
+
+- If the **control qubit** is 0, the target qubit remains unchanged.
+- If the **control qubit** is at 1, the target qubit is **inverted** (flip).
+
+**Behavior :**
+
+$$|00\rangle \rightarrow |00\rangle \qquad |01\rangle \rightarrow |01\rangle \qquad |10\rangle \rightarrow |11\rangle \qquad |11\rangle \rightarrow |10\rangle$$
+
+**Matrix representation:**
+
+$$\text{CNOT} = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{bmatrix}$$
+
+The CNOT gate is equivalent to the **classic XOR** gate (the output is “true” if and only if exactly one of the operands is “true”).
+
+## Comparison table: quantum gates vs classical gates
+
+| Quantum operator | Equivalent classic door(s) |
+|---------------------|--------------------------------------|
+| Pauli-X (X) | NOT |
+| CNOT (CX) | XOR |
+| Toffoli (CCNOT) | NAND (universal classic) |
+| Pauli-Y (Y) | No classical equivalent |
+| Hadamard (M) | No classical equivalent |
+| Phase (S, P) | No classical equivalent |
+| $\pi/8$ (T) | No classical equivalent |
+
+::: {.callout-important title="Reversibility of quantum gates"}
+All quantum gates are **reversible**, which is not the case for all classical gates (for example, AND and OR are not reversible). This property follows directly from the unitarity of quantum transformations.
+:::
+
+---
+
+# Qubit processing: quantum interference
+
+## Distinguish two quantum states
+
+Suppose we are physically given a qubit (the Schrödinger box) whose state $|\psi\rangle$ is either $|+\rangle$ or $|-\rangle$:
+
+$$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} \qquad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}$$
+
+These two vectors form an **orthonormal base** of $\mathbb{C}^2$.
+
+Opening the box (measuring directly) would result in a sleeping or awake cat with **equal probability in both cases** — one would not be able to distinguish $|+\rangle$ from $|-\rangle$ by direct measurement.
+
+**Solution:** Apply H to the qubit **before** measuring!
+
+- **Case 1:** $|\psi\rangle = |+\rangle$. Applicant H: $H|+\rangle = |0\rangle$. The measurement always gives $|0\rangle$.
+- **Case 2:** $|\psi\rangle = |-\rangle$. Applicant H: $H|-\rangle = |1\rangle$. The measurement always gives $|1\rangle$.
+
+In quantum mechanics, **orthogonal states can be perfectly distinguished** by applying an appropriate unitary matrix and then measuring in the standard basis.
+
+## The states $|+\rangle$ and $|-\rangle$ as an alternative basis
+
+$$|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = H|0\rangle$$
+
+$$|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = H|1\rangle$$
+
+And vice versa:
+
+$$|0\rangle = H|+\rangle \qquad |1\rangle = H|-\rangle$$
+
+The Hadamard matrix **transforms the base $\{|+\rangle, |-\rangle\}$ into the standard base $\{|0\rangle, |1\rangle\}$** and vice versa.
+
+## Experiment A: intermediate measure
+
+Consider the following circuit:
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+Steps:
+
+1. H transforms $|0\rangle$ into $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+2. Intermediate measure: gets $|0\rangle$ or $|1\rangle$ with probability $\frac{1}{2}$ each.
+3. H is applied to the result.
+4. Final measurement.
+
+**Final distribution of results:** $|0\rangle$ and $|1\rangle$ with equal probability $\frac{1}{2}$.
+
+## Experiment B: without intermediate measurement
+
+Consider the circuit:
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+Steps:
+
+1. H transforms $|0\rangle$ into $|+\rangle$.
+2. H is applied again: $H|+\rangle = |0\rangle$ (because $H^2 = I$).
+3. Final measurement.
+
+**Final distribution of results:** $|0\rangle$ always.
+
+::: {.callout-important title="Quantum Interference — Conclusion"}
+Inserting or removing an intermediate measurement can **drastically change** the behavior of a quantum system!
+
+The reason is **quantum interference** (Quantum Interference): the transition amplitudes can be positive, negative or complex. Without intermediate measurement, the paths leading to $|1\rangle$ **destructively cancel each other** (destructive interference), while the paths leading to $|0\rangle$ **add constructively** (constructive interference).
+
+In classical physics, we add probabilities (always positive). In quantum physics, we add amplitudes, which can be negative. Interference is an example of “quantum weirdness”.
+:::
+
+## Interference mechanism
+
+By applying several unit operations to a qubit, we create a **tree of paths** between states. Each path has an associated **transition amplitude**: the product of the amplitudes along the path.
+
+Before measurement, the amplitude of arriving in state $|b\rangle$ is the **sum of transition amplitudes** of all paths that end in $|b\rangle$.
+
+Since transition amplitudes can be negative or complex, the paths can **interfere constructively or destructively**.
+
+If an intermediate measurement exists, only the paths **consistent with the measurement result** are counted. Intermediate measures **destroy the superposition and prevent interference**.
+
+---
+
+# Quantum Circuits
+
+## Definition
+
+A **quantum circuit** (Quantum Circuit) is a model of quantum computing in which a calculation is a **sequence of quantum gates** on a register of $n$ qubits connected by "wires".
+
+- The circuit has a fixed “width” corresponding to the **number of qubits** processed.
+- Unlike classical circuits, **the same number of wires crosses the entire circuit** (quantum operations are reversible and do not erase information).
+
+## Generation of entanglement by circuit
+
+A Bell pair can be generated with only two gates: a **Hadamard** gate and a **CNOT** gate.
+```{mermaid}
+flowchart LR
+    A["|0⟩"] --> H["H"]
+    H --> C{•}
+    B["|0⟩"] --> C
+    C --> O1["qubit 1"]
+    C --> O2["qubit 2"]
+```
+
+Calculation :
+
+1. **Initial state:** $|0\rangle_1 \otimes |0\rangle_2 = |00\rangle$
+2. **After H on qubit 1:** $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$
+3. **After CNOT:** $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+
+We obtain the Bell state $\frac{|00\rangle + |11\rangle}{\sqrt{2}}$, an entangled state.
+
+::: {.callout-tip title="Intuition"}
+The Hadamard gate creates a superposition on the first qubit. The CNOT gate then creates a **correlation** between the two qubits: if the first is 1, the second is inverted. The result is a state where the two qubits are always in the same state — but which state is undetermined until the measurement.
+:::
+
+---
+
+# Classical circuits vs quantum circuits
+
+## Classic logic circuits
+
+- The behavior of the circuit is implicitly governed by **classical physics**.
+- The signal states are simple bit vectors, for example $X = 01010111$.
+- The operations are defined by **Boole algebra**.
+- No restrictions on copying or measuring signals.
+- Well-defined sets of universal gates, for example {NAND}, {AND, OR, NOT}.
+- Well-developed CAD (Computer Aided Design) methodologies.
+- The circuits are easily implemented in fast, scalable, and macroscopic technologies like CMOS.
+
+## Quantum logic circuits
+
+- The behavior of the circuit is governed explicitly by **quantum mechanics**.
+- The signal states are vectors interpreted as a **superposition of qubit vectors** with complex number coefficients.
+- The operations are defined by **linear algebra on Hilbert space** and represented by **unit matrices** with complex elements.
+- **Severe restrictions** exist on copying and measuring signals.
+- Many sets of universal doors exist but the best types are **not obvious**.
+- Circuits must use microscopic technologies that are **slow, fragile and not yet scalable**, for example NMR (Nuclear Magnetic Resonance).
+
+::: {.callout-note title="To remember"}
+Quantum circuits operate in a state space of **exponentially larger** dimensions than classical circuits: $2^n$ dimensions for $n$ qubits, versus $n$ for $n$ classical bits. It is the main source of quantum power, but also of its fragility.
+:::
+
+---
+
+# Quantum Algorithms
+
+## Why can quantum algorithms be faster?
+
+It may be possible to solve a problem on a quantum system much faster (using fewer steps) than on a classical computer. What makes a quantum algorithm potentially faster is:
+
+- **Quantum Parallelism**: Using superpositions of quantum states, the computer runs the algorithm on **all possible inputs at once**.
+- **Dimension of Quantum Hilbert Space**: The “size” of the state space for the quantum system is **exponentially larger** than that of the corresponding classical system.
+- **Entanglement Capability**: different subsystems (qubits) in a quantum computer become entangled, exhibiting **non-classical correlations**.
+
+::: {.callout-important title="Implications for cryptography"}
+Factorization and search are examples of problems for which quantum algorithms are known and are faster than any classical algorithm. These algorithms have direct implications for **cryptography and information security** (notably RSA, based on the difficulty of factorization).
+:::
+
+## Performance comparison
+
+| Algorithm | Classic steps | Quantum steps |
+|-----------|-------------------|-------------------|
+| Fourier transform (e.g.: Shor factorization, discrete logarithm, Deutsch-Jozsa algorithm) | $N\log(N) = n2^n$ ($N=2^n$, $n$ qubits, $N$ numbers) | $\log^2(N) = n^2$ |
+| Search algorithms | $N$ | $\sqrt{N}$ |
+| Quantum simulation | $c^N$ bits | $kn$ qubits |
+
+::: {.callout-tip title="Intuition — The Quantum Fourier Transform"}
+For the Fourier transform, the quantum algorithm is **exponentially faster** than the classical FFT algorithm. But be careful: the information is “hidden” in the amplitudes, and the collapse of the wave function prevents direct access to it. Quantum algorithms must therefore be cleverly designed to extract useful information.
+:::
+
+---
+
+#Quantum Programming
+
+## QCL (Quantum Computation Language)
+
+**QCL** (Quantum Computation Language) is one of the first quantum programming languages, with a C-type syntax. It allows **combining quantum code and classical code** in the same program.
+
+Example — simulation of a coin toss:
+```
+procedure FlipCoin() {
+  qureg q[1]; int x;
+  reset;
+  H(q);
+  measure q, x;
+  if x == 1 { print "Heads"; }
+  if x == 0 { print "Tails"; }
+  reset;
+}
+```
+
+In this example:
+
+- `H(q)` applies the Hadamard gate to the quantum register `q`, creating a perfect superposition.
+- `measure q, x` measures the qubit and stores the result in the classic variable `x`.
+
+## Qiskit (Quantum Information Science Kit)
+
+**Qiskit** is an open-source framework for quantum computing developed by IBM. It provides tools to create and manipulate quantum programs, and run them on prototype quantum devices via **IBM Quantum Experience** (cloud-based access).
+
+Example of use in Python:
+```python
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+from qiskit.tools.visualization import circuit_drawer
+import numpy as np
+
+qr = QuantumRegister(2)
+cr = ClassicalRegister(2)
+qp = QuantumCircuit(qr, cr)
+
+qp.rx(np.pi/2, qr[0])
+qp.cx(qr[0], qr[1])
+qp.measure(qr, cr)
+circuit_drawer(qp)
+```
+
+This code creates a two-qubit circuit, applies a $R_x(\pi/2)$ rotation to the first qubit, then a CNOT gate between the two qubits, and measures everything.
+
+---
+
+# Architecture of quantum computers
+
+## Architecture overview
+
+A quantum computer works in collaboration with a classical computer:
+
+1. The classical computer prepares and submits a quantum program.
+2. The Quantum Computer Controller translates the instructions.
+3. The **commands** (gates) are sent to the **quantum register** (Quantum Register).
+4. The **measurement results** are sent back to the conventional computer.
+
+The typical execution flow is:
+```{mermaid}
+flowchart LR
+    A[Soumettre un job] --> B[File d'attente]
+    B --> C[Traduire le circuit quantique en impulsions micro-ondes]
+    C --> D[Exécuter sur l'ordinateur quantique]
+    D --> E[Résultats de mesure]
+    E --> A
+```
+
+## Technical requirements
+
+To build a quantum computer, the requirements are:
+
+- **Physical implementation of the qubits** themselves.
+- **Control of unitary evolution** of qubits.
+- **Preparation of the initial state** of the qubits.
+- **Measurement of the final state** of qubits.
+
+## Additional practical considerations
+
+- Systems must be **almost completely isolated** from their environment to avoid decoherence.
+- The **coherent quantum state** must be preserved throughout the duration of the calculation.
+- The **decoherence times** must be very long.
+- Ability to **perform operations on multiple qubits in parallel**.
+- Physical system with **two uniquely addressable states** (the energy levels of the qubit).
+- A **universal set of quantum gates** must be available.
+- Ability to **entangle two qubits**.
+
+---
+
+# Quantum Volume
+
+## Definition
+
+**Quantum Volume** $V_Q$ (Quantum Volume) is a metric that measures the **capabilities and error rates** of a quantum computer.
+
+It was defined by Nikolaj Moll *et al.* in *Quantum Science and Technology*, **3**, 030503 (2018).
+
+It depends on:
+
+- The **number of qubits** $N$.
+- The **number of steps** that can be executed, the **circuit depth** $d$.
+
+The original formula is:
+
+$$\tilde{V}_Q = \min[N, d(N)]^2$$
+
+IBM changed the definition of quantum volume to:
+
+$$\log_2 V_Q = \arg\max_{n \leq N} \{\min[n, d(n)]\}$$
+
+## Historical evolution of quantum volume
+
+| Date | Quantum volume (circuit size) | Manufacturer | Notes |
+|------|--------------------------------------|-----------|-------|
+| January 2020 | 32 (5×5) | IBM | “Raleigh” (28 qubits) |
+| June 2020 | 64 (6×6) | Honeywell | 6 qubits |
+| August 2020 | 64 (6×6) | IBM | 27 qubits |
+| November 2020 | 128 (7×7) | Honeywell | “H1” (10 qubits) |
+
+::: {.callout-tip title="Intuition — Why this metric?"}
+The raw number of qubits is not a sufficient measure of the power of a quantum computer. A computer with many qubits but frequent errors is less useful than a computer with fewer qubits but very reliable. Quantum volume captures this **tension between quantity and quality** of qubits.
+:::
+
+::: {.callout-note title="Takeaways — Chapter Summary"}
+This chapter introduced the theoretical foundations of quantum computing:
+
+- A **qubit** is a unit vector of $\mathbb{C}^2$, whose amplitudes can be complex numbers.
+- The **measurement** (Born rule) gives a probability $|\alpha|^2$ for $|0\rangle$ and $|\beta|^2$ for $|1\rangle$, and causes the state to collapse.
+- **Entanglement** is a non-classical correlation between qubits that cannot be explained by classical physics.
+- **Decoherence** is the main practical difficulty: maintaining superposition requires extreme isolation from the environment.
+- **Quantum gates** (X, Y, Z, H, CNOT, etc.) are unit matrices constituting the basic blocks of quantum circuits.
+- **Quantum interference** allows a well-designed algorithm to remove the wrong answers and amplify the correct one.
+- **Quantum power** comes from parallelism (superposition), the exponential dimension of Hilbert space and entanglement.
+:::

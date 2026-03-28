@@ -1,0 +1,283 @@
+---
+title: "Fundamental Properties of Quantum Computing — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Level 1 — Fundamentals
+
+```{quizdown}
+### What happens when we measure a qubit in the |1> state in the computational base?
+
+> Remember the decomposition |1> = 0|0> + 1|1> and Born's rule.
+
+1. [ ] We obtain 0 with probability 1
+1. [ ] We obtain 0 or 1 with probability 1/2 each
+1. [x] We obtain 1 with probability 1
+    > Correct: |1> = 0|0> + 1|1>, so p(measure 1) = |1|^2 = 1. There is no quantity, it is classical information.
+1. [ ] The result is indeterminable
+```
+
+```{quizdown}
+### What is the necessary and sufficient condition to perfectly distinguish two quantum states by a measurement?
+
+> Think about the geometric relationship between the two state vectors.
+
+1. [ ] States must have the same standard
+1. [ ] The states must be in the computational base
+1. [x] States must be orthogonal
+    > Correct: two states are perfectly distinguishable if and only if their scalar product is zero, that is to say if they are orthogonal.
+1. [ ] States must have real amplitudes
+```
+
+```{quizdown}
+### What does the Helstrom-Holevo Bound express?
+
+> This bound relates the angle between two states to a maximum probability.
+
+1. [ ] The maximum number of qubits measurable simultaneously
+1. [x] The maximum probability of correctly distinguishing two non-orthogonal states
+    > Correct: if |<psi_a|psi_b>| = cos(theta), then p_succes <= (1 + sin(theta)) / 2. This is the fundamental limit of state discrimination.
+1. [ ] The minimum fidelity between two entangled states
+1. [ ] The maximum speed of quantum information transmission
+```
+
+```{quizdown}
+### What does the No-Cloning Theorem state?
+
+> Think about what a unitary cloning operator should satisfy for any arbitrary state.
+
+1. [ ] It is impossible to measure a quantum state without modifying it
+1. [ ] It is impossible to transmit a quantum state by entanglement
+1. [ ] It is impossible to copy a qubit in the |0> state
+1. [x] It is impossible to copy an arbitrary quantum state by a unitary transformation
+    > Correct: no unitary U can satisfy U(|psi>|0>) = |psi>|psi> for all |psi>. The proof follows from the linearity of quantum mechanics.
+```
+
+```{quizdown}
+### What does the No-Signalling Principle say?
+
+> Think of the scenario of Alice and Bob sharing a pair of Bells.
+
+1. [ ] Entangled qubits cannot be physically separated
+1. [ ] Measuring a qubit always destroys entanglement
+1. [x] Quantum entanglement does not allow information to be transmitted faster than light
+    > Correct: Even if Alice collapses Bob's state by her measurement, Bob's statistics remain the same. It cannot detect Alice's measurement without a classical signal.
+1. [ ] Two entangled qubits can never have different states after measurement
+```
+
+```{quizdown}
+### What is the temporal dual of the principle of non-cloning?
+
+> The reversibility of quantum computing creates a symmetry between creation and destruction of copies.
+
+1. [ ] The principle of non-signalling
+1. [ ] Bell's theorem
+1. [x] The No-Deleting Theorem
+    > Correct: non-cloning prohibits going from 1 to 2 copies, non-deleting prohibits going from 2 to 1 copy. They are linked by unitary reversibility.
+1. [ ] The Helstrom-Holevo terminal
+```
+
+## Level 2 — Comprehension
+
+```{quizdown}
+### Which of these statements are correct regarding the distinction of quantum states?
+
+> Think about the two cases: orthogonal vs. non-orthogonal states, and what the bound guarantees.
+
+- [x] Two orthogonal states can always be distinguished perfectly
+    > Correct: Just apply U-dagger to align the states to the computational basis, then measure.
+- [ ] Two non-orthogonal states can never be distinguished
+    > Incorrect: partial information can be obtained. The Helstrom-Holevo bound gives the maximum probability of success, which is always strictly greater than 1/2.
+- [x] The Helstrom-Holevo limit is always reached for an optimal measurement base
+    > Correct: the bound is exact and reached by measuring in the basis of the eigenvectors of |psi_a><psi_a| - |psi_b><psi_b|.
+- [ ] Measuring in the computational base is always the optimal strategy
+    > Incorrect: the optimal strategy depends on the states to be distinguished. The computational basis is rarely optimal for generic non-orthogonal states.
+```
+
+```{quizdown}
+### When trying to distinguish between |0> and |+> by measuring in the computational base, which statement is true?
+
+> Analyzes the probabilities of each outcome for each of the two states.
+
+1. [ ] If we measure 0, we are certain that the state is |0>
+1. [x] If we measure 1, we are certain that the state is |+>
+    > Correct: |0> never gives the outcome 1. So if we measure 1, the state was necessarily |+>. On the other hand, outcome 0 does not allow us to conclude with certainty.
+1. [ ] The probability of success is 85%
+1. [ ] This strategy is optimal
+```
+
+```{quizdown}
+### In the proof of the non-signaling principle for a Bell pair, why can't Bob know if Alice measured?
+
+> Compare Bob's statistics in the two cases.
+
+1. [ ] Because Bob is too far from Alice
+1. [ ] Because Alice's measurement destroys the entanglement before Bob measures
+1. [x] Because Bob's measurement probabilities are the same whether Alice measured or not
+    > Correct: in both cases, Bob measures 0 or 1 with probability 1/2. In the absence of traditional communication, statistics are indistinguishable.
+1. [ ] Because Bob does not have access to Alice's measurement base
+```
+
+```{quizdown}
+### Why is quantum computing called reversible (Reversible Computing), except for measurement?
+
+> Think about the nature of the transformations used between measurements.
+
+1. [ ] Because qubits can spontaneously return to their initial state
+1. [ ] Because we can always undo a quantum measurement
+1. [x] Because the transformations between measurements are unitary, therefore invertible
+    > Correct: every unitary U admits an inverse U-dagger. Measurement is the only irreversible operation in quantum computing.
+1. [ ] Because quantum information is always preserved, even during measurements
+```
+
+```{quizdown}
+### Which of these situations correctly illustrates the strategy of asymmetric discrimination (Unambiguous Discrimination)?
+
+> In this strategy, we align a measurement vector with one of the states.
+
+1. [ ] We measure in the base which maximizes the average probability of success
+1. [ ] The measurement is repeated a large number of times to reduce the error
+1. [x] We align a measurement base vector with one of the states, sometimes obtaining absolute certainty on the other
+    > Correct: if |psi_a> is orthogonal to a vector of the measurement base, obtaining the corresponding outcome certifies that the state was |psi_b>. On the other hand, the overall probability of success is lower.
+1. [ ] We use an ancillary qubit to improve discrimination
+```
+
+```{quizdown}
+### Which of these consequences would result from a hypothetical cloning theorem?
+
+> List what a universal clone operator would allow.
+
+- [x] Violation of the principle of non-signalling
+    > Correct: With cloning, Alice could send superluminal information, which would violate relativity and non-signaling.
+- [x] The compression of an infinite amount of classical information into a single qubit
+    > Correct: we could encode a long message in a qubit state, clone it infinitely, then reconstruct the message using quantum tomography.
+- [ ] The possibility of perfectly distinguishing any quantum state
+    > Incorrect: Even with cloning, the Helstrom-Holevo bound would still apply on each individual copy.
+- [x] Quantum error correction would become trivial
+    > Correct: if we could clone, classical redundancy would be sufficient to correct errors, as in classical calculation.
+```
+
+## Level 3 — Mastery
+
+```{quizdown}
+### Two states |psi_a> and |psi_b> verify |<psi_a|psi_b>| = cos(30 degrees). What is the maximum probability of distinguishing them correctly?
+
+> Directly applies the Helstrom-Holevo bound: p = (1 + sin(theta)) / 2.
+
+1. [ ] 0.50
+1. [ ] 0.75
+1. [x] 0.75
+    > Correct: |<psi_a|psi_b>| = cos(30°), so theta = 30°, sin(30°) = 0.5, and p = (1 + 0.5)/2 = 0.75. Be careful, the theta angle is indeed arccos(|<psi_a|psi_b>|).
+1. [ ] 1.00
+```
+
+```{quizdown}
+### In the proof of the no-cloning theorem, we arrive at the equation <psi|phi> = (<psi|phi>)^2. What conclusion do we draw from this?
+
+> This polynomial equation has only two real solutions in [0,1].
+
+1. [ ] Any dot product is equal to 0
+1. [ ] The unitary transformation only exists for the states of the computational base
+1. [x] Cloning is only possible if the states are identical or orthogonal
+    > Correct: x = x^2 implies x = 0 (orthogonal states) or x = 1 (identical states). For any other pair of states, the contradiction is established.
+1. [ ] The unitary transformation must be applied twice
+```
+
+```{quizdown}
+### A physicist says: "I built a machine that perfectly clones the |+> state and the |-> state." Is this compatible with the no-cloning theorem?
+
+> The no-cloning theorem talks about ARBITRARY states. Checks if |+> and |-> are orthogonal.
+
+1. [x] Yes, because |+> and |-> are orthogonal, and we can clone orthogonal states
+    > Correct: <+|-> = 0, so |+> and |-> are orthogonal. The no-cloning theorem prohibits the cloning of ARBITRARY states, not cloning restricted to a fixed pair of orthogonal states (which amounts to copying a classic bit).
+1. [ ] No, the no-cloning theorem is absolute and prohibits any type of cloning
+1. [ ] Yes, but only if the machine uses an intermediate measurement
+1. [ ] No, because |+> and |-> are not in the computational base
+```
+
+```{quizdown}
+### Replace the steps of the method to distinguish two orthogonal states in the correct order.
+
+> Think about the transformation that aligns the states on the computational basis before measuring.
+
+1. Identify the states |psi_0> and |psi_1> to distinguish
+2. Construct the unitary matrix U whose columns are |psi_0> and |psi_1>
+3. Apply U-dagger transformation to unknown state
+4. Measure in the computational base
+5. Read the result: 0 for |psi_0>, 1 for |psi_1>
+```
+
+```{quizdown}
+### Alice and Bob share a pair of Bells. Alice performs a unit rotation on her qubit then measures it. Can Bob detect that Alice performed an operation?
+
+> Recalls the principle of non-signaling and its generalization.
+
+1. [ ] Yes, because the unit rotation modifies the entanglement correlations
+1. [ ] Yes, but only if Bob measures in the same base as Alice
+1. [x] No, because the principle of non-signaling applies to any local unitary transformation followed by a measurement
+    > Correct: non-signalling is general. No matter what basis or local unitary transformation Alice applies, Bob's statistics remain unchanged.
+1. [ ] It depends on the rotation made by Alice
+```
+
+```{quizdown}
+### Put the steps of checking the completeness equation for a measurement in the base (|psi_0>, |psi_1>) in the correct order.
+
+> Completeness guarantees that the probabilities of all outcomes sum to 1.
+
+1. Write the measurement operators M_{|psi_0>} = |psi_0><psi_0| and M_{|psi_1>} = |psi_1><psi_1|
+2. Calculate M_m-dagger * M_m for each m using that the projectors are self-adjoint
+3. Sum the terms: |psi_0><psi_0| + |psi_1><psi_1|
+4. Express the sum as U(|0><0| + |1><1|)U-dagger
+5. Conclude that the sum is worth U*I*U-dagger = I
+```
+
+```{quizdown}
+### What is the probability of success when trying to distinguish |0> and |+> in the computational base, and what is the maximum theoretical bound?
+
+> Calculate p_succes = 1 - (3/4)(1/3) for the computational basis, and apply the Helstrom-Holevo bound for the maximum.
+
+1. [ ] 50% in practice, 75% maximum
+1. [ ] 75% in practice, 75% maximum (the computational basis is optimal)
+1. [ ] 85% in practice, 100% maximum
+1. [x] 75% in practice, 85% theoretical maximum
+    > Correct: the computational basis gives 3/4 = 75%. The Helstrom-Holevo bound gives (1 + sin(arccos(1/sqrt(2))))/2 = (1 + 1/sqrt(2))/2 ≈ 85%. The computational basis is not optimal.
+```
+
+```{quizdown}
+### Which of these statements about the No-Deleting Theorem is correct?
+
+> Think about the relationship between non-cloning, non-deletion and reversibility.
+
+1. [ ] Failure to remove is a direct consequence of failure to report
+1. [ ] Non-deletion prohibits any destructive measurement of a qubit
+1. [x] Non-deletion follows from unitary reversibility applied to non-cloning
+    > Correct: if U(|psi>|0>) = |psi>|psi> is impossible, then by reversibility, its inverse U-tilde(|psi>|psi>) = |psi>|0> is also impossible. This is non-deletion.
+1. [ ] Non-removal implies that you can never reset a qubit
+```
+
+```{quizdown}
+### A quantum algorithm attempts to improve error correction by copying faulty qubits. Why is this approach fundamentally impossible?
+
+> Think about the theorem that prohibits this operation and its proof.
+
+1. [ ] Because quantum errors are continuous and not discrete
+1. [x] Because the no-cloning theorem prohibits copying arbitrary quantum states
+    > Correct: a qubit in error is in an arbitrary quantum state (superposition). Non-cloning prohibits copying it. This is why quantum error correction requires specifically designed codes (like stabilizer codes).
+1. [ ] Because defective qubits cannot interact with other qubits
+1. [ ] Because the action required to detect the error collapses the state
+```
+
+```{quizdown}
+### Consider two states |psi_a> and |psi_b> with theta = 0 (identical states). What does the Helstrom-Holevo bound predict and what is its interpretation?
+
+> Substitute theta = 0 into the formula and interpret the result.
+
+1. [ ] p_succes = 1, because identical states are trivial to identify
+1. [x] p_successes = 1/2, which means we can't do better than guess at random
+    > Correct: sin(0) = 0, so p = (1+0)/2 = 1/2. Intuitively, if the two states are identical, any measurement produces exactly the same statistics: they cannot be distinguished at all.
+1. [ ] The limit does not apply in this limiting case
+1. [ ] p_succes = 0, because the two hypotheses are indistinguishable
+```

@@ -96,6 +96,7 @@ title: "Applications des ordinateurs quantiques — Révision"
 1. Alice encode chaque bit dans une base choisie aléatoirement
 2. Bob mesure dans une base choisie aléatoirement
 3. Bob annonce sa **base** (pas le résultat) sur canal public
+4. Alice confirme si c'était la bonne base
 5. Bits avec **même base** → clé partagée (∼50% conservés)
 
 ### Exemple BB84
@@ -124,8 +125,12 @@ Toute écoute **perturbe** inévitablement les qubits → détectable statistiqu
 ## Algorithme de Shor (Factorisation)
 
 ### Idée clé
+
+Réduire la factorisation à la **recherche de période** d'une fonction modulaire :
+
 $$f(s) = x^s \bmod N$$
 
+### Étapes
 
 1. Choisir $x$ copremier avec $N$
 2. Trouver la période $l$ de $f$ via la **QFT**

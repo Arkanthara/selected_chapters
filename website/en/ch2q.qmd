@@ -1,0 +1,308 @@
+---
+title: "Basics of Quantum Calculation — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Level 1 — Fundamentals
+```{quizdown}
+### What condition must a valid qubit state satisfy?
+
+> Think about the connection between amplitudes and measurement probabilities.
+
+1. [ ] The alpha and beta amplitudes must be positive real numbers
+1. [ ] The sum of the amplitudes must be 1
+1. [x] The sum of the squares of the amplitude modules must be equal to 1
+    > Correct: |alpha|^2 + |beta|^2 = 1 is the normalization condition. It guarantees that the measurement probabilities add up to 1.
+1. [ ] The amplitudes must be equal
+    > Incorrect: Amplitudes can have any complex values ​​as long as normalization is respected.
+```
+```{quizdown}
+### Which of the following states is an INVALID qubit state?
+
+> Check the normalization condition for each.
+
+1. [ ] (1/root(2))|0> + (1/root(2))|1>
+1. [ ] (1/root(3))|0> - i*(root(2)/root(3))|1>
+1. [x] i|0> - (1/2)|1>
+    > Correct: |i|^2 + |-1/2|^2 = 1 + 1/4 = 5/4 is different from 1. The state is invalid.
+1. [ ] |0>
+    > Incorrect: |1|^2 + |0|^2 = 1. This state is valid, it is the classic base state |0>.
+```
+```{quizdown}
+### What do the alpha and beta amplitudes of a qubit represent?
+
+- [x] Complex numbers whose squares of the modules give the measurement probabilities
+    > Correct: |alpha|^2 = Pr[measure |0>] and |beta|^2 = Pr[measure |1>] according to Born's rule.
+- [ ] Classic probabilities between 0 and 1
+    > Incorrect: unlike classical probabilities, amplitudes can be negative or complex.
+- [x] Quantities that can be negative or complex
+    > Correct: this is precisely what distinguishes the quantum framework from the classical probabilistic framework.
+- [ ] The directly observable values ​​of the qubit
+    > Incorrect: amplitudes are not directly observable. Only measurement gives a classic result.
+```
+```{quizdown}
+### In Dirac notation, what does the vector bra <psi| ?
+
+> Think about the algebraic structure of bra-ket notation.
+
+1. [ ] A column vector identical to ket |psi>
+1. [x] The Hermitian conjugate of |psi>, that is to say a line vector whose components are the complex conjugates of those of |psi>
+    > Correct: <psi| = (alpha_bar, beta_bar) is the dual line vector of ket |psi>.
+1. [ ] Measuring the qubit |psi>
+1. [ ] The probability associated with the state |psi>
+```
+```{quizdown}
+### What is the value of the dot product <psi|theta> if |psi> = alpha|0> + beta|1> and |theta> = gamma|0> + delta|1>?
+
+> Remember the dot product formula in Dirac notation.
+
+1. [ ] alpha*gamma + beta*delta
+1. [x] alpha_bar*gamma + beta_bar*delta
+    > Correct: <psi|theta> = alpha_bar * gamma + beta_bar * delta. We conjugate the components of the arm (left vector).
+1. [ ] |alpha|^2 + |beta|^2
+1. [ ] gamma_bar*alpha + delta_bar*beta
+    > Incorrect: This expression corresponds to <theta|psi>, which is the complex conjugate of <psi|theta>.
+```
+```{quizdown}
+### What is quantum decoherence?
+
+> Think about what happens when a quantum system is not perfectly isolated.
+
+1. [ ] The voluntary measurement of a qubit to obtain a classical result
+1. [x] The loss of superposition of a quantum system due to its spontaneous interaction with the environment
+    > Correct: decoherence transforms superposition states into classical states in an uncontrolled manner, which is the main technical obstacle of quantum computers.
+1. [ ] The entanglement of two qubits
+1. [ ] Applying an incorrect unit gate
+```
+```{quizdown}
+### What is the Born Rule?
+
+> This is the fundamental rule that relates amplitudes to measurement results.
+
+1. [ ] The probability of measuring |0> is worth alpha
+1. [ ] The probability of measuring |0> is |alpha|
+1. [x] The probability of measuring |0> is |alpha|^2
+    > Correct: Pr[observer |0>] = |alpha|^2 and Pr[observer |1>] = |beta|^2. We take the square of the modulus of the amplitude.
+1. [ ] The probability of measuring |0> is worth alpha^2
+    > Incorrect: if alpha is complex, alpha^2 can be complex, which is not a valid probability. You have to take the square of the module.
+```
+
+---
+
+## Level 2 — Comprehension
+```{quizdown}
+### What properties distinguish a qubit from a classic bit?
+
+> Think about the basic differences listed in the course.
+
+- [x] A qubit can be in a superposition of states |0> and |1>
+    > Correct: this is the property of superposition, absent in classical computer science.
+- [ ] A qubit can be freely copied
+    > Incorrect: the no-cloning theorem prohibits the copying of an unknown quantum state.
+- [x] Measuring a qubit modifies its state
+    > Correct: after the measurement, the state collapses to |0> or |1> and the previous state is lost.
+- [x] A qubit cannot be erased
+    > Correct: Unitary transformations are reversible, which prohibits erasure.
+- [ ] A qubit is always in the |0> state before being used
+```
+```{quizdown}
+### What happens if we measure a qubit twice in a row?
+
+> Think about what the state becomes after the first measurement.
+
+1. [ ] The second result may differ from the first
+1. [x] The second result is identical to the first with probability 1
+    > Correct: after the first measurement, the state collapses to |0> or |1>. Measuring a baseline state again always gives the same result. Measuring twice is measuring once.
+1. [ ] The qubit returns to its initial superposition
+1. [ ] The measurement is impossible to repeat
+```
+```{quizdown}
+### Why do we say that the Hadamard H door has no classical equivalent?
+
+> Think about what H does at a base state, then think about what H does twice.
+
+1. [ ] Because it acts on two qubits simultaneously
+1. [ ] Because it is irreversible
+1. [x] Because it creates superpositions and H applied twice restores the identity, impossible behavior for a classic randomization tool
+    > Correct: H transforms |0> into |+> (superposition) and H^2 = I. Applying a randomizing operation to a random state gives a deterministic result — it is quantum interference, with no classical equivalent.
+1. [ ] Because it requires several classical bits to be simulated
+```
+```{quizdown}
+### What is an Entangled State?
+
+> Think about the definition as opposed to the states produced.
+
+1. [ ] A state where both qubits are in the |0> state
+1. [ ] A state which can be written as the tensor product of two individual states
+1. [x] A state of two or more qubits that CANNOT be factorized into a product of individual states
+    > Correct: if the joint state is not written |psi1> entangle |psi2>, the qubits are intrinsic and cannot be described independently of each other.
+1. [ ] A state where the two qubits have the same amplitude
+```
+```{quizdown}
+### Which of the following states is an Entangled State?
+
+> Try to factor each state into a product of two individual states.
+
+1. [ ] (1/2)|00> + (1/2)|01> - (1/2)|10> - (1/2)|11>
+    > Incorrect: this state is factorized into (1/root(2))(|0> - |1>) entangle (1/root(2))(|0> + |1>). It is a produced state.
+1. [x] (1/root(2))|00> + (1/root(2))|11>
+    > Correct: it's Bell's pair. There exists no pair (alpha, beta, alpha', beta') such that the tensor product gives this state. It is a maximally entangled state.
+1. [ ] |01>
+1. [ ] (1/root(2))|00> + (1/root(2))|01>
+    > Incorrect: this state is |0> entangle (1/root(2))(|0> + |1>). It is a produced state.
+```
+```{quizdown}
+### What is the difference between Experiment A and Experiment B with door H?
+
+> The experience A = H, measurement, H, measurement. The experiment B = H, H, measurement.
+
+1. [ ] The two experiments give the same probabilistic result
+1. [x] Experience A gives 50/50 while experience B always gives |0>
+    > Correct: in experiment B, without intermediate measurement, the amplitudes of the paths add up (constructive interference towards |0> and destructive interference towards |1>). In experiment A, the intermediate measurement destroys the superposition.
+1. [ ] Experience A always gives |0> and experience B gives 50/50
+1. [ ] Both experiments always give |0>
+```
+```{quizdown}
+### What is the tensor product A entangle B of two matrices?
+
+> Remember the block structure of this operation.
+
+1. [ ] The classical matrix multiplication of A by B
+1. [x] A block matrix where each element of A is replaced by the product of this element by the entire matrix B
+    > Correct: (A entangle B)_ij = a_ij * B. If A is n x m and B is n' x m', the result is nn' x mm'.
+1. [ ] The element-by-element sum of A and B
+1. [ ] The transpose of the product of A and B
+```
+
+---
+
+## Level 3 — Mastery
+```{quizdown}
+### A program applies the sequence H -> intermediate measurement -> H on a qubit initially in |0>. What is the end result?
+
+> Think about the effect of the intermediate measurement on the superposition.
+
+1. [ ] Always |0>
+1. [x] |0> or |1> with equal probability (50/50)
+    > Correct: the intermediate measurement collapses the qubit towards |0> or |1> with probability 1/2 each. The second gate H then creates a new superposition, which is measured randomly. The interference is destroyed.
+1. [ ] Always |1>
+1. [ ] The state |+> not directly measurable
+```
+```{quizdown}
+### What are the fundamental advantages that can make a quantum algorithm faster than a classical algorithm?
+
+> Think about the three sources of acceleration mentioned in the course.
+
+- [x] Quantum parallelism: execution on all inputs in superposition simultaneously
+    > Correct: It is one of the three main sources of quantum acceleration.
+- [ ] The higher speed of quantum processors in GHz
+    > Incorrect: Quantum processors are actually slower in frequency than classical processors. The advantage is algorithmic, not frequency.
+- [x] The exponential dimension of Hilbert space: 2^n dimensions for n qubits
+    > Correct: the quantum state space is exponentially larger than the corresponding classical space.
+- [x] The capacity for entanglement between subsystems, generating non-classical correlations
+    > Correct: entanglement is the third source of acceleration, allowing correlations that are classically impossible.
+- [ ] The possibility of copying the qubits at will to parallelize the calculations
+    > Incorrect: the no-cloning theorem prohibits the copying of quantum states.
+```
+```{quizdown}
+### For Shor's algorithm (factorization), what is the quantum complexity compared to the classical complexity?
+
+> Remember the algorithm comparison table from the course.
+
+1. [ ] Classical: O(N) — Quantum: O(root(N))
+1. [ ] Classical: O(N^2) — Quantum: O(N log N)
+1. [x] Classical: O(n * 2^n) — Quantum: O(n^2) for N = 2^n
+    > Correct: the quantum Fourier transform on n qubits (dealing with N = 2^n numbers) requires only n^2 logic steps compared to n * 2^n classically. This is an exponential acceleration.
+1. [ ] Classical: O(2^N) — Quantum: O(N)
+```
+```{quizdown}
+### Which statements about the CNOT (Controlled NOT) gate are correct?
+
+> Remember the behavior of the gate depending on the state of the control qubit.
+
+- [x] If the control qubit is in state |0>, the target qubit is unchanged
+    > Correct: CNOT applies the X gate to the target qubit only if the control qubit is |1>.
+- [x] If the control qubit is in state |1>, gate X is applied to the target qubit
+    > Correct: this is the definition of the CNOT (Controlled NOT) gate.
+- [ ] The CNOT gate acts on a single qubit
+    > Incorrect: The CNOT gate operates on two qubits — a control qubit and a target qubit.
+- [x] The CNOT gate is equivalent to the classic XOR gate on the basic states
+    > Correct: in base states, CNOT behaves exactly like XOR.
+- [ ] The CNOT door is irreversible
+    > Incorrect: like all quantum gates, CNOT is unitary and therefore reversible. CNOT is also its own inverse.
+```
+```{quizdown}
+### Reorder the steps in the workflow of a calculation on a remote quantum computer.
+
+> Think of the complete cycle from the classic program to the result.
+
+1. Submitting the job from the classic computer
+2. Job Queue
+3. Translation of quantum circuit into microwave pulses
+4. Execution on the quantum processor
+5. Return of measurement results to the traditional computer
+```
+```{quizdown}
+### What is Quantum Volume?
+
+> This metric cannot be reduced to the simple number of qubits.
+
+1. [ ] The total number of qubits in a quantum processor
+1. [ ] The clock frequency of the quantum processor in GHz
+1. [x] A global metric that depends on both the number of qubits and the achievable circuit depth, penalized by error rates
+    > Correct: log2(V_Q) = argmax_{n <= N} {min[n, d(n)]}. A processor with few qubits but very reliable can have a higher quantum volume than a processor with more qubits but noisy.
+1. [ ] The number of operations per second of a quantum processor
+```
+```{quizdown}
+### Put the elements of generating a Bell state from two qubits initialized in |00> back into the correct order.
+
+> Think about the circuit using a Hadamard gate and a CNOT gate.
+
+1. Initialization of the two qubits in the |00> state
+2. Application of the Hadamard H gate on the first qubit
+3. Application of the CNOT gate with the first qubit as control and the second as target
+4. Getting state (|00> + |11>) / root(2)
+```
+```{quizdown}
+### A processor A has 50 qubits with a high error rate, allowing a circuit depth of 3. A processor B has 10 qubits with a low error rate, allowing a circuit depth of 15. Which has the largest quantum volume?
+
+> Remember the formula: log2(V_Q) = argmax_{n <= N} {min[n, d(n)]}.
+
+1. [ ] Processor A, because it has more qubits
+    > Incorrect: The number of qubits alone does not determine the quantum volume.
+1. [x] Processor B, because min[n, d(n)] is maximized to a larger value
+    > Correct: for B, min[10, 15] = 10, therefore log2(V_Q) = 10. For A, min[3, 3] = 3 (the limiting depth n), therefore log2(V_Q) = 3. B is much greater.
+1. [ ] The two processors have the same quantum volume
+1. [ ] We cannot compare without knowing the clock frequency
+```
+```{quizdown}
+### Which statements about measuring a qubit are correct?
+
+> Think about the physical and informational consequences of the measurement.
+
+- [x] The measurement gives a classic result: either |0> or |1>
+    > Correct: the measurement projects the quantum state onto one of the base states probabilistically.
+- [x] After the measurement, the previous state of the qubit is definitively lost
+    > Correct: the collapse of the wave function is irreversible. The overlay information is destroyed.
+- [ ] The measurement can be carried out without disturbing the quantum system
+    > Incorrect: unlike classical physics, quantum measurement generally disrupts the system by collapsing the superposition.
+- [ ] We can know the alpha and beta amplitudes by measuring the same qubit enough times
+    > Incorrect: each measure collapses the state. To estimate the amplitudes, many identical copies would have to be prepared (state tomography), but we cannot copy an unknown qubit.
+- [x] The measurement probabilities are given by the squares of the amplitude modules (Born rule)
+    > Correct: Pr[|0>] = |alpha|^2 and Pr[|1>] = |beta|^2.
+```
+```{quizdown}
+### Why is Shor's algorithm a threat to classical cryptography (RSA)?
+
+> Think about the complexity of factorization and the foundation of RSA security.
+
+1. [ ] Because it allows you to copy cryptographic keys
+1. [ ] Because it is faster in absolute time on all types of hardware
+1. [x] Because it factors large integers in polynomial time, breaking the difficulty on which RSA relies
+    > Correct: RSA security is based on the classic difficulty of factoring large integers (exponential complexity). Shor reduces this complexity to O(n^2), making RSA vulnerable to a sufficiently powerful quantum computer.
+1. [ ] Because it solves the problem of searching in O(root(N))
+    > Incorrect: the search in O(root(N)) is the contribution of Grover's algorithm, not of Shor.
+```

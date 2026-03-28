@@ -1,0 +1,222 @@
+---
+title: "Applications of Quantum Computers — Review"
+---
+
+## Key applications
+
+| Application | Advantage | Algorithm | Year |
+|---|---|---|---|
+| Factoring | Exponential | Shor | 1994 |
+| Search (Search) | Quadratic $O(\sqrt{N})$ | Grover | 1997 |
+| Simulation (Simulation) | Exponential | — | — |
+| Optimization | Possible* | QAOA | — |
+| Networks | — | BB84, QKD | — |
+
+*benefit not always proven
+
+---
+
+## Quantum Teleportation
+
+**Goal:** transmit $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ without measuring its state
+
+**Resources:** 3 qubits + 2 classic bits + 1 pair of Bell $|\Phi^+\rangle$
+
+### Protocol (8 steps)
+
+1. Create $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ via H+CNOT
+2. Distribute: Alice keeps qubit entangled + qubit message
+3. Alice applies **CNOT** ($|\psi\rangle$ controls, her target qubit)
+4. Alice applies **H** to $|\psi\rangle$
+5. Alice **measures** her 2 qubits → 4 equiprobable results
+6. Deduce Bob's state according to the measurement
+7. Alice sends **2 classic bits** ($b_1 b_0$) to Bob
+8. Bob applies the corrections
+
+### Bob's corrections
+
+| Measure Alice ($b_1 b_0$) | Bob State | Correction |
+|---|---|---|
+| 00 | $\alpha\|0\rangle + \beta\|1\rangle$ | None |
+| 01 | $\alpha\|1\rangle + \beta\|0\rangle$ | NOT (X) |
+| 10 | $\alpha\|0\rangle - \beta\|1\rangle$ | Z |
+| 11 | $\alpha\|1\rangle - \beta\|0\rangle$ | NOT + Z |
+
+::: {.callout-warning title="Traps"}
+- Alice **never** knows $|\psi\rangle$
+- No superluminal communication (classic channel required)
+- Each teleport **consumes** the entangled pair
+:::
+
+---
+
+## Superdense Coding
+
+**Goal:** transmit **2 classical bits** with **1 qubit** (+ shared entanglement)
+
+**Reverse** of teleportation
+
+### Alice's operations on her qubit
+
+| Bits to send | Door | Final state |
+|---|---|---|
+| 00 | $I$ | $\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)$ |
+| 01 | $X$ | $\frac{1}{\sqrt{2}}(\|10\rangle + \|01\rangle)$ |
+| 10 | $Z$ | $\frac{1}{\sqrt{2}}(\|00\rangle - \|11\rangle)$ |
+| 11 | $XZ$ | $\frac{1}{\sqrt{2}}(\|10\rangle - \|01\rangle)$ |
+
+### Bob's correction: CNOT → H → measurement
+
+- The 4 final states are the **4 Bell states** (orthonormal basis)
+- Bob measures in computational basis → finds the 2 bits of Alice
+
+::: {.callout-note title="Discovery: 1992, experiment: 1996"}
+:::
+
+---
+
+## Quantum Key Distribution (QKD — BB84)
+
+### Disposable mask (One-Time Pad)
+
+- Secret key $r$ previously shared
+- Encryption: $m \oplus r$ — Decryption: $(m \oplus r) \oplus r = m$
+- **theoretical** security (information-theoretically secure)
+- **Problem:** key sharing requires physical meeting → resolved by QKD
+
+### BB84 Resources
+
+- Classic channel **authenticated public**
+- Quantum channel (potentially spied on)
+- Alice: source of random bits + prepare $|0\rangle, |1\rangle, |+\rangle, |-\rangle$
+- Bob: measurement in base $\{|0\rangle,|1\rangle\}$ or $\{|+\rangle,|-\rangle\}$
+
+### BB84 Protocol
+
+1. Alice encodes each bit in a randomly chosen base
+2. Bob measures in a randomly chosen base
+3. Bob announces his **base** (not the result) on public channel
+4. Alice confirms if it was the right base
+5. Bits with **same base** → shared key (∼50% retained)
+
+### Example BB84
+
+| Bit A | Basis A | Qubit | Basis B | Bit B | Retained? |
+|---|---|---|---|---|---|
+| 0 | $\{0,1\}$ | $\|0\rangle$ | $\{0,1\}$ | 0 | ✓ |
+| 1 | $\{+,-\}$ | $\|-\rangle$ | $\{+,-\}$ | 1 | ✓ |
+| 1 | $\{0,1\}$ | $\|1\rangle$ | $\{+,-\}$ | ? | ✗ |
+| 0 | $\{0,1\}$ | $\|0\rangle$ | $\{0,1\}$ | 0 | ✓ |
+
+### Security — Attacks and defenses
+
+| Attack of Eve | Limit |
+|---|---|
+| Interception + measurement + retransmission | Introduces ~25% errors → detectable |
+| Interception + copy + late measure | Impossible: **no-cloning theorem** |
+| Storage + random qubit to Bob | Bob has random bits → errors detected |
+
+::: {.callout-important title="Fundamental property">
+Any eavesdropping **inevitably disrupts** the qubits → statistically detectable
+:::
+
+---
+
+## Shor's algorithm (Factorization)
+
+### Key idea
+
+Reduce factorization to **period search** of a modular function:
+
+$$f(s) = x^s \bmod N$$
+
+### Steps
+
+1. Choose $x$ co-first with $N$
+2. Find the period $l$ of $f$ via **QFT**
+3. Calculate $\gcd(x^{l/2} \pm 1,\ N)$ → factors of $N$
+4. Check ; otherwise start again
+
+### Basic theorem
+
+If $a \not\equiv \pm b \pmod{N}$ but $a^2 \equiv b^2 \pmod{N}$ then $\gcd(a+b, N)$ is a factor of $N$
+
+### Complexity
+
+| Method | Complexity |
+|---|---|
+| Classic (best) | $O(\exp(n^{1/3}))$ |
+| Shor (quantum) | $O(n^3 \log n)$ |
+
+### Quantum Fourier Transform (QFT)
+
+$$U_{QFT} = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\sum_{x=0}^{N-1} \omega_N^{xy}|y\rangle\langle x|, \quad \omega_N = e^{2\pi i/N}$$
+
+- Extract the period by **quantum interference**
+- Core of Shor's algorithm
+
+---
+
+## VQE — Variational Quantum Eigensolver
+
+**Goal:** find the minimum eigenvalues ​​(fundamental energy) of a Hamiltonian $H$
+
+### Hybrid quantum/classical loop
+
+- **Quantum:** prepare the ansatz $|\psi(\theta)\rangle$ + measure $\langle\psi(\theta)|H|\psi(\theta)\rangle$
+- **Classic:** optimize $\theta$ to minimize the expectation value
+
+### Variational principle
+
+$$\langle\psi(\theta)|H|\psi(\theta)\rangle \geq E_0$$
+
+- The minimization converges to the fundamental energy $E_0$
+
+### Apps
+
+- Quantum chemistry (molecules)
+- Materials science
+- High energy physics
+
+---
+
+## Post-Quantum World
+
+### Threats
+
+- Breakable RSA-2048 with ~8,000 logical qubits (5–10 year horizon)
+- HTTPS, VPN, asymmetric keys → **not secure** in the long term
+
+### Solutions
+
+| Approach | Mechanism | Quantum resistance |
+|---|---|---|
+| Symmetric encryption | Double the key size | ✓ (Grover = quadratic advantage only) |
+| Euclidean networks (*lattice*) | Hard geometric problems | ✓ |
+| QKD (BB84) | Theoretical Information Security | ✓ (absolute) |
+
+---
+
+## Problems with quantum computers
+
+| Problem | Description |
+|---|---|
+| **Decoherence** | Sensitivity to the environment → difficult insulation |
+| **Error correction** | 1 logical qubit ≈ hundreds of physical qubits |
+| **Imperfect Doors** | Fidelity < 100% → accumulation of errors |
+| **Limited algorithms** | Few problems with proven benefit |
+| **Coherence time** | Must exceed execution time |
+
+---
+
+## Key relationships between protocols
+
+| Protocol | Quantum resource | Classic channel | Result |
+|---|---|---|---|
+| Teleport | 1 Bell pair + 1 message qubit | 2 bits | Bob receives 1 qubit |
+| Superdense coding | 1 Pair Bell | 0 bit (qubit sent) | Bob receives 2 bits |
+| BB84 | Quantum channel alone | Bases announced | Shared secret key |
+
+::: {.callout-tip title="Teleport symmetry ↔ superdense coding"}
+Teleportation and superdense coding are **dual**: one exchanges qubits for bits, the other bits for qubits, both thanks to shared entanglement.
+:::

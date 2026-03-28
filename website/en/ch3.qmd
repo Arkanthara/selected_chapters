@@ -1,0 +1,413 @@
+---
+title: "Fundamental Properties of Quantum Computing"
+---
+
+# Measurement in the computational base
+
+## Reminder: measurement of a classic qubit
+
+A qubit can be in any superposition of the basic states $|0\rangle$ and $|1\rangle$. When the state $|\psi\rangle$ is exactly $|0\rangle$ or $|1\rangle$, there is no ambiguity: a measurement in the Computational Basis allows the state to be perfectly determined.
+
+For example, for the $|1\rangle$ state:
+
+$$|1\rangle = 0\,|0\rangle + 1\,|1\rangle$$
+
+The probability of obtaining the result $1$ is $|1|^2 = 1$, and the probability of obtaining $0$ is $|0|^2 = 0$.
+
+::: {.callout-note title="To remember"}
+When the state of a qubit is one of the basic states $|0\rangle$ or $|1\rangle$, the measurement in the computational basis reveals it with certainty. This is essentially classic (binary) information.
+:::
+
+::: {.callout-tip title="Intuition"}
+A qubit in a basic state behaves exactly like a classical bit: there is no “quantity” to exploit, and the measurement is deterministic.
+:::
+
+---
+
+# Distinguish orthogonal states
+
+## Distinguish any pair of orthogonal states
+
+Now suppose that $|\psi\rangle$ is either $|\psi_0\rangle = \alpha\,|0\rangle + \beta\,|1\rangle$ or $|\psi_1\rangle = \gamma\,|0\rangle + \delta\,|1\rangle$, with $|\psi_0\rangle$ and $|\psi_1\rangle$ **orthogonal** (Orthogonal States).
+
+In this case, we can still perfectly distinguish the two states by proceeding in two steps:
+
+1. We observe that the following matrix is ​​**unitary** (its columns form an orthonormal base):
+
+$$U = \begin{bmatrix} \alpha & \gamma \\ \beta & \delta \end{bmatrix}$$
+
+2. We apply the transformation $U^\dagger$, which sends $|\psi_0\rangle \to |0\rangle$ and $|\psi_1\rangle \to |1\rangle$.
+
+3. We then carry out a measurement in the computational base to identify the state.
+
+::: {.callout-tip title="Intuition"}
+Applying $U^\dagger$ amounts to “aligning” the states $|\psi_0\rangle$ and $|\psi_1\rangle$ with the computational base. In physics and mathematics, we also speak of **measurement in the base $(|\psi_0\rangle, |\psi_1\rangle)$**, which is equivalent.
+:::
+
+## Measurement in the $(|\psi_0\rangle, |\psi_1\rangle)$ base
+
+### Measurement operators
+
+Measuring in the $(|\psi_0\rangle, |\psi_1\rangle)$ base corresponds to using the following Measurement Operators:
+
+$$M_{|\psi_0\rangle} = |\psi_0\rangle\langle\psi_0| \qquad M_{|\psi_1\rangle} = |\psi_1\rangle\langle\psi_1|$$
+
+These operators are **Projectors**: each one projects the state onto one of the base vectors.
+
+### Checking the completeness equation
+
+The projectors are self-adjoint. For all $|\psi\rangle$, we have:
+
+$$(|\psi\rangle\langle\psi|)^2 = |\psi\rangle\langle\psi|\,|\psi\rangle\langle\psi| = |\psi\rangle \times 1 \times \langle\psi| = |\psi\rangle\langle\psi|$$
+
+The Completeness Equation is verified:
+
+$$\sum_m M_m^\dagger M_m = M_{|\psi_0\rangle}^\dagger M_{|\psi_0\rangle} + M_{|\psi_1\rangle}^\dagger M_{|\psi_1\rangle}$$
+
+$$= (|\psi_0\rangle\langle\psi_0|)^2 + (|\psi_1\rangle\langle\psi_1|)^2$$
+
+$$= |\psi_0\rangle\langle\psi_0| + |\psi_1\rangle\langle\psi_1|$$
+
+$$= U|0\rangle\langle 0|U^\dagger + U|1\rangle\langle 1|U^\dagger$$
+
+$$= U(|0\rangle\langle 0| + |1\rangle\langle 1|)U^\dagger = UIU^\dagger = I$$
+
+::: {.callout-note title="To remember"}
+Any measurement in a basis orthogonal to a qubit satisfies the completeness equation, which guarantees that the probabilities of the outcomes sum to 1.
+:::
+
+### Verification of perfect distinction
+
+Suppose $|\psi\rangle$ is either $|\psi_0\rangle$ or $|\psi_1\rangle$. We check that the measurement distinguishes them perfectly.
+
+**Case $|\psi\rangle = |\psi_0\rangle$:**
+
+$$p(M_{|\psi_0\rangle}\,|\,|\psi\rangle = |\psi_0\rangle) = \langle\psi_0|(|\psi_0\rangle\langle\psi_0|)^\dagger|\psi_0\rangle\langle\psi_0|\psi_0\rangle = (\langle\psi_0|\psi_0\rangle)^3 = 1$$
+
+**Cross case $|\psi\rangle = |\psi_1\rangle$, outcome $M_{|\psi_0\rangle}$:**
+
+$$p(M_{|\psi_0\rangle}\,|\,|\psi\rangle = |\psi_1\rangle) = \langle\psi_1|(|\psi_0\rangle\langle\psi_0|)^\dagger|\psi_0\rangle\langle\psi_0|\psi_1\rangle = \langle\psi_1|\psi_0\rangle\langle\psi_0|\psi_0\rangle\langle\psi_0|\psi_1\rangle = 0$$
+
+because $\langle\psi_0|\psi_1\rangle = \langle\psi_1|\psi_0\rangle = 0$ (orthogonality).
+
+::: {.callout-important title="Conclusion"}
+Two **orthogonal** states can always be distinguished **perfectly** by an appropriate measurement. Orthogonality is the necessary and sufficient condition for perfect discrimination.
+:::
+
+---
+
+# Impossibility of perfectly distinguishing non-orthogonal states
+
+## Statement of result
+
+If $|\psi\rangle$ is either $|\psi_a\rangle$ or $|\psi_b\rangle$, and these two states **are non-orthogonal** (Non-Orthogonal States), then **no measurement can distinguish them perfectly**.
+
+It is however possible to carry out a measurement which provides partial information on the probability that $|\psi\rangle$ is one or the other of the states.
+
+::: {.callout-tip title="Intuition"}
+- If we guess randomly, we are correct with probability $\frac{1}{2}$. You can always do better than that with judicious measurement.
+- The “closer” $|\psi_a\rangle$ and $|\psi_b\rangle$ are (smaller angle between them), the more difficult it is to distinguish them, and the lower the probability of success.
+- Conversely, if they are almost orthogonal, they can almost be distinguished perfectly.
+:::
+
+---
+
+# The Helstrom-Holevo terminal
+
+## Terminal statement
+
+The Helstrom-Holevo Bound precisely formalizes this intuition.
+
+::: {.callout-important title="Helstrom-Holevo Terminal"}
+If $|\psi\rangle$ is either $|\psi_a\rangle$ or $|\psi_b\rangle$, and $|\langle\psi_a|\psi_b\rangle| = \cos\theta$, then the probability of correctly inferring the state $|\psi\rangle$ is **at most**:
+
+$$p_{\text{succès}} \leq \frac{1}{2}(1 + \sin\theta)$$
+:::
+
+### Geometric meaning
+
+The angle $\theta$ between the two states plays a central role:
+
+- If $|\psi_a\rangle \perp |\psi_b\rangle$ (orthogonal), then $\theta = \pi/2$, $\sin\theta = 1$, and $p_{\text{succès}} = 1$: perfect distinction.
+- If $|\psi_a\rangle \approx |\psi_b\rangle$ (almost aligned), then $\theta \approx 0$, $\sin\theta \approx 0$, and $p_{\text{succès}} \approx \frac{1}{2}$: we do no better than chance.
+
+::: {.callout-tip title="Geometric intuition"}
+Visualize the two states as two arrows in the complex plane forming an angle $\theta$ between them. The further apart they are, the more distinguishable they are.
+:::
+
+### Reaching the terminal: optimal measurement basis
+
+The limit is **reached** by choosing the **eigenvectors** (Eigenvectors) of the operator as the basis of measurement:
+
+$$|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$$
+
+This is the basis that best “balances” the discrimination between the two states.
+
+---
+
+## Example: distinguish $|0\rangle$ and $|+\rangle$
+
+### Calculation of the dot product
+
+We first check that $|0\rangle$ and $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ are **not orthogonal**:
+
+$$\langle 0|{+}\rangle = \begin{bmatrix}1 & 0\end{bmatrix}\begin{bmatrix}\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}\end{bmatrix} = \frac{1}{\sqrt{2}} \neq 0$$
+
+We cannot therefore distinguish them perfectly.
+
+### Calculation of the optimal base
+
+We construct the matrix:
+
+$$|0\rangle\langle 0| - |{+}\rangle\langle{+}| = \begin{bmatrix}\frac{1}{2} & -\frac{1}{2}\\-\frac{1}{2} & -\frac{1}{2}\end{bmatrix}$$
+
+The eigenvectors of this matrix are $[0.38 \quad 0.92]^T$ and $[-0.92 \quad 0.38]^T$.
+
+### Optimal probability of success
+
+The probability of correctly inferring the state is:
+
+$$\frac{1}{2}\left(1 + \sin\left(\arccos\!\left(\frac{1}{\sqrt{2}}\right)\right)\right) = \frac{1}{2}(1 + \sin(45°)) = \frac{1}{2}\left(1 + \frac{1}{\sqrt{2}}\right) \approx 0.85$$
+
+So, even in the best case, we can only distinguish $|0\rangle$ from $|+\rangle$ with a probability of 85%.
+
+---
+
+## Distinguish $|0\rangle$ and $|+\rangle$ in the computational base
+
+### Analysis of suboptimal strategy
+
+Suppose that $|\psi\rangle$ is $|0\rangle$ or $|+\rangle$ with probability 50% each, and that we measure in the **computational basis** (sub-optimal strategy).
+
+The outcome probability table is:
+
+|          | Outcome 0 | Outcome 1 |
+|----------|--------------------|--------------------|
+| $|0\rangle$ | $1$ | $0$ |
+| $|+\rangle$ | $\frac{1}{2}$ | $\frac{1}{2}$ |
+
+### Interpretation of results
+
+- **$\frac{1}{4}$ of time**: we measure 1 → the state is **certainly** $|+\rangle$ (because $|0\rangle$ never gives 1).
+- **$\frac{3}{4}$ of time**: we measure 0 → we *assume* that the state is $|0\rangle$, but $\frac{1}{3}$ of these cases actually corresponds to $|+\rangle$.
+
+### Calculation of the probability of success
+
+$$p_{\text{succès}} = 1 - \frac{3}{4} \times \frac{1}{3} = 1 - \frac{1}{4} = \frac{3}{4} = 0.75$$
+
+::: {.callout-note title="To remember"}
+The measurement strategy in the computational base gives a probability of success of **75%**, which is lower than the theoretical maximum of **85%** given by the Helstrom-Holevo bound. On the other hand, if we measure 1, we know **with certainty** that the state is $|+\rangle$.
+:::
+
+---
+
+## State discrimination strategies
+
+### Symmetric optimal strategy
+
+The optimal strategy consists of choosing the measurement base so that it is **distributed equally** on each side of the two states to be distinguished.
+
+```{mermaid}
+graph LR
+    A["Base computationnelle\n(axe horizontal)"] --> B["Rotation symétrique\npar rapport aux états"]
+    B --> C["Base optimale\n(vecteurs propres de\n|ψₐ⟩⟨ψₐ| - |ψ_b⟩⟨ψ_b|)"]
+```
+
+This approach maximizes the overall probability of success by making the best possible compromise.
+
+### Asymmetric strategy: partial certainty
+
+An interesting alternative consists of aligning **one of the measurement basis vectors** with one of the states to be distinguished (for example $|\psi_a\rangle$).
+
+In this case :
+
+- If we obtain the outcome corresponding to the other basis vector $m$, we are **100% sure** that the state is $|\psi_b\rangle$ (because $|\psi_a\rangle$ is orthogonal to this basis vector).
+- On the other hand, the overall probability of success is lower than in the optimal strategy.
+
+::: {.callout-tip title="Intuition"}
+The asymmetric strategy is useful when you sometimes prefer to have **absolute certainty** rather than a good probability of success on average. It is a form of **Error-Free Discrimination** or partial **Unambiguous Discrimination**.
+:::
+
+::: {.callout-important title="Fundamental Compromise"}
+There is a compromise between maximizing the probability of success **on average** and obtaining **absolute certainties** on certain outcomes. The choice of basis of measurement determines where one sits on this spectrum.
+:::
+
+---
+
+# The principle of non-signalling
+
+## Why it matters
+
+Quantum Entanglement creates a non-local correlation between qubits. This raises a natural question: can we use this correlation to transmit information **faster than light**?
+
+The answer is **no**, and this is precisely what the **No-Signalling Principle** guarantees.
+
+### The State of Bell
+
+Let us recall the Bell State, also called **EPR Pair**:
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Its properties are remarkable: if we measure the first qubit in the computational base and obtain $0$, the state collapses to $|00\rangle$; if we get $1$, it collapses to $|11\rangle$.
+
+::: {.callout-note title="To remember"}
+The second qubit **instantaneously** collapses to the same state as the first measured qubit, even though the two qubits are at opposite ends of the universe. This is what Einstein called “spooky action at a distance”.
+:::
+
+## Setting up the scenario
+
+Consider Alice and Bob, each in possession of a qubit of the Bell pair $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, separated by a distance such that light takes $\Delta t$ seconds to travel across it.
+
+- Alice can measure her qubit at any time, which collapses Bob's qubit.
+- Bob is interested in knowing whether Alice measured her qubit or not.
+- All Bob can do to detect this collapse is **measure his own qubit**.
+
+So the question is: are Bob's measurement statistics different depending on whether Alice measured or not?
+
+## Proof of the non-signalling principle
+
+### Case 1: Alice did not measure
+
+The global state is always $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$. Bob measures in the computational base.
+
+$$p_B(0) = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} \qquad p_B(1) = \frac{1}{2}$$
+
+### Case 2: Alice measured
+
+Bob's state collapsed, either to $|0\rangle$ (with probability $\frac{1}{2}$) or to $|1\rangle$ (with probability $\frac{1}{2}$). However, Bob **does not know which one** — Alice did not communicate her result.
+
+From Bob's point of view, the state of his qubit is a Statistical Mixture of $|0\rangle$ and $|1\rangle$ with equal probabilities:
+
+$$p_B(0) = \frac{1}{2} \times 1 + \frac{1}{2} \times 0 = \frac{1}{2} \qquad p_B(1) = \frac{1}{2}$$
+
+::: {.callout-important title="Non-signaling principle — Conclusion"}
+Bob's measurement statistics are **identical** in both cases. It is therefore impossible for him to detect whether Alice has measured her qubit or not. Quantum entanglement cannot **not** be used to transmit information faster than light.
+:::
+
+::: {.callout-tip title="Deep Intuition"}
+Alice's collapse of Bob's qubit is real, but Bob cannot detect it without receiving a classical signal from Alice telling him its result. In the absence of this classic communication, its statistics remain unchanged. This is precisely what distinguishes quantum correlation from true information transmission.
+:::
+
+### Generalization
+
+The principle of non-signalling applies:
+
+- For any type of entanglement (not just Bell pairs).
+- For any scheme Alice and Bob might imagine involving unitary transformations and measurements in arbitrary bases.
+
+---
+
+# The principle of non-cloning
+
+## Why it matters
+
+The **No-Cloning Theorem** is one of the most fundamental results of quantum computing. It states that it is **impossible to copy** an arbitrary quantum state.
+
+### Practical consequences
+
+- **Physics**: many fundamental reasons in quantum physics.
+- **Error correction**: Quantum error correction is more difficult than classical, precisely because you cannot simply duplicate qubits.
+- **No-signalling**: the possibility of cloning would violate the principle of non-signalling (exercise).
+- **Super-compression prohibited**: cloning would make it possible to compress an infinite quantity of classical information into a single qubit, then recover it by quantum tomography — which is absurd.
+
+::: {.callout-tip title="Intuition: why cloning would violate everything?"}
+If we could clone:
+
+1. Encode a long classical message in a single qubit state.
+2. Transmit this qubit.
+3. Make an arbitrary number of copies.
+4. Perform a **quantum state tomography** (Quantum State Tomography) to reconstruct the original state, and therefore the message.
+
+This would allow an unlimited amount of information to be transmitted by communicating a single qubit — which contradicts the laws of physics.
+:::
+
+## Formal implementation
+
+We are looking for a Cloning Unitary operator $U$ such that, for any state $|\psi\rangle$ and a target register initially in the state $|0\rangle$:
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$$
+
+::: {.callout-warning title="Objective impossible"}
+We will now **prove** that no such $U$ can exist.
+:::
+
+## Proof of the non-cloning principle
+
+Suppose absurdly that such a $U$ exists. It must clone **all** the quantum states, so in particular:
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle \qquad \text{et} \qquad U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle$$
+
+By taking the scalar product of the two left and right sides:
+
+$$\langle\psi|\langle 0| U^\dagger U |\phi\rangle|0\rangle = (\langle\psi|\langle\psi|)(|\phi\rangle|\phi\rangle)$$
+
+$$\Rightarrow \langle\psi|\phi\rangle\langle 0|0\rangle = (\langle\psi|\phi\rangle)^2$$
+
+$$\Rightarrow \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+This equation $x = x^2$ has only two solutions: $x = 0$ or $x = 1$.
+
+This means $\langle\psi|\phi\rangle = 0$ (orthogonal states) or $\langle\psi|\phi\rangle = 1$ (identical states, $|\psi\rangle = |\phi\rangle$).
+
+::: {.callout-important title="No-cloning theorem"}
+There exists **no unitary transformation $U$** capable of cloning **arbitrary** quantum states. Only mutually orthogonal states can be “cloned” in a trivial sense (which amounts to copying them like classical bits).
+:::
+
+::: {.callout-note title="To remember"}
+The proof is elegant and short: it only uses the linearity of unitary transformations and the isometry property ($U^\dagger U = I$). This is one of the finest examples of proof by contradiction in quantum computing.
+:::
+
+---
+
+# The principle of non-deletion
+
+## Statement
+
+The **No-Deleting Principle** (No-Deleting Theorem) is the **temporal dual** of the non-cloning principle.
+
+It states that there is no unitary transformation $\tilde{U}$ capable of **deleting** a copy of a quantum state:
+
+$$\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$$
+
+In other words: if we have two copies of a state $|\psi\rangle$, we cannot delete one of them individually.
+
+::: {.callout-tip title="Intuition: temporal symmetry"}
+Non-cloning prohibits creating a copy ($1 \to 2$). Failure to delete prohibits destroying one ($2 \to 1$). These two theorems are linked by the **reversibility** of time in quantum mechanics (Unitarity).
+:::
+
+## Scope of the principle
+
+This principle is less intuitive than non-cloning, but it has important implications in **quantum information** (Quantum Information):
+
+- **Quantum reversibility**: quantum computing is fundamentally reversible (with the exception of measurement). If an operation is impossible, its inverse is also impossible.
+- **Conservation of information**: we cannot “destroy” a copy of a quantum state without leaving a trace.
+
+::: {.callout-important title="General principle of reversibility"}
+More generally, quantum computing is **reversible** (Reversible Computing), except during measurements. Consequently, the impossibility of a certain computation implies the impossibility of its inverse computation. Non-cloning and non-deletion are two direct illustrations of this.
+:::
+
+---
+
+# Summary of fundamental properties
+
+## Summary
+
+| Property | Statement | Main consequence |
+|-----------|--------|----------------------|
+| **Distinction of orthogonal states** | Possible, perfect | Measurement in the adapted base |
+| **Distinction of non-orthogonal states** | Impossible perfectly | Helstrom-Holevo terminal |
+| **Non-signalling** | Entanglement does not transmit information | No superluminal communication |
+| **Non-cloning** | Cannot copy arbitrary quantum state | More complex error correction |
+| **Non-deletion** | Unable to delete a copy individually | Reversibility of quantum computing |
+
+::: {.callout-note title="Consistency of principles"}
+These five properties form a coherent and mutually reinforcing whole. For example :
+
+- Non-cloning **implies** non-reporting (if we could clone, we could report).
+- Non-deletion is the exact **dual** of non-cloning via reversibility.
+- The Helstrom-Holevo bound precisely quantifies **how much** information can be extracted from an unknown state.
+:::
+
+::: {.callout-tip title="Global intuition"}
+Quantum mechanics imposes fundamental constraints on what can be done with quantum information. These constraints are not technological limitations, but **deep physical laws** which arise from the mathematical structure of quantum theory (linearity, unitarity, dot product).
+:::

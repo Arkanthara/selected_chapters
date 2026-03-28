@@ -1,0 +1,230 @@
+---
+title: "Quantum Error Correction — Review"
+---
+
+
+# Why correct errors?
+
+::: {.callout-warning title="Core problem"}
+Qubits are fragile → interactions with the environment → inevitable errors.
+Classical computers are error-free. **Not the quantum ones.**
+:::
+
+**Two motivations:**
+
+- **Short term**: hybrid algorithms require correction to be efficient
+- **Long term**: proving asymptotic quantum superiority (Quantum Advantage)
+
+---
+
+# Common errors — Binary Symmetric Channel (BSC)
+
+**Model:** each bit is flipped with probability $p_e$, independently.
+
+| Transition | Probability |
+|:---:|:---:|
+| $0 \to 0$ or $1 \to 1$ | $1 - p_e$ |
+| $0 \to 1$ or $1 \to 0$ | $p_e$ |
+
+::: {.callout-note title="Convention"}
+We assume $p_e \leq 0{,}5$ without loss of generality. If $p_e = 0{,}5$ → channel unusable.
+:::
+
+---
+
+# Classic 3-bit repeat code
+
+**Encoding:** $0 \to 000$, $\quad 1 \to 111$
+
+**Decoding:** majority vote
+
+**Residual error probability:**
+
+$$p_e' = 3p_e^2(1-p_e) + p_e^3$$
+
+::: {.callout-note title="To remember"}
+For $p_e < 0{,}5$: $p_e' < p_e$ → error removed at $\mathcal{O}(p_e^2)$
+:::
+
+---
+
+# Obstacles to QEC (Quantum Error Correction)
+
+| # | Obstacle | Nature |
+|:---:|:---|:---|
+| 1 | **No-Cloning**: cannot copy $|\psi\rangle$ | No direct repetition |
+| 2 | **Destructive measure**: any measure collapses the superposition | No reading without destruction |
+| 3 | **Continuing errors**: $\alpha|0\rangle+\beta|1\rangle \to (\alpha+\epsilon_0)|0\rangle+(\beta+\epsilon_1)|1\rangle$ | Continuum of errors to be corrected |
+
+::: {.callout-tip title="Good news"}
+Each of these obstacles has a solution → quantum error correction is **possible**.
+:::
+
+---
+
+# Solutions to the 3 obstacles
+
+| Obstacle | Solution |
+|:---|:---|
+| Non-cloning | **Tangle** (entanglement) in place of the copy |
+| Destructive measure | **Parity measurements** (parity-check): reveal the error, not the state |
+| Continuous errors | The correction **digitalizes** the errors → automatic discretization |
+
+---
+
+# Three-Qubit Bit-Flip Code
+
+**Encoding:**
+
+$$\alpha|0\rangle + \beta|1\rangle \;\longrightarrow\; \alpha|000\rangle + \beta|111\rangle$$
+
+**Circuit:** 2 CNOT gates (logic qubit controls two ancillas $|0\rangle$)
+
+**Detection:** 2 ancilla qubits + parity measurements comparing qubits two by two
+
+| Bit-flip | $M_1$ | $M_2$ | Correction |
+|:---:|:---:|:---:|:---:|
+| None | $0$ | $0$ | $I \otimes I \otimes I$ |
+| Qubit 1 | $1$ | $0$ | $X \otimes I \otimes I$ |
+| Qubit 2 | $1$ | $1$ | $I \otimes X \otimes I$ |
+| Qubit 3 | $0$ | $1$ | $I \otimes I \otimes X$ |
+
+::: {.callout-note title="Key"}
+The $M_1$, $M_2$ measurements reveal **nothing** about $\alpha$, $\beta$ → preserved quantum state.
+:::
+
+---
+
+# Phase-Flip Code on 3 qubits (Three-Qubit Phase-Flip Code)
+
+**Phase error (Z):** $|+\rangle \leftrightarrow |-\rangle$ (invisible in the $\{|0\rangle,|1\rangle\}$ base)
+
+**Encoding:** 2 CNOTs + Hadamard $H$ gates on each qubit
+
+$$\alpha|0\rangle + \beta|1\rangle \;\longrightarrow\; \alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$$
+
+**Principle:** a phase-flip in $\{|0\rangle,|1\rangle\}$ = bit-flip in $\{|+\rangle,|-\rangle\}$ → same techniques
+
+| Ph-flip | $M_1$ | $M_2$ | Correction |
+|:---:|:---:|:---:|:---:|
+| None | $0$ | $0$ | $I \otimes I \otimes I$ |
+| Qubit 1 | $1$ | $0$ | $Z \otimes I \otimes I$ |
+| Qubit 2 | $1$ | $1$ | $I \otimes Z \otimes I$ |
+| Qubit 3 | $0$ | $1$ | $I \otimes I \otimes Z$ |
+
+---
+
+# Shor Code — 9 qubits
+
+**Construction:** concatenation (concatenation) of the two previous codes
+
+- **External** level (3 blocks) → protects against **phase-flips** ($Z$)
+- **Internal** level (blocks of 3 qubits) → protects against **bit-flips** ($X$)
+
+**Encoded logic states:**
+
+$$|0_L\rangle = \frac{1}{2\sqrt{2}}\big(|000\rangle+|111\rangle\big)\big(|000\rangle+|111\rangle\big)\big(|000\rangle+|111\rangle\big)$$
+
+$$|1_L\rangle = \frac{1}{2\sqrt{2}}\big(|000\rangle-|111\rangle\big)\big(|000\rangle-|111\rangle\big)\big(|000\rangle-|111\rangle\big)$$
+
+**Capacity:** fixes **any** bit-flip, phase-flip or combination on **any** of the 9 qubits.
+
+---
+
+# Fixed general error — Digitization of Errors
+
+**General error on 1 qubit:**
+
+$$|0\rangle \to a|0\rangle + b|1\rangle, \quad |1\rangle \to c|0\rangle + d|1\rangle$$
+
+**Decomposition** (with $k=\frac{a+d}{2}$, $l=\frac{b+c}{2}$, $m=\frac{a-d}{2}$, $n=\frac{b-c}{2}$):
+
+| Term | Error | Operator |
+|:---:|:---|:---:|
+| $k$ | No errors | $I$ |
+| $l$ | Bit-flip | $X$ |
+| $m$ | Phase-flip | $Z$ |
+| $n$ | Bit-flip + Phase-flip | $XZ$ |
+
+::: {.callout-warning title="Key phenomenon — Digitalization"}
+Parity measurements **collapse** the continuous state on one of the 4 discrete cases.
+→ Correcting a **continuum** of errors amounts to correcting 4 discrete types.
+:::
+
+---
+
+# Depolarizing Channel
+
+**Standard quantum noise model:**
+
+| Event | Probability |
+|:---|:---:|
+| No errors | $1 - p_e$ |
+| Bit-flip ($X$) | $p_e/3$ |
+| Phase-flip ($Z$) | $p_e/3$ |
+| Bit + Phase flip ($XZ$) | $p_e/3$ |
+
+**Shor code on depolarizing channel:** error removed from $p_e$ to $\mathcal{O}(p_e^2)$
+
+::: {.callout-note title="Template general">
+Under the assumption of independence of errors between qubits → any general noisy channel can be modeled as a depolarizing channel.
+:::
+
+---
+
+# Hamming code (7.4) — Classic
+
+**Parameters:** encodes 4 bits → 7 bits | rate $= 4/7 \approx 0{,}57$
+
+**Detection:** $p = Hc \bmod 2$ syndrome
+
+- $p = 000$ → no error
+- $p \neq 000$ → position of the single error (among 7 possibilities)
+
+**Fixes:** any single bit error
+
+---
+
+# CSS Codes (Calderbank-Shor-Steane)
+
+**Principle:** construct quantum codes from compatible classical linear codes
+
+- $X$ (bit-flip) errors corrected by classic code
+- $Z$ (phase-flip) errors fixed by another classic code
+
+## Steane Code — 7 qubits
+
+**Built from:** Hamming code (7.4)
+
+**Encode:** 1 logical qubit into **7 physical qubits** (vs. 9 for Shor)
+
+**Capacity:** corrects any bit-flip and/or phase-flip on 1 single qubit
+
+**Performance:** removes the error from $p_e$ to $\mathcal{O}(p_e^2)$ on the depolarizing channel
+
+---
+
+# Code comparison
+
+| Code | Physical qubits | Logical Qubits | Rate | Correct |
+|:---|:---:|:---:|:---:|:---|
+| Bit repetition (classic) | 3 | 1 bit | $1/3$ | 1 bit-flip |
+| Quantum bit-flip | 3 | 1 | $1/3$ | 1 bit-flip ($X$) |
+| Quantum phase-flip | 3 | 1 | $1/3$ | 1 phase-flip ($Z$) |
+| **Shor** | **9** | **1** | ****TK0__** | **$X$, $Z$, $XZ$ on 1 qubit** |
+| **Steane (CSS)** | **7** | **1** | ****TK0__** | **$X$, $Z$, $XZ$ on 1 qubit** |
+
+---
+
+# Summary — Critical points
+
+::: {.callout-warning title="Frequent pitfalls"}
+- Encoding $\alpha|000\rangle + \beta|111\rangle$ **is not** 3 copies of $\alpha|0\rangle+\beta|1\rangle$ → it is **entangled** state
+- Parity measurements do **not** measure $\alpha$ or $\beta$ → state is not destroyed
+- Digitalization is not a postulate → it is a **consequence** of the collapse by measurement
+- Shor's code fixes **any** error on 1 qubit, not just $X$ or $Z$ separately
+:::
+
+::: {.callout-note title="Key formula to remember"}
+$$p_e' = 3p_e^2(1-p_e) + p_e^3 \approx \mathcal{O}(p_e^2) \quad \text{pour } p_e \ll 1$$
+:::

@@ -1,0 +1,303 @@
+---
+title: "Quantum error correction — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Level 1 — Fundamentals
+
+```{quizdown}
+### Why do quantum computers require error correction while modern classical computers do not?
+
+> Think about the physical nature of qubits and their interaction with their environment.
+
+1. [ ] Quantum processors calculate too fast to detect errors
+1. [ ] Classical and quantum errors are the same but more frequent
+1. [x] Qubits are physically fragile and inevitably interact with their environment, causing errors
+    > Correct: qubits (trapped atoms, photons, superconducting circuits) are sensitive to external disturbances, which makes errors inevitable without correction.
+1. [ ] Error correction is only necessary for cryptography algorithms
+```
+
+```{quizdown}
+### In Binary Symmetric Channel, what happens if the error rate is p_e = 0.5?
+
+> Think about what a 50% inversion probability for each bit means.
+
+1. [ ] The channel transmits information with a correctable error rate
+1. [ ] We can invert the bits received to recover the information
+1. [ ] The channel is optimal and no correction is necessary
+1. [x] No information can be retrieved from the channel
+    > Correct: If p_e = 0.5, each bit is as likely to be correct as incorrect. The channel does not carry any useful information.
+```
+
+```{quizdown}
+### What are the three fundamental obstacles that prevent classical error correction from being directly applied to qubits?
+
+> There are exactly three structural reasons related to the properties of quantum mechanics.
+
+- [x] The no-cloning principle prohibits copying an unknown quantum state
+    > Correct: The No-Cloning Theorem is a direct obstacle to the classical repetition strategy.
+- [ ] Qubits are too expensive to make in large numbers
+    > Incorrect: Hardware cost is not a theoretical barrier to error correction.
+- [x] Measurement destroys quantum information by collapse of superposition
+    > Correct: any measurement of a superimposed state causes it to collapse, which would destroy the information to be protected.
+- [x] Quantum errors are continuous, not discrete as in classical
+    > Correct: an alpha|0> + beta|1> qubit can undergo a continuous disturbance on complex coefficients.
+- [ ] Quantum gates cannot be combined with measurements
+    > Incorrect: Gates and measurements can coexist in a quantum circuit.
+```
+
+```{quizdown}
+### What is the residual error probability after encoding by the classic 3-bit repetition code?
+
+> Remember how many bits need to be flipped for the majority vote to fail.
+
+1. [ ] p_e' = p_e^2
+1. [ ] p_e' = 2p_e(1 - p_e)
+1. [x] p_e' = 3p_e^2(1 - p_e) + p_e^3
+    > Correct: An error occurs if exactly 2 bits (3 ways) or all 3 bits are inverted simultaneously.
+1. [ ] p_e' = p_e / 3
+```
+
+```{quizdown}
+### In the 3-qubit bit-flip code (Three-Qubit Bit-Flip Code), how is the logic state alpha|0> + beta|1> encoded?
+
+> It's not a copy of the three qubits — think of what the CNOT gates produce from |00>.
+
+1. [ ] (alpha|0> + beta|1>) tensor (alpha|0> + beta|1>) tensor (alpha|0> + beta|1>)
+1. [x] alpha|000> + beta|111>
+    > Correct: The encoding produces an entangled state of the three qubits. It's not three independent copies of the logical state.
+1. [ ] alpha|010> + beta|101>
+1. [ ] (alpha + beta)(|000> + |111>)
+```
+
+```{quizdown}
+### What does a phase-flip error act on a qubit in the computational basis?
+
+> Think about the action of gate Z on |0> and |1>.
+
+1. [ ] It sends |0> on |1> and |1> on |0>
+1. [x] It leaves |0> unchanged and sends |1> to -|1>
+    > Correct: Gate Z applies |0> -> |0> and |1> -> -|1>. In the computational base, |0> is unchanged.
+1. [ ] It sends |+> to |+> and |-> to |->
+1. [ ] It applies a rotation of 90 degrees in the XY plane of the Bloch sphere
+```
+
+---
+
+## Level 2 — Comprehension
+
+```{quizdown}
+### Why don't parity-check measurements in bit-flipping code destroy the quantum state?
+
+> Think about what information these measurements reveal — and what information they don't provide access to.
+
+1. [ ] Because they are performed on ancilla qubits, not directly on logical qubits
+1. [ ] Because they use Hadamard gates which preserve coherence
+1. [x] Because they only reveal the presence of an error, without ever revealing the values ​​of alpha and beta
+    > Correct: the M1 and M2 measurements compare the qubits two by two (parity) without accessing the superposition coefficients. The logical state remains intact.
+1. [ ] Because they are carried out after the correction, not before
+```
+
+```{quizdown}
+### Why is a phase error (Z) equivalent to a bit flip (X) in the Hadamard basis {|+>, |->}?
+
+> Remember how gate Z transforms |+> and |->.
+
+1. [ ] Because gates X and Z commute in this base
+1. [ ] Because |+> and |-> are eigenstates of gate Z
+1. [x] Because gate Z exchanges |+> and |->, exactly like gate X exchanges |0> and |1>
+    > Correct: Z|+> = |-> and Z|-> = |+>. A phase reversal in the computational base is therefore a bit reversal in the Hadamard basis.
+1. [ ] Because the Hadamard and computational bases are orthogonal
+```
+
+```{quizdown}
+### Shor's code is constructed by concatenation of two codes. In what order are they applied and what type of error does each level protect?
+
+> Think about the two levels of Shor's code structure: the inner blocks and the outer level.
+
+1. [x] External level: phase reversal code (3 blocks); internal level: bit flip code (in each block of 3 qubits)
+    > Correct: the phase code protects the 3 blocks between them (Z errors), the bit-flip code protects each block of 3 qubits individually (X errors).
+1. [ ] External level: bit flip code; internal level: phase reversal code
+1. [ ] Both levels protect against the same types of errors to increase robustness
+1. [ ] Shor's code does not use concatenation but a single layer of protection
+```
+
+```{quizdown}
+### What is “Digitization of Errors” in the context of quantum error correction?
+
+> This is the phenomenon that resolves the third obstacle identified (continuous errors).
+
+1. [ ] Converting qubits into classical bits to correct them
+1. [ ] The use of digital gates instead of analog gates
+1. [x] The fact that parity measurements collapse a continuous error to one of four discrete cases: no error, bit-flip, phase-flip, or both
+    > Correct: even if the error is continuously parameterized by a, b, c, d, the measurement projects the state onto one of the four discrete subspaces. We only correct 4 types of errors.
+1. [ ] The conversion of analog noise into digital signal using quantum hardware
+```
+
+```{quizdown}
+### In the Depolarizing Channel, a qubit undergoes a bit-flip with probability p_e/3. What is the total probability of error?
+
+> The depolarizing channel distributes the noise equally between three types of errors.
+
+1. [ ] p_e / 9
+1. [ ] p_e / 3
+1. [ ] 2p_e / 3
+1. [x] p_e
+    > Correct: p_e/3 (bit-flip) + p_e/3 (phase-flip) + p_e/3 (bit+phase-flip) = p_e. The probability of remaining unchanged is 1 - p_e.
+```
+
+```{quizdown}
+### What is the fundamental difference between the encoded state alpha|000> + beta|111> and three independent copies of alpha|0> + beta|1>?
+
+> Remember the no-cloning theorem and the nature of entanglement.
+
+- [x] The alpha|000> + beta|111> state is an entangled state of the three qubits, not a tensor product of three identical qubits
+    > Correct: if the three qubits were in independent copies, the state would be (alpha|0>+beta|1>) tensor (alpha|0>+beta|1>) tensor (alpha|0>+beta|1>), which is different and would require knowing alpha and beta.
+- [x] Producing three independent copies would violate the no-cloning theorem
+    > Correct: This is precisely why we use entanglement. We cannot copy an unknown quantum state.
+- [ ] The two states are physically identical but noted differently
+- [ ] The tangled state is easier to produce than three independent copies
+```
+
+```{quizdown}
+### The Hamming code (7.4) encodes 4 bits into 7 bits. How does it detect and locate an error?
+
+> Think about the role of the parity check matrix H and the syndrome p = Hc mod 2.
+
+1. [ ] By comparing the received word with all valid code words stored in memory
+1. [ ] By repeating the transmission three times and voting
+1. [x] By calculating the syndrome p = Hc mod 2: if p = 000 no error, otherwise the 7 possible non-zero values ​​indicate the position of the unique error
+    > Correct: The 7 non-zero 3-bit strings correspond to the 7 possible positions of a single error. This is the advantage of linear codes.
+1. [ ] By measuring the Hamming distance between the received word and the sent word
+```
+
+---
+
+## Level 3 — Mastery
+
+```{quizdown}
+### A logical qubit is encoded with the bit-flip code on 3 qubits. After passing through a noisy channel, the parity measurements give M1 = 1 and M2 = 1. Which qubit underwent a bit-flip and what correction should be applied?
+
+> Consult the detection table: M1 compares qubits 1 and 2, M2 compares qubits 2 and 3.
+
+1. [ ] Qubit 1 — correction X tensor I tensor I
+1. [x] Qubit 2 — correction I tensor
+    > Correct: M1=1 indicates that qubits 1 and 2 differ, M2=1 indicates that qubits 2 and 3 differ. Qubit 2 is therefore in disagreement with the other two -> it is he who was reversed.
+1. [ ] Qubit 3 — correction I tensor I tensor
+1. [ ] No qubits — measurements indicate no errors
+```
+
+```{quizdown}
+### A general error on the first qubit of the Shor code is described by |0> -> a|0> + b|1> and |1> -> c|0> + d|1>. After the parity measurements, why can we correct this state despite the continuity of a, b, c, d?
+
+> Remember the phenomenon of digitalization and the effect of measurements on the superposition of error types.
+
+1. [ ] Because the coefficients a, b, c, d must necessarily be close to 0 or 1 for a real physical channel
+1. [ ] Because Shor's code has enough qubits to correct all continuous errors simultaneously
+1. [x] Because parity measurements collapse the state onto one of four discrete cases (I, X, Z, XZ), transforming a continuous error into a correctable discrete error
+    > Correct: the superposition k·(no error) + l·(bit-flip) + m·(phase-flip) + n·(bit+phase-flip) collapses on a single case during measurement. Correcting this discrete case is enough.
+1. [ ] Because continuous errors do not exist in practice — only discrete reversals occur
+```
+
+```{quizdown}
+### Comparison of Shor and Steane codes: which of these statements is correct?
+
+> Think about the parameters of each code: number of physical qubits, encoded logical qubits, and correctness guarantees.
+
+- [x] Steane's code encodes 1 logical qubit into 7 physical qubits, compared to 9 for Shor's code
+    > Correct: Steane's code is more efficient with a rate of 1/7 compared to 1/9 for Shor's code.
+- [x] Both codes correct any bit-flip and/or phase-flip error on a single qubit
+    > Correct: the two codes offer the same guarantees of correction, but with different effectiveness.
+- [ ] Shor's code can correct errors on 2 qubits simultaneously, unlike Steane's code
+    > Incorrect: neither guarantees error correction on two qubits simultaneously in its basic version.
+- [x] Steane's code is a CSS code built from Hamming's code (7.4)
+    > Correct: Steane's code is the canonical example of CSS (Calderbank-Shor-Steane) code derived from classic linear code.
+- [ ] Shor's code removes the error at O(p_e^3) while Steane's code only removes it at O(p_e^2)
+    > Incorrect: both codes remove the error from the depolarizing channel from p_e to O(p_e^2).
+```
+
+```{quizdown}
+### Put the steps for correcting a general error with Shor's code in the correct order.
+
+> Think about the sequential diagram: first the bit-flip errors, then the phase-flip errors.
+
+1. Encoding of the logical state on 9 qubits (concatenation of the two codes)
+2. Passage into the noisy channel (any error affects at most one qubit)
+3. Parity measurement on each block of 3 qubits to detect a bit-flip
+4. Possible correction of the bit-flip identified by the measurements
+5. Parity measurement between the three blocks to detect a phase-flip
+6. Possible correction of the identified phase-flip
+7. Recovery of the original logical state
+```
+
+```{quizdown}
+### Under what hypothesis can we model a general noisy channel as a depolarizing channel after application of error correction?
+
+> Think about the condition on the errors of the different physical qubits composing the code.
+
+1. [ ] Errors must be only bit-flip type, not phase-flip type
+1. [x] Errors on different physical qubits must be independent of each other
+    > Correct: the independence of errors between qubits makes it possible to decompose the analysis and treat each qubit as independently subjected to a depolarizing channel.
+1. [ ] The error rate p_e must be less than 0.1
+1. [ ] The physical channel must be a depolarizing channel exactly, without approximation
+```
+
+```{quizdown}
+### Put in the correct order the steps for constructing Shor's code from the two basic codes.
+
+> Shor's code first concatenates the phase code, then applies the bit-flip code to each resulting block.
+
+1. Starting from the logical state alpha|0> + beta|1>
+2. Apply the phase reversal code: obtain alpha|+++> + beta|--->
+3. Apply CNOT gates to create three tangled blocks of 3 qubits each
+4. Apply Hadamard gates on each qubit to obtain the blocks (|000>+|111>) and (|000>-|111>)
+5. Obtain the logical state encoded on 9 qubits: |0_L> or |1_L>
+```
+
+```{quizdown}
+### Is the classical 3-bit repetition code directly transposable to the problem of quantum error correction?
+
+1. [ ] TRUE
+1. [x] False
+    > False: three fundamental obstacles stand in the way — the principle of non-cloning (impossible to copy a quantum state), destructive measurement (which erases superposition), and the continuity of quantum errors. We must adapt the strategy with entanglement and parity measures.
+```
+
+```{quizdown}
+### What is the code rate of Steane's code, and how is it advantageous over Shor's code?
+
+> The code rate is the ratio between the number of logical qubits encoded and the number of physical qubits used.
+
+1. [ ] 1/9 — identical to Shor's code, so no advantage
+1. [ ] 1/3 — identical to 3-qubit codes, but with stronger guarantees
+1. [x] 1/7 — greater than 1/9 of Shor's code, therefore more efficient for the same correction guarantees
+    > Correct: Steane's code uses 7 physical qubits for 1 logical qubit (rate 1/7), compared to 9 for Shor's code (rate 1/9). Both correct the same types of errors.
+1. [ ] 4/7 — identical to the Hamming code (7.4) from which it is derived
+    > Incorrect: Steane's code encodes 1 quantum logical qubit (not 4 classical bits) into 7 physical qubits. The quantum rate is 1/7.
+```
+
+```{quizdown}
+### In the context of the depolarizing channel, what does "removing the error a O(p_e^2)" mean for a quantum corrector code?
+
+> Compared with the analysis of classical repeating code and its residual error probability.
+
+1. [ ] The code can correct two independent errors simultaneously with certainty
+1. [ ] The error is reduced by half compared to p_e
+1. [x] For a low error rate p_e, the residual error probability after correction is proportional to p_e^2, which is much smaller than p_e
+    > Correct: if p_e = 0.01, then p_e^2 = 0.0001 — a reduction by a factor of 100. Correction requires at least 2 qubits to be simultaneously in error to fail.
+1. [ ] Code requires twice as many qubits to cut error in half
+```
+
+```{quizdown}
+### What property of parity measurements makes it possible to simultaneously resolve obstacles 2 and 3 identified for quantum error correction?
+
+> Obstacle 2 concerns the destruction of quantum information. Obstacle 3 concerns the continuity of errors.
+
+1. [ ] Parity measurements are fast, so they don't have time to destroy consistency
+1. [x] They only reveal the presence or absence of error (not the values ​​of alpha and beta), and their result collapses the state onto a discrete case, thus digitalizing the continuous errors
+    > Correct: on the one hand, parity measurements preserve the logical state by giving no information about alpha and beta. On the other hand, their result (0 or 1) automatically discretizes the continuous error.
+1. [ ] They use ancilla qubits which absorb noise without affecting logic qubits
+1. [ ] They are reversible, so the quantum information can be restored after the measurement
+```

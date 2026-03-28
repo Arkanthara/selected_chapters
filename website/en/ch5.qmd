@@ -1,0 +1,541 @@
+---
+title: "Quantum error correction"
+---
+
+# Why is error correction necessary?
+
+
+Modern classical digital computers are, in practice, error-free. Their architecture is based on robust transistors and hardware redundancy mechanisms that make calculation errors extremely rare. We can therefore, for the purposes of algorithmic analysis, consider them to be perfect.
+
+Quantum computers, on the other hand, are fundamentally different. Qubits are fragile physical objects – trapped atoms, photons, superconducting circuits – which inevitably interact with their environment. This interaction causes **quantum errors** which corrupt the calculation.
+
+::: {.callout-warning title="Two basic reasons for error correction"}
+**Short term — hybrid quantum-classical algorithms:**
+Even hybrid algorithms (Quantum-Classical), designed to operate despite noise, require a certain level of error correction to achieve satisfactory performance. It is becoming increasingly clear that no noisy variational approach alone will suffice.
+
+**Long term — asymptotic quantum superiority:**
+To argue that quantum algorithms will actually outperform classical algorithms in practice, it is essential to understand the *asymptotic significance* of quantum errors — that is, their large-scale impact — and to demonstrate that these errors can be corrected efficiently.
+:::
+
+Quantum Error Correction (QEC) is therefore a central pillar of quantum computing, not a peripheral option.
+
+---
+
+# Classic errors: the symmetrical binary channel
+
+## Definition of Binary Symmetric Channel
+
+Before discussing quantum errors, it is useful to recall the simplest classical error model: the Binary Symmetric Channel (BSC).
+
+In this model, each transmitted bit — which is either $0$ or $1$ — can be flipped with probability $p_e$, independently of its value and the other bits. The transmission is correct with probability $1 - p_e$.
+
+::: {.callout-tip title="Intuition"}
+Imagine sending a bit over a noisy telephone line. With each transmission, a small probability $p_e$ exists that the signal is distorted and the $0$ arrives as a $1$, or vice versa.
+:::
+
+The channel diagram is symmetrical:
+
+- $0 \xrightarrow{1-p_e} 0$ (correct transmission)
+- $0 \xrightarrow{p_e} 1$ (error: bit inverted)
+- $1 \xrightarrow{p_e} 0$ (error: bit inverted)
+- $1 \xrightarrow{1-p_e} 1$ (correct transmission)
+
+## Hypothesis on $p_e$
+
+Without loss of generality, we can assume $p_e \leq 0{,}5$.
+
+Indeed :
+
+- If $p_e > 0{,}5$, then it is **more likely** that a reversal has occurred. In this case, it is sufficient to systematically invert the received bit, which amounts to a parameter channel $1 - p_e < 0{,}5$.
+- If $p_e = 0{,}5$, the channel is completely random: no information can be retrieved.
+
+::: {.callout-note title="To remember"}
+The $p_e$ parameter represents the error rate. The smaller it is, the better the channel quality. The goal of error correction is to reduce the effective error rate to something much lower than $p_e$.
+:::
+
+---
+
+# Classic error correction: 3-bit repeating code
+
+## Principle of repetition code (Repetition Code)
+
+**3-bit repeat code** is the most basic technique for protecting a bit against errors in the symmetric binary channel.
+
+The idea is simple: instead of transmitting the bit once, we **repeat it three times**.
+
+$$0 \rightarrow 000$$
+
+$$1 \rightarrow 111$$
+
+The receiver then applies a **majority vote** rule: the most frequent value among the three bits received is declared as the original value.
+
+## Residual error probability analysis
+
+With repeat code, a decoding error occurs only if **at least two of the three bits** are inverted by the channel. There are two cases:
+
+- Exactly two bits are inverted: this can happen in $\binom{3}{2} = 3$ different ways.
+- The three bits are inverted: this can happen in $1$ ways.
+
+The residual error probability $p_e'$ is therefore:
+
+$$p_e' = 3p_e^2(1 - p_e) + p_e^3$$
+
+::: {.callout-tip title="Intuition"}
+If $p_e$ is small, then $p_e^2$ is very small, and $p_e^3$ is even smaller. The residual error is therefore dominated by the term $3p_e^2$, which is much lower than $p_e$ for small values ​​of $p_e$.
+:::
+
+## Error removal
+
+For $p_e < 0{,}5$, we can verify that $p_e' < p_e$. In practice, when $p_e$ is small, we say that the repeating code **removes the error at the order** $\mathcal{O}(p_e^2)$.
+
+::: {.callout-note title="To remember"}
+The 3-bit repeat code reduces the error rate from $p_e$ to $\mathcal{O}(p_e^2)$. This is a considerable gain when $p_e$ is small. This idea will be transposed — with adaptations — to the quantum world.
+:::
+
+---
+
+# Obstacles to quantum error correction
+
+## Three fundamental complications
+
+Naively, one might want to apply the classical strategy — repeating the quantum state several times, then voting — directly to qubits. However, **three fundamental obstacles** stand in the way.
+
+### Obstacle 1 — The No-Cloning Principle
+
+The **No-Cloning Theorem** states that it is **impossible** to copy an unknown arbitrary quantum state.
+
+More precisely, there is no unitary operation $U$ such that:
+
+$$U|\psi\rangle|0\rangle = |\psi\rangle|\psi\rangle$$
+
+for any $|\psi\rangle$ state.
+
+::: {.callout-tip title="Intuition"}
+Classically, copying a bit is trivial: read its value, write this value elsewhere. In quantum, "reading" a state destroys it (see obstacle 2). We cannot therefore copy a state by measuring it.
+:::
+
+This directly prohibits the classic repetition strategy. You cannot create three copies of an unknown $|\psi\rangle$ state.
+
+### Obstacle 2 — Measurement destroys quantum information
+
+In quantum mechanics, **measuring a state in superposition makes it collapse** onto one of the base states. After measurement, the superposition is destroyed.
+
+If we measure the qubits to detect errors (as in classical), we lose the quantum information that we sought to protect.
+
+::: {.callout-warning title="Critical consequence"}
+The error detection procedure should not reveal any information about the quantum state itself — only about the presence or absence of errors.
+:::
+
+### Obstacle 3 — Quantum errors are continuous
+
+A qubit is in a state of the form:
+
+$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$$
+
+where $\alpha, \beta \in \mathbb{C}$. A quantum error does not simply "flip" the qubit — it **continuously** disrupts the coefficients $\alpha$ and $\beta$:
+
+$$\alpha|0\rangle + \beta|1\rangle \rightarrow (\alpha + \epsilon_0)|0\rangle + (\beta + \epsilon_1)|1\rangle$$
+
+It therefore seems that we must correct an infinite continuum of possible errors, which seems impossible.
+
+## The good news
+
+::: {.callout-note title="To remember"}
+Despite these three obstacles, it is **possible** to correct quantum errors with ingenuity. Each of the three obstacles has an elegant solution, as we will see.
+:::
+
+---
+
+# The bit-flip code on 3 qubits (Three-Qubit Bit-Flip Code)
+
+## General idea: entanglement replaces copying
+
+Since we cannot copy a quantum state, we will use **entanglement** to play the role of repetition. The central idea is to encode the logic state in an entangled state of three qubits.
+
+Logical base states are encoded as follows:
+
+$$|0\rangle \rightarrow |000\rangle$$
+
+$$|1\rangle \rightarrow |111\rangle$$
+
+A general state $\alpha|0\rangle + \beta|1\rangle$ then becomes:
+
+$$\alpha|0\rangle + \beta|1\rangle \rightarrow \alpha|000\rangle + \beta|111\rangle$$
+
+::: {.callout-warning title="Warning — This is not copying!"}
+The $\alpha|000\rangle + \beta|111\rangle$ state is an **entangled** state of the three qubits. This is **not** the same as three copies of $\alpha|0\rangle + \beta|1\rangle$. The no-cloning theorem is not violated.
+:::
+
+## Encoding circuit
+
+Encoding is carried out by the following circuit: the logic state $\alpha|0\rangle + \beta|1\rangle$ is combined with two auxiliary qubits $|0\rangle$ via two CNOT (Controlled-NOT) gates:
+
+- The input qubit controls the second qubit (initially $|0\rangle$) via a CNOT.
+- The input qubit controls the third qubit (initially $|0\rangle$) via another CNOT.
+
+This produces:
+
+$$(\alpha|0\rangle + \beta|1\rangle)|00\rangle \xrightarrow{\text{CNOT}_1} (\alpha|00\rangle + \beta|11\rangle)|0\rangle \xrightarrow{\text{CNOT}_2} \alpha|000\rangle + \beta|111\rangle$$
+
+## Bit flip error detection and correction
+
+To detect and correct errors, we use **two ancilla** (auxiliary) qubits and **parity** measurements (parity-check measurements).
+
+The idea is crucial: these measurements tell us **if an error has occurred**, without ever revealing the values ​​of $\alpha$ and $\beta$.
+
+### Detection and correction table
+
+| Turnaround | Status $|\psi_1\rangle$ after error | Measurement $M_1$ | Measurement $M_2$ | Correction | Recovered state $|\psi_2\rangle$ |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| None | $\alpha|000\rangle + \beta|111\rangle$ | $0$ | $0$ | $I \otimes I \otimes I$ | $\alpha|000\rangle + \beta|111\rangle$ |
+| Qubit 1 | $\alpha|100\rangle + \beta|011\rangle$ | $1$ | $0$ | $X \otimes I \otimes I$ | $\alpha|000\rangle + \beta|111\rangle$ |
+| Qubit 2 | $\alpha|010\rangle + \beta|101\rangle$ | $1$ | $1$ | $I \otimes X \otimes I$ | $\alpha|000\rangle + \beta|111\rangle$ |
+| Qubit 3 | $\alpha|001\rangle + \beta|110\rangle$ | $0$ | $1$ | $I \otimes I \otimes X$ | $\alpha|000\rangle + \beta|111\rangle$ |
+
+::: {.callout-note title="What to Remember — Parity-Check Measurements"}
+The $M_1$ and $M_2$ measurements are **comparative parity measurements**: they compare the first and second qubits, then the second and third. They only indicate whether two qubits are the same or different — never their absolute value.
+
+These measurements reveal **no information** about $\alpha$ or $\beta$, so **the quantum state is not destroyed**.
+:::
+
+---
+
+# The phase-flip code on 3 qubits (Three-Qubit Phase-Flip Code)
+
+## Motivation: a second type of error
+
+The bit-flip code resolves two of the three identified obstacles:
+
+- It uses entanglement to circumvent non-cloning.
+- It uses parity measurements that do not destroy quantum information.
+
+However, it does not address the third obstacle: **continuous errors** (and in particular phase errors).
+
+A **phase error** (phase-flip, or $Z$ error) acts on a qubit in the following way:
+
+$$|0\rangle \rightarrow |0\rangle, \quad |1\rangle \rightarrow -|1\rangle$$
+
+This type of error is invisible in the computational base $\{|0\rangle, |1\rangle\}$, but becomes a bit flip in the **Hadamard base** $\{|+\rangle, |-\rangle\}$.
+
+## Encoding in the $|+\rangle, |-\rangle$ database
+
+The phase flip code encodes the state in the Hadamard basis. The encoding is:
+
+$$(\alpha|0\rangle + \beta|1\rangle)|0\rangle^{\otimes 2} \rightarrow \alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$$
+
+This is obtained by first applying two CNOT gates (as for the bit-flip code), then a Hadamard gate $H$ on each of the three qubits.
+
+::: {.callout-tip title="Intuition"}
+A phase error in the $\{|0\rangle, |1\rangle\}$ base becomes a **bit flip** error in the $\{|+\rangle, |-\rangle\}$ base, because:
+
+$$|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \xrightarrow{Z} \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle$$
+
+$$|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \xrightarrow{Z} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$$
+
+The phase reversal is therefore a bit reversal in this base, and we can apply the same techniques as previously.
+:::
+
+## Phase error detection and correction
+
+To detect errors, Hadamard gates are applied again to return to the computational base, then parity measurements.
+
+### Phase detection and correction table
+
+| Turnaround | Status $|\psi_1\rangle$ | $M_1$ | $M_2$ | Correction | Recovered state $|\psi_2\rangle$ |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| None | $\alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$ | $0$ | $0$ | $I \otimes I \otimes I$ | $\alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$ |
+| Qubit 1 | $\alpha|{-}{+}{+}\rangle + \beta|{+}{-}{-}\rangle$ | $1$ | $0$ | $Z \otimes I \otimes I$ | $\alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$ |
+| Qubit 2 | $\alpha|{+}{-}{+}\rangle + \beta|{-}{+}{-}\rangle$ | $1$ | $1$ | $I \otimes Z \otimes I$ | $\alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$ |
+| Qubit 3 | $\alpha|{+}{+}{-}\rangle + \beta|{-}{-}{+}\rangle$ | $0$ | $1$ | $I \otimes I \otimes Z$ | $\alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$ |
+
+---
+
+# The Shor Code (Shor Code)
+
+## Architecture: concatenation of two codes
+
+Shor's code is a 9-qubit code that corrects both bit flip errors ($X$) and phase flip errors ($Z$) on any single qubit.
+
+It is constructed by **concatenation** (concatenation) of the two codes seen previously:
+
+1. First, we apply the **phase flip** code on 3 qubits, which encodes the state in three blocks.
+2. Then, we apply the **bit** flip code on 3 qubits to each of the three blocks.
+
+The encoding circuit thus combines CNOT gates and Hadamard gates on 9 qubits.
+
+## Encoding of logical states
+
+The encoded logical states are as follows:
+
+$$|0\rangle \rightarrow |0_L\rangle = \frac{1}{2\sqrt{2}}\big(|000\rangle + |111\rangle\big)\big(|000\rangle + |111\rangle\big)\big(|000\rangle + |111\rangle\big)$$
+
+$$|1\rangle \rightarrow |1_L\rangle = \frac{1}{2\sqrt{2}}\big(|000\rangle - |111\rangle\big)\big(|000\rangle - |111\rangle\big)\big(|000\rangle - |111\rangle\big)$$
+
+::: {.callout-tip title="Intuition — Shor's Code Structure"}
+Shor's code can be seen as operating on two levels:
+
+- **Internal level** (blocks of 3 qubits): protects against bit flips ($X$), thanks to bit flip code.
+- **External level** (the 3 blocks): protects against phase reversals ($Z$), thanks to the phase reversal code.
+:::
+
+## Fix bit flips with Shor's code
+
+Shor's code can detect and correct a bit flip on **any** of the 9 qubits.
+
+For example, if a bit flip occurs on the first qubit, the encoded state becomes:
+
+$$\frac{1}{2\sqrt{2}}\Big(\alpha\big(|100\rangle + |011\rangle\big)\big(|000\rangle + |111\rangle\big)\big(|000\rangle + |111\rangle\big)$$
+$$+ \beta\big(|100\rangle - |011\rangle\big)\big(|000\rangle - |111\rangle\big)\big(|000\rangle - |111\rangle\big)\Big)$$
+
+This flip is detected by parity measurements on the first three qubits (exactly as in the 3-qubit bit flip code), and corrected by applying a $X$ gate on the first qubit.
+
+By symmetry, the same principle applies to each of the 9 qubits.
+
+## Fixed phase reversals with Shor's code
+
+Shor's code can also detect and correct a phase flip on **any** of the 9 qubits.
+
+If a phase reversal occurs on the first qubit, the encoded state becomes:
+
+$$\frac{1}{2\sqrt{2}}\Big(\alpha\big(|000\rangle - |111\rangle\big)\big(|000\rangle + |111\rangle\big)\big(|000\rangle + |111\rangle\big)$$
+$$+ \beta\big(|000\rangle + |111\rangle\big)\big(|000\rangle - |111\rangle\big)\big(|000\rangle - |111\rangle\big)\Big)$$
+
+The key idea is to detect **which block of 3 qubits** has undergone a sign change. We apply parity measures between the blocks (after having applied Hadamard gates to return to the correct base).
+
+::: {.callout-note title="To remember"}
+Shor's code can correct both bit and phase flip errors — and therefore **any combination** of such errors — on any single qubit among the 9 qubits in the code.
+:::
+
+---
+
+# Fix any error on a single qubit with Shor's code
+
+## The general error on a single qubit
+
+A general quantum error on the first qubit sends:
+
+$$|0\rangle \rightarrow a|0\rangle + b|1\rangle, \quad |1\rangle \rightarrow c|0\rangle + d|1\rangle$$
+
+where $a, b, c, d$ are complex coefficients. This is a general linear transformation — an arbitrary continuous disturbance.
+
+By setting $k = \frac{1}{2}(a+d)$, $l = \frac{1}{2}(b+c)$, $m = \frac{1}{2}(a-d)$, $n = \frac{1}{2}(b-c)$, the state after error can be broken down into four terms corresponding to:
+
+- $k$: no error (term $I$)
+- $l$: bit flip ($X$)
+- $m$: phase reversal ($Z$)
+- $n$: bit and phase reversal ($XZ = iY$)
+
+## Correction procedure
+
+### Step 1 — Parity measurement for bit flips
+
+We first carry out a parity measurement on the first block of three qubits. The result is either $00$ (no bit flip in this block), or $10$ or $01$ (flip of the first or second qubit in the block).
+
+The measurement **collapses** the state onto one of these cases, eliminating the overlap of different types of errors.
+
+### Step 2 — Parity measurement for phase reversals
+
+After possible correction of the bit flip, a parity measurement is carried out between the blocks. The result is $0$ (no phase reversal) or $1$ (phase reversal detected).
+
+::: {.callout-tip title="Intuition — Digitization of Errors"}
+This is where a remarkable phenomenon manifests itself: even if the initial error is **continuous** (the $a, b, c, d$ coefficients can take any value), the parity measurements **collapse** the state on one of the four discrete cases:
+
+- No error
+- Bit flip only
+- Phase reversal only
+- Bit AND phase flip
+
+Error correction **digitizes** continuous errors into discrete errors. This is the resolution of the third obstacle!
+:::
+
+::: {.callout-warning title="Remarkable property — Digitalization of errors"}
+When performing parity measurements (bit and phase), a general state subject to a continuous error collapses to the case where either the bit, or the phase, or both have been inverted — or neither — depending on the measurement result. This property allows you to correct a **continuum of errors** by correcting only discrete binary errors.
+:::
+
+---
+
+# The depolarizing channel
+
+## Definition of the depolarizing channel
+
+The **Depolarizing Channel** is the quantum noise model analogous to the classical symmetric binary channel.
+
+In this model, a physical qubit undergoes:
+
+- **No error** with probability $1 - p_e$
+- **A bit flip** ($X$) with probability $\frac{p_e}{3}$
+- **A phase reversal** ($Z$) with probability $\frac{p_e}{3}$
+- **A bit and phase reversal** ($XZ$) with probability $\frac{p_e}{3}$
+
+::: {.callout-note title="To remember"}
+The total error probability is $p_e = \frac{p_e}{3} + \frac{p_e}{3} + \frac{p_e}{3}$. The depolarizing channel is the standard quantum noise model for analyzing the performance of correction codes.
+:::
+
+## Error removal by Shor's code
+
+In the same way that the classic repeating code removes the error from the symmetric binary channel from $p_e$ to $\mathcal{O}(p_e^2)$, the **Shor code removes the error from the depolarizing channel from $p_e$ to $\mathcal{O}(p_e^2)$**.
+
+An argument analogous to that of classical repetitive code shows this result: for an uncorrectable error to occur, at least two qubits of the code must be affected simultaneously, which happens with probability $\mathcal{O}(p_e^2)$.
+
+## The depolarizing channel as a general model
+
+### Modeling of a general noisy channel
+
+In the example above, we only considered the simple case where a single qubit of the Shor code is subject to noise. In reality, if each qubit is independently subjected to a general noisy channel, the same principle applies:
+
+::: {.callout-tip title="Intuition"}
+If the noise on each qubit is small, it is very likely that no bit or phase flips have occurred. The probability that two qubits are affected is $\mathcal{O}(p_e^2)$, which remains small.
+:::
+
+The digitalization of errors makes it possible to analyze general noisy channels such as depolarizing channels, under the assumption that the errors on the different physical qubits are **independent**. This is a reasonable assumption if the code is implemented well.
+
+### Conservative choice of model
+
+Some physical channels will have more likely bit or phase flips in one direction. It will generally be possible to choose a **conservative** depolarizing model (not underestimating the sources of errors) to cover these cases.
+
+::: {.callout-note title="To remember — Universality of the depolarizing model"}
+Thanks to digitalization, the depolarizing channel is a noise model **general enough** to analyze quantum error correction in most practical contexts. If a code corrects all errors in the depolarizing channel, it essentially corrects all errors in the real channel.
+:::
+
+---
+
+# Digitization of Errors — Additional properties
+
+## Probabilities after parity measurement
+
+Let's take a closer look at what happens when measuring parity for bit flip detection.
+
+When measuring parity bits, the probability of obtaining $|00\rangle$ (i.e. observing that no bit flip has occurred) is $|k|^2 + |m|^2$.
+
+Remember that by definition, noise sends:
+
+$$|0\rangle \rightarrow a|0\rangle + b|1\rangle, \quad |1\rangle \rightarrow c|0\rangle + d|1\rangle$$
+
+and $k = \frac{1}{2}(a + d)$. For low noise ($(a, d) \approx 1$), we have $k \approx 1$, therefore $|k|^2 + |m|^2 \approx 1$: the probability that no bit flip is detected is high.
+
+The same principle applies to the detection of phase reversals. For low noise levels, error correction works with very high probability.
+
+::: {.callout-note title="To remember"}
+Digitalization of errors means that quantum error correction can be described as if **discrete** errors (bit-flip and/or phase-flip) occur with certain probabilities. Although the errors are initially continuous, after measurement they become binary.
+:::
+
+---
+
+# More sophisticated classic correction codes
+
+## Repeat Code Limitations
+
+Repeat codes are useful for illustrating the principles of error correction, but they are **too ineffective** in practice:
+
+- To protect 1 bit of information, we use 3 physical bits.
+- More generally, to correct $t$ errors, we need $2t+1$ repetitions.
+- The **code rate**, defined as the ratio of information bits to physical bits, is $\frac{1}{3}$ for 3-bit repeat code, which is very low.
+
+## Hamming code (7.4) — Hamming Code
+
+A particularly elegant code is the **Hamming code (7,4)**: it encodes a **4-bit data word** ($d$) as a **7-bit codeword** ($c$), according to the relation:
+
+$$c = Gd \pmod{2}$$
+
+where $G$ is the **generator matrix**:
+
+$$G = \begin{bmatrix} 1 & 1 & 0 & 1 \\ 1 & 0 & 1 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$$
+
+## Error detection using the parity matrix
+
+Errors are detected by applying the parity-check matrix $H$ to a received codeword:
+
+$$H = \begin{bmatrix} 1 & 0 & 1 & 0 & 1 & 0 & 1 \\ 0 & 1 & 1 & 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 1 & 1 & 1 & 1 \end{bmatrix}$$
+
+By calculating $p = Hc \pmod{2}$:
+
+- If $p = 000$, the code word received is valid (no error).
+- Otherwise, the 7 possible non-zero values ​​of $p$ (3-bit strings with at least one $1$) indicate the **exact position** of the single error.
+
+::: {.callout-note title="To remember — Effectiveness of the Hamming code (7.4)"}
+The Hamming code (7.4) has a code rate of $\frac{4}{7} \approx 0{,}57$, which is much higher than the repetition code. It can detect and correct **any single bit error**. It is a **linear** code (Linear Code): the code words are a vector subspace of $\mathbb{F}_2^7$.
+:::
+
+---
+
+# Quantum codes derived from classical codes (CSS Codes)
+
+## CSS codes — Calderbank-Shor-Steane
+
+There is a systematic technique for constructing quantum correction codes from classical linear codes. These codes are called **CSS codes** (Calderbank-Shor-Steane codes).
+
+The CSS construction uses two compatible classical linear codes to encode quantum information by separately correcting $X$ (bit flips) and $Z$ (phase flips) errors.
+
+::: {.callout-note title="To remember"}
+The detailed analysis of CSS codes is beyond the scope of this course, but it is important to know that they form an important family of quantum codes, of which Shor's code is a special case.
+:::
+
+## Steane Code
+
+An important example of CSS code is **Steane's code**, built from Hamming's code (7.4). Steane's code encodes **1 logical qubit** into **7 physical qubits**.
+
+The encoded logical states are:
+
+$$|0_L\rangle = \frac{1}{\sqrt{8}}\Big(|0000000\rangle + |1010101\rangle + |0110011\rangle + |1100110\rangle$$
+$$\quad + |0001111\rangle + |1011010\rangle + |0111100\rangle + |1101001\rangle\Big)$$
+
+$$|1_L\rangle = \frac{1}{\sqrt{8}}\Big(|1111111\rangle + |0101010\rangle + |1001100\rangle + |0011001\rangle$$
+$$\quad + |1110000\rangle + |0100101\rangle + |1000011\rangle + |0010110\rangle\Big)$$
+
+## Properties of Steane's code
+
+Like Shor's code, Steane's code guarantees to correct **any bit and/or phase flip** occurring on a single **qubit** among the 7.
+
+::: {.callout-tip title="Advantage of Steane's code over Shor's code"}
+- Shor code: 9 physical qubits to encode 1 logical qubit → rate $\frac{1}{9}$
+- Steane code: 7 physical qubits to encode 1 logical qubit → rate $\frac{1}{7}$
+
+Steane's code is therefore more efficient. Both remove the error from the depolarizing channel from $p_e$ to $\mathcal{O}(p_e^2)$.
+:::
+
+::: {.callout-note title="To remember"}
+Steane's code removes the error from the depolarizing channel from $p_e$ to $\mathcal{O}(p_e^2)$, just like Shor's code, but with only 7 physical qubits instead of 9. This is a concrete and important example of using classical linear codes to construct efficient quantum corrector codes.
+:::
+
+---
+
+# Summary — Overview of quantum error correction
+
+## The three obstacles and their solutions
+
+Quantum error correction must overcome three fundamental obstacles compared to classical error correction. Everyone has an elegant solution:
+
+| Obstacle | Solution |
+|:---|:---|
+| **Principle of non-cloning**: we cannot copy a quantum state | Use **tangle** instead of copy |
+| **Measurement destroys quantum information** | Design codes with **parity** measures that only reveal the presence of errors, not the state itself |
+| **Quantum errors are continuous** | Error correction **digitalizes** errors: measurements collapse state onto discrete cases |
+
+## Hierarchy of codes presented
+
+```{mermaid}
+graph TD
+    A["Erreur classique\n(Canal BSC)"] --> B["Code à répétition 3 bits\n(classique)"]
+    C["Erreur quantique\n(Canal dépolarisant)"] --> D["Code à retournement de bit\n(3 qubits)"]
+    C --> E["Code à retournement de phase\n(3 qubits)"]
+    D --> F["Code de Shor\n(9 qubits)"]
+    E --> F
+    G["Code de Hamming (7,4)\n(classique)"] --> H["Code de Steane\n(7 qubits — CSS)"]
+```
+
+## Transition to more efficient codes
+
+In practice, repetitive codes are too inefficient. Classic linear codes, such as the Hamming code (7.4), allow information to be encoded in a more compact manner. The CSS construct generalizes this idea to the quantum world.
+
+The Steane code, built from the Hamming code (7.4), encodes 1 logical qubit into 7 physical qubits and offers the same correction guarantees as the Shor code (9 qubits), but with better efficiency.
+
+::: {.callout-note title="To remember — General assessment"}
+Quantum error correction is possible and effective:
+
+- Entanglement replaces copying.
+- Parity measurements detect errors without destroying the quantum state.
+- The correction process digitizes continuous errors into discrete errors.
+- Sophisticated codes like the Steane code (CSS) allow efficient correction with a reasonable number of physical qubits.
+
+These codes remove the error of the depolarizing channel from $p_e$ to $\mathcal{O}(p_e^2)$, paving the way for reliable large-scale quantum computing.
+:::

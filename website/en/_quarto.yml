@@ -16,3 +16,63 @@ website:
             href: index.html
           - text: "French"
             href: fr/index.html
+
+  sidebar:
+    style: docked
+    search: true
+    
+    contents:
+      - section: "Course"
+        contents:
+          - section: "Quantum computing"
+            contents:
+              - text: "Details"
+                href: ch1.qmd
+              - text: "Summary"
+                href: ch1r.qmd
+              - text: "Quiz"
+                href: ch1q.qmd
+          - section: "Quantum computing chapter 2"
+            contents:
+              - text: "Details"
+                href: ch2.qmd
+              - text: "Summary"
+                href: ch2r.qmd
+              - text: "Quiz"
+                href: ch2q.qmd
+          - section: "Quantum computing chapter 3"
+            contents:
+              - text: "Details"
+                href: ch3.qmd
+              - text: "Summary"
+                href: ch3r.qmd
+              - text: "Quiz"
+                href: ch3q.qmd
+          - section: "Applications of Quantum Computers"
+            contents:
+              - text: "Details"
+                href: ch4.qmd
+              - text: "Summary"
+                href: ch4r.qmd
+              - text: "Quiz"
+                href: ch4q.qmd
+          - section: "Quantum Error Correction"
+            contents:
+              - text: "Details"
+                href: ch5.qmd
+              - text: "Summary"
+                href: ch5r.qmd
+              - text: "Quiz"
+                href: ch5q.qmd
+
+
+format:
+  html:
+    theme:
+      dark: ../macchiato.scss
+      light: ../latte.scss
+    toc: true
+    embed-resources: true
+
+# filters:
+#   - diagram

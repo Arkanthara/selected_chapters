@@ -1,0 +1,333 @@
+---
+title: "Applications of quantum computers — Quiz"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+## Level 1 — Fundamentals
+
+```{quizdown}
+### What quantum algorithm can factor large integers exponentially faster than a classical computer?
+
+> Think of the name of the researcher who proposed it in 1994.
+
+1. [ ] Grover algorithm
+    > Incorrect: Grover is associated with searching an unsorted database.
+1. [x] Shor's algorithm
+    > Correct: Peter Shor proposed in 1994 this algorithm which exploits the Quantum Fourier Transform to find the period of a modular function.
+1. [ ] VQE algorithm
+1. [ ] BB84 algorithm
+```
+
+```{quizdown}
+### What is the quantum advantage brought by Grover's algorithm for searching in an unsorted base of N entries?
+
+> Compare the classical complexity O(N) to that of Grover.
+
+1. [ ] Exponential advantage: O(log N)
+1. [ ] No advantage: Y(N)
+1. [x] Quadratic advantage: O(root of N)
+    > Correct: Grover reduces the complexity from O(N) to O(root of N), which is a quadratic advantage.
+1. [ ] Linear advantage: O(N/2)
+```
+
+```{quizdown}
+### What does the no-cloning theorem mean in quantum computing?
+
+> This theorem imposes a fundamental constraint on the copying of quantum states.
+
+1. [x] It is impossible to duplicate an unknown qubit
+    > Correct: we cannot create a perfect copy of an unknown arbitrary quantum state, which fundamentally distinguishes quantum information from classical information.
+1. [ ] It is impossible to measure a qubit
+1. [ ] It is impossible to teleport a qubit
+1. [ ] It is impossible to entangle two qubits
+```
+
+```{quizdown}
+### What is the Bell pair used as a shared resource in quantum teleportation?
+
+> It is a maximally entangled state of two qubits.
+
+1. [ ] (1/root(2))(|01> + |10>)
+1. [x] (1/root(2))(|00> + |11>)
+    > Correct: the Bell Phi+ pair is (1/root(2))(|00> + |11>), obtained by a Hadamard gate followed by a CNOT gate.
+1. [ ] |00>
+1. [ ] (1/2)(|00> + |01> + |10> + |11>)
+```
+
+```{quizdown}
+### How many classical bits should Alice send to Bob during a quantum teleportation?
+
+> This number corresponds to the possible results of Alice's measurement of her two qubits.
+
+1. [ ] 0
+1. [ ] 1
+1. [x] 2
+    > Correct: Alice measures her two qubits and obtains one of four possible results (00, 01, 10, 11). She transmits these 2 bits to Bob so that he can correct his qubit.
+1. [ ] 3
+```
+
+```{quizdown}
+### The BB84 protocol was proposed by:
+
+> Search for the initials of the protocol name.
+
+1. [x] Charles Bennett and Gilles Brassard in 1984
+    > Correct: BB84 comes from the initials Bennett-Brassard and the year 1984.
+1. [ ] Peter Shor in 1994
+1. [ ] Lov Grover in 1997
+1. [ ] Albert Einstein and Niels Bohr in 1935
+```
+
+```{quizdown}
+### What does the one-time pad guarantee that RSA cryptography does not guarantee?
+
+> Think about the difference between computational security and theoretical security.
+
+1. [ ] Faster encryption
+1. [ ] Resistance to brute force attacks
+1. [x] Information-theoretically secure
+    > Correct: the disposable mask is the only system offering absolute security proven mathematically, independently of the computing power of the adversary. RSA relies on the computational difficulty of factoring.
+1. [ ] A key shorter than the message
+```
+
+```{quizdown}
+### What quantum phenomena constitute the basis for the operation of quantum computers?
+
+> These properties have no classical equivalent.
+
+- [x] Overlay
+    > Correct: Superposition allows a qubit to be in a linear combination of |0> and |1> simultaneously.
+- [x] Entanglement
+    > Correct: entanglement creates non-classical correlations between qubits.
+- [x] Interference
+    > Correct: Interference amplifies correct responses and cancels incorrect ones.
+- [ ] Diffraction
+    > Incorrect: Diffraction is a classical optical phenomenon, not specific to quantum computing.
+```
+
+---
+
+## Level 2 — Comprehension
+
+```{quizdown}
+### Why doesn't quantum teleportation allow us to communicate faster than light?
+
+> Think about what Bob needs to complete the teleport.
+
+1. [ ] Because qubits physically move
+1. [ ] Because entanglement takes time to form
+1. [x] Because it requires a classic channel to transmit the result of Alice's measurement
+    > Correct: Without Alice's classic 2 bits, Bob cannot know what correction to apply. This classic channel is limited by the speed of light.
+1. [ ] Because measurement always destroys information
+```
+
+```{quizdown}
+### In superdense coding, Alice wants to send bits "10". What gate does she apply to her qubit?
+
+> Consult Bell's table of four states.
+
+1. [ ] Gate X (NOT)
+1. [ ] Door I (identity)
+1. [x] Door Z
+    > Correct: To send "10", Alice applies Z, transforming the Bell pair into (1/root(2))(|00> - |11>).
+1. [ ] Door XZ
+```
+
+```{quizdown}
+### What quantum property guarantees the security of the BB84 protocol against espionage?
+
+> A spy must interact with the quantum channel to obtain information.
+
+1. [ ] Superposition allows Alice to hide her bits
+1. [ ] The entanglement between Alice and Bob prevents listening
+1. [x] Any measurement of a qubit by a spy inevitably perturbs its state, which is statistically detectable
+    > Correct: this is a direct consequence of the measurement postulate and the non-cloning theorem. Eve cannot measure without disruption, and this disruption results in an abnormal error rate detected during the public comparison.
+1. [ ] The measurement bases are kept secret indefinitely
+```
+
+```{quizdown}
+### In quantum simulation, why is it exponential to simulate N quantum particles on a classical computer?
+
+> Think about the number of coupled equations to solve.
+
+1. [ ] Because quantum calculations are inherently slower
+1. [ ] Because N processors are needed for N particles
+1. [x] Because the Schrodinger equation requires solving 2 to the power of N coupled equations
+    > Correct: the Hilbert space of a system of N qubits has dimension 2^N. For N=50, this exceeds 10^15 equations, beyond the reach of classical supercomputers.
+1. [ ] Because classical computers cannot process complex numbers
+```
+
+```{quizdown}
+### What is the relationship between quantum teleportation and superdense coding?
+
+> These two protocols use the same resources in opposite ways.
+
+1. [ ] These are two names of the same protocol
+1. [x] They are dual: teleportation exchanges 1 qubit for 2 classical bits, superdense coding exchanges 2 classical bits for 1 qubit, both thanks to a shared intrinsic pair
+    > Correct: this duality illustrates the complementarity between classical and quantum information when entanglement is available as a resource.
+1. [ ] Superdense coding is an improved version of teleportation
+1. [ ] They have no connection, apart from the use of qubits
+```
+
+```{quizdown}
+### In BB84, Eve attempts an "intercept, copy, retransmit" attack: she keeps a copy of the qubit and waits for Alice and Bob to reveal their bases to then measure it. Why does this attack fail?
+
+> Think about the fundamental theorem about copying quantum states.
+
+1. [ ] Because Alice changes base too quickly
+1. [ ] Because Bob detects the transmission delay
+1. [x] Because copying an unknown qubit is physically impossible according to the no-cloning theorem
+    > Correct: Eve cannot keep a perfect copy of Alice's qubit. The no-cloning theorem prohibits any duplication of an unknown arbitrary quantum state.
+1. [ ] Because the classic channel is digit
+```
+
+```{quizdown}
+### What operation does Bob apply after receiving Alice's qubit in the superdense coding, to find the 2 bits sent?
+
+> The goal is to “unravel” the Bell pair and return to the computational basis.
+
+1. [ ] A Hadamard door only
+1. [ ] A direct measurement with a computational basis
+1. [x] A CNOT gate followed by a Hadamard gate, then a computational basis measurement
+    > Correct: this circuit exactly reverses the creation of a Bell pair (CNOT + H). It transforms each of the 4 states of Bell into one of the 4 states of the computational base |00>, |01>, |10>, |11>.
+1. [ ] A CNOT gate only
+```
+
+---
+
+## Level 3 — Mastery
+
+```{quizdown}
+### Alice measures her two qubits and obtains the result "10" during a quantum teleportation. What state is Bob's qubit in before correction?
+
+> Consult the correction table: the first bit b1 conditions the application of Z, the second b0 conditions X.
+
+1. [ ] alpha|1> + beta|0>
+1. [ ] alpha|1> - beta|0>
+1. [x] alpha|0> - beta|1>
+    > Correct: for measure 10, b1=1 and b0=0. Only the Z gate is necessary. Bob's state is alpha|0> - beta|1>, and after applying Z we find alpha|0> + beta|1>.
+1. [ ] alpha|0> + beta|1>
+    > Incorrect: this is the final state after correction, not the state before correction for measure 10.
+```
+
+```{quizdown}
+### Put the steps of the quantum teleportation protocol in the correct order.
+
+> Starts with creating the shared resource, ends with Bob's correction.
+
+1. Create the Bell pair between two qubits
+2. Distribute one intrinsic qubit to Bob and give the other to Alice with the message qubit
+3. Alice applies CNOT (qubit message in control, its qubit in target)
+4. Alice applies the Hadamard gate on the message qubit
+5. Alice measures her two qubits
+6. Alice sends the classic 2 bits to Bob
+7. Bob applies Z and/or X corrections according to the bits received
+```
+
+```{quizdown}
+### Put the BB84 protocol steps in the correct order.
+
+> Starts with the preparation of the qubits, ends with the construction of the key.
+
+1. Alice encodes each bit in a randomly chosen base and sends the qubit to Bob
+2. Bob measures each qubit in a randomly chosen basis
+3. Bob publicly announces his basis of measurement (not his result)
+4. Alice publicly confirms if Bob used the correct base
+5. Alice and Bob keep only the bits for which the bases coincide
+6. Alice and Bob compare a subset of bits to verify the absence of spies
+```
+
+```{quizdown}
+### An engineer wants to transmit 2 classic bits to his remote colleague. They share a pair of Bells. What is the most efficient method using this quantum resource?
+
+> Consider the protocol that leverages entanglement to double channel capacity.
+
+1. [ ] Quantum teleportation
+    > Incorrect: teleportation is used to transmit a qubit using 2 classical bits, not to transmit 2 classical bits.
+1. [x] Superdense Coding
+    > Correct: superdense coding allows 2 classical bits to be encoded in the sending of a single qubit, exploiting the shared intrinsic pair.
+1. [ ] BB84 protocol
+    > Incorrect: BB84 is used to generate a secret key, not to transmit data.
+1. [ ] Shor's algorithm
+```
+
+```{quizdown}
+### What are the major challenges currently limiting quantum computers?
+
+> Several technical obstacles coexist.
+
+- [x] Decoherence: sensitivity to the external environment
+    > Correct: any interaction with the environment destroys the quantum superposition. Qubits must be isolated at temperatures close to absolute zero.
+- [x] Quantum error correction which requires many physical qubits per logical qubit
+    > Correct: A reliable logical qubit sometimes requires hundreds of redundant physical qubits for error correction.
+- [x] The difficulty of physically implementing quantum operations with high fidelity
+    > Correct: real quantum gates have a fidelity lower than 100%, errors accumulate.
+- [ ] The impossibility of programming quantum computers with classical languages
+    > Incorrect: classic languages ​​and SDKs (Qiskit, Cirq, etc.) allow quantum computers to be programmed.
+```
+
+```{quizdown}
+### In the post-quantum context, why is RSA-2048 encryption considered a medium-term threat?
+
+> Relates the power of Shor's algorithm to the size of RSA keys.
+
+1. [ ] Because classical computers are becoming fast enough to break RSA
+1. [x] Because a quantum computer with around 8000 logical qubits could run Shor's algorithm to factor an RSA-2048 key in polynomial time
+    > Correct: Shor reduces the factorization from exponential (classical) to polynomial (quantum) complexity. RSA-2048 relies entirely on the classic difficulty of factorization.
+1. [ ] Because BB84 can break RSA directly
+1. [ ] Because Moore's law makes 2048-bit keys insufficient
+```
+
+```{quizdown}
+### The VQE (Variational Quantum Eigensolver) is described as a “hybrid” algorithm. What does this term mean in this context?
+
+> Think about the two components of the optimization process in VQE.
+
+1. [ ] It uses two different types of qubits
+1. [ ] It combines two quantum communication protocols
+1. [x] It alternates between a quantum part (preparation of the ansatz and measurement of the expectation value) and a classical part (optimization of the parameters)
+    > Correct: the term "hybrid" designates this alternating loop between the quantum processor (preparation + measurement) and the classical optimizer (updating theta parameters). This allows you to take advantage of both types of resources.
+1. [ ] It can be executed equally on a classical or quantum computer
+```
+
+```{quizdown}
+### In BB84, Eve intercepts each qubit, measures it in a random basis, then transmits a new qubit back to Bob in the state she measured. What is the error rate introduced on the bits that Alice and Bob keep in their key?
+
+> Eve chooses the correct base with probability 1/2. When it makes a mistake, it retransmits in the wrong state.
+
+1. [ ] 0%: Eve leaves no trace
+1. [ ] 50%: all bits are affected
+1. [x] 25%: half of the times Eve gets the base wrong, and in this case Bob obtains an incorrect result with probability 1/2
+    > Correct: Eve chooses the correct base with P=1/2. When it is wrong (P=1/2), Bob receives a qubit in the wrong state and obtains an erroneous result with P=1/2. The overall error rate on the preserved bits is therefore 1/2 x 1/2 = 1/4 = 25%.
+1. [ ] 12.5%
+```
+
+```{quizdown}
+### What property of the variational principle justifies the VQE approach to finding the fundamental energy of a system?
+
+> This principle establishes a bound on the expectation value of the Hamiltonian.
+
+1. [ ] The expectation value of H is always zero for any state
+1. [x] For any state |psi>, the expectation value <psi|H|psi> is greater than or equal to the fundamental energy E0, so minimizing this quantity allows us to approach it
+    > Correct: the variational principle guarantees that the fundamental energy is a global minimum of <H>. By seeking to minimize <psi(theta)|H|psi(theta)>, we converge to E0 if the ansatz is sufficiently expressive.
+1. [ ] Fundamental energy is always accessible by a quantum circuit at depth 1
+1. [ ] The minimum eigenvalue always corresponds to the state |0...0>
+```
+
+```{quizdown}
+### Which applications constitute recognized uses of quantum networks (Quantum Networks)?
+
+> A quantum network allows the exchange of intriguing qubits between distant sites.
+
+- [x] Generation of secret keys by quantum cryptography
+    > Correct: large-scale distributed QKD is a direct application of quantum networks.
+- [x] Generation of certified random numbers
+    > Correct: quantum entanglement makes it possible to certify the truly random nature of the numbers generated.
+- [x] Large-scale distributed quantum computing
+    > Correct: connecting several quantum processors in a network makes it possible to achieve computing power inaccessible to a single processor.
+- [ ] Acceleration of classical neural networks
+    > Incorrect: This falls within the domain of quantum machine learning, not quantum communications networks.
+```
