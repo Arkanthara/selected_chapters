@@ -479,15 +479,6 @@ A **quantum circuit** is a sequence of quantum gates (unitary matrices) applied 
 :::
 
 ---
-title: "Exam answers — Quantum Computing"
-format:
-	html:
-		toc: true
-		toc-depth: 3
-		number-sections: true
----
-
----
 
 
 # Question 8 — Quantum algorithms
