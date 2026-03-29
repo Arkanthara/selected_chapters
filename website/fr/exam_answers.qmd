@@ -1,0 +1,1352 @@
+---
+title: "Réponses d'examen — Informatique Quantique"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+---
+
+# Question 1 — Qubit definition
+
+## Réponse complète
+
+### Du bit classique au qubit
+
+Avant de définir le qubit, il est utile de rappeler ce qu'est un bit classique : un système à deux états distinguables, habituellement notés $|0\rangle$ et $|1\rangle$. Ces états sont mutuellement exclusifs — un bit classique occupe exactement l'un de ces deux états à tout moment. La mesure d'un bit classique est complète, non destructrice, et peut être répétée sans altérer le résultat.
+
+Le **qubit** (*quantum bit*) est l'analogue quantique du bit classique, et constitue l'unité fondamentale d'information en informatique quantique. La différence essentielle par rapport au bit classique tient à un principe fondamental de la mécanique quantique : le **principe de superposition**.
+
+### Représentation mathématique
+
+Mathématiquement, l'état d'un qubit est une **combinaison linéaire complexe** des deux états de base $|0\rangle$ et $|1\rangle$ :
+
+$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
+
+où $\alpha, \beta \in \mathbb{C}$ sont des **amplitudes** complexes satisfaisant impérativement la **condition de normalisation** :
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+L'état $|\psi\rangle$ est donc un **vecteur unitaire** dans l'espace $\mathbb{C}^2$, c'est-à-dire un espace vectoriel complexe de dimension 2. La notation employée — la notation de Dirac (bra-ket) — est le langage universel de la mécanique quantique : le symbole $|\psi\rangle$ désigne un vecteur colonne (ket), tandis que $\langle\psi|$ désigne son conjugué Hermitien (bra), vecteur ligne dont les composantes sont les conjugués complexes de celles du ket.
+
+### Les amplitudes et leur rôle
+
+Les coefficients $\alpha$ et $\beta$ sont appelés **amplitudes** des états $|0\rangle$ et $|1\rangle$ respectivement. Ils jouent un rôle analogue aux probabilités en théorie classique — mais en diffèrent fondamentalement : contrairement aux probabilités, les amplitudes peuvent être **négatives** ou des **nombres complexes**. C'est précisément cette propriété qui est à l'origine des phénomènes d'**interférence quantique**, absents de la physique classique.
+
+Exemples d'états valides :
+
+$$\frac{1}{\sqrt{2}} |0\rangle + \frac{1}{\sqrt{2}} |1\rangle \qquad \text{car} \quad \frac{1}{2} + \frac{1}{2} = 1 \checkmark$$
+
+$$\frac{1}{\sqrt{2}} |0\rangle - \frac{i}{\sqrt{2}} |1\rangle \qquad \text{car} \quad \frac{1}{2} + \frac{1}{2} = 1 \checkmark$$
+
+Exemple d'état invalide :
+
+$$i |0\rangle - \frac{1}{2} |1\rangle \qquad \text{car} \quad |i|^2 + \left|-\frac{1}{2}\right|^2 = 1 + \frac{1}{4} = \frac{5}{4} \neq 1 \times$$
+
+### La règle de Born : lien entre amplitudes et probabilités
+
+On ne peut pas observer directement l'état d'un qubit. Lors d'une **mesure**, le système produit un résultat classique — soit $|0\rangle$, soit $|1\rangle$ — selon la **règle de Born** :
+
+$$\Pr[\text{observer } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{observer } |1\rangle] = |\beta|^2$$
+
+La condition de normalisation garantit que ces probabilités s'additionnent à 1, conformément aux exigences de cohérence probabiliste. Après la mesure, l'état du qubit **s'effondre** vers l'état observé, de manière irréversible. Une mesure ultérieure redonnera toujours le même résultat, ce qui revient à dire que mesurer un système deux fois est équivalent à le mesurer une fois.
+
+### Différences fondamentales avec le bit classique
+
+Deux propriétés distinguent radicalement le qubit du bit classique, indépendamment de la superposition :
+
+- **L'impossibilité de copier** un qubit inconnu : le théorème de non-clonage quantique établit qu'il est impossible de dupliquer un état quantique arbitraire inconnu. Cela n'a pas d'équivalent classique.
+- **L'impossibilité d'effacer** un qubit : la réversibilité des opérations quantiques interdit l'effacement d'information dans un circuit quantique.
+
+### Puissance computationnelle
+
+L'un des avantages majeurs des qubits réside dans la **croissance exponentielle** de l'espace d'états. Alors qu'un ordinateur classique à $n$ bits opère sur $n$ valeurs binaires, un ordinateur quantique à $n$ qubits opère dans un espace de dimension $2^n$. Concrètement, ajouter un seul qubit **double** la puissance computationnelle du système, alors qu'un doublement de puissance classique nécessite d'ajouter autant de bits que le système en compte déjà. Pour $n = 64$ qubits, l'espace d'états comporte $2^{64} \approx 16 \times 10^{18}$ dimensions.
+
+::: {.callout-note title="Résumé — Question 1" collapse="true"}
+
+Un **qubit** est l'unité fondamentale d'information quantique. Contrairement au bit classique (toujours dans l'état $|0\rangle$ ou $|1\rangle$), le qubit peut se trouver dans une **superposition** $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ où $\alpha, \beta \in \mathbb{C}$ sont les amplitudes, soumises à la condition de normalisation $|\alpha|^2 + |\beta|^2 = 1$. Ces amplitudes peuvent être complexes ou négatives, ce qui génère l'interférence quantique. La mesure (règle de Born) donne $|0\rangle$ avec probabilité $|\alpha|^2$ et $|1\rangle$ avec probabilité $|\beta|^2$, et provoque l'**effondrement** irréversible de l'état. Le qubit ne peut ni être copié (théorème de non-clonage) ni être effacé. L'ajout d'un seul qubit double la puissance du système, car l'espace d'état est de dimension $2^n$ pour $n$ qubits.
+
+:::
+
+---
+
+# Question 2 — Composite quantum systems
+
+## Réponse complète
+
+### De quoi s'agit-il ?
+
+Un système quantique composite est un système formé de **plusieurs sous-systèmes quantiques** — typiquement plusieurs qubits — considérés conjointement. La description mathématique d'un tel système repose sur un outil spécifique : le **produit tensoriel**.
+
+### L'espace de Hilbert d'un système composite
+
+Les états quantiques vivent dans un **espace de Hilbert** $H$. Pour un seul qubit, l'espace de Hilbert est $\mathbb{C}^2$. Pour deux qubits, il s'agit du **produit tensoriel** des deux espaces individuels :
+
+$$H_{12} = \mathbb{C}^2 \otimes \mathbb{C}^2$$
+
+Cet espace est de dimension $2 \times 2 = 4$. Pour $n$ qubits, l'espace de Hilbert est $(\mathbb{C}^2)^{\otimes n} = \mathbb{C}^{2^n}$, de dimension $2^n$. C'est cette **croissance exponentielle** de la dimension de l'espace d'états qui est la source principale de la puissance computationnelle des ordinateurs quantiques.
+
+### La base de l'espace à deux qubits
+
+L'espace $\mathbb{C}^2 \otimes \mathbb{C}^2$ possède une base naturelle formée des produits tensoriels des états de base individuels :
+
+$$|0\rangle \otimes |0\rangle, \quad |0\rangle \otimes |1\rangle, \quad |1\rangle \otimes |0\rangle, \quad |1\rangle \otimes |1\rangle$$
+
+que l'on note de façon abrégée $|00\rangle$, $|01\rangle$, $|10\rangle$, $|11\rangle$.
+
+Un état général de deux qubits s'écrit :
+
+$$|\Psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$$
+
+avec la condition de normalisation $|\alpha_{00}|^2 + |\alpha_{01}|^2 + |\alpha_{10}|^2 + |\alpha_{11}|^2 = 1$.
+
+### Le produit tensoriel : opération fondamentale
+
+Le **produit tensoriel** est la troisième forme de multiplication nécessaire à la description des systèmes quantiques (en plus de la multiplication scalaire et matricielle). Pour deux matrices $A$ ($n \times m$) et $B$ ($n' \times m'$), le produit tensoriel est défini par :
+
+$$A \otimes B = \begin{bmatrix} a_{11}B & \cdots & a_{1m}B \\ \vdots & \ddots & \vdots \\ a_{n1}B & \cdots & a_{nm}B \end{bmatrix}$$
+
+La matrice résultante est de dimension $nn' \times mm'$. Le produit tensoriel est **associatif** : $A \otimes (B \otimes C) = (A \otimes B) \otimes C$.
+
+Concrètement, si le qubit 1 est dans l'état $|\psi_1\rangle = \alpha|0\rangle + \beta|1\rangle$ et le qubit 2 dans l'état $|\psi_2\rangle = \alpha'|0\rangle + \beta'|1\rangle$, l'état joint du système est :
+
+$$|\psi_1\rangle \otimes |\psi_2\rangle = \alpha\alpha'|00\rangle + \alpha\beta'|01\rangle + \beta\alpha'|10\rangle + \beta\beta'|11\rangle$$
+
+### États produits et états intriqués
+
+Un point crucial est que **tous les états** de $\mathbb{C}^2 \otimes \mathbb{C}^2$ ne s'écrivent pas nécessairement sous la forme $|\psi_1\rangle \otimes |\psi_2\rangle$. Les états qui le peuvent sont appelés **états produits** (*product states*) : ils correspondent à des sous-systèmes indépendants, dont chacun peut être décrit séparément. Les états qui ne peuvent pas s'écrire comme un produit tensoriel de deux états individuels sont des **états intriqués** (*entangled states*) — un phénomène sans équivalent classique, traité dans la question suivante.
+
+### Généralisation à $N$ qubits
+
+Pour $N$ qubits, l'état du système est un vecteur unitaire dans $\mathbb{C}^{2^N}$, nécessitant au moins $2^N$ nombres complexes pour être décrit. Pour $N \approx 300$ (soit le nombre de particules dans un seul atome d'uranium), on obtient $2^N \gg 10^{82}$, soit plus que le nombre estimé d'atomes dans l'univers observable. C'est la raison pour laquelle la simulation classique des systèmes quantiques est fondamentalement limitée, et pourquoi les ordinateurs quantiques offrent un avantage intrinsèque pour certains calculs.
+
+::: {.callout-note title="Résumé — Question 2" collapse="true"}
+
+Un **système quantique composite** est formé de plusieurs sous-systèmes dont l'état joint est décrit par le **produit tensoriel** de leurs espaces de Hilbert individuels. Pour $n$ qubits, l'espace d'état est $\mathbb{C}^{2^n}$ de dimension $2^n$, avec une base naturelle $\{|00\cdots0\rangle, \ldots, |11\cdots1\rangle\}$. Le produit tensoriel est défini par blocs ($A \otimes B$) et est associatif. Un état général de $n$ qubits nécessite $2^n$ amplitudes complexes pour être décrit. Les états qui s'écrivent comme $|\psi_1\rangle \otimes |\psi_2\rangle$ sont dits **produits** (sous-systèmes indépendants) ; ceux qui ne peuvent pas l'être sont dits **intriqués**. Cette croissance exponentielle de la dimension est à la fois la source de la puissance quantique et la raison pour laquelle la simulation classique de systèmes quantiques de taille modérée est physiquement impossible.
+
+:::
+
+---
+
+# Question 3 — Entanglement
+
+## Réponse complète
+
+### Définition
+
+L'**intrication quantique** (*quantum entanglement*) est l'un des phénomènes les plus fondamentaux et les plus surprenants de la mécanique quantique. Elle survient dans les systèmes quantiques composites et décrit une situation dans laquelle les sous-systèmes d'un système composite ne peuvent pas être décrits indépendamment les uns des autres — même lorsqu'ils sont séparés par une grande distance.
+
+Formellement, un état de deux qubits $|\Psi\rangle \in \mathbb{C}^2 \otimes \mathbb{C}^2$ est dit **intriqué** si et seulement si il **ne peut pas** s'écrire comme un produit tensoriel $|\psi_1\rangle \otimes |\psi_2\rangle$ pour aucun choix de $|\psi_1\rangle, |\psi_2\rangle \in \mathbb{C}^2$. Dans le cas contraire, l'état est dit **produit** (*product state*), et les deux qubits sont indépendants.
+
+### La paire EPR / paire de Bell
+
+L'exemple emblématique d'état intriqué est la **paire d'Einstein-Podolsky-Rosen (EPR)**, aussi appelée **paire de Bell** (*Bell pair*) :
+
+$$|\Phi\rangle = \frac{1}{\sqrt{2}} \Big( |00\rangle + |11\rangle \Big)$$
+
+On peut vérifier que cet état est bien intriqué : supposons par l'absurde qu'il existe $(\alpha, \beta, \alpha', \beta')$ tels que $|\Phi\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes (\alpha'|0\rangle + \beta'|1\rangle)$. En développant le produit, on obtient $\alpha\alpha'|00\rangle + \alpha\beta'|01\rangle + \beta\alpha'|10\rangle + \beta\beta'|11\rangle$. Pour que ceci soit égal à $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, il faudrait $\alpha\beta' = 0$ et $\beta\alpha' = 0$, mais aussi $\alpha\alpha' = \beta\beta' = \frac{1}{\sqrt{2}} \neq 0$. Ces conditions sont contradictoires — l'état est donc bien intriqué.
+
+### Comment distinguer états produits et états intriqués
+
+Un état de deux qubits de la forme $\alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$ est un état **produit** si et seulement si $\alpha_{00}\alpha_{11} = \alpha_{01}\alpha_{10}$ (condition de rang 1 sur la matrice des coefficients). Exemples :
+
+- $\frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle - \frac{1}{2}|10\rangle - \frac{1}{2}|11\rangle$ → état **produit** (peut s'écrire $\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$)
+- $\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$ → état **intriqué**
+
+### Propriétés de l'intrication
+
+L'intrication possède des propriétés radicalement non classiques :
+
+- **Non-séparabilité :** L'état quantique de chaque particule d'une paire intriquée ne peut pas être décrit indépendamment de l'état de l'autre, quelle que soit la distance qui les sépare.
+- **Corrélations non locales :** La paire intriquée est un système quantique unique. L'état intriqué ne contient aucune information sur les particules individuelles, seulement sur leurs corrélations mutuelles.
+- **Effondrement corrélé :** Si l'état d'une particule est modifié (ou mesuré), l'état de l'autre se met à jour **instantanément** de façon cohérente avec les règles de la mécanique quantique.
+- **Mesure et corrélation :** Si une mesure est effectuée sur l'une des particules, l'autre **s'effondre automatiquement** dans un état cohérent avec le résultat observé.
+
+Einstein appelait ce phénomène les *« actions fantômes à distance »* (*spooky actions at a distance*). Il convient cependant de préciser que l'intrication ne permet pas de transmettre de l'information plus vite que la lumière : le résultat de chaque mesure individuelle reste aléatoire.
+
+### Génération d'intrication par circuit quantique
+
+Un état de Bell peut être généré à partir de l'état initial $|00\rangle$ avec seulement **deux portes** :
+
+1. Une porte **Hadamard** sur le qubit 1 : $|00\rangle \rightarrow \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$
+2. Une porte **CNOT** (qubit 1 contrôle, qubit 2 cible) : $\frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \rightarrow \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+
+Le résultat est la paire de Bell $\frac{|00\rangle + |11\rangle}{\sqrt{2}}$ : les deux qubits sont maintenant parfaitement corrélés — si l'un est mesuré à $|0\rangle$, l'autre sera $|0\rangle$, et si l'un est mesuré à $|1\rangle$, l'autre sera $|1\rangle$, quelle que soit la distance qui les sépare.
+
+### Rôle de l'intrication dans l'informatique quantique
+
+L'intrication est l'une des trois ressources computationnelles fondamentales de l'informatique quantique, avec la **superposition** et l'**interférence**. Elle joue un rôle central dans des protocoles fondamentaux comme la téléportation quantique, la cryptographie quantique (distribution de clés), les algorithmes de Shor et Grover, ainsi que dans la correction d'erreurs quantiques. On note également que la notion d'intrication apparaît dans des contextes aussi fondamentaux que la physique des trous noirs et la gravité quantique, via la correspondance AdS/CFT.
+
+::: {.callout-note title="Résumé — Question 3" collapse="true"}
+
+L'**intrication quantique** est un phénomène purement quantique dans lequel deux qubits (ou plus) forment un système dont l'état **ne peut pas** être factorisé en un produit tensoriel d'états individuels. L'état emblématique est la **paire de Bell** $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$. Un état intriqué ne contient aucune information sur les particules individuelles, seulement sur leurs corrélations : la mesure d'une particule effondre instantanément l'état de l'autre. Ce phénomène est non local mais ne permet pas la transmission supraluminique d'information. L'intrication est générée par le circuit Hadamard + CNOT et constitue, avec la superposition et l'interférence, l'une des trois ressources fondamentales de l'informatique quantique.
+
+:::
+
+---
+
+# Question 4 — Decoherence
+
+## Réponse complète
+
+### Définition
+
+La **décohérence quantique** (*quantum decoherence*) est le processus par lequel un système quantique perd son caractère quantique — en particulier ses propriétés de **superposition** et d'**intrication** — en raison de son interaction avec l'**environnement extérieur**.
+
+Physiquement, la décohérence peut être interprétée comme une **fuite d'information** du système quantique vers son environnement. Lorsqu'un qubit interagit avec des particules extérieures (photons thermiques, vibrations, champs électromagnétiques, etc.), ces interactions constituent des « mesures involontaires » effectuées par l'environnement sur le système. En conséquence, les superpositions délicates qui constituent la richesse computationnelle du système quantique s'effacent progressivement, et le système se comporte de plus en plus comme un système classique.
+
+### Mécanisme physique
+
+L'intuition est la suivante : imaginez une pièce en équilibre parfait sur sa tranche. Elle représente un état de superposition — ni face ni pile, mais les deux à la fois. Tout contact avec l'environnement — la moindre vibration, le plus infime courant d'air — la fait tomber d'un côté ou de l'autre. L'environnement a en quelque sorte "mesuré" la pièce et détruit la superposition. C'est exactement ce qui se passe avec la décohérence : chaque interaction avec l'environnement agit comme une mesure partielle qui détruit peu à peu la superposition quantique.
+
+### Conséquences pour le calcul quantique
+
+La décohérence a des conséquences pratiques considérables :
+
+- **Destruction de la superposition :** Un qubit en superposition $\alpha|0\rangle + \beta|1\rangle$ se retrouve progressivement dans un état classique déterminé, perdant ainsi toute capacité d'interférence.
+- **Destruction de l'intrication :** Les corrélations non classiques entre qubits intriqués sont érodées, réduisant l'avantage algorithmique attendu.
+- **Limitation de la profondeur des circuits :** Les temps de décohérence des qubits fixent une limite maximale sur la durée d'exécution d'un algorithme quantique. Si le calcul dure plus longtemps que le temps de cohérence, les résultats sont corrompus.
+- **Introduction d'erreurs quantiques :** La décohérence est la principale source d'erreurs dans les ordinateurs quantiques actuels.
+
+### Lien avec l'ère NISQ
+
+C'est précisément la décohérence qui explique l'appellation **NISQ** (*Noisy Intermediate-Scale Quantum*) pour qualifier les dispositifs quantiques actuels. Les qubits sont **extrêmement fragiles** : ils doivent être isolés avec une précision extraordinaire de tout contact avec l'environnement. Les appareils NISQ disposent d'environ 100 qubits contrôlables, mais le bruit (en grande partie dû à la décohérence) empêche l'exécution d'algorithmes complexes comme l'algorithme de Shor.
+
+### Conditions techniques pour limiter la décohérence
+
+Pour contrecarrer la décohérence, les architectures d'ordinateurs quantiques imposent des exigences très strictes :
+
+- **Isolation quasi-totale de l'environnement** : les qubits supraconducteurs, par exemple, opèrent à des températures proches du zéro absolu (quelques millikelvins) pour minimiser les interactions thermiques.
+- **Temps de décohérence très longs** : l'état quantique cohérent doit être maintenu pendant toute la durée du calcul.
+- **Opérations rapides** : les portes quantiques doivent s'exécuter beaucoup plus rapidement que le temps de décohérence.
+
+### La correction d'erreurs quantiques comme remède
+
+Face à la décohérence, la **correction d'erreurs quantiques** (*Quantum Error Correction*) est la réponse théorique fondamentale. Elle repose sur l'encodage redondant de l'information quantique : un seul qubit **logique** est encodé dans de nombreux qubits **physiques**, de sorte que les erreurs dues à la décohérence peuvent être détectées et corrigées sans détruire l'état quantique. Pour qu'un ordinateur quantique soit tolérant aux pannes (*fault-tolerant*), il faut corriger les erreurs **plus vite qu'elles ne se produisent**. Des avancées remarquables ont été réalisées récemment dans cette direction, notamment une expérience à 101 qubits physiques chez Google montrant une réduction du taux d'erreur effectif à chaque augmentation de la taille du code.
+
+::: {.callout-note title="Résumé — Question 4" collapse="true"}
+
+La **décohérence quantique** est la perte de superposition et d'intrication d'un système quantique par interaction avec son environnement. Elle peut être vue comme une « mesure involontaire » réalisée par l'environnement sur le système. Ses conséquences sont la destruction des superpositions, l'érosion de l'intrication, la limitation de la profondeur des circuits et l'introduction d'erreurs. Elle est le principal obstacle à la construction d'ordinateurs quantiques performants et est responsable du caractère *noisy* de l'ère NISQ. Pour la combattre, les systèmes quantiques doivent être isolés à l'extrême (températures cryogéniques), et la **correction d'erreurs quantiques** (encodage redondant de qubits logiques dans des qubits physiques) constitue la solution théorique vers laquelle tend l'informatique quantique tolérant aux pannes.
+
+:::
+
+---
+
+# Question 5 — Effect of qubit observation
+
+## Réponse complète
+
+### La mesure en mécanique quantique
+
+Observer (mesurer) un qubit est un acte fondamentalement différent de lire la valeur d'un bit classique. En informatique classique, la lecture d'un bit ne perturbe pas sa valeur et peut être répétée autant de fois que désiré. En mécanique quantique, la mesure est un processus **probabiliste**, **destructeur** et **irréversible** qui transforme radicalement l'état du système.
+
+### La règle de Born : probabilités de mesure
+
+Lorsqu'un qubit dans l'état $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ est mesuré, la **règle de Born** donne les probabilités de chaque résultat :
+
+$$\Pr[\text{observer } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{observer } |1\rangle] = |\beta|^2$$
+
+La condition de normalisation $|\alpha|^2 + |\beta|^2 = 1$ garantit la cohérence probabiliste. Le résultat obtenu est classique — soit $|0\rangle$, soit $|1\rangle$ — même si le système était auparavant dans une superposition des deux.
+
+### L'effondrement de la fonction d'onde (Collapse)
+
+Après la mesure, l'état du qubit **s'effondre** (*collapses*) de façon irréversible vers l'état observé. Ainsi :
+
+- Si le résultat est $|0\rangle$, l'état du qubit devient $|0\rangle$ et toute information sur $\beta$ est perdue.
+- Si le résultat est $|1\rangle$, l'état devient $|1\rangle$ et toute information sur $\alpha$ est perdue.
+
+L'état de superposition précédent est **définitivement perdu** — la mesure perturbe le système de façon fondamentale. Il s'ensuit qu'une mesure répétée donne toujours le même résultat : *mesurer un système deux fois est équivalent à le mesurer une fois*.
+
+### Mesure intermédiaire et interférence quantique
+
+L'effet de la mesure est illustré de façon saisissante par deux expériences mettant en jeu la porte de Hadamard.
+
+**Expérience A : avec mesure intermédiaire**
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+1. H transforme $|0\rangle$ en $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+2. La mesure intermédiaire donne $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$ chacun, et l'état s'effondre vers ce résultat.
+3. H est appliqué au résultat ($|0\rangle$ ou $|1\rangle$) : dans chaque cas, on obtient $|+\rangle$ ou $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$.
+4. Mesure finale : dans les deux cas, le résultat est $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$.
+
+**Résultat :** $|0\rangle$ et $|1\rangle$ avec probabilité égale $\frac{1}{2}$.
+
+**Expérience B : sans mesure intermédiaire**
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+1. H transforme $|0\rangle$ en $|+\rangle$.
+2. H est appliqué à $|+\rangle$ : comme $H^2 = I$, on retrouve $|0\rangle$.
+3. Mesure finale.
+
+**Résultat :** $|0\rangle$ avec probabilité 1 — le résultat est **déterministe**.
+
+### Interférence quantique : l'explication
+
+Ces deux expériences semblent identiques mais donnent des résultats radicalement différents. La clé réside dans le phénomène d'**interférence quantique** :
+
+En appliquant plusieurs portes unitaires à un qubit, on crée un **arbre de chemins** entre états. Chaque chemin possède une **amplitude de transition** — le produit des amplitudes le long du chemin. Avant la mesure, l'amplitude d'atteindre un état $|b\rangle$ est la **somme des amplitudes de transition** de tous les chemins conduisant à $|b\rangle$.
+
+Puisque les amplitudes peuvent être **négatives ou complexes**, des chemins peuvent **s'interférer destructivement** (s'annuler) ou **constructivement** (s'additionner). Dans l'expérience B, les chemins conduisant à $|1\rangle$ s'annulent par interférence destructive, tandis que ceux conduisant à $|0\rangle$ s'additionnent.
+
+En revanche, une **mesure intermédiaire détruit la superposition** : elle force le système dans un état classique et supprime les interférences. Seuls les chemins cohérents avec le résultat de la mesure sont maintenus. Le résultat devient alors aléatoire, comme dans l'expérience A.
+
+### Implication fondamentale pour l'algorithmique quantique
+
+Cette propriété est cruciale pour la conception des algorithmes quantiques : **toute mesure intermédiaire détruit l'interférence et rend le calcul aléatoire**. Les mesures ne doivent être effectuées qu'en fin de calcul, après que les opérations unitaires ont amplifié constructivement les amplitudes des bonnes réponses et annulé destructivement celles des mauvaises.
+
+### Distinguer deux états quantiques
+
+Une conséquence importante de ce mécanisme est la possibilité de distinguer des états orthogonaux par mesure dans une base appropriée. Par exemple, pour distinguer $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ de $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$, une mesure directe dans la base standard ne suffit pas (les deux donnent $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$). En revanche, en appliquant H **avant** la mesure :
+
+- $H|+\rangle = |0\rangle$ → mesure toujours $|0\rangle$
+- $H|-\rangle = |1\rangle$ → mesure toujours $|1\rangle$
+
+Les états orthogonaux peuvent donc être **parfaitement distingués** en choisissant la bonne base de mesure.
+
+::: {.callout-note title="Résumé — Question 5" collapse="true"}
+
+Observer un qubit (le mesurer) est un acte irréversible et probabiliste. La **règle de Born** donne $\Pr[|0\rangle] = |\alpha|^2$ et $\Pr[|1\rangle] = |\beta|^2$. Après mesure, l'état **s'effondre** vers le résultat observé, détruisant la superposition. Une mesure intermédiaire dans un circuit **détruit l'interférence quantique** : les amplitudes qui auraient pu s'annuler destructivement sont coupées, rendant le résultat aléatoire (expérience A avec mesure intermédiaire : résultat 50/50). Sans mesure intermédiaire, les amplitudes interfèrent et peuvent produire un résultat déterministe (expérience B, $H^2=I$ : résultat toujours $|0\rangle$). L'art des algorithmes quantiques consiste précisément à placer les mesures uniquement en fin de circuit, après amplification constructive des bonnes réponses.
+
+:::
+
+---
+
+# Question 6 — Single and double qubit gates
+
+## Réponse complète
+
+### Définition d'une porte quantique
+
+Une **porte quantique** (*quantum gate*) est une opération élémentaire sur des qubits dans un circuit quantique. Elle joue un rôle analogue à celui des portes logiques (AND, OR, NOT) dans les circuits classiques, mais avec deux différences fondamentales :
+
+1. **Unitarité :** Toute porte quantique $U$ agissant sur $n$ qubits est représentée par une **matrice unitaire** $2^n \times 2^n$, vérifiant $UU^\dagger = I$. Cela garantit que l'opération préserve la norme des vecteurs d'état et est donc physiquement cohérente.
+2. **Réversibilité :** Toutes les portes quantiques sont **réversibles** (car unitaires), contrairement aux portes classiques comme AND ou OR. L'inverse d'une porte $U$ est son conjugué Hermitien $U^\dagger$.
+
+### Portes à un qubit (Single-qubit gates)
+
+#### Porte Pauli-X (NOT quantique)
+
+La **porte Pauli-X** est l'analogue quantique de la porte NOT classique. Elle échange les amplitudes de $|0\rangle$ et $|1\rangle$ :
+
+$$X|0\rangle = |1\rangle \qquad X|1\rangle = |0\rangle$$
+
+$$X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$$
+
+Sur des états purs $|0\rangle$ ou $|1\rangle$, elle se comporte exactement comme la porte NOT classique.
+
+#### Porte Pauli-Y
+
+La **porte Pauli-Y** n'a pas d'équivalent classique. Elle introduit une phase complexe $i$ :
+
+$$Y|0\rangle = i|1\rangle \qquad Y|1\rangle = -i|0\rangle$$
+
+$$Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$$
+
+#### Porte Pauli-Z et portes de phase
+
+La **porte Pauli-Z** laisse $|0\rangle$ inchangé et multiplie $|1\rangle$ par $-1$ :
+
+$$Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$$
+
+La **porte de phase S** introduit un déphasage de $\frac{\pi}{2}$ sur la composante $|1\rangle$ :
+
+$$S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \qquad S^2 = Z$$
+
+La **porte $\pi/8$ (porte T)** introduit un déphasage de $\frac{\pi}{4}$ :
+
+$$T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$$
+
+Ces portes peuvent être visualisées sur la **sphère de Bloch**, une représentation géométrique de l'état d'un qubit en termes des angles $\theta$ et $\varphi$.
+
+#### Porte de Hadamard (H) — La plus importante
+
+La **porte de Hadamard** est l'une des portes les plus fondamentales de l'informatique quantique. Elle transforme les états de la base standard en superpositions parfaites :
+
+$$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$$
+
+$$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle$$
+
+$$H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$
+
+Propriétés remarquables :
+
+- **Aucun équivalent classique** : H crée une superposition parfaite entre $|0\rangle$ et $|1\rangle$.
+- **Auto-inverse :** $H^2 = I$, c'est-à-dire que H est son propre inverse. Appliquer H deux fois revient à n'avoir rien fait.
+- **Dualité déterminisme-aléatoire :** Appliquer H à un état déterministe $|0\rangle$ ou $|1\rangle$ produit un état aléatoire (la mesure donne $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$). Inversement, appliquer H à l'état aléatoire $|+\rangle$ produit l'état déterministe $|0\rangle$. Cette apparente contradiction est en réalité une manifestation de l'interférence quantique.
+- **Changement de base :** H transforme la base standard $\{|0\rangle, |1\rangle\}$ en la base de Hadamard $\{|+\rangle, |-\rangle\}$ et vice versa.
+
+### Porte à deux qubits : la porte CNOT (Controlled-NOT)
+
+La **porte CNOT** est une porte à **deux qubits** : un **qubit de contrôle** et un **qubit cible**.
+
+Règle d'action : si le qubit de contrôle est $|0\rangle$, le qubit cible reste inchangé ; si le qubit de contrôle est $|1\rangle$, le qubit cible est **inversé**.
+
+$$|00\rangle \rightarrow |00\rangle \qquad |01\rangle \rightarrow |01\rangle \qquad |10\rangle \rightarrow |11\rangle \qquad |11\rangle \rightarrow |10\rangle$$
+
+$$\text{CNOT} = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{bmatrix}$$
+
+La porte CNOT est l'équivalent de la **porte XOR classique** sur les états de base, mais elle agit également sur les superpositions. En particulier, appliquée après une porte H sur le qubit de contrôle, elle génère l'**intrication** (paire de Bell).
+
+### Tableau comparatif portes quantiques / classiques
+
+| Porte quantique | Équivalent classique |
+|-----------------|----------------------|
+| Pauli-X (X)     | NOT                  |
+| CNOT (CX)       | XOR                  |
+| Toffoli (CCNOT) | NAND (universel)     |
+| Pauli-Y (Y)     | Aucun                |
+| Hadamard (H)    | Aucun                |
+| Phase (S, T)    | Aucun                |
+
+### Universalité
+
+Un ensemble de portes est dit **universel** s'il permet d'approximer toute transformation unitaire arbitraire sur $n$ qubits. Contrairement au classique où {NAND} suffit, il n'existe pas d'ensemble canonique unique universel en quantique — mais plusieurs ensembles ont été identifiés, par exemple $\{H, T, \text{CNOT}\}$.
+
+::: {.callout-note title="Résumé — Question 6" collapse="true"}
+
+Les **portes quantiques** sont des matrices unitaires qui transforment des états de qubits de façon réversible. Les portes à **un qubit** principales sont : la **porte Pauli-X** (analogue de NOT, échange $|0\rangle$ et $|1\rangle$), la **porte Pauli-Y** (déphasage complexe, sans équivalent classique), la **porte Pauli-Z** et les portes de phase **S** et **T** (agissent sur la phase de $|1\rangle$), et la **porte de Hadamard H** (crée des superpositions, $H^2=I$, aucun équivalent classique). La porte à **deux qubits** fondamentale est la **porte CNOT** : elle inverse le qubit cible si et seulement si le qubit de contrôle est $|1\rangle$, et est équivalente à XOR classique. En combinaison avec H, elle génère l'intrication. Toutes les portes quantiques sont réversibles (unitaires), contrairement à la majorité des portes classiques.
+
+:::
+
+---
+
+# Question 7 — Quantum circuits
+
+## Réponse complète
+
+### Définition
+
+Un **circuit quantique** (*quantum circuit*) est le modèle de calcul standard en informatique quantique. Il s'agit d'une **séquence de portes quantiques** appliquées à un registre de $n$ qubits, reliés par des "fils" représentant le passage du temps. Chaque fil correspond à un qubit, et le circuit se lit de gauche à droite.
+
+Deux propriétés structurelles fondamentales le distinguent d'un circuit classique :
+
+- **Largeur fixe :** Le même nombre de fils traverse tout le circuit. Les opérations quantiques (unitaires) sont **réversibles** et n'effacent pas d'information, contrairement aux portes classiques comme AND ou OR.
+- **Espace d'états exponentiel :** Pour $n$ qubits, l'espace d'états est de dimension $2^n$, contre $n$ pour un circuit classique à $n$ bits. C'est la source principale de la puissance quantique.
+
+### Comparaison circuits classiques vs circuits quantiques
+
+| Propriété | Circuits classiques | Circuits quantiques |
+|-----------|---------------------|---------------------|
+| États des signaux | Vecteurs de bits ($X = 01010$) | Superpositions de vecteurs de qubits avec amplitudes complexes |
+| Opérations | Algèbre de Boole | Algèbre linéaire sur espace de Hilbert (matrices unitaires) |
+| Copie des signaux | Possible | Interdite (théorème de non-clonage) |
+| Mesure | Non destructrice, répétable | Destructrice, irréversible |
+| Portes universelles | {NAND}, {AND, OR, NOT} | $\{H, T, \text{CNOT}\}$ (et autres) |
+| Réversibilité | Non (AND, OR…) | Toujours (matrices unitaires) |
+| Technologies | CMOS rapide, robuste, scalable | NMR, supraconducteurs — fragiles, lents, pas encore scalables |
+
+### Exemple fondamental : génération d'une paire de Bell
+
+Le circuit le plus illustratif est la génération d'un état de Bell (intrication maximale) à partir de deux qubits dans l'état $|00\rangle$ :
+
+**Étape 1 — État initial :**
+
+$$|00\rangle$$
+
+**Étape 2 — Porte H sur le qubit 1 :**
+
+$$\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$$
+
+**Étape 3 — Porte CNOT (qubit 1 = contrôle, qubit 2 = cible) :**
+
+$$\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+On obtient la paire de Bell — un état intriqué. Ce circuit illustre comment deux portes élémentaires suffisent à créer des corrélations non classiques entre deux qubits. La porte H crée la superposition sur le qubit de contrôle, et le CNOT "copie" cette superposition sur la corrélation avec le qubit cible (sans copier l'état lui-même, ce qui serait interdit).
+
+### Architecture d'un ordinateur quantique
+
+Un circuit quantique s'inscrit dans une architecture plus large. L'exécution se déroule en quatre étapes :
+
+1. L'ordinateur **classique** prépare et soumet un programme quantique (description du circuit).
+2. Le **contrôleur** de l'ordinateur quantique traduit les portes en impulsions physiques (micro-ondes pour les qubits supraconducteurs).
+3. Le **registre quantique** exécute les opérations.
+4. Les **résultats de mesure** sont renvoyés à l'ordinateur classique pour traitement.
+
+Pour fonctionner correctement, un circuit quantique requiert :
+
+- Un ensemble universel de portes quantiques disponible physiquement.
+- La capacité d'enchevêtrer des qubits.
+- Des temps de décohérence suffisamment longs pour terminer le calcul.
+- Une préparation fiable de l'état initial.
+- Une mesure fiable de l'état final.
+
+### Programmation des circuits quantiques
+
+Les circuits quantiques peuvent être programmés via des langages et frameworks dédiés. **QCL** (*Quantum Computation Language*), de syntaxe proche du C, permet de combiner code quantique et classique. **Qiskit** d'IBM est un framework Python open-source largement utilisé. Un exemple simple en Qiskit crée un circuit à deux qubits, applique une rotation $R_x(\pi/2)$ puis une porte CNOT, et mesure les résultats. Ces outils sont accessibles via le cloud (IBM Quantum Experience) sur des machines réelles.
+
+### Limites actuelles des circuits quantiques
+
+Les dispositifs NISQ actuels permettent d'exécuter des circuits de **largeur** (nombre de qubits) et de **profondeur** (nombre d'étapes) limitées. Le **volume quantique** est la métrique qui capture précisément cette tension entre largeur et profondeur — ce point est détaillé dans la question 9.
+
+::: {.callout-note title="Résumé — Question 7" collapse="true"}
+
+Un **circuit quantique** est une séquence de portes quantiques (matrices unitaires) appliquées à un registre de $n$ qubits. Contrairement aux circuits classiques, les signaux sont des superpositions d'états à amplitudes complexes, les opérations sont toujours réversibles, et l'espace d'états est de dimension $2^n$. Le circuit emblématique H + CNOT génère la paire de Bell $\frac{|00\rangle+|11\rangle}{\sqrt{2}}$ à partir de $|00\rangle$ en deux étapes. En pratique, un circuit quantique est exécuté sur un ordinateur quantique (contrôlé par un ordinateur classique) qui traduit les portes en impulsions physiques. Les contraintes pratiques (décohérence, temps de cohérence) limitent la profondeur des circuits exécutables sur les appareils NISQ actuels.
+
+:::
+
+---
+
+# Question 8 — Quantum algorithms
+
+## Réponse complète
+
+### Pourquoi les algorithmes quantiques peuvent-ils être plus rapides ?
+
+La puissance des algorithmes quantiques repose sur trois ressources fondamentales absentes de l'informatique classique :
+
+1. **Le parallélisme quantique** (*quantum parallelism*) : en exploitant des superpositions d'états, un ordinateur quantique peut exécuter un algorithme sur **toutes les entrées possibles simultanément**. Classiquement, calculer une fonction sur $2^n$ valeurs requiert $2^n$ étapes ou $2^n$ processeurs. Quantiquement, la même opération sur $2^n$ valeurs encodées dans $n$ qubits requiert une seule étape.
+
+2. **La dimension exponentielle de l'espace de Hilbert** : l'espace d'états d'un système de $n$ qubits est de dimension $2^n$. L'information peut donc être représentée et manipulée dans un espace d'une richesse structurelle incomparablement plus grande que l'espace classique correspondant.
+
+3. **L'intrication** (*entanglement*) : les corrélations non classiques entre qubits permettent de traiter des informations d'une façon qualitativement différente de ce que permet la physique classique.
+
+À ces ressources s'ajoute le mécanisme central de l'**interférence quantique** : une conception algorithmique astucieuse amplifie constructivement les amplitudes des bonnes réponses et supprime destructivement celles des mauvaises, avant la mesure finale. C'est ce mécanisme qui distingue un algorithme quantique efficace d'une simple exploration aléatoire.
+
+### Démystification d'une idée reçue
+
+Il est important de corriger le mythe selon lequel un ordinateur quantique « essaie toutes les solutions simultanément ». La superposition quantique n'est **pas** un parallélisme massif : la mesure d'un état en superposition donne **un seul résultat** probabiliste. L'art de l'algorithmique quantique consiste précisément à orchestrer l'interférence pour que la bonne réponse ait une probabilité élevée d'être obtenue lors de la mesure.
+
+### Panorama des algorithmes quantiques
+
+#### Accélérations exponentielles pour les problèmes structurés
+
+**Algorithme de Shor (factorisation entière)**
+
+Proposé par Peter Shor en 1994, cet algorithme résout le problème de la **factorisation d'entiers** en temps polynomial sur un ordinateur quantique, contre un temps sous-exponentiel pour les meilleurs algorithmes classiques connus. Son cœur repose sur la **transformée de Fourier quantique** (*QFT*), qui calcule une transformation de Fourier en $O(\log^2 N)$ étapes au lieu de $O(N \log N)$ classiquement (pour $N = 2^n$ valeurs) — une accélération exponentielle. L'impact cryptographique est considérable : la sécurité du système RSA, le plus déployé sur Internet, repose sur la difficulté supposée de la factorisation. Un ordinateur quantique suffisamment grand (des millions de qubits logiques avec correction d'erreurs) pourrait casser RSA.
+
+**Problème du sous-groupe caché** (*Hidden Subgroup Problem*) : l'algorithme de Shor est une instance de cette famille plus générale, qui inclut également le problème du logarithme discret.
+
+**Tableau des accélérations :**
+
+| Algorithme | Complexité classique | Complexité quantique |
+|------------|----------------------|----------------------|
+| Transformée de Fourier (QFT) | $N\log N = n \cdot 2^n$ | $\log^2 N = n^2$ |
+| Recherche dans une base de données | $N$ requêtes | $\sqrt{N}$ requêtes |
+| Simulation de $N$ particules quantiques | $c^N$ bits | $kN$ qubits |
+
+#### Accélérations polynomiales pour la recherche non structurée
+
+**Algorithme de Grover** (*Grover search*)
+
+L'algorithme de Grover permet de chercher un élément dans une base de données non ordonnée de $N$ entrées en $O(\sqrt{N})$ requêtes, contre $O(N)$ classiquement. Cette accélération **quadratique** est prouvablement optimale pour la recherche non structurée — il n'existe pas de meilleur algorithme quantique pour ce problème. Bien que moindre que l'accélération exponentielle de Shor, elle est universelle et s'applique à tout problème de recherche.
+
+#### Accélérations exponentielles pour la simulation quantique
+
+C'est probablement **l'application la plus prometteuse** des ordinateurs quantiques à ce jour. La motivation remonte à Feynman (1981) : un ordinateur quantique peut simuler un système quantique naturellement, en encodant l'état de $N$ particules dans $N$ qubits — contre $2^N$ bits classiques requis pour la même tâche. Les applications incluent :
+
+- Simulation de molécules pour la découverte de nouveaux médicaments.
+- Simulation de matériaux pour l'énergie (supraconducteurs, batteries) et l'électronique.
+- Simulation de systèmes fortement corrélés inaccessibles aux méthodes classiques.
+
+#### Algorithmes pour l'ère NISQ
+
+Les dispositifs actuels (bruyants, à échelle intermédiaire) ont motivé le développement d'algorithmes hybrides :
+
+- **VQE** (*Variational Quantum Eigensolver*) : calcule l'énergie fondamentale d'un système quantique via une boucle hybride classique-quantique.
+- **QAOA** (*Quantum Approximate Optimization Algorithm*) : aborde des problèmes d'optimisation combinatoire avec un circuit quantique paramétré.
+
+Ces algorithmes utilisent un processeur quantique pour évaluer une fonction de coût, et un optimiseur classique pour ajuster les paramètres du circuit.
+
+#### Apprentissage automatique quantique
+
+Un domaine émergent explore des accélérations potentielles pour :
+
+- La résolution de systèmes linéaires (*algorithme HHL*).
+- Les systèmes de recommandation.
+- Les réseaux de neurones quantiques.
+- L'optimisation convexe et la programmation semi-définie.
+
+Un exemple illustratif : en 2016, un algorithme quantique résolvait un problème de recommandation en temps $O(\text{poly}\log(mn))$ contre $O(\text{poly}(mn))$ classiquement. En 2018, cet algorithme quantique a inspiré un algorithme **classique** atteignant la même complexité — preuve que penser quantiquement a une valeur intrinsèque même pour l'algorithmique classique.
+
+### Limites fondamentales
+
+Les ordinateurs quantiques **ne peuvent probablement pas** résoudre les problèmes NP-difficiles en temps polynomial (comme le problème du voyageur de commerce). Ils excellent sur des problèmes possédant une **structure mathématique exploitable** (périodicité pour Shor, amplitude uniforme pour Grover, structure hamiltonienne pour la simulation). Les problèmes sans cette structure ne bénéficient pas d'accélération quantique significative.
+
+::: {.callout-note title="Résumé — Question 8" collapse="true"}
+
+Les **algorithmes quantiques** exploitent trois ressources fondamentales : le parallélisme (superposition), la dimension exponentielle de l'espace de Hilbert, et l'intrication — avec l'**interférence quantique** comme mécanisme central amplifiant les bonnes réponses. Les principales catégories d'accélérations sont : (1) **exponentielles pour les problèmes structurés** — algorithme de **Shor** (factorisation via QFT, menace RSA) et problème du sous-groupe caché ; (2) **quadratique pour la recherche non structurée** — algorithme de **Grover** ($O(\sqrt{N})$ vs $O(N)$) ; (3) **exponentielles pour la simulation quantique** (le rêve de Feynman, simulation de molécules et matériaux). Pour les appareils NISQ, des algorithmes hybrides **VQE** et **QAOA** ont été développés. Les ordinateurs quantiques ne résolvent pas les problèmes NP-difficiles généraux, et leur avantage est toujours mesuré par rapport aux meilleurs algorithmes classiques disponibles.
+
+:::
+
+---
+
+# Question 9 — Quantum volume
+
+## Réponse complète
+
+### Motivation : pourquoi une nouvelle métrique ?
+
+Avec la prolifération des plateformes quantiques (qubits supraconducteurs chez IBM et Google, ions piégés chez Honeywell, etc.) et la course au nombre de qubits, il est devenu clair que le **nombre brut de qubits** n'est pas une mesure suffisante de la puissance réelle d'un ordinateur quantique. En effet, un dispositif avec de nombreux qubits mais des taux d'erreurs élevés peut être moins utile qu'un dispositif avec moins de qubits mais de meilleure qualité. Le **volume quantique** a été introduit pour capturer cette tension entre quantité et qualité.
+
+### Définition formelle
+
+Le **volume quantique** $V_Q$ (*Quantum Volume*) est une métrique qui mesure à la fois les **capacités** et les **taux d'erreur** d'un ordinateur quantique. Il a été défini par Nikolaj Moll *et al.* dans *Quantum Science and Technology*, **3**, 030503 (2018).
+
+Il dépend de deux paramètres fondamentaux :
+
+- Le **nombre de qubits** $N$ du dispositif.
+- La **profondeur de circuit** $d(N)$ : le nombre maximal d'étapes (couches de portes) pouvant être exécutées de façon fiable sur $N$ qubits.
+
+La formule originale est :
+
+$$\tilde{V}_Q = \min[N, d(N)]^2$$
+
+Cette formulation capture l'idée que la puissance effective d'un ordinateur quantique est limitée par le plus petit des deux facteurs : soit le nombre de qubits disponibles, soit la profondeur de circuit réalisable. En d'autres termes, un ordinateur avec beaucoup de qubits mais une faible profondeur, ou peu de qubits mais une grande profondeur, sera limité par son facteur le plus faible.
+
+IBM a proposé une version légèrement modifiée :
+
+$$\log_2 V_Q = \arg\max_{n \leq N} \{\min[n, d(n)]\}$$
+
+Cette formulation choisit le nombre optimal de qubits $n$ (jusqu'à $N$) qui maximise le minimum entre $n$ et la profondeur $d(n)$, puis prend $2$ à la puissance de ce maximum comme volume quantique.
+
+### Interprétation physique
+
+Le volume quantique peut s'interpréter comme la **taille du plus grand circuit carré** (nombre de qubits $\times$ profondeur) qu'un ordinateur quantique peut exécuter de façon fiable. Plus cette taille est grande, plus le dispositif est puissant en pratique. La notion de "fiabilité" est essentielle : un circuit est considéré réussi si la sortie obtenue est statistiquement proche de la sortie théorique attendue.
+
+La décohérence, les erreurs de portes, la connectivité limitée entre qubits, et la fidélité des mesures contribuent tous à limiter la profondeur effective $d(N)$, et donc le volume quantique.
+
+### Évolution historique
+
+| Date | Volume quantique | Fabricant | Notes |
+|------|-----------------|-----------|-------|
+| Janvier 2020 | 32 (circuit 5×5) | IBM | Processeur « Raleigh » (28 qubits physiques) |
+| Juin 2020 | 64 (circuit 6×6) | Honeywell | 6 qubits seulement |
+| Août 2020 | 64 (circuit 6×6) | IBM | 27 qubits |
+| Novembre 2020 | 128 (circuit 7×7) | Honeywell | Processeur « H1 » (10 qubits) |
+
+Ces chiffres illustrent un point crucial : **Honeywell a atteint un volume quantique de 64 avec seulement 6 qubits**, là où IBM en utilisait 27 pour le même score. Cela démontre que la qualité des qubits (faible taux d'erreur, grande profondeur réalisable) peut compenser leur nombre. C'est exactement l'essence de la métrique.
+
+### Mise en contexte : la course aux qubits et ses limites
+
+La course aux qubits (*qubit race*) tend à être présentée dans les médias sous l'angle du nombre brut de qubits. Le volume quantique rappelle que **la qualité importe autant que la quantité**. Un ordinateur quantique avec des millions de qubits mais de mauvaise qualité serait inutilisable pour des calculs pratiques, tandis qu'un dispositif plus petit mais très fiable pourrait réaliser des tâches impossibles classiquement pour les problèmes adaptés.
+
+Le volume quantique s'inscrit donc dans la réflexion plus large sur le passage à l'échelle (*scaling*) des ordinateurs quantiques : il ne suffit pas d'augmenter le nombre de qubits, il faut simultanément maintenir ou améliorer leur qualité, ce qui nécessite des avancées en correction d'erreurs quantiques, en ingénierie des matériaux, et en conception de circuits.
+
+::: {.callout-note title="Résumé — Question 9" collapse="true"}
+
+Le **volume quantique** $V_Q$ est une métrique holiste de la puissance réelle d'un ordinateur quantique, définie par Moll *et al.* (2018). Il capture à la fois le **nombre de qubits** $N$ et la **profondeur de circuit** $d(N)$ réalisable de façon fiable, via $\tilde{V}_Q = \min[N, d(N)]^2$ (IBM : $\log_2 V_Q = \arg\max_{n \leq N} \{\min[n, d(n)]\}$). Il mesure la taille du plus grand circuit carré exécutable fiablement. Son intérêt est de capturer la **tension qualité/quantité** : un dispositif avec peu de qubits très fiables peut surpasser un dispositif avec beaucoup de qubits bruités (ex : Honeywell atteint VQ=64 avec 6 qubits, IBM avec 27). L'évolution historique (2020 : 32→128) reflète les progrès rapides des plateformes supraconductrices et à ions piégés. Cette métrique est essentielle pour comparer objectivement les différentes architectures d'ordinateurs quantiques.
+
+:::
+
+# Question 10 — Helstrom-Holevo bound
+
+## Contexte : la discrimination d'états quantiques
+
+La borne de Helstrom-Holevo s'inscrit dans le cadre plus général du problème de la **discrimination d'états quantiques** : étant donné un qubit dans un état inconnu $|\psi\rangle$, qui est soit $|\psi_a\rangle$ soit $|\psi_b\rangle$ (chacun avec probabilité $\tfrac{1}{2}$), quelle est la probabilité maximale avec laquelle une mesure quelconque peut correctement identifier lequel des deux états est présent ?
+
+Avant d'énoncer la borne, il convient de rappeler le résultat positif sur lequel elle s'appuie par contraste : deux états **orthogonaux** (dont le produit scalaire est nul, $\langle\psi_a|\psi_b\rangle = 0$) peuvent toujours être discriminés parfaitement. On construit pour cela la matrice unitaire dont les colonnes sont les vecteurs des deux états, on applique son adjoint $U^\dagger$ pour les ramener dans la base computationnelle, puis on mesure. Cette procédure donne systématiquement le bon résultat avec probabilité 1.
+
+En revanche, si les deux états **ne sont pas orthogonaux**, aucune mesure ne peut les distinguer parfaitement. La borne de Helstrom-Holevo quantifie précisément la limite de ce qu'il est possible d'atteindre.
+
+## Énoncé formel de la borne
+
+::: {.callout-important}
+**Borne de Helstrom-Holevo.**
+Soit $|\psi\rangle$ un qubit qui est soit $|\psi_a\rangle$ soit $|\psi_b\rangle$, et soit $|\langle\psi_a|\psi_b\rangle| = \cos\theta$ le module de leur produit scalaire, où $\theta \in [0, \tfrac{\pi}{2}]$ est l'angle entre les deux états. Alors, pour toute stratégie de mesure, la probabilité de correctement inférer l'état est **au plus** :
+
+$$p_{\text{succès}} \leq \frac{1}{2}(1 + \sin\theta)$$
+:::
+
+Cette borne est **atteinte** : il existe une mesure qui permet d'atteindre exactement cette probabilité maximale. Elle n'est donc pas seulement une borne supérieure ; c'est la valeur optimale exacte.
+
+## Interprétation géométrique
+
+L'angle $\theta$ joue un rôle géométrique central. Deux cas extrêmes permettent d'en saisir le sens :
+
+- Lorsque $|\psi_a\rangle \perp |\psi_b\rangle$, on a $\theta = \tfrac{\pi}{2}$, donc $\sin\theta = 1$, et $p_{\text{succès}} = \tfrac{1}{2}(1 + 1) = 1$ : les états orthogonaux sont distinguables parfaitement, ce qui est cohérent avec le résultat mentionné plus haut.
+
+- Lorsque $|\psi_a\rangle = |\psi_b\rangle$ (états identiques), on a $\theta = 0$, donc $\sin\theta = 0$, et $p_{\text{succès}} = \tfrac{1}{2}$ : on ne fait pas mieux que le hasard, ce qui est attendu puisqu'il est impossible de distinguer deux états identiques.
+
+- Pour des états quelconques non orthogonaux, la probabilité de succès maximale est strictement comprise entre $\tfrac{1}{2}$ et $1$, et croît à mesure que $\theta$ augmente, c'est-à-dire que les états deviennent plus « écartés » dans l'espace de Hilbert.
+
+## La mesure optimale
+
+La borne est atteinte en choisissant comme base de mesure les **vecteurs propres** de l'opérateur :
+
+$$|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$$
+
+Cette base est celle qui « équilibre » au mieux la discrimination entre les deux états, en plaçant les vecteurs de la base de mesure de façon symétrique par rapport aux deux états à distinguer.
+
+## Exemple illustratif : distinguer $|0\rangle$ et $|+\rangle$
+
+Les états $|0\rangle$ et $|+\rangle = \tfrac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ ont un produit scalaire :
+
+$$\langle 0|{+}\rangle = \frac{1}{\sqrt{2}} \neq 0$$
+
+Ils ne sont donc pas orthogonaux. On a $\cos\theta = \tfrac{1}{\sqrt{2}}$, soit $\theta = 45°$.
+
+La borne de Helstrom-Holevo donne :
+
+$$p_{\text{succès}} \leq \frac{1}{2}\!\left(1 + \sin(45°)\right) = \frac{1}{2}\!\left(1 + \frac{1}{\sqrt{2}}\right) \approx 0{,}85$$
+
+Autrement dit, même la meilleure stratégie de mesure possible ne peut correctement identifier l'état qu'avec une probabilité de 85 %.
+
+À titre de comparaison, une stratégie sous-optimale — mesurer dans la base computationnelle $\{|0\rangle, |1\rangle\}$ — donne une probabilité de succès de seulement $\tfrac{3}{4} = 75\,\%$. Cette stratégie a cependant l'avantage d'offrir une **certitude partielle** : si l'outcome est $1$ (ce qui n'arrive jamais quand l'état est $|0\rangle$), on est sûr à 100 % que l'état était $|+\rangle$.
+
+## Compromis entre probabilité de succès et certitude
+
+La borne de Helstrom-Holevo correspond à la stratégie qui **maximise la probabilité de succès en moyenne**. Il existe cependant un autre compromis : aligner l'un des vecteurs de base de mesure avec l'un des états (disons $|\psi_a\rangle$). Dans ce cas :
+
+- Si l'outcome correspond au vecteur orthogonal à $|\psi_a\rangle$, on sait avec **certitude absolue** que l'état était $|\psi_b\rangle$.
+- La probabilité de succès globale est plus faible qu'avec la stratégie optimale.
+
+Cette approche, dite de **discrimination sans erreur** ou **discrimination unambiguë**, privilégie la certitude sur les certains cas au détriment de la performance globale.
+
+## Portée du résultat
+
+La borne de Helstrom-Holevo est un résultat fondamental pour l'information quantique : elle montre que la mécanique quantique impose des limites physiques profondes à notre capacité à extraire de l'information d'un état quantique inconnu. Ces limites ne sont pas technologiques — elles découlent de la structure mathématique de la théorie (le produit scalaire dans l'espace de Hilbert) — et elles ne peuvent être contournées par aucun dispositif, aussi sophistiqué soit-il.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Borne de Helstrom-Holevo"}
+La borne de Helstrom-Holevo donne la probabilité maximale de discrimination entre deux états quantiques non orthogonaux $|\psi_a\rangle$ et $|\psi_b\rangle$ :
+$$p_{\text{succès}} \leq \frac{1}{2}(1 + \sin\theta)$$
+où $\theta$ est l'angle entre les deux états ($\cos\theta = |\langle\psi_a|\psi_b\rangle|$). La borne est atteinte en mesurant dans la base des vecteurs propres de $|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$. Cas limites : états orthogonaux ($\theta = 90°$) → succès parfait ($p = 1$) ; états identiques ($\theta = 0$) → hasard pur ($p = \tfrac{1}{2}$). L'exemple $|0\rangle$ vs $|+\rangle$ donne une borne de $\approx 85\,\%$, supérieure aux $75\,\%$ de la stratégie naïve en base computationnelle.
+:::
+
+---
+
+# Question 11 — Quantum no-signalling principle
+
+## Motivation : l'intrication peut-elle transmettre de l'information ?
+
+L'intrication quantique (quantum entanglement) est un phénomène de corrélation non-locale : si deux qubits partagent une paire de Bell, la mesure du premier qubit — quelle que soit la distance qui le sépare du second — a des répercussions instantanées sur l'état du second. Cela soulève une question naturelle et fondamentale : est-il possible d'exploiter cette corrélation pour transmettre de l'information plus vite que la lumière, en violation de la relativité restreinte ? Le **principe de non-signalisation** (no-signalling principle) répond à cette question de manière définitive par la négative.
+
+## La paire de Bell comme ressource
+
+Considérons la paire de Bell (également appelée paire EPR) :
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Alice et Bob se partagent chacun un qubit de cette paire. Ils sont éloignés d'une distance telle que la lumière met $\Delta t$ secondes à la parcourir. Alice peut mesurer son qubit à tout moment, ce qui effondre instantanément l'état du qubit de Bob. La question est : Bob peut-il détecter cet effondrement en se contentant de mesurer son propre qubit ?
+
+## Preuve formelle du principe
+
+### Cas 1 : Alice ne mesure pas son qubit
+
+L'état global du système est toujours $|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$. Bob mesure son qubit dans la base computationnelle $\{|0\rangle, |1\rangle\}$. Les probabilités des outcomes de Bob sont :
+
+$$p_B(0) = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}, \qquad p_B(1) = \frac{1}{2}$$
+
+### Cas 2 : Alice a mesuré son qubit
+
+Alice a mesuré et obtenu l'un de deux résultats possibles :
+
+- Outcome 0 (avec probabilité $\tfrac{1}{2}$) : l'état global s'est effondré sur $|00\rangle$, donc le qubit de Bob est désormais dans l'état $|0\rangle$ avec certitude.
+- Outcome 1 (avec probabilité $\tfrac{1}{2}$) : l'état global s'est effondré sur $|11\rangle$, donc le qubit de Bob est désormais dans l'état $|1\rangle$ avec certitude.
+
+Cependant, Bob ne sait pas quel résultat Alice a obtenu. Du point de vue de Bob, le qubit qu'il détient est dans un **mélange statistique** de $|0\rangle$ et $|1\rangle$, chacun avec probabilité $\tfrac{1}{2}$. La probabilité des outcomes de Bob est donc :
+
+$$p_B(0) = \frac{1}{2} \times 1 + \frac{1}{2} \times 0 = \frac{1}{2}, \qquad p_B(1) = \frac{1}{2} \times 0 + \frac{1}{2} \times 1 = \frac{1}{2}$$
+
+### Conclusion
+
+Les distributions de probabilité des outcomes de Bob sont **identiques** dans les deux cas. Il lui est donc rigoureusement impossible de déterminer, à partir de ses seules mesures, si Alice a mesuré ou non son qubit. Aucune information ne s'est transmise d'Alice à Bob.
+
+## Portée et généralité du principe
+
+Ce résultat n'est pas limité à la paire de Bell spécifique $|\Phi^+\rangle$, ni à la mesure dans la base computationnelle. Il s'applique :
+
+- Pour tout type d'état intriqué que Alice et Bob pourraient partager.
+- Pour tout choix de transformation unitaire qu'Alice pourrait appliquer avant de mesurer.
+- Pour toute base de mesure que Bob pourrait utiliser.
+
+Dans tous les cas, les statistiques locales de Bob sont invariantes par rapport aux opérations locales d'Alice. Ce résultat est d'ailleurs une propriété algébrique fondamentale de la mécanique quantique : la **trace partielle** de l'état global sur le sous-système d'Alice est indépendante de ce qu'Alice fait sur son propre qubit.
+
+## Pourquoi l'effondrement ne suffit-il pas ?
+
+L'effondrement du qubit de Bob est réel : si Alice mesure et obtient 0, alors le qubit de Bob *est* désormais dans l'état $|0\rangle$, même instantanément. Mais pour exploiter ce fait, Bob aurait besoin de connaître le résultat d'Alice — et cette information ne peut lui parvenir que via un **canal classique**, limité par la vitesse de la lumière. En l'absence de cette communication classique, les statistiques de Bob restent uniformes et indistinguables, qu'Alice ait mesuré ou non.
+
+C'est cette subtilité qui distingue la corrélation quantique d'une véritable transmission d'information : la corrélation est non-locale, mais elle ne peut être exploitée qu'après une communication classique.
+
+## Lien avec le principe de non-clonage
+
+Il existe un lien étroit entre le principe de non-signalisation et le principe de non-clonage. Si l'on pouvait cloner un état quantique arbitraire, il serait possible de contourner le principe de non-signalisation : en effectuant assez de copies du qubit reçu puis de mesures de tomographie, on pourrait reconstituer l'état et détecter l'effondrement. Le fait que ces deux principes soient mutuellement cohérents renforce leur statut de lois physiques fondamentales.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Principe de non-signalisation quantique"}
+Le principe de non-signalisation affirme qu'il est impossible d'utiliser l'intrication quantique pour transmettre de l'information plus vite que la lumière. La preuve repose sur le calcul des statistiques de mesure de Bob dans deux cas (Alice mesure / Alice ne mesure pas) : dans les deux cas, $p_B(0) = p_B(1) = \tfrac{1}{2}$. L'effondrement du qubit de Bob est réel mais indétectable sans communication classique préalable d'Alice. Ce résultat est général (indépendant de l'état intriqué et des bases de mesure) et est cohérent avec le principe de non-clonage.
+:::
+
+---
+
+# Question 12 — Quantum no-cloning principle
+
+## Énoncé et importance du principe
+
+Le **théorème de non-clonage** (no-cloning theorem) est l'un des résultats les plus fondamentaux de l'informatique quantique. Il affirme qu'**il n'existe pas de transformation unitaire** capable de copier un état quantique arbitraire et inconnu.
+
+Formellement, on cherche un opérateur unitaire $U$ tel que, pour tout état $|\psi\rangle$ et un registre cible initialement dans l'état $|0\rangle$ :
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$$
+
+Le théorème de non-clonage affirme qu'un tel $U$ **n'existe pas**.
+
+## Preuve par contradiction
+
+La preuve est remarquable par son élégance et sa brièveté. Elle n'utilise que deux propriétés des transformations unitaires : la **linéarité** et le fait qu'elles préservent le produit scalaire ($U^\dagger U = I$).
+
+Supposons par l'absurde qu'un tel $U$ existe. Il doit fonctionner pour **tous** les états, et en particulier pour deux états arbitraires $|\psi\rangle$ et $|\phi\rangle$ :
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$$
+$$U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle$$
+
+Calculons le produit scalaire entre les membres de gauche des deux équations, en exploitant le fait que $U$ est une isométrie :
+
+$$\langle\psi|\langle 0|U^\dagger U|\phi\rangle|0\rangle = \langle\psi|\phi\rangle \cdot \langle 0|0\rangle = \langle\psi|\phi\rangle$$
+
+Calculons maintenant le produit scalaire entre les membres de droite :
+
+$$({\langle\psi|\langle\psi|})(|\phi\rangle|\phi\rangle) = \langle\psi|\phi\rangle \cdot \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+L'égalité $U^\dagger U = I$ implique donc :
+
+$$\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+En posant $x = \langle\psi|\phi\rangle$, cette équation $x = x^2$ n'admet que deux solutions : $x = 0$ ou $x = 1$. Autrement dit :
+
+- soit $\langle\psi|\phi\rangle = 0$ : les états sont **orthogonaux**,
+- soit $\langle\psi|\phi\rangle = 1$ : les états sont **identiques** ($|\psi\rangle = |\phi\rangle$).
+
+Cela signifie qu'un $U$ universel de clonage ne peut fonctionner que pour des paires d'états orthogonaux ou identiques — ce qui n'a rien de surprenant, car ces cas correspondent essentiellement à de l'information classique. Pour tout autre couple d'états non orthogonaux et distincts, un tel $U$ ne peut pas exister. La contradiction est établie.
+
+## Pourquoi le clonage violerait-il les lois de la physique ?
+
+Les raisons pour lesquelles l'impossibilité du clonage est physiquement profonde sont multiples.
+
+**Violation du principe de non-signalisation.** Si l'on pouvait cloner un qubit, Alice pourrait encoder un message classique dans un état quantique, l'envoyer à Bob via un canal quantique, et Bob pourrait effectuer de nombreuses copies puis une tomographie d'état pour reconstruire le message complet — le tout plus vite que la lumière grâce à l'intrication. Cela violerait directement le principe de non-signalisation.
+
+**Super-compression interdite.** Le clonage permettrait une compression illimitée d'information classique. Il serait en effet possible d'encoder un message de longueur arbitraire dans un état de qubit unique (par exemple en faisant correspondre le message à l'angle $\theta$ d'un état $\cos(\theta)|0\rangle + \sin(\theta)|1\rangle$), de transmettre ce qubit, puis d'en faire un nombre arbitraire de copies et d'effectuer une tomographie quantique pour reconstruire $\theta$ avec une précision arbitraire. Cela contredit le théorème de Holevo, qui stipule qu'un seul qubit ne peut transporter qu'un seul bit d'information classique.
+
+## Conséquences pratiques
+
+Le théorème de non-clonage a des implications directes pour plusieurs domaines de l'informatique quantique.
+
+**Correction d'erreurs quantiques.** En classique, la stratégie de correction d'erreurs la plus simple consiste à répéter l'information plusieurs fois. En quantique, cette approche directe est impossible, puisqu'on ne peut pas dupliquer un état quantique arbitraire inconnu. Il faut recourir à des techniques plus sophistiquées basées sur l'enchevêtrement (voir la correction d'erreurs quantiques).
+
+**Sécurité en cryptographie.** Le non-clonage garantit qu'un espion ne peut pas copier des qubits interceptés sur un canal quantique sans laisser de trace détectable, ce qui est la pierre angulaire de la sécurité du protocole BB84 de distribution quantique de clés.
+
+**Seuls les états orthogonaux sont « copiables »** au sens trivial du terme — ce qui correspond exactement à de l'information classique (bits). L'impossibilité de cloner est donc ce qui distingue fondamentalement l'information quantique de l'information classique.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Principe de non-clonage quantique"}
+Le théorème de non-clonage affirme qu'il n'existe pas d'opérateur unitaire $U$ tel que $U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$ pour tout $|\psi\rangle$. La preuve est une contradiction par la linéarité et l'isométrie : $\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$ n'a que deux solutions ($0$ ou $1$), ce qui exclut tout état non orthogonal et distinct. Le clonage violerait le principe de non-signalisation et permettrait une super-compression d'information. Conséquences pratiques : correction d'erreurs plus complexe, sécurité de la QKD garantie, distinction fondamentale entre information classique (classiquement copiable) et quantique.
+:::
+
+---
+
+# Question 13 — Quantum no-deleting principle
+
+## Énoncé du principe
+
+Le **principe de non-suppression** (no-deleting theorem) est le **dual temporel** du théorème de non-clonage. Là où le non-clonage interdit de *créer* une copie d'un état quantique arbitraire, le non-suppression interdit d'en *effacer* une.
+
+Formellement, il n'existe pas de transformation unitaire $\tilde{U}$ capable d'effacer l'une des deux copies d'un état quantique arbitraire. Autrement dit, il n'existe pas de $\tilde{U}$ tel que :
+
+$$\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$$
+
+pour tout état $|\psi\rangle$.
+
+## Symétrie avec le non-clonage
+
+Pour comprendre pourquoi le non-suppression est le dual temporel du non-clonage, il faut rappeler que les évolutions unitaires en mécanique quantique sont **réversibles** : pour toute transformation $U$, la transformation inverse $U^\dagger$ est également une transformation unitaire valide.
+
+- Le **non-clonage** interdit la transition $1 \to 2$ copies : on ne peut pas aller de $|\psi\rangle|0\rangle$ à $|\psi\rangle|\psi\rangle$.
+- Le **non-suppression** interdit la transition $2 \to 1$ copies : on ne peut pas aller de $|\psi\rangle|\psi\rangle$ à $|\psi\rangle|0\rangle$.
+
+Si l'on pouvait effectuer la transition $2 \to 1$, en prenant l'adjoint de l'opérateur $\tilde{U}$, on obtiendrait immédiatement une opération valide capable d'effectuer la transition $1 \to 2$, ce qui violerait le non-clonage. Les deux principes sont donc logiquement équivalents via la réversibilité de la dynamique quantique.
+
+## Signification physique
+
+Le principe de non-suppression reflète une propriété profonde de la mécanique quantique : l'**irréversibilité apparente de la copie d'information quantique**. Même si l'on dispose de deux copies d'un état $|\psi\rangle$, on ne peut pas en détruire une de façon unitaire sans laisser de trace. L'information quantique est en quelque sorte « conservée » — on ne peut ni la créer ex nihilo (non-clonage) ni l'annihiler (non-suppression) par des évolutions unitaires.
+
+Il convient de noter une nuance importante : la mesure quantique, qui n'est **pas** une opération unitaire, peut « détruire » une superposition en l'effondrant. Mais cela n'est pas une suppression au sens du non-suppression — la mesure modifie l'état de façon irréversible et non unitaire. Le non-suppression concerne strictement les évolutions unitaires réversibles.
+
+## Implications pour la réversibilité du calcul quantique
+
+Le fait que le calcul quantique soit fondamentalement réversible (sauf lors des mesures) est l'une de ses caractéristiques distinctives par rapport au calcul classique. La réversibilité implique une **conservation de l'information** : toute information encodée dans un état quantique ne peut ni disparaître ni être dupliquée de façon unitaire. Cette contrainte est à la fois une limitation (on ne peut pas supprimer des qubits intermédiaires sans s'en débarrasser proprement) et un atout (elle implique que certains types d'erreurs sont détectables).
+
+Dans la pratique de l'informatique quantique, cela signifie que les circuits quantiques doivent être conçus avec soin : les qubits auxiliaires (ancilla qubits) introduits au cours d'un calcul ne peuvent pas être simplement « effacés » ; ils doivent être ramenés à leur état initial par des opérations unitaires inverses, ce qui complexifie la conception des algorithmes.
+
+## Cohérence avec les autres principes fondamentaux
+
+Les principes de non-clonage et de non-suppression forment une paire cohérente et symétrique :
+
+- Le non-clonage interdit de multiplier l'information quantique.
+- Le non-suppression interdit de la diminuer.
+- La mesure quantique est la seule opération autorisée qui « détruit » effectivement une superposition, mais au prix d'une irréversibilité fondamentale.
+
+Cette cohérence reflète la structure mathématique profonde de la mécanique quantique : la linéarité et l'unitarité de l'évolution imposent des contraintes symétriques sur ce que l'on peut faire avec de l'information quantique dans les deux directions temporelles.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Principe de non-suppression quantique"}
+Le principe de non-suppression est le dual temporel du non-clonage : il n'existe pas de transformation unitaire $\tilde{U}$ telle que $\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$ pour tout $|\psi\rangle$. La justification est la réversibilité unitaire : si l'on pouvait supprimer, l'adjoint $\tilde{U}^\dagger$ permettrait de cloner, ce qui est interdit. Physiquement, cela traduit la conservation de l'information quantique sous évolutions unitaires. Le principe a des implications pratiques pour la conception des circuits quantiques : les qubits ancilla doivent être réinitialisés par opérations inverses, pas simplement supprimés.
+:::
+
+---
+
+# Question 14 — Applications of quantum computing
+
+## Présentation générale
+
+Les ordinateurs quantiques ne sont pas des ordinateurs classiques « plus rapides ». Ils exploitent des phénomènes quantiques — la superposition, l'intrication et l'interférence — pour traiter de l'information d'une manière qualitativement différente, permettant de résoudre certaines classes de problèmes que les ordinateurs classiques ne peuvent résoudre qu'en un temps prohibitif. Les principales familles d'applications sont la factorisation quantique, la recherche quantique, la simulation quantique, l'optimisation quantique et les réseaux quantiques.
+
+## Application 1 : La factorisation quantique (algorithme de Shor)
+
+La factorisation d'un entier consiste à trouver ses diviseurs premiers. Pour de petits nombres, l'opération est triviale (par exemple, $15 = 3 \times 5$). Mais pour des entiers de plusieurs centaines de chiffres, les meilleurs algorithmes classiques ont une complexité **sous-exponentielle** de la forme $O(\exp(n^{1/3}))$, où $n$ est le nombre de bits — ce qui représente un temps astronomique en pratique. Par exemple, pour un nombre de 30 chiffres, les meilleurs supercalculateurs classiques mettraient des centaines de milliers d'années.
+
+L'algorithme de Shor (1994) résout ce problème avec une complexité seulement **polynomiale** $O(n^3 \log n)$ sur un ordinateur quantique. La différence de performance est spectaculaire : là où un ordinateur classique prendrait $10^{24}$ étapes, Shor n'en nécessite que $10^{10}$, soit moins d'une seconde sur un processeur à 1 THz.
+
+L'idée centrale de l'algorithme de Shor consiste à réduire la factorisation à la **recherche de la période** d'une fonction : pour factoriser $N$, on choisit un entier $x$ copremier avec $N$ et on cherche la période $l$ de la fonction $f(s) = x^s \bmod N$. Une fois cette période trouvée, des calculs classiques simples (via le PGCD) permettent d'en déduire les facteurs de $N$. C'est la **Transformée de Fourier Quantique (QFT)** qui permet de trouver cette période en temps polynomial, en exploitant l'interférence quantique pour concentrer l'amplitude sur les multiples de $2^n / l$.
+
+L'importance cryptographique est considérable : la cryptographie RSA, qui protège la quasi-totalité des communications sur Internet (HTTPS, VPN, etc.), repose sur la difficulté supposée de factoriser de grands entiers. Un ordinateur quantique suffisamment grand — estimé à environ 8000 qubits logiques pour casser RSA-2048 — remettrait en cause ce fondement.
+
+## Application 2 : La recherche quantique (algorithme de Grover)
+
+L'algorithme de Grover (1997) s'applique au problème de la **recherche non structurée** : trouver un élément particulier dans une base de données de $N$ entrées non triées. Classiquement, ce problème nécessite en moyenne $O(N)$ évaluations. Grover réduit cette complexité à $O(\sqrt{N})$, ce qui représente un **avantage quadratique**.
+
+Cet avantage est utile pour la recherche dans de grandes bases de données, l'inversion de fonctions complexes, le calcul de la médiane ou d'autres propriétés globales de données, et la reconnaissance de motifs. Contrairement à l'avantage exponentiel de Shor, le gain de Grover est quadratique — il ne menace pas directement la cryptographie symétrique, mais oblige à doubler la taille des clés pour maintenir un niveau de sécurité équivalent.
+
+## Application 3 : La simulation quantique
+
+Simuler un système quantique de $N$ particules sur un ordinateur classique nécessite de résoudre $2^N$ équations couplées (l'équation de Schrödinger). Pour $N = 50$ particules, cela représente environ $10^{15}$ équations — bien au-delà des capacités de tout supercalculateur. L'idée, formulée par Feynman dès les années 1980, est d'utiliser un système quantique contrôlable (les qubits) pour simuler un autre système quantique.
+
+Les simulateurs quantiques sont construits à partir de divers systèmes physiques : ions atomiques piégés, atomes froids, circuits supraconducteurs, centres NV dans le diamant. Leurs domaines d'application sont nombreux :
+
+- **Conception de matériaux quantiques** : comprendre et concevoir des matériaux aux propriétés exotiques (supraconducteurs à haute température, magnétisme quantique).
+- **Récolte d'énergie** : simuler des processus de transfert d'énergie quantique dans des systèmes biologiques ou artificiels.
+- **Théories des champs quantiques** : programmer des théories de jauge de la QCD sur réseau, explorer les connexions entre cosmologie et théorie de l'information (dualité AdS-CFT).
+
+Le Variational Quantum Eigensolver (VQE) est un exemple d'algorithme hybride quantique-classique pour la simulation : un circuit paramétrique (l'*ansatz*) prépare un état quantique $|\psi(\theta)\rangle$, un optimiseur classique minimise la valeur d'espérance de l'Hamiltonien $\langle\psi(\theta)|H|\psi(\theta)\rangle$ en ajustant $\theta$, et l'on converge vers l'énergie fondamentale du système. Ce schéma est applicable à la chimie quantique, à la science des matériaux, et à la physique des hautes énergies.
+
+## Application 4 : L'optimisation quantique
+
+L'optimisation quantique vise à minimiser des fonctions de coût complexes en exploitant la superposition pour « explorer simultanément » tout l'espace des solutions. Un exemple standard est la minimisation d'une forme quadratique en variables binaires :
+
+$$f(x_1, x_2, \ldots) = \sum_{i < j} q_{ij} x_i x_j + \sum_i c_i x_i$$
+
+Cette forme se mappe naturellement sur l'énergie d'un réseau magnétique quantique, ce qui permet d'utiliser des algorithmes quantiques pour en trouver le minimum. Les domaines d'application incluent la logistique, la recherche opérationnelle, la conception de circuits VLSI, et la finance.
+
+Il convient cependant de noter une limite importante : il n'est **pas encore prouvé** qu'il existe systématiquement un avantage quantique pour ces problèmes d'optimisation. L'optimisation quantique est parfois qualifiée d'« application tueuse » potentielle, mais cette affirmation reste à démontrer rigoureusement.
+
+## Application 5 : Les réseaux quantiques
+
+Un réseau quantique relie des sites distants (de quelques centimètres à des milliers de kilomètres) via des canaux permettant l'échange de qubits et de paires intriquées. Les usages d'un tel réseau comprennent la génération de clés secrètes cryptographiques, la génération de nombres aléatoires certifiés, l'utilisation de répéteurs quantiques, et le calcul quantique distribué à grande échelle.
+
+Les protocoles de téléportation quantique et de codage superdense (cf. questions 15 et 16) sont les briques fondamentales de ces réseaux, permettant de transmettre de l'information quantique avec des ressources d'intrication pré-partagées.
+
+## Le monde post-quantique et les défis actuels
+
+Les implications de l'informatique quantique pour la cryptographie actuelle sont imminentes. Il est estimé que des ordinateurs quantiques capables de casser RSA-2048 pourraient exister dans les 5 à 10 prochaines années. Des organisations et gouvernements doivent migrer dès maintenant vers des algorithmes résistants, car cette migration peut prendre une décennie et certaines données ont une durée de vie de plusieurs dizaines d'années.
+
+Les solutions post-quantiques incluent la **cryptographie à base de réseaux euclidiens** (*lattice-based cryptography*), les **fonctions de hachage** (sécurisées contre Grover en doublant la taille des clés), et la **distribution quantique de clés (QKD)** pour les communications les plus sensibles. Le NIST est en cours de standardisation de ces algorithmes.
+
+Sur le plan technique, les défis majeurs restent la décoherence (les qubits sont extrêmement sensibles à leur environnement), la correction d'erreurs quantiques (qui nécessite des centaines de qubits physiques pour un seul qubit logique), et le passage à l'échelle des circuits quantiques.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Applications de l'informatique quantique"}
+Cinq grandes familles d'applications : **(1) Factorisation (Shor)** — complexité $O(n^3)$ vs classique sous-exponentielle, menace pour RSA ; **(2) Recherche (Grover)** — avantage quadratique $O(\sqrt{N})$, utile pour bases de données et inversion de fonctions ; **(3) Simulation quantique** — simuler $2^N$ équations en $N$ qubits, applicable à la chimie, matériaux et physique des hautes énergies via VQE ; **(4) Optimisation quantique** — exploration parallèle de l'espace de solutions, domaines logistique/finance, avantage non encore prouvé ; **(5) Réseaux quantiques** — distribution de clés, calcul distribué, téléportation à grande échelle. Défis : décoherence, correction d'erreurs, passage à l'échelle. Urgence post-quantique : migrer la cryptographie avant que RSA-2048 soit cassable (~2030-2035).
+:::
+
+---
+
+# Question 15 — Quantum teleportation
+
+## Présentation du problème et des ressources
+
+La **téléportation quantique** résout le problème suivant : comment Alice peut-elle transmettre à Bob un état quantique inconnu $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ (où $\alpha$ et $\beta$ sont des amplitudes complexes inconnues d'Alice elle-même) en préservant parfaitement l'information de superposition et de phase, sans violer le théorème de non-clonage ?
+
+La solution est remarquable : elle exploite une paire de Bell partagée entre Alice et Bob, combinée à l'envoi de deux bits classiques. Contrairement à ce que le nom pourrait suggérer, la téléportation quantique ne fait pas se déplacer de la matière d'un point à un autre, ni voyager dans le temps — elle transfère seulement l'état quantique.
+
+Les ressources nécessaires sont :
+- Un qubit « message » $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ qu'Alice souhaite transmettre.
+- Une paire de Bell $|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, dont un qubit est détenu par Alice et l'autre par Bob.
+- Un canal classique permettant à Alice d'envoyer 2 bits à Bob.
+
+Il est important de souligner que la téléportation requiert une communication classique, et ne peut donc pas être plus rapide que la lumière. Ceci est cohérent avec le principe de non-signalisation.
+
+## Le protocole étape par étape
+
+### Étape 1 : Création et distribution de la paire intriquée
+
+On crée la paire de Bell via : un qubit $|0\rangle$ passe par une porte de Hadamard, puis une porte CNOT est appliquée avec un second qubit $|0\rangle$ comme cible :
+
+$$|00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|0\rangle \xrightarrow{\text{CNOT}} |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Alice garde le premier qubit de la paire et Bob garde le second.
+
+### Étape 2 : État initial du système à 3 qubits
+
+Alice dispose maintenant de deux qubits : le qubit message $|\psi\rangle$ et sa moitié de la paire intriquée. L'état total du système à 3 qubits (qubit message, qubit d'Alice de la paire, qubit de Bob) est :
+
+$$|\psi\rangle \otimes |\Phi^+\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+$$= \frac{1}{\sqrt{2}}\bigl[\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle\bigr]$$
+
+### Étape 3 : Alice applique une porte CNOT sur ses deux qubits
+
+Alice applique une porte CNOT avec le qubit message comme contrôle et son qubit de la paire comme cible. L'état devient :
+
+$$\frac{1}{\sqrt{2}}\bigl[\alpha|000\rangle + \alpha|011\rangle + \beta|101\rangle + \beta|110\rangle\bigr]$$
+
+### Étape 4 : Alice applique une porte de Hadamard sur le qubit message
+
+Après application de la porte H sur le premier qubit :
+
+$$\frac{1}{2}\bigl[\alpha(|000\rangle + |100\rangle + |011\rangle + |111\rangle) + \beta(|001\rangle - |101\rangle + |010\rangle - |110\rangle)\bigr]$$
+
+On peut réécrire cet état en regroupant par couple de qubits d'Alice (les deux premiers) :
+
+$$\frac{1}{2}\bigl[|00\rangle(\alpha|0\rangle + \beta|1\rangle) + |01\rangle(\alpha|1\rangle + \beta|0\rangle) + |10\rangle(\alpha|0\rangle - \beta|1\rangle) + |11\rangle(\alpha|1\rangle - \beta|0\rangle)\bigr]$$
+
+### Étape 5 : Alice mesure ses deux qubits
+
+Alice mesure ses deux qubits dans la base computationnelle. Il y a 4 outcomes équiprobables (chacun avec probabilité $\tfrac{1}{4}$). Selon l'outcome, le qubit de Bob se trouve dans l'état suivant :
+
+| Mesure d'Alice ($b_1 b_0$) | État du qubit de Bob |
+|:---:|:---:|
+| 00 | $\alpha|0\rangle + \beta|1\rangle$ |
+| 01 | $\alpha|1\rangle + \beta|0\rangle$ |
+| 10 | $\alpha|0\rangle - \beta|1\rangle$ |
+| 11 | $\alpha|1\rangle - \beta|0\rangle$ |
+
+### Étape 6 : Alice envoie 2 bits classiques à Bob
+
+Alice communique à Bob le résultat de sa mesure ($b_1 b_0$) via le canal classique.
+
+### Étape 7 : Bob applique des corrections
+
+Bob applique des opérations correctives en fonction des bits reçus :
+
+- Si $b_0 = 1$ : appliquer la porte NOT ($X$), ce qui échange $\alpha$ et $\beta$.
+- Si $b_1 = 1$ : appliquer la porte de phase $Z$, ce qui change le signe de $\beta$.
+
+| Mesure ($b_1 b_0$) | Correction | État récupéré |
+|:---:|:---:|:---:|
+| 00 | Aucune | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+| 01 | NOT ($X$) | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+| 10 | $Z$ | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+| 11 | NOT puis $Z$ | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+
+Après correction, Bob possède exactement $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$.
+
+## Points importants et subtilités
+
+**Alice ne connaît jamais $|\psi\rangle$.** Il n'est donc pas possible de simplement envoyer $\alpha$ et $\beta$ classiquement. Si Alice connaissait l'état, il ne serait pas nécessaire de téléporter.
+
+**L'état d'Alice est détruit.** Au moment de la mesure, le qubit message d'Alice s'effondre et elle perd toute information sur $|\psi\rangle$. Le non-clonage est ainsi respecté : à aucun moment deux copies de $|\psi\rangle$ ne coexistent.
+
+**La paire intriquée est consommée.** La téléportation d'un qubit détruit la paire de Bell utilisée. Pour téléporter $n$ qubits, il faut $n$ paires de Bell préparées à l'avance.
+
+**Pas de communication supraluminique.** Le résultat de mesure d'Alice est nécessaire pour que Bob puisse corriger son qubit. Sans ce résultat, le qubit de Bob est dans un mélange statistique sans aucune information sur $|\psi\rangle$.
+
+**Démonstration expérimentale.** La téléportation quantique a été réalisée de nombreuses fois. En 2017, des qubits ont été téléportés de la Terre vers le satellite Micius sur une distance record de 1400 km.
+
+## Utilité pratique
+
+La téléportation quantique est particulièrement utile dans les réseaux quantiques parce que transmettre un état quantique via un canal classique (en envoyant les 2 bits de résultat) est plus rapide et plus fiable que de déplacer physiquement un qubit d'un endroit à un autre — les qubits physiques sont très fragiles et sujets à la décoherence lors de leur transport. De plus, les paires de Bell peuvent être pré-partagées à l'avance entre Alice et Bob dans des conditions contrôlées, ce qui permet d'amortir le coût de l'intrication.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Téléportation quantique"}
+La téléportation transfère l'état $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ d'Alice à Bob en utilisant : (1) une paire de Bell partagée ; (2) un CNOT puis un H sur les qubits d'Alice ; (3) une mesure à 4 outcomes par Alice ; (4) l'envoi de 2 bits classiques ; (5) une correction conditionnelle ($X$ si $b_0=1$, $Z$ si $b_1=1$) par Bob. Le non-clonage est respecté (l'état d'Alice est détruit). Aucune communication supraluminique (les bits classiques sont indispensables). La paire de Bell est consommée à chaque téléportation. Démonstration expérimentale en 2017 sur 1400 km (satellite Micius).
+:::
+
+---
+
+# Question 16 — Superdense coding
+
+## Principe et position par rapport à la téléportation
+
+Le **codage superdense** (superdense coding) est en quelque sorte l'opération duale de la téléportation quantique, et il est utile de les présenter en contraste :
+
+- **Téléportation** : utilise 1 paire intriquée + 2 bits classiques pour transmettre 1 qubit.
+- **Codage superdense** : utilise 1 paire intriquée + 1 qubit pour transmettre 2 bits classiques.
+
+Le codage superdense montre que l'intrication peut doubler la capacité d'information d'un canal quantique. Découvert en 1992 et démontré expérimentalement en 1996, c'est l'un des protocoles quantiques les plus élégants.
+
+## Rappel du contexte
+
+Alice et Bob partagent au préalable la paire de Bell :
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Alice souhaite envoyer l'un des 4 messages possibles : 00, 01, 10 ou 11. Elle dispose d'un canal quantique lui permettant d'envoyer un seul qubit à Bob. Sans intrication, un seul qubit ne peut transmettre qu'1 bit classique (théorème de Holevo). Avec l'intrication partagée, Alice peut en transmettre 2.
+
+## La transmission d'Alice : manipulation de son seul qubit
+
+Alice n'agit que sur **son propre qubit** de la paire de Bell (le premier qubit). Selon le message qu'elle veut envoyer, elle applique l'une des quatre opérations suivantes :
+
+| Message | Opération d'Alice | État de la paire après opération |
+|:---:|:---:|:---|
+| 00 | $I$ (identité) | $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ |
+| 01 | $X$ (NOT) | $\frac{1}{\sqrt{2}}(|10\rangle + |01\rangle)$ |
+| 10 | $Z$ | $\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ |
+| 11 | $XZ$ | $\frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ |
+
+Ces 4 états sont précisément les **4 états de Bell** :
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle), \quad |\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$$
+$$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle), \quad |\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$$
+
+Ces quatre états forment une **base orthonormée** (la base de Bell) de l'espace de Hilbert à 2 qubits. Ils sont donc parfaitement distinguables par une mesure appropriée.
+
+Alice envoie ensuite son qubit à Bob.
+
+## La réception et le décodage de Bob
+
+Bob reçoit le qubit d'Alice et dispose maintenant des **deux qubits**. Il applique le circuit de mesure de Bell suivant :
+
+1. Une porte **CNOT** (qubit d'Alice en contrôle, qubit de Bob en cible).
+2. Une porte **Hadamard** ($H$) sur le qubit d'Alice.
+3. Une **mesure en base computationnelle** sur les deux qubits.
+
+Ce circuit réalise une transformation de Bell inverse, qui « désenchevêtre » la paire et ramène les 4 états de Bell vers les 4 états de base computationnelle :
+
+| État de Bell reçu | Après CNOT | Après H | Mesure finale |
+|:---:|:---:|:---:|:---:|
+| $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|0\rangle$ | $|0\rangle|0\rangle$ | **00** |
+| $\frac{1}{\sqrt{2}}(|10\rangle + |01\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|1\rangle$ | $|0\rangle|1\rangle$ | **01** |
+| $\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)|0\rangle$ | $|1\rangle|0\rangle$ | **10** |
+| $\frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)|1\rangle$ | $|1\rangle|1\rangle$ | **11** |
+
+Bob obtient exactement les 2 bits envoyés par Alice. La transmission est parfaite et sans ambiguïté.
+
+## Analyse et interprétation
+
+**Pourquoi l'intrication est-elle indispensable ?** Sans la paire de Bell partagée à l'avance, un seul qubit ne peut transporter qu'1 bit d'information classique (c'est la borne de Holevo). L'intrication préalablement partagée agit comme une ressource « stockée » qui double la capacité du canal. Le qubit envoyé ne contient pas à lui seul les 2 bits : c'est l'ensemble \{qubit envoyé, qubit de Bob\} qui les contient, grâce à la corrélation non-locale de la paire de Bell.
+
+**Ce que Alice fait en réalité.** Lorsqu'Alice applique une opération sur son seul qubit, elle transforme l'état global de la paire (un état enchevêtré de 2 qubits) d'un état de Bell à un autre. L'information est encodée dans quel état de Bell la paire occupe — une information non-locale qui ne peut être révélée qu'en mesurant les deux qubits ensemble.
+
+**Lien avec la téléportation.** La symétrie entre téléportation et codage superdense est profonde : les deux protocoles utilisent la même ressource (une paire de Bell), le même nombre d'étapes, et les mêmes circuits (de Bell). Ils sont en fait liés par une transformation d'espace-temps : l'un est la « version temporellement inversée » de l'autre, au sens où les rôles des canaux classique et quantique sont échangés.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Codage superdense"}
+Le codage superdense permet de transmettre **2 bits classiques** en n'envoyant **qu'1 qubit**, grâce à une paire de Bell partagée. Alice applique $I$, $X$, $Z$ ou $XZ$ sur son qubit selon le message (00, 01, 10, 11), transformant l'état de Bell en l'un des 4 états de Bell orthogonaux. Bob reçoit le qubit, applique CNOT puis H, et mesure en base computationnelle pour récupérer les 2 bits. L'intrication double la capacité du canal : sans elle, un qubit ne peut transporter qu'1 bit (théorème de Holevo). Dual de la téléportation : les rôles des canaux classique et quantique sont échangés.
+:::
+
+---
+
+# Question 17 — Quantum key distribution
+
+## Contexte : la cryptographie inconditionnellement sûre
+
+La cryptographie moderne repose sur des garanties **computationnelles** : les algorithmes comme RSA sont difficiles à casser parce que factoriser de grands entiers est supposé être computationnellement difficile — mais pas prouvablement impossible. Cette sécurité pourrait être compromise par un ordinateur quantique suffisamment puissant.
+
+Il existe cependant une forme de cryptographie plus forte : la sécurité **théorique de l'information** (*information-theoretically secure*), dont le **masque jetable** (one-time pad) est l'archétype. Dans ce schéma, Alice et Bob partagent une clé secrète $r$ de $n$ bits aléatoires, Alice envoie le chiffré $m \oplus r$ (XOR), et Bob déchiffre $(m \oplus r) \oplus r = m$. Un adversaire qui intercepte $m \oplus r$ sans connaître $r$ ne peut en déduire aucune information sur $m$ — l'impossibilité est mathématiquement prouvée, indépendamment de la puissance de calcul de l'adversaire.
+
+Le problème pratique du masque jetable est que la clé $r$ doit être partagée par un canal parfaitement sécurisé — ce qui nécessite en pratique que Alice et Bob se rencontrent physiquement. La **distribution quantique de clés (QKD)** permet de résoudre ce problème en générant un masque jetable à distance, sur un canal public.
+
+## Ressources et hypothèses du protocole
+
+Les ressources nécessaires à la QKD sont :
+
+- Un **canal classique public authentifié** : les deux parties savent avec certitude à qui elles parlent, mais le contenu peut être lu par n'importe qui.
+- Un **canal quantique** : qui peut être écouté par un adversaire.
+- Alice dispose d'une **source de bits aléatoires classiques**.
+- Alice peut préparer des qubits dans les états $|0\rangle$, $|1\rangle$, $|+\rangle = H|0\rangle$, $|-\rangle = H|1\rangle$.
+- Bob peut mesurer dans la base computationnelle $\{|0\rangle, |1\rangle\}$ ou dans la base de Hadamard $\{|+\rangle, |-\rangle\}$.
+
+## Le protocole BB84
+
+Le protocole BB84 a été découvert en 1984 par Charles Bennett et Gilles Brassard (d'où le nom). Il est remarquable qu'il ne requière **pas** d'intrication quantique — il n'utilise que la préparation et la mesure de qubits individuels.
+
+### Étape 1 : Alice prépare et envoie les qubits
+
+Pour chaque bit qu'elle souhaite inclure dans la clé, Alice choisit **aléatoirement** l'une des deux bases :
+
+- Base computationnelle $\{|0\rangle, |1\rangle\}$ : encode 0 comme $|0\rangle$ et 1 comme $|1\rangle$.
+- Base de Hadamard $\{|+\rangle, |-\rangle\}$ : encode 0 comme $|+\rangle$ et 1 comme $|-\rangle$.
+
+Alice envoie le qubit correspondant à Bob.
+
+### Étape 2 : Bob mesure les qubits
+
+Pour chaque qubit reçu, Bob choisit **aléatoirement** l'une des deux bases et mesure. Si Bob choisit la même base qu'Alice, il obtient toujours le bon résultat. S'il choisit une base différente, son résultat est aléatoire et non corrélé au bit d'Alice.
+
+### Étapes 3 et 4 : Réconciliation des bases (sifting)
+
+Sur le canal public, Bob annonce pour chaque qubit la base dans laquelle il a mesuré (mais **pas le résultat**). Alice répond pour chaque qubit si Bob a utilisé la bonne base. Ils conservent uniquement les bits pour lesquels les bases coïncident et rejettent les autres. En moyenne, ils rejettent la **moitié** de leurs bits.
+
+### Exemple numérique
+
+| Bit A | Base A | Qubit envoyé | Base B | Bit B | Conservé ? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | $\{|0\rangle,|1\rangle\}$ | $|0\rangle$ | $\{|0\rangle,|1\rangle\}$ | 0 | ✓ |
+| 1 | $\{|+\rangle,|-\rangle\}$ | $|-\rangle$ | $\{|+\rangle,|-\rangle\}$ | 1 | ✓ |
+| 1 | $\{|0\rangle,|1\rangle\}$ | $|1\rangle$ | $\{|+\rangle,|-\rangle\}$ | aléatoire | ✗ |
+| 0 | $\{|0\rangle,|1\rangle\}$ | $|0\rangle$ | $\{|0\rangle,|1\rangle\}$ | 0 | ✓ |
+
+Les bits conservés (bases identiques) forment la **clé brute partagée**.
+
+## Sécurité : comment détecter un espion ?
+
+### Attaque par interception-mesure-retransmission
+
+Un espion Ève peut intercepter le qubit sur le canal quantique, le mesurer, et envoyer un nouveau qubit à Bob. Mais Ève ne connaît pas la base utilisée par Alice au moment où elle mesure — elle doit deviner. Les conséquences sont les suivantes :
+
+- Quand Ève devine correctement la base ($\tfrac{1}{2}$ du temps), elle obtient le bon bit et peut retransmettre le bon qubit.
+- Quand Ève devine la mauvaise base ($\tfrac{1}{2}$ du temps), elle perturbe le qubit. Pour les bits où Alice et Bob utilisent la même base, Ève introduit une erreur dans 50 % des cas où elle a mal deviné, soit **25 % d'erreurs** sur la clé brute commune d'Alice et Bob.
+
+Alice et Bob peuvent détecter la présence d'Ève en **comparant publiquement un sous-ensemble de leurs bits de clé brute** : si le taux d'erreur est significativement supérieur à zéro, un espion est présent.
+
+### Attaque par copie du qubit
+
+Ève pourrait tenter de garder une copie du qubit et de ne le mesurer qu'après l'annonce publique des bases. Mais cela est **physiquement impossible** en vertu du théorème de non-clonage : copier un qubit arbitraire inconnu est interdit par les lois de la physique quantique.
+
+### Attaque par substitution
+
+Ève intercepte le qubit, en envoie un aléatoire pré-préparé à Bob, et garde l'original pour le mesurer ultérieurement. Mais dans ce cas, Bob reçoit des bits totalement aléatoires, indépendants des bits d'Alice, et la comparaison des bases révèle immédiatement l'anomalie avec un taux d'erreur de 50 %.
+
+## Garantie fondamentale
+
+La propriété qui rend BB84 sécurisé est la suivante : **toute tentative d'espionnage du canal quantique perturbe inévitablement les qubits transmis**. Cette perturbation découle de deux principes fondamentaux : le théorème de non-clonage (on ne peut pas copier un qubit inconnu) et le postulat de mesure (mesurer un qubit en superposition le fait s'effondrer de façon irréversible). La perturbation est **détectable statistiquement** par Alice et Bob.
+
+Ainsi, si Alice et Bob observent un taux d'erreur compatible avec un canal non espionné (en pratique inférieur à un seuil, typiquement autour de 11 %), ils peuvent être sûrs que la clé est secrète. Sinon, ils la rejettent et recommencent.
+
+## État de l'art et perspectives
+
+Le taux de transfert record de clés sécurisées par QKD est de **1 Mbit/s**, dans une collaboration entre l'Université de Genève et Toshiba. La QKD sera probablement adoptée pour les communications les plus sensibles dans un monde post-quantique, aux côtés de la cryptographie à base de réseaux euclidiens, offrant une sécurité théorique de l'information irréfutable à long terme.
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Distribution quantique de clés (QKD / BB84)"}
+BB84 (Bennett & Brassard, 1984) génère un masque jetable à distance sans intrication. **Alice** encode chaque bit dans l'une des deux bases ($\{|0\rangle, |1\rangle\}$ ou $\{|+\rangle, |-\rangle\}$), choisie aléatoirement. **Bob** mesure dans une base aléatoire. Après annonce publique des bases (sans les résultats), ils ne conservent que les bits à bases concordantes (~50 %). Sécurité : tout espion Ève doit deviner la base, ce qui introduit 25 % d'erreurs sur la clé commune, détectables statistiquement. Le non-clonage empêche la copie silencieuse. Garantie : sécurité théorique de l'information, indépendante de la puissance de calcul de l'adversaire. Record actuel : 1 Mbit/s (U. Genève / Toshiba).
+:::
+
+---
+
+# Question 18 — Quantum error correction
+
+## Pourquoi la correction d'erreurs est-elle indispensable ?
+
+Les ordinateurs classiques modernes sont en pratique exempts d'erreurs : leurs transistors sont robustes et les mécanismes de redondance matérielle rendent les fautes de calcul extrêmement rares. Les ordinateurs quantiques, en revanche, sont fondamentalement différents. Les qubits — qu'ils soient des atomes piégés, des photons, ou des circuits supraconducteurs — sont des objets physiques fragiles qui interagissent inévitablement avec leur environnement. Cette interaction provoque la **décoherence** et des erreurs qui corrompent le calcul.
+
+La correction d'erreurs quantiques est nécessaire à court terme (même les algorithmes hybrides varitationnels bruités nécessitent un certain niveau de correction) et à long terme (pour que les algorithmes quantiques surpassent effectivement les algorithmes classiques en pratique, il faut démontrer que les erreurs peuvent être corrigées de manière scalable).
+
+## Rappel : la correction d'erreurs classique
+
+Avant d'aborder la correction d'erreurs quantiques, il est utile de rappeler l'approche classique. Dans le **canal binaire symétrique** (BSC), chaque bit est inversé avec probabilité $p_e$ indépendamment. La technique la plus simple pour corriger ces erreurs est le **code à répétition sur 3 bits** : encoder 0 comme 000 et 1 comme 111, puis décoder par vote majoritaire. La probabilité d'erreur résiduelle est $p_e' = 3p_e^2(1 - p_e) + p_e^3 \approx 3p_e^2$ pour $p_e$ petit — ce qui représente une amélioration significative. Cette idée sera transposée au monde quantique, avec des adaptations substantielles.
+
+## Les trois obstacles fondamentaux
+
+Appliquer naïvement la stratégie classique (répéter l'état quantique plusieurs fois, puis voter) est impossible pour trois raisons profondes.
+
+### Obstacle 1 : Le principe de non-clonage
+
+Le **théorème de non-clonage** interdit toute transformation unitaire $U$ telle que $U|\psi\rangle|0\rangle = |\psi\rangle|\psi\rangle$ pour tout $|\psi\rangle$. Il est donc impossible de créer trois copies d'un qubit inconnu pour appliquer une stratégie de redondance directe. En classique, copier un bit revient à lire sa valeur et l'écrire ailleurs — une opération triviale. En quantique, « lire » un état quantique (mesurer) le détruit, comme on le verra avec l'obstacle suivant.
+
+### Obstacle 2 : La mesure détruit l'information quantique
+
+En mécanique quantique, mesurer un état en superposition le fait irréversiblement s'effondrer sur l'un des états de base. Si l'on mesure les qubits pour détecter les erreurs (comme en classique), on détruit la superposition que l'on cherche à protéger. La procédure de détection d'erreur doit donc être conçue pour révéler uniquement la **présence ou l'absence d'erreurs**, sans jamais révéler les amplitudes $\alpha$ et $\beta$.
+
+### Obstacle 3 : Les erreurs quantiques sont continues
+
+Un qubit est dans l'état $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ où $\alpha, \beta \in \mathbb{C}$. Une erreur quantique ne fait pas simplement « basculer » le qubit : elle perturbe continûment les coefficients complexes. Il semble donc qu'il faille corriger un continuum infini d'erreurs possibles, ce qui paraît a priori impossible.
+
+## Le code à retournement de bit sur 3 qubits : solution aux obstacles 1 et 2
+
+### Principe : l'enchevêtrement remplace la copie
+
+Puisque l'on ne peut pas copier l'état, on encode l'information logique dans un état **enchevêtré** de 3 qubits :
+
+$$\alpha|0\rangle + \beta|1\rangle \longrightarrow \alpha|000\rangle + \beta|111\rangle$$
+
+Cet état n'est **pas** trois copies de $|\psi\rangle$ (ce serait $(\alpha|0\rangle + \beta|1\rangle)^{\otimes 3}$) — c'est un état enchevêtré différent. Le théorème de non-clonage n'est donc pas violé.
+
+Le circuit d'encodage applique deux portes CNOT (avec le qubit d'entrée comme contrôle et deux qubits ancilla $|0\rangle$ comme cibles) :
+
+$$({\alpha|0\rangle + \beta|1\rangle})|00\rangle \xrightarrow{\text{CNOT}_1} (\alpha|00\rangle + \beta|11\rangle)|0\rangle \xrightarrow{\text{CNOT}_2} \alpha|000\rangle + \beta|111\rangle$$
+
+### Détection par mesures de parité
+
+La détection d'erreurs utilise des **mesures de parité** (parity-check measurements), qui comparent les qubits deux à deux (premier et deuxième, deuxième et troisième) sans jamais révéler leurs valeurs absolues. Deux qubits ancilla servent à stocker les résultats de parité.
+
+Le tableau de détection et correction est :
+
+| Retournement | Mesure $M_1$ | Mesure $M_2$ | Correction |
+|:---:|:---:|:---:|:---:|
+| Aucun | 0 | 0 | $I \otimes I \otimes I$ |
+| Qubit 1 ($X_1$) | 1 | 0 | $X \otimes I \otimes I$ |
+| Qubit 2 ($X_2$) | 1 | 1 | $I \otimes X \otimes I$ |
+| Qubit 3 ($X_3$) | 0 | 1 | $I \otimes I \otimes X$ |
+
+Les mesures $M_1$ et $M_2$ indiquent uniquement si deux qubits sont identiques ou différents — jamais leur valeur. L'état $\alpha$ et $\beta$ n'est donc pas révélé par la détection. L'obstacle 2 est résolu.
+
+## Le code à retournement de phase sur 3 qubits
+
+Le code à retournement de bit ne corrige pas les **erreurs de phase** ($Z$), qui transforment $|1\rangle \to -|1\rangle$ sans changer la valeur du bit. Pour les corriger, on encode dans la base de Hadamard :
+
+$$\alpha|0\rangle + \beta|1\rangle \longrightarrow \alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$$
+
+Une erreur de phase dans la base computationnelle devient une erreur de **retournement de bit** dans la base de Hadamard (puisque $Z|+\rangle = |-\rangle$ et vice-versa), et les mêmes techniques de parité s'appliquent après rotation par des portes Hadamard.
+
+## Le code de Shor : correction de toutes les erreurs sur un qubit
+
+### Architecture par concaténation
+
+Le **code de Shor** sur 9 qubits corrige à la fois les erreurs de retournement de bit ($X$) et de phase ($Z$) sur n'importe lequel de ses 9 qubits. Il est construit par **concaténation** des deux codes précédents :
+
+1. Le code à retournement de phase encode $|\psi\rangle$ en 3 blocs logiques.
+2. Sur chacun des 3 blocs, le code à retournement de bit encode 1 qubit logique en 3 qubits physiques.
+
+Les états logiques encodés sont :
+
+$$|0_L\rangle = \frac{1}{2\sqrt{2}}(|000\rangle + |111\rangle)(|000\rangle + |111\rangle)(|000\rangle + |111\rangle)$$
+
+$$|1_L\rangle = \frac{1}{2\sqrt{2}}(|000\rangle - |111\rangle)(|000\rangle - |111\rangle)(|000\rangle - |111\rangle)$$
+
+### Correction de toute erreur arbitraire : la digitalisation
+
+L'aspect le plus remarquable du code de Shor est sa capacité à corriger **toute erreur arbitraire** (continue) sur un seul qubit. Une erreur générale sur le premier qubit agit comme :
+
+$$|0\rangle \to a|0\rangle + b|1\rangle, \quad |1\rangle \to c|0\rangle + d|1\rangle$$
+
+où $a, b, c, d$ sont des coefficients complexes quelconques. Cette erreur peut se décomposer en une combinaison linéaire des quatre cas discrets : aucune erreur ($k \cdot I$), retournement de bit ($l \cdot X$), retournement de phase ($m \cdot Z$), retournement de bit et de phase ($n \cdot XZ$).
+
+Lorsqu'on effectue les mesures de parité (d'abord pour les retournements de bit, puis pour les retournements de phase), l'état s'effondre sur l'un de ces quatre cas discrets. C'est la **digitalisation des erreurs** (digitisation of errors) : même si l'erreur initiale est continue, les mesures la projettent sur un cas discret, qui peut alors être corrigé par une opération déterministe. L'obstacle 3 est ainsi résolu.
+
+## Le canal dépolarisant et les performances du code de Shor
+
+Le **canal dépolarisant** est le modèle de bruit quantique standard, analogue au canal binaire symétrique classique : avec probabilité $1 - p_e$ aucune erreur, avec probabilité $p_e/3$ chaque type d'erreur ($X$, $Z$, $XZ$). Le code de Shor réduit le taux d'erreur de $p_e$ à $\mathcal{O}(p_e^2)$, exactement comme le code à répétition classique — pour qu'une erreur non corrigeable survienne, il faut qu'au moins deux des 9 qubits soient simultanément affectés, ce qui est un événement d'ordre $p_e^2$.
+
+## Codes plus efficaces : Hamming et Steane
+
+### Le code de Hamming (7,4)
+
+Le code de Shor est conceptuellement fondamental mais peu efficace (taux de code $1/9$). Des codes linéaires classiques plus sophistiqués permettent de mieux compresser l'information. Le **code de Hamming (7,4)** encode 4 bits d'information en 7 bits de code, avec un taux de $4/7 \approx 0{,}57$. Il utilise une matrice génératrice $G$ (7×4) et peut détecter et corriger toute erreur de bit unique via la matrice de contrôle de parité $H$ (3×7) : $p = Hc \pmod{2}$ donne le **syndrome d'erreur**, dont la valeur non nulle indique exactement la position du bit erroné.
+
+### Le code de Steane (CSS)
+
+La construction **CSS** (Calderbank-Shor-Steane) permet de construire des codes correcteurs quantiques à partir de paires de codes linéaires classiques compatibles. Le **code de Steane**, dérivé du code de Hamming (7,4), encode **1 qubit logique en 7 qubits physiques** (taux $1/7$), tout en offrant les mêmes garanties que le code de Shor : correction de tout retournement de bit et/ou de phase sur un qubit unique. La réduction du nombre de qubits physiques (7 au lieu de 9) représente un progrès d'efficacité significatif, et le code de Steane supprime également l'erreur du canal dépolarisant de $p_e$ à $\mathcal{O}(p_e^2)$.
+
+## Tableau récapitulatif
+
+| Obstacle | Solution |
+|:---|:---|
+| Non-clonage : impossible de copier | Utiliser l'**enchevêtrement** à la place |
+| La mesure détruit la superposition | Mesures de **parité** qui révèlent les erreurs sans révéler $\alpha, \beta$ |
+| Les erreurs sont continues | **Digitalisation** des erreurs par les mesures de parité |
+
+| Code | Qubits physiques / logique | Type d'erreurs corrigé | Taux d'erreur résiduel |
+|:---|:---:|:---|:---:|
+| Code à retournement de bit (3 qubits) | 3 | $X$ seulement | $\mathcal{O}(p_e^2)$ |
+| Code à retournement de phase (3 qubits) | 3 | $Z$ seulement | $\mathcal{O}(p_e^2)$ |
+| Code de Shor | 9 | $X$, $Z$, $XZ$, erreurs continues | $\mathcal{O}(p_e^2)$ |
+| Code de Steane (CSS) | 7 | $X$, $Z$, $XZ$, erreurs continues | $\mathcal{O}(p_e^2)$ |
+
+---
+
+::: {.callout-note collapse="true" title="Résumé — Correction d'erreurs quantiques"}
+La correction d'erreurs quantiques (QEC) surmonte trois obstacles : **(1) non-clonage** → l'enchevêtrement remplace la copie ($\alpha|000\rangle + \beta|111\rangle$ au lieu de 3 copies) ; **(2) mesure destructive** → mesures de parité ne révélant que l'erreur, pas $\alpha/\beta$ ; **(3) erreurs continues** → digitalisation : les mesures de parité projettent l'erreur continue sur l'un des cas discrets ($I$, $X$, $Z$, $XZ$). Le **code de Shor** (9 qubits) corrige toute erreur sur un qubit unique en concaténant un code de phase et un code de bit. Le **code de Steane** (7 qubits, CSS) fait de même avec une meilleure efficacité ($1/7$ vs $1/9$). Les deux suppriment l'erreur du canal dépolarisant de $p_e$ à $\mathcal{O}(p_e^2)$.
+:::
+

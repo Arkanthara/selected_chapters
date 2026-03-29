@@ -24,7 +24,7 @@ website:
     contents:
       - section: "Cours"
         contents:
-          - section: "Quantum computing"
+          - section: "Introduction"
             contents:
               - text: "Détails"
                 href: ch1.qmd
@@ -32,7 +32,7 @@ website:
                 href: ch1r.qmd
               - text: "Quiz"
                 href: ch1q.qmd
-          - section: "Quantum computing chapter 2"
+          - section: "Fondements"
             contents:
               - text: "Détails"
                 href: ch2.qmd
@@ -40,7 +40,7 @@ website:
                 href: ch2r.qmd
               - text: "Quiz"
                 href: ch2q.qmd
-          - section: "Quantum computing chapter 3"
+          - section: "Propriétés"
             contents:
               - text: "Détails"
                 href: ch3.qmd
@@ -48,7 +48,7 @@ website:
                 href: ch3r.qmd
               - text: "Quiz"
                 href: ch3q.qmd
-          - section: "Applications des ordinateurs quantiques"
+          - section: "Applications"
             contents:
               - text: "Détails"
                 href: ch4.qmd
@@ -56,7 +56,7 @@ website:
                 href: ch4r.qmd
               - text: "Quiz"
                 href: ch4q.qmd
-          - section: "Correction d'erreurs quantiques"
+          - section: "Correction d'erreurs"
             contents:
               - text: "Détails"
                 href: ch5.qmd
@@ -64,6 +64,14 @@ website:
                 href: ch5r.qmd
               - text: "Quiz"
                 href: ch5q.qmd
+      - section: "Examen"
+        contents:
+          - text: "Détails"
+            href: exam_answers.qmd
+          - text: "Synthèse"
+            href: exam_syntheses.qmd
+          - text: "Quiz"
+            href: exam_quiz.qmd
 
 
 format:
@@ -73,6 +81,3 @@ format:
       light: ../latte.scss
     toc: true
     embed-resources: true
-
-# filters:
-#   - diagram

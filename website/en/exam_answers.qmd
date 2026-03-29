@@ -1,0 +1,1352 @@
+# Question 1 — Qubit definition
+
+## Full answer
+
+### From the classical bit to the qubit
+
+Before defining the qubit, it is useful to recall what a classical bit is: a two-state system with distinguishable states, usually denoted $|0\rangle$ and $|1\rangle$. These states are mutually exclusive — a classical bit occupies exactly one of the two states at any time. Measuring a classical bit is complete, non-destructive, and can be repeated without altering the result.
+
+The **qubit** (*quantum bit*) is the quantum analogue of the classical bit, and is the fundamental unit of information in quantum computing. The essential difference with respect to the classical bit comes from a fundamental principle of quantum mechanics: the **superposition principle**.
+
+### Mathematical representation
+
+Mathematically, the state of a qubit is a **complex linear combination** of the two basis states $|0\rangle$ and $|1\rangle$:
+
+$$|\psi\rangle = \alpha |0\rangle + \beta |1\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
+
+where $\alpha, \beta \in \mathbb{C}$ are complex **amplitudes** that must satisfy the **normalization condition**:
+
+$$|\alpha|^2 + |\beta|^2 = 1$$
+
+The state $|\psi\rangle$ is therefore a **unit vector** in $\mathbb{C}^2$, i.e., a 2-dimensional complex vector space. The notation used — Dirac bra-ket notation — is the universal language of quantum mechanics: the symbol $|\psi\rangle$ denotes a column vector (ket), while $\langle\psi|$ denotes its Hermitian conjugate (bra), a row vector whose components are the complex conjugates of those of the ket.
+
+### Amplitudes and their role
+
+The coefficients $\alpha$ and $\beta$ are called the **amplitudes** of the states $|0\rangle$ and $|1\rangle$ respectively. They play a role analogous to probabilities in classical theory — but they differ in a crucial way: unlike probabilities, amplitudes can be **negative** or **complex**. This property is precisely what gives rise to **quantum interference** phenomena, which have no counterpart in classical physics.
+
+Examples of valid states:
+
+$$\frac{1}{\sqrt{2}} |0\rangle + \frac{1}{\sqrt{2}} |1\rangle \qquad \text{since} \quad \frac{1}{2} + \frac{1}{2} = 1 \checkmark$$
+
+$$\frac{1}{\sqrt{2}} |0\rangle - \frac{i}{\sqrt{2}} |1\rangle \qquad \text{since} \quad \frac{1}{2} + \frac{1}{2} = 1 \checkmark$$
+
+Example of an invalid state:
+
+$$i |0\rangle - \frac{1}{2} |1\rangle \qquad \text{since} \quad |i|^2 + \left|-\frac{1}{2}\right|^2 = 1 + \frac{1}{4} = \frac{5}{4} \neq 1 \times$$
+
+### Born rule: the link between amplitudes and probabilities
+
+One cannot directly observe the state of a qubit. During a **measurement**, the system produces a classical outcome — either $|0\rangle$ or $|1\rangle$ — according to the **Born rule**:
+
+$$\Pr[\text{observe } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{observe } |1\rangle] = |\beta|^2$$
+
+The normalization condition guarantees that these probabilities add up to 1, as required for probabilistic consistency. After the measurement, the qubit state **collapses** to the observed state, irreversibly. A subsequent measurement will always yield the same result, which is another way of saying that measuring a system twice is equivalent to measuring it once.
+
+### Fundamental differences from the classical bit
+
+Two properties radically distinguish the qubit from the classical bit, beyond superposition:
+
+- **The impossibility of copying** an unknown qubit: the quantum no-cloning theorem establishes that it is impossible to duplicate an arbitrary unknown quantum state. There is no classical equivalent.
+- **The impossibility of deleting** a qubit: the reversibility of quantum operations forbids deleting information in a quantum circuit.
+
+### Computational power
+
+One of the major advantages of qubits lies in the **exponential growth** of the state space. Whereas a classical computer with $n$ bits operates on $n$ binary values, a quantum computer with $n$ qubits operates in a space of dimension $2^n$. Concretely, adding a single qubit **doubles** the computational power of the system, whereas doubling classical power requires adding as many bits as the system already contains. For $n = 64$ qubits, the state space has $2^{64} \approx 16 \times 10^{18}$ dimensions.
+
+::: {.callout-note title="Summary — Question 1" collapse="true"}
+
+A **qubit** is the fundamental unit of quantum information. Unlike a classical bit (always in state $|0\rangle$ or $|1\rangle$), a qubit can be in a **superposition** $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ where $\alpha, \beta \in \mathbb{C}$ are amplitudes that satisfy the normalization condition $|\alpha|^2 + |\beta|^2 = 1$. These amplitudes can be complex or negative, which enables quantum interference. Measurement (Born rule) yields $|0\rangle$ with probability $|\alpha|^2$ and $|1\rangle$ with probability $|\beta|^2$, and causes an irreversible **collapse** of the state. A qubit can neither be copied (no-cloning theorem) nor deleted. Adding a single qubit doubles the system’s power because the state space has dimension $2^n$ for $n$ qubits.
+
+:::
+
+---
+
+# Question 2 — Composite quantum systems
+
+## Full answer
+
+### What is it?
+
+A composite quantum system is a system made of **multiple quantum subsystems** — typically several qubits — considered jointly. The mathematical description of such a system relies on a specific tool: the **tensor product**.
+
+### Hilbert space of a composite system
+
+Quantum states live in a **Hilbert space** $H$. For a single qubit, the Hilbert space is $\mathbb{C}^2$. For two qubits, it is the **tensor product** of the two individual spaces:
+
+$$H_{12} = \mathbb{C}^2 \otimes \mathbb{C}^2$$
+
+This space has dimension $2 \times 2 = 4$. For $n$ qubits, the Hilbert space is $(\mathbb{C}^2)^{\otimes n} = \mathbb{C}^{2^n}$, of dimension $2^n$. This **exponential growth** in the dimension of the state space is the main source of the computational power of quantum computers.
+
+### Basis for the two-qubit space
+
+The space $\mathbb{C}^2 \otimes \mathbb{C}^2$ has a natural basis formed by tensor products of the individual basis states:
+
+$$|0\rangle \otimes |0\rangle, \quad |0\rangle \otimes |1\rangle, \quad |1\rangle \otimes |0\rangle, \quad |1\rangle \otimes |1\rangle$$
+
+which is abbreviated as $|00\rangle$, $|01\rangle$, $|10\rangle$, $|11\rangle$.
+
+A general two-qubit state can be written:
+
+$$|\Psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$$
+
+with the normalization condition $|\alpha_{00}|^2 + |\alpha_{01}|^2 + |\alpha_{10}|^2 + |\alpha_{11}|^2 = 1$.
+
+### Tensor product: the fundamental operation
+
+The **tensor product** is the third kind of multiplication needed to describe quantum systems (in addition to scalar and matrix multiplication). For two matrices $A$ ($n \times m$) and $B$ ($n' \times m'$), the tensor product is defined by:
+
+$$A \otimes B = \begin{bmatrix} a_{11}B & \cdots & a_{1m}B \\ \vdots & \ddots & \vdots \\ a_{n1}B & \cdots & a_{nm}B \end{bmatrix}$$
+
+The resulting matrix has dimension $nn' \times mm'$. The tensor product is **associative**: $A \otimes (B \otimes C) = (A \otimes B) \otimes C$.
+
+Concretely, if qubit 1 is in state $|\psi_1\rangle = \alpha|0\rangle + \beta|1\rangle$ and qubit 2 in state $|\psi_2\rangle = \alpha'|0\rangle + \beta'|1\rangle$, the joint state is:
+
+$$|\psi_1\rangle \otimes |\psi_2\rangle = \alpha\alpha'|00\rangle + \alpha\beta'|01\rangle + \beta\alpha'|10\rangle + \beta\beta'|11\rangle$$
+
+### Product states and entangled states
+
+A crucial point is that **not all states** in $\mathbb{C}^2 \otimes \mathbb{C}^2$ can be written in the form $|\psi_1\rangle \otimes |\psi_2\rangle$. The states that can are called **product states**: they correspond to independent subsystems, each of which can be described separately. States that cannot be written as a tensor product of two individual states are **entangled states** — a phenomenon with no classical analogue, discussed in the next question.
+
+### Generalization to $N$ qubits
+
+For $N$ qubits, the system state is a unit vector in $\mathbb{C}^{2^N}$, requiring at least $2^N$ complex numbers to describe it. For $N \approx 300$ (about the number of particles in a single uranium atom), one gets $2^N \gg 10^{82}$, i.e., larger than the estimated number of atoms in the observable universe. This is why classical simulation of quantum systems is fundamentally limited, and why quantum computers offer an intrinsic advantage for certain computations.
+
+::: {.callout-note title="Summary — Question 2" collapse="true"}
+
+A **composite quantum system** is formed by several subsystems whose joint state is described by the **tensor product** of their individual Hilbert spaces. For $n$ qubits, the state space is $\mathbb{C}^{2^n}$ of dimension $2^n$, with a natural basis $\{|00\cdots0\rangle, \ldots, |11\cdots1\rangle\}$. The tensor product is defined blockwise ($A \otimes B$) and is associative. A general $n$-qubit state requires $2^n$ complex amplitudes to describe it. States that can be written as $|\psi_1\rangle \otimes |\psi_2\rangle$ are **product** (independent subsystems); those that cannot are **entangled**. This exponential growth in dimension is both the source of quantum power and the reason classical simulation of moderate-size quantum systems is physically impossible.
+
+:::
+
+---
+
+# Question 3 — Entanglement
+
+## Full answer
+
+### Definition
+
+**Quantum entanglement** is one of the most fundamental and surprising phenomena in quantum mechanics. It arises in composite quantum systems and describes a situation in which the subsystems of a composite system cannot be described independently of one another — even when separated by a large distance.
+
+Formally, a two-qubit state $|\Psi\rangle \in \mathbb{C}^2 \otimes \mathbb{C}^2$ is **entangled** if and only if it **cannot** be written as a tensor product $|\psi_1\rangle \otimes |\psi_2\rangle$ for any choice of $|\psi_1\rangle, |\psi_2\rangle \in \mathbb{C}^2$. Otherwise, the state is a **product state**, and the two qubits are independent.
+
+### The EPR pair / Bell pair
+
+The emblematic example of an entangled state is the **Einstein–Podolsky–Rosen (EPR) pair**, also called a **Bell pair**:
+
+$$|\Phi\rangle = \frac{1}{\sqrt{2}} \Big( |00\rangle + |11\rangle \Big)$$
+
+One can check that this state is entangled: assume for contradiction that there exist $(\alpha, \beta, \alpha', \beta')$ such that $|\Phi\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes (\alpha'|0\rangle + \beta'|1\rangle)$. Expanding yields $\alpha\alpha'|00\rangle + \alpha\beta'|01\rangle + \beta\alpha'|10\rangle + \beta\beta'|11\rangle$. For this to equal $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, we would need $\alpha\beta' = 0$ and $\beta\alpha' = 0$, but also $\alpha\alpha' = \beta\beta' = \frac{1}{\sqrt{2}} \neq 0$. These conditions are contradictory — so the state is entangled.
+
+### How to distinguish product vs entangled states
+
+A two-qubit state of the form $\alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$ is a **product** state if and only if $\alpha_{00}\alpha_{11} = \alpha_{01}\alpha_{10}$ (a rank-1 condition on the coefficient matrix). Examples:
+
+- $\frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle - \frac{1}{2}|10\rangle - \frac{1}{2}|11\rangle$ → **product** state (can be written $\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$)
+- $\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$ → **entangled** state
+
+### Properties of entanglement
+
+Entanglement has radically non-classical properties:
+
+- **Non-separability:** the quantum state of each particle in an entangled pair cannot be described independently of the other, regardless of the distance between them.
+- **Non-local correlations:** the entangled pair is a single quantum system. The entangled state contains no information about the individual particles, only about their mutual correlations.
+- **Correlated collapse:** if the state of one particle is modified (or measured), the state of the other updates **instantaneously** in a way consistent with quantum mechanics.
+- **Measurement and correlation:** if a measurement is performed on one particle, the other **collapses automatically** into a state consistent with the observed outcome.
+
+Einstein called this phenomenon *"spooky action at a distance"*. It should be emphasized, however, that entanglement does not allow information to be transmitted faster than light: each individual measurement outcome remains random.
+
+### Generating entanglement with a quantum circuit
+
+A Bell state can be generated from the initial state $|00\rangle$ with only **two gates**:
+
+1. A **Hadamard** gate on qubit 1: $|00\rangle \rightarrow \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$
+2. A **CNOT** gate (qubit 1 control, qubit 2 target): $\frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \rightarrow \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+
+The result is the Bell pair $\frac{|00\rangle + |11\rangle}{\sqrt{2}}$: the two qubits are now perfectly correlated — if one is measured to $|0\rangle$, the other will be $|0\rangle$, and if one is measured to $|1\rangle$, the other will be $|1\rangle$, regardless of the distance between them.
+
+### Role of entanglement in quantum computing
+
+Entanglement is one of the three fundamental computational resources of quantum computing, together with **superposition** and **interference**. It plays a central role in fundamental protocols such as quantum teleportation, quantum cryptography (key distribution), Shor’s and Grover’s algorithms, as well as in quantum error correction. The notion of entanglement also appears in contexts as fundamental as black hole physics and quantum gravity, via the AdS/CFT correspondence.
+
+::: {.callout-note title="Summary — Question 3" collapse="true"}
+
+**Quantum entanglement** is a purely quantum phenomenon in which two (or more) qubits form a system whose state **cannot** be factorized into a tensor product of individual states. The emblematic state is the **Bell pair** $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$. An entangled state contains no information about the individual particles, only about their correlations: measuring one particle instantaneously collapses the state of the other. The phenomenon is non-local but does not enable superluminal communication. Entanglement is generated by the Hadamard + CNOT circuit and is, with superposition and interference, one of the three fundamental resources of quantum computing.
+
+:::
+
+---
+
+# Question 4 — Decoherence
+
+## Full answer
+
+### Definition
+
+**Quantum decoherence** is the process by which a quantum system loses its quantum character — in particular its **superposition** and **entanglement** properties — due to interaction with the **external environment**.
+
+Physically, decoherence can be interpreted as a **leakage of information** from the quantum system to its environment. When a qubit interacts with external particles (thermal photons, vibrations, electromagnetic fields, etc.), these interactions constitute “involuntary measurements” performed by the environment on the system. As a consequence, the delicate superpositions that constitute the computational richness of a quantum system are gradually erased, and the system behaves more and more like a classical system.
+
+### Physical mechanism
+
+The intuition is as follows: imagine a coin perfectly balanced on its edge. It represents a superposition state — neither heads nor tails, but both at once. Any contact with the environment — the slightest vibration, the faintest gust of air — makes it fall to one side or the other. The environment has, in a sense, “measured” the coin and destroyed the superposition. This is exactly what happens with decoherence: each interaction with the environment acts as a partial measurement that little by little destroys the quantum superposition.
+
+### Consequences for quantum computation
+
+Decoherence has very significant practical consequences:
+
+- **Destruction of superposition:** a qubit in superposition $\alpha|0\rangle + \beta|1\rangle$ gradually ends up in a definite classical state, losing any ability to interfere.
+- **Destruction of entanglement:** the non-classical correlations between entangled qubits are eroded, reducing the expected algorithmic advantage.
+- **Limitation of circuit depth:** qubit decoherence times set an upper bound on how long an algorithm can run. If the computation lasts longer than the coherence time, results are corrupted.
+- **Introduction of quantum errors:** decoherence is the main source of errors in today’s quantum computers.
+
+### Link with the NISQ era
+
+It is precisely decoherence that explains the acronym **NISQ** (*Noisy Intermediate-Scale Quantum*) used to describe current quantum devices. Qubits are **extremely fragile**: they must be isolated with extraordinary precision from any contact with the environment. NISQ devices have on the order of 100 controllable qubits, but noise (largely due to decoherence) prevents executing complex algorithms such as Shor’s algorithm.
+
+### Technical conditions to limit decoherence
+
+To counteract decoherence, quantum computer architectures impose very strict requirements:
+
+- **Near-total isolation from the environment**: superconducting qubits, for example, operate at temperatures close to absolute zero (a few millikelvin) to minimize thermal interactions.
+- **Very long decoherence times**: the coherent quantum state must be maintained throughout the computation.
+- **Fast operations**: quantum gates must be executed much faster than the decoherence time.
+
+### Quantum error correction as the remedy
+
+In the face of decoherence, **quantum error correction** (QEC) is the fundamental theoretical answer. It relies on redundant encoding of quantum information: a single **logical** qubit is encoded into many **physical** qubits, so that errors due to decoherence can be detected and corrected without destroying the quantum state. For a quantum computer to be fault-tolerant, errors must be corrected **faster than they occur**. Remarkable progress has recently been made in this direction, notably an experiment with 101 physical qubits at Google showing a reduction in the effective error rate as the code size increases.
+
+::: {.callout-note title="Summary — Question 4" collapse="true"}
+
+**Quantum decoherence** is the loss of superposition and entanglement of a quantum system due to interaction with its environment. It can be viewed as an “involuntary measurement” performed by the environment on the system. Its consequences are the destruction of superpositions, the erosion of entanglement, the limitation of circuit depth, and the introduction of errors. It is the main obstacle to building powerful quantum computers and is responsible for the *noisy* character of the NISQ era. To fight it, quantum systems must be extremely isolated (cryogenic temperatures), and **quantum error correction** (redundant encoding of logical qubits into physical qubits) is the theoretical solution toward fault-tolerant quantum computing.
+
+:::
+
+---
+
+
+# Question 5 — Effect of qubit observation
+
+## Full answer
+
+### Measurement in quantum mechanics
+
+Observing (measuring) a qubit is fundamentally different from reading the value of a classical bit. In classical computing, reading a bit does not disturb its value and can be repeated as many times as desired. In quantum mechanics, measurement is a **probabilistic**, **destructive**, and **irreversible** process that radically transforms the system state.
+
+### Born rule: measurement probabilities
+
+When a qubit in the state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ is measured, the **Born rule** gives the probabilities of each outcome:
+
+$$\Pr[\text{observe } |0\rangle] = |\alpha|^2 \qquad \Pr[\text{observe } |1\rangle] = |\beta|^2$$
+
+The normalization condition $|\alpha|^2 + |\beta|^2 = 1$ guarantees probabilistic consistency. The obtained result is classical — either $|0\rangle$ or $|1\rangle$ — even if the system was previously in a superposition of both.
+
+### Wavefunction collapse
+
+After measurement, the qubit state **collapses** irreversibly to the observed state. Thus:
+
+- If the outcome is $|0\rangle$, the qubit state becomes $|0\rangle$ and all information about $\beta$ is lost.
+- If the outcome is $|1\rangle$, the state becomes $|1\rangle$ and all information about $\alpha$ is lost.
+
+The prior superposition state is **permanently lost** — measurement perturbs the system in an essential way. It follows that repeating the measurement always gives the same result: *measuring a system twice is equivalent to measuring it once*.
+
+### Intermediate measurement and quantum interference
+
+The effect of measurement is strikingly illustrated by two experiments involving the Hadamard gate.
+
+**Experiment A: with intermediate measurement**
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+1. $H$ transforms $|0\rangle$ into $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+2. The intermediate measurement yields $|0\rangle$ or $|1\rangle$ with probability $\frac{1}{2}$ each, and the state collapses to that result.
+3. $H$ is applied to the result ($|0\rangle$ or $|1\rangle$): in each case one obtains $|+\rangle$ or $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$.
+4. Final measurement: in both cases, the outcome is $|0\rangle$ or $|1\rangle$ with probability $\frac{1}{2}$.
+
+**Result:** $|0\rangle$ and $|1\rangle$ with equal probability $\frac{1}{2}$.
+
+**Experiment B: without intermediate measurement**
+
+$$|0\rangle \longrightarrow \boxed{H} \longrightarrow \boxed{H} \longrightarrow \boxed{\nearrow}$$
+
+1. $H$ transforms $|0\rangle$ into $|+\rangle$.
+2. $H$ is applied to $|+\rangle$: since $H^2 = I$, we recover $|0\rangle$.
+3. Final measurement.
+
+**Result:** $|0\rangle$ with probability 1 — the outcome is **deterministic**.
+
+### Quantum interference: the explanation
+
+These two experiments look similar but yield radically different results. The key is **quantum interference**:
+
+Applying multiple unitary gates to a qubit creates a **tree of paths** between states. Each path has a **transition amplitude** — the product of the amplitudes along the path. Before measurement, the amplitude to reach a state $|b\rangle$ is the **sum of the transition amplitudes** of all paths that lead to $|b\rangle$.
+
+Because amplitudes can be **negative or complex**, paths can **interfere destructively** (cancel) or **constructively** (add). In experiment B, the paths leading to $|1\rangle$ cancel by destructive interference, while those leading to $|0\rangle$ add up.
+
+By contrast, an **intermediate measurement destroys the superposition**: it forces the system into a classical state and suppresses interference. Only paths consistent with the measurement result remain. The outcome then becomes random, as in experiment A.
+
+### Fundamental implication for quantum algorithms
+
+This property is crucial for quantum algorithm design: **any intermediate measurement destroys interference and makes the computation random**. Measurements should only be performed at the end of the computation, after unitary operations have constructively amplified the amplitudes of good answers and destructively canceled those of bad ones.
+
+### Distinguishing two quantum states
+
+An important consequence of this mechanism is the possibility to distinguish orthogonal states by measuring in an appropriate basis. For instance, to distinguish $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ from $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$, a direct measurement in the standard basis is insufficient (both yield $|0\rangle$ or $|1\rangle$ with probability $\frac{1}{2}$). However, by applying $H$ **before** measurement:
+
+- $H|+\rangle = |0\rangle$ → always measures $|0\rangle$
+- $H|-\rangle = |1\rangle$ → always measures $|1\rangle$
+
+Orthogonal states can therefore be **perfectly distinguished** by choosing the right measurement basis.
+
+::: {.callout-note title="Summary — Question 5" collapse="true"}
+
+Measuring a qubit is an irreversible and probabilistic act. The **Born rule** gives $\Pr[|0\rangle] = |\alpha|^2$ and $\Pr[|1\rangle] = |\beta|^2$. After measurement, the state **collapses** to the observed outcome, destroying the superposition. An intermediate measurement in a circuit **destroys quantum interference**: amplitudes that could have canceled destructively are cut off, making the outcome random (experiment A with intermediate measurement: 50/50). Without intermediate measurement, amplitudes interfere and can produce a deterministic outcome (experiment B, $H^2=I$: always $|0\rangle$). The art of quantum algorithms is precisely to perform measurements only at the end, after constructive amplification of the correct answers.
+
+:::
+
+---
+
+# Question 6 — Single and double qubit gates
+
+## Full answer
+
+### Definition of a quantum gate
+
+A **quantum gate** is an elementary operation on qubits in a quantum circuit. It plays a role analogous to logical gates (AND, OR, NOT) in classical circuits, but with two fundamental differences:
+
+1. **Unitarity:** any quantum gate $U$ acting on $n$ qubits is represented by a **unitary matrix** of size $2^n \times 2^n$, satisfying $UU^\dagger = I$. This guarantees the operation preserves state-vector norm and is physically valid.
+2. **Reversibility:** all quantum gates are **reversible** (because they are unitary), unlike classical gates such as AND or OR. The inverse of a gate $U$ is its Hermitian conjugate $U^\dagger$.
+
+### Single-qubit gates
+
+#### Pauli-X gate (quantum NOT)
+
+The **Pauli-X** gate is the quantum analogue of the classical NOT gate. It swaps the amplitudes of $|0\rangle$ and $|1\rangle$:
+
+$$X|0\rangle = |1\rangle \qquad X|1\rangle = |0\rangle$$
+
+$$X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$$
+
+On the pure states $|0\rangle$ or $|1\rangle$, it behaves exactly like classical NOT.
+
+#### Pauli-Y gate
+
+The **Pauli-Y** gate has no classical equivalent. It introduces a complex phase $i$:
+
+$$Y|0\rangle = i|1\rangle \qquad Y|1\rangle = -i|0\rangle$$
+
+$$Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$$
+
+#### Pauli-Z gate and phase gates
+
+The **Pauli-Z** gate leaves $|0\rangle$ unchanged and multiplies $|1\rangle$ by $-1$:
+
+$$Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$$
+
+The **phase gate $S$** introduces a phase shift of $\frac{\pi}{2}$ on the $|1\rangle$ component:
+
+$$S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \qquad S^2 = Z$$
+
+The **$\pi/8$ gate (T gate)** introduces a phase shift of $\frac{\pi}{4}$:
+
+$$T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$$
+
+These gates can be visualized on the **Bloch sphere**, a geometric representation of a qubit state in terms of angles $\theta$ and $\varphi$.
+
+#### Hadamard gate (H) — the most important
+
+The **Hadamard** gate is one of the most fundamental gates in quantum computing. It transforms computational-basis states into perfect superpositions:
+
+$$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$$
+
+$$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle$$
+
+$$H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$$
+
+Notable properties:
+
+- **No classical equivalent:** $H$ creates a perfect superposition between $|0\rangle$ and $|1\rangle$.
+- **Self-inverse:** $H^2 = I$, i.e., $H$ is its own inverse. Applying $H$ twice is the same as doing nothing.
+- **Deterministic–random duality:** applying $H$ to a deterministic state $|0\rangle$ or $|1\rangle$ produces a random state (measurement yields $|0\rangle$ or $|1\rangle$ with probability $\frac{1}{2}$). Conversely, applying $H$ to the random state $|+\rangle$ produces the deterministic state $|0\rangle$. This apparent contradiction is actually a manifestation of quantum interference.
+- **Basis change:** $H$ transforms the standard basis $\{|0\rangle, |1\rangle\}$ into the Hadamard basis $\{|+\rangle, |-\rangle\}$ and vice versa.
+
+### Two-qubit gate: the CNOT (Controlled-NOT) gate
+
+The **CNOT** gate is a **two-qubit** gate with a **control qubit** and a **target qubit**.
+
+Action rule: if the control qubit is $|0\rangle$, the target qubit remains unchanged; if the control qubit is $|1\rangle$, the target qubit is **flipped**.
+
+$$|00\rangle \rightarrow |00\rangle \qquad |01\rangle \rightarrow |01\rangle \qquad |10\rangle \rightarrow |11\rangle \qquad |11\rangle \rightarrow |10\rangle$$
+
+$$\text{CNOT} = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{bmatrix}$$
+
+The CNOT gate is equivalent to the classical **XOR** gate on computational basis states, but it also acts on superpositions. In particular, when applied after an $H$ gate on the control qubit, it generates **entanglement** (a Bell pair).
+
+### Comparison table: quantum gates vs classical gates
+
+| Quantum gate | Classical equivalent |
+|-----------------|----------------------|
+| Pauli-X (X)     | NOT                  |
+| CNOT (CX)       | XOR                  |
+| Toffoli (CCNOT) | NAND (universal)     |
+| Pauli-Y (Y)     | None                 |
+| Hadamard (H)    | None                 |
+| Phase (S, T)    | None                 |
+
+### Universality
+
+A gate set is **universal** if it allows approximating any arbitrary unitary transformation on $n$ qubits. Unlike the classical case where {NAND} suffices, there is no single canonical universal set in quantum computing — but several have been identified, for example $\{H, T, \text{CNOT}\}$.
+
+::: {.callout-note title="Summary — Question 6" collapse="true"}
+
+**Quantum gates** are unitary matrices that reversibly transform qubit states. The main **single-qubit** gates are: **Pauli-X** (NOT analogue, swaps $|0\rangle$ and $|1\rangle$), **Pauli-Y** (complex phase, no classical analogue), **Pauli-Z** and phase gates **S** and **T** (act on the phase of $|1\rangle$), and the **Hadamard gate $H$** (creates superpositions, $H^2=I$, no classical equivalent). The fundamental **two-qubit** gate is **CNOT**: it flips the target if and only if the control is $|1\rangle$, and is equivalent to classical XOR on basis states. Combined with $H$, it generates entanglement. All quantum gates are reversible (unitary), unlike most classical gates.
+
+:::
+
+---
+
+# Question 7 — Quantum circuits
+
+## Full answer
+
+### Definition
+
+A **quantum circuit** is the standard model of computation in quantum computing. It is a **sequence of quantum gates** applied to a register of $n$ qubits, connected by “wires” that represent the passage of time. Each wire corresponds to a qubit, and the circuit is read left to right.
+
+Two fundamental structural properties distinguish it from a classical circuit:
+
+- **Fixed width:** the same number of wires runs through the entire circuit. Quantum operations (unitaries) are **reversible** and do not erase information, unlike classical gates such as AND or OR.
+- **Exponential state space:** for $n$ qubits, the state space has dimension $2^n$, versus $n$ for a classical circuit with $n$ bits. This is the main source of quantum power.
+
+### Classical vs quantum circuits
+
+| Property | Classical circuits | Quantum circuits |
+|-----------|---------------------|---------------------|
+| Signal states | Bit vectors ($X = 01010$) | Superpositions of qubit basis states with complex amplitudes |
+| Operations | Boolean algebra | Linear algebra on Hilbert space (unitary matrices) |
+| Copying signals | Possible | Forbidden (no-cloning theorem) |
+| Measurement | Non-destructive, repeatable | Destructive, irreversible |
+| Universal gates | {NAND}, {AND, OR, NOT} | $\{H, T, \text{CNOT}\}$ (and others) |
+| Reversibility | No (AND, OR…) | Always (unitary matrices) |
+| Technologies | Fast, robust, scalable CMOS | NMR, superconductors — fragile, slow, not yet scalable |
+
+### Fundamental example: generating a Bell pair
+
+The most illustrative circuit is generating a Bell state (maximal entanglement) from two qubits in $|00\rangle$:
+
+**Step 1 — Initial state:**
+
+$$|00\rangle$$
+
+**Step 2 — $H$ on qubit 1:**
+
+$$\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$$
+
+**Step 3 — CNOT (qubit 1 = control, qubit 2 = target):**
+
+$$\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+We obtain the Bell pair — an entangled state. This circuit illustrates how two elementary gates suffice to create non-classical correlations between two qubits. The $H$ gate creates a superposition on the control qubit, and the CNOT “copies” that superposition into the correlation with the target qubit (without copying the state itself, which would be forbidden).
+
+### Quantum computer architecture
+
+A quantum circuit fits into a larger architecture. Execution proceeds in four steps:
+
+1. The **classical** computer prepares and submits a quantum program (the circuit description).
+2. The quantum computer’s **controller** translates gates into physical pulses (microwaves for superconducting qubits).
+3. The **quantum register** executes the operations.
+4. The **measurement results** are sent back to the classical computer for post-processing.
+
+To work correctly, a quantum circuit requires:
+
+- A physically available universal set of gates.
+- The ability to entangle qubits.
+- Coherence times long enough to finish the computation.
+- Reliable preparation of the initial state.
+- Reliable measurement of the final state.
+
+### Programming quantum circuits
+
+Quantum circuits can be programmed using dedicated languages and frameworks. **QCL** (*Quantum Computation Language*), with C-like syntax, allows combining quantum and classical code. IBM’s **Qiskit** is a widely used open-source Python framework. A simple Qiskit example builds a two-qubit circuit, applies a rotation $R_x(\pi/2)$ and a CNOT gate, and measures the results. These tools are accessible via the cloud (IBM Quantum Experience) on real machines.
+
+### Current limits of quantum circuits
+
+Today’s NISQ devices can execute circuits with limited **width** (number of qubits) and limited **depth** (number of layers). **Quantum volume** is the metric that captures precisely this tension between width and depth — discussed in Question 9.
+
+::: {.callout-note title="Summary — Question 7" collapse="true"}
+
+A **quantum circuit** is a sequence of quantum gates (unitary matrices) applied to a register of $n$ qubits. Unlike classical circuits, signals are superpositions with complex amplitudes, operations are always reversible, and the state space has dimension $2^n$. The emblematic $H$ + CNOT circuit generates the Bell pair $\frac{|00\rangle+|11\rangle}{\sqrt{2}}$ from $|00\rangle$ in two steps. In practice, a quantum circuit is executed on a quantum processor controlled by a classical computer that translates gates into physical pulses. Practical constraints (decoherence, coherence times) limit the depth of circuits that can be run on current NISQ hardware.
+
+:::
+
+---
+title: "Exam answers — Quantum Computing"
+format:
+	html:
+		toc: true
+		toc-depth: 3
+		number-sections: true
+---
+
+---
+
+
+# Question 8 — Quantum algorithms
+
+## Full answer
+
+### Why can quantum algorithms be faster?
+
+The power of quantum algorithms rests on three fundamental resources absent from classical computing:
+
+1. **Quantum parallelism**: by exploiting superpositions, a quantum computer can execute an operation on **all possible inputs simultaneously**. Classically, computing a function on $2^n$ values requires $2^n$ steps or $2^n$ processors. Quantumly, the same operation on $2^n$ values encoded in $n$ qubits requires a single step.
+
+2. **The exponential dimension of Hilbert space**: the state space of a system of $n$ qubits has dimension $2^n$. Information can therefore be represented and manipulated in a space with structure far richer than the corresponding classical space.
+
+3. **Entanglement**: non-classical correlations between qubits make it possible to process information in a qualitatively different way than classical physics allows.
+
+To these resources we add the central mechanism of **quantum interference**: clever algorithmic design amplifies the amplitudes of correct answers constructively and suppresses incorrect ones destructively, before the final measurement. This is what distinguishes an efficient quantum algorithm from mere random exploration.
+
+### Debunking a common misconception
+
+It is important to correct the myth that a quantum computer “tries all solutions simultaneously”. Quantum superposition is **not** massive parallelism in the classical sense: measuring a superposed state yields **one single** probabilistic outcome. The art of quantum algorithmics is precisely to orchestrate interference so that the correct answer has a high probability of being obtained at measurement.
+
+### Overview of quantum algorithms
+
+#### Exponential speedups for structured problems
+
+**Shor’s algorithm (integer factorization)**
+
+Proposed by Peter Shor in 1994, this algorithm solves **integer factorization** in polynomial time on a quantum computer, versus sub-exponential time for the best known classical algorithms. Its core relies on the **quantum Fourier transform** (QFT), which computes a Fourier transform in $O(\log^2 N)$ steps instead of $O(N\log N)$ classically (for $N = 2^n$ values) — an exponential speedup. The cryptographic impact is huge: the security of RSA, the most deployed system on the Internet, relies on the presumed hardness of factorization. A sufficiently large quantum computer (millions of logical qubits with error correction) could break RSA.
+
+**Hidden Subgroup Problem (HSP):** Shor’s algorithm is an instance of this more general family, which also includes the discrete logarithm problem.
+
+**Speedup table:**
+
+| Algorithm | Classical complexity | Quantum complexity |
+|------------|----------------------|----------------------|
+| Fourier transform (QFT) | $N\log N = n \cdot 2^n$ | $\log^2 N = n^2$ |
+| Database search | $N$ queries | $\sqrt{N}$ queries |
+| Simulation of $N$ quantum particles | $c^N$ bits | $kN$ qubits |
+
+#### Polynomial (quadratic) speedup for unstructured search
+
+**Grover’s algorithm (Grover search)**
+
+Grover’s algorithm searches for an item in an unordered database of $N$ entries in $O(\sqrt{N})$ queries, versus $O(N)$ classically. This **quadratic** speedup is provably optimal for unstructured search — there is no better quantum algorithm for this problem. Although smaller than Shor’s exponential speedup, it is universal and applies to any search problem.
+
+#### Exponential speedups for quantum simulation
+
+This is probably **the most promising application** of quantum computers today. The motivation goes back to Feynman (1981): a quantum computer can naturally simulate a quantum system by encoding the state of $N$ particles into $N$ qubits — versus $2^N$ classical bits required for the same task. Applications include:
+
+- Simulating molecules for drug discovery.
+- Simulating materials for energy (superconductors, batteries) and electronics.
+- Simulating strongly correlated systems inaccessible to classical methods.
+
+#### Algorithms for the NISQ era
+
+Today’s devices (noisy, intermediate-scale) have motivated hybrid algorithms:
+
+- **VQE** (*Variational Quantum Eigensolver*): computes the ground-state energy of a quantum system via a hybrid classical–quantum loop.
+- **QAOA** (*Quantum Approximate Optimization Algorithm*): tackles combinatorial optimization problems with a parameterized quantum circuit.
+
+These algorithms use a quantum processor to evaluate a cost function and a classical optimizer to tune circuit parameters.
+
+#### Quantum machine learning
+
+An emerging area explores potential speedups for:
+
+- Solving linear systems (*HHL algorithm*).
+- Recommendation systems.
+- Quantum neural networks.
+- Convex optimization and semidefinite programming.
+
+An illustrative example: in 2016, a quantum algorithm solved a recommendation problem in time $O(\mathrm{poly}\log(mn))$ versus $O(\mathrm{poly}(mn))$ classically. In 2018, this quantum algorithm inspired a **classical** algorithm achieving the same complexity — showing that thinking “quantumly” can have intrinsic value even for classical algorithm design.
+
+### Fundamental limitations
+
+Quantum computers **probably cannot** solve NP-hard problems in polynomial time (such as the traveling salesman problem). They excel on problems with **exploitable mathematical structure** (periodicity for Shor, uniform amplitude for Grover, Hamiltonian structure for simulation). Problems without such structure do not benefit from a significant quantum speedup.
+
+::: {.callout-note title="Summary — Question 8" collapse="true"}
+
+**Quantum algorithms** leverage three fundamental resources: parallelism (superposition), the exponential dimension of Hilbert space, and entanglement — with **quantum interference** as the central mechanism that amplifies correct answers. Main speedup categories: (1) **exponential for structured problems** — **Shor** (factorization via QFT, threat to RSA) and the hidden subgroup problem; (2) **quadratic for unstructured search** — **Grover** ($O(\sqrt{N})$ vs $O(N)$); (3) **exponential for quantum simulation** (Feynman’s vision, simulation of molecules and materials). For NISQ hardware, hybrid algorithms **VQE** and **QAOA** have been developed. Quantum computers do not solve general NP-hard problems, and quantum advantage must always be measured against the best available classical algorithms.
+
+:::
+
+---
+
+# Question 9 — Quantum volume
+
+## Full answer
+
+### Motivation: why a new metric?
+
+With the proliferation of quantum platforms (superconducting qubits at IBM and Google, trapped ions at Honeywell, etc.) and the race for qubit counts, it has become clear that the **raw number of qubits** is not a sufficient measure of a quantum computer’s real power. A device with many qubits but high error rates can be less useful than a device with fewer, higher-quality qubits. **Quantum volume** was introduced to capture this tension between quantity and quality.
+
+### Formal definition
+
+**Quantum volume** $V_Q$ is a metric that measures both the **capabilities** and the **error rates** of a quantum computer. It was defined by Nikolaj Moll *et al.* in *Quantum Science and Technology*, **3**, 030503 (2018).
+
+It depends on two fundamental parameters:
+
+- The number of qubits $N$ in the device.
+- The circuit depth $d(N)$: the maximum number of layers that can be executed reliably on $N$ qubits.
+
+The original formula is:
+
+$$\tilde{V}_Q = \min[N, d(N)]^2$$
+
+This captures the idea that effective power is limited by the smaller of the two factors: either the number of qubits available or the feasible circuit depth. In other words, a machine with many qubits but shallow circuits, or few qubits but very deep circuits, will be bottlenecked by its weaker factor.
+
+IBM proposed a slightly modified version:
+
+$$\log_2 V_Q = \arg\max_{n \leq N} \{\min[n, d(n)]\}$$
+
+This chooses the optimal number of qubits $n$ (up to $N$) that maximizes the minimum between $n$ and the depth $d(n)$, then sets the quantum volume to $2$ raised to that maximum.
+
+### Physical interpretation
+
+Quantum volume can be interpreted as the **size of the largest square circuit** (qubits $\times$ depth) that a quantum computer can execute reliably. The notion of reliability is essential: a circuit is considered successful if the output distribution is statistically close to the theoretical distribution.
+
+Decoherence, gate errors, limited connectivity, and measurement fidelity all limit the effective depth $d(N)$, and therefore the quantum volume.
+
+### Historical evolution
+
+| Date | Quantum volume | Vendor | Notes |
+|------|-----------------|-----------|-------|
+| January 2020 | 32 (5×5 circuit) | IBM | “Raleigh” processor (28 physical qubits) |
+| June 2020 | 64 (6×6 circuit) | Honeywell | Only 6 qubits |
+| August 2020 | 64 (6×6 circuit) | IBM | 27 qubits |
+| November 2020 | 128 (7×7 circuit) | Honeywell | “H1” processor (10 qubits) |
+
+These numbers illustrate a crucial point: **Honeywell reached quantum volume 64 with only 6 qubits**, whereas IBM used 27 qubits for the same score. This shows that qubit quality (low error rates, large feasible depth) can compensate for qubit count — exactly the point of the metric.
+
+### Context: the qubit race and its limits
+
+The “qubit race” is often presented in the media as a race in raw qubit counts. Quantum volume reminds us that **quality matters as much as quantity**. A quantum computer with millions of poor-quality qubits would be unusable for practical computation, whereas a smaller but highly reliable device could accomplish classically impossible tasks on the right problems.
+
+Quantum volume therefore fits into the broader reflection on scaling: it is not enough to increase the number of qubits; one must simultaneously maintain or improve their quality, requiring progress in quantum error correction, materials engineering, and circuit design.
+
+::: {.callout-note title="Summary — Question 9" collapse="true"}
+
+**Quantum volume** $V_Q$ is a holistic metric for the real practical power of a quantum computer, defined by Moll *et al.* (2018). It captures both the **number of qubits** $N$ and the reliable **circuit depth** $d(N)$ via $\tilde{V}_Q = \min[N, d(N)]^2$ (IBM: $\log_2 V_Q = \arg\max_{n \leq N} \{\min[n, d(n)]\}$). It measures the size of the largest reliably executable square circuit. Its value is to capture the **quality/quantity tradeoff**: a small set of very reliable qubits can outperform a larger noisy device (e.g., Honeywell achieves VQ=64 with 6 qubits, IBM with 27). This metric is essential to compare architectures objectively.
+
+:::
+
+# Question 10 — Helstrom–Holevo bound
+
+## Context: discriminating quantum states
+
+The Helstrom–Holevo bound sits within the general problem of **quantum state discrimination**: given a qubit in an unknown state $|\psi\rangle$ that is either $|\psi_a\rangle$ or $|\psi_b\rangle$ (each with probability $\tfrac{1}{2}$), what is the maximum probability with which any measurement strategy can correctly identify which state is present?
+
+Before stating the bound, recall the positive result it contrasts with: two **orthogonal** states (with inner product zero, $\langle\psi_a|\psi_b\rangle = 0$) can always be discriminated perfectly. One constructs a unitary matrix whose columns are the two state vectors, applies its adjoint $U^\dagger$ to map them back to the computational basis, then measures. This procedure yields the correct answer with probability 1.
+
+However, if the two states are **not orthogonal**, no measurement can distinguish them perfectly. The Helstrom–Holevo bound quantifies exactly the limit of what is achievable.
+
+## Formal statement
+
+::: {.callout-important}
+**Helstrom–Holevo bound.**
+Let $|\psi\rangle$ be a qubit that is either $|\psi_a\rangle$ or $|\psi_b\rangle$, and let $|\langle\psi_a|\psi_b\rangle| = \cos\theta$ be the magnitude of their inner product, where $\theta \in [0, \tfrac{\pi}{2}]$ is the angle between the two states. Then, for any measurement strategy, the probability of correctly inferring the state is **at most**:
+
+$$p_{\text{success}} \leq \frac{1}{2}(1 + \sin\theta)$$
+:::
+
+This bound is **tight**: there exists a measurement that achieves exactly this maximum probability. It is therefore not only an upper bound; it is the exact optimal value.
+
+## Geometric interpretation
+
+The angle $\theta$ plays a central geometric role. Two extreme cases make its meaning clear:
+
+- When $|\psi_a\rangle \perp |\psi_b\rangle$, we have $\theta = \tfrac{\pi}{2}$, so $\sin\theta = 1$, and $p_{\text{success}} = \tfrac{1}{2}(1 + 1) = 1$: orthogonal states are perfectly distinguishable.
+
+- When $|\psi_a\rangle = |\psi_b\rangle$ (identical states), $\theta = 0$, so $\sin\theta = 0$, and $p_{\text{success}} = \tfrac{1}{2}$: one cannot do better than random guessing.
+
+- For any pair of non-orthogonal states, the optimal success probability lies strictly between $\tfrac{1}{2}$ and $1$, and increases as $\theta$ increases (as the states become more separated in Hilbert space).
+
+## The optimal measurement
+
+The bound is achieved by measuring in the basis of **eigenvectors** of the operator:
+
+$$|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$$
+
+This basis “balances” discrimination between the two candidate states by placing the measurement vectors symmetrically with respect to them.
+
+## Illustrative example: distinguishing $|0\rangle$ and $|+\rangle$
+
+The states $|0\rangle$ and $|+\rangle = \tfrac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ have inner product:
+
+$$\langle 0|{+}\rangle = \frac{1}{\sqrt{2}} \neq 0$$
+
+They are therefore not orthogonal. We have $\cos\theta = \tfrac{1}{\sqrt{2}}$, hence $\theta = 45^\circ$.
+
+The Helstrom–Holevo bound gives:
+
+$$p_{\text{success}} \leq \frac{1}{2}\!\left(1 + \sin(45^\circ)\right) = \frac{1}{2}\!\left(1 + \frac{1}{\sqrt{2}}\right) \approx 0.85$$
+
+In other words, even the best possible measurement strategy cannot correctly identify the state with probability higher than about 85%.
+
+For comparison, a sub-optimal strategy — measuring in the computational basis $\{|0\rangle, |1\rangle\}$ — yields a success probability of only $\tfrac{3}{4} = 75\%$. This strategy does have the advantage of **partial certainty**: if the outcome is 1 (which never happens when the state is $|0\rangle$), one is 100% sure the state was $|+\rangle$.
+
+## Tradeoff between average success and certainty
+
+The Helstrom–Holevo bound corresponds to the strategy that **maximizes average success probability**. There is, however, another tradeoff: align one measurement basis vector with one of the states (say $|\psi_a\rangle$). In that case:
+
+- If the outcome corresponds to the vector orthogonal to $|\psi_a\rangle$, one knows with **absolute certainty** that the state was $|\psi_b\rangle$.
+- The overall success probability is lower than with the optimal strategy.
+
+This approach, called **unambiguous discrimination**, prioritizes certainty in some cases at the expense of overall performance.
+
+## Scope of the result
+
+The Helstrom–Holevo bound is a fundamental result in quantum information: it shows that quantum mechanics imposes deep physical limits on our ability to extract information from an unknown quantum state. These limits are not technological — they follow from the mathematical structure of the theory (inner products in Hilbert space) — and cannot be circumvented by any device, no matter how sophisticated.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Helstrom–Holevo bound"}
+The Helstrom–Holevo bound gives the maximum success probability for discriminating two non-orthogonal quantum states $|\psi_a\rangle$ and $|\psi_b\rangle$:
+$$p_{\text{success}} \leq \frac{1}{2}(1 + \sin\theta)$$
+where $\theta$ is the angle between the two states ($\cos\theta = |\langle\psi_a|\psi_b\rangle|$). The bound is achieved by measuring in the eigenbasis of $|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$. Extreme cases: orthogonal states ($\theta = 90^\circ$) → perfect success ($p = 1$); identical states ($\theta = 0$) → pure guessing ($p = \tfrac{1}{2}$). The example $|0\rangle$ vs $|+\rangle$ gives a bound of $\approx 85\%$, above the $75\%$ of the naive computational-basis strategy.
+:::
+
+---
+
+# Question 11 — Quantum no-signalling principle
+
+## Motivation: can entanglement transmit information?
+
+Quantum entanglement is a non-local correlation phenomenon: if two qubits share a Bell pair, measuring the first qubit — regardless of its distance from the second — has instantaneous consequences for the state of the second. This raises a natural and fundamental question: can one exploit this correlation to transmit information faster than light, violating special relativity? The **no-signalling principle** answers definitively: no.
+
+## The Bell pair as a resource
+
+Consider the Bell pair (also called an EPR pair):
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Alice and Bob each hold one qubit of this pair. They are separated by a distance such that light takes $\Delta t$ seconds to travel between them. Alice can measure her qubit at any time, collapsing Bob’s qubit instantaneously. The question is: can Bob detect this collapse by only measuring his own qubit?
+
+## Formal proof of the principle
+
+### Case 1: Alice does not measure her qubit
+
+The global state is still $|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$. Bob measures his qubit in the computational basis $\{|0\rangle, |1\rangle\}$. The probabilities of Bob’s outcomes are:
+
+$$p_B(0) = \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2}, \qquad p_B(1) = \frac{1}{2}$$
+
+### Case 2: Alice has measured her qubit
+
+Alice has measured and obtained one of two outcomes:
+
+- Outcome 0 (with probability $\tfrac{1}{2}$): the global state collapses to $|00\rangle$, so Bob’s qubit is now in state $|0\rangle$ with certainty.
+- Outcome 1 (with probability $\tfrac{1}{2}$): the global state collapses to $|11\rangle$, so Bob’s qubit is now in state $|1\rangle$ with certainty.
+
+However, Bob does not know which outcome Alice obtained. From Bob’s perspective, his qubit is in a **statistical mixture** of $|0\rangle$ and $|1\rangle$, each with probability $\tfrac{1}{2}$. Therefore Bob’s outcome probabilities are:
+
+$$p_B(0) = \frac{1}{2} \times 1 + \frac{1}{2} \times 0 = \frac{1}{2}, \qquad p_B(1) = \frac{1}{2} \times 0 + \frac{1}{2} \times 1 = \frac{1}{2}$$
+
+### Conclusion
+
+Bob’s outcome distributions are **identical** in both cases. It is therefore rigorously impossible for him to determine, from local measurements alone, whether Alice measured her qubit or not. No information was transmitted from Alice to Bob.
+
+## Scope and generality
+
+This result is not limited to the specific Bell pair $|\Phi^+\rangle$, nor to measurement in the computational basis. It holds:
+
+- For any entangled state that Alice and Bob might share.
+- For any local unitary transformation Alice might apply before measuring.
+- For any measurement basis Bob might choose.
+
+In all cases, Bob’s local statistics are invariant under Alice’s local operations. Algebraically, this is a fundamental property of quantum mechanics: the **partial trace** of the global state over Alice’s subsystem is independent of what Alice does locally.
+
+## Why isn’t collapse enough?
+
+Bob’s qubit collapse is real: if Alice measures and obtains 0, then Bob’s qubit *is* now in state $|0\rangle$, instantaneously. But to exploit this, Bob would need to know Alice’s measurement result — and that information can only reach him via a **classical channel** limited by the speed of light. Without this classical communication, Bob’s statistics remain uniform and indistinguishable, regardless of whether Alice measured.
+
+This subtlety distinguishes quantum correlation from genuine information transmission: the correlation is non-local, but it becomes usable only after classical communication.
+
+## Link with the no-cloning principle
+
+There is a close link between no-signalling and no-cloning. If one could clone an arbitrary quantum state, one could circumvent no-signalling: by making many copies of the received qubit and performing state tomography, one could reconstruct the state and detect collapse. The mutual consistency of these two principles reinforces their status as fundamental physical laws.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Quantum no-signalling principle"}
+The no-signalling principle states that it is impossible to use entanglement to transmit information faster than light. The proof compares Bob’s measurement statistics in two cases (Alice measures / Alice does not measure): in both cases, $p_B(0) = p_B(1) = \tfrac{1}{2}$. Bob’s collapse is real but undetectable without Alice’s classical communication of her outcome. The result is general (independent of the entangled state and measurement bases) and is consistent with the no-cloning principle.
+:::
+
+---
+
+# Question 12 — Quantum no-cloning principle
+
+## Statement and importance
+
+The **no-cloning theorem** is one of the most fundamental results in quantum computing. It states that **there is no unitary transformation** capable of copying an arbitrary unknown quantum state.
+
+Formally, one seeks a unitary operator $U$ such that, for any state $|\psi\rangle$ and a target register initially in state $|0\rangle$:
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$$
+
+The no-cloning theorem asserts that such a $U$ **does not exist**.
+
+## Proof by contradiction
+
+The proof is remarkable for its elegance and brevity. It uses only two properties of unitary transformations: **linearity** and preservation of inner products ($U^\dagger U = I$).
+
+Assume for contradiction that such a $U$ exists. It must work for **all** states, in particular for two arbitrary states $|\psi\rangle$ and $|\phi\rangle$:
+
+$$U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$$
+$$U(|\phi\rangle|0\rangle) = |\phi\rangle|\phi\rangle$$
+
+Compute the inner product between the left-hand sides, using that $U$ is an isometry:
+
+$$\langle\psi|\langle 0|U^\dagger U|\phi\rangle|0\rangle = \langle\psi|\phi\rangle \cdot \langle 0|0\rangle = \langle\psi|\phi\rangle$$
+
+Compute the inner product between the right-hand sides:
+
+$$({\langle\psi|\langle\psi|})(|\phi\rangle|\phi\rangle) = \langle\psi|\phi\rangle \cdot \langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+Unitarity implies:
+
+$$\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$$
+
+Let $x = \langle\psi|\phi\rangle$. The equation $x = x^2$ has only two solutions: $x = 0$ or $x = 1$. That is:
+
+- either $\langle\psi|\phi\rangle = 0$: the states are **orthogonal**,
+- or $\langle\psi|\phi\rangle = 1$: the states are **identical** ($|\psi\rangle = |\phi\rangle$).
+
+So a universal cloning $U$ can only work for orthogonal or identical pairs — essentially classical information. For any other pair of distinct non-orthogonal states, such a $U$ cannot exist. Contradiction.
+
+## Why would cloning violate physics?
+
+The impossibility of cloning is physically deep for multiple reasons.
+
+**Violation of no-signalling.** If qubits could be cloned, Alice could encode a classical message in a quantum state, send it to Bob via a quantum channel, and Bob could make many copies and perform state tomography to reconstruct the full message — potentially enabling superluminal exploitation of entanglement. This would violate no-signalling.
+
+**Forbidden super-compression.** Cloning would enable unlimited compression of classical information. One could encode an arbitrarily long message into a single-qubit state (e.g., by mapping the message to an angle $\theta$ in $\cos(\theta)|0\rangle + \sin(\theta)|1\rangle$), transmit this qubit, then clone it arbitrarily many times and perform quantum tomography to estimate $\theta$ with arbitrary precision. This contradicts Holevo’s theorem, which states that a single qubit cannot carry more than one classical bit of information.
+
+## Practical consequences
+
+The no-cloning theorem has direct implications for several areas of quantum computing.
+
+**Quantum error correction.** Classically, the simplest error-correction strategy is to repeat information multiple times. In quantum mechanics, this direct approach is impossible because one cannot duplicate an arbitrary unknown state. One must use more sophisticated entanglement-based techniques (see quantum error correction).
+
+**Security in cryptography.** No-cloning guarantees that an eavesdropper cannot copy qubits intercepted on a quantum channel without leaving a detectable trace, which is the cornerstone of BB84 security.
+
+**Only orthogonal states are “copyable”** in the trivial sense — which corresponds exactly to classical information (bits). The impossibility of cloning is therefore what fundamentally distinguishes quantum information from classical information.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Quantum no-cloning principle"}
+The no-cloning theorem states that there is no unitary operator $U$ such that $U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$ for all $|\psi\rangle$. The proof is a contradiction using linearity and isometry: $\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$ has only two solutions (0 or 1), excluding any pair of distinct non-orthogonal states. Cloning would violate no-signalling and enable forbidden super-compression of information. Practical consequences: more complex error correction, security guarantees for QKD, and a fundamental distinction between classical (copyable) and quantum information.
+:::
+
+---
+
+# Question 13 — Quantum no-deleting principle
+
+## Statement
+
+The **no-deleting theorem** is the **time-dual** of the no-cloning theorem. Where no-cloning forbids *creating* a copy of an arbitrary quantum state, no-deleting forbids *erasing* one.
+
+Formally, there is no unitary transformation $\tilde{U}$ capable of deleting one of two copies of an arbitrary quantum state. That is, there is no $\tilde{U}$ such that:
+
+$$\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$$
+
+for all states $|\psi\rangle$.
+
+## Symmetry with no-cloning
+
+To understand why no-deleting is the time-dual of no-cloning, recall that unitary evolutions in quantum mechanics are **reversible**: for any unitary transformation $U$, the inverse $U^\dagger$ is also a valid unitary.
+
+- **No-cloning** forbids the transition $1 \to 2$ copies: one cannot go from $|\psi\rangle|0\rangle$ to $|\psi\rangle|\psi\rangle$.
+- **No-deleting** forbids the transition $2 \to 1$ copies: one cannot go from $|\psi\rangle|\psi\rangle$ to $|\psi\rangle|0\rangle$.
+
+If one could perform $2 \to 1$, then taking the adjoint $\tilde{U}^\dagger$ would immediately give a valid operation to do $1 \to 2$, violating no-cloning. The two principles are therefore logically equivalent via unitary reversibility.
+
+## Physical meaning
+
+No-deleting reflects a deep property of quantum mechanics: the apparent **conservation of quantum information** under unitary evolution. Even if one has two copies of a state $|\psi\rangle$, one cannot unitarily destroy one copy without leaving a trace. Quantum information can neither be created ex nihilo (no-cloning) nor annihilated (no-deleting) by reversible unitary dynamics.
+
+An important nuance: quantum measurement, which is **not** unitary, can “destroy” a superposition via collapse. But this is not deletion in the no-deleting sense — measurement changes the state irreversibly and non-unitarily. No-deleting concerns strictly reversible unitary evolutions.
+
+## Implications for reversibility in quantum computation
+
+The fact that quantum computation is fundamentally reversible (except for measurement) is a key distinction from classical computation. Reversibility implies **information conservation**: information encoded in a quantum state cannot disappear or be duplicated unitarily. This is both a limitation (one cannot simply “erase” intermediate qubits) and an asset (it implies certain errors are detectable).
+
+Practically, it means quantum circuits must be designed carefully: ancilla qubits introduced during a computation cannot be simply deleted; they must be returned to their initial state by inverse unitary operations, which complicates algorithm design.
+
+## Consistency with other fundamental principles
+
+No-cloning and no-deleting form a coherent symmetric pair:
+
+- No-cloning forbids increasing quantum information.
+- No-deleting forbids decreasing it.
+- Measurement is the only allowed operation that effectively destroys superposition, at the cost of fundamental irreversibility.
+
+This coherence reflects the deep mathematical structure of quantum mechanics: linearity and unitarity impose symmetric constraints on what can be done with quantum information in both temporal directions.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Quantum no-deleting principle"}
+No-deleting is the time-dual of no-cloning: there is no unitary $\tilde{U}$ such that $\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle$ for all $|\psi\rangle$. The justification is unitary reversibility: if one could delete, then $\tilde{U}^\dagger$ would allow cloning, which is forbidden. Physically, this reflects conservation of quantum information under unitary evolution. Practically, ancilla qubits must be reset via inverse operations, not simply deleted.
+:::
+
+---
+
+# Question 14 — Applications of quantum computing
+
+## General presentation
+
+Quantum computers are not classical computers that are simply “faster”. They exploit quantum phenomena — superposition, entanglement, and interference — to process information in a qualitatively different way, enabling certain classes of problems to be solved that classical computers can solve only with prohibitive time. The main families of applications are quantum factoring, quantum search, quantum simulation, quantum optimization, and quantum networks.
+
+## Application 1: Quantum factoring (Shor’s algorithm)
+
+Factoring an integer means finding its prime divisors. For small numbers, the task is trivial (e.g., $15 = 3 \times 5$). But for integers with hundreds of digits, the best classical algorithms have **sub-exponential** complexity of the form $O(\exp(n^{1/3}))$, where $n$ is the number of bits — which is astronomically large in practice. For example, for a 30-digit number, the best classical supercomputers would take hundreds of thousands of years.
+
+Shor’s algorithm (1994) solves this problem with only **polynomial** complexity $O(n^3 \log n)$ on a quantum computer. The performance gap is spectacular: where a classical computer might take $10^{24}$ steps, Shor needs about $10^{10}$, i.e., less than a second on a 1 THz processor.
+
+The central idea is to reduce factoring to **period finding**: to factor $N$, choose an integer $x$ coprime with $N$ and find the period $l$ of $f(s) = x^s \bmod N$. Once the period is known, simple classical calculations (via the GCD) yield the factors of $N$. The **quantum Fourier transform (QFT)** finds this period in polynomial time by exploiting interference to concentrate amplitude on multiples of $2^n / l$.
+
+The cryptographic importance is considerable: RSA (protecting most Internet communications: HTTPS, VPN, etc.) relies on the presumed hardness of factoring large integers. A sufficiently large quantum computer — estimated at around 8000 logical qubits to break RSA-2048 — would undermine this foundation.
+
+## Application 2: Quantum search (Grover’s algorithm)
+
+Grover’s algorithm (1997) applies to **unstructured search**: finding a particular element in an unsorted database of $N$ entries. Classically, the problem requires on average $O(N)$ evaluations. Grover reduces this to $O(\sqrt{N})$, a **quadratic advantage**.
+
+This advantage is useful for searching large databases, inverting complex functions, computing medians or other global properties of data, and pattern recognition. Unlike Shor’s exponential advantage, Grover’s gain is quadratic — it does not directly break symmetric cryptography, but it forces doubling key sizes to maintain equivalent security.
+
+## Application 3: Quantum simulation
+
+Simulating a quantum system of $N$ particles on a classical computer requires solving $2^N$ coupled equations (Schrödinger’s equation). For $N = 50$ particles, this is about $10^{15}$ equations — beyond any supercomputer. Feynman’s idea (1980s) is to use a controllable quantum system (qubits) to simulate another quantum system.
+
+Quantum simulators can be built from multiple physical systems: trapped ions, cold atoms, superconducting circuits, NV centers in diamond. Applications include:
+
+- **Designing quantum materials:** understand and design materials with exotic properties (high-$T_c$ superconductors, quantum magnetism).
+- **Energy harvesting:** simulate quantum energy transfer in biological or artificial systems.
+- **Quantum field theories:** program lattice gauge theories of QCD, explore connections between cosmology and information theory (AdS/CFT duality).
+
+The Variational Quantum Eigensolver (VQE) is a hybrid quantum–classical simulation algorithm: a parameterized circuit (the *ansatz*) prepares a state $|\psi(\theta)\rangle$, a classical optimizer minimizes the Hamiltonian expectation $\langle\psi(\theta)|H|\psi(\theta)\rangle$ by tuning $\theta$, and the procedure converges to the ground-state energy. This is applicable to quantum chemistry, materials science, and high-energy physics.
+
+## Application 4: Quantum optimization
+
+Quantum optimization aims to minimize complex cost functions by leveraging superposition to “explore simultaneously” the solution space. A standard example is minimizing a quadratic form in binary variables:
+
+$$f(x_1, x_2, \ldots) = \sum_{i < j} q_{ij} x_i x_j + \sum_i c_i x_i$$
+
+This maps naturally to the energy of a quantum magnetic network, enabling quantum algorithms to search for its minimum. Application domains include logistics, operations research, VLSI circuit design, and finance.
+
+An important limitation should be noted: it is **not yet proven** that there is a systematic quantum advantage for these optimization problems. Quantum optimization is sometimes called a potential “killer app”, but this remains to be demonstrated rigorously.
+
+## Application 5: Quantum networks
+
+A quantum network links distant sites (from centimeters to thousands of kilometers) via channels that allow exchanging qubits and entangled pairs. Uses include generating secret cryptographic keys, certified randomness, quantum repeaters, and large-scale distributed quantum computation.
+
+Quantum teleportation and superdense coding (Questions 15 and 16) are fundamental building blocks of these networks, enabling quantum information transfer using pre-shared entanglement.
+
+## The post-quantum world and today’s challenges
+
+The implications for current cryptography are significant. It is estimated that quantum computers capable of breaking RSA-2048 could exist in the next 5–10 years. Organizations and governments should migrate now to resistant algorithms, because the transition can take a decade and some data must remain confidential for decades.
+
+Post-quantum solutions include **lattice-based cryptography**, **hash-based** schemes (secure against Grover by doubling key sizes), and **quantum key distribution (QKD)** for the most sensitive communications. NIST is standardizing these algorithms.
+
+On the technical side, the major challenges remain decoherence (qubits are extremely sensitive), quantum error correction (often requiring hundreds of physical qubits for one logical qubit), and scaling quantum circuits.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Applications of quantum computing"}
+Five major application families: **(1) Factoring (Shor)** — $O(n^3)$ vs classical sub-exponential, threat to RSA; **(2) Search (Grover)** — quadratic advantage $O(\sqrt{N})$, useful for databases and function inversion; **(3) Quantum simulation** — simulate $2^N$ equations with $N$ qubits, applicable to chemistry/materials/high-energy physics via VQE; **(4) Quantum optimization** — parallel exploration of solution spaces (logistics/finance), advantage not yet proven; **(5) Quantum networks** — key distribution, distributed computing, large-scale teleportation. Challenges: decoherence, error correction, scaling. Post-quantum urgency: migrate cryptography before RSA-2048 becomes breakable.
+:::
+
+---
+
+# Question 15 — Quantum teleportation
+
+## Presentation of the problem and resources
+
+**Quantum teleportation** solves the following problem: how can Alice transmit to Bob an unknown quantum state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ (where $\alpha$ and $\beta$ are complex amplitudes unknown even to Alice) while perfectly preserving superposition and phase information, without violating the no-cloning theorem?
+
+The solution is remarkable: it uses a Bell pair shared between Alice and Bob, combined with sending two classical bits. Contrary to what the name might suggest, quantum teleportation does not move matter from one point to another, nor travel in time — it only transfers the quantum state.
+
+The required resources are:
+
+- A “message” qubit $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ that Alice wants to transmit.
+- A Bell pair $|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, one qubit held by Alice and the other by Bob.
+- A classical channel allowing Alice to send 2 bits to Bob.
+
+It is important to stress that teleportation requires classical communication, and therefore cannot be faster than light. This is consistent with no-signalling.
+
+## The protocol step by step
+
+### Step 1: Create and distribute the entangled pair
+
+Create the Bell pair by applying a Hadamard gate to a $|0\rangle$ qubit, then a CNOT with a second $|0\rangle$ as target:
+
+$$|00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|0\rangle \xrightarrow{\text{CNOT}} |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Alice keeps the first qubit of the pair and Bob keeps the second.
+
+### Step 2: Initial 3-qubit state
+
+Alice now has two qubits: the message qubit $|\psi\rangle$ and her half of the entangled pair. The total 3-qubit state (message qubit, Alice’s Bell qubit, Bob’s Bell qubit) is:
+
+$$|\psi\rangle \otimes |\Phi^+\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+$$= \frac{1}{\sqrt{2}}\bigl[\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle\bigr]$$
+
+### Step 3: Alice applies CNOT on her two qubits
+
+Alice applies a CNOT with the message qubit as control and her Bell qubit as target. The state becomes:
+
+$$\frac{1}{\sqrt{2}}\bigl[\alpha|000\rangle + \alpha|011\rangle + \beta|101\rangle + \beta|110\rangle\bigr]$$
+
+### Step 4: Alice applies Hadamard on the message qubit
+
+After applying $H$ to the first qubit:
+
+$$\frac{1}{2}\bigl[\alpha(|000\rangle + |100\rangle + |011\rangle + |111\rangle) + \beta(|001\rangle - |101\rangle + |010\rangle - |110\rangle)\bigr]$$
+
+We can rewrite this by grouping by Alice’s two-qubit outcomes (the first two qubits):
+
+$$\frac{1}{2}\bigl[|00\rangle(\alpha|0\rangle + \beta|1\rangle) + |01\rangle(\alpha|1\rangle + \beta|0\rangle) + |10\rangle(\alpha|0\rangle - \beta|1\rangle) + |11\rangle(\alpha|1\rangle - \beta|0\rangle)\bigr]$$
+
+### Step 5: Alice measures her two qubits
+
+Alice measures her two qubits in the computational basis. There are 4 equiprobable outcomes (each with probability $\tfrac{1}{4}$). Depending on the outcome, Bob’s qubit is left in the following state:
+
+| Alice’s measurement ($b_1 b_0$) | Bob’s qubit state |
+|:---:|:---:|
+| 00 | $\alpha|0\rangle + \beta|1\rangle$ |
+| 01 | $\alpha|1\rangle + \beta|0\rangle$ |
+| 10 | $\alpha|0\rangle - \beta|1\rangle$ |
+| 11 | $\alpha|1\rangle - \beta|0\rangle$ |
+
+### Step 6: Alice sends 2 classical bits to Bob
+
+Alice communicates the result ($b_1 b_0$) over the classical channel.
+
+### Step 7: Bob applies corrections
+
+Bob applies corrective operations depending on the received bits:
+
+- If $b_0 = 1$: apply the NOT gate ($X$), which swaps $\alpha$ and $\beta$.
+- If $b_1 = 1$: apply the phase-flip gate $Z$, which changes the sign of $\beta$.
+
+| Measurement ($b_1 b_0$) | Correction | Recovered state |
+|:---:|:---:|:---:|
+| 00 | None | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+| 01 | NOT ($X$) | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+| 10 | $Z$ | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+| 11 | NOT then $Z$ | $\alpha|0\rangle + \beta|1\rangle$ ✓ |
+
+After correction, Bob has exactly $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$.
+
+## Important points and subtleties
+
+**Alice never knows $|\psi\rangle$.** So she cannot simply send $\alpha$ and $\beta$ classically. If Alice knew the state, teleportation would be unnecessary.
+
+**Alice’s state is destroyed.** At measurement time, Alice’s message qubit collapses and she loses all information about $|\psi\rangle$. No-cloning is respected: at no time do two copies of $|\psi\rangle$ coexist.
+
+**The entangled pair is consumed.** Teleporting one qubit consumes the Bell pair. Teleporting $n$ qubits requires $n$ Bell pairs prepared in advance.
+
+**No superluminal communication.** Alice’s measurement result is necessary for Bob to correct his qubit. Without it, Bob’s qubit is in a statistical mixture carrying no information about $|\psi\rangle$.
+
+**Experimental demonstration.** Quantum teleportation has been realized many times. In 2017, qubits were teleported from Earth to the Micius satellite over a record distance of 1400 km.
+
+## Practical usefulness
+
+Teleportation is particularly useful in quantum networks because transmitting a quantum state by physically moving a qubit is fragile and subject to decoherence. Bell pairs can be pre-shared between Alice and Bob under controlled conditions, amortizing the entanglement cost.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Quantum teleportation"}
+Teleportation transfers the state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ from Alice to Bob using: (1) a shared Bell pair; (2) a CNOT then an $H$ on Alice’s qubits; (3) a 4-outcome measurement by Alice; (4) sending 2 classical bits; (5) conditional corrections ($X$ if $b_0=1$, $Z$ if $b_1=1$) by Bob. No-cloning is respected (Alice’s state is destroyed). There is no superluminal communication (classical bits are required). The Bell pair is consumed for each teleported qubit. Experimental demonstration in 2017 over 1400 km (Micius satellite).
+:::
+
+---
+
+# Question 16 — Superdense coding
+
+## Principle and relation to teleportation
+
+**Superdense coding** is in some sense the dual operation of quantum teleportation, and it is useful to contrast them:
+
+- **Teleportation:** uses 1 entangled pair + 2 classical bits to transmit 1 qubit.
+- **Superdense coding:** uses 1 entangled pair + 1 transmitted qubit to transmit 2 classical bits.
+
+Superdense coding shows that entanglement can double the information capacity of a quantum channel. Discovered in 1992 and demonstrated experimentally in 1996, it is one of the most elegant quantum protocols.
+
+## Context
+
+Alice and Bob share in advance the Bell pair:
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+Alice wants to send one of four messages: 00, 01, 10, or 11. She has a quantum channel that allows her to send a single qubit to Bob. Without entanglement, one qubit cannot transmit more than 1 classical bit (Holevo bound). With shared entanglement, Alice can transmit 2.
+
+## Alice’s transmission: acting on her single qubit
+
+Alice acts only on **her own qubit** of the Bell pair (the first qubit). Depending on the message, she applies one of four operations:
+
+| Message | Alice’s operation | Pair state after operation |
+|:---:|:---:|:---|
+| 00 | $I$ (identity) | $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ |
+| 01 | $X$ (NOT) | $\frac{1}{\sqrt{2}}(|10\rangle + |01\rangle)$ |
+| 10 | $Z$ | $\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ |
+| 11 | $XZ$ | $\frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ |
+
+These four states are precisely the **four Bell states**:
+
+$$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle), \quad |\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$$
+$$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle), \quad |\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$$
+
+These four states form an **orthonormal basis** (the Bell basis) of the two-qubit Hilbert space, and are therefore perfectly distinguishable by an appropriate measurement.
+
+Alice then sends her qubit to Bob.
+
+## Bob’s reception and decoding
+
+Bob receives Alice’s qubit and now holds **both qubits**. He applies the following Bell measurement circuit:
+
+1. A **CNOT** (Alice’s qubit as control, Bob’s qubit as target).
+2. A **Hadamard** ($H$) on Alice’s qubit.
+3. A **computational-basis measurement** on both qubits.
+
+This circuit performs an inverse Bell transform that “disentangles” the pair and maps the four Bell states to the four computational basis states:
+
+| Bell state received | After CNOT | After H | Final measurement |
+|:---:|:---:|:---:|:---:|
+| $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|0\rangle$ | $|0\rangle|0\rangle$ | **00** |
+| $\frac{1}{\sqrt{2}}(|10\rangle + |01\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)|1\rangle$ | $|0\rangle|1\rangle$ | **01** |
+| $\frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)|0\rangle$ | $|1\rangle|0\rangle$ | **10** |
+| $\frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ | $\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)|1\rangle$ | $|1\rangle|1\rangle$ | **11** |
+
+Bob recovers exactly the 2 bits sent by Alice.
+
+## Analysis and interpretation
+
+**Why is entanglement indispensable?** Without the pre-shared Bell pair, a single qubit can carry only 1 classical bit (Holevo bound). Shared entanglement acts like a stored resource that doubles channel capacity. The sent qubit alone does not contain the 2 bits: the joint system {sent qubit, Bob’s qubit} contains them via the pair’s non-local correlation.
+
+**What Alice really does.** By applying an operation on her single qubit, Alice transforms the global pair state from one Bell state to another. Information is encoded in which Bell state the pair occupies — a non-local property revealed only by a joint measurement on both qubits.
+
+**Link with teleportation.** The symmetry between teleportation and superdense coding is deep: both use the same resource (a Bell pair), the same kind of steps, and essentially the same Bell circuits. They are related by exchanging the roles of classical and quantum channels.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Superdense coding"}
+Superdense coding transmits **2 classical bits** by sending only **1 qubit**, thanks to a shared Bell pair. Alice applies $I$, $X$, $Z$, or $XZ$ depending on the message (00, 01, 10, 11), thereby mapping the shared pair to one of four orthogonal Bell states. Bob receives the qubit, applies CNOT then H, and measures in the computational basis to recover the 2 bits. Entanglement doubles channel capacity: without it, one qubit carries at most 1 classical bit (Holevo bound). It is the dual of teleportation in the sense that the roles of classical and quantum channels are exchanged.
+:::
+
+---
+
+# Question 17 — Quantum key distribution
+
+## Context: information-theoretic security
+
+Modern cryptography relies on **computational** guarantees: algorithms like RSA are hard to break because factoring large integers is believed to be computationally difficult — but not proven impossible. Such security could be compromised by a sufficiently powerful quantum computer.
+
+There exists a stronger notion: **information-theoretic security**, whose archetype is the **one-time pad**. In that scheme, Alice and Bob share a secret key $r$ of $n$ random bits, Alice sends the ciphertext $m \oplus r$ (XOR), and Bob decrypts $(m \oplus r) \oplus r = m$. An adversary who intercepts $m \oplus r$ without knowing $r$ can deduce no information about $m$ — this is mathematically provable, independent of the adversary’s computational power.
+
+The practical problem is that $r$ must be shared over a perfectly secure channel — which in practice requires Alice and Bob to meet physically. **Quantum key distribution (QKD)** solves this by generating a one-time pad at a distance over a public channel.
+
+## Resources and assumptions
+
+The resources required for QKD are:
+
+- A **public authenticated classical channel**: both parties know who they are talking to, but anyone can read the content.
+- A **quantum channel**: which an adversary may eavesdrop on.
+- Alice has a **classical random bit source**.
+- Alice can prepare qubits in states $|0\rangle$, $|1\rangle$, $|+\rangle = H|0\rangle$, $|-\rangle = H|1\rangle$.
+- Bob can measure in the computational basis $\{|0\rangle, |1\rangle\}$ or the Hadamard basis $\{|+\rangle, |-\rangle\}$.
+
+## The BB84 protocol
+
+BB84 was discovered in 1984 by Charles Bennett and Gilles Brassard. Remarkably, it does **not** require entanglement — only preparation and measurement of individual qubits.
+
+### Step 1: Alice prepares and sends qubits
+
+For each key bit, Alice chooses **randomly** one of two bases:
+
+- Computational basis $\{|0\rangle, |1\rangle\}$: encode 0 as $|0\rangle$ and 1 as $|1\rangle$.
+- Hadamard basis $\{|+\rangle, |-\rangle\}$: encode 0 as $|+\rangle$ and 1 as $|-\rangle$.
+
+Alice sends the corresponding qubit to Bob.
+
+### Step 2: Bob measures
+
+For each received qubit, Bob chooses **randomly** one of the two bases and measures. If Bob uses the same basis as Alice, he always obtains the correct bit. If he uses a different basis, his result is random and uncorrelated with Alice’s bit.
+
+### Steps 3 and 4: basis reconciliation (sifting)
+
+Over the public channel, Bob announces for each qubit which basis he used (but **not** the outcome). Alice replies whether Bob used the correct basis. They keep only the bits where the bases match and discard the others. On average, they discard **half** the bits.
+
+### Numerical example
+
+| Alice bit | Alice basis | Sent qubit | Bob basis | Bob bit | Kept? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | $\{|0\rangle,|1\rangle\}$ | $|0\rangle$ | $\{|0\rangle,|1\rangle\}$ | 0 | ✓ |
+| 1 | $\{|+\rangle,|-\rangle\}$ | $|-\rangle$ | $\{|+\rangle,|-\rangle\}$ | 1 | ✓ |
+| 1 | $\{|0\rangle,|1\rangle\}$ | $|1\rangle$ | $\{|+\rangle,|-\rangle\}$ | random | ✗ |
+| 0 | $\{|0\rangle,|1\rangle\}$ | $|0\rangle$ | $\{|0\rangle,|1\rangle\}$ | 0 | ✓ |
+
+The kept bits form the shared **raw key**.
+
+## Security: how to detect an eavesdropper
+
+### Intercept–measure–resend attack
+
+An eavesdropper Eve can intercept the qubit on the quantum channel, measure it, and send a new qubit to Bob. But Eve does not know Alice’s basis at the time of measurement — she must guess. Consequences:
+
+- If Eve guesses the correct basis ($\tfrac{1}{2}$ of the time), she gets the correct bit and can resend the correct qubit.
+- If Eve guesses the wrong basis ($\tfrac{1}{2}$ of the time), she disturbs the qubit. For the bits where Alice and Bob used the same basis, Eve introduces an error in 50% of the cases where she guessed wrong, i.e., **25% errors** on the shared raw key.
+
+Alice and Bob detect Eve by publicly comparing a subset of their raw key bits: if the observed error rate is significantly above zero, an eavesdropper is present.
+
+### Attack by copying the qubit
+
+Eve might try to keep a copy of the qubit and only measure after the public announcement of bases. But this is **physically impossible** because of no-cloning: copying an arbitrary unknown qubit is forbidden.
+
+### Substitution attack
+
+Eve intercepts the qubit, sends a pre-prepared random qubit to Bob, and keeps the original for later measurement. In that case, Bob receives random bits independent of Alice’s, and basis comparison reveals the anomaly with a 50% error rate.
+
+## Fundamental guarantee
+
+What makes BB84 secure is: **any eavesdropping attempt inevitably disturbs the transmitted qubits**. This disturbance comes from two fundamental principles: no-cloning (cannot silently copy an unknown qubit) and the measurement postulate (measuring a superposition collapses it irreversibly). The disturbance is **statistically detectable** by Alice and Bob.
+
+Thus, if Alice and Bob observe an error rate compatible with an un-eavesdropped channel (in practice below a threshold, typically around 11%), they can be confident the key is secret. Otherwise, they reject it and restart.
+
+## State of the art and outlook
+
+The record secure key transfer rate via QKD is **1 Mbit/s**, in a collaboration between the University of Geneva and Toshiba. QKD will likely be adopted for the most sensitive communications in a post-quantum world, alongside lattice-based cryptography, offering long-term information-theoretic security.
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Quantum key distribution (QKD / BB84)"}
+BB84 (Bennett & Brassard, 1984) generates a one-time pad at a distance without entanglement. **Alice** encodes each bit in one of two randomly chosen bases ($\{|0\rangle, |1\rangle\}$ or $\{|+\rangle, |-\rangle\}$). **Bob** measures in a random basis. After public announcement of bases (without outcomes), they keep only matching-basis bits (~50%). Security: Eve must guess bases, which introduces 25% errors on the shared raw key, detectable statistically. No-cloning prevents silent copying. Guarantee: information-theoretic security independent of the adversary’s compute power.
+:::
+
+---
+
+# Question 18 — Quantum error correction
+
+## Why is error correction indispensable?
+
+Modern classical computers are effectively error-free in practice: transistors are robust and hardware redundancy makes faults extremely rare. Quantum computers, by contrast, are fundamentally different. Qubits — whether trapped atoms, photons, or superconducting circuits — are fragile physical objects that inevitably interact with their environment. This interaction causes **decoherence** and errors that corrupt computation.
+
+Quantum error correction (QEC) is needed both short term (even noisy hybrid variational algorithms require some correction) and long term (to surpass classical algorithms in practice, one must show errors can be corrected scalably).
+
+## Reminder: classical error correction
+
+Before quantum error correction, recall the classical approach. In the **binary symmetric channel** (BSC), each bit flips with probability $p_e$ independently. The simplest correction technique is the **3-bit repetition code**: encode 0 as 000 and 1 as 111, then decode by majority vote. The residual error probability is $p_e' = 3p_e^2(1 - p_e) + p_e^3 \approx 3p_e^2$ for small $p_e$, a significant improvement. This idea will be transposed to the quantum world with substantial adaptations.
+
+## The three fundamental obstacles
+
+Naively applying the classical strategy (repeat the quantum state and vote) is impossible for three deep reasons.
+
+### Obstacle 1: No-cloning
+
+The no-cloning theorem forbids any unitary $U$ such that $U|\psi\rangle|0\rangle = |\psi\rangle|\psi\rangle$ for all $|\psi\rangle$. So one cannot create three copies of an unknown qubit to use straightforward redundancy. Classically, copying a bit is trivial. Quantumly, “reading” (measuring) destroys the state — which leads to the next obstacle.
+
+### Obstacle 2: Measurement destroys quantum information
+
+In quantum mechanics, measuring a superposition collapses it irreversibly onto a basis state. If one measures qubits to detect errors (as in classical computing), one destroys the superposition one wants to protect. Error detection must therefore reveal only **whether an error occurred**, without ever revealing the amplitudes $\alpha$ and $\beta$.
+
+### Obstacle 3: Quantum errors are continuous
+
+A qubit is in the state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ with $\alpha, \beta \in \mathbb{C}$. A quantum error does not simply flip a bit; it continuously perturbs the complex coefficients. It seems one would need to correct infinitely many possible errors — which seems impossible.
+
+## The 3-qubit bit-flip code: addressing obstacles 1 and 2
+
+### Principle: entanglement replaces copying
+
+Since one cannot copy the state, one encodes logical information into an **entangled** state of 3 qubits:
+
+$$\alpha|0\rangle + \beta|1\rangle \longrightarrow \alpha|000\rangle + \beta|111\rangle$$
+
+This is **not** three copies of $|\psi\rangle$ (which would be $(\alpha|0\rangle + \beta|1\rangle)^{\otimes 3}$) — it is a different entangled state. No-cloning is not violated.
+
+The encoding circuit applies two CNOT gates (with the input qubit as control and two ancilla qubits $|0\rangle$ as targets):
+
+$$({\alpha|0\rangle + \beta|1\rangle})|00\rangle \xrightarrow{\text{CNOT}_1} (\alpha|00\rangle + \beta|11\rangle)|0\rangle \xrightarrow{\text{CNOT}_2} \alpha|000\rangle + \beta|111\rangle$$
+
+### Detection via parity measurements
+
+Error detection uses **parity-check measurements** that compare qubits pairwise (first vs second, second vs third) without revealing their absolute values. Two ancilla qubits store the parity results.
+
+The detection/correction table is:
+
+| Flip | Measurement $M_1$ | Measurement $M_2$ | Correction |
+|:---:|:---:|:---:|:---:|
+| None | 0 | 0 | $I \otimes I \otimes I$ |
+| Qubit 1 ($X_1$) | 1 | 0 | $X \otimes I \otimes I$ |
+| Qubit 2 ($X_2$) | 1 | 1 | $I \otimes X \otimes I$ |
+| Qubit 3 ($X_3$) | 0 | 1 | $I \otimes I \otimes X$ |
+
+The measurements $M_1$ and $M_2$ indicate only whether two qubits are equal or different — never their values. The information in $\alpha$ and $\beta$ is therefore not revealed. Obstacle 2 is solved.
+
+## The 3-qubit phase-flip code
+
+The bit-flip code does not correct **phase errors** ($Z$), which transform $|1\rangle \to -|1\rangle$ without changing the bit value. To correct them, one encodes in the Hadamard basis:
+
+$$\alpha|0\rangle + \beta|1\rangle \longrightarrow \alpha|{+}{+}{+}\rangle + \beta|{-}{-}{-}\rangle$$
+
+A phase error in the computational basis becomes a **bit-flip** error in the Hadamard basis (since $Z|+\rangle = |-\rangle$ and vice versa), and the same parity techniques apply after rotations by Hadamard gates.
+
+## Shor’s code: correcting all errors on one qubit
+
+### Concatenated architecture
+
+The **9-qubit Shor code** corrects both bit-flip ($X$) and phase-flip ($Z$) errors on any one of its 9 qubits. It is built by **concatenating** the two previous codes:
+
+1. The phase-flip code encodes $|\psi\rangle$ into 3 logical blocks.
+2. On each block, the bit-flip code encodes 1 logical qubit into 3 physical qubits.
+
+The logical codewords are:
+
+$$|0_L\rangle = \frac{1}{2\sqrt{2}}(|000\rangle + |111\rangle)(|000\rangle + |111\rangle)(|000\rangle + |111\rangle)$$
+
+$$|1_L\rangle = \frac{1}{2\sqrt{2}}(|000\rangle - |111\rangle)(|000\rangle - |111\rangle)(|000\rangle - |111\rangle)$$
+
+### Correcting arbitrary errors: digitization
+
+The most remarkable aspect of Shor’s code is its ability to correct **any arbitrary (continuous) error** affecting a single qubit. A general error on the first qubit acts as:
+
+$$|0\rangle \to a|0\rangle + b|1\rangle, \quad |1\rangle \to c|0\rangle + d|1\rangle$$
+
+where $a, b, c, d$ are arbitrary complex coefficients. This error can be decomposed as a linear combination of four discrete cases: no error ($k\cdot I$), bit-flip ($l\cdot X$), phase-flip ($m\cdot Z$), and both bit and phase ($n\cdot XZ$).
+
+When one performs parity measurements (first for bit-flips, then for phase-flips), the state collapses onto one of these four discrete cases. This is **digitization of errors**: even if the initial error is continuous, measurement projects it onto a discrete case that can be corrected deterministically. Obstacle 3 is solved.
+
+## Depolarizing channel and Shor code performance
+
+The **depolarizing channel** is the standard quantum noise model, analogous to the classical BSC: with probability $1 - p_e$ there is no error, and with probability $p_e/3$ each type of error occurs ($X$, $Z$, $XZ$). Shor’s code reduces the error rate from $p_e$ to $\mathcal{O}(p_e^2)$, just like the classical repetition code — because an uncorrectable error requires at least two of the 9 qubits to be affected simultaneously, which is an event of order $p_e^2$.
+
+## More efficient codes: Hamming and Steane
+
+### Hamming (7,4)
+
+Shor’s code is conceptually fundamental but inefficient (rate $1/9$). More sophisticated classical linear codes compress information better. The **Hamming (7,4)** code encodes 4 information bits into 7 bits, with rate $4/7 \approx 0.57$. It uses a generator matrix $G$ (7×4) and detects/corrects any single-bit error via the parity-check matrix $H$ (3×7): $p = Hc \pmod{2}$ yields the **error syndrome**, whose non-zero value identifies the position of the erroneous bit.
+
+### Steane (CSS)
+
+The **CSS** construction (Calderbank–Shor–Steane) builds quantum error-correcting codes from compatible pairs of classical linear codes. The **Steane code**, derived from Hamming (7,4), encodes **1 logical qubit into 7 physical qubits** (rate $1/7$) while offering the same guarantees as Shor’s code: correction of any single-qubit bit and/or phase flip. Using 7 physical qubits instead of 9 is a significant efficiency improvement, and Steane’s code also suppresses depolarizing error from $p_e$ to $\mathcal{O}(p_e^2)$.
+
+## Summary tables
+
+| Obstacle | Solution |
+|:---|:---|
+| No-cloning: cannot copy | Use **entanglement** instead |
+| Measurement destroys superposition | **Parity** measurements reveal errors without revealing $\alpha, \beta$ |
+| Errors are continuous | **Digitization** via parity measurements projects onto $I$, $X$, $Z$, or $XZ$ |
+
+| Code | Physical qubits / logical | Corrected errors | Residual error rate |
+|:---|:---:|:---|:---:|
+| Bit-flip code (3 qubits) | 3 | $X$ only | $\mathcal{O}(p_e^2)$ |
+| Phase-flip code (3 qubits) | 3 | $Z$ only | $\mathcal{O}(p_e^2)$ |
+| Shor code | 9 | $X$, $Z$, $XZ$, continuous errors | $\mathcal{O}(p_e^2)$ |
+| Steane (CSS) | 7 | $X$, $Z$, $XZ$, continuous errors | $\mathcal{O}(p_e^2)$ |
+
+---
+
+::: {.callout-note collapse="true" title="Summary — Quantum error correction"}
+Quantum error correction (QEC) overcomes three obstacles: **(1) no-cloning** → entanglement replaces copying ($\alpha|000\rangle + \beta|111\rangle$ instead of three copies); **(2) destructive measurement** → parity measurements reveal only the error, not $\alpha/\beta$; **(3) continuous errors** → digitization: parity measurements project a continuous error onto one of the discrete cases ($I$, $X$, $Z$, $XZ$). **Shor’s code** (9 qubits) corrects any single-qubit error by concatenating a phase code and a bit-flip code. **Steane’s code** (7 qubits, CSS) achieves the same with better efficiency ($1/7$ vs $1/9$). Both suppress depolarizing error from $p_e$ to $\mathcal{O}(p_e^2)$.
+:::

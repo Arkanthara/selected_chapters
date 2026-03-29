@@ -1,0 +1,918 @@
+---
+title: "Informatique Quantique — Quiz de révision"
+filters:
+  - quizdown
+execute:
+  enabled: false
+---
+
+---
+
+## Question 1 — Qubit
+
+```{quizdown}
+### Quelle condition doit satisfaire l'état d'un qubit $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ ?
+
+> Pense au fait que les probabilités de mesure doivent sommer à 1.
+
+1. [ ] $\alpha + \beta = 1$
+1. [ ] $|\alpha| + |\beta| = 1$
+1. [x] $|\alpha|^2 + |\beta|^2 = 1$
+    > Correct : c'est la condition de normalisation. Les amplitudes complexes au carré donnent les probabilités, qui doivent sommer à 1.
+1. [ ] $\alpha^2 + \beta^2 = 0$
+```
+
+```{quizdown}
+### Selon la règle de Born, quelle est la probabilité d'observer $|1\rangle$ en mesurant $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ ?
+
+> Les amplitudes et les probabilités ne sont pas la même chose.
+
+1. [ ] $\beta$
+1. [ ] $|\beta|$
+1. [ ] $\beta^2$
+1. [x] $|\beta|^2$
+    > Correct : la règle de Born donne $\Pr[|1\rangle] = |\beta|^2$. Les amplitudes peuvent être complexes ou négatives, donc on prend le module au carré.
+```
+
+```{quizdown}
+### Lesquelles de ces propriétés distinguent fondamentalement le qubit du bit classique ?
+
+> Plusieurs propriétés sont purement quantiques et sans équivalent classique.
+
+- [x] Un qubit ne peut pas être copié (théorème de non-clonage)
+    > Correct : il est impossible de dupliquer un état quantique arbitraire inconnu.
+- [ ] Un qubit peut prendre uniquement les valeurs 0 ou 1
+    > Incorrect : c'est précisément ce qui caractérise un bit classique, pas un qubit.
+- [x] Mesurer un qubit modifie irréversiblement son état
+    > Correct : la mesure provoque l'effondrement de l'état, contrairement à la lecture d'un bit classique.
+- [x] Un qubit peut être en superposition de $|0\rangle$ et $|1\rangle$
+    > Correct : c'est le principe de superposition, absent de la physique classique.
+- [ ] Un qubit est toujours dans un état déterministe avant la mesure
+```
+
+```{quizdown}
+### Quel est l'espace d'états d'un système de $n$ qubits ?
+
+> L'ajout d'un seul qubit double la puissance du système.
+
+1. [ ] $\mathbb{C}^n$
+1. [ ] $\mathbb{C}^{2n}$
+1. [x] $\mathbb{C}^{2^n}$
+    > Correct : l'espace de Hilbert d'un système de $n$ qubits est de dimension $2^n$. Pour $n = 64$, cela représente environ $16 \times 10^{18}$ dimensions.
+1. [ ] $\mathbb{R}^{2^n}$
+```
+
+---
+
+## Question 2 — Systèmes quantiques composites
+
+```{quizdown}
+### Quelle est la dimension de l'espace de Hilbert de deux qubits ?
+
+> L'espace de deux qubits est le produit tensoriel de leurs espaces individuels.
+
+1. [ ] 2
+1. [ ] 3
+1. [x] 4
+    > Correct : $\mathbb{C}^2 \otimes \mathbb{C}^2$ est de dimension $2 \times 2 = 4$, avec la base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+1. [ ] 8
+```
+
+```{quizdown}
+### Remets les éléments de la base naturelle de l'espace à deux qubits dans l'ordre lexicographique standard.
+
+> Pense à l'ordre binaire croissant.
+
+1. $|00\rangle$
+2. $|01\rangle$
+3. $|10\rangle$
+4. $|11\rangle$
+```
+
+```{quizdown}
+### Un état de deux qubits est dit "état produit" si et seulement si :
+
+> Réfléchis à ce que signifie l'indépendance entre sous-systèmes.
+
+1. [ ] Ses amplitudes sont toutes réelles
+1. [x] Il peut s'écrire comme $|\psi_1\rangle \otimes |\psi_2\rangle$ pour certains états individuels $|\psi_1\rangle$ et $|\psi_2\rangle$
+    > Correct : un état produit décrit deux sous-systèmes indépendants, chacun descriptible séparément.
+1. [ ] La somme de ses amplitudes est nulle
+1. [ ] Il vérifie $\alpha_{00} = \alpha_{11}$
+```
+
+```{quizdown}
+### Quelle propriété algébrique vérifie le produit tensoriel ?
+
+> Cette propriété permet de chaîner les produits tensoriels sans ambiguïté.
+
+1. [ ] Commutatif : $A \otimes B = B \otimes A$
+1. [x] Associatif : $A \otimes (B \otimes C) = (A \otimes B) \otimes C$
+    > Correct : le produit tensoriel est associatif, ce qui permet d'étendre naturellement la description à $n$ qubits.
+1. [ ] Distributif sur la soustraction uniquement
+1. [ ] Inversible : $(A \otimes B)^{-1} = A^{-1} \otimes B^{-1}$ toujours
+```
+
+---
+
+## Question 3 — Intrication quantique
+
+```{quizdown}
+### Quel est l'état emblématique de l'intrication quantique (paire de Bell) ?
+
+> Cet état ne peut pas s'écrire comme un produit tensoriel de deux états individuels.
+
+1. [ ] $\frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
+1. [x] $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+    > Correct : c'est la paire EPR (ou paire de Bell). Si l'on tente de la factoriser, on obtient une contradiction : $\alpha\beta' = 0$ et $\beta\alpha' = 0$ mais $\alpha\alpha' = \beta\beta' = \frac{1}{\sqrt{2}} \neq 0$.
+1. [ ] $\frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$
+1. [ ] $|00\rangle$
+```
+
+```{quizdown}
+### Un état $\alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$ est un état produit si et seulement si :
+
+> C'est une condition de rang 1 sur la matrice des coefficients.
+
+1. [ ] $\alpha_{00} = \alpha_{11}$
+1. [ ] $\alpha_{00} + \alpha_{11} = \alpha_{01} + \alpha_{10}$
+1. [x] $\alpha_{00}\alpha_{11} = \alpha_{01}\alpha_{10}$
+    > Correct : c'est la condition de rang 1. Si elle est satisfaite, l'état est produit ; sinon, il est intriqué.
+1. [ ] $|\alpha_{00}|^2 = |\alpha_{11}|^2$
+```
+
+```{quizdown}
+### L'intrication permet de transmettre de l'information plus vite que la lumière.
+
+> Réfléchis à ce que Bob peut observer de son côté sans communication classique.
+
+1. [ ] Vrai
+1. [x] Faux
+    > Faux : bien que l'effondrement du qubit de Bob soit instantané, le résultat individuel de chaque mesure reste aléatoire. Bob ne peut distinguer les statistiques que s'il reçoit le résultat d'Alice via un canal classique.
+```
+
+```{quizdown}
+### Quel circuit génère une paire de Bell à partir de $|00\rangle$ ?
+
+> Deux portes suffisent : l'une crée la superposition, l'autre crée la corrélation.
+
+1. [ ] CNOT puis Hadamard
+1. [x] Hadamard sur le qubit 1, puis CNOT (qubit 1 contrôle, qubit 2 cible)
+    > Correct : $|00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|00\rangle+|10\rangle) \xrightarrow{\text{CNOT}} \frac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$.
+1. [ ] CNOT puis CNOT
+1. [ ] Hadamard sur les deux qubits simultanément
+```
+
+---
+
+## Question 4 — Décohérence quantique
+
+```{quizdown}
+### Qu'est-ce que la décohérence quantique ?
+
+> Ce phénomène explique pourquoi les objets macroscopiques ne semblent pas être en superposition.
+
+1. [ ] La perte d'énergie d'un qubit lors d'une opération de porte
+1. [x] La perte de superposition et d'intrication d'un système quantique par interaction avec son environnement
+    > Correct : l'environnement effectue des "mesures involontaires" sur le système, détruisant progressivement les superpositions quantiques.
+1. [ ] L'erreur introduite par une porte unitaire imparfaite
+1. [ ] Le processus de mesure délibérée d'un qubit
+```
+
+```{quizdown}
+### Lesquelles de ces conséquences résultent directement de la décohérence ?
+
+> La décohérence agit à plusieurs niveaux sur les capacités du calcul quantique.
+
+- [x] Limitation de la profondeur maximale des circuits quantiques exécutables
+    > Correct : si le calcul dure plus longtemps que le temps de cohérence, les résultats sont corrompus.
+- [ ] Augmentation de la vitesse des portes quantiques
+- [x] Destruction des superpositions, entraînant une perte de capacité d'interférence
+    > Correct : sans superposition, l'avantage algorithmique disparaît.
+- [x] Source principale d'erreurs dans les dispositifs quantiques actuels
+    > Correct : la décohérence est le principal obstacle à la construction d'ordinateurs quantiques performants.
+- [ ] Impossibilité de préparer l'état $|0\rangle$
+```
+
+```{quizdown}
+### Pourquoi les qubits supraconducteurs opèrent-ils à quelques millikelvins ?
+
+> Pense à la principale source d'interaction perturbatrice avec l'environnement.
+
+1. [ ] Pour augmenter la vitesse des opérations quantiques
+1. [x] Pour minimiser les interactions thermiques qui causent la décohérence
+    > Correct : à très basse température, les fluctuations thermiques sont négligeables, ce qui prolonge le temps de cohérence des qubits.
+1. [ ] Pour réduire la taille physique des qubits
+1. [ ] Pour faciliter la mesure des états quantiques
+```
+
+```{quizdown}
+### Que signifie l'acronyme NISQ ?
+
+> Ce terme désigne l'ère actuelle de l'informatique quantique.
+
+1. [ ] Non-Integrated Scalable Quantum
+1. [x] Noisy Intermediate-Scale Quantum
+    > Correct : NISQ désigne les dispositifs quantiques actuels, comportant environ 100 qubits contrôlables mais souffrant d'erreurs importantes dues notamment à la décohérence.
+1. [ ] New Integrated Superposition Qubit
+1. [ ] Normalized Iterative Scalable Quantum
+```
+
+---
+
+## Question 5 — Effet de l'observation d'un qubit
+
+```{quizdown}
+### Un qubit est préparé dans l'état $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$. On applique une porte $H$, puis on mesure. Quel est le résultat ?
+
+> Rappelle-toi que $H^2 = I$.
+
+1. [ ] $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$ chacun
+1. [x] $|0\rangle$ avec probabilité 1
+    > Correct : $H|+\rangle = |0\rangle$. La porte $H$ est son propre inverse, donc $H(H|0\rangle) = |0\rangle$ et $H|+\rangle = |0\rangle$.
+1. [ ] $|1\rangle$ avec probabilité 1
+1. [ ] $|+\rangle$ inchangé
+```
+
+```{quizdown}
+### Un circuit applique $H$, puis une mesure intermédiaire, puis $H$ à nouveau sur un qubit initialement dans $|0\rangle$. Quel est le résultat de la mesure finale ?
+
+> Compare avec le cas sans mesure intermédiaire. La mesure a-t-elle un effet ?
+
+1. [x] $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$ chacun
+    > Correct : la mesure intermédiaire détruit la superposition et force le qubit dans $|0\rangle$ ou $|1\rangle$. La deuxième porte $H$ crée alors une nouvelle superposition, donnant un résultat aléatoire — contrairement au cas sans mesure intermédiaire.
+1. [ ] $|0\rangle$ avec probabilité 1
+1. [ ] $|1\rangle$ avec probabilité 1
+1. [ ] L'état reste $|+\rangle$ après la seconde porte $H$
+```
+
+```{quizdown}
+### Pourquoi une mesure intermédiaire dans un circuit quantique détruit-elle l'interférence ?
+
+> Pense à ce que la mesure fait à la superposition du qubit.
+
+1. [ ] Parce qu'elle consomme de l'énergie
+1. [ ] Parce qu'elle viole l'unitarité du circuit
+1. [x] Parce qu'elle force le qubit dans un état classique, supprimant les amplitudes complexes qui permettent l'annulation destructive des mauvais chemins
+    > Correct : l'interférence repose sur les amplitudes complexes qui peuvent s'annuler. La mesure effondre l'état et élimine cette structure d'amplitude.
+1. [ ] Parce qu'elle inverse toutes les amplitudes
+```
+
+```{quizdown}
+### Pour distinguer parfaitement $|+\rangle$ de $|-\rangle$, quelle stratégie faut-il adopter ?
+
+> Une mesure directe dans la base $\{|0\rangle, |1\rangle\}$ ne permet pas de les différencier.
+
+1. [ ] Mesurer directement dans la base computationnelle $\{|0\rangle, |1\rangle\}$
+1. [x] Appliquer $H$ puis mesurer dans la base computationnelle
+    > Correct : $H|+\rangle = |0\rangle$ et $H|-\rangle = |1\rangle$, permettant une discrimination parfaite. Une mesure directe donnerait $|0\rangle$ ou $|1\rangle$ avec probabilité $\frac{1}{2}$ dans les deux cas.
+1. [ ] Appliquer $Z$ puis mesurer
+1. [ ] Appliquer $X$ puis mesurer
+```
+
+---
+
+## Question 6 — Portes quantiques à un et deux qubits
+
+```{quizdown}
+### Laquelle de ces propriétés est commune à toutes les portes quantiques ?
+
+> Cette propriété garantit la cohérence physique des opérations quantiques.
+
+1. [ ] Elles sont irréversibles
+1. [ ] Elles ont toutes un équivalent classique
+1. [x] Elles sont représentées par des matrices unitaires ($UU^\dagger = I$)
+    > Correct : l'unitarité garantit la préservation de la norme des états quantiques et la réversibilité des opérations.
+1. [ ] Elles n'agissent que sur un seul qubit
+```
+
+```{quizdown}
+### Quelle porte quantique joue le rôle du NOT classique ?
+
+> Elle échange simplement les amplitudes de $|0\rangle$ et $|1\rangle$.
+
+1. [ ] Hadamard ($H$)
+1. [ ] Pauli-$Z$
+1. [x] Pauli-$X$
+    > Correct : $X|0\rangle = |1\rangle$ et $X|1\rangle = |0\rangle$, ce qui est exactement le comportement d'une porte NOT classique sur les états purs.
+1. [ ] Phase $S$
+```
+
+```{quizdown}
+### Lesquelles de ces affirmations sur la porte de Hadamard sont exactes ?
+
+> La porte $H$ a plusieurs propriétés remarquables liées à la superposition et à la mesure.
+
+- [x] $H^2 = I$ : appliquer $H$ deux fois est équivalent à ne rien faire
+    > Correct : $H$ est son propre inverse ($H = H^\dagger$).
+- [ ] $H$ est équivalente à la porte NOT classique
+    > Incorrect : $H$ crée des superpositions, ce que NOT ne fait pas. $X$ est l'équivalent de NOT.
+- [x] $H|0\rangle = |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+    > Correct : $H$ transforme l'état $|0\rangle$ en une superposition parfaite.
+- [x] $H$ n'a pas d'équivalent classique
+    > Correct : la création de superpositions est un phénomène purement quantique.
+- [ ] $H$ ne peut pas être combinée avec CNOT pour créer de l'intrication
+```
+
+```{quizdown}
+### La porte CNOT appliquée à l'état $|10\rangle$ produit quel état ?
+
+> Le premier qubit est le contrôle, le second est la cible. La règle : si contrôle = $|1\rangle$, inverser la cible.
+
+1. [ ] $|10\rangle$
+1. [x] $|11\rangle$
+    > Correct : le qubit de contrôle est $|1\rangle$, donc la cible $|0\rangle$ est inversée en $|1\rangle$, donnant $|11\rangle$.
+1. [ ] $|00\rangle$
+1. [ ] $|01\rangle$
+```
+
+```{quizdown}
+### Quel ensemble de portes est reconnu comme universel pour l'informatique quantique ?
+
+> Un ensemble universel permet d'approximer toute transformation unitaire arbitraire.
+
+1. [ ] $\{X, Y, Z\}$
+1. [ ] $\{H, \text{CNOT}\}$
+1. [x] $\{H, T, \text{CNOT}\}$
+    > Correct : cet ensemble est universel. La porte $T$ est nécessaire pour atteindre des rotations arbitraires sur la sphère de Bloch.
+1. [ ] $\{\text{CNOT}\}$ seul suffit
+```
+
+---
+
+## Question 7 — Circuits quantiques
+
+```{quizdown}
+### Remets dans l'ordre les étapes d'exécution d'un circuit quantique sur un ordinateur quantique réel.
+
+> Pense au flux depuis le programme jusqu'au résultat.
+
+1. L'ordinateur classique prépare et soumet le circuit
+2. Le controleur traduit les portes en impulsions physiques
+3. Le registre quantique execute les operations
+4. Les resultats de mesure sont renvoyes a l'ordinateur classique
+```
+
+```{quizdown}
+### Quelle propriété structurelle fondamentale distingue un circuit quantique d'un circuit classique ?
+
+> Pense à ce qui est conservé tout au long du circuit quantique.
+
+- [x] Largeur fixe : le même nombre de fils (qubits) traverse tout le circuit
+    > Correct : la réversibilité des opérations quantiques interdit l'effacement, donc on ne peut pas "perdre" un fil.
+- [ ] Les portes peuvent prendre un nombre variable d'entrées
+- [x] L'espace d'états est de dimension $2^n$ pour $n$ qubits, contre $n$ en classique
+    > Correct : c'est la source principale de la puissance computationnelle quantique.
+- [ ] Les circuits quantiques permettent la copie de qubits entre fils
+- [x] Toutes les opérations sont réversibles (sauf la mesure)
+    > Correct : les portes quantiques sont des matrices unitaires, donc inversibles. Seule la mesure est irréversible.
+```
+
+```{quizdown}
+### Un circuit quantique à $n$ qubits requiert au moins lequel de ces éléments pour fonctionner correctement ?
+
+> Plusieurs conditions sont nécessaires simultanément.
+
+- [x] Des temps de décohérence suffisamment longs pour terminer le calcul
+    > Correct : si le calcul dure plus longtemps que le temps de cohérence, les résultats sont corrompus.
+- [x] La capacité d'intrication entre qubits
+    > Correct : sans intrication (porte CNOT ou équivalent), de nombreux algorithmes quantiques ne peuvent pas être réalisés.
+- [ ] Un nombre de qubits supérieur à 1000 pour tout calcul utile
+- [x] Un ensemble universel de portes quantiques disponible physiquement
+    > Correct : sans ensemble universel, on ne peut pas approcher toutes les transformations unitaires nécessaires.
+```
+
+---
+
+## Question 8 — Algorithmes quantiques
+
+```{quizdown}
+### Quel mécanisme central permet aux algorithmes quantiques d'être plus efficaces que leurs homologues classiques ?
+
+> Ce mécanisme amplifie les bonnes réponses et annule les mauvaises avant la mesure finale.
+
+1. [ ] Le parallélisme massif : le circuit teste toutes les solutions simultanément
+1. [x] L'interférence quantique : les amplitudes des bonnes réponses s'amplifient constructivement, celles des mauvaises s'annulent destructivement
+    > Correct : l'interférence est le mécanisme central. La superposition seule ne suffit pas — sans interférence, la mesure d'un état en superposition donnerait simplement un résultat aléatoire.
+1. [ ] La téléportation des données entre qubits
+1. [ ] La décohérence contrôlée
+```
+
+```{quizdown}
+### L'algorithme de Shor permet de factoriser un entier de $n$ bits avec quelle complexité ?
+
+> Comparez avec la meilleure complexité classique connue, qui est sous-exponentielle.
+
+1. [ ] $O(2^n)$
+1. [ ] $O(n^2)$
+1. [x] $O(n^3 \log n)$ (polynomiale)
+    > Correct : Shor résout en temps polynomial ce qui nécessite un temps sous-exponentiel $O(e^{n^{1/3}})$ classiquement. Cette différence est spectaculaire : $10^{10}$ étapes vs $10^{24}$ pour un nombre de 30 chiffres.
+1. [ ] $O(\sqrt{n})$
+```
+
+```{quizdown}
+### L'algorithme de Grover apporte quelle accélération pour la recherche non structurée ?
+
+> Cette accélération est prouvablement optimale pour ce type de problème.
+
+1. [ ] Exponentielle : $O(\log N)$ au lieu de $O(N)$
+1. [x] Quadratique : $O(\sqrt{N})$ au lieu de $O(N)$
+    > Correct : Grover offre une accélération quadratique, prouvablement optimale pour la recherche non structurée. Cela signifie qu'aucun algorithme quantique ne peut faire mieux pour ce problème.
+1. [ ] Logarithmique : $O(N \log N)$ au lieu de $O(N^2)$
+1. [ ] Polynomiale : $O(N^{1/3})$ au lieu de $O(N)$
+```
+
+```{quizdown}
+### Pourquoi la simulation quantique est-elle considérée comme l'application la plus prometteuse des ordinateurs quantiques ?
+
+> Pense au coût de simulation classique d'un système de $N$ particules quantiques.
+
+1. [ ] Parce qu'elle est la seule application pratique prouvée
+1. [ ] Parce qu'elle ne nécessite pas de correction d'erreurs
+1. [x] Parce qu'un système quantique de $N$ qubits peut simuler $N$ particules quantiques naturellement, là où un ordinateur classique nécessite $2^N$ bits
+    > Correct : c'est le rêve de Feynman (1981). Pour $N = 50$, cela représente $10^{15}$ équations classiques — impossible en pratique, trivial quantiquement.
+1. [ ] Parce que les simulateurs quantiques n'ont pas besoin d'être calibrés
+```
+
+```{quizdown}
+### Les ordinateurs quantiques peuvent-ils résoudre efficacement tous les problèmes NP-difficiles ?
+
+> Pense aux types de problèmes pour lesquels un avantage quantique a été prouvé.
+
+1. [ ] Oui, grâce à l'algorithme de Grover appliqué à la recherche de solution
+1. [x] Non, ils excellent sur les problèmes avec une structure mathématique exploitable (périodicité, amplitude uniforme) mais ne résolvent probablement pas les problèmes NP-difficiles généraux en temps polynomial
+    > Correct : les ordinateurs quantiques ont prouvé leur avantage sur des problèmes structurés (factorisation, recherche, simulation). Pour les problèmes NP-difficiles généraux, aucun avantage exponentiel n'est connu.
+1. [ ] Oui, l'espace de Hilbert exponentiel permet d'explorer toutes les solutions simultanément
+1. [ ] Non, car l'algorithme de Shor ne fonctionne que pour la factorisation
+```
+
+---
+
+## Question 9 — Volume quantique
+
+```{quizdown}
+### Pourquoi le nombre brut de qubits est-il insuffisant pour comparer deux ordinateurs quantiques ?
+
+> Un dispositif avec beaucoup de qubits mais bruités peut être moins utile qu'un dispositif plus petit mais de meilleure qualité.
+
+1. [ ] Parce que tous les qubits doivent être du même type physique pour être comparables
+1. [ ] Parce que seul le temps d'exécution compte
+1. [x] Parce qu'un dispositif avec de nombreux qubits mais un taux d'erreur élevé peut être moins performant qu'un dispositif avec moins de qubits mais de meilleure qualité
+    > Correct : c'est précisément la motivation du volume quantique, qui capture la tension entre quantité et qualité.
+1. [ ] Parce que les qubits supraconducteurs et les ions piégés ne peuvent pas être comparés
+```
+
+```{quizdown}
+### Que mesure le volume quantique $\tilde{V}_Q = \min[N, d(N)]^2$ ?
+
+> Cette formule capture la tension entre deux facteurs limitants.
+
+1. [ ] Le nombre maximum de qubits disponibles sur le processeur
+1. [ ] La vitesse moyenne d'exécution des portes quantiques
+1. [x] La taille du plus grand circuit carré (nombre de qubits × profondeur) exécutable de façon fiable
+    > Correct : le volume quantique est limité par le facteur le plus faible entre la largeur (nombre de qubits) et la profondeur réalisable. Un ordinateur avec beaucoup de qubits mais peu de profondeur sera pénalisé.
+1. [ ] Le taux d'erreur moyen par porte quantique
+```
+
+```{quizdown}
+### En juin 2020, Honeywell a atteint un volume quantique de 64 avec seulement 6 qubits, tandis qu'IBM en avait besoin de 27 pour le même score. Quelle conclusion principale peut-on en tirer ?
+
+> Ce résultat illustre le message central du volume quantique.
+
+1. [ ] Honeywell dispose d'une technologie physique supérieure à IBM
+1. [x] La qualité des qubits (faible taux d'erreur, grande profondeur réalisable) peut compenser leur nombre
+    > Correct : c'est l'essence même du volume quantique. 6 qubits de très haute qualité peuvent être plus utiles que 27 qubits bruités.
+1. [ ] Le volume quantique favorise les petits systèmes
+1. [ ] IBM avait plus de qubits mais une architecture défavorable à cette métrique
+```
+
+---
+
+## Question 10 — Borne de Helstrom-Holevo
+
+```{quizdown}
+### Quelle est la probabilité maximale de discriminer deux états quantiques identiques ($|\psi_a\rangle = |\psi_b\rangle$) selon la borne de Helstrom-Holevo ?
+
+> Si les deux états sont identiques, aucune mesure ne peut les distinguer.
+
+1. [ ] $1$ (discrimination parfaite toujours possible)
+1. [x] $\frac{1}{2}$ (pas mieux que le hasard)
+    > Correct : $\theta = 0$, donc $\sin\theta = 0$ et $p = \frac{1}{2}(1 + 0) = \frac{1}{2}$. Discriminer deux états identiques est impossible.
+1. [ ] $0$ (toujours raté)
+1. [ ] $\frac{3}{4}$
+```
+
+```{quizdown}
+### Selon la borne de Helstrom-Holevo, quelle est la probabilité maximale de discriminer $|0\rangle$ et $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ ?
+
+> Calcule d'abord le produit scalaire $\langle 0|+\rangle$, puis l'angle $\theta$.
+
+1. [ ] $\frac{1}{2}$
+1. [ ] $\frac{3}{4}$
+1. [x] $\frac{1}{2}\left(1 + \frac{1}{\sqrt{2}}\right) \approx 85\%$
+    > Correct : $\langle 0|+\rangle = \frac{1}{\sqrt{2}}$, donc $\cos\theta = \frac{1}{\sqrt{2}}$, soit $\theta = 45°$. La borne donne $\frac{1}{2}(1 + \sin 45°) \approx 85\%$. La stratégie naïve (base computationnelle) ne donne que 75%.
+1. [ ] $1$ (discrimination parfaite car états différents)
+```
+
+```{quizdown}
+### La borne de Helstrom-Holevo est-elle seulement une borne supérieure, ou est-elle atteinte par une mesure concrète ?
+
+> Réfléchis à la différence entre une borne et une valeur optimale exacte.
+
+1. [ ] C'est une borne supérieure non atteinte en général
+1. [x] La borne est exactement atteinte : il existe une mesure (dans la base des vecteurs propres de $|\psi_a\rangle\langle\psi_a| - |\psi_b\rangle\langle\psi_b|$) qui l'atteint
+    > Correct : la borne de Helstrom-Holevo est la valeur optimale exacte, pas seulement un majorant. La mesure optimale utilise les vecteurs propres de l'opérateur différence.
+1. [ ] La borne n'est atteinte que si les états sont orthogonaux
+1. [ ] La borne n'est jamais atteinte pour les états non orthogonaux
+```
+
+---
+
+## Question 11 — Principe de non-signalisation quantique
+
+```{quizdown}
+### Alice et Bob partagent une paire de Bell. Alice mesure son qubit (résultat inconnu de Bob). Quelle est la distribution des mesures de Bob sur son qubit ?
+
+> Bob n'a aucun moyen de savoir ce qu'Alice a fait.
+
+1. [ ] $p_B(0) = 1$ si Alice a obtenu $|0\rangle$, $p_B(0) = 0$ si Alice a obtenu $|1\rangle$
+1. [x] $p_B(0) = p_B(1) = \frac{1}{2}$, identique au cas où Alice ne mesure pas
+    > Correct : du point de vue de Bob (qui ignore le résultat d'Alice), le qubit qu'il détient est un mélange statistique $\frac{1}{2}|0\rangle + \frac{1}{2}|1\rangle$. Ses statistiques sont indiscernables du cas sans mesure d'Alice.
+1. [ ] $p_B(0) = \frac{3}{4}$
+1. [ ] La distribution dépend de la base utilisée par Alice
+```
+
+```{quizdown}
+### Pourquoi l'effondrement instantané du qubit de Bob (lors de la mesure d'Alice) ne permet-il pas une communication supraluminique ?
+
+> La non-signalisation est cohérente avec la relativité restreinte.
+
+1. [ ] Parce que l'effondrement n'est pas vraiment instantané
+1. [x] Parce que Bob ne peut pas détecter l'effondrement sans connaître le résultat d'Alice, qui ne peut lui parvenir que via un canal classique limité par $c$
+    > Correct : l'effondrement est réel mais indétectable localement. Bob observe des statistiques uniformes dans tous les cas. Seule la communication classique du résultat d'Alice lui permettrait d'exploiter la corrélation.
+1. [ ] Parce que la paire de Bell ne produit que des corrélations classiques
+1. [ ] Parce que la mécanique quantique interdit les corrélations à distance
+```
+
+```{quizdown}
+### Quel lien existe-t-il entre le principe de non-clonage et le principe de non-signalisation ?
+
+> Si l'un était violé, l'autre le serait aussi.
+
+1. [ ] Ils sont indépendants et n'ont aucun rapport logique
+1. [x] Ils sont mutuellement cohérents : si on pouvait cloner un qubit, on pourrait utiliser la tomographie d'état pour détecter l'effondrement et transmettre de l'information supraluminiquement
+    > Correct : avec le clonage, Bob pourrait faire de nombreuses copies de son qubit et effectuer une tomographie pour détecter un changement d'état, violant la non-signalisation. Les deux principes forment un ensemble cohérent.
+1. [ ] Le non-clonage implique la non-signalisation, mais pas l'inverse
+1. [ ] La non-signalisation est une conséquence directe du principe d'incertitude de Heisenberg uniquement
+```
+
+---
+
+## Question 12 — Principe de non-clonage quantique
+
+```{quizdown}
+### Quel est l'énoncé du théorème de non-clonage ?
+
+> Ce résultat ne s'applique qu'aux états inconnus et arbitraires.
+
+1. [ ] Il est impossible de mesurer deux fois le même qubit
+1. [ ] Il est impossible de copier un qubit vers un autre qubit du même circuit
+1. [x] Il n'existe pas de transformation unitaire $U$ telle que $U(|\psi\rangle|0\rangle) = |\psi\rangle|\psi\rangle$ pour tout état $|\psi\rangle$
+    > Correct : le non-clonage interdit de copier un état quantique arbitraire et inconnu. Des états orthogonaux ou identiques peuvent techniquement être "copiés", mais cela correspond à de l'information classique.
+1. [ ] Il est impossible de préparer deux qubits dans le même état
+```
+
+```{quizdown}
+### Dans la preuve du théorème de non-clonage, quelle équation mène à la contradiction ?
+
+> La preuve utilise uniquement la linéarité et l'isométrie de $U$.
+
+1. [ ] $\langle\psi|\phi\rangle = 0$ pour tout $|\phi\rangle$
+1. [ ] $\langle\psi|\phi\rangle = 2(\langle\psi|\phi\rangle)^2$
+1. [x] $\langle\psi|\phi\rangle = (\langle\psi|\phi\rangle)^2$
+    > Correct : cette équation $x = x^2$ n'a que deux solutions ($x = 0$ ou $x = 1$), excluant tout état non orthogonal et distinct. C'est la contradiction.
+1. [ ] $\langle\psi|\phi\rangle = \sqrt{\langle\psi|\phi\rangle}$
+```
+
+```{quizdown}
+### Lesquelles de ces affirmations sur les conséquences du non-clonage sont exactes ?
+
+> Le non-clonage a des répercussions à la fois sur la cryptographie et sur la correction d'erreurs.
+
+- [x] La sécurité du protocole BB84 repose sur le fait qu'un espion ne peut pas copier silencieusement les qubits interceptés
+    > Correct : le non-clonage est la pierre angulaire de la sécurité de la QKD.
+- [ ] La correction d'erreurs quantiques est impossible à cause du non-clonage
+    > Incorrect : la correction d'erreurs quantiques est possible, mais elle utilise l'enchevêtrement au lieu de la copie directe.
+- [x] La correction d'erreurs quantiques ne peut pas utiliser la stratégie classique de simple répétition
+    > Correct : on ne peut pas créer trois copies de $|\psi\rangle$ pour faire un vote majoritaire. Des codes enchevêtrés sont nécessaires.
+- [x] Le clonage permettrait une super-compression d'information, violant le théorème de Holevo
+    > Correct : avec le clonage, on pourrait encoder et décoder arbitrairement plus de 1 bit par qubit, ce qui est interdit par le théorème de Holevo.
+```
+
+---
+
+## Question 13 — Principe de non-suppression quantique
+
+```{quizdown}
+### Le principe de non-suppression est le dual temporel du non-clonage. Qu'est-ce que cela signifie concrètement ?
+
+> Pense aux directions temporelles des deux transformations interdites.
+
+1. [ ] Les deux principes sont équivalents et énoncent la même interdiction
+1. [ ] Le non-clonage concerne les qubits logiques, le non-suppression les qubits physiques
+1. [x] Le non-clonage interdit $|\psi\rangle|0\rangle \to |\psi\rangle|\psi\rangle$ (1→2 copies) et le non-suppression interdit $|\psi\rangle|\psi\rangle \to |\psi\rangle|0\rangle$ (2→1 copies)
+    > Correct : les deux transformations sont l'une l'inverse de l'autre. La réversibilité unitaire garantit qu'interdire l'une revient à interdire l'autre.
+1. [ ] Les deux principes sont indépendants et peuvent être violés séparément
+```
+
+```{quizdown}
+### Comment la réversibilité de la mécanique quantique justifie-t-elle le non-suppression à partir du non-clonage ?
+
+> La réversibilité est une propriété fondamentale des transformations unitaires.
+
+1. [ ] La réversibilité interdit toutes les transformations qui modifient le nombre de qubits
+1. [x] Si $\tilde{U}$ permettait de supprimer (2→1 copies), son adjoint $\tilde{U}^\dagger$ permettrait de cloner (1→2 copies), ce qui est interdit par le non-clonage
+    > Correct : $\tilde{U}^\dagger$ est une transformation unitaire valide. Si $\tilde{U}$ existait, $\tilde{U}^\dagger$ violerait le non-clonage, ce qui est une contradiction.
+1. [ ] La réversibilité n'a aucun lien logique avec le non-suppression
+1. [ ] La réversibilité interdit uniquement les mesures, pas les effacements
+```
+
+```{quizdown}
+### Quelle est l'implication pratique du non-suppression pour la conception de circuits quantiques ?
+
+> Pense aux qubits ancilla (auxiliaires) utilisés dans les algorithmes quantiques.
+
+1. [ ] On peut simplement ignorer les qubits ancilla après leur utilisation
+1. [ ] Les qubits ancilla doivent être mesurés à la fin de chaque porte
+1. [x] Les qubits ancilla ne peuvent pas être "effacés" ; ils doivent être réinitialisés par des opérations inverses ($U^\dagger$) avant d'être réutilisés
+    > Correct : le non-suppression interdit l'effacement unitaire. Les qubits ancilla doivent être ramenés à leur état initial par des opérations inverses, ce qui complexifie la conception des algorithmes.
+1. [ ] Les qubits ancilla peuvent être téléportés hors du circuit pour être détruits
+```
+
+---
+
+## Question 14 — Applications de l'informatique quantique
+
+```{quizdown}
+### Quel est le mécanisme central de l'algorithme de Shor pour factoriser $N$ ?
+
+> La factorisation est réduite à un autre problème plus facilement résolu quantiquement.
+
+1. [ ] Recherche exhaustive quantique de tous les diviseurs de $N$
+1. [ ] Simulation de la désintégration d'un nombre en ses facteurs
+1. [x] Réduction de la factorisation à la recherche de la période de $f(s) = x^s \bmod N$, résolue efficacement par la QFT
+    > Correct : une fois la période $l$ trouvée, des calculs classiques (PGCD) donnent les facteurs. La QFT concentre l'amplitude sur les multiples de $2^n/l$ en temps polynomial.
+1. [ ] Application directe de l'algorithme de Grover sur les diviseurs potentiels
+```
+
+```{quizdown}
+### Pourquoi l'algorithme de Shor constitue-t-il une menace pour la cryptographie RSA ?
+
+> RSA repose sur un problème de théorie des nombres.
+
+1. [ ] Parce que Shor peut résoudre n'importe quel problème NP-difficile
+1. [x] Parce que la sécurité de RSA repose sur la difficulté supposée de factoriser de grands entiers, que Shor résout en temps polynomial
+    > Correct : pour casser RSA-2048, il faudrait environ 8000 qubits logiques avec correction d'erreurs. Cette capacité pourrait exister dans les 5 à 10 prochaines années.
+1. [ ] Parce que Shor peut déchiffrer directement les messages RSA
+1. [ ] Parce que Shor casse tous les systèmes de chiffrement symétrique
+```
+
+```{quizdown}
+### Pour laquelle de ces applications l'avantage quantique n'est-il pas encore rigoureusement prouvé ?
+
+> Certaines applications sont prometteuses mais leur avantage reste à démontrer formellement.
+
+1. [ ] La factorisation d'entiers (Shor)
+1. [ ] La recherche non structurée (Grover)
+1. [ ] La simulation de systèmes quantiques
+1. [x] L'optimisation combinatoire générale (QAOA et variantes)
+    > Correct : bien que l'optimisation quantique soit parfois présentée comme une "application tueuse", l'avantage quantique sur les meilleurs algorithmes classiques pour les problèmes d'optimisation généraux n'est pas encore prouvé.
+```
+
+---
+
+## Question 15 — Téléportation quantique
+
+```{quizdown}
+### Quelles ressources sont nécessaires pour réaliser la téléportation quantique d'un qubit ?
+
+> La téléportation combine des ressources quantiques et classiques.
+
+- [x] Une paire de Bell (une moitié pour Alice, l'autre pour Bob)
+    > Correct : la paire de Bell est la ressource quantique indispensable.
+- [ ] Un canal quantique direct entre Alice et Bob
+    > Incorrect : la téléportation utilise un canal classique, pas un canal quantique, pour la transmission finale.
+- [x] Un canal classique permettant l'envoi de 2 bits
+    > Correct : sans les 2 bits classiques, Bob ne peut pas corriger son qubit.
+- [ ] La connaissance des amplitudes $\alpha$ et $\beta$ de l'état à téléporter
+    > Incorrect : Alice ne connaît pas $\alpha$ et $\beta$, c'est précisément pour cela qu'elle ne peut pas les envoyer classiquement.
+- [x] Le qubit message $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ qu'Alice souhaite transmettre
+    > Correct : c'est l'état à téléporter.
+```
+
+```{quizdown}
+### Remets dans l'ordre les étapes du protocole de téléportation quantique.
+
+> Alice agit d'abord, puis communique, puis Bob corrige.
+
+1. Alice applique CNOT (qubit message → son qubit de la paire)
+2. Alice applique H sur le qubit message
+3. Alice mesure ses deux qubits et obtient 2 bits classiques
+4. Alice envoie les 2 bits a Bob via le canal classique
+5. Bob applique les corrections ($X$ si $b_0=1$, $Z$ si $b_1=1$)
+```
+
+```{quizdown}
+### Après la téléportation, Alice possède-t-elle encore l'état $|\psi\rangle$ ?
+
+> Pense au théorème de non-clonage et à ce que la mesure fait à l'état d'Alice.
+
+1. [ ] Oui, Alice et Bob possèdent tous les deux $|\psi\rangle$
+1. [x] Non, l'état d'Alice est irréversiblement détruit lors de sa mesure
+    > Correct : lors de la mesure, le qubit message d'Alice s'effondre. Le non-clonage est ainsi respecté : à aucun moment deux copies de $|\psi\rangle$ ne coexistent.
+1. [ ] Oui, si Alice a obtenu le résultat 00
+1. [ ] Non, mais Alice peut le reconstruire à partir des 2 bits envoyés à Bob
+```
+
+```{quizdown}
+### La téléportation quantique permet-elle une communication plus rapide que la lumière ?
+
+> Examine ce qui serait nécessaire pour que Bob puisse utiliser son qubit.
+
+1. [ ] Oui, l'effondrement du qubit de Bob est instantané, quelle que soit la distance
+1. [x] Non, car Bob a besoin des 2 bits classiques d'Alice pour corriger son qubit, et ces bits ne peuvent voyager qu'à la vitesse de la lumière au maximum
+    > Correct : sans les bits classiques, le qubit de Bob est dans un mélange statistique sans information exploitable sur $|\psi\rangle$. La téléportation est limitée par la vitesse du canal classique.
+1. [ ] Oui, si la distance entre Alice et Bob est inférieure à 1 km
+1. [ ] Non, car la téléportation détruit l'état avant qu'il puisse être transmis
+```
+
+---
+
+## Question 16 — Codage superdense
+
+```{quizdown}
+### Dans le codage superdense, combien de bits classiques Alice peut-elle transmettre à Bob en envoyant un seul qubit ?
+
+> Le résultat peut sembler paradoxal au regard du théorème de Holevo.
+
+1. [ ] 1 bit (identique à un qubit sans intrication)
+1. [x] 2 bits
+    > Correct : grâce à la paire de Bell partagée, Alice encode 2 bits dans quel état de Bell la paire occupe, ce que Bob peut décoder en mesurant les deux qubits ensemble.
+1. [ ] 3 bits
+1. [ ] Un nombre arbitraire de bits
+```
+
+```{quizdown}
+### Quelle opération Alice applique-t-elle sur son qubit pour envoyer le message "11" dans le codage superdense ?
+
+> Alice doit transformer $|\Phi^+\rangle$ en $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$.
+
+1. [ ] L'identité $I$
+1. [ ] La porte $X$ seule
+1. [ ] La porte $Z$ seule
+1. [x] La porte $XZ$ (appliquer $Z$ puis $X$, ou leur produit)
+    > Correct : $XZ$ sur le premier qubit de $|\Phi^+\rangle$ donne $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$, qui correspond au message "11".
+```
+
+```{quizdown}
+### Pourquoi l'intrication est-elle indispensable au codage superdense ?
+
+> Sans intrication, le théorème de Holevo s'applique directement.
+
+1. [ ] Parce qu'elle accélère la transmission du qubit sur le canal quantique
+1. [x] Parce que sans la paire de Bell partagée, un qubit ne peut transporter qu'1 bit d'information classique (théorème de Holevo). L'information est encodée dans l'état de Bell global, non local.
+    > Correct : le qubit envoyé seul ne contient pas les 2 bits. C'est l'ensemble {qubit envoyé, qubit de Bob} qui les contient, grâce à la corrélation non-locale.
+1. [ ] Parce qu'elle réduit le bruit sur le canal quantique
+1. [ ] Parce que Bob ne peut pas mesurer son qubit sans intrication
+```
+
+```{quizdown}
+### Comment Bob décode-t-il le message dans le codage superdense ?
+
+> Il doit "désenchevêtrer" la paire pour retrouver l'état de base computationnelle.
+
+1. [ ] Il mesure directement son qubit dans la base computationnelle
+1. [ ] Il applique H sur son qubit, puis mesure
+1. [x] Il applique CNOT (qubit d'Alice en contrôle) puis H sur le qubit d'Alice, puis mesure en base computationnelle
+    > Correct : ce circuit réalise la transformation de Bell inverse, qui ramène chacun des 4 états de Bell vers l'un des 4 états de base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+1. [ ] Il attend qu'Alice lui communique le résultat par un canal classique
+```
+
+---
+
+## Question 17 — Distribution quantique de clés (QKD / BB84)
+
+```{quizdown}
+### Quelle propriété de sécurité distingue le masque jetable (one-time pad) chiffré avec une clé QKD de RSA ?
+
+> Pense aux hypothèses sous-jacentes de chaque système.
+
+1. [ ] Le masque jetable est plus rapide à implémenter
+1. [ ] RSA repose sur des opérations mathématiques que le masque jetable n'utilise pas
+1. [x] Le masque jetable offre une sécurité théorique de l'information (prouvée mathématiquement), indépendante de la puissance de calcul de l'adversaire, alors que RSA offre seulement une sécurité computationnelle
+    > Correct : la sécurité de RSA s'effondrerait si la factorisation devenait facile (algorithme de Shor). Le masque jetable avec clé QKD est prouvablement sécurisé quelle que soit la puissance de l'adversaire.
+1. [ ] RSA est vulnérable à des attaques classiques, pas quantiques
+```
+
+```{quizdown}
+### Dans BB84, pourquoi Alice et Bob rejettent-ils environ la moitié des bits après l'échange ?
+
+> Cela correspond à l'étape de "sifting".
+
+1. [ ] Pour corriger les erreurs introduites par le bruit du canal
+1. [x] Parce qu'ils ne conservent que les bits pour lesquels ils ont utilisé la même base de mesure, ce qui arrive en moyenne une fois sur deux
+    > Correct : Alice choisit aléatoirement sa base d'encodage, Bob choisit aléatoirement sa base de mesure. Quand les bases diffèrent, le résultat de Bob est aléatoire et inutilisable.
+1. [ ] Pour augmenter la longueur de la clé finale
+1. [ ] Par convention pour simplifier le protocole
+```
+
+```{quizdown}
+### Un espion Ève intercepte les qubits BB84, les mesure dans une base aléatoire et retransmet des nouveaux qubits à Bob. Quel taux d'erreur introduit-elle sur la clé brute commune d'Alice et Bob ?
+
+> Ève a 50% de chances de choisir la mauvaise base, et dans ce cas elle perturbe le qubit dans 50% des cas.
+
+1. [ ] 0% (aucune perturbation si Ève retransmet correctement)
+1. [ ] 10%
+1. [x] 25%
+    > Correct : Ève choisit la mauvaise base dans 50% des cas. Quand elle se trompe, elle introduit une erreur sur les bits conservés (bases concordantes d'Alice et Bob) dans 50% de ces cas. Soit $\frac{1}{2} \times \frac{1}{2} = 25\%$ d'erreurs sur la clé brute.
+1. [ ] 50%
+```
+
+```{quizdown}
+### Pourquoi le théorème de non-clonage est-il crucial pour la sécurité de BB84 ?
+
+> Pense à l'attaque qu'un espion essaierait de mener si le clonage était possible.
+
+1. [ ] Il empêche Bob de faire plusieurs mesures sur le même qubit
+1. [x] Il empêche Ève de garder une copie du qubit et de ne le mesurer qu'après l'annonce publique des bases, ce qui lui aurait permis d'obtenir l'information sans perturber le qubit de Bob
+    > Correct : sans le non-clonage, Ève pourrait stocker une copie parfaite du qubit et attendre que la base soit annoncée publiquement pour mesurer dans la bonne base, sans laisser de trace.
+1. [ ] Il interdit à Alice de préparer plusieurs fois le même état
+1. [ ] Il garantit que le canal quantique est sans bruit
+```
+
+---
+
+## Question 18 — Correction d'erreurs quantiques
+
+```{quizdown}
+### Lesquels de ces obstacles rendent la correction d'erreurs quantiques plus difficile qu'en classique ?
+
+> Trois obstacles fondamentaux doivent être surmontés simultanément.
+
+- [x] Le principe de non-clonage interdit de simplement répliquer l'état pour un vote majoritaire
+    > Correct : on ne peut pas créer trois copies de $|\psi\rangle$ directement. L'enchevêtrement remplace la copie.
+- [x] La mesure directe des qubits pour détecter les erreurs détruirait la superposition protégée
+    > Correct : les mesures de parité sont conçues pour révéler l'erreur sans révéler les amplitudes $\alpha$ et $\beta$.
+- [x] Les erreurs quantiques sont continues (perturbation arbitraire de $\alpha, \beta$), contre seulement discrètes en classique
+    > Correct : la digitalisation des erreurs par les mesures de parité résout ce problème en projetant l'erreur continue sur un cas discret.
+- [ ] Il est impossible de détecter des erreurs sans mesurer directement chaque qubit
+- [ ] Les circuits quantiques ne peuvent pas corriger plus d'une erreur par 1000 portes
+```
+
+```{quizdown}
+### Dans le code à répétition quantique sur 3 qubits, comment est encodé l'état $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ ?
+
+> Attention : ce n'est pas trois copies de $|\psi\rangle$.
+
+1. [ ] $(\alpha|0\rangle + \beta|1\rangle)^{\otimes 3} = \alpha^3|000\rangle + \ldots + \beta^3|111\rangle$
+1. [x] $\alpha|000\rangle + \beta|111\rangle$
+    > Correct : cet état enchevêtré est fondamentalement différent de trois copies. Le théorème de non-clonage n'est pas violé car on n'a pas créé $|\psi\rangle \otimes |\psi\rangle \otimes |\psi\rangle$.
+1. [ ] $\alpha|001\rangle + \beta|110\rangle$
+1. [ ] $\frac{1}{\sqrt{3}}(|000\rangle + |001\rangle + |010\rangle)$
+```
+
+```{quizdown}
+### Pourquoi les mesures de parité permettent-elles de détecter les erreurs sans détruire la superposition ?
+
+> La question est : quelles informations révèlent-elles exactement ?
+
+1. [ ] Parce qu'elles sont appliquées très rapidement
+1. [ ] Parce qu'elles ne perturbent que les qubits ancilla
+1. [x] Parce qu'elles révèlent uniquement si deux qubits sont identiques ou différents (le syndrome), sans jamais révéler les valeurs absolues des amplitudes $\alpha$ et $\beta$
+    > Correct : une mesure de parité entre les qubits 1 et 2 donne 0 (même valeur) ou 1 (valeurs différentes), sans indiquer si les qubits valent $|0\rangle$ ou $|1\rangle$. L'information sur $\alpha$ et $\beta$ reste intacte.
+1. [ ] Parce qu'elles projettent sur la base de Bell plutôt que la base computationnelle
+```
+
+```{quizdown}
+### Le code de Shor sur 9 qubits peut corriger une erreur continue arbitraire sur un qubit unique. Quel mécanisme rend cela possible ?
+
+> Ce mécanisme transforme un problème continu en un problème discret.
+
+1. [ ] La redondance sur 9 qubits rend les erreurs improbables
+1. [ ] Le code de Shor détecte uniquement les erreurs $X$ et les ignore pour $Z$
+1. [x] La digitalisation des erreurs : les mesures de parité projettent toute erreur continue sur l'un des 4 cas discrets ($I$, $X$, $Z$, $XZ$), chacun corrigeable par une opération unitaire déterministe
+    > Correct : toute erreur se décompose en $k \cdot I + l \cdot X + m \cdot Z + n \cdot XZ$. Les mesures de parité sélectionnent l'un de ces cas et permettent une correction exacte.
+1. [ ] Le code de Shor répète la mesure jusqu'à obtenir un résultat cohérent
+```
+
+```{quizdown}
+### Quel est l'avantage du code de Steane sur le code de Shor, tout en maintenant les mêmes garanties de correction ?
+
+> Comparez le nombre de qubits physiques nécessaires par qubit logique.
+
+1. [ ] Le code de Steane corrige davantage d'erreurs simultanées
+1. [x] Le code de Steane n'utilise que 7 qubits physiques par qubit logique (taux $1/7$) contre 9 pour le code de Shor (taux $1/9$), grâce à la construction CSS à partir du code de Hamming (7,4)
+    > Correct : le code de Steane offre la même protection ($X$, $Z$, $XZ$, erreurs continues) avec une meilleure efficacité. Les deux réduisent le taux d'erreur de $p_e$ à $O(p_e^2)$.
+1. [ ] Le code de Steane fonctionne sans qubits ancilla
+1. [ ] Le code de Steane n'a pas besoin de mesures de parité
+```
