@@ -1,14 +1,3 @@
----
-title: "Réponses d'examen — Informatique Quantique"
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    number-sections: true
----
-
----
-
 # Question 1 — Qubit definition
 
 ## Réponse complète
