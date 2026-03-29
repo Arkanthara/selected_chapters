@@ -136,7 +136,7 @@ So
 
 So $H(p(x)) + H(p(y)) >= H(p(x,y))$ and if $p(x)$ and $p(y)$ are independent,
 
-$ H(p(x)) + H(p(y)) >= H(p(x,y)) = H(p(x)) + H(p(y)) $
+$ H(p(x)) + H(p(y)) = H(p(x,y)) $
 
 = Exercise 3: Generalised measurements can decrease entropy
 
@@ -276,23 +276,23 @@ The entropy of a quantum state with density $rho$ is given by:
 $ S(rho) = - tr(rho log rho) $
 
 
-*Theorem 11.8: Basic properties of von Neumann entropy*
+*Some basic properties of von Neumann entropy*
 
-(1) The entropy is non-negative. The entropy is zero if and only if the state is pure.
++ The entropy is non-negative. The entropy is zero if and only if the state is pure.
 
-(2) In a $d$-dimensional Hilbert space the entropy is at most $log d$. The entropy is equal to $log d$ if and only if the system is in the completely mixed state $I / d$.
++ In a $d$-dimensional Hilbert space the entropy is at most $log d$. The entropy is equal to $log d$ if and only if the system is in the completely mixed state $I / d$.
 
-(3) Suppose a composite system $A B$ is in a pure state. Then $S(A) = S(B)$.
+// (3) Suppose a composite system $A B$ is in a pure state. Then $S(A) = S(B)$.
 
-(4) Suppose $p_i$ are probabilities, and the states $rho_i$ have support on orthogonal subspaces. Then
-$
-  S( sum_i p_i rho_i ) = H(p_i) + sum_i p_i S(rho_i).
-$
+// (4) Suppose $p_i$ are probabilities, and the states $rho_i$ have support on orthogonal subspaces. Then
+// $
+//   S( sum_i p_i rho_i ) = H(p_i) + sum_i p_i S(rho_i).
+// $
 
-(5) Joint entropy theorem: Suppose $p_i$ are probabilities, $|i⟩$ are orthogonal states for a system $A$, and $rho_i$ is any set of density operators for another system $B$. Then
-$
-  S( sum_i p_i |i chevron.r chevron i| times.o rho_i ) = H(p_i) + sum_i p_i S(rho_i).
-$
+// (5) Joint entropy theorem: Suppose $p_i$ are probabilities, $|i⟩$ are orthogonal states for a system $A$, and $rho_i$ is any set of density operators for another system $B$. Then
+// $
+//   S( sum_i p_i |i chevron.r chevron i| times.o rho_i ) = H(p_i) + sum_i p_i S(rho_i).
+// $
 
 *Holevo bound theorem*:
 Suppose Alice prepares a state $rho_x$ where $x = 0, dots, n$ with probabilities $p_0, dots, p_n$.
@@ -307,7 +307,7 @@ $rho = sum_x p_x rho_x$.
 
 As all the four pure states are only a composition of qubits $|0 chevron.r$  and $|1 chevron.r$, it means that they live in the ${|0 chevron.r, |1 chevron.r}$ basis which is an Hilbert basis.
 
-In accordance with point (2) of von Neumann's properties of entropy, since the states lie in a two-dimensional Hilbert space, the entropy is at most $log 2 = 1$ bit, with equality holding only if the system is in the fully mixed state $I/2$.
+In accordance with point 2. of von Neumann's properties of entropy, since the states lie in a two-dimensional Hilbert space, the entropy is at most $log 2 = 1$ bit, with equality holding only if the system is in the fully mixed state $I/2$.
 
 // So to have the mutual information equal to 1 bit, Alice and Bob must have their system in the state $I/2$.
 // In fact, mutual information tells us to what extent knowing the state of Bob's system allows us to determine the state of Alice's system, and vice versa.
@@ -321,7 +321,7 @@ We want to find the bound of the mutual information according to the Holevo boun
 _Computation of $sum_i p_i S(rho_i)$_
 
 Alice send with probability $1/4$ one of the four pure states with density $rho_i$.
-As she sends some pure state, according to property (1) of entropy of Von Neumann, the entropy is 0.
+As she sends some pure state, according to property 1. of entropy of Von Neumann, the entropy is 0.
 
 So we have:
 
@@ -515,7 +515,7 @@ This is worse than the known POVM that achieves $approx 0.415$ bits.
 
 So we can try another basis that is perhaps more suitable for this problem.
 
-Indeed, the ${|0 chevron.r, |1 chevron.r}$ basis is not sensitive to phase whereas the basis $|+ chevron.r, |- chevron.r$ is.
+Indeed, the ${|0 chevron.r, |1 chevron.r}$ basis is not sensitive to phase whereas the basis ${|+ chevron.r, |- chevron.r}$ is.
 
 So we can construct the POVM from this basis like follows:
 
@@ -627,8 +627,3 @@ $
 $
 
 So we can see that the mutual information don't reach 1 bit, but the constructed POVM gives better results than the known POVM that gives a mutual information of 0.415 bits.
-#v(2em)
-
-#text(weight: "bold")[
-  To archive all results (solutions, report together with your code, etc.) and submit them using Quantum computing course moodle.
-]
