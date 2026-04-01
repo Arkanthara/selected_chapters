@@ -8360,11 +8360,14 @@ Program gauge theories of lattice QCD, explore the connections between cosmology
 </div>
 <p>The protocol goes like this:</p>
 <ol type="1">
-<li><p><strong>Alice</strong> has a string of bits and encodes each bit in one of two bases, chosen randomly with equal probability:</p>
+<li><strong>Alice</strong> has a string of bits and encodes each bit in one of two bases, chosen randomly with equal probability:
 <ul>
 <li>Base <span class="math inline">\(\{|0\rangle, |1\rangle\}\)</span>: 0 → <span class="math inline">\(|0\rangle\)</span>, 1 → <span class="math inline">\(|1\rangle\)</span></li>
-<li>Base <span class="math inline">\(\{|+\rangle, |-\rangle\}\)</span>: 0 → <span class="math inline">\(|+\rangle\)</span>, 1 → <span class="math inline">\(|-\rangle\)</span> Alice sends the qubit to Bob.</li>
+<li>Base <span class="math inline">\(\{|+\rangle, |-\rangle\}\)</span>: 0 → <span class="math inline">\(|+\rangle\)</span>, 1 → <span class="math inline">\(|-\rangle\)</span></li>
 </ul></li>
+</ol>
+<p>Alice sends the qubit to Bob.</p>
+<ol start="2" type="1">
 <li><p><strong>Bob</strong> receives the qubit and measures in one of the two bases, chosen randomly.</p></li>
 <li><p><strong>Bob publicly announces</strong> in which base he measured (not the result!).</p></li>
 <li><p><strong>Alice responds publicly</strong> if that was the right basis.</p></li>
