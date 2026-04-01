@@ -313,6 +313,7 @@ There are several technologies for implementing a physical qubit:
 ### Assessment of material efforts
 
 ::: {.callout-note title="To remember"}
+
 - We are at an **inflection point** in the NISQ era
 - There is a real qubit race, but the number of qubits is not everything — quality (low error rate) is just as important
 - Scaling up is a difficult engineering challenge, but with no known fundamental hurdle: there is no physical law prohibiting building a quantum computer with $10^6$ qubits without noise

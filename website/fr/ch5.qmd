@@ -276,6 +276,7 @@ On peut voir le code de Shor comme opérant à deux niveaux :
 
 - **Niveau interne** (blocs de 3 qubits) : protège contre les retournements de bit ($X$), grâce au code à retournement de bit.
 - **Niveau externe** (les 3 blocs) : protège contre les retournements de phase ($Z$), grâce au code à retournement de phase.
+
 :::
 
 ## Correction des retournements de bit avec le code de Shor
@@ -487,6 +488,7 @@ $$\quad + |1110000\rangle + |0100101\rangle + |1000011\rangle + |0010110\rangle\
 Comme le code de Shor, le code de Steane garantit de corriger **tout retournement de bit et/ou de phase** se produisant sur un **qubit unique** parmi les 7.
 
 ::: {.callout-tip title="Avantage du code de Steane sur le code de Shor"}
+
 - Code de Shor : 9 qubits physiques pour encoder 1 qubit logique → taux $\frac{1}{9}$
 - Code de Steane : 7 qubits physiques pour encoder 1 qubit logique → taux $\frac{1}{7}$
 

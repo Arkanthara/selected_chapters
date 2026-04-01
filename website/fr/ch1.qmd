@@ -313,6 +313,7 @@ Il existe plusieurs technologies pour implémenter un qubit physique :
 ### Bilan des efforts matériels
 
 ::: {.callout-note title="À retenir"}
+
 - Nous sommes à un **point d'inflexion** dans l'ère NISQ
 - Il y a une véritable **course aux qubits** (qubit race), mais le nombre de qubits n'est pas tout — la **qualité** (faible taux d'erreur) est tout aussi importante
 - Le passage à l'échelle est un défi d'ingénierie difficile, mais sans obstacle fondamental connu : il n'existe pas de loi physique interdisant la construction d'un ordinateur quantique avec $10^6$ qubits sans bruit

@@ -276,6 +276,7 @@ Shor's code can be seen as operating on two levels:
 
 - **Internal level** (blocks of 3 qubits): protects against bit flips ($X$), thanks to bit flip code.
 - **External level** (the 3 blocks): protects against phase reversals ($Z$), thanks to the phase reversal code.
+
 :::
 
 ## Fix bit flips with Shor's code
@@ -487,6 +488,7 @@ $$\quad + |1110000\rangle + |0100101\rangle + |1000011\rangle + |0010110\rangle\
 Like Shor's code, Steane's code guarantees to correct **any bit and/or phase flip** occurring on a single **qubit** among the 7.
 
 ::: {.callout-tip title="Advantage of Steane's code over Shor's code"}
+
 - Shor code: 9 physical qubits to encode 1 logical qubit → rate $\frac{1}{9}$
 - Steane code: 7 physical qubits to encode 1 logical qubit → rate $\frac{1}{7}$
 

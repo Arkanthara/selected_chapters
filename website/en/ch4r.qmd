@@ -43,9 +43,11 @@ title: "Applications of Quantum Computers — Review"
 | 11 | $\alpha\|1\rangle - \beta\|0\rangle$ | NOT + Z |
 
 ::: {.callout-warning title="Traps"}
+
 - Alice **never** knows $|\psi\rangle$
 - No superluminal communication (classic channel required)
 - Each teleport **consumes** the entangled pair
+
 :::
 
 ---

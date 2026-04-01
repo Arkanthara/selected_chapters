@@ -808,4 +808,5 @@ This chapter introduced the theoretical foundations of quantum computing:
 - **Quantum gates** (X, Y, Z, H, CNOT, etc.) are unit matrices constituting the basic blocks of quantum circuits.
 - **Quantum interference** allows a well-designed algorithm to remove the wrong answers and amplify the correct one.
 - **Quantum power** comes from parallelism (superposition), the exponential dimension of Hilbert space and entanglement.
+
 :::

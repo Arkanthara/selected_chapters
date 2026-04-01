@@ -105,9 +105,11 @@ Si $|\psi\rangle$ est soit $|\psi_a\rangle$ soit $|\psi_b\rangle$, et que ces de
 Il est toutefois possible d'effectuer une mesure qui fournit une information partielle sur la probabilité que $|\psi\rangle$ soit l'un ou l'autre des états.
 
 ::: {.callout-tip title="Intuition"}
+
 - Si l'on devine au hasard, on a raison avec probabilité $\frac{1}{2}$. On peut toujours faire mieux que cela grâce à une mesure judicieuse.
 - Plus $|\psi_a\rangle$ et $|\psi_b\rangle$ sont « proches » (angle faible entre eux), plus il est difficile de les distinguer, et plus la probabilité de succès sera basse.
 - Inversement, s'ils sont presque orthogonaux, on peut presque les distinguer parfaitement.
+
 :::
 
 ---
@@ -406,6 +408,7 @@ Ces cinq propriétés forment un ensemble cohérent et mutuellement renforçant.
 - Le non-clonage **implique** le non-signalisation (si on pouvait cloner, on pourrait signaler).
 - Le non-suppression est le **dual** exact du non-clonage via la réversibilité.
 - La borne de Helstrom-Holevo quantifie précisément **combien** on peut extraire d'information d'un état inconnu.
+
 :::
 
 ::: {.callout-tip title="Intuition globale"}

@@ -145,7 +145,9 @@ Le calcul quantique est **réversible** (sauf mesure) → l'impossibilité d'une
 | Suppression d'une copie | Toujours | ❌ Non-suppression |
 
 ::: {.callout-warning title="Relations entre principes"}
+
 - Clonage possible $\Rightarrow$ non-signalisation violée
 - Non-suppression = dual du non-clonage (réversibilité)
 - $\theta = \pi/2$ (orthogonaux) $\Rightarrow$ Helstrom-Holevo donne $p = 1$ ✓
+
 :::

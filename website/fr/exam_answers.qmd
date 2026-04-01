@@ -956,6 +956,7 @@ La **téléportation quantique** résout le problème suivant : comment Alice pe
 La solution est remarquable : elle exploite une paire de Bell partagée entre Alice et Bob, combinée à l'envoi de deux bits classiques. Contrairement à ce que le nom pourrait suggérer, la téléportation quantique ne fait pas se déplacer de la matière d'un point à un autre, ni voyager dans le temps — elle transfère seulement l'état quantique.
 
 Les ressources nécessaires sont :
+
 - Un qubit « message » $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ qu'Alice souhaite transmettre.
 - Une paire de Bell $|\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, dont un qubit est détenu par Alice et l'autre par Bob.
 - Un canal classique permettant à Alice d'envoyer 2 bits à Bob.

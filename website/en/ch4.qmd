@@ -440,6 +440,7 @@ The protocol goes like this:
 1. **Alice** has a string of bits and encodes each bit in one of two bases, chosen randomly with equal probability:
    - Base $\{|0\rangle, |1\rangle\}$: 0 → $|0\rangle$, 1 → $|1\rangle$
    - Base $\{|+\rangle, |-\rangle\}$: 0 → $|+\rangle$, 1 → $|-\rangle$
+
 Alice sends the qubit to Bob.
 
 2. **Bob** receives the qubit and measures in one of the two bases, chosen randomly.
