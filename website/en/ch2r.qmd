@@ -108,10 +108,12 @@ $$CNOT : |10\rangle\to|11\rangle,\quad |11\rangle\to|10\rangle$$
 ## The Hadamard H gate — Critical points
 
 ::: {.callout-important title="Must remember"}
+
 - $H|0\rangle = |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$
 - $H|1\rangle = |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$
 - $H^2 = I$ (its own inverse)
 - **No classic equivalent**
+
 :::
 
 **States $|+\rangle$ and $|-\rangle$:**

@@ -808,4 +808,5 @@ Ce chapitre a introduit les fondements théoriques de l'informatique quantique :
 - Les **portes quantiques** (X, Y, Z, H, CNOT, etc.) sont des matrices unitaires constituant les blocs de base des circuits quantiques.
 - L'**interférence quantique** permet à un algorithme bien conçu de supprimer les mauvaises réponses et d'amplifier la bonne.
 - La **puissance quantique** provient du parallélisme (superposition), de la dimension exponentielle de l'espace de Hilbert et de l'intrication.
+
 :::

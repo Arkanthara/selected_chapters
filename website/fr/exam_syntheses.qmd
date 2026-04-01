@@ -397,6 +397,7 @@ $$\tilde{U}(|\psi\rangle|\psi\rangle) = |\psi\rangle|0\rangle \quad \forall |\ps
 - Complexifie la conception des algorithmes
 
 **Cohérence des trois principes** :
+
 - Non-clonage → interdit de multiplier l'information quantique
 - Non-suppression → interdit de la diminuer
 - Mesure → seule opération qui « détruit » une superposition, mais au prix d'une irréversibilité fondamentale

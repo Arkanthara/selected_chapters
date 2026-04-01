@@ -43,9 +43,11 @@ title: "Applications des ordinateurs quantiques — Révision"
 | 11 | $\alpha\|1\rangle - \beta\|0\rangle$ | NOT + Z |
 
 ::: {.callout-warning title="Pièges"}
+
 - Alice ne connaît **jamais** $|\psi\rangle$
 - Pas de communication supraluminique (canal classique obligatoire)
 - Chaque téléportation **consomme** la paire intriquée
+
 :::
 
 ---

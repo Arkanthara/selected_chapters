@@ -219,10 +219,12 @@ Under the assumption of independence of errors between qubits → any general no
 # Summary — Critical points
 
 ::: {.callout-warning title="Frequent pitfalls"}
+
 - Encoding $\alpha|000\rangle + \beta|111\rangle$ **is not** 3 copies of $\alpha|0\rangle+\beta|1\rangle$ → it is **entangled** state
 - Parity measurements do **not** measure $\alpha$ or $\beta$ → state is not destroyed
 - Digitalization is not a postulate → it is a **consequence** of the collapse by measurement
 - Shor's code fixes **any** error on 1 qubit, not just $X$ or $Z$ separately
+
 :::
 
 ::: {.callout-note title="Key formula to remember"}

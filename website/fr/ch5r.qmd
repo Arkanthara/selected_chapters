@@ -219,10 +219,12 @@ Sous hypothèse d'indépendance des erreurs entre qubits → tout canal bruité 
 # Récapitulatif — Points critiques
 
 ::: {.callout-warning title="Pièges fréquents"}
+
 - L'encodage $\alpha|000\rangle + \beta|111\rangle$ **n'est pas** 3 copies de $\alpha|0\rangle+\beta|1\rangle$ → c'est un état **enchevêtré**
 - Les mesures de parité ne mesurent **pas** $\alpha$ ou $\beta$ → l'état n'est pas détruit
 - La digitalisation n'est pas un postulat → c'est une **conséquence** de l'effondrement par mesure
 - Le code de Shor corrige **toute** erreur sur 1 qubit, pas seulement $X$ ou $Z$ séparément
+
 :::
 
 ::: {.callout-note title="Formule clé à retenir"}
