@@ -320,7 +320,7 @@ We want to find the bound of the mutual information according to the Holevo boun
 
 _Computation of $sum_i p_i S(rho_i)$_
 
-Alice send with probability $1/4$ one of the four pure states with density $rho_i$.
+Alice send with probability $1/4$ one of the four pure states with density $rho_i$..
 As she sends some pure state, according to property 1. of entropy of Von Neumann, the entropy is 0.
 
 So we have:
@@ -334,6 +334,10 @@ So we have:
 
 _Precomputations_
 
+Alice send one of the four pure states $|X_i chevron.r$ with probability $p_i = 1/4$.
+So Bob can compute the density $rho_i$ of each pure state $|X_i chevron.r$.
+As the states are pure, the density $rho_i$ is given by $rho_i = |X_i chevron.r chevron X_i|$.
+Indeed, when we are in a pure state, we cannot be in a mixture of states.
 
 $
   rho_1 &= |X_1 chevron.r chevron X_1| \
@@ -420,210 +424,159 @@ So we want to construct a set of operators ${E_m}$ such that:
 - Each operator $E_m$ is positive
 - $sum_m E_m = I$
 
-We want to check now if we can find a set of operators ${E_m}$ that are built from an orthogonal basis and that satisfy the two previous conditions.
-Indeed, the orthogonal basis maximize the recognition of quantum states while minimizing overlaps.
-Two states of an orthogonal basis don't overlap at all and are perfectly distinguishable, so they maximize the mutual information by minimizing the error of Bob's measurement.
+We want to check now if we can find a set of operators ${E_m}$ that maximize the mutual information, so that allows Bob to determine Alice's state with the least error.
 
-We have the quantum pure states as described in @init.
+Actually, we have $sum_i p_i rho_i = I/2$ with $rho_i = |X_i chevron.r chevron X_i|$.
+We can constate that the operator $rho_i$ is a projector.
+Indeed, if we take some random state $|psi chevron.r$, we have:
+$ rho_i |psi chevron.r = (|X_i chevron.r chevron X_i|)|psi chevron.r = |X_i chevron.r (chevron X_i|psi chevron.r) $
+As $chevron X_i|psi chevron.r$ is the scalar product between the states, it is a scalar that determines the amplitude of the projection.
+So $rho_i$ allows to project any state on the state $|X_i chevron.r$ with a amplitude determined by the scalar product.
 
-We can choose the basis ${|0 chevron.r, |1 chevron.r}$ which is a simple orthogonal basis.
+So we want to construct a set of operators ${E_m}$ that maximize the detection of the states $|X_i chevron.r$.
+If we make $I - rho_i$, we obtain the operator that allows to project any state on the subspace orthogonal to $|X_i chevron.r$.
+Indeed, for instance, if we take some random state $|psi chevron.r$, we have:
+$ (I - rho_i) |psi chevron.r = (I - |X_i chevron.r chevron X_i|)|psi chevron.r = |psi chevron.r - underbrace(|X_i chevron.r (chevron X_i|psi chevron.r), "Projection on" |X_i chevron.r) $
+So this means that we take the state $|psi chevron.r$ and we remove all the component of $|psi chevron.r$ that is in the direction of $|X_i chevron.r$, so we are left with the component of $|psi chevron.r$ that is in the subspace orthogonal to $|X_i chevron.r$.
 
-Then, we can construct the POVM from this basis like follows:
+So we can construct the POVM from the operators $rho_i$ and $I - rho_i$.
+As $rho_i$ are density operators, they are positive. Indeed, for any state $|psi chevron.r$, we have $chevron psi|rho_i|psi chevron.r$ which is the probability of finding the system in the state $|psi chevron.r$. As it is a probability, it is always positive. So $rho_i$ is a positive operator.
 
-$ E_1 &= |0 chevron.r chevron 0| = mat(1, 0; 0, 0) \
-E_2 &= |1 chevron.r chevron 1| = mat(0, 0; 0, 1)
+As $I - rho_i$ is the difference between the identity and a positive operator that gives a probability, so that is always less than or equal to 1, it is also a positive operator.
+
+Now, we need to verify that $sum_i (I - rho_i) = I$.
+We have:
+
+$
+  sum_i (I - rho_i) &= sum_i I - sum_i rho_i \
+  &= 4I - (mat(1, 0; 0, 0) + 1/3 mat(1, sqrt(2); sqrt(2), 2) \ &+ 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) + 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 4I - (1/3mat(4, sqrt(2); sqrt(2), 2) + 1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) + 1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \
+  &= 4I - 1/3mat(6, 0; 0, 6) \
+  &= 4I - 2I \
+  &= 2I \
 $
 
-Basically, we have $E_1 + E_2 = I$.
-
+So if we take $E_i = (I - rho_i) / 2$, we have $sum_i E_i = I$.
 
 As used in page 534 of Quantum Computation and Quantum Information: 10th Anniversary Edition @Nielsen_Chuang_2010,
 the joint distribution $p(x, y)$ satisfies $p(x, y) = p(x)p(y|x) = p(x)tr(rho_x E_y)$.
 
-So we can compute the table of the marginal and joint probabilities.
+$p(x = X_i)$ is the probability that Alice sends the state $|X_i chevron.r$, so $p(x) = 1/4$ for all $|X_i chevron.r$.
 
-#pagebreak()
+We have $p(y|x) = tr(rho_x E_y)$, which is the probability that Bob gets the outcome $y$ given that Alice sends the state $|X_i chevron.r$.
 
+As ${E_y}$ is a POVM, so a set of measurement operators, we can write $p(y|x) = tr(rho_x E_y) = chevron X_i|E_y|X_i chevron.r$, which is the probability of getting the outcome $y$ when we measure the state $|X_i chevron.r$ with the measurement operator $E_y$.
 
-  $
-    text("   ")#table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $?$,
-      $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $?$,
-      $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $?$,
-      $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $?$,
-      $p(y)$, $?$, $?$, $1$,
-    ) \
-    = #table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $1/4 tr(mat(1, 0; 0, 0) mat(1, 0; 0, 0))$, $1/4 tr(mat(1, 0; 0, 0) mat(0, 0; 0, 1))$, $?$,
-      $2$,
-      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(1, 0; 0, 0))$,
-      $1/4 tr(1/3 mat(1, sqrt(2); sqrt(2), 2) mat(0, 0; 0, 1))$,
-      $?$,
+We first need to check if the pure states $|X_i chevron.r$ are normalized, so that $chevron X_i|X_i chevron.r = 1$.
+We have:
+$
+  chevron X_1|X_1 chevron.r &= chevron 0|0 chevron.r = 1 \
+  chevron X_2|X_2 chevron.r &= 1/3 [ chevron 0| + sqrt(2) chevron 1| ] [ |0 chevron.r + sqrt(2)|1 chevron.r] \
+  &= 1/3 [ chevron 0|0 chevron.r + sqrt(2) chevron 0|1 chevron.r + sqrt(2) chevron 1|0 chevron.r + 2 chevron 1|1 chevron.r ] \
+  &= 1/3 [ 1 + 0 + 0 + 2 ] \
+  &= 1 \
 
-      $3$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, 0; 0, 0))$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(0, 0; 0, 1))$,
-      $?$,
+  chevron X_3|X_3 chevron.r &= 1/3 [ chevron 0| + sqrt(2) e^(-2 pi i \/ 3) chevron 1| ] [ |0 chevron.r + sqrt(2) e^(2 pi i \/ 3)|1 chevron.r] \
+  &= 1/3 [ chevron 0|0 chevron.r + sqrt(2) e^(2 pi i \/ 3) chevron 0|1 chevron.r + sqrt(2) e^(-2 pi i \/ 3) chevron 1|0 chevron.r + 2e^(0) chevron 1|1 chevron.r ] \
+  &= 1/3 [ 1 + 0 + 0 + 2 ] \
+  &= 1 \
+$
+$
+  chevron X_4|X_4 chevron.r &= 1/3 [ chevron 0| + sqrt(2) e^(-4 pi i \/ 3) chevron 1| ] [ |0 chevron.r + sqrt(2) e^(4 pi i \/ 3)|1 chevron.r] \
+  &= 1/3 [ chevron 0|0 chevron.r + sqrt(2) e^(4 pi i \/ 3) chevron 0|1 chevron.r + sqrt(2) e^(-4 pi i \/ 3) chevron 1|0 chevron.r + 2e^(0) chevron 1|1 chevron.r ] \
+  &= 1/3 [ 1 + 0 + 0 + 2 ] \
+  &= 1 \
+$
 
-      $4$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, 0; 0, 0))$,
-      $1/4 tr(1/3 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(0, 0; 0, 1))$,
-      $?$,
+So the pure states $|X_i chevron.r$ are normalized, so $chevron X_i|X_i chevron.r = 1$.
 
-      $p(y)$, $?$, $?$, $1$,
-    ) \
-    = #table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $1/4$, $0$, $1/4$,
-      $2$, $1/12$, $1/6$, $1/4$,
+We have $E_i = (I - rho_i) / 2$.
+We now want to compute $p(y = X_i | x = X_j)$ for all $i$ and $j$.
 
-      $3$, $1/12$, $1/6$, $1/4$,
+When $i = j$, we have:
 
-      $4$, $1/12$, $1/6$, $1/4$,
+$
+  chevron X_i|E_i|X_i chevron.r &= chevron X_i| (I - rho_i)/2 |X_i chevron.r \
+  &= (chevron X_i|I|X_i chevron.r - chevron X_i|rho_i|X_i chevron.r) / 2 \
+  &= (chevron X_i|X_i chevron.r - chevron X_i|X_i chevron.r chevron X_i|X_i chevron.r) / 2 \
+  &= (1 - 1) / 2 \
+  &= 0 \
+$
 
-      $p(y)$, $1/2$, $1/2$, $1$,
-    ) \
-  $
+When $i != j$, we have:
+
+$
+  p(y = X_i | x = X_j) &= tr(rho_j E_i) \
+  &= tr(rho_j (I - rho_i) / 2) \
+  &= (tr(rho_j) - tr(rho_j rho_i)) / 2
+$
+
+We have:
+
+$
+text("   ")#table(
+  columns: 4,
+  align: center,
+  rows: 2,
+  inset: 10pt,
+  $tr(rho_1)$, $tr(rho_2)$, $tr(rho_3)$, $tr(rho_4)$,
+  $tr(mat(1, 0; 0, 0))$, $1/3tr( mat(1, sqrt(2); sqrt(2), 2))$, $1/3tr( mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2))$, $1/3tr(mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2))$,
+
+) \
+= #table(
+  columns: 4,
+  align: center,
+  rows: 2,
+  inset: 10pt,
+  $tr(rho_1)$, $tr(rho_2)$, $tr(rho_3)$, $tr(rho_4)$,
+  $1$, $1$, $1$, $1$,
+
+) \
+$
+
+and:
+
+$
+  text("   ")#table(
+  columns: 2,
+  align: center,
+  rows: 6,
+  inset: 10pt,
+  $tr(rho_1 rho_2)$, $1/3tr(mat(1, 0; 0, 0) mat(1, sqrt(2); sqrt(2), 2)) \ = 1/3(1 + 0) = 1/3$,
+  $tr(rho_1 rho_3)$, $1/3tr(mat(1, 0; 0, 0) mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \ = 1/3(1 + 0) = 1/3$,
+  $tr(rho_1 rho_4)$, $1/3tr(mat(1, 0; 0, 0) mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \ = 1/3(1 + 0) = 1/3$,
+  $tr(rho_2 rho_3)$, $1/9tr(mat(1, sqrt(2); sqrt(2), 2) mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2)) \ = 1/9(1 + 2e^(2 pi i \/ 3) + 2e^(-2 pi i \/ 3) + 4) = 1/3$,
+  $tr(rho_2 rho_4)$, $1/9tr(mat(1, sqrt(2); sqrt(2), 2) mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2)) \ = 1/9(1 + 2e^(4 pi i \/ 3) + 2e^(-4 pi i \/ 3) + 4) = 1/3$,
+  $tr(rho_3 rho_4)$, $1/9tr(mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2))
+  \ = 1/9((1 + 2e^(2 pi i \/ 3) + 2e^(-2 pi i \/ 3) + 4)) = 1/3$,
+) \
+$
+
+So when $i != j$, we have $ p(y = X_i | x = X_j) = (tr(rho_j) - tr(rho_j rho_i)) / 2 = (1 - 1/3) / 2 = 1/3$.
+
+So we have the following table of the joint and marginal probabilities:
+
+#table(
+  columns: 6,
+  rows: 6,
+  align: center,
+  inset: 10pt,
+  $x \\ y$, $X_1$, $X_2$, $X_3$, $X_4$, $p(x)$,
+  $X_1$, $0$, $1/12$, $1/12$, $1/12$, $1/4$,
+  $X_2$, $1/12$, $0$, $1/12$, $1/12$, $1/4$,
+  $X_3$, $1/12$, $1/12$, $0$, $1/12$, $1/4$,
+  $X_4$, $1/12$, $1/12$, $1/12$, $0$, $1/4$,
+  $p(y)$, $1/4$, $1/4$, $1/4$, $1/4$, $1$,
+) \
 
 So we have:
 
 - $H(X) = - sum_x p(x) log_2(p(x)) = - 4 dot 1/4 log_2(1/4) = 2$
-- $H(Y) = - sum_y p(y) log_2(p(y)) = - 2 dot 1/2 log_2(1/2) = 1$
-- $H(X, Y) = - sum_(x, y) p(x, y) log_2(p(x, y)) = - 1/4 log_2(1/4) - 3 dot 1/12 log_2(1/12) - 3 dot 1/6 log_2(1/6) = 2.689$
+- $H(Y) = - sum_y p(y) log_2(p(y)) = - 4 dot 1/4 log_2(1/4) = 2$
+- $H(X, Y) = - sum_(x, y) p(x, y) log_2(p(x, y)) = - 12 dot 1/12 log_2(1/12) = 3.585$
 
-So the mutual information is:
+So the mutual information is given by:
 
-$
-  H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 1 - 2.689 = 0.311
-$
+$ H(X: Y) = H(X) + H(Y) - H(X, Y) = 2 + 2 - 3.585 = 0.415 $.
 
-This is worse than the known POVM that achieves $approx 0.415$ bits.
-
-So we can try another basis that is perhaps more suitable for this problem.
-
-Indeed, the ${|0 chevron.r, |1 chevron.r}$ basis is not sensitive to phase whereas the basis ${|+ chevron.r, |- chevron.r}$ is.
-
-So we can construct the POVM from this basis like follows:
-
-$
-E_1 &= |+ chevron.r chevron +| = 1/sqrt(2)[ |0 chevron.r + |1 chevron.r] 1/sqrt(2)[chevron 0| + chevron 1| ] = 1/2 mat(1, 1; 1, 1) \
-E_2 &= |- chevron.r chevron -| = 1/sqrt(2)[ |0 chevron.r - |1 chevron.r] 1/sqrt(2)[chevron 0| - chevron 1| ] = 1/2 mat(1, -1; -1, 1)
-$
-
-So we have $E_1 + E_2 = I$.
-
-Then, we can compute the joint- distribution $p(x, y)$:
-$
-    text("   ")#table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $p_1 tr(rho_1 E_1)$, $p_1 tr(rho_1 E_2)$, $?$,
-      $2$, $p_2 tr(rho_2 E_1)$, $p_2 tr(rho_2 E_2)$, $?$,
-      $3$, $p_3 tr(rho_3 E_1)$, $p_3 tr(rho_3 E_2)$, $?$,
-      $4$, $p_4 tr(rho_4 E_1)$, $p_4 tr(rho_4 E_2)$, $?$,
-      $p(y)$, $?$, $?$, $1$,
-    ) \
-
-   = #table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $1/4 tr(1/2mat(1, 0; 0, 0) mat(1, 1; 1, 1))$, $1/4 tr(1/2mat(1, 0; 0, 0) mat(1, -1; -1, 1))$, $?$,
-      $2$,
-      $1/4 tr(1/6 mat(1, sqrt(2); sqrt(2), 2) mat(1, 1; 1, 1))$,
-      $1/4 tr(1/6 mat(1, sqrt(2); sqrt(2), 2) mat(1, -1; -1, 1))$,
-      $?$,
-
-      $3$,
-      $1/4 tr(1/6 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
-      $1/4 tr(1/6 mat(1, sqrt(2) e^(-2 pi i \/ 3); sqrt(2) e^(2 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
-      $?$,
-
-      $4$,
-      $1/4 tr(1/6 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, 1; 1, 1))$,
-      $1/4 tr(1/6 mat(1, sqrt(2) e^(-4 pi i \/ 3); sqrt(2) e^(4 pi i \/ 3), 2) mat(1, -1; -1, 1))$,
-      $?$,
-
-      $p(y)$, $?$, $?$, $1$,
-    )
-    $
-
-    $= #table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $1/8 tr(mat(1, 1; 0, 0))$, $1/8 tr(mat(1, -1; 0, 0))$, $?$,
-      $2$, $1/24 tr(mat(1 + sqrt(2), 1 + sqrt(2); 2 + sqrt(2), 2 + sqrt(2)))$, $1/24 tr(mat(1 - sqrt(2), sqrt(2) - 1; sqrt(2) - 2, 2 - sqrt(2)))$, $?$,
-      $3$, $1/24 tr(mat(1 + sqrt(2) e^(-2 pi i \/ 3), 1 + sqrt(2) e^(-2 pi i \/ 3); 2 + sqrt(2) e^(2 pi i \/ 3), 2 + sqrt(2) e^( 2 pi i \/ 3)))$, $1/24 tr(mat(1 - sqrt(2) e^(-2 pi i \/ 3), sqrt(2) e^(-2 pi i \/ 3) - 1; sqrt(2) e^(2 pi i \/ 3) - 2, 2 - sqrt(2) e^(2 pi i \/ 3)))$, $?$,
-      $4$, $1/24 tr(mat(1 + sqrt(2) e^(-4 pi i \/ 3), 1 + sqrt(2) e^(-4 pi i \/ 3); 2 + sqrt(2) e^(4 pi i \/ 3), 2 + sqrt(2) e^(4 pi i \/ 3)))$, $1/24 tr(mat(1 - sqrt(2) e^(-4 pi i \/ 3), sqrt(2) e^(-4 pi i \/ 3) - 1; sqrt(2) e^(4 pi i \/ 3) - 2, 2 - sqrt(2) e^(4 pi i \/ 3)))$, $?$,
-      $p(y)$, $?$, $?$, $1$,
-    ) \
-    = #table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $1/8$, $1/8$, $1/4$,
-      $2$, $1/24 (3 + 2 sqrt(2))$, $1/24 (3 - 2 sqrt(2))$, $?$,
-      $3$, $1/24 (3 + 2 sqrt(2))$, $1/24 (3 - 2 sqrt(2))$, $?$,
-      $4$, $1/24 (3 + 2 sqrt(2))$, $1/24 (3 - 2 sqrt(2))$, $?$,
-      $p(y)$, $?$, $?$, $1$,
-      ) \
-    = #table(
-      columns: (2cm, 6cm, 6cm, 2cm),
-      rows: 6,
-      align: center,
-      inset: 10pt,
-      $x \\ y$, $1$, $2$, $p(x)$,
-      $1$, $1/8$, $1/8$, $1/4$,
-      $2$, $1/8 + sqrt(2)/12$, $1/8 - sqrt(2)/12$, $1/4$,
-      $3$, $1/8 + sqrt(2)/12$, $1/8 - sqrt(2)/12$, $1/4$,
-      $4$, $1/8 + sqrt(2)/12$, $1/8 - sqrt(2)/12$, $1/4$,
-      $p(y)$, $1/2 + sqrt(2)/6$, $1/2 - sqrt(2)/6$, $1$,
-    ) \
-  $
-
-So we have:
-
-$H(X) & = - sum_x p(x) log_2(p(x)) \
-          & = - 4 dot 1/4 log_2(1/4) \
-          & = 2$
-
-$H(Y) & = - sum_y p(y) log_2(p(y)) \
-          & = - (1/2 + sqrt(2)/6) log_2(1/2 + sqrt(2)/6) - (1/2 - sqrt(2)/6) log_2(1/2 - sqrt(2)/6) \
-          & = 0.833$
-
-$H(X, Y) & = - sum_(x, y) p(x, y) log_2(p(x, y)) \
-            & = - 2 dot 1/8 log_2(1/8) - 3 dot (1/8 + sqrt(2)/12) log_2(1/8 + sqrt(2)/12) - 3 dot (1/8 - sqrt(2)/12) log_2(1/8 - sqrt(2)/12) \
-            & = 2.390$
-
-So the mutual information is:
-$
-  H(X: Y) & = H(X) + H(Y) - H(X, Y) \
-          & = 2 + 0.833 - 2.390 \
-          & = 0.443
-$
-
-So we can see that the mutual information don't reach 1 bit, but the constructed POVM gives better results than the known POVM that gives a mutual information of 0.415 bits.
+So we can see that the mutual information don't reach 1 bit and that the POVM we constructed allows to reach the known bound of $approx 0.415$ bits.
